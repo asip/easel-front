@@ -56,7 +56,7 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    const { data } = useAsyncData('logout', () =>
+    const { data } = await useAsyncData('logout', () =>
       $fetch('/api/sessions/logout', {
         method: 'delete',
         headers: {
@@ -66,13 +66,15 @@ export const useLoginUser = () => {
       })
     )
 
-    //const json_data = data.value
+    const json_data = data.value
 
-    logged_in.value = false
-    login_user.value.name = ''
-    login_user.value.email = ''
-    login_user.value.token = null
-    return navigateTo('/')
+    if(json_data.data) {
+      logged_in.value = false
+      login_user.value.name = ''
+      login_user.value.email = ''
+      login_user.value.token = null
+      return navigateTo('/')
+    }
   }
 
   return {
