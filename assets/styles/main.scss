@@ -1,0 +1,30 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: aliceblue;
+}
+.c-bgcolor {
+  background-color: white;
+}
+.label-bg-style {
+  background-color: lavender;
+  border-radius: 5px;        /* CSS3草案 */
+  -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 5px;   /* Firefox用 */
+}
+.kadomaru {
+  border-radius: 5px;        /* CSS3草案 */
+  -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
+  -moz-border-radius: 5px;   /* Firefox用 */
+}
+/* .white-space-pre {
+  white-space: pre;
+ } */
+@media (min-width: 567px) {
+  .abs-center-x {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
