@@ -26,7 +26,7 @@
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
             <button type="button" class="btn btn-primary" @click="login">ログイン</button>&nbsp;
-            <NuxtLink :to="`/`" class="btn btn-primary">ユーザー登録</NuxtLink>&nbsp;
+            <NuxtLink :to="`/signup`" class="btn btn-primary">ユーザー登録</NuxtLink>&nbsp;
             <NuxtLink :to="`/`" class="btn btn-outline-secondary">戻る</NuxtLink>
           </div>
         </div>
