@@ -13,7 +13,10 @@
         <div class="row d-flex justify-content-sm-center">
           <label for="image" class="col-form-label-sm col-sm-3 label-bg-style">アイコン：</label>
           <div class="form-group col-sm-4">
-            <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" class="form-control-file" >
+            <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="handleFileSelection" class="form-control-file" >
+            <div v-for="message of error_messages.image">
+              <div>{{ message }}</div>
+            </div>
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center border border-white">
@@ -22,6 +25,9 @@
             <input type="text" v-model="signup_params.name" placeholder="ユーザー名" class="form-control">
             <div v-for="error of v$.name.$errors" :key="error.$uid">
               <div>{{ error.$message }}</div>
+            </div>
+            <div v-for="message of error_messages.name">
+              <div>ユーザー名{{ message }}</div>
             </div>
           </div>
         </div>
@@ -32,6 +38,9 @@
             <div v-for="error of v$.email.$errors" :key="error.$uid">
               <div>{{ error.$message }}</div>
             </div>
+            <div v-for="message of error_messages.email">
+              <div>Eメール{{ message }}</div>
+            </div>
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center border border-white">
@@ -41,6 +50,9 @@
             <div v-for="error of v$.password.$errors" :key="error.$uid">
               <div>{{ error.$message }}</div>
             </div>
+            <div v-for="message of error_messages.password">
+              <div>パスワード{{ message }}</div>
+            </div>
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center border border-white">
@@ -49,6 +61,9 @@
             <input type="password" v-model="signup_params.password_confirmation" placeholder="パスワード(確認)" class="form-control">
             <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
               <div>{{ error.$message }}</div>
+            </div>
+            <div v-for="message of error_messages.password_confirmation">
+              <div>パスワード(確認){{ message }}</div>
             </div>
           </div>
         </div>
@@ -66,5 +81,11 @@
 </template>
 
 <script lang="ts" setup>
-  const { signup_params, v$, signup } = useSignup()
+  const { signup_params, v$, signup, error_messages } = useSignup()
+
+  const handleFileSelection = ( event: any ) => {
+    let uploadedFile = event.target.files[0];
+
+    signup_params.image = uploadedFile ;
+  }
 </script>

@@ -10,6 +10,14 @@ export const useSignup = () => {
     password_confirmation: ''
   })
 
+  const error_messages = reactive({
+    image: [],
+    name: [],
+    email: [],
+    password: [],
+    password_confirmation: []
+  })
+
   const rules = {
     name: { required, minLength: minLength(3), maxLength: maxLength(40) },
     email: { required, email },
@@ -21,7 +29,71 @@ export const useSignup = () => {
 
   const signup = async () => {
     const result = await v$.value.$validate();
+
+    if(!v$.value.$invalid){
+      //let formData = new FormData();
+
+      //formData.append('user[image]', signup_params.image)
+      //formData.append('user[name]', signup_params.name)
+      //formData.append('user[email]', signup_params.email)
+      //formData.append('user[password]', signup_params.password)
+      //formData.append('user[password_confirmation]', signup_params.password_confirmation)
+
+      const { data } = await useAsyncData('signup', () =>
+        $fetch('/api/users/', {
+          method: 'post',
+          body: {
+            user: {
+              image: signup_params.image,
+              name: signup_params.name,
+              email: signup_params.email,
+              password: signup_params.password,
+              password_confirmation: signup_params.password_confirmation
+            }
+          },
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        })
+      )
+
+      const json_data = data.value
+
+      console.log(json_data)
+
+      if(json_data.data){
+        navigateTo('/')
+      }else{
+        const errors = json_data.errors
+        if(errors.image){
+          error_messages.image = errors.image
+        } else {
+          error_messages.image = []
+        }
+        if(errors.name){
+          error_messages.name = errors.name
+        } else {
+          error_messages.name = []
+        }
+        if(errors.email){
+          error_messages.email = errors.email
+        } else {
+          error_messages.email = []
+        }
+        if(errors.password){
+          error_messages.password = errors.password
+        } else {
+          error_messages.password = []
+        }
+        if(errors.password_confirmation){
+          error_messages.password_confirmation = errors.password_confirmation
+        } else {
+          error_messages.password_confirmation = []
+        }
+      }
+    }
+
   }
 
-  return { signup_params, v$, signup }
+  return { signup_params, v$, signup, error_messages }
 }
