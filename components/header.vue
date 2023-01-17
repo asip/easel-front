@@ -27,11 +27,9 @@
             </ul>
           </li>
         </ul>
-        <ul class="navbar-nav justify-content-sm-center">
-          <li class="nav-item">
+        <span class="navbar-nav justify-content-sm-center">
             <TagSearch/>
-          </li>
-        </ul>
+        </span>
       </div>
     </div>
   </nav>
