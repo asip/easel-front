@@ -10,23 +10,23 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul v-if="!logged_in" class="navbar-nav me-auto">
-            <li class="nav-item">
-              <NuxtLink :to="`/login`" class="nav-link">Login</NuxtLink>
-            </li>
-          </ul>
-          <ul v-else class="navbar-nav justify-content-sm-center me-auto">
-            <li class="nav-item dropdown small">
-              <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ login_user.name }}
-              </a>
-              <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
-                <li><NuxtLink :to="`/`" class="dropdown-item">profile</NuxtLink></li>
-                <li><NuxtLink :to="`/`" class="dropdown-item">Upload</NuxtLink></li>
-                <li><button type="button" class="dropdown-item" @click="logout">Logout</button></li>
-              </ul>
-            </li>
-          </ul>
+        <ul v-if="!logged_in" class="navbar-nav me-auto">
+          <li class="nav-item">
+            <NuxtLink :to="`/login`" class="nav-link">Login</NuxtLink>
+          </li>
+        </ul>
+        <ul v-else class="navbar-nav justify-content-sm-center me-auto">
+          <li class="nav-item dropdown small">
+            <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ login_user.name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+              <li><NuxtLink :to="`/`" class="dropdown-item">profile</NuxtLink></li>
+              <li><NuxtLink :to="`/`" class="dropdown-item">Upload</NuxtLink></li>
+              <li><button type="button" class="dropdown-item" @click="logout">Logout</button></li>
+            </ul>
+          </li>
+        </ul>
         <ul class="navbar-nav justify-content-sm-center">
           <li class="nav-item">
             <TagSearch/>
