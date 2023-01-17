@@ -11,5 +11,5 @@
 </template>
 
 <script lang="ts" setup>
-  let word = ref<string>('');
+  const { word } = useWordSearch();
 </script>
