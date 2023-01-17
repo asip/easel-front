@@ -10,15 +10,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <div v-if="!logged_in">
-          <ul class="navbar-nav me-auto">
+          <ul v-if="!logged_in" class="navbar-nav me-auto">
             <li class="nav-item">
               <NuxtLink :to="`/login`" class="nav-link">Login</NuxtLink>
             </li>
           </ul>
-        </div>
-        <div v-else>
-          <ul class="navbar-nav justify-content-sm-center me-auto">
+          <ul v-else class="navbar-nav justify-content-sm-center me-auto">
             <li class="nav-item dropdown small">
               <a class="nav-link dropdown-toggle btn btn-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ login_user.name }}
@@ -30,7 +27,6 @@
               </ul>
             </li>
           </ul>
-        </div>
         <ul class="navbar-nav justify-content-sm-center">
           <li class="nav-item">
             <TagSearch/>
