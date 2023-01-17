@@ -30,30 +30,21 @@ export const useSignup = () => {
   const signup = async () => {
     const result = await v$.value.$validate();
 
-    if(!v$.value.$invalid){
-      //let formData = new FormData();
+    //console.log(signup_params.image)
 
-      //formData.append('user[image]', signup_params.image)
-      //formData.append('user[name]', signup_params.name)
-      //formData.append('user[email]', signup_params.email)
-      //formData.append('user[password]', signup_params.password)
-      //formData.append('user[password_confirmation]', signup_params.password_confirmation)
+    if(!v$.value.$invalid){
+      let formData = new FormData();
+
+      formData.append('user[image]', signup_params.image)
+      formData.append('user[name]', signup_params.name)
+      formData.append('user[email]', signup_params.email)
+      formData.append('user[password]', signup_params.password)
+      formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
       const { data } = await useAsyncData('signup', () =>
         $fetch('/api/users/', {
           method: 'post',
-          body: {
-            user: {
-              image: signup_params.image,
-              name: signup_params.name,
-              email: signup_params.email,
-              password: signup_params.password,
-              password_confirmation: signup_params.password_confirmation
-            }
-          },
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-          }
+          body: formData
         })
       )
 

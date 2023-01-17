@@ -13,7 +13,7 @@
         <div class="row d-flex justify-content-sm-center">
           <label for="image" class="col-form-label-sm col-sm-3 label-bg-style">アイコン：</label>
           <div class="form-group col-sm-4">
-            <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="handleFileSelection" class="form-control-file" >
+            <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
             <div v-for="message of error_messages.image">
               <div>{{ message }}</div>
             </div>
@@ -83,8 +83,9 @@
 <script lang="ts" setup>
   const { signup_params, v$, signup, error_messages } = useSignup()
 
-  const handleFileSelection = ( event: any ) => {
-    let uploadedFile = event.target.files[0];
+  const onSelectFile = ( event: Event ) => {
+    const target = event.target as HTMLInputElement
+    let uploadedFile = target.files![0];
 
     signup_params.image = uploadedFile ;
   }
