@@ -22,5 +22,5 @@
   }
   const locale = 'ja-jp'
 
-  const { date_word } = useWordSearch()
+  const { date_word } = useFrameSearch()
 </script>

@@ -13,6 +13,16 @@ export default defineNitroConfig({
         'X-Forwarded-Host': 'localhost:3000',
         'X-Forwarded-Proto': 'http'
       },
+    },
+    '/uploads/': {
+      target: 'http://localhost:3000/uploads/',
+      changeOrigin: true,
+      hostRewrite: true,
+      cookieDomainRewrite: true,
+      headers: {
+        'X-Forwarded-Host': 'localhost:3000',
+        'X-Forwarded-Proto': 'http'
+      },
     }
   }
 })
