@@ -28,7 +28,7 @@ export const useFrameSearch = () => {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         }
-      },{ server: false })
+      })
     )
 
     const json_data = data.value

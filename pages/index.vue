@@ -18,7 +18,7 @@
 <script lang="ts" setup>
   const { frames, searchFrame } = useFrameSearch()
 
-  onMounted(async () => {
-    //await searchFrame()
+  onMounted(() => {
+    // searchFrame()
   })
 </script>
