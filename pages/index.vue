@@ -15,10 +15,19 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  const { frames, searchFrame } = useFrameSearch()
+<script lang="ts">
+  export default {
+    setup(){
+      const { frames, searchFrame } = useFrameSearch()
 
-  onMounted(() => {
-    // searchFrame()
-  })
+      onMounted(() => {
+        //console.log('swarchFrame: start')
+        searchFrame()
+      })
+
+      return {
+        frames, searchFrame
+      }
+    }
+  }
 </script>
