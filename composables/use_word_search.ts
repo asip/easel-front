@@ -7,7 +7,7 @@ export const useWordSearch = () => {
 
   const date_word = computed({
     get(){
-      return ''
+      return cdate()
     },
     set(value){
       word.value = cdate(value).format('YYYY/MM/DD')
