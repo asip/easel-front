@@ -8,7 +8,7 @@
       <div class="d-flex justify-content-sm-center">
         <div class="mx-auto">
           <client-only>
-            <v-calendar v-model="word" />
+            <v-date-picker v-model="date_word" :masks="masks" :locale="locale" />
           </client-only>
         </div>
       </div>
@@ -17,5 +17,10 @@
 </template>
 
 <script lang="ts" setup>
-  const { word } = useWordSearch()
+  const masks= {
+    input: 'YYYY/MM/DD'
+  }
+  const locale = 'ja-jp'
+
+  const { date_word } = useWordSearch()
 </script>
