@@ -28,10 +28,11 @@ export const useFrameSearch = () => {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         }
-      })
+      },{ server: false })
     )
 
     const json_data = data.value
+    //console.log(json_data)
 
     if(json_data.data){
       const frame_list = json_data.data
@@ -40,7 +41,7 @@ export const useFrameSearch = () => {
         //console.log(comment);
         frames.value.push(frame);
       }
-      console.log(frames)
+      //console.log(frames)
     }
 
   }
