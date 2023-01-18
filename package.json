@@ -17,6 +17,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "sass": "^1.57.1",
+    "v-calendar": "^3.0.0-alpha.8",
     "vue-i18n": "9"
   }
 }

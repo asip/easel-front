@@ -5,15 +5,17 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="閉じる"></button>
     </div>
     <div class="offcanvas-body">
-      <div class="card">
-        <div class="card-block">
-          <div class="d-flex justify-content-sm-center">
-            <div class="mx-auto">
-              <div></div>
-            </div>
-          </div>
+      <div class="d-flex justify-content-sm-center">
+        <div class="mx-auto">
+          <client-only>
+            <v-calendar v-model="word" />
+          </client-only>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+  const { word } = useWordSearch()
+</script>
