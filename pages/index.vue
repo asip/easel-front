@@ -2,7 +2,7 @@
   <br>
   <div class="row col-sm-12">
       <div v-for="frame in frames" class="card col-sm-3 kadomaru">
-        <NuxtLink :to="`/`" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top" /></NuxtLink>
+        <NuxtLink :to="`${base_url}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top" /></NuxtLink>
         <br>
         <div class="card-block">
           <div class="d-flex justify-content-sm-center">
@@ -32,9 +32,13 @@
 </template>
 
 <script lang="ts">
+  import { Luminous } from 'luminous-lightbox'
+
   export default {
     setup(){
       const { page, pages, searchFrame, frames } = useFrameSearch()
+
+      const base_url = 'http://localhost:3000'
 
       //console.log('searchFrame: start')
       searchFrame()
@@ -47,8 +51,18 @@
       onMounted(() => {
       })
 
+      onUpdated(()=> {
+        const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('lum-lightbox');
+        Array.from(elements).forEach(e => e.remove());
+
+        const elms = document.querySelectorAll('[name="lm"]')
+        elms.forEach(elm => {
+          new Luminous(elm, { showCloseButton: true })
+        })
+      })
+
       return {
-        frames, searchFrame, clickCallback
+        frames, searchFrame, clickCallback, base_url, pages
       }
     }
   }
