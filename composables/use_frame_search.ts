@@ -17,9 +17,11 @@ export const useFrameSearch = () => {
     }
   })
 
+  const base_url = "http://localhost:3000/api/front/v1"
+
   const searchFrame = async () => {
     const { data } = await useAsyncData('searchFrame', () =>
-      $fetch('/api/frames', {
+      $fetch(`${base_url}/frames`, {
         method: 'get',
         query: {
           q: word.value,
@@ -28,8 +30,7 @@ export const useFrameSearch = () => {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         }
-      }),
-      { server: false }
+      })
     )
 
     const json_data = data.value
