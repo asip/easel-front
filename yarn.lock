@@ -832,6 +832,11 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.45.tgz#a3fffa7489eafff38d984e23d0236e230c818bc2"
   integrity sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==
 
+"@vue/test-utils@^2.0.0-rc.17":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.2.7.tgz#0d93d635031a4cca2de70b825aef3fe20a41e702"
+  integrity sha512-BMuoruUFTEqhLoOgsMcgNVMiByYbfHCKGr2C4CPdGtz/affUtDVX5zr1RnPuq0tYSiaqq+Enw5voUpG6JY8Q7g==
+
 "@vuelidate/core@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.0.tgz#dfe73ba3f997646e07bd4da4f327fe53c29782cb"
@@ -4445,7 +4450,7 @@ vue-router@^4.1.6:
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
-vue@^3.2.45:
+vue@^3.2.25, vue@^3.2.45:
   version "3.2.45"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.45.tgz#94a116784447eb7dbd892167784619fef379b3c8"
   integrity sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==
@@ -4455,6 +4460,14 @@ vue@^3.2.45:
     "@vue/runtime-dom" "3.2.45"
     "@vue/server-renderer" "3.2.45"
     "@vue/shared" "3.2.45"
+
+vuejs-paginate-next@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vuejs-paginate-next/-/vuejs-paginate-next-1.0.2.tgz#fdebe6467f4a336067dc75ea72afb7057092c1bf"
+  integrity sha512-Dal1HXWuYrbvQ47NkagXIYAcEDnnWM3P8Nykf5a4oHc9PcM5BzlU1Z1NOSXAkjENI3WNoS+WhkpCsBhG9Bptgg==
+  dependencies:
+    "@vue/test-utils" "^2.0.0-rc.17"
+    vue "^3.2.25"
 
 wcwidth@^1.0.1:
   version "1.0.1"

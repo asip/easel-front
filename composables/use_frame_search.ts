@@ -5,6 +5,7 @@ export const useFrameSearch = () => {
     return ''
   })
   const page = ref(1)
+  const pages = ref(1)
 
   const frames = useState('frames', () => { return [] })
 
@@ -46,10 +47,13 @@ export const useFrameSearch = () => {
         }
         //console.log(frames)
       }
+      if(json_data.meta){
+        pages.value = json_data.meta.pagination.pages
+      }
     }
   }
 
   return {
-    word, date_word, searchFrame, frames
+    word, date_word, page, pages, searchFrame, frames
   }
 }

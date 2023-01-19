@@ -13,21 +13,42 @@
         </div>
       </div>
   </div>
+  <br>
+  <div class="d-flex col-sm-12 justify-content-sm-center">
+    <ClientOnly>
+      <Paginate
+        :page-count="pages"
+        :page-range="3"
+        :margin-pages="2"
+        :click-handler="clickCallback"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+      >
+      </Paginate>
+    </ClientOnly>
+  </div>
 </template>
 
 <script lang="ts">
   export default {
     setup(){
-      const { frames, searchFrame } = useFrameSearch()
+      const { page, pages, searchFrame, frames } = useFrameSearch()
 
       //console.log('searchFrame: start')
       searchFrame()
+
+      const clickCallback = (pageNum) => {
+        page.value = pageNum
+        searchFrame()
+      }
 
       onMounted(() => {
       })
 
       return {
-        frames, searchFrame
+        frames, searchFrame, clickCallback
       }
     }
   }
