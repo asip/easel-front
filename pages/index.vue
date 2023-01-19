@@ -32,13 +32,15 @@
 </template>
 
 <script lang="ts">
-  import { Luminous } from 'luminous-lightbox'
+  import { LuminousGallery } from 'luminous-lightbox'
 
   export default {
     setup(){
       const { page, pages, searchFrame, frames } = useFrameSearch()
 
       const base_url = 'http://localhost:3000'
+
+      let gallery: LuminousGallery = null;
 
       //console.log('searchFrame: start')
       searchFrame()
@@ -52,13 +54,12 @@
       })
 
       onUpdated(()=> {
+        if(gallery){ gallery.destroy() }
         const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('lum-lightbox');
         Array.from(elements).forEach(e => e.remove());
 
         const elms = document.querySelectorAll('[name="lm"]')
-        elms.forEach(elm => {
-          new Luminous(elm, { showCloseButton: true })
-        })
+        gallery = new LuminousGallery(elms, { showCloseButton: true })
       })
 
       return {
