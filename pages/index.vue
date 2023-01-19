@@ -20,9 +20,10 @@
     setup(){
       const { frames, searchFrame } = useFrameSearch()
 
+      //console.log('searchFrame: start')
+      searchFrame()
+
       onMounted(() => {
-        //console.log('swarchFrame: start')
-        searchFrame()
       })
 
       return {
