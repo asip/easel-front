@@ -1,0 +1,74 @@
+import { ReactiveEffect } from "nuxt/dist/app/compat/capi"
+
+export interface Frame {
+  id: number | null
+  user_id: number | null
+  user_name: string
+  name: string
+  tag_list: string
+  tags: string[]
+  comment: string
+  shooted_at: string
+  shooted_at_html: string
+  file_url: string
+  file_two_url: string
+  file_three_url: string
+  updated_at: string
+}
+
+export const useFrame = () => {
+
+  const frame: Frame = reactive<Frame>({
+    id: null,
+    user_id: null,
+    user_name: '',
+    name: '',
+    tag_list: '',
+    tags: [],
+    comment: '',
+    shooted_at: '',
+    shooted_at_html: '',
+    file_url: '',
+    file_two_url: '',
+    file_three_url: '',
+    updated_at: ''
+  })
+
+  const base_url = "http://localhost:3000/api/front/v1"
+
+  const getFrame = async (id: string ) => {
+    const { data } = await useAsyncData('getFrame', () =>
+      $fetch(`${base_url}/frames/${id}`, {
+        method: 'get',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+    )
+
+    const json_data = data.value
+    // console.log(json_data)
+
+    if(json_data){
+      if(json_data.data){
+        frame.id = json_data.data.id
+        frame.user_id = json_data.data.attributes.user_id
+        frame.user_name = json_data.data.attributes.user_name
+        frame.name = json_data.data.attributes.name
+        frame.comment = json_data.data.attributes.comment
+        frame.tag_list = json_data.data.attributes.tag_list
+        frame.tags = json_data.data.attributes.tags
+        frame.shooted_at = json_data.data.attributes.shooted_at
+        frame.shooted_at_html = json_data.data.attributes.shooted_at_html
+        frame.updated_at = json_data.data.attributes.updated_at
+        frame.file_url = json_data.data.attributes.file_url
+        frame.file_two_url = json_data.data.attributes.file_two_url
+        frame.file_three_url = json_data.data.attributes.file_three_url
+      }
+    }
+  }
+
+  return {
+    getFrame, frame
+  }
+}

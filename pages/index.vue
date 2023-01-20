@@ -7,7 +7,7 @@
         <div class="card-block">
           <div class="d-flex justify-content-sm-center">
             <div class="mx-auto" style="padding-bottom: 10px;">
-              <NuxtLink :to="`/`" class="mx-auto">{{frame.attributes.name}}</NuxtLink>
+              <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">{{frame.attributes.name}}</NuxtLink>
             </div>
           </div>
         </div>
@@ -36,11 +36,18 @@
 
   export default {
     setup(){
-      const { page, pages, searchFrame, frames } = useFrameSearch()
+      const route = useRoute()
+      const q = route.query.q
+
+      const { page, pages, searchFrame, frames, word } = useFrameSearch()
 
       const base_url = 'http://localhost:3000'
 
       let gallery: LuminousGallery = null;
+
+      if(q){
+        word.value = q as string
+      }
 
       //console.log('searchFrame: start')
       searchFrame()

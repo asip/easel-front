@@ -2,6 +2,7 @@ export interface User {
   name: string
   email: string
   token: string | null
+  id: number | null
 }
 
 export const useLoginUser = () => {
@@ -14,7 +15,8 @@ export const useLoginUser = () => {
     return{
       name: '',
       email: '',
-      token: null
+      token: null,
+      id: null
     }
   })
 
@@ -46,6 +48,7 @@ export const useLoginUser = () => {
       login_user.value.name = json_data.data.attributes.name
       login_user.value.email = json_data.data.attributes.email
       login_user.value.token = json_data.data.attributes.token
+      login_user.value.id = json_data.data.id
       logged_in.value = true
       //console.log(login_user.value)
       return navigateTo('/')

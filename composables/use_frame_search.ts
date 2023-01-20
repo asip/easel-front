@@ -5,7 +5,9 @@ export const useFrameSearch = () => {
     return ''
   })
   const page = ref(1)
-  const pages = ref(1)
+  const pages = useState<number>('pages', () => {
+    return 1
+  })
 
   const frames = useState('frames', () => { return [] })
 
