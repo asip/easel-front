@@ -57,7 +57,7 @@
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
               削除
             </button>
-            <NuxtLink to="/" class="btn btn-outline-primary"></NuxtLink>
+            <NuxtLink to="/" class="btn btn-outline-primary">戻る</NuxtLink>
           </div>
         </div>
       </div>

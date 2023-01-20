@@ -76,6 +76,7 @@ export const useLoginUser = () => {
       login_user.value.name = ''
       login_user.value.email = ''
       login_user.value.token = null
+      login_user.value.id = null
       return navigateTo('/')
     }
   }

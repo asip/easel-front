@@ -3933,6 +3933,11 @@ sourcemap-codec@^1.4.8:
   resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
   integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
 
+spotlight.js@^0.7.8:
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/spotlight.js/-/spotlight.js-0.7.8.tgz#0620371701508222d736e0658e8db3fbe9ddc53b"
+  integrity sha512-zq822gqhjaMHt31oZi4do211NwqBcxZ4u7Xtb+OEsbLrz37dcELhBCoQXFu/0sTiomqD6tm5g6tmqvE7S6h4ng==
+
 stable@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
