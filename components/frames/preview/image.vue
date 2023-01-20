@@ -28,7 +28,9 @@
 
   onMounted(() => {
     if (spotlight){
-      Spotlight.init()
+      if(document){
+        Spotlight.init()
+      }
     } else {
       const elm = document.querySelector('[name="lm"]')
       new Luminous(elm, { showCloseButton: true })
