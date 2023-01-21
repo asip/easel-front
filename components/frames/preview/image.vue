@@ -1,6 +1,6 @@
 <template>
-  <div v-if="original" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="spotlight" class="mx-auto spotlight" :to="`${base_url}${frame.file_url}`"><img :src="`${base_url}${frame?.file_three_url}`" class="mx-auto"></NuxtLink>
+  <div v-if="props.original" class="d-flex justify-content-sm-center">
+    <NuxtLink v-if="props.spotlight" class="mx-auto spotlight" :to="`${base_url}${frame.file_url}`"><img :src="`${base_url}${frame?.file_three_url}`" class="mx-auto"></NuxtLink>
     <NuxtLink v-else class="mx-auto" name="lm" :to="`${base_url}${frame.file_url}`"><img :src="`${base_url}${frame?.file_three_url}`" class="mx-auto"></NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
@@ -19,15 +19,12 @@
     spotlight: Boolean
   })
 
-  const original = props.original
-  const spotlight = props.spotlight
-
   const frame: Frame | undefined = inject('frame')
 
   const base_url = "http://localhost:3000"
 
   onMounted(() => {
-    if (spotlight){
+    if (props.spotlight){
       Spotlight.init()
     } else {
       const elm = document.querySelector('[name="lm"]')
