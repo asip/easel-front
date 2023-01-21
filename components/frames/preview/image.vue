@@ -12,7 +12,7 @@
 <script setup lang="ts">
   import Spotlight from "spotlight.js/src/js/spotlight"
   import { Luminous } from 'luminous-lightbox'
-  import { Frame } from '~~/composables/use_frame';
+  import { Frame } from '~/composables/use_frame';
 
   const props = defineProps({
     original: Boolean,

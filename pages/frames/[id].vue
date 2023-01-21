@@ -52,11 +52,11 @@
       <div v-if="logged_in && frame.user_id == login_user.id " class="card-footer">
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            <NuxtLink to="/" class="btn btn-primary">変更</NuxtLink>
+            <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
               削除
-            </button>
+            </button>&nbsp;
             <NuxtLink to="/" class="btn btn-outline-primary">戻る</NuxtLink>
           </div>
         </div>
@@ -97,5 +97,5 @@
 
   provide('frame', frame)
 
-  getFrame(id as string)
+  await getFrame(id as string)
 </script>

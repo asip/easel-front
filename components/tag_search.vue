@@ -13,7 +13,7 @@
 <script lang="ts" setup>
   const { word, searchFrame } = useFrameSearch();
 
-  const onSearchClick = () => {
-    searchFrame()
+  const onSearchClick = async () => {
+    await searchFrame()
   }
 </script>

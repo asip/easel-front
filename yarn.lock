@@ -861,6 +861,11 @@
     "@unhead/ssr" "^1.0.4"
     "@unhead/vue" "^1.0.4"
 
+"@yaireo/tagify@^4.17.7":
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/@yaireo/tagify/-/tagify-4.17.7.tgz#662eb9676818c7490752f7e99d537397cc1b9b02"
+  integrity sha512-kMk179PY4aXdc5tIw4t65I6IvB5Dyes30DF0XTUagqcCe+pCyi60g4eUGScFsJByF/u25An0RkVqZ4+IcPVxVg==
+
 "@zhead/schema@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@zhead/schema/-/schema-1.0.4.tgz#f37419c72c1707c677a288b1a9d6fbff561811ee"

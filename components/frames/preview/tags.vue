@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import { Frame } from '~~/composables/use_frame';
+  import { Frame } from '~/composables/use_frame';
 
   const frame: Frame | undefined = inject('frame')
 </script>
