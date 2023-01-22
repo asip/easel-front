@@ -40,7 +40,7 @@ export const maxLength = withI18nMessage(validators.maxLength, {
 
 export let tagArrayLength = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },
-  (value) => {
+  (value: string) => {
     return !validators.helpers.req(value) || value.length <= size
   }
 )
@@ -51,7 +51,7 @@ tagArrayLength = withI18nMessage(tagArrayLength, {
 
 export let tagLength = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },
-  (value) => {
+  (value: string[]) => {
     let res = true
     value.forEach((tag) => {
       let res_row = tag.length > size
