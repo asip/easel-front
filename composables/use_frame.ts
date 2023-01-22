@@ -39,7 +39,7 @@ export const useFrame = () => {
 
   const rules = {
     name: { required, minLength: minLength(1), maxLength: maxLength(20) },
-    tags: {}
+    tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
   }
   let v$ = useVuelidate(rules, frame)
 

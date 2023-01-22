@@ -16,7 +16,7 @@ export const i18n = createI18n({
         minLength: "{min}文字以上です。",
         maxLength: "{max}文字までです。",
         tagArrayLength: "５つまでです。",
-        tagLeangth: "10文字までです。"
+        tagLength: "10文字までです。"
       },
     },
   },
@@ -41,7 +41,7 @@ export const maxLength = withI18nMessage(validators.maxLength, {
 export let tagArrayLength = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },
   (value) => {
-    return !validators.helpers.req(value) || value.length > size
+    return !validators.helpers.req(value) || value.length <= size
   }
 )
 
