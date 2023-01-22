@@ -4,6 +4,9 @@
       <label for="name" class="col-form-label-sm col-sm-2">名前：</label>
       <div class="col-sm-4">
         <input type="text" v-model="frame.name" placeholder="名前" class="form-control">
+        <div v-for="error of v$.name.$errors" :key="error.$uid">
+          <div>{{ error.$message }}</div>
+        </div>
       </div>
     </div>
     <div class="row d-flex justify-content-sm-center">
@@ -11,6 +14,9 @@
       <div class="col-sm-4">
         <input type="text" name="tag_editor" id="tag_editor" value="" class="form-control" >
         <input type="hidden" id="tag_list" v-model="frame.tag_list">
+        <div v-for="error of v$.tags.$errors" :key="error.$uid">
+          <div>{{ error.$message }}</div>
+        </div>
       </div>
     </div>
     <div class="row d-flex justify-content-sm-center">
@@ -41,15 +47,19 @@
   import Tagify from '@yaireo/tagify'
   import { Frame } from '~/composables/use_frame';
 
-  const frame: Frame | undefined = inject('frame')
+  let frame: Frame | undefined = inject('frame')
+
+  const { v$, setFrame, updateFrame } = useFrame()
 
   //const base_url = "http://localhost:3000"
 
+  console.log(frame)
   //console.log(frame.tags)
   //console.log(frame.tag_list)
 
-  const onEditClick = () => {
-    console.log(frame)
+  const onEditClick = async () => {
+    setFrame(frame)
+    await updateFrame()
   }
 
   onMounted(() => {

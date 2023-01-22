@@ -14,7 +14,9 @@ export const i18n = createI18n({
         required: "必須です。",
         email: "正しいメールアドレスの形式で入力してください。",
         minLength: "{min}文字以上です。",
-        maxLength: "{max}文字までです。"
+        maxLength: "{max}文字までです。",
+        tagArrayLength: "５つまでです。",
+        tagLeangth: "10文字までです。"
       },
     },
   },
@@ -35,3 +37,30 @@ export const minLength = withI18nMessage(validators.minLength, {
 export const maxLength = withI18nMessage(validators.maxLength, {
   withArguments: true,
 });
+
+export let tagArrayLength = (size: number) => validators.helpers.withParams(
+  { type: 'tagLength', value: size },
+  (value) => {
+    return !validators.helpers.req(value) || value.length > size
+  }
+)
+
+tagArrayLength = withI18nMessage(tagArrayLength, {
+  withArguments: true,
+})
+
+export let tagLength = (size: number) => validators.helpers.withParams(
+  { type: 'tagLength', value: size },
+  (value) => {
+    let res = true
+    value.forEach((tag) => {
+      let res_row = tag.length > size
+      if (res_row){ res = false }
+    })
+    return !validators.helpers.req(value) || res
+  }
+)
+
+tagLength = withI18nMessage(tagLength, {
+  withArguments: true,
+})

@@ -1,4 +1,5 @@
-import { ReactiveEffect } from "nuxt/dist/app/compat/capi"
+import { useVuelidate } from '@vuelidate/core'
+import { required,minLength , maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 
 export interface Frame {
   id: number | null
@@ -18,7 +19,7 @@ export interface Frame {
 
 export const useFrame = () => {
 
-  const frame: Frame = reactive<Frame>({
+  let frame: Frame = reactive<Frame>({
     id: null,
     user_id: null,
     user_name: '',
@@ -35,6 +36,12 @@ export const useFrame = () => {
   })
 
   const base_url = "http://localhost:3000/api/front/v1"
+
+  const rules = {
+    name: { required, minLength: minLength(1), maxLength: maxLength(20) },
+    tags: {}
+  }
+  let v$ = useVuelidate(rules, frame)
 
   const getFrame = async (id: string ) => {
     const { data } = await useAsyncData('getFrame', () =>
@@ -68,7 +75,27 @@ export const useFrame = () => {
     }
   }
 
+  const setFrame = (_frame: Frame) => {
+    frame.name = _frame.name
+    frame.comment = _frame.comment
+    frame.tag_list = _frame.tag_list
+    frame.tags = _frame.tags
+    frame.shooted_at = _frame.shooted_at
+  }
+
+  const updateFrame = async () => {
+
+    const result = await v$.value.$validate();
+
+    //console.log(signup_params.image)
+
+    console.log(frame)
+    if(!v$.value.$invalid){
+      
+    }
+  }
+
   return {
-    getFrame, frame
+    getFrame, frame, v$, setFrame, updateFrame
   }
 }

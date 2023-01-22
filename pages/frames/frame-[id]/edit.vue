@@ -27,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+  //import { Frame } from '~/composables/use_frame';
+
   const route = useRoute();
   const { id  } = route.params;
 
@@ -34,7 +36,7 @@
 
   const { frame, getFrame } = useFrame()
 
-  provide('frame', frame)
-
   await getFrame(id as string)
+
+  provide('frame', frame)
 </script>
