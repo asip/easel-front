@@ -35,7 +35,7 @@ export const useFrame = () => {
     updated_at: ''
   })
 
-  const base_url = "http://localhost:3000/api/front/v1"
+  const { baseApiURL } = useConstants()
 
   const rules = {
     name: { required, minLength: minLength(1), maxLength: maxLength(20) },
@@ -45,7 +45,7 @@ export const useFrame = () => {
 
   const getFrame = async (id: string ) => {
     const { data } = await useAsyncData('getFrame', () =>
-      $fetch(`${base_url}/frames/${id}`, {
+      $fetch(`${baseApiURL}/frames/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

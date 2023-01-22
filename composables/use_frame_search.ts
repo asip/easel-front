@@ -20,11 +20,11 @@ export const useFrameSearch = () => {
     }
   })
 
-  const base_url = "http://localhost:3000/api/front/v1"
+  const { baseApiURL } = useConstants()
 
   const searchFrame = async () => {
     const { data } = await useAsyncData('searchFrame', () =>
-      $fetch(`${base_url}/frames`, {
+      $fetch(`${baseApiURL}/frames`, {
         method: 'get',
         query: {
           q: word.value,

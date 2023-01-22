@@ -51,8 +51,6 @@
 
   const { v$, setFrame, updateFrame } = useFrame()
 
-  //const base_url = "http://localhost:3000"
-
   console.log(frame)
   //console.log(frame.tags)
   //console.log(frame.tag_list)

@@ -2,7 +2,7 @@
   <br>
   <div class="row col-sm-12">
       <div v-for="frame in frames" class="card col-sm-3 kadomaru">
-        <NuxtLink :to="`${base_url}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top" /></NuxtLink>
+        <NuxtLink :to="`${baseURL}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top" /></NuxtLink>
         <br>
         <div class="card-block">
           <div class="d-flex justify-content-sm-center">
@@ -41,7 +41,7 @@
 
       const { page, pages, searchFrame, frames, word } = useFrameSearch()
 
-      const base_url = 'http://localhost:3000'
+      const { baseURL } = useConstants()
 
       let gallery: LuminousGallery = null;
 
@@ -70,7 +70,7 @@
       })
 
       return {
-        frames, searchFrame, clickCallback, base_url, pages
+        frames, searchFrame, clickCallback, baseURL, pages
       }
     }
   }
