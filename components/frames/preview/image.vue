@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-  import Spotlight from "spotlight.js/src/js/spotlight"
   import { Luminous } from 'luminous-lightbox'
   import { Frame } from '~/composables/use_frame';
 
@@ -25,7 +24,9 @@
 
   onMounted(() => {
     if (props.spotlight){
-      Spotlight.init()
+      import('spotlight.js/src/js/spotlight').then(module =>
+        module.init()
+      )
     } else {
       const elm = document.querySelector('[name="lm"]')
       new Luminous(elm, { showCloseButton: true })
