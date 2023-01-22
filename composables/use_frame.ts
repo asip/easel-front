@@ -5,12 +5,12 @@ export interface Frame {
   id: number | null
   user_id: number | null
   user_name: string
-  name: string
-  tag_list: string
-  tags: string[]
-  comment: string
-  shooted_at: string
-  shooted_at_html: string
+  name: string | undefined
+  tag_list: string | undefined
+  tags: string[] | undefined
+  comment: string | undefined
+  shooted_at: string | undefined
+  shooted_at_html: string | undefined
   file_url: string
   file_two_url: string
   file_three_url: string
@@ -75,12 +75,12 @@ export const useFrame = () => {
     }
   }
 
-  const setFrame = (_frame: Frame) => {
-    frame.name = _frame.name
-    frame.comment = _frame.comment
-    frame.tag_list = _frame.tag_list
-    frame.tags = _frame.tags
-    frame.shooted_at = _frame.shooted_at
+  const setFrame = (_frame: Frame | undefined) => {
+    frame.name = _frame?.name
+    frame.comment = _frame?.comment
+    frame.tag_list = _frame?.tag_list
+    frame.tags = _frame?.tags
+    frame.shooted_at = _frame?.shooted_at
   }
 
   const updateFrame = async () => {
