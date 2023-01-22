@@ -51,7 +51,7 @@
 
   const { v$, setFrame, updateFrame } = useFrame()
 
-  console.log(frame)
+  //console.log(frame)
   //console.log(frame.tags)
   //console.log(frame.tag_list)
 
