@@ -27,15 +27,17 @@ export const useLoginUser = () => {
   const error_message = ref('')
 
   const login = async () => {
+    const postData = {
+      user: {
+        email: login_params.email,
+        password: login_params.password
+      }
+    }
+
     const { data } = await useAsyncData('login', () =>
       $fetch('/api/sessions/', {
         method: 'post',
-        body: {
-          user: {
-            email: login_params.email,
-            password: login_params.password
-          }
-        },
+        body: postData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         }

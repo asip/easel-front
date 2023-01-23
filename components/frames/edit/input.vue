@@ -80,8 +80,10 @@
     tag_editor.addTags(frame?.tags);
 
     const saveTagList = (tagify: Tagify) => {
-      frame.tags = tag_editor.value.map(v => v.value)
-      frame.tag_list = frame.tags.join(",");
+      if(frame) {
+        frame.tags = tag_editor.value.map(v => v.value)
+        frame.tag_list = frame.tags?.join(",");
+      }
     }
 
     tag_editor.on('add', e => saveTagList(e.detail.tagify));
