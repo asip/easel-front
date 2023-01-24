@@ -32,11 +32,18 @@
   const route = useRoute();
   const { id  } = route.params;
 
-  //const { logged_in, login_user } = useLoginUser()
+  const { logged_in, login_user } = useLoginUser()
 
   const { frame, getFrame } = useFrame()
 
   await getFrame(id as string)
+
+  //console.log(frame.user_id)
+  //console.log(login_user.value.id)
+
+  if(!logged_in.value || frame.user_id != login_user.value.id ){
+    await navigateTo(`/frames/${id}`)
+  }
 
   provide('frame', frame)
 </script>
