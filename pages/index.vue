@@ -58,9 +58,12 @@
         await searchFrame()
       }
 
+      //const { ctx: _this } = getCurrentInstance()
+
       /* onBeforeMount(async () => {
         if(!logged_in.value){
           await authenticate()
+          //_this.$forceUpdate()
         }
       }) */
 
