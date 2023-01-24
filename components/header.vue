@@ -22,7 +22,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
               <li><NuxtLink :to="`/`" class="dropdown-item">profile</NuxtLink></li>
-              <li><NuxtLink :to="`/`" class="dropdown-item">Upload</NuxtLink></li>
+              <li><NuxtLink to="/frames/new" class="dropdown-item">Upload</NuxtLink></li>
               <li><button type="button" class="dropdown-item" @click="logout">Logout</button></li>
             </ul>
           </li>

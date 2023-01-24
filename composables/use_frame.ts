@@ -92,6 +92,58 @@ export const useFrame = () => {
       frame.tag_list = _frame?.tag_list
       frame.tags = _frame?.tags
       frame.shooted_at = _frame?.shooted_at
+      frame.file = _frame?.file
+    }
+  }
+
+  const createFrame = async () => {
+
+    const result = await v$.value.$validate();
+
+    //console.log(frame)
+    if(!v$.value.$invalid){
+      let formData = new FormData();
+
+      formData.append('frame[file]', frame.file)
+      formData.append('frame[name]', frame.name)
+      formData.append('frame[tag_list]', frame.tag_list)
+      formData.append('frame[comment]', frame.comment)
+      formData.append('frame[shooted_at]',frame.shooted_at)
+
+      const { login_user } = useLoginUser()
+
+      //console.log(login_user.value.token)
+
+      const { data } = await useAsyncData('createFrame', () =>
+        $fetch('/api/frames/', {
+          method: 'post',
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${login_user.value.token}`
+          }
+        })
+      )
+
+      const json_data = data.value
+
+      if(json_data.data){
+        frame.id = json_data.data.id
+
+        navigateTo(`/frames/${frame.id}`)
+      }else{
+        const errors = json_data.errors
+
+        if(errors.name){
+          error_messages.name = errors.name
+        } else {
+          error_messages.name = []
+        }
+        if(errors.tag_list){
+          error_messages.tags = errors.tag_list
+        } else {
+          error_messages.tags = []
+        }
+      }
     }
   }
 
@@ -147,6 +199,6 @@ export const useFrame = () => {
   }
 
   return {
-    getFrame, frame, v$, setFrame, updateFrame
+    getFrame, frame, v$, setFrame, updateFrame, createFrame ,error_messages
   }
 }
