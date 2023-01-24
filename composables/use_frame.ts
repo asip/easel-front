@@ -104,7 +104,9 @@ export const useFrame = () => {
     if(!v$.value.$invalid){
       let formData = new FormData();
 
-      formData.append('frame[file]', frame.file)
+      if(frame.file){
+        formData.append('frame[file]', frame.file)
+      }
       formData.append('frame[name]', frame.name)
       formData.append('frame[tag_list]', frame.tag_list)
       formData.append('frame[comment]', frame.comment)
@@ -133,6 +135,11 @@ export const useFrame = () => {
       }else{
         const errors = json_data.errors
 
+        if(errors.file){
+          error_messages.file = errors.file
+        } else {
+          error_messages.file = []
+        }
         if(errors.name){
           error_messages.name = errors.name
         } else {

@@ -34,8 +34,10 @@ export const useSignup = () => {
 
     if(!v$.value.$invalid){
       let formData = new FormData();
-
-      formData.append('user[image]', signup_params.image)
+      
+      if(signup_params.image){
+        formData.append('user[image]', signup_params.image)
+      }
       formData.append('user[name]', signup_params.name)
       formData.append('user[email]', signup_params.email)
       formData.append('user[password]', signup_params.password)

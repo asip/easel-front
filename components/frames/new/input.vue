@@ -5,7 +5,7 @@
       <div class="form-group col-sm-4">
         <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
         <div v-for="message of error_messages.file">
-          <div>{{ message }}</div>
+          <div>ファイル{{ message }}</div>
         </div>
       </div>
     </div>
