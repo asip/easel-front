@@ -34,7 +34,7 @@ export const useSignup = () => {
 
     if(!v$.value.$invalid){
       let formData = new FormData();
-      
+
       if(signup_params.image){
         formData.append('user[image]', signup_params.image)
       }
