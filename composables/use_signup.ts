@@ -1,7 +1,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
 
-interface SignupParams {
+export interface SignupParams {
   image: Blob | null | undefined
   name: string
   email: string
