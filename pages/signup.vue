@@ -1,7 +1,7 @@
 <template>
   <form>
     <br>
-    <div class="card" data-controller="preview">
+    <div class="card">
       <div class="card-header">
         <div class="float-start">
           <NuxtLink :to="`/`"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
