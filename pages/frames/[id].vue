@@ -95,8 +95,8 @@
   const { frame, getFrame, deleteFrame } = useFrame()
 
   provide('frame', frame)
-  
-  let modal = null
+
+  let modal: any = null
 
   await getFrame(id as string)
 
