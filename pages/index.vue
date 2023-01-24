@@ -58,12 +58,12 @@
         await searchFrame()
       }
 
-      //const { ctx: _this } = getCurrentInstance()
+      //const router = useRouter()
 
       /* onBeforeMount(async () => {
         if(!logged_in.value){
           await authenticate()
-          //_this.$forceUpdate()
+          //router.push({path: router.currentRoute.value.path, force: true})
         }
       }) */
 
