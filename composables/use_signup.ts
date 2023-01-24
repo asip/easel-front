@@ -1,8 +1,16 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
 
+interface SignupParams {
+  image: Blob | null | undefined
+  name: string
+  email: string
+  password: string
+  password_confirmation: string
+}
+
 export const useSignup = () => {
-  const signup_params = reactive({
+  const signup_params = reactive<SignupParams>({
     image: null,
     name: '',
     email: '',

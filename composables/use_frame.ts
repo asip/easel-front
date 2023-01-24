@@ -5,16 +5,16 @@ export interface Frame {
   id: number | null | undefined
   user_id: number | null | undefined
   user_name: string
-  name: string | undefined
-  tag_list: string | undefined
-  tags: string[] | undefined
-  comment: string | undefined
-  shooted_at: string | undefined
-  shooted_at_html: string | undefined
-  file: File | undefined | null,
-  file_url: string
-  file_two_url: string
-  file_three_url: string
+  name: string
+  tag_list: string
+  tags: string[]
+  comment: string
+  shooted_at: string
+  shooted_at_html: string | null | undefined
+  file: Blob | undefined | null,
+  file_url: string | null | undefined
+  file_two_url: string | null | undefined
+  file_three_url: string | null | undefined
   updated_at: string
 }
 
@@ -84,15 +84,15 @@ export const useFrame = () => {
     }
   }
 
-  const setFrame = (_frame: Frame | undefined) => {
+  const setFrame = (_frame: Frame) => {
     if(frame) {
-      frame.id = _frame?.id
-      frame.name = _frame?.name
-      frame.comment = _frame?.comment
-      frame.tag_list = _frame?.tag_list
-      frame.tags = _frame?.tags
-      frame.shooted_at = _frame?.shooted_at
-      frame.file = _frame?.file
+      frame.id = _frame.id
+      frame.name = _frame.name
+      frame.comment = _frame.comment
+      frame.tag_list = _frame.tag_list
+      frame.tags = _frame.tags
+      frame.shooted_at = _frame.shooted_at
+      frame.file = _frame.file
     }
   }
 
