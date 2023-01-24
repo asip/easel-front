@@ -198,7 +198,25 @@ export const useFrame = () => {
     }
   }
 
+  const deleteFrame = async () => {
+    const { login_user } = useLoginUser()
+
+    console.log(frame.id)
+
+    const { data } = await useAsyncData('deleteFrame', () =>
+      $fetch(`/api/frames/${frame.id}`, {
+        method: 'delete',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Authorization': `Bearer ${login_user.value.token}`
+        }
+      })
+    )
+
+    //const json_data = data.value
+  }
+
   return {
-    getFrame, frame, v$, setFrame, updateFrame, createFrame ,error_messages
+    getFrame, frame, v$, setFrame, updateFrame, createFrame, deleteFrame, error_messages
   }
 }

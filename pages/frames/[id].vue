@@ -53,7 +53,7 @@
         <div class="form-group col-sm-6">
           <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" @click="onOpenClick">
             削除
           </button>&nbsp;
           <NuxtLink to="/" class="btn btn-outline-primary">戻る</NuxtLink>
@@ -77,7 +77,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
-          <button class="btn btn-outline-danger">削除</button>
+          <button class="btn btn-outline-danger" @click="onDeleteClick">削除</button>
         </div>
       </div>
     </div>
@@ -86,14 +86,35 @@
 </template>
 
 <script setup lang="ts">
+
   const route = useRoute();
   const { id  } = route.params;
 
   const { logged_in, login_user } = useLoginUser()
 
-  const { frame, getFrame } = useFrame()
+  const { frame, getFrame, deleteFrame } = useFrame()
 
   provide('frame', frame)
+  
+  let modal = null
 
   await getFrame(id as string)
+
+  const onOpenClick = () => {
+    modal.show()
+  }
+
+  const onDeleteClick = async () => {
+    await deleteFrame()
+
+    modal.hide()
+    navigateTo('/')
+  }
+
+  onMounted(() => {
+    import('bootstrap/dist/js/bootstrap.esm.min.js').then( module => {
+      const modal_elm = document.querySelector('#delete_modal')
+      modal = new module.Modal(modal_elm)
+    })
+  })
 </script>
