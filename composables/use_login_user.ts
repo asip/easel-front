@@ -26,6 +26,35 @@ export const useLoginUser = () => {
 
   const error_message = ref('')
 
+  const cookie = useCookie('access_token')
+
+  const authenticate = async () => {
+    login_user.value.token = cookie.value
+    //console.log(login_user.value.token)
+
+    if(login_user.value.token) {
+      const { data } = await useAsyncData('profile', () =>
+        $fetch('/api/sessions/profile', {
+          method: 'get',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Authorization: `Bearer ${login_user.value.token}`
+          }
+        })
+      )
+
+      const json_data = data.value
+
+      if(json_data && json_data.data){
+        login_user.value.name = json_data.data.attributes.name
+        login_user.value.email = json_data.data.attributes.email
+        login_user.value.token = json_data.data.attributes.token
+        login_user.value.id = json_data.data.id
+        logged_in.value = true
+      }
+    }
+  }
+
   const login = async () => {
     const postData = {
       user: {
@@ -53,6 +82,8 @@ export const useLoginUser = () => {
       login_user.value.id = json_data.data.id
       logged_in.value = true
       //console.log(login_user.value)
+
+      cookie.value = login_user.value.token
       return navigateTo('/')
     }else{
       error_message.value = json_data.message
@@ -79,6 +110,8 @@ export const useLoginUser = () => {
       login_user.value.email = ''
       login_user.value.token = null
       login_user.value.id = null
+
+      cookie.value = null
       return navigateTo('/')
     }
   }
@@ -87,6 +120,7 @@ export const useLoginUser = () => {
     login_user,
     logged_in,
     login_params,
+    authenticate,
     login,
     logout,
     error_message

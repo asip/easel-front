@@ -28,7 +28,7 @@
           </li>
         </ul>
         <span class="navbar-nav justify-content-sm-center">
-            <TagSearch/>
+          <TagSearch/>
         </span>
       </div>
     </div>
@@ -38,5 +38,5 @@
 <script lang="ts" setup>
   const { $bootstrap } = useNuxtApp()
 
-  const {login_user,logged_in,logout } = useLoginUser();
+  const { login_user, logged_in, logout } = useLoginUser()
 </script>

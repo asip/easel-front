@@ -39,6 +39,7 @@
       const route = useRoute()
       const q = route.query.q
 
+      //const { logged_in, authenticate } = useLoginUser()
       const { page, pages, searchFrame, frames, word } = useFrameSearch()
 
       const { baseURL } = useConstants()
@@ -52,13 +53,16 @@
       //console.log('searchFrame: start')
       searchFrame()
 
-      const clickCallback = (pageNum) => {
+      const clickCallback = async (pageNum) => {
         page.value = pageNum
-        searchFrame()
+        await searchFrame()
       }
 
-      onMounted(() => {
-      })
+      /* onBeforeMount(async () => {
+        if(!logged_in.value){
+          await authenticate()
+        }
+      }) */
 
       onUpdated(()=> {
         if(gallery){ gallery.destroy() }

@@ -208,7 +208,7 @@ export const useFrame = () => {
   const deleteFrame = async () => {
     const { login_user } = useLoginUser()
 
-    console.log(frame.id)
+    //console.log(frame.id)
 
     const { data } = await useAsyncData('deleteFrame', () =>
       $fetch(`/api/frames/${frame.id}`, {
