@@ -26,15 +26,18 @@ export const useLoginUser = () => {
 
   const error_message = ref('')
 
+  const { baseApiURL } = useConstants()
+
   const cookie = useCookie('access_token')
 
   const authenticate = async () => {
+
     login_user.value.token = cookie.value
     //console.log(login_user.value.token)
 
     if(login_user.value.token) {
       const { data } = await useAsyncData('profile', () =>
-        $fetch('/api/sessions/profile', {
+        $fetch(`${baseApiURL}/profile`, {
           method: 'get',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
@@ -44,8 +47,10 @@ export const useLoginUser = () => {
       )
 
       const json_data = data.value
+      //console.log(json_data)
 
       if(json_data && json_data.data){
+        //console.log('test3')
         login_user.value.name = json_data.data.attributes.name
         login_user.value.email = json_data.data.attributes.email
         login_user.value.token = json_data.data.attributes.token

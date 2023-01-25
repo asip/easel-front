@@ -39,7 +39,6 @@
       const route = useRoute()
       const q = route.query.q
 
-      //const { logged_in, authenticate } = useLoginUser()
       const { page, pages, searchFrame, frames, word } = useFrameSearch()
 
       const { baseURL } = useConstants()
@@ -57,21 +56,6 @@
         page.value = pageNum
         await searchFrame()
       }
-
-      //const router = useRouter()
-      //const nuxtApp = useNuxtApp()
-
-      /* onBeforeMount(async () => {
-        if(!logged_in.value){
-          await authenticate()
-          //navigateTo({path: router.currentRoute.value.path, force: true})
-          //nuxtApp.$headerContext.$forceUpdate()
-        }
-      }) */
-
-      /* onBeforeRouteUpdate((_to, _from, next) => {
-        next()
-      }) */
 
       onUpdated(()=> {
         if(gallery){ gallery.destroy() }

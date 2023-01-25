@@ -38,8 +38,11 @@
 <script lang="ts" setup>
   const { $bootstrap } = useNuxtApp()
 
-  const { login_user, logged_in, logout } = useLoginUser()
-  //const instance = getCurrentInstance()
+  const { login_user, logged_in, authenticate, logout } = useLoginUser()
 
-  //provide('headerContext', instance?.proxy)
+  //console.log(logged_in.value)
+  if(!logged_in.value){
+    //console.log('test2')
+    await authenticate()
+  }
 </script>
