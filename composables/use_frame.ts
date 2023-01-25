@@ -15,6 +15,7 @@ export interface Frame {
   file_url: string | null | undefined
   file_two_url: string | null | undefined
   file_three_url: string | null | undefined
+  preview_url: string | null | undefined
   updated_at: string
 }
 
@@ -34,6 +35,7 @@ export const useFrame = () => {
     file_url: '',
     file_two_url: '',
     file_three_url: '',
+    preview_url: null,
     updated_at: ''
   })
 

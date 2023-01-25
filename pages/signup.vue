@@ -19,6 +19,7 @@
             </div>
           </div>
         </div>
+        <Preview />
         <div class="row d-flex justify-content-sm-center border border-white">
           <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">ユーザー名：</label>
           <div class="form-group col-sm-4">
@@ -88,5 +89,29 @@
     let uploadedFile = target.files![0];
 
     signup_params.image = uploadedFile ;
+
+    const file: { name?: string, ext?: string, data?: Blob | null | undefined } = {};
+    file.name = target.value;
+    file.ext = file?.name?.replace(/^.*\./, '').toLowerCase();
+    //console.log(file.name)
+    if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
+      // .file_filedからデータを取得して変数file.dataに代入します
+      file.data = signup_params.image
+      //console.log(file.data)
+      // FileReaderオブジェクトを作成します
+      let reader = new FileReader()
+      // 読み込みが完了したら処理が実行されます
+      reader.onload = (function() {
+        // 読み込んだファイルの内容を取得して変数imageに代入します
+        let image: string | ArrayBuffer | null = reader.result;
+        signup_params.preview_url = image as string
+      })
+      // DataURIScheme文字列を取得します
+      reader.readAsDataURL(file?.data)
+      //preview.src = URL.createObjectURL(file.data)
+      // プレビュー画像がなければ表示します
+    }
   }
+
+  provide('model', signup_params)
 </script>

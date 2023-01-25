@@ -3,6 +3,7 @@ import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
 
 export interface SignupParams {
   image: Blob | null | undefined
+  preview_url: string | null | undefined
   name: string
   email: string
   password: string
@@ -12,6 +13,7 @@ export interface SignupParams {
 export const useSignup = () => {
   const signup_params = reactive<SignupParams>({
     image: null,
+    preview_url: null,
     name: '',
     email: '',
     password: '',

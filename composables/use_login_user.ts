@@ -7,6 +7,7 @@ export interface User {
   image_thumb_url: string | null
   image_one_url: string | null
   image_three_url: string | null
+  preview_url: string | null | undefined
 }
 
 export const useLoginUser = () => {
@@ -24,7 +25,8 @@ export const useLoginUser = () => {
       image: null,
       image_thumb_url: '',
       image_one_url: '',
-      image_three_url: ''
+      image_three_url: '',
+      preview_url: null
     }
   })
 
