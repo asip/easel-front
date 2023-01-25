@@ -3,6 +3,10 @@ export interface User {
   email: string
   token: string | null
   id: number | null
+  image: Blob | null | undefined
+  image_thumb_url: string | null
+  image_one_url: string | null
+  image_three_url: string | null
 }
 
 export const useLoginUser = () => {
@@ -12,11 +16,15 @@ export const useLoginUser = () => {
   })
 
   const login_user = useState<User>('login-user', () => {
-    return{
+    return {
       name: '',
       email: '',
       token: null,
-      id: null
+      id: null,
+      image: null,
+      image_thumb_url: '',
+      image_one_url: '',
+      image_three_url: ''
     }
   })
 
@@ -55,6 +63,9 @@ export const useLoginUser = () => {
         login_user.value.email = json_data.data.attributes.email
         login_user.value.token = json_data.data.attributes.token
         login_user.value.id = json_data.data.id
+        login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
+        login_user.value.image_one_url = json_data.data.attributes.image_one_url
+        login_user.value.image_three_url = json_data.data.attributes.image_three_url
         logged_in.value = true
       }
     }
@@ -85,6 +96,9 @@ export const useLoginUser = () => {
       login_user.value.email = json_data.data.attributes.email
       login_user.value.token = json_data.data.attributes.token
       login_user.value.id = json_data.data.id
+      login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
+      login_user.value.image_one_url = json_data.data.attributes.image_one_url
+      login_user.value.image_three_url = json_data.data.attributes.image_three_url
       logged_in.value = true
       //console.log(login_user.value)
 
@@ -115,6 +129,9 @@ export const useLoginUser = () => {
       login_user.value.email = ''
       login_user.value.token = null
       login_user.value.id = null
+      login_user.value.image_thumb_url = null
+      login_user.value.image_one_url = null
+      login_user.value.image_three_url = null
 
       cookie.value = null
       return navigateTo('/')
