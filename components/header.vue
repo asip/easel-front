@@ -39,4 +39,7 @@
   const { $bootstrap } = useNuxtApp()
 
   const { login_user, logged_in, logout } = useLoginUser()
+  //const instance = getCurrentInstance()
+
+  //provide('headerContext', instance?.proxy)
 </script>

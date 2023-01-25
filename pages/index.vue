@@ -53,17 +53,19 @@
       //console.log('searchFrame: start')
       searchFrame()
 
-      const clickCallback = async (pageNum) => {
+      const clickCallback = async (pageNum: number) => {
         page.value = pageNum
         await searchFrame()
       }
 
       //const router = useRouter()
+      //const nuxtApp = useNuxtApp()
 
       /* onBeforeMount(async () => {
         if(!logged_in.value){
           await authenticate()
-          navigateTo({path: router.currentRoute.value.path, force: true})
+          //navigateTo({path: router.currentRoute.value.path, force: true})
+          //nuxtApp.$headerContext.$forceUpdate()
         }
       }) */
 
