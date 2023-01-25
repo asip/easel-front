@@ -63,8 +63,12 @@
       /* onBeforeMount(async () => {
         if(!logged_in.value){
           await authenticate()
-          //router.push({path: router.currentRoute.value.path, force: true})
+          navigateTo({path: router.currentRoute.value.path, force: true})
         }
+      }) */
+
+      /* onBeforeRouteUpdate((_to, _from, next) => {
+        next()
       }) */
 
       onUpdated(()=> {
