@@ -7,7 +7,7 @@
         プロフィール
       </div>
       <div class="float-end">
-        <NuxtLink to="/profile"><i class="bi bi-arrow-right-circle"></i></NuxtLink>
+        <NuxtLink to="/account/profile"><i class="bi bi-arrow-right-circle"></i></NuxtLink>
       </div>
     </div>
     <div class="card-block">
