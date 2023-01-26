@@ -1,3 +1,6 @@
+import { useVuelidate } from '@vuelidate/core'
+import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
+
 export interface User {
   name: string
   email: string
@@ -8,6 +11,8 @@ export interface User {
   image_one_url: string | null
   image_three_url: string | null
   preview_url: string | null | undefined
+  password: string
+  password_confirmation: string
 }
 
 export const useLoginUser = () => {
@@ -26,7 +31,9 @@ export const useLoginUser = () => {
       image_thumb_url: '',
       image_one_url: '',
       image_three_url: '',
-      preview_url: null
+      preview_url: null,
+      password: '',
+      password_confirmation: ''
     }
   })
 
@@ -37,6 +44,23 @@ export const useLoginUser = () => {
   const error_message = ref('')
 
   const { baseApiURL } = useConstants()
+
+  const error_messages = reactive({
+    image: [],
+    name: [],
+    email: [],
+    password: [],
+    password_confirmation: []
+  })
+
+  const rules = {
+    name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+    email: { required, email },
+    password: {},
+    password_confirmation: {}
+  }
+
+  const v$ = useVuelidate(rules, login_user)
 
   const cookie = useCookie('access_token')
 
@@ -112,6 +136,71 @@ export const useLoginUser = () => {
     }
   }
 
+  const updateProfile = async () => {
+
+    const result = await v$.value.$validate();
+
+    //console.log(signup_params.image)
+
+    if(!v$.value.$invalid){
+      let formData = new FormData();
+
+      if(login_user.value.image){
+        formData.append('user[image]', login_user.value.image)
+      }
+      formData.append('user[name]', login_user.value.name)
+      formData.append('user[email]', login_user.value.email)
+      formData.append('user[password]', login_user.value.password)
+      formData.append('user[password_confirmation]', login_user.value.password_confirmation)
+
+      const { data } = await useAsyncData('updateProfile', () =>
+        $fetch('/api/profile/', {
+          method: 'put',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Authorization': `Bearer ${login_user.value.token}`
+          }
+        })
+      )
+
+      const json_data = data.value
+
+      //console.log(json_data)
+
+      if(json_data.data){
+        navigateTo('/')
+      }else{
+        const errors = json_data.errors
+        if(errors.image){
+          error_messages.image = errors.image
+        } else {
+          error_messages.image = []
+        }
+        if(errors.name){
+          error_messages.name = errors.name
+        } else {
+          error_messages.name = []
+        }
+        if(errors.email){
+          error_messages.email = errors.email
+        } else {
+          error_messages.email = []
+        }
+        if(errors.password){
+          error_messages.password = errors.password
+        } else {
+          error_messages.password = []
+        }
+        if(errors.password_confirmation){
+          error_messages.password_confirmation = errors.password_confirmation
+        } else {
+          error_messages.password_confirmation = []
+        }
+      }
+    }
+  }
+
   const logout = async () => {
     const { data } = await useAsyncData('logout', () =>
       $fetch('/api/sessions/logout', {
@@ -145,8 +234,11 @@ export const useLoginUser = () => {
     logged_in,
     login_params,
     authenticate,
+    updateProfile,
     login,
     logout,
-    error_message
+    error_message,
+    v$,
+    error_messages
   }
 }

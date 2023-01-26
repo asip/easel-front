@@ -7,7 +7,7 @@
         プロフィール
       </div>
       <div class="float-end">
-        <NuxtLink to="/account/profile"><i class="bi bi-arrow-right-circle"></i></NuxtLink>
+        <NuxtLink to="/account/edit"><i class="bi bi-arrow-right-circle"></i></NuxtLink>
       </div>
     </div>
     <div class="card-block">
@@ -32,6 +32,10 @@
 </template>
 
 <script setup lang="ts">
-  const { login_user } = useLoginUser()
+  const { logged_in, login_user } = useLoginUser()
+
+  if(!logged_in.value ){
+    await navigateTo('/')
+  }
 </script>
 
