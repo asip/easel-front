@@ -20,6 +20,7 @@
     "bootstrap-icons": "^1.10.3",
     "cdate": "^0.0.4",
     "luminous-lightbox": "^2.4.0",
+    "sanitize-html": "^2.8.1",
     "sass": "^1.57.1",
     "spotlight.js": "^0.7.8",
     "v-calendar": "^3.0.0-alpha.8",

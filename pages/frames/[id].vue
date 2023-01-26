@@ -83,6 +83,7 @@
     </div>
   </div>
   <br>
+  <FrameComments />
 </template>
 
 <script setup lang="ts">
