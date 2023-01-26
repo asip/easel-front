@@ -30,7 +30,7 @@ export function useComment() {
     )
 
     const json_data: any = data.value
-    console.log(json_data)
+    //console.log(json_data)
 
     if (json_data.data) {
       const comment_list = json_data.data;
