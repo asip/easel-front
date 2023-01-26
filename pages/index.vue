@@ -17,6 +17,7 @@
   <div class="d-flex col-sm-12 justify-content-sm-center">
     <ClientOnly>
       <Paginate
+        v-model="page"
         :page-count="pages"
         :page-range="3"
         :margin-pages="2"
@@ -67,7 +68,7 @@
       })
 
       return {
-        frames, searchFrame, clickCallback, baseURL, pages
+        frames, searchFrame, clickCallback, baseURL, pages, page
       }
     }
   }

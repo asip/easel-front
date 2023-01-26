@@ -4,7 +4,9 @@ export const useFrameSearch = () => {
   const word = useState<string>('word', () => {
     return ''
   })
-  const page = ref<number>(1)
+  const page = useState<number>('page', () => {
+    return 1
+  })
   const pages = useState<number>('pages', () => {
     return 1
   })
