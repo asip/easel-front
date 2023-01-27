@@ -1,18 +1,6 @@
 import { cdate } from 'cdate'
 
 export const useFrameSearch = () => {
-  /*
-  const word = useState<string>('word', () => {
-    return ''
-  })
-  const page = useState<number>('page', () => {
-    return 1
-  })
-  const pages = useState<number>('pages', () => {
-    return 1
-  })
-  */
-
   const frame_query = useState('frame_query', () => {
     return {
       word: '',
