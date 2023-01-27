@@ -1,7 +1,8 @@
+import { Body } from './../.nuxt/components.d';
 import { useLoginUser } from './use_login_user';
 import  { User } from '~/composables/use_login_user'
 
-interface Comment {
+export interface Comment {
   frame_id: string,
   body: string
 }
@@ -43,6 +44,14 @@ export function useComment() {
       //console.log(comments);
     }
   };
+
+  const setComment = (_comment: Comment | undefined) => {
+    if(_comment){
+      comment.frame_id = _comment.frame_id
+      comment.body = _comment.body
+    }
+  }
+
   const postComment = async () => {
     try {
       const postData = {
@@ -76,8 +85,6 @@ export function useComment() {
           }
         } else {
           comment.body = '';
-          error_messages.splice(0, error_messages.length);
-          await getComments();
         }
       }
     } catch (error) {
@@ -86,12 +93,13 @@ export function useComment() {
     }
   }
 
-  const setComment = async () => {
+  const createComment = async () => {
     if (comment.body != '') {
       //console.log(comment.userId);
       //console.log(comment.frameId);
       //console.log(comment.body);
       await postComment();
+      error_messages.splice(0, error_messages.length);
     } else {
       error_messages.splice(0, error_messages.length);
       error_messages.push('コメントを入力してください。');
@@ -110,9 +118,7 @@ export function useComment() {
           }
         )
       )
-
-      comments.splice(0, comments.length);
-      await getComments();
+      error_messages.splice(0, error_messages.length);
     } catch (error) {
       error_messages.splice(0, error_messages.length);
       error_messages.push('ログインしてください。');
@@ -120,6 +126,6 @@ export function useComment() {
   };
 
   return {
-    comment, comments, error_messages ,getComments, setComment, deleteComment
+    comment, comments, error_messages ,getComments, setComment, createComment, deleteComment
   }
 }
