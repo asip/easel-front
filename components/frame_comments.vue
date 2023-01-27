@@ -1,5 +1,5 @@
 <template>
-  <div v-show="logged_in" class="card">
+  <div v-if="logged_in" class="card">
     <div class="card-header">
       <div class="d-flex justify-content-sm-center">
         <div class="clearfix">
