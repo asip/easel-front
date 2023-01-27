@@ -5,7 +5,7 @@
       <div class="row d-flex">
         <div class="col-12 clearfix">
           <div class="float-start">
-            &nbsp;<NuxtLink :to="{ path: '/' , query: { q: word, page: page } }"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
+            &nbsp;<NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
           </div>
           <div class="float-end">
             {{ frame.updated_at }}&nbsp;
@@ -92,7 +92,7 @@
   const { id  } = route.params;
 
   const { logged_in, login_user } = useLoginUser()
-  const { word, page } = useFrameSearch()
+  const { frame_query } = useFrameSearch()
 
   const { frame, getFrame, deleteFrame } = useFrame()
 

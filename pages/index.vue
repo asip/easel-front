@@ -17,8 +17,8 @@
   <div class="d-flex col-sm-12 justify-content-sm-center">
     <ClientOnly>
       <Paginate
-        v-model="page"
-        :page-count="pages"
+        v-model="frame_query.page"
+        :page-count="frame_query.pages"
         :page-range="3"
         :margin-pages="2"
         :click-handler="clickCallback"
@@ -40,21 +40,21 @@
       const route = useRoute()
       const q = route.query.q
 
-      const { page, pages, searchFrame, frames, word } = useFrameSearch()
+      const { frame_query, searchFrame, frames } = useFrameSearch()
 
       const { baseURL } = useConstants()
 
       let gallery: LuminousGallery = null;
 
       if(q){
-        word.value = q as string
+        frame_query.value.word = q as string
       }
 
       //console.log('searchFrame: start')
       searchFrame()
 
       const clickCallback = async (pageNum: number) => {
-        page.value = pageNum
+        frame_query.value.page = pageNum
         await searchFrame()
       }
 
@@ -68,7 +68,7 @@
       })
 
       return {
-        frames, searchFrame, clickCallback, baseURL, pages, page
+        frames, searchFrame, clickCallback, baseURL, frame_query
       }
     }
   }

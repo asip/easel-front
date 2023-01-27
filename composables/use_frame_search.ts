@@ -1,6 +1,7 @@
 import { cdate } from 'cdate'
 
 export const useFrameSearch = () => {
+  /*
   const word = useState<string>('word', () => {
     return ''
   })
@@ -10,6 +11,15 @@ export const useFrameSearch = () => {
   const pages = useState<number>('pages', () => {
     return 1
   })
+  */
+
+  const frame_query = useState('frame_query', () => {
+    return {
+      word: '',
+      page: 1,
+      pages: 1
+    }
+  })
 
   const frames = useState('frames', () => { return [] })
 
@@ -18,7 +28,7 @@ export const useFrameSearch = () => {
       return cdate()
     },
     set(value: any){
-      word.value = cdate(value).format('YYYY/MM/DD')
+      frame_query.value.word = cdate(value).format('YYYY/MM/DD')
     }
   })
 
@@ -29,8 +39,8 @@ export const useFrameSearch = () => {
       $fetch(`${baseApiURL}/frames`, {
         method: 'get',
         query: {
-          q: word.value,
-          page: page.value
+          q: frame_query.value.word,
+          page: frame_query.value.page
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
@@ -52,12 +62,13 @@ export const useFrameSearch = () => {
         //console.log(frames)
       }
       if(json_data.meta){
-        pages.value = json_data.meta.pagination.pages
+        frame_query.value.pages = json_data.meta.pagination.pages
       }
+      frame_query.value.page = 1
     }
   }
 
   return {
-    word, date_word, page, pages, searchFrame, frames
+    frame_query, date_word, searchFrame, frames
   }
 }
