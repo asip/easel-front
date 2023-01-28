@@ -39,7 +39,7 @@
   const emits = defineEmits<{(e: 'change'): void}>()
 
   const { logged_in } = useLoginUser()
-  const { comments,comment, setComment , createComment, error_messages, getComments } = useComment()
+  const { comment, setComment , createComment, error_messages, getComments } = useComment()
 
   const frame: Frame | undefined = inject('frame')
 
