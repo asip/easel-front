@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+  // @ts-ignore
   import { Luminous } from 'luminous-lightbox'
   import { Frame } from '~/composables/use_frame';
 
@@ -24,6 +25,7 @@
 
   onMounted(() => {
     if (props.spotlight){
+      // @ts-ignore
       import('spotlight.js/src/js/spotlight').then(module =>
         module.init()
       )

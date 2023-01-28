@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+  // @ts-ignore
   import { Luminous } from 'luminous-lightbox'
   import { User } from '~/composables/use_login_user'
   import { useConstants } from '~/composables/use_constants'

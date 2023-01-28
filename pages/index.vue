@@ -33,6 +33,7 @@
 </template>
 
 <script lang="ts">
+  // @ts-ignore
   import { LuminousGallery } from 'luminous-lightbox'
 
   export default {

@@ -1,3 +1,4 @@
+// @ts-ignore
 import Paginate from "vuejs-paginate-next";
 
 export default defineNuxtPlugin(nuxtApp => {
