@@ -52,7 +52,6 @@ export const useFrameSearch = () => {
       if(json_data.meta){
         frame_query.value.pages = json_data.meta.pagination.pages
       }
-      frame_query.value.page = 1
     }
   }
 
