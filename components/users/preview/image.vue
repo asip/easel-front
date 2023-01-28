@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
   import { Luminous } from 'luminous-lightbox'
-  import { User, useLoginUser } from '~/composables/use_login_user'
+  import { User } from '~/composables/use_login_user'
   import { useConstants } from '~/composables/use_constants'
   import { onMounted } from 'vue';
 

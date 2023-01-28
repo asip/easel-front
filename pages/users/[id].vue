@@ -3,13 +3,13 @@
   <div class="card">
     <div class="card-header">
       <div class="float-start">
-        <a @click="onPageBack"><i class="bi bi-arrow-left-circle"></i></a>
+        <span @click="onPageBack"><i class="bi bi-arrow-left-circle"></i></span>
         {{ user.name }}
       </div>
     </div>
     <div class="card-block">
       <br>
-      <UsersPreviewImage />
+      <UsersPreviewImage :original="false" />
       <div class="row d-flex justify-content-sm-center">
         <div class="col-sm-6 text-center">
         <!-- if logged_in? && @user.id != current_user.id -->

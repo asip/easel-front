@@ -12,7 +12,7 @@
     </div>
     <div class="card-block">
       <br>
-      <SessionsPreviewImage :original="false" />
+      <UsersPreviewImage :original="false" />
       <div class="row d-flex justify-content-sm-center">
         <label for="name" class="form-label col-md-2 label-bg-style">ユーザー名</label>
         <div class="form-group col-sm-4">
@@ -33,6 +33,8 @@
 
 <script setup lang="ts">
   const { logged_in, login_user } = useLoginUser()
+
+  provide('user', login_user)
 
   if(!logged_in.value ){
     await navigateTo('/')

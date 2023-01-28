@@ -1,17 +1,17 @@
 <template>
   <br>
   <div class="row col-sm-12">
-      <div v-for="frame in frames" class="card col-sm-3 kadomaru">
-        <NuxtLink :to="`${baseURL}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top" /></NuxtLink>
-        <br>
-        <div class="card-block">
-          <div class="d-flex justify-content-sm-center">
-            <div class="mx-auto" style="padding-bottom: 10px;">
-              <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">{{frame.attributes.name}}</NuxtLink>
-            </div>
+    <div v-for="frame in frames" class="card col-sm-3 kadomaru">
+      <NuxtLink :to="`${baseURL}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top"></NuxtLink>
+      <br>
+      <div class="card-block">
+        <div class="d-flex justify-content-sm-center">
+          <div class="mx-auto" style="padding-bottom: 10px;">
+            <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">{{frame.attributes.name}}</NuxtLink>
           </div>
         </div>
       </div>
+    </div>
   </div>
   <br>
   <div class="d-flex col-sm-12 justify-content-sm-center">

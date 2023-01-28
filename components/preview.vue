@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-  import { exportDefaultSpecifier } from '@babel/types';
   import { Frame } from '~/composables/use_frame'
   import { User} from '~/composables/use_login_user'
 
@@ -20,7 +19,4 @@
       model.preview_url  = `${baseURL}${model?.image_three_url}`
     }
   }
-
-  onMounted(() =>{
-  })
 </script>

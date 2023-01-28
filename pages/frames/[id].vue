@@ -15,7 +15,7 @@
     </div>
     <div class="card-block">
       <FramesPreviewImage :original="true" :spotlight="true" />
-      <LazyFramesPreviewTags />
+      <FramesPreviewTags />
     </div>
     <div class="card-block">
       <div class="row d-flex justify-content-sm-center">
@@ -42,21 +42,18 @@
           </div> -->
           <div class="float-end">
             <NuxtLink :to="`/users/${frame.user_id}`" class="text-decoration-none">
-              {{ frame.user_name }}&nbsp;
+              {{ frame.user_name }}
             </NuxtLink>
           </div>
         </div>
       </div>
-      </div>
-      <div v-if="logged_in && frame.user_id == login_user.id " class="card-footer">
+    </div>
+    <div v-if="logged_in && frame.user_id == login_user.id " class="card-footer">
       <div class="row d-flex justify-content-sm-center">
         <div class="form-group col-sm-6">
           <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" @click="onOpenClick">
-            削除
-          </button>&nbsp;
-          <NuxtLink to="/" class="btn btn-outline-primary">戻る</NuxtLink>
+          <button type="button" class="btn btn-outline-danger" @click="onOpenClick">削除</button>
         </div>
       </div>
     </div>
@@ -83,7 +80,9 @@
     </div>
   </div>
   <br>
-  <FrameComments />
+  <ClientOnly>
+    <FrameComments />
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -91,32 +90,24 @@
   const route = useRoute();
   const { id  } = route.params;
 
-  const { logged_in, login_user } = useLoginUser()
   const { frame_query } = useFrameSearch()
-
+  const { logged_in, login_user } = useLoginUser()
   const { frame, getFrame, deleteFrame } = useFrame()
 
-  provide('frame', frame)
-
   let modal: any = null
+
+  provide('frame', frame)
 
   await getFrame(id as string)
 
   const onOpenClick = () => {
-    modal.show()
+    modal?.show()
   }
 
   const onDeleteClick = async () => {
     await deleteFrame()
 
-    modal.hide()
+    modal?.hide()
     navigateTo('/')
   }
-
-  onMounted(() => {
-    import('bootstrap/dist/js/bootstrap.esm.min.js').then( module => {
-      const modal_elm = document.querySelector('#delete_modal')
-      modal = new module.Modal(modal_elm)
-    })
-  })
 </script>

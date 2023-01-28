@@ -54,6 +54,8 @@ export const useFrame = () => {
 
   const v$ = useVuelidate(rules, frame)
 
+  const { login_user } = useLoginUser()
+
   const getFrame = async (id: string ) => {
     const { data } = await useAsyncData('getFrame', () =>
       $fetch(`${baseApiURL}/frames/${id}`, {
@@ -114,8 +116,6 @@ export const useFrame = () => {
       formData.append('frame[comment]', frame.comment)
       formData.append('frame[shooted_at]',frame.shooted_at)
 
-      const { login_user } = useLoginUser()
-
       //console.log(login_user.value.token)
 
       const { data } = await useAsyncData('createFrame', () =>
@@ -171,8 +171,6 @@ export const useFrame = () => {
         }
       }
 
-      const { login_user } = useLoginUser()
-
       //console.log(login_user.value.token)
 
       const { data } = await useAsyncData('updateFrame', () =>
@@ -208,8 +206,6 @@ export const useFrame = () => {
   }
 
   const deleteFrame = async () => {
-    const { login_user } = useLoginUser()
-
     //console.log(frame.id)
 
     const { data } = await useAsyncData('deleteFrame', () =>
