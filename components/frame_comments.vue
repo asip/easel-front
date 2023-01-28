@@ -15,13 +15,11 @@
 
   comment.frame_id = frame?.id
 
+  //console.log(comment.frame_id);
+  await getComments();
+
   const updateComments = async () => {
     comments.splice(0, comments.length);
     await getComments()
   }
-
-  onBeforeMount(async () => {
-    //console.log(comment.frame_id);
-    await getComments();
-  })
 </script>
