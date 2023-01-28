@@ -88,8 +88,8 @@ export const useFrame = () => {
     }
   }
 
-  const setFrame = (_frame: Frame) => {
-    if(frame) {
+  const setFrame = (_frame: Frame | undefined) => {
+    if(_frame) {
       frame.id = _frame.id
       frame.name = _frame.name
       frame.comment = _frame.comment

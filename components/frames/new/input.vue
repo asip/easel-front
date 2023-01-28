@@ -71,7 +71,9 @@
     const target = event.target as HTMLInputElement
     let uploadedFile = target.files![0];
 
-    frame.file = uploadedFile ;
+    if(frame) {
+      frame.file = uploadedFile;
+    }
 
     const file: { name?: string, ext?: string, data?: Blob | null | undefined } = {};
     file.name = target.value;
@@ -79,7 +81,7 @@
     //console.log(file.name)
     if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
       // .file_filedからデータを取得して変数file.dataに代入します
-      file.data = frame.file
+      file.data = frame?.file
       //console.log(file.data)
       // FileReaderオブジェクトを作成します
       let reader = new FileReader()
@@ -87,7 +89,9 @@
       reader.onload = (function() {
         // 読み込んだファイルの内容を取得して変数imageに代入します
         let image: string | ArrayBuffer | null = reader.result;
-        frame.preview_url = image as string
+        if(frame) {
+          frame.preview_url = image as string
+        }
       })
       // DataURIScheme文字列を取得します
       reader.readAsDataURL(file?.data)
