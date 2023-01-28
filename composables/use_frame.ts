@@ -64,7 +64,7 @@ export const useFrame = () => {
       })
     )
 
-    const json_data = data.value
+    const json_data: any = data.value
     //console.log(json_data)
 
     if(json_data){
@@ -128,7 +128,7 @@ export const useFrame = () => {
         })
       )
 
-      const json_data = data.value
+      const json_data: any = data.value
 
       if(json_data.data){
         frame.id = json_data.data.id
@@ -186,7 +186,7 @@ export const useFrame = () => {
         })
       )
 
-      const json_data = data.value
+      const json_data: any = data.value
 
       if(json_data.data){
         navigateTo(`/frames/${frame.id}`)

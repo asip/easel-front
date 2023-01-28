@@ -60,7 +60,7 @@ export const useSignup = () => {
         })
       )
 
-      const json_data = data.value
+      const json_data: any = data.value
 
       //console.log(json_data)
 

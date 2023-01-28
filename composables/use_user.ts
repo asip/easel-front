@@ -1,4 +1,4 @@
-import { User } from '~~/composables/use_user'
+import { User } from '~/composables/use_login_user'
 
 export const useUser = () => {
   const user = reactive<User>(
@@ -27,7 +27,7 @@ export const useUser = () => {
       })
     )
 
-    const json_data = data.value
+    const json_data: any = data.value
     //console.log(json_data)
 
     if(json_data && json_data.data){
