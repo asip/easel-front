@@ -10,7 +10,7 @@
   import { User} from '~/composables/use_login_user'
 
   const { baseURL } = useConstants()
-  const model: Frame | User | undefined = inject('model')
+  const model: any = inject('model')
 
   if(model){
     if(model.file) {
