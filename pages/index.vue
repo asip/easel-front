@@ -1,7 +1,7 @@
 <template>
   <br>
   <div class="row col-sm-12">
-    <div v-for="frame in frames" class="card col-sm-3 kadomaru">
+    <div v-for="frame in (frames as any[])" class="card col-sm-3 kadomaru">
       <NuxtLink :to="`${baseURL}${frame.attributes.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.attributes.file_two_url" class="card-img-top"></NuxtLink>
       <br>
       <div class="card-block">
