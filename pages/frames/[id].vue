@@ -100,11 +100,14 @@
 
   await getFrame(id as string)
 
-  const onDeleteClick = async () => {
-    await deleteFrame()
-
+  const removeBackdrop = () => {
     const backdrop = document.querySelector('.modal-backdrop')
     backdrop?.remove()
+  }
+
+  const onDeleteClick = async () => {
+    await deleteFrame()
+    removeBackdrop()
     navigateTo('/')
   }
 </script>
