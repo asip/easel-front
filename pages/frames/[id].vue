@@ -53,7 +53,7 @@
         <div class="form-group col-sm-6">
           <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-danger" @click="onOpenClick">削除</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">削除</button>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -86,6 +86,8 @@
 </template>
 
 <script setup lang="ts">
+  // @ts-ignore
+  import { Modal } from 'bootstrap/dist/js/bootstrap.esm.min.js'
 
   const route = useRoute();
   const { id  } = route.params;
@@ -94,20 +96,18 @@
   const { logged_in, login_user } = useLoginUser()
   const { frame, getFrame, deleteFrame } = useFrame()
 
-  let modal: any = null
-
   provide('frame', frame)
 
   await getFrame(id as string)
 
-  const onOpenClick = () => {
-    modal?.show()
-  }
-
   const onDeleteClick = async () => {
     await deleteFrame()
 
-    modal?.hide()
+    const backdrop = document.querySelector('.modal-backdrop')
+    backdrop?.remove()
     navigateTo('/')
   }
+
+  onMounted(() => {
+  })
 </script>
