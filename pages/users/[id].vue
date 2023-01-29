@@ -12,13 +12,10 @@
       <UsersPreviewImage :original="false" />
       <div class="row d-flex justify-content-sm-center">
         <div class="col-sm-6 text-center">
-        <!-- if logged_in? && @user.id != current_user.id -->
-          <!-- if current_user.following?(@user) -->
-            <!-- link_to "フォロー中", user_follow_relationships_path(@user.id), data: { turbo_method: :delete } -->
-          <!-- else -->
-            <!-- link_to "フォローする", user_follow_relationships_path(@user.id), data: { turbo_method: :post } -->
-          <!-- end -->
-        <!-- end -->
+          <div v-if="logged_in && user.id != login_user.id">
+            <u v-if="following" @click="onUnfollowClick" >フォロー中</u>
+            <u v-else @click="onFollowClick">フォローする</u>
+          </div>
         </div>
       </div>
       <br>
@@ -28,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useFollow } from "~/composables/use_follow";
 
   const route = useRoute()
   const { id  } = route.params
@@ -35,6 +33,8 @@
   const router = useRouter()
 
   const { user, getUser } = useUser()
+  const { logged_in, login_user } = useLoginUser()
+  const { following, follow, unfollow } = useFollow()
 
   await getUser(id as string)
 
@@ -42,5 +42,13 @@
 
   const onPageBack = () => {
     router.go(-1)
+  }
+
+  const onFollowClick = async () => {
+    await follow(user.id)
+  }
+
+  const onUnfollowClick = async () => {
+    await unfollow(user.id)
   }
 </script>
