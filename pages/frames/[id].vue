@@ -42,7 +42,7 @@
           </div> -->
           <div class="float-end">
             <NuxtLink :to="`/users/${frame.user_id}`" class="text-decoration-none">
-              {{ frame.user_name }}
+              {{ frame.user_name }}&nbsp;
             </NuxtLink>
           </div>
         </div>
