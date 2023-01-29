@@ -54,3 +54,7 @@ npm run preview
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn 
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/asip/easel-front/blob/main/LICENSE-MIT.txt) for more information.
