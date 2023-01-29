@@ -107,7 +107,4 @@
     backdrop?.remove()
     navigateTo('/')
   }
-
-  onMounted(() => {
-  })
 </script>
