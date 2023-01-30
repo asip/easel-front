@@ -4,7 +4,7 @@
     <div class="card" data-controller="preview">
       <div class="card-header">
         <div class="float-start">
-          <NuxtLink to="/profile"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
+          <NuxtLink to="/account/profile"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
           プロフィール編集
         </div>
       </div>

@@ -75,21 +75,25 @@ export const useFrame = () => {
 
     if(json_data){
       if(json_data.data){
-        frame.id = json_data.data.id
-        frame.user_id = json_data.data.attributes.user_id
-        frame.user_name = json_data.data.attributes.user_name
-        frame.name = json_data.data.attributes.name
-        frame.comment = json_data.data.attributes.comment
-        frame.tag_list = json_data.data.attributes.tag_list
-        frame.tags = json_data.data.attributes.tags
-        frame.shooted_at = json_data.data.attributes.shooted_at
-        frame.shooted_at_html = json_data.data.attributes.shooted_at_html
-        frame.updated_at = json_data.data.attributes.updated_at
-        frame.file_url = json_data.data.attributes.file_url
-        frame.file_two_url = json_data.data.attributes.file_two_url
-        frame.file_three_url = json_data.data.attributes.file_three_url
+        setJson2Frame(json_data)
       }
     }
+  }
+
+  const setJson2Frame = (json_data: any) => {
+    frame.id = json_data.data.id
+    frame.user_id = json_data.data.attributes.user_id
+    frame.user_name = json_data.data.attributes.user_name
+    frame.name = json_data.data.attributes.name
+    frame.comment = json_data.data.attributes.comment
+    frame.tag_list = json_data.data.attributes.tag_list
+    frame.tags = json_data.data.attributes.tags
+    frame.shooted_at = json_data.data.attributes.shooted_at
+    frame.shooted_at_html = json_data.data.attributes.shooted_at_html
+    frame.updated_at = json_data.data.attributes.updated_at
+    frame.file_url = json_data.data.attributes.file_url
+    frame.file_two_url = json_data.data.attributes.file_two_url
+    frame.file_three_url = json_data.data.attributes.file_three_url
   }
 
   const setFrame = (_frame: Frame | undefined) => {
@@ -139,22 +143,26 @@ export const useFrame = () => {
       }else{
         const errors = json_data.errors
 
-        if(errors.file){
-          error_messages.file = errors.file
-        } else {
-          error_messages.file = []
-        }
-        if(errors.name){
-          error_messages.name = errors.name
-        } else {
-          error_messages.name = []
-        }
-        if(errors.tag_list){
-          error_messages.tags = errors.tag_list
-        } else {
-          error_messages.tags = []
-        }
+        setErrorMessages(errors)
       }
+    }
+  }
+
+  const setErrorMessages = (errors: any) => {
+    if(errors.file){
+      error_messages.file = errors.file
+    } else {
+      error_messages.file = []
+    }
+    if(errors.name){
+      error_messages.name = errors.name
+    } else {
+      error_messages.name = []
+    }
+    if(errors.tag_list){
+      error_messages.tags = errors.tag_list
+    } else {
+      error_messages.tags = []
     }
   }
 
@@ -167,7 +175,7 @@ export const useFrame = () => {
       result = false
     }
 
-    return true
+    return result
   }
 
   const updateFrame = async () => {
@@ -203,16 +211,7 @@ export const useFrame = () => {
       if (!json_data.data) {
         const errors = json_data.errors
 
-        if (errors.name) {
-          error_messages.name = errors.name
-        } else {
-          error_messages.name = []
-        }
-        if (errors.tag_list) {
-          error_messages.tags = errors.tag_list
-        } else {
-          error_messages.tags = []
-        }
+        setErrorMessages(errors)
       }
     }
   }

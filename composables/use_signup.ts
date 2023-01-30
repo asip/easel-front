@@ -66,32 +66,36 @@ export const useSignup = () => {
 
       if (!json_data.data) {
         const errors = json_data.errors
-        if (errors.image) {
-          error_messages.image = errors.image
-        } else {
-          error_messages.image = []
-        }
-        if (errors.name) {
-          error_messages.name = errors.name
-        } else {
-          error_messages.name = []
-        }
-        if (errors.email) {
-          error_messages.email = errors.email
-        } else {
-          error_messages.email = []
-        }
-        if (errors.password) {
-          error_messages.password = errors.password
-        } else {
-          error_messages.password = []
-        }
-        if (errors.password_confirmation) {
-          error_messages.password_confirmation = errors.password_confirmation
-        } else {
-          error_messages.password_confirmation = []
-        }
+        setErrorMessages(errors)
       }
+    }
+  }
+
+  const setErrorMessages = (errors: any) => {
+    if (errors.image) {
+      error_messages.image = errors.image
+    } else {
+      error_messages.image = []
+    }
+    if (errors.name) {
+      error_messages.name = errors.name
+    } else {
+      error_messages.name = []
+    }
+    if (errors.email) {
+      error_messages.email = errors.email
+    } else {
+      error_messages.email = []
+    }
+    if (errors.password) {
+      error_messages.password = errors.password
+    } else {
+      error_messages.password = []
+    }
+    if (errors.password_confirmation) {
+      error_messages.password_confirmation = errors.password_confirmation
+    } else {
+      error_messages.password_confirmation = []
     }
   }
 
@@ -105,7 +109,7 @@ export const useSignup = () => {
       result = false
     }
 
-    return true
+    return result
   }
 
   return { signup_params, v$, signup, error_messages, isSuccess }

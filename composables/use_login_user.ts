@@ -85,13 +85,7 @@ export const useLoginUser = () => {
 
       if(json_data && json_data.data){
         //console.log('test3')
-        login_user.value.name = json_data.data.attributes.name
-        login_user.value.email = json_data.data.attributes.email
-        login_user.value.token = json_data.data.attributes.token
-        login_user.value.id = json_data.data.id
-        login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
-        login_user.value.image_one_url = json_data.data.attributes.image_one_url
-        login_user.value.image_three_url = json_data.data.attributes.image_three_url
+        setLoginUser(json_data)
         logged_in.value = true
       }
     }
@@ -118,13 +112,7 @@ export const useLoginUser = () => {
     const json_data: any = data.value
 
     if(json_data.data){
-      login_user.value.name = json_data.data.attributes.name
-      login_user.value.email = json_data.data.attributes.email
-      login_user.value.token = json_data.data.attributes.token
-      login_user.value.id = json_data.data.id
-      login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
-      login_user.value.image_one_url = json_data.data.attributes.image_one_url
-      login_user.value.image_three_url = json_data.data.attributes.image_three_url
+      setLoginUser(json_data)
       logged_in.value = true
       //console.log(login_user.value)
 
@@ -134,6 +122,16 @@ export const useLoginUser = () => {
       error_message.value = json_data.message
       //console.log(error_message.value)
     }
+  }
+
+  const setLoginUser = (json_data: any)  => {
+    login_user.value.name = json_data.data.attributes.name
+    login_user.value.email = json_data.data.attributes.email
+    login_user.value.token = json_data.data.attributes.token
+    login_user.value.id = json_data.data.id
+    login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
+    login_user.value.image_one_url = json_data.data.attributes.image_one_url
+    login_user.value.image_three_url = json_data.data.attributes.image_three_url
   }
 
   const updateProfile = async () => {
@@ -170,34 +168,39 @@ export const useLoginUser = () => {
 
       if (!json_data.data) {
         const errors = json_data.errors
-        if (errors.image) {
-          error_messages.image = errors.image
-        } else {
-          error_messages.image = []
-        }
-        if (errors.name) {
-          error_messages.name = errors.name
-        } else {
-          error_messages.name = []
-        }
-        if (errors.email) {
-          error_messages.email = errors.email
-        } else {
-          error_messages.email = []
-        }
-        if (errors.password) {
-          error_messages.password = errors.password
-        } else {
-          error_messages.password = []
-        }
-        if (errors.password_confirmation) {
-          error_messages.password_confirmation = errors.password_confirmation
-        } else {
-          error_messages.password_confirmation = []
-        }
+        setErrorMessages(errors)
       }
     }
   }
+
+  const setErrorMessages = (errors: any) => {
+    if (errors.image) {
+      error_messages.image = errors.image
+    } else {
+      error_messages.image = []
+    }
+    if (errors.name) {
+      error_messages.name = errors.name
+    } else {
+      error_messages.name = []
+    }
+    if (errors.email) {
+      error_messages.email = errors.email
+    } else {
+      error_messages.email = []
+    }
+    if (errors.password) {
+      error_messages.password = errors.password
+    } else {
+      error_messages.password = []
+    }
+    if (errors.password_confirmation) {
+      error_messages.password_confirmation = errors.password_confirmation
+    } else {
+      error_messages.password_confirmation = []
+    }
+  }
+
 
   const isSuccess = () => {
     let result: boolean = true
@@ -209,7 +212,7 @@ export const useLoginUser = () => {
       result = false
     }
 
-    return true
+    return result
   }
 
   const logout = async () => {
@@ -226,17 +229,21 @@ export const useLoginUser = () => {
     const json_data: any = data.value
 
     if(json_data.data) {
-      logged_in.value = false
-      login_user.value.name = ''
-      login_user.value.email = ''
-      login_user.value.token = null
-      login_user.value.id = null
-      login_user.value.image_thumb_url = null
-      login_user.value.image_one_url = null
-      login_user.value.image_three_url = null
+      clearLoginUser()
 
       cookie.value = null
     }
+  }
+
+  const clearLoginUser = () => {
+    logged_in.value = false
+    login_user.value.name = ''
+    login_user.value.email = ''
+    login_user.value.token = null
+    login_user.value.id = null
+    login_user.value.image_thumb_url = null
+    login_user.value.image_one_url = null
+    login_user.value.image_three_url = null
   }
 
   return {

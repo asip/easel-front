@@ -62,7 +62,7 @@
     <br>
     <div class="d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
-        <button type="button" @click="updateProfile" class="btn btn-primary">登録</button>&nbsp;
+        <button type="button" @click="onUpdateClick" class="btn btn-primary">登録</button>&nbsp;
         <NuxtLink :to="`/account/profile`" class="btn btn-outline-secondary">戻る</NuxtLink>
       </div>
     </div>
@@ -105,7 +105,7 @@
   const onUpdateClick= async () =>{
     await updateProfile()
     if(!v$.value.$invalid && isSuccess()){
-      navigateTo('/')
+      navigateTo('/account/profile')
     }
   }
 
