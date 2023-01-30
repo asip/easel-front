@@ -85,7 +85,7 @@ export const useLoginUser = () => {
 
       if(json_data && json_data.data){
         //console.log('test3')
-        setLoginUser(json_data)
+        setJson2LoginUser(json_data)
         logged_in.value = true
       }
     }
@@ -112,7 +112,7 @@ export const useLoginUser = () => {
     const json_data: any = data.value
 
     if(json_data.data){
-      setLoginUser(json_data)
+      setJson2LoginUser(json_data)
       logged_in.value = true
       //console.log(login_user.value)
 
@@ -124,7 +124,7 @@ export const useLoginUser = () => {
     }
   }
 
-  const setLoginUser = (json_data: any)  => {
+  const setJson2LoginUser = (json_data: any)  => {
     login_user.value.name = json_data.data.attributes.name
     login_user.value.email = json_data.data.attributes.email
     login_user.value.token = json_data.data.attributes.token
