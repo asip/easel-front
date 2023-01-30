@@ -96,15 +96,15 @@ export const useFrame = () => {
     frame.file_three_url = json_data.data.attributes.file_three_url
   }
 
-  const setFrame = (_frame: Frame | undefined) => {
-    if(_frame) {
-      frame.id = _frame.id
-      frame.name = _frame.name
-      frame.comment = _frame.comment
-      frame.tag_list = _frame.tag_list
-      frame.tags = _frame.tags
-      frame.shooted_at = _frame.shooted_at
-      frame.file = _frame.file
+  const setFrame = (frame_: Frame | undefined) => {
+    if(frame_) {
+      frame.id = frame_.id
+      frame.name = frame_.name
+      frame.comment = frame_.comment
+      frame.tag_list = frame_.tag_list
+      frame.tags = frame_.tags
+      frame.shooted_at = frame_.shooted_at
+      frame.file = frame_.file
     }
   }
 

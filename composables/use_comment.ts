@@ -43,10 +43,10 @@ export function useComment() {
     }
   };
 
-  const setComment = (_comment: Comment | undefined) => {
-    if(_comment){
-      comment.frame_id = _comment.frame_id
-      comment.body = _comment.body
+  const setComment = (comment_: Comment | undefined) => {
+    if(comment_){
+      comment.frame_id = comment_.frame_id
+      comment.body = comment_.body
     }
   }
 
