@@ -1,6 +1,4 @@
-import { Body } from './../.nuxt/components.d';
 import { useLoginUser } from './use_login_user';
-import  { User } from '~/composables/use_login_user'
 
 export interface Comment {
   frame_id: string,
