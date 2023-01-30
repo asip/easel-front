@@ -39,6 +39,10 @@ export const useFrame = () => {
     updated_at: ''
   })
 
+  const frameId = computed(() => {
+    return frame.id
+  })
+
   const error_messages = reactive({
     name: [],
     tags: [],
@@ -132,8 +136,6 @@ export const useFrame = () => {
 
       if(json_data.data){
         frame.id = json_data.data.id
-
-        navigateTo(`/frames/${frame.id}`)
       }else{
         const errors = json_data.errors
 
@@ -154,6 +156,18 @@ export const useFrame = () => {
         }
       }
     }
+  }
+
+  const isSuccess = () => {
+    let result: boolean = true
+
+    if(error_messages.file.length > 0 || error_messages.name.length > 0 ||
+      error_messages.tags.length> 0
+    ){
+      result = false
+    }
+
+    return true
   }
 
   const updateFrame = async () => {
@@ -186,17 +200,15 @@ export const useFrame = () => {
 
       const json_data: any = data.value
 
-      if(json_data.data){
-        navigateTo(`/frames/${frame.id}`)
-      }else{
+      if (!json_data.data) {
         const errors = json_data.errors
 
-        if(errors.name){
+        if (errors.name) {
           error_messages.name = errors.name
         } else {
           error_messages.name = []
         }
-        if(errors.tag_list){
+        if (errors.tag_list) {
           error_messages.tags = errors.tag_list
         } else {
           error_messages.tags = []
@@ -222,6 +234,6 @@ export const useFrame = () => {
   }
 
   return {
-    getFrame, frame, v$, setFrame, updateFrame, createFrame, deleteFrame, error_messages
+    getFrame, frame, frameId, v$, setFrame, updateFrame, createFrame, deleteFrame, error_messages, isSuccess
   }
 }

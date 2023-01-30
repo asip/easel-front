@@ -71,7 +71,7 @@
         <br>
         <div class="d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            <button type="button" @click="signup" class="btn btn-primary">登録</button>&nbsp;
+            <button type="button" @click="onSignupClick" class="btn btn-primary">登録</button>&nbsp;
             <NuxtLink :to="`/login`" class="btn btn-outline-secondary">戻る</NuxtLink>
           </div>
         </div>
@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { signup_params, v$, signup, error_messages } = useSignup()
+  const { signup_params, v$, signup, error_messages, isSuccess } = useSignup()
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
@@ -110,6 +110,13 @@
       reader.readAsDataURL(file?.data)
       //preview.src = URL.createObjectURL(file.data)
       // プレビュー画像がなければ表示します
+    }
+  }
+
+  const onSignupClick= async () =>{
+    await signup()
+    if(!v$.value.$invalid && isSuccess()){
+      navigateTo('/')
     }
   }
 

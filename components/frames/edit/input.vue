@@ -49,7 +49,7 @@
 
   let frame: Frame | undefined = inject('frame')
 
-  const { v$, setFrame, updateFrame } = useFrame()
+  const { v$, setFrame, updateFrame, isSuccess } = useFrame()
 
   //console.log(frame)
   //console.log(frame.tags)
@@ -58,35 +58,40 @@
   const onEditClick = async () => {
     setFrame(frame)
     await updateFrame()
+    if(!v$.value.$invalid && isSuccess()){
+      navigateTo(`/frames/${frame?.id}`)
+    }
   }
 
   onMounted(() => {
     //console.log(frame)
 
-    const elm_te = document.querySelector('#tag_editor')
+    const elm_te: HTMLInputElement | null = document.querySelector('#tag_editor')
 
-    const tag_editor = new Tagify(elm_te, {
-      maxTags: 5,
-      dropdown: {
-        classname: "color-blue",
-        enabled: 0,
-        maxItems: 30,
-        closeOnSelect: false,
-        highlightFirst: true,
+    if(elm_te) {
+      const tag_editor = new Tagify(elm_te, {
+        maxTags: 5,
+        dropdown: {
+          classname: "color-blue",
+          enabled: 0,
+          maxItems: 30,
+          closeOnSelect: false,
+          highlightFirst: true,
+        }
+      })
+
+      tag_editor.removeAllTags();
+      tag_editor.addTags(frame?.tags);
+
+      const saveTagList = (tagify: Tagify) => {
+        if(frame) {
+          frame.tags = tag_editor.value.map(v => v.value)
+          frame.tag_list = frame.tags?.join(",");
+        }
       }
-    });
 
-    tag_editor.removeAllTags();
-    tag_editor.addTags(frame?.tags);
-
-    const saveTagList = (tagify: Tagify) => {
-      if(frame) {
-        frame.tags = tag_editor.value.map(v => v.value)
-        frame.tag_list = frame.tags?.join(",");
-      }
+      tag_editor.on('add', e => saveTagList(e.detail.tagify));
+      tag_editor.on('remove', e => saveTagList(e.detail.tagify));
     }
-
-    tag_editor.on('add', e => saveTagList(e.detail.tagify));
-    tag_editor.on('remove', e => saveTagList(e.detail.tagify));
   })
 </script>

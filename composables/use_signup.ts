@@ -64,39 +64,49 @@ export const useSignup = () => {
 
       //console.log(json_data)
 
-      if(json_data.data){
-        navigateTo('/')
-      }else{
+      if (!json_data.data) {
         const errors = json_data.errors
-        if(errors.image){
+        if (errors.image) {
           error_messages.image = errors.image
         } else {
           error_messages.image = []
         }
-        if(errors.name){
+        if (errors.name) {
           error_messages.name = errors.name
         } else {
           error_messages.name = []
         }
-        if(errors.email){
+        if (errors.email) {
           error_messages.email = errors.email
         } else {
           error_messages.email = []
         }
-        if(errors.password){
+        if (errors.password) {
           error_messages.password = errors.password
         } else {
           error_messages.password = []
         }
-        if(errors.password_confirmation){
+        if (errors.password_confirmation) {
           error_messages.password_confirmation = errors.password_confirmation
         } else {
           error_messages.password_confirmation = []
         }
       }
     }
-
   }
 
-  return { signup_params, v$, signup, error_messages }
+  const isSuccess = () => {
+    let result: boolean = true
+
+    if(error_messages.image.length > 0 || error_messages.name.length > 0 ||
+      error_messages.email.length> 0 || error_messages.password.length > 0 ||
+      error_messages.password_confirmation.length > 0
+    ){
+      result = false
+    }
+
+    return true
+  }
+
+  return { signup_params, v$, signup, error_messages, isSuccess }
 }

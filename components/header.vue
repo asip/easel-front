@@ -23,7 +23,7 @@
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
               <li><NuxtLink to="/account/profile" class="dropdown-item">profile</NuxtLink></li>
               <li><NuxtLink to="/frames/new" class="dropdown-item">Upload</NuxtLink></li>
-              <li><button type="button" class="dropdown-item" @click="logout">Logout</button></li>
+              <li><button type="button" class="dropdown-item" @click="onLogoutClick">Logout</button></li>
             </ul>
           </li>
         </ul>
@@ -44,5 +44,10 @@
   if(!logged_in.value){
     //console.log('test2')
     await authenticate()
+  }
+
+  const onLogoutClick = async () => {
+    await logout()
+    navigateTo('/')
   }
 </script>

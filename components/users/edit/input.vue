@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-  const { login_user, v$, updateProfile, error_messages } = useLoginUser()
+  const { login_user, v$, updateProfile, error_messages, isSuccess } = useLoginUser()
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
@@ -99,6 +99,13 @@
       reader.readAsDataURL(file?.data)
       //preview.src = URL.createObjectURL(file.data)
       // プレビュー画像がなければ表示します
+    }
+  }
+
+  const onUpdateClick= async () =>{
+    await updateProfile()
+    if(!v$.value.$invalid && isSuccess()){
+      navigateTo('/')
     }
   }
 
