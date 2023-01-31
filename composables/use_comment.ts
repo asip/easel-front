@@ -55,21 +55,15 @@ export function useComment() {
 
   const createCommentFromJson = (row_data: any): Comment =>{
     const comment={
-      id: null,
-      frame_id: null,
-      body: '',
-      user_id: null,
-      user_name: '',
-      user_image_url: '',
-      updated_at: null
+      id: row_data.id,
+      frame_id: row_data.attributes.frame_id,
+      body: row_data.attributes.body,
+      user_id: row_data.attributes.user_id,
+      user_name: row_data.attributes.user_name,
+      user_image_url: row_data.attributes.user_image_url,
+      updated_at: row_data.attributes.updated_at
     }
-    comment.id = row_data.id
-    comment.frame_id = row_data.attributes.frame_id
-    comment.body = row_data.attributes.body
-    comment.user_id = row_data.attributes.user_id
-    comment.user_name = row_data.attributes.user_name
-    comment.user_image_url = row_data.attributes.user_image_url
-    comment.updated_at = row_data.attributes.updated_at
+
     return comment
   }
 

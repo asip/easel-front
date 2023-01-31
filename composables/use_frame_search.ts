@@ -58,35 +58,23 @@ export const useFrameSearch = () => {
 
   const createFrameFromJson = (row_data: any) : Frame => {
     const frame: Frame = {
-      id: null,
-      user_id: null,
-      user_name: '',
-      name: '',
-      tag_list: '',
-      tags: [],
-      comment: '',
-      shooted_at: '',
-      shooted_at_html: '',
+      id: row_data.id,
+      user_id: row_data.attributes.user_id,
+      user_name: row_data.attributes.user_name,
+      name: row_data.attributes.name,
+      tag_list: row_data.attributes.tag_list,
+      tags: row_data.attributes.tags,
+      comment: row_data.attributes.comment,
+      shooted_at: row_data.attributes.shooted_at,
+      shooted_at_html: row_data.attributes.shooted_at_html,
       file: null,
-      file_url: '',
-      file_two_url: '',
-      file_three_url: '',
+      file_url: row_data.attributes.file_url,
+      file_two_url: row_data.attributes.file_two_url,
+      file_three_url: row_data.attributes.file_three_url,
       preview_url: null,
-      updated_at: ''
+      updated_at: row_data.attributes.updated_at
     }
-    frame.id = row_data.id
-    frame.user_id = row_data.attributes.user_id
-    frame.user_name = row_data.attributes.user_name
-    frame.name = row_data.attributes.name
-    frame.comment = row_data.attributes.comment
-    frame.tag_list = row_data.attributes.tag_list
-    frame.tags = row_data.attributes.tags
-    frame.shooted_at = row_data.attributes.shooted_at
-    frame.shooted_at_html = row_data.attributes.shooted_at_html
-    frame.updated_at = row_data.attributes.updated_at
-    frame.file_url = row_data.attributes.file_url
-    frame.file_two_url = row_data.attributes.file_two_url
-    frame.file_three_url = row_data.attributes.file_three_url
+    
     return frame
   }
 
