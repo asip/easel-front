@@ -74,7 +74,7 @@ export const useFrameSearch = () => {
       preview_url: null,
       updated_at: row_data.attributes.updated_at
     }
-    
+
     return frame
   }
 
