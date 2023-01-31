@@ -46,7 +46,7 @@ export const useFrameSearch = () => {
         frames.value.splice(0, frames.value.length);
         for (let frame of frame_list as []) {
           //console.log(comment);
-          frames.value.push(createJson2Frame(frame));
+          frames.value.push(createFrameFromJson(frame));
         }
         //console.log(frames)
       }
@@ -56,7 +56,7 @@ export const useFrameSearch = () => {
     }
   }
 
-  const createJson2Frame = (row_data: any) : Frame => {
+  const createFrameFromJson = (row_data: any) : Frame => {
     const frame: Frame = {
       id: null,
       user_id: null,
