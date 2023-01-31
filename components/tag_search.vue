@@ -11,10 +11,14 @@
 </template>
 
 <script lang="ts" setup>
+  const route = useRoute()
   const { frame_query, searchFrame } = useFrameSearch();
 
   const onSearchClick = async () => {
     frame_query.value.page = 1
     await searchFrame()
+    if(route.path != '/'){
+      navigateTo('/')
+    }
   }
 </script>
