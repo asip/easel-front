@@ -1,17 +1,27 @@
 import { useLoginUser } from './use_login_user';
 
 export interface Comment {
-  frame_id: string,
+  id: number | null
+  frame_id: number | null,
   body: string
+  user_id: number | null,
+  user_name: string
+  user_image_url: string
+  updated_at: string | null
 }
 
 export function useComment() {
   const comment: any = reactive<Comment>({
-    frame_id: '',
+    id: null,
+    frame_id: null,
     body: '',
+    user_id: null,
+    user_name: '',
+    user_image_url: '',
+    updated_at: null
   });
 
-  const comments: any[] = reactive<any[]>([]);
+  const comments = reactive<Comment[]>([]);
 
   const error_messages: any = reactive<string[]>([]);
 
@@ -37,11 +47,31 @@ export function useComment() {
       comments.splice(0, comments.length);
       for (let comment of comment_list) {
         //console.log(comment);
-        comments.push(comment);
+        comments.push(createCommentFromJson(comment));
       }
       //console.log(comments);
     }
   };
+
+  const createCommentFromJson = (row_data: any): Comment =>{
+    const comment={
+      id: null,
+      frame_id: null,
+      body: '',
+      user_id: null,
+      user_name: '',
+      user_image_url: '',
+      updated_at: null
+    }
+    comment.id = row_data.id
+    comment.frame_id = row_data.attributes.frame_id
+    comment.body = row_data.attributes.body
+    comment.user_id = row_data.attributes.user_id
+    comment.user_name = row_data.attributes.user_name
+    comment.user_image_url = row_data.attributes.user_image_url
+    comment.updated_at = row_data.attributes.updated_at
+    return comment
+  }
 
   const setComment = (comment_: Comment | undefined) => {
     if(comment_){
