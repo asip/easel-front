@@ -8,10 +8,10 @@
               <img :src="`${baseURL}${comment.user_image_url}`" class="rounded" width="20" height="20">
             </div>
             <div class="float-start small align-middle" style="padding-left:5px;">
-              <div class="badge rounded-pill bg-light text-info">{{comment.user_name}}</div>
+              <div class="badge rounded-pill bg-light text-info">{{ comment.user_name }}</div>
             </div>
             <div class="float-start small align-middle" style="padding-left:5px;">
-              <div class="badge rounded-pill bg-light text-info">{{comment.updated_at}}</div>
+              <div class="badge rounded-pill bg-light text-info">{{ comment.updated_at }}</div>
             </div>
             <div class="float-end" v-show="logged_in && comment.user_id == login_user.id">
               <button class="btn btn-link btn-sm" v-on:click="onDeleteClick(comment)">削除</button>&nbsp;

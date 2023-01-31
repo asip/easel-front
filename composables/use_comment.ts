@@ -54,7 +54,7 @@ export function useComment() {
   };
 
   const createCommentFromJson = (row_data: any): Comment =>{
-    const comment={
+    const comment: Comment = {
       id: row_data.id,
       frame_id: row_data.attributes.frame_id,
       body: row_data.attributes.body,
