@@ -2,7 +2,7 @@ import { useLoginUser } from './use_login_user';
 
 export interface Comment {
   id: number | null
-  frame_id: number | null,
+  frame_id: number | null | undefined,
   body: string
   user_id: number | null,
   user_name: string
