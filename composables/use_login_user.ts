@@ -62,11 +62,11 @@ export const useLoginUser = () => {
 
   const v$ = useVuelidate(rules, login_user)
 
-  const cookie = useCookie('access_token')
+  const access_token = useCookie('access_token')
 
   const authenticate = async () => {
 
-    login_user.value.token = cookie.value
+    login_user.value.token = access_token.value
     //console.log(login_user.value.token)
 
     if(login_user.value.token) {
@@ -116,7 +116,7 @@ export const useLoginUser = () => {
       logged_in.value = true
       //console.log(login_user.value)
 
-      cookie.value = login_user.value.token
+      access_token.value = login_user.value.token
       error_message.value = ''
     }else{
       error_message.value = json_data.message
@@ -231,7 +231,7 @@ export const useLoginUser = () => {
     if(json_data.data) {
       clearLoginUser()
 
-      cookie.value = null
+      access_token.value = null
     }
   }
 
