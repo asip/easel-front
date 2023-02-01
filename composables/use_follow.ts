@@ -6,7 +6,7 @@ export function useFollow() {
 
   const { baseApiURL } = useConstants()
   const { login_user } = useLoginUser()
-  const getFollowing = async (userId: string) => {
+  const isFollowing = async (userId: string) => {
     const { data } = await useAsyncData('getFrame', () =>
       $fetch(`${baseApiURL}/profile/following/${userId}`, {
         method: 'get',
@@ -53,6 +53,6 @@ export function useFollow() {
   }
 
   return {
-    following, follow, unfollow
+    following, follow, unfollow, isFollowing
   }
 }

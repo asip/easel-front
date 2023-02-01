@@ -34,9 +34,13 @@
 
   const { user, getUser } = useUser()
   const { logged_in, login_user } = useLoginUser()
-  const { following, follow, unfollow } = useFollow()
+  const { following, follow, unfollow, isFollowing } = useFollow()
 
   await getUser(id as string)
+
+  if(logged_in){
+    await isFollowing(id as string)
+  }
 
   provide('user', user)
 
