@@ -35,6 +35,7 @@
 <script setup lang="ts" >
   import sanitizeHtml from 'sanitize-html'
   import { useConstants } from '~/composables/use_constants'
+  import { Comment } from '~/composables/use_comment'
 
   const emits = defineEmits<{(e: 'change'): void}>()
 
@@ -45,11 +46,11 @@
 
   const comments: Comment[] | undefined = inject('comments')
 
-  const getSanitizedCommentBody = (row: any): string => {
+  const getSanitizedCommentBody = (row: Comment): string => {
     return sanitizeHtml(row.body).replace(/\n/g, '<br>');
   };
 
-  const onDeleteClick = async (comment: any) => {
+  const onDeleteClick = async (comment: Comment) => {
     await deleteComment(comment)
     if(error_messages.length == 0){
       emits('change')
