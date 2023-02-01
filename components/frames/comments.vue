@@ -43,7 +43,7 @@
   const { deleteComment, error_messages } = useComment()
   const { baseURL } = useConstants()
 
-  const comments: any[] | undefined = inject('comments')
+  const comments: Comment[] | undefined = inject('comments')
 
   const getSanitizedCommentBody = (row: any): string => {
     return sanitizeHtml(row.body).replace(/\n/g, '<br>');
