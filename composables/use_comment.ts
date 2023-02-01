@@ -11,7 +11,7 @@ export interface Comment {
 }
 
 export function useComment() {
-  const comment: any = reactive<Comment>({
+  const comment: Comment = reactive<Comment>({
     id: null,
     frame_id: null,
     body: '',
@@ -21,9 +21,9 @@ export function useComment() {
     updated_at: null
   });
 
-  const comments = reactive<Comment[]>([]);
+  const comments: Comment[] = reactive<Comment[]>([]);
 
-  const error_messages: any = reactive<string[]>([]);
+  const error_messages: string[] = reactive<string[]>([]);
 
   const { login_user } = useLoginUser()
 
