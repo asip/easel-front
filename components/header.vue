@@ -38,12 +38,14 @@
 <script lang="ts" setup>
   const { $bootstrap } = useNuxtApp()
 
+  //const { setCsrfToken } = useCsrfProtection()
   const { login_user, logged_in, authenticate, logout } = useLoginUser()
 
   //console.log(logged_in.value)
   if(!logged_in.value){
     //console.log('test2')
     await authenticate()
+    // await setCsrfToken()
   }
 
   const onLogoutClick = async () => {

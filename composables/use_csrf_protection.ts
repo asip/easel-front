@@ -5,7 +5,6 @@ export const useCsrfProtection = () => {
 
   const csrf_token = useCookie('csrf_token')
 
-
   const setCsrfToken = async () => {
     const { data } = await useAsyncData('check', () =>
       $fetch(`${baseApiURL}/sessions`, {
@@ -24,4 +23,6 @@ export const useCsrfProtection = () => {
       })
     )
   }
+
+  return { setCsrfToken }
 }
