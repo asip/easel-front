@@ -1,9 +1,10 @@
 import {useConstants} from "~/composables/use_constants";
+import {CookieRef} from "#app";
 
 export const useCsrfProtection = () => {
   const { baseApiURL } = useConstants()
 
-  const csrf_token = useCookie('csrf_token')
+  const csrf_token: CookieRef<string | null | undefined> = useCookie('csrf_token')
 
   const setCsrfToken = async () => {
     const { data } = await useAsyncData('check', () =>
@@ -24,5 +25,5 @@ export const useCsrfProtection = () => {
     )
   }
 
-  return { setCsrfToken }
+  return { setCsrfToken, csrf_token }
 }
