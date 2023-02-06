@@ -16,7 +16,7 @@
   comment.frame_id = frame?.id
 
   //console.log(comment.frame_id);
-  await getComments();
+  await getComments()
 
   const updateComments = async () => {
     comments.splice(0, comments.length);

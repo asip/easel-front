@@ -28,7 +28,7 @@ export function useComment() {
   const { login_user } = useLoginUser()
 
   const getComments = async () => {
-    //console.log(frame_id);
+    //console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
       $fetch(`/api/frames/${comment.frame_id}/comments`, {
         method: 'get',
@@ -39,9 +39,9 @@ export function useComment() {
     )
 
     const json_data: any = data.value
-    //console.log(json_data)
+    console.log(json_data)
 
-    if (json_data.data) {
+    if (json_data && json_data.data) {
       const comment_list = json_data.data;
       //console.log(comment_list);
       comments.splice(0, comments.length);
