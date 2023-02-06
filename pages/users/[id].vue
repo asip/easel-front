@@ -38,7 +38,7 @@
 
   await getUser(id as string)
 
-  if(logged_in){
+  if(logged_in.value){
     await isFollowing(id as string)
   }
 
