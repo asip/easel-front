@@ -17,7 +17,7 @@
   </form>
 </template>
 
-<script>
+<script setup lang="ts">
   const { logged_in } = useLoginUser()
 
   if(!logged_in.value ){
