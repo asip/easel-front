@@ -81,7 +81,7 @@
   </div>
   <br>
   <ClientOnly>
-    <FrameComments />
+    <LazyFrameComments />
   </ClientOnly>
 </template>
 
