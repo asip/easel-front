@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
-    "nuxt": "^3.1.2"
+    "nuxt": "^3.2.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
