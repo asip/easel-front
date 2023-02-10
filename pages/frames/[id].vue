@@ -80,9 +80,7 @@
     </div>
   </div>
   <br>
-  <ClientOnly>
-    <LazyFrameComments />
-  </ClientOnly>
+  <FrameComments />
 </template>
 
 <script setup lang="ts">

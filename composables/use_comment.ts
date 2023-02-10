@@ -25,12 +25,13 @@ export function useComment() {
 
   const error_messages: string[] = reactive<string[]>([]);
 
+  const { baseApiURL } = useConstants()
   const { login_user } = useLoginUser()
 
   const getComments = async () => {
     //console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
-      $fetch(`/api/frames/${comment.frame_id}/comments`, {
+      $fetch(`${baseApiURL}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
