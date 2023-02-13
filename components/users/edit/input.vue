@@ -11,7 +11,7 @@
       </div>
     </div>
     <Preview />
-    <div class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">ユーザー名：</label>
       <div class="form-group col-sm-4">
         <input type="text" v-model="login_user.name" placeholder="ユーザー名" class="form-control">
@@ -23,7 +23,13 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-sm-center border border-white">
+    <div v-else class="row d-flex justify-content-sm-center border border-white">
+      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">ユーザー名：</label>
+      <div class="form-group col-sm-4">
+        {{ login_user.name }}
+      </div>
+    </div>
+    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">Eメール：</label>
       <div class="form-group col-sm-4">
         <input type="text" v-model="login_user.email" placeholder="Eメール" class="form-control" >
@@ -35,7 +41,13 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-sm-center border border-white">
+    <div v-else class="row d-flex justify-content-sm-center border border-white">
+      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">Eメール：</label>
+      <div class="form-group col-sm-4">
+        {{ login_user.email }}
+      </div>
+    </div>
+    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="password" class="col-form-label-sm col-sm-3 label-bg-style">パスワード：</label>
       <div class="form-group col-sm-4">
         <input type="password" v-model="login_user.password" placeholder="パスワード" class="form-control">
@@ -47,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="password_confirmation" class="col-form-label-sm col-sm-3 label-bg-style">パスワード(確認)：</label>
       <div class="form-group col-sm-4">
         <input type="password" v-model="login_user.password_confirmation" placeholder="パスワード(確認)" class="form-control">

@@ -13,6 +13,7 @@ export interface User {
   preview_url: string | null | undefined
   password: string
   password_confirmation: string
+  social_login: boolean | null | undefined
 }
 
 export const useLoginUser = () => {
@@ -33,7 +34,8 @@ export const useLoginUser = () => {
       image_three_url: '',
       preview_url: null,
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      social_login: false
     }
   })
 
@@ -161,6 +163,7 @@ export const useLoginUser = () => {
     login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
     login_user.value.image_one_url = json_data.data.attributes.image_one_url
     login_user.value.image_three_url = json_data.data.attributes.image_three_url
+    login_user.value.social_login = json_data.data.attributes.social_login
   }
 
   const updateProfile = async () => {
@@ -273,6 +276,7 @@ export const useLoginUser = () => {
     login_user.value.image_thumb_url = null
     login_user.value.image_one_url = null
     login_user.value.image_three_url = null
+    login_user.value.social_login = false
   }
 
   return {
