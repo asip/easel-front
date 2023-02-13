@@ -124,6 +124,35 @@ export const useLoginUser = () => {
     }
   }
 
+  const login_with_google = async (response: any) => {
+    let postData = {
+      provider: 'google',
+      credential: response.credential
+    }
+
+    const { data } = await useAsyncData('login', () =>
+      $fetch(`${baseApiURL}/oauth/sessions/`, {
+        method: 'post',
+        body: postData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+    )
+
+    const json_data: any = data.value
+
+    if(json_data.data){
+      setJson2LoginUser(json_data)
+      logged_in.value = true
+      //console.log(login_user.value)
+
+      access_token.value = login_user.value.token
+    }
+
+    error_message.value = ''
+  }
+
   const setJson2LoginUser = (json_data: any)  => {
     login_user.value.name = json_data.data.attributes.name
     login_user.value.email = json_data.data.attributes.email
@@ -254,6 +283,7 @@ export const useLoginUser = () => {
     updateProfile,
     isSuccess,
     login,
+    login_with_google,
     logout,
     error_message,
     v$,

@@ -1,6 +1,9 @@
 export const useConstants = () => {
-  const baseURL: string = "http://localhost:3000"
-  const baseApiURL: string = "http://localhost:3000/api/v1"
+  const runtimeConfig = useRuntimeConfig()
 
-  return { baseURL, baseApiURL }
+  const baseURL: string = runtimeConfig.public.baseURL
+  const baseApiURL: string = runtimeConfig.public.baseApiURL
+  const googleClientID: string = runtimeConfig.googleClientId
+
+  return { baseURL, baseApiURL, googleClientID }
 }

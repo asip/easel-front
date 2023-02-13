@@ -11,6 +11,10 @@ export default defineNuxtConfig({
       link: [
         { href: "/palette.svg", type: "image/svg+xml", rel: "icon" },
         { href: "/palette.svg", type: "image/svg+xml", rel: "mask-icon", color: "#000000" }
+      ],
+      script: [
+        { src: 'https://apis.google.com/js/api.js' },
+        { src: 'https://accounts.google.com/gsi/client' }
       ]
     }
   },
@@ -20,5 +24,12 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxt/image-edge',
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      baseURL: 'http://localhost:3000',
+      baseApiURL: 'http://localhost:3000/api/v1',
+      googleClientId: ''
+    }
+  }
 })

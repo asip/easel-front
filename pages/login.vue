@@ -1,6 +1,7 @@
 <template>
+  <br>
+  <div id="googleButton"></div>
   <form>
-    <br>
     <div class="card">
       <div class="card-header">
         <div class="float-start">
@@ -42,12 +43,33 @@
 </template>
 
 <script lang="ts" setup>
-  const { login_params, login, error_message } = useLoginUser();
+  const { googleClientID } = useConstants()
+  const { login_params, login, login_with_google, error_message } = useLoginUser();
 
   const onLoginClick = async () => {
     await login()
     if(error_message.value == '') {
       navigateTo('/')
     }
+  }
+
+  onMounted(() => {
+    google.accounts.id.initialize({
+      client_id: googleClientID,
+      callback: handleCredentialResponse, //method to run after user clicks the Google sign in button
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("googleButton"),
+      { theme: "outline", size: "large" } // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  })
+
+  const handleCredentialResponse = async (response: any) => {
+    // call your backend API here
+    // the token can be accessed as: response.credential
+    await login_with_google(response)
+
+    navigateTo('/')
   }
 </script>
