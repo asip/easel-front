@@ -142,7 +142,7 @@ export const useLoginUser = () => {
 
     const json_data: any = data.value
 
-    if(json_data.data){
+    if(json_data && json_data.data){
       setJson2LoginUser(json_data)
       logged_in.value = true
       //console.log(login_user.value)
