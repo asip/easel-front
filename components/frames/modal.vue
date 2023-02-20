@@ -10,8 +10,8 @@
           削除してもよろしいですか？
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
           <button class="btn btn-outline-danger" @click="onDeleteClick">削除</button>
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
         </div>
       </div>
     </div>
