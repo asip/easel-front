@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <FramesModal />
+  <FramesDeleteModal />
   <br>
   <FrameComments />
 </template>
