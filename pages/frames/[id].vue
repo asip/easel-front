@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div v-if="logged_in && frame.user_id == login_user.id " class="card-footer">
+    <div v-if="logged_in && frame.user_id == login_user.id" class="card-footer">
       <div class="row d-flex justify-content-sm-center">
         <div class="form-group col-sm-6">
           <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
@@ -63,49 +63,21 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="false">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          削除してもよろしいですか？
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
-          <button class="btn btn-outline-danger" @click="onDeleteClick">削除</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <FramesModal />
   <br>
   <FrameComments />
 </template>
 
 <script setup lang="ts">
-  // @ts-ignore
-  import { Modal } from 'bootstrap/dist/js/bootstrap.esm.min.js'
 
   const route = useRoute();
   const { id  } = route.params;
 
   const { frame_query } = useFrameSearch()
   const { logged_in, login_user } = useLoginUser()
-  const { frame, getFrame, deleteFrame } = useFrame()
+  const { frame, getFrame } = useFrame()
 
   provide('frame', frame)
 
   await getFrame(id as string)
-
-  const removeBackdrop = () => {
-    const backdrop = document.querySelector('.modal-backdrop')
-    backdrop?.remove()
-  }
-
-  const onDeleteClick = async () => {
-    await deleteFrame()
-    removeBackdrop()
-    navigateTo('/')
-  }
 </script>
