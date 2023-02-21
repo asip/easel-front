@@ -6,21 +6,21 @@
       <div class="card-header">
         <div class="float-start">
           <NuxtLink :to="`/`"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
-          ログイン
+          {{ $t('action.user.login') }}
         </div>
       </div>
       <div class="card-block">
         <br>
         <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="email" class="col-form-label-sm col-sm-2 label-bg-style">Eメール</label>
+          <label for="email" class="col-form-label-sm col-sm-2 label-bg-style">{{ $t('model.user.email') }}</label>
           <div class="form-group col-sm-4">
-            <input type="text" v-model="login_params.email" placeholder="Eメール" class="form-control">
+            <input type="text" v-model="login_params.email" :placeholder="$t('model.user.email')" class="form-control">
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center border border-white">
-          <label for="password" class="col-form-label-sm col-sm-2 label-bg-style">パスワード</label>
+          <label for="password" class="col-form-label-sm col-sm-2 label-bg-style">{{ $t('model.user.password') }}</label>
           <div class="form-group col-sm-4">
-            <input type="password" v-model="login_params.password" placeholder="パスワード" class="form-control">
+            <input type="password" v-model="login_params.password" :placeholder="$t('model.user.password')" class="form-control">
           </div>
         </div>
         <div class="row d-flex justify-content-sm-center">
@@ -31,9 +31,9 @@
         <br>
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            <button type="button" class="btn btn-primary" @click="onLoginClick">ログイン</button>&nbsp;
-            <NuxtLink :to="`/signup`" class="btn btn-primary">ユーザー登録</NuxtLink>&nbsp;
-            <NuxtLink :to="`/`" class="btn btn-outline-secondary">戻る</NuxtLink>
+            <button type="button" class="btn btn-primary" @click="onLoginClick">{{ $t('action.user.login') }}</button>&nbsp;
+            <NuxtLink :to="`/signup`" class="btn btn-primary">{{ $t('action.user.new') }}</NuxtLink>&nbsp;
+            <NuxtLink :to="`/`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
           </div>
         </div>
         <br>

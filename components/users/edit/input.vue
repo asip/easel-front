@@ -2,7 +2,7 @@
   <div class="card-block">
     <br>
     <div class="row d-flex justify-content-sm-center">
-      <label for="image" class="col-form-label-sm col-sm-3 label-bg-style">アイコン：</label>
+      <label for="image" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.image') }}：</label>
       <div class="form-group col-sm-4">
         <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
         <div v-for="message of error_messages.image">
@@ -12,70 +12,70 @@
     </div>
     <Preview />
     <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">ユーザー名：</label>
+      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="text" v-model="login_user.name" placeholder="ユーザー名" class="form-control">
+        <input type="text" v-model="login_user.name" :placeholder="$t('model.user.name')" class="form-control">
         <div v-for="error of v$.name.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
         <div v-for="message of error_messages.name">
-          <div>ユーザー名{{ message }}</div>
+          <div>{{ $t('model.user.name') }}{{ message }}</div>
         </div>
       </div>
     </div>
     <div v-else class="row d-flex justify-content-sm-center border border-white">
-      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">ユーザー名：</label>
+      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
         {{ login_user.name }}
       </div>
     </div>
     <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">Eメール：</label>
+      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="text" v-model="login_user.email" placeholder="Eメール" class="form-control" >
+        <input type="text" v-model="login_user.email" :placeholder="$t('model.user.email')" class="form-control" >
         <div v-for="error of v$.email.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
         <div v-for="message of error_messages.email">
-          <div>Eメール{{ message }}</div>
+          <div>{{ $t('model.user.email') }}{{ message }}</div>
         </div>
       </div>
     </div>
     <div v-else class="row d-flex justify-content-sm-center border border-white">
-      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">Eメール：</label>
+      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
         {{ login_user.email }}
       </div>
     </div>
     <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="password" class="col-form-label-sm col-sm-3 label-bg-style">パスワード：</label>
+      <label for="password" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="password" v-model="login_user.password" placeholder="パスワード" class="form-control">
+        <input type="password" v-model="login_user.password" :placeholder="$t('model.user.password')" class="form-control">
         <div v-for="error of v$.password.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
         <div v-for="message of error_messages.password">
-          <div>パスワード{{ message }}</div>
+          <div>{{ $t('model.user.password') }}{{ message }}</div>
         </div>
       </div>
     </div>
     <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="password_confirmation" class="col-form-label-sm col-sm-3 label-bg-style">パスワード(確認)：</label>
+      <label for="password_confirmation" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password_confirmation') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="password" v-model="login_user.password_confirmation" placeholder="パスワード(確認)" class="form-control">
+        <input type="password" v-model="login_user.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
         <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
         <div v-for="message of error_messages.password_confirmation">
-          <div>パスワード(確認){{ message }}</div>
+          <div>{{ $t('model.user.password_confirmation') }}{{ message }}</div>
         </div>
       </div>
     </div>
     <br>
     <div class="d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
-        <button type="button" @click="onUpdateClick" class="btn btn-primary">登録</button>&nbsp;
-        <NuxtLink :to="`/account/profile`" class="btn btn-outline-secondary">戻る</NuxtLink>
+        <button type="button" @click="onUpdateClick" class="btn btn-primary">{{ $t('action.model.create') }}</button>&nbsp;
+        <NuxtLink :to="`/account/profile`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
       </div>
     </div>
     <br>

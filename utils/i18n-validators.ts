@@ -3,13 +3,20 @@ import { createI18n } from "vue-i18n";
 
 export const i18n = createI18n({
   legacy: false,
-  locale: "ja", // set locale
-  fallbackLocale: "ja", // set fallback locale
+  locale: "en", // set locale
+  fallbackLocale: "en", // set fallback locale
   messages: {
+    en: {
+      validations: {
+        required: "Required.",
+        tagArrayLength: "are limited to 5.",
+        email: "is invalid format.",
+        minLength: "More than {min} characters.",
+        maxLength: "are limited to {max} characters.",
+        tagLength: "are limited to 10 characters."
+      }
+    },
     ja: {
-      message: {
-        hello: "こんにちは、世界",
-      },
       validations: {
         required: "必須です。",
         email: "正しいメールアドレスの形式で入力してください。",
@@ -18,7 +25,7 @@ export const i18n = createI18n({
         tagArrayLength: "５つまでです。",
         tagLength: "10文字までです。"
       },
-    },
+    }
   },
 });
 

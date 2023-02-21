@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-sm-center">
         <div class="clearfix">
           <div class="float-left">
-            コメント
+            {{ $t('model.comment.model_name') }}
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
       </div>
       <div class="d-flex justify-content-center">
         <div class="form-group col-10">
-          <button class="btn btn-light col-12 form-control" v-on:click="onCommentClick">投稿</button>
+          <button class="btn btn-light col-12 form-control" v-on:click="onCommentClick">{{ $t('action.comment.post') }}</button>
         </div>
       </div>
       <br>

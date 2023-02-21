@@ -19,19 +19,19 @@
     </div>
     <div class="card-block">
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label-sm col-sm-2">名前：</label>
+        <label for="name" class="col-form-label-sm col-sm-2">{{ $t('model.frame.name') }}：</label>
         <div class="col-sm-4">
           {{ frame.name }}
         </div>
       </div>
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label-sm col-sm-2">撮影日時：</label>
+        <label for="name" class="col-form-label-sm col-sm-2">{{ $t('model.frame.shooted_at') }}：</label>
         <div class="col-sm-4">
           {{ frame.shooted_at }}
         </div>
       </div>
       <div class="row d-flex justify-content-sm-center" >
-        <label for="comment" class="col-form-label-sm col-sm-2 ">コメント：</label>
+        <label for="comment" class="col-form-label-sm col-sm-2 ">{{ $t('model.frame.comment') }}：</label>
         <div class="col-sm-4">
           {{ frame.comment }}
         </div>
@@ -51,9 +51,9 @@
     <div v-if="logged_in && frame.user_id == login_user.id" class="card-footer">
       <div class="row d-flex justify-content-sm-center">
         <div class="form-group col-sm-6">
-          <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">変更</NuxtLink>&nbsp;
+          <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">{{ $t('action.model.update') }}</NuxtLink>&nbsp;
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">削除</button>
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">{{ $t('action.model.delete') }}</button>
         </div>
       </div>
     </div>

@@ -38,6 +38,7 @@
 <script lang="ts" setup>
   const { $bootstrap } = useNuxtApp()
 
+  const { locale, locales } = useI18n()
   const { login_user, logged_in, authenticate, logout } = useLoginUser()
 
   //console.log(logged_in.value)
@@ -50,4 +51,12 @@
     await logout()
     navigateTo('/')
   }
+
+  onMounted(() =>{
+    const browserLocale = window.navigator.language
+    //console.log(browserLocale)
+    //console.log(locales.value)
+
+    locale.value = (locales.value.includes(browserLocale) ? browserLocale : 'en')
+  })
 </script>

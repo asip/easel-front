@@ -7,11 +7,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          削除してもよろしいですか？
+          {{ $t('action.modal.delete.message') }}
         </div>
         <div class="modal-footer">
-          <button class="btn btn-outline-danger" @click="onDeleteClick">削除</button>
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">閉じる</button>
+          <button class="btn btn-outline-danger" @click="onDeleteClick">{{ $t('action.model.delete') }}</button>
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">{{ $t('action.modal.close') }}</button>
         </div>
       </div>
     </div>

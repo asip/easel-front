@@ -14,7 +14,7 @@
               <div class="badge rounded-pill bg-light text-info">{{ comment.updated_at }}</div>
             </div>
             <div class="float-end" v-show="logged_in && comment.user_id == login_user.id">
-              <button class="btn btn-link btn-sm" v-on:click="onDeleteClick(comment)">削除</button>&nbsp;
+              <button class="btn btn-link btn-sm" v-on:click="onDeleteClick(comment)">{{ $t('action.model.delete') }}</button>&nbsp;
             </div>
           </div>
         </div>
