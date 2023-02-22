@@ -36,6 +36,8 @@
 </template>
 
 <script lang="ts" setup>
+  import {useBrowserLocale} from "#i18n";
+
   const { $bootstrap } = useNuxtApp()
 
   const { locale, locales } = useI18n()
@@ -53,10 +55,10 @@
   }
 
   onMounted(() =>{
-    const browserLocale = window.navigator.language
+    const browserLocale: string | null = useBrowserLocale()
     //console.log(browserLocale)
     //console.log(locales.value)
 
-    locale.value = (locales.value.includes(browserLocale) ? browserLocale : 'en')
+    locale.value = (browserLocale && locales.value.includes(browserLocale) ? browserLocale : 'en')
   })
 </script>
