@@ -85,7 +85,9 @@ export default defineNuxtConfig({
               upload: 'Upload'
             },
             comment: {
-              post: 'Post'
+              post: 'Post',
+              required: 'Required.',
+              login: 'Please login.'
             },
             modal: {
               close: 'Close',
@@ -140,7 +142,9 @@ export default defineNuxtConfig({
               upload: 'アップロード'
             },
             comment: {
-              post: '投稿'
+              post: '投稿',
+              required: 'コメントを入力してください',
+              login: 'ログインしてください'
             },
             modal: {
               close: '閉じる',

@@ -25,6 +25,7 @@ export function useComment() {
 
   const error_messages: string[] = reactive<string[]>([]);
 
+  const nuxtApp = useNuxtApp()
   const { baseApiURL } = useConstants()
   const { login_user } = useLoginUser()
 
@@ -112,7 +113,7 @@ export function useComment() {
       }
     } catch (error) {
       error_messages.splice(0, error_messages.length);
-      error_messages.push('ログインしてください。');
+      error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
     }
   }
 
@@ -125,7 +126,7 @@ export function useComment() {
       error_messages.splice(0, error_messages.length);
     } else {
       error_messages.splice(0, error_messages.length);
-      error_messages.push('コメントを入力してください。');
+      error_messages.push(nuxtApp.$i18n.t('action.comment.required'));
     }
   };
   const deleteComment = async (comment: any) => {
@@ -144,7 +145,7 @@ export function useComment() {
       error_messages.splice(0, error_messages.length);
     } catch (error) {
       error_messages.splice(0, error_messages.length);
-      error_messages.push('ログインしてください。');
+      error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
     }
   };
 
