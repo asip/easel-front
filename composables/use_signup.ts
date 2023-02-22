@@ -1,5 +1,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
+import {useBrowserLocale} from "#i18n";
+import {useLocale} from "~/composables/use_locale";
 
 export interface SignupParams {
   image: Blob | null | undefined
@@ -37,7 +39,10 @@ export const useSignup = () => {
 
   const v$ = useVuelidate(rules, signup_params)
 
+  const { locale } = useLocale()
+
   const signup = async () => {
+    i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 
     //console.log(signup_params.image)
@@ -56,7 +61,10 @@ export const useSignup = () => {
       const { data } = await useAsyncData('signup', () =>
         $fetch('/api/users/', {
           method: 'post',
-          body: formData
+          body: formData,
+          headers: {
+            'Accept-Language' : locale.value
+          }
         })
       )
 

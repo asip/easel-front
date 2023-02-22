@@ -10,12 +10,11 @@
 
 <script setup lang="ts">
 import {useBrowserLocale} from "#i18n";
+import {useLocale} from "~/composables/use_locale";
 
-const { locale, locales } = useI18n()
+const { autoDetect } = useLocale()
 
 onUpdated(() =>{
-  const browserLocale: string | null = useBrowserLocale()
-
-  locale.value = (browserLocale && locales.value.includes(browserLocale) ? browserLocale : 'en')
+  autoDetect()
 })
 </script>

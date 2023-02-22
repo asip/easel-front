@@ -1,5 +1,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
+import {useBrowserLocale} from "#i18n";
+import {useLocale} from "~/composables/use_locale";
 
 export interface User {
   name: string
@@ -65,6 +67,8 @@ export const useLoginUser = () => {
   const v$ = useVuelidate(rules, login_user)
 
   const access_token = useCookie('access_token')
+
+  const { locale } = useLocale()
 
   const authenticate = async () => {
 
@@ -168,6 +172,7 @@ export const useLoginUser = () => {
 
   const updateProfile = async () => {
 
+    i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 
     //console.log(signup_params.image)
@@ -189,6 +194,7 @@ export const useLoginUser = () => {
           body: formData,
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
+            'Accept-Language' : locale.value,
             'Authorization': `Bearer ${login_user.value.token}`
           }
         })

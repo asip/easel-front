@@ -1,5 +1,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required,minLength , maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
+import {useLocale} from "~/composables/use_locale";
 
 export interface Frame {
   id: number | null | undefined
@@ -58,6 +59,7 @@ export const useFrame = () => {
 
   const v$ = useVuelidate(rules, frame)
 
+  const { locale } = useLocale()
   const { login_user } = useLoginUser()
 
   const getFrame = async (id: string ) => {
@@ -110,6 +112,7 @@ export const useFrame = () => {
 
   const createFrame = async () => {
 
+    i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 
     //console.log(frame)
@@ -131,6 +134,7 @@ export const useFrame = () => {
           method: 'post',
           body: formData,
           headers: {
+            'Accept-Language' : locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         })
@@ -180,6 +184,7 @@ export const useFrame = () => {
 
   const updateFrame = async () => {
 
+    i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 
     //console.log(frame)
@@ -201,6 +206,7 @@ export const useFrame = () => {
           body: postData,
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
+            'Accept-Language' : locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         })

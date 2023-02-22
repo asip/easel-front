@@ -36,11 +36,11 @@
 </template>
 
 <script lang="ts" setup>
-  import {useBrowserLocale} from "#i18n";
+  import {useLocale} from "~/composables/use_locale";
 
   const { $bootstrap } = useNuxtApp()
 
-  const { locale, locales } = useI18n()
+  const { autoDetect } = useLocale()
   const { login_user, logged_in, authenticate, logout } = useLoginUser()
 
   //console.log(logged_in.value)
@@ -55,10 +55,6 @@
   }
 
   onMounted(() =>{
-    const browserLocale: string | null = useBrowserLocale()
-    //console.log(browserLocale)
-    //console.log(locales.value)
-
-    locale.value = (browserLocale && locales.value.includes(browserLocale) ? browserLocale : 'en')
+    autoDetect()
   })
 </script>
