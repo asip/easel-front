@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import {useBrowserLocale} from "#i18n";
 import {useLocale} from "~/composables/use_locale";
 
 const { autoDetect } = useLocale()

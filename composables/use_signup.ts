@@ -1,6 +1,5 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
-import {useBrowserLocale} from "#i18n";
 import {useLocale} from "~/composables/use_locale";
 
 export interface SignupParams {
