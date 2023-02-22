@@ -77,41 +77,39 @@ export function useComment() {
   }
 
   const postComment = async () => {
-    try {
-      const postData = {
-        comment: {
-          frame_id: comment.frame_id,
-          body: comment.body
-        }
+    const postData = {
+      comment: {
+        frame_id: comment.frame_id,
+        body: comment.body
       }
+    }
 
-      const { data } = await useAsyncData('post_comment', () =>
-        $fetch(`/api/frames/${comment.frame_id}/comments`,
-          {
-            method: 'post',
-            body: postData,
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              Authorization: `Bearer ${login_user.value.token}`
-            }
+    const {data, error} = await useAsyncData('post_comment', () =>
+      $fetch(`/api/frames/${comment.frame_id}/comments`,
+        {
+          method: 'post',
+          body: postData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Authorization: `Bearer ${login_user.value.token}`
           }
-        )
+        }
       )
+    )
 
-      const json_data: any = data.value
+    const json_data: any = data.value
 
-      if(json_data.data) {
-        const error_message_list = json_data.data.attributes.error_messages
-        if ( error_message_list && error_message_list.length > 0) {
-          error_messages.splice(0, error_messages.length);
-          for (let error_message of error_message_list) {
-            error_messages.push(error_message)
-          }
-        } else {
-          comment.body = '';
+    if (json_data && json_data.data) {
+      const error_message_list = json_data.data.attributes.error_messages
+      if (error_message_list && error_message_list.length > 0) {
+        error_messages.splice(0, error_messages.length);
+        for (let error_message of error_message_list) {
+          error_messages.push(error_message)
         }
+      } else {
+        comment.body = '';
       }
-    } catch (error) {
+    } else if (error.value) {
       error_messages.splice(0, error_messages.length);
       error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
     }
@@ -130,21 +128,21 @@ export function useComment() {
     }
   };
   const deleteComment = async (comment: any) => {
-    try {
-      const { data } = await useAsyncData('delete_comment', () =>
-        $fetch(`/api/comments/${comment.id}`,
-          {
-            method: 'delete',
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-              Authorization: `Bearer ${login_user.value.token}`
-            }
+    const {data, error} = await useAsyncData('delete_comment', () =>
+      $fetch(`/api/comments/${comment.id}`,
+        {
+          method: 'delete',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Authorization: `Bearer ${login_user.value.token}`
           }
-        )
+        }
       )
-      error_messages.splice(0, error_messages.length);
-    } catch (error) {
-      error_messages.splice(0, error_messages.length);
+    )
+
+    error_messages.splice(0, error_messages.length);
+
+    if (error.value) {
       error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
     }
   };
