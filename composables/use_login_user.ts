@@ -40,6 +40,23 @@ export const useLoginUser = () => {
     }
   })
 
+  const user = ref<User>(
+    {
+      name: '',
+      email: '',
+      token: null,
+      id: null,
+      image: null,
+      image_thumb_url: '',
+      image_one_url: '',
+      image_three_url: '',
+      preview_url: null,
+      password: '',
+      password_confirmation: '',
+      social_login: false
+    }
+  )
+
   const logged_in = useState<Boolean>('logged_in', ()=> {
     return false
   })
@@ -63,7 +80,7 @@ export const useLoginUser = () => {
     password_confirmation: {}
   }
 
-  const v$ = useVuelidate(rules, login_user)
+  const v$ = useVuelidate(rules, user)
 
   const access_token = useCookie('access_token')
 
@@ -169,6 +186,17 @@ export const useLoginUser = () => {
     login_user.value.social_login = json_data.data.attributes.social_login
   }
 
+  const setUser = (login_user: Ref<User>) => {
+    user.value.name = login_user.value.name
+    user.value.email = login_user.value.email
+    user.value.token = login_user.value.token
+    user.value.id = login_user.value.id
+    user.value.image_thumb_url = login_user.value.image_thumb_url
+    user.value.image_one_url = login_user.value.image_one_url
+    user.value.image_three_url = login_user.value.image_three_url
+    user.value.social_login = login_user.value.social_login
+  }
+
   const updateProfile = async () => {
 
     // @ts-ignore
@@ -180,13 +208,13 @@ export const useLoginUser = () => {
     if(!v$.value.$invalid){
       let formData = new FormData();
 
-      if(login_user.value.image){
-        formData.append('user[image]', login_user.value.image)
+      if(user.value.image){
+        formData.append('user[image]', user.value.image)
       }
-      formData.append('user[name]', login_user.value.name)
-      formData.append('user[email]', login_user.value.email)
-      formData.append('user[password]', login_user.value.password)
-      formData.append('user[password_confirmation]', login_user.value.password_confirmation)
+      formData.append('user[name]', user.value.name)
+      formData.append('user[email]', user.value.email)
+      formData.append('user[password]', user.value.password)
+      formData.append('user[password_confirmation]', user.value.password_confirmation)
 
       const { data } = await useAsyncData('updateProfile', () =>
         $fetch('/api/profile/', {
@@ -195,7 +223,7 @@ export const useLoginUser = () => {
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
             'Accept-Language' : locale.value,
-            'Authorization': `Bearer ${login_user.value.token}`
+            'Authorization': `Bearer ${user.value.token}`
           }
         })
       )
@@ -204,7 +232,9 @@ export const useLoginUser = () => {
 
       //console.log(json_data)
 
-      if (!json_data.data) {
+      if (json_data.data) {
+        setJson2LoginUser(json_data)
+      } else {
         const errors = json_data.errors
         setErrorMessages(errors)
       }
@@ -287,9 +317,11 @@ export const useLoginUser = () => {
 
   return {
     login_user,
+    user,
     logged_in,
     login_params,
     authenticate,
+    setUser,
     updateProfile,
     isSuccess,
     login,

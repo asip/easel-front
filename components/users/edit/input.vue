@@ -11,10 +11,10 @@
       </div>
     </div>
     <Preview />
-    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="text" v-model="login_user.name" :placeholder="$t('model.user.name')" class="form-control">
+        <input type="text" v-model="user.name" :placeholder="$t('model.user.name')" class="form-control">
         <div v-for="error of v$.name.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
@@ -26,13 +26,13 @@
     <div v-else class="row d-flex justify-content-sm-center border border-white">
       <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
-        {{ login_user.name }}
+        {{ user.name }}
       </div>
     </div>
-    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="text" v-model="login_user.email" :placeholder="$t('model.user.email')" class="form-control" >
+        <input type="text" v-model="user.email" :placeholder="$t('model.user.email')" class="form-control" >
         <div v-for="error of v$.email.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
@@ -44,13 +44,13 @@
     <div v-else class="row d-flex justify-content-sm-center border border-white">
       <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
-        {{ login_user.email }}
+        {{ user.email }}
       </div>
     </div>
-    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="password" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="password" v-model="login_user.password" :placeholder="$t('model.user.password')" class="form-control">
+        <input type="password" v-model="user.password" :placeholder="$t('model.user.password')" class="form-control">
         <div v-for="error of v$.password.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
@@ -59,10 +59,10 @@
         </div>
       </div>
     </div>
-    <div v-if="!login_user.social_login" class="row d-flex justify-content-sm-center border border-white">
+    <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
       <label for="password_confirmation" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password_confirmation') }}：</label>
       <div class="form-group col-sm-4">
-        <input type="password" v-model="login_user.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
+        <input type="password" v-model="user.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
         <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
           <div>{{ error.$message }}</div>
         </div>
@@ -83,13 +83,15 @@
 </template>
 
 <script setup lang="ts">
-  const { login_user, v$, updateProfile, error_messages, isSuccess } = useLoginUser()
+  const { login_user, user, v$, setUser, updateProfile, error_messages, isSuccess } = useLoginUser()
+
+  setUser(login_user)
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
     let uploadedFile = target.files![0];
 
-    login_user.value.image = uploadedFile ;
+    user.value.image = uploadedFile ;
 
     const file: { name?: string, ext?: string, data?: Blob | null | undefined } = {};
     file.name = target.value;
@@ -97,7 +99,7 @@
     //console.log(file.name)
     if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
       // .file_filedからデータを取得して変数file.dataに代入します
-      file.data = login_user.value.image
+      file.data = user.value.image
       //console.log(file.data)
       // FileReaderオブジェクトを作成します
       let reader = new FileReader()
@@ -105,7 +107,7 @@
       reader.onload = (function() {
         // 読み込んだファイルの内容を取得して変数imageに代入します
         let image: string | ArrayBuffer | null = reader.result;
-        login_user.value.preview_url = image as string
+        user.value.preview_url = image as string
       })
       // DataURIScheme文字列を取得します
       reader.readAsDataURL(file?.data)
@@ -121,5 +123,5 @@
     }
   }
 
-  provide('model', login_user)
+  provide('model', user)
 </script>
