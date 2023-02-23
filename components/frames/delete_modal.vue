@@ -1,5 +1,5 @@
 <template>
-  <div v-if="logged_in && frame.user_id == login_user.id" class="modal fade" id="delete_modal" tabindex="-1"
+  <div v-if="logged_in && frame?.user_id == login_user.id" class="modal fade" id="delete_modal" tabindex="-1"
        role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="false">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

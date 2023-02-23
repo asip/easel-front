@@ -112,6 +112,7 @@ export const useFrame = () => {
 
   const createFrame = async () => {
 
+    // @ts-ignore
     i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 
@@ -184,6 +185,7 @@ export const useFrame = () => {
 
   const updateFrame = async () => {
 
+    // @ts-ignore
     i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 

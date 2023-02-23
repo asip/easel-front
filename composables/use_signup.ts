@@ -41,6 +41,7 @@ export const useSignup = () => {
   const { locale } = useLocale()
 
   const signup = async () => {
+    // @ts-ignore
     i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 

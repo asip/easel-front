@@ -81,7 +81,9 @@
       })
 
       tag_editor.removeAllTags();
-      tag_editor.addTags(frame?.tags);
+      if(frame?.tags){
+        tag_editor.addTags(frame?.tags);
+      }
 
       const saveTagList = (tagify: Tagify) => {
         if(frame) {

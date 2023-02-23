@@ -13,7 +13,8 @@ export const useUser = () => {
       image_three_url: '',
       preview_url: null,
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      social_login: false
     }
   )
 

@@ -171,6 +171,7 @@ export const useLoginUser = () => {
 
   const updateProfile = async () => {
 
+    // @ts-ignore
     i18n.global.locale.value = locale.value
     const result = await v$.value.$validate();
 

@@ -94,7 +94,9 @@
         }
       })
       // DataURIScheme文字列を取得します
-      reader.readAsDataURL(file?.data)
+      if(file?.data){
+        reader.readAsDataURL(file?.data)
+      }
       //preview.src = URL.createObjectURL(file.data)
       // プレビュー画像がなければ表示します
     }
@@ -126,7 +128,9 @@
       })
 
       tag_editor.removeAllTags();
-      tag_editor.addTags(frame?.tags);
+      if(frame?.tags){
+        tag_editor.addTags(frame?.tags);
+      }
 
       const saveTagList = (tagify: Tagify) => {
         if(frame) {
