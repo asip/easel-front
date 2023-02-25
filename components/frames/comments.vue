@@ -1,5 +1,5 @@
 <template>
-  <div v-for="comment in commenter.comments">
+  <div v-for="comment in comments as Comment[]">
     <div class="card">
       <div class="card-block">
         <div class="row d-flex">
@@ -39,7 +39,7 @@
 
   const { logged_in, login_user } = useLoginUser()
 
-  const commenter: any = inject('commenter')
+  const { comments, deleteComment } = inject('commenter') as any
   const { baseURL } = useConstants()
 
   const getSanitizedCommentBody = (row: Comment): string => {
@@ -47,6 +47,6 @@
   };
 
   const onDeleteClick = async (comment: Comment) => {
-    await commenter.deleteComment(comment)
+    await deleteComment(comment)
   }
 </script>
