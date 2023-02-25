@@ -13,12 +13,12 @@
       <br>
       <div class="d-flex justify-content-center">
         <div class="form-group col-10">
-          <textarea v-model="comment.body" class="form-control col-12"></textarea>
+          <textarea v-model="commenter.comment.body" class="form-control col-12"></textarea>
         </div>
       </div>
       <div class="d-flex justify-content-center">
         <div class="col-10">
-          <div v-for="message in error_messages">
+          <div v-for="message in commenter.error_messages">
             <p style="color: red;">{{message}}</p>
           </div>
         </div>
@@ -36,20 +36,16 @@
 <script setup lang="ts">
   import { Frame } from '~/composables/use_frame'
 
-  const emits = defineEmits<{(e: 'change'): void}>()
+  //const emits = defineEmits<{(e: 'change'): void}>()
 
   const { logged_in } = useLoginUser()
-  const { comment, setComment , createComment, error_messages, getComments } = useComment()
+  const commenter: any = inject('commenter')
 
   const frame: Frame | undefined = inject('frame')
 
-  comment.frame_id = frame?.id;
+  commenter.comment.frame_id = frame?.id;
 
   const onCommentClick = async () => {
-    setComment(comment)
-    await createComment()
-    if(error_messages.length == 0){
-      emits('change')
-    }
+    await commenter.createComment()
   }
 </script>

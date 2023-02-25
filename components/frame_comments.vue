@@ -1,25 +1,25 @@
 <template>
-  <FramesComment @change="updateComments" />
+  <FramesComment />
   <br>
-  <FramesComments @change="updateComments" />
+  <FramesComments />
   <br>
 </template>
 
 <script setup lang="ts">
   import { Frame } from '~/composables/use_frame'
 
-  const { comment, comments, getComments } = useComment();
+  const commenter = useComment();
   const frame: Frame | undefined = inject('frame')
 
-  provide('comments', comments)
+  provide('commenter', commenter)
 
-  comment.frame_id = frame?.id
+  commenter.comment.frame_id = frame?.id
 
   //console.log(comment.frame_id);
-  await getComments()
+  await commenter.getComments()
 
   const updateComments = async () => {
-    comments.splice(0, comments.length);
-    await getComments()
+    commenter.comments.splice(0, commenter.comments.length);
+    await commenter.getComments()
   }
 </script>

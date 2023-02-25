@@ -1,5 +1,5 @@
 <template>
-  <div v-for="comment in comments">
+  <div v-for="comment in commenter.comments">
     <div class="card">
       <div class="card-block">
         <div class="row d-flex">
@@ -37,23 +37,16 @@
   import { useConstants } from '~/composables/use_constants'
   import { Comment } from '~/composables/use_comment'
 
-  const emits = defineEmits<{(e: 'change'): void}>()
-
   const { logged_in, login_user } = useLoginUser()
 
-  const { deleteComment, error_messages } = useComment()
+  const commenter: any = inject('commenter')
   const { baseURL } = useConstants()
-
-  const comments: Comment[] | undefined = inject('comments')
 
   const getSanitizedCommentBody = (row: Comment): string => {
     return sanitizeHtml(row.body).replace(/\n/g, '<br>');
   };
 
   const onDeleteClick = async (comment: Comment) => {
-    await deleteComment(comment)
-    if(error_messages.length == 0){
-      emits('change')
-    }
+    await commenter.deleteComment(comment)
   }
 </script>

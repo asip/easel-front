@@ -69,13 +69,6 @@ export function useComment() {
     return comment
   }
 
-  const setComment = (comment_: Comment | undefined) => {
-    if(comment_){
-      comment.frame_id = comment_.frame_id
-      comment.body = comment_.body
-    }
-  }
-
   const postComment = async () => {
     const postData = {
       comment: {
@@ -126,6 +119,11 @@ export function useComment() {
       error_messages.splice(0, error_messages.length);
       error_messages.push(nuxtApp.$i18n.t('action.comment.required'));
     }
+
+    if(error_messages.length == 0){
+      comments.splice(0, comments.length);
+      await getComments()
+    }
   };
   const deleteComment = async (comment: any) => {
     const {data, error} = await useAsyncData('delete_comment', () =>
@@ -145,9 +143,14 @@ export function useComment() {
     if (error.value) {
       error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
     }
+
+    if(error_messages.length == 0){
+      comments.splice(0, comments.length);
+      await getComments()
+    }
   };
 
   return {
-    comment, comments, error_messages ,getComments, setComment, createComment, deleteComment
+    comment, comments, error_messages ,getComments, createComment, deleteComment
   }
 }
