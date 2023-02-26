@@ -6,11 +6,9 @@
 </template>
 
 <script setup lang="ts">
-  import { Frame } from '~/composables/use_frame'
-
   const commenter = useComment();
   const { comment, getComments } = commenter
-  const frame: Frame | undefined = inject('frame')
+  const { frame } = inject('framer') as any
 
   provide('commenter', commenter)
 
