@@ -98,18 +98,6 @@ export const useFrame = () => {
     frame.file_three_url = json_data.data.attributes.file_three_url
   }
 
-  const setFrame = (frame_: Frame | undefined) => {
-    if(frame_) {
-      frame.id = frame_.id
-      frame.name = frame_.name
-      frame.comment = frame_.comment
-      frame.tag_list = frame_.tag_list
-      frame.tags = frame_.tags
-      frame.shooted_at = frame_.shooted_at
-      frame.file = frame_.file
-    }
-  }
-
   const createFrame = async () => {
 
     // @ts-ignore
@@ -241,6 +229,6 @@ export const useFrame = () => {
   }
 
   return {
-    getFrame, frame, frameId, v$, setFrame, updateFrame, createFrame, deleteFrame, error_messages, isSuccess
+    getFrame, frame, frameId, v$, updateFrame, createFrame, deleteFrame, error_messages, isSuccess
   }
 }

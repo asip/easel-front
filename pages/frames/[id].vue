@@ -75,9 +75,10 @@
 
   const { frame_query } = useFrameSearch()
   const { logged_in, login_user } = useLoginUser()
-  const { frame, getFrame } = useFrame()
+  const framer = useFrame()
+  const { frame, getFrame } = framer
 
-  provide('frame', frame)
+  provide('framer', framer)
 
   await getFrame(id as string)
 </script>

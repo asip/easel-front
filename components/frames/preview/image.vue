@@ -12,14 +12,13 @@
 <script setup lang="ts">
   // @ts-ignore
   import { Luminous } from 'luminous-lightbox'
-  import { Frame } from '~/composables/use_frame';
 
   const props = defineProps({
     original: Boolean,
     spotlight: Boolean
   })
 
-  const frame: Frame | undefined = inject('frame')
+  const { frame } = inject('framer') as any
 
   const { baseURL } = useConstants()
 

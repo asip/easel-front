@@ -34,12 +34,10 @@
 </template>
 
 <script setup lang="ts">
-  import { Frame } from '~/composables/use_frame'
-
   const { logged_in } = useLoginUser()
   const { comment, createComment, error_messages } = inject('commenter') as any
 
-  const frame: Frame | undefined = inject('frame')
+  const { frame } = inject('framer') as any
 
   comment.frame_id = frame?.id;
 

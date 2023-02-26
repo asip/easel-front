@@ -34,7 +34,8 @@
 
   const { logged_in, login_user } = useLoginUser()
 
-  const { frame, getFrame } = useFrame()
+  const framer = useFrame()
+  const { frame, getFrame } = framer
 
   await getFrame(id as string)
 
@@ -45,5 +46,5 @@
     await navigateTo(`/frames/${id}`)
   }
 
-  provide('frame', frame)
+  provide('framer', framer)
 </script>

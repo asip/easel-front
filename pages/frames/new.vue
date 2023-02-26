@@ -25,11 +25,11 @@
 <script setup lang="ts">
 
   const { logged_in } = useLoginUser()
-  const { frame } = useFrame()
+  const framer = useFrame()
 
   if(!logged_in.value ){
     await navigateTo('/')
   }
 
-  provide('frame', frame)
+  provide('framer', framer)
 </script>

@@ -19,12 +19,8 @@
 </template>
 
 <script setup lang="ts">
-  import {Frame} from "~/composables/use_frame";
-
   const { logged_in, login_user } = useLoginUser()
-  const { deleteFrame, setFrame } = useFrame()
-
-  const frame: Frame | undefined = inject('frame')
+  const { frame, deleteFrame } = inject('framer') as any
 
   const removeBackdrop = () => {
     const backdrop = document.querySelector('.modal-backdrop')
@@ -32,7 +28,6 @@
   }
 
   const onDeleteClick = async () => {
-    setFrame(frame)
     await deleteFrame()
     removeBackdrop()
     navigateTo('/')

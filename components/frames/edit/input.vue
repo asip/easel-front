@@ -45,18 +45,14 @@
 
 <script setup lang="ts">
   import Tagify from '@yaireo/tagify'
-  import { Frame } from '~/composables/use_frame';
 
-  let frame: Frame | undefined = inject('frame')
-
-  const { v$, setFrame, updateFrame, isSuccess } = useFrame()
+  const { frame, v$, updateFrame, isSuccess } = inject('framer') as any
 
   //console.log(frame)
   //console.log(frame.tags)
   //console.log(frame.tag_list)
 
   const onEditClick = async () => {
-    setFrame(frame)
     await updateFrame()
     if(!v$.value.$invalid && isSuccess()){
       navigateTo(`/frames/${frame?.id}`)
@@ -85,15 +81,15 @@
         tag_editor.addTags(frame?.tags);
       }
 
-      const saveTagList = (tagify: Tagify) => {
+      const saveTagList = () => {
         if(frame) {
           frame.tags = tag_editor.value.map(v => v.value)
           frame.tag_list = frame.tags?.join(",");
         }
       }
 
-      tag_editor.on('add', e => saveTagList(e.detail.tagify));
-      tag_editor.on('remove', e => saveTagList(e.detail.tagify));
+      tag_editor.on('add', e => saveTagList());
+      tag_editor.on('remove', e => saveTagList());
     }
   })
 </script>
