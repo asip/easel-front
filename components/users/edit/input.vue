@@ -2,7 +2,7 @@
   <div class="card-block">
     <br>
     <div class="row d-flex justify-content-sm-center">
-      <label for="image" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.image') }}：</label>
+      <label for="image" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.image') }}：</label>
       <div class="form-group col-sm-4">
         <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
         <div v-for="message of error_messages.image">
@@ -12,7 +12,7 @@
     </div>
     <Preview />
     <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
+      <label for="name" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
         <input type="text" v-model="user.name" :placeholder="$t('model.user.name')" class="form-control">
         <div v-for="error of v$.name.$errors" :key="error.$uid">
@@ -24,13 +24,13 @@
       </div>
     </div>
     <div v-else class="row d-flex justify-content-sm-center border border-white">
-      <label for="name" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
+      <label for="name" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
       <div class="form-group col-sm-4">
-        {{ user.name }}
+        <div class="form-control-plaintext">{{ user.name }}</div>
       </div>
     </div>
     <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
+      <label for="email" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
         <input type="text" v-model="user.email" :placeholder="$t('model.user.email')" class="form-control" >
         <div v-for="error of v$.email.$errors" :key="error.$uid">
@@ -42,13 +42,13 @@
       </div>
     </div>
     <div v-else class="row d-flex justify-content-sm-center border border-white">
-      <label for="email" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
+      <label for="email" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.email') }}：</label>
       <div class="form-group col-sm-4">
-        {{ user.email }}
+        <div class="form-control-plaintext">{{ user.email }}</div>
       </div>
     </div>
     <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="password" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password') }}：</label>
+      <label for="password" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.password') }}：</label>
       <div class="form-group col-sm-4">
         <input type="password" v-model="user.password" :placeholder="$t('model.user.password')" class="form-control">
         <div v-for="error of v$.password.$errors" :key="error.$uid">
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div v-if="!user.social_login" class="row d-flex justify-content-sm-center border border-white">
-      <label for="password_confirmation" class="col-form-label-sm col-sm-3 label-bg-style">{{ $t('model.user.password_confirmation') }}：</label>
+      <label for="password_confirmation" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.password_confirmation') }}：</label>
       <div class="form-group col-sm-4">
         <input type="password" v-model="user.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
         <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">

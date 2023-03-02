@@ -14,15 +14,15 @@
       <br>
       <UsersPreviewImage :original="false" />
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="form-label col-md-2 label-bg-style">{{ $t('model.user.name') }}</label>
+        <label for="name" class="form-label col-sm-3 label-bg-style">{{ $t('model.user.name') }}</label>
         <div class="form-group col-sm-4">
-          {{ login_user.name }}
+          <div class="form-control-plaintext">{{ login_user.name }}</div>
         </div>
       </div>
       <div class="row d-flex justify-content-sm-center">
-        <label for="email" class="form-label col-md-2 label-bg-style">{{ $t('model.user.email') }}</label>
+        <label for="email" class="form-label col-sm-3 label-bg-style">{{ $t('model.user.email') }}</label>
         <div class="form-group col-sm-4">
-          {{ login_user.email }}
+          <div class="form-control-plaintext">{{ login_user.email }}</div>
         </div>
       </div>
       <br>

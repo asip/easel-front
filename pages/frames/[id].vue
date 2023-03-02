@@ -19,21 +19,21 @@
     </div>
     <div class="card-block">
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label-sm col-sm-2">{{ $t('model.frame.name') }}：</label>
+        <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.name') }}：</label>
         <div class="col-sm-4">
-          {{ frame.name }}
+          <div class="form-control-plaintext">{{ frame.name }}</div>
         </div>
       </div>
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label-sm col-sm-2">{{ $t('model.frame.shooted_at') }}：</label>
+        <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.shooted_at') }}：</label>
         <div class="col-sm-4">
-          {{ frame.shooted_at }}
+          <div class="form-control-plaintext">{{ frame.shooted_at }}</div>
         </div>
       </div>
       <div class="row d-flex justify-content-sm-center" >
-        <label for="comment" class="col-form-label-sm col-sm-2 ">{{ $t('model.frame.comment') }}：</label>
+        <label for="comment" class="col-form-label col-sm-3">{{ $t('model.frame.comment') }}：</label>
         <div class="col-sm-4">
-          {{ frame.comment }}
+          <div class="form-control-plaintext">{{ frame.comment }}</div>
         </div>
       </div>
       <div class="row d-flex" >
