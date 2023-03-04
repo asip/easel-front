@@ -1,4 +1,4 @@
-import { useLoginUser } from './use_login_user';
+import {useLoginUser} from './use_login_user';
 
 export interface Comment {
   id: number | null
@@ -56,7 +56,7 @@ export function useComment() {
   };
 
   const createCommentFromJson = (row_data: any): Comment =>{
-    const comment: Comment = {
+    return {
       id: row_data.id,
       frame_id: row_data.attributes.frame_id,
       body: row_data.attributes.body,
@@ -65,8 +65,6 @@ export function useComment() {
       user_image_url: row_data.attributes.user_image_url,
       updated_at: row_data.attributes.updated_at
     }
-
-    return comment
   }
 
   const postComment = async () => {

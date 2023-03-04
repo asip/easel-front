@@ -1,5 +1,5 @@
-import { cdate } from 'cdate'
-import { Frame } from '~/composables/use_frame'
+import {cdate} from 'cdate'
+import {Frame} from '~/composables/use_frame'
 
 export const useFrameSearch = () => {
   const frame_query = useState('frame_query', () => {
@@ -57,7 +57,7 @@ export const useFrameSearch = () => {
   }
 
   const createFrameFromJson = (row_data: any) : Frame => {
-    const frame: Frame = {
+    return {
       id: row_data.id,
       user_id: row_data.attributes.user_id,
       user_name: row_data.attributes.user_name,
@@ -74,8 +74,6 @@ export const useFrameSearch = () => {
       preview_url: null,
       updated_at: row_data.attributes.updated_at
     }
-
-    return frame
   }
 
   return {
