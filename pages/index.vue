@@ -2,7 +2,7 @@
   <br>
   <div class="row col-sm-12">
     <div v-for="frame in frames" class="card col-sm-3 kadomaru">
-      <NuxtLink :to="`${baseURL}${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.file_two_url" alt="" class="card-img-top"></NuxtLink>
+      <NuxtLink :to="`${baseURL}${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.file_two_url" :alt="frame.name" class="card-img-top"></NuxtLink>
       <br>
       <div class="card-block">
         <div class="d-flex justify-content-sm-center">
