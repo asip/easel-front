@@ -131,8 +131,8 @@
         }
       }
 
-      tag_editor.on('add', e => saveTagList());
-      tag_editor.on('remove', e => saveTagList());
+      tag_editor.on('add', () => saveTagList());
+      tag_editor.on('remove', () => saveTagList());
     }
   })
 </script>

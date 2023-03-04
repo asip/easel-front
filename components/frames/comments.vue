@@ -5,7 +5,7 @@
         <div class="row d-flex">
           <div class="col-12" style="line-height: 35px;">
             <div class="float-start align-middle" style="padding-left:5px;">
-              <img :src="`${baseURL}${comment.user_image_url}`" class="rounded" width="20" height="20">
+              <img :src="`${baseURL}${comment.user_image_url}`" alt="" class="rounded" width="20" height="20">
             </div>
             <div class="float-start small align-middle" style="padding-left:5px;">
               <div class="badge rounded-pill bg-light text-info">{{ comment.user_name }}</div>

@@ -1,6 +1,6 @@
 <template>
   <div v-if="model?.preview_url" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
-    <img :src="model.preview_url" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
+    <img :src="model.preview_url" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
     <br>
   </div>
 </template>

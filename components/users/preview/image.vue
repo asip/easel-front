@@ -1,9 +1,9 @@
 <template>
   <div v-if="props.original" class="d-flex justify-content-sm-center">
-    <NuxtLink class="mx-auto" name="lm" :to="`${baseURL}${user?.image_three_url}`"><img :src="`${baseURL}${user?.image_three_url}`" class="mx-auto" style="width:100px;height:100px;"></NuxtLink>
+    <NuxtLink class="mx-auto" name="lm" :to="`${baseURL}${user?.image_three_url}`"><img :src="`${baseURL}${user?.image_three_url}`" alt="" class="mx-auto" style="width:100px;height:100px;"></NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
-    <img :src="`${baseURL}${user?.image_three_url}`" class="mx-auto" style="width:100px;height:100px;">
+    <img :src="`${baseURL}${user?.image_three_url}`" alt="" class="mx-auto" style="width:100px;height:100px;">
   </div>
   <br>
 </template>
