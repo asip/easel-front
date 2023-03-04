@@ -89,9 +89,7 @@
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
-    let uploadedFile = target.files![0];
-
-    user.value.image = uploadedFile ;
+    user.value.image = target.files![0] ;
 
     const file: { name?: string, ext?: string, data?: Blob | null | undefined } = {};
     file.name = target.value;
