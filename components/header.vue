@@ -38,8 +38,6 @@
 <script lang="ts" setup>
   import {useLocale} from "~/composables/use_locale";
 
-  const { $bootstrap } = useNuxtApp()
-
   const { autoDetect } = useLocale()
   const { login_user, logged_in, authenticate, logout } = useLoginUser()
 

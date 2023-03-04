@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-  import { Frame } from '~/composables/use_frame'
-  import { User} from '~/composables/use_login_user'
 
   const { baseURL } = useConstants()
   const model: any = inject('model')
