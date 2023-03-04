@@ -91,7 +91,7 @@
     const target = event.target as HTMLInputElement
     user.value.image = target.files![0] ;
 
-    const file: { name?: string, ext?: string, data?: Blob | null | undefined } = {};
+    const file: { name?: string, ext?: string, data?: Blob | null } = {};
     file.name = target.value;
     file.ext = file?.name?.replace(/^.*\./, '').toLowerCase();
     //console.log(file.name)
