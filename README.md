@@ -9,7 +9,7 @@ This is SPA Frontend of Easel.
 
 Nuxt3.2.3 + Bootstrap5
 
-Look at the [backend](https://github.com/asip/easel)
+Look at the [backend](https://github.com/asip/easel-back)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
