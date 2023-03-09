@@ -13,8 +13,8 @@
       <div class="row d-flex justify-content-sm-center">
         <div class="col-sm-6 text-center">
           <div v-if="logged_in && user.id != login_user.id">
-            <u v-if="following" @click="onUnfollowClick" >{{ $t('action.user.unfollow') }}</u>
-            <u v-else @click="onFollowClick">{{ $t('action.user.follow') }}</u>
+            <button v-if="following" @click="onUnfollowClick" class="btn btn-primary btn-sm">{{ $t('action.user.unfollow') }}</button>
+            <button v-else @click="onFollowClick" class="btn btn-outline-primary btn-sm">{{ $t('action.user.follow') }}</button>
           </div>
         </div>
       </div>

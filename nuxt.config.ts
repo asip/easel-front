@@ -136,7 +136,7 @@ export default defineNuxtConfig({
               login: 'ログイン',
               new: 'ユーザー登録',
               follow: 'フォローする',
-              unfollow: 'フォロー中'
+              unfollow: 'フォローを外す'
             },
             frame: {
               upload: 'アップロード'
