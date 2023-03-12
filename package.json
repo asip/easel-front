@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "nuxt build",
     "dev": "nuxt dev --port 3030",
     "generate": "nuxt generate",
@@ -28,7 +29,7 @@
     "sass": "^1.57.1",
     "spotlight.js": "^0.7.8",
     "v-calendar": "^3.0.0-alpha.8",
-    "vue-i18n": "9",
+    "vue-i18n": "^9.3.0-beta.14-77e850b",
     "vuejs-paginate-next": "^1.0.2"
   }
 }
