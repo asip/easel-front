@@ -1,6 +1,6 @@
 # Easel - image viewer
 
-![Typing SVG](https://github.com/asip/easel-front/blob/main/public/palette.svg)
+![alt text](https://github.com/asip/easel-front/blob/main/public/palette.svg)
 
 This is SPA Frontend of Easel.
 
