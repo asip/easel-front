@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <Preview />
+  <ImagePreview />
   <div class="row d-flex justify-content-sm-center border border-white">
     <label for="name" class="col-form-label col-sm-3 label-bg-style">{{ $t('model.user.name') }}：</label>
     <div class="form-group col-sm-4">

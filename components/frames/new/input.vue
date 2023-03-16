@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <Preview />
+    <ImagePreview />
     <div class="row d-flex justify-content-sm-center">
       <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.name') }}：</label>
       <div class="col-sm-4">
@@ -55,6 +55,7 @@
 
 <script setup lang="ts">
   import Tagify from '@yaireo/tagify'
+  import Image from "~/components/users/preview/image.vue";
 
   const { frame, v$, frameId, createFrame, error_messages, isSuccess } = inject('framer') as any
 
