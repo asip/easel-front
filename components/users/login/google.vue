@@ -3,12 +3,11 @@
 </template>
 
 <script setup lang="ts">
+/// <reference types='google.accounts' />
   const { googleClientID } = useConstants()
   const { login_with_google } = useLoginUser()
 
   onMounted(() => {
-    /// <reference types='google.accounts' />
-
     google.accounts.id.initialize({
       client_id: googleClientID,
       callback: handleCredentialResponse, //method to run after user clicks the Google sign in button
