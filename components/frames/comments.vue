@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <div class="card-footer">
+      <div class="card-footer" style="background-color: white; border-color: white;">
         <div class="d-flex">
           <div class="col-12 align-middle">
             <div class="float-start">
