@@ -14,7 +14,7 @@ export const useFrameSearch = () => {
 
   const date_word = computed({
     get(){
-      return cdate()
+      return cdate().format('YYYY/MM/DD')
     },
     set(value: any){
       frame_query.value.word = cdate(value).format('YYYY/MM/DD')
