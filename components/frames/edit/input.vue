@@ -47,7 +47,6 @@
         </table>
       </div>
     </div>
-    <br>
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">

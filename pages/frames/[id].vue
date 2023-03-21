@@ -48,8 +48,7 @@
     <div class="card-body">
       <div class="row d-flex" >
         <div class="col-12 clearfix">
-          <!-- <div class="float-start">
-          </div> -->
+          <!-- <div class="float-start"></div> -->
           <div class="float-end">
             <NuxtLink :to="`/users/${frame.user_id}`" class="text-decoration-none">
               {{ frame.user_name }}&nbsp;
