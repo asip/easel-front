@@ -8,34 +8,44 @@
             &nbsp;<NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
           </div>
           <div class="float-end">
-            {{ frame.updated_at }}&nbsp;
+            {{ frame.updated_at }}&nbsp
           </div>
         </div>
       </div>
     </div>
-    <div class="card-block">
+    <div class="card-body">
       <FramesPreviewImage :original="true" :spotlight="true" />
       <FramesPreviewTags />
     </div>
-    <div class="card-block">
-      <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.name') }}：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext">{{ frame.name }}</div>
-        </div>
-      </div>
-      <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.shooted_at') }}：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext">{{ frame.shooted_at }}</div>
-        </div>
-      </div>
+    <div class="card-body">
       <div class="row d-flex justify-content-sm-center" >
-        <label for="comment" class="col-form-label col-sm-3">{{ $t('model.frame.comment') }}：</label>
-        <div class="col-sm-4">
-          <div class="form-control-plaintext">{{ frame.comment }}</div>
+        <div class="col-sm-7">
+          <table class="table table-bordered table_rounded">
+            <tbody>
+            <tr>
+              <td style="width:20%;">{{ $t('model.frame.name') }}：</td>
+              <td style="width:80%;">
+                {{ frame.name }}
+              </td>
+            </tr>
+            <tr>
+              <td>{{ $t('model.frame.shooted_at') }}：</td>
+              <td>
+                {{ frame.shooted_at }}
+              </td>
+            </tr>
+            <tr>
+              <td>{{ $t('model.frame.comment') }}：</td>
+              <td>
+                <span v-html="sanitizedComment"></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </div>
+    <div class="card-body">
       <div class="row d-flex" >
         <div class="col-12 clearfix">
           <!-- <div class="float-start">
@@ -57,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div v-else class="card-block">
+    <div v-else class="card-body">
       <div class="row d-flex justify-content-sm-center">
         <br>
       </div>
@@ -69,6 +79,7 @@
 </template>
 
 <script setup lang="ts">
+  import sanitizeHtml from 'sanitize-html'
 
   const route = useRoute();
   const { id  } = route.params;
@@ -81,4 +92,8 @@
   provide('framer', framer)
 
   await getFrame(id as string)
+
+  const sanitizedComment = computed(() => {
+    return sanitizeHtml(frame.comment).replace(/\n/g, '<br>');
+  });
 </script>

@@ -1,34 +1,50 @@
 <template>
-  <div class="card-block">
+  <div class="card-body">
     <div class="row d-flex justify-content-sm-center">
-      <label for="name" class="col-form-label col-sm-3">{{ $t('model.frame.name') }}：</label>
-      <div class="col-sm-4">
-        <input type="text" v-model="frame.name" :placeholder="$t('model.frame.name')" class="form-control">
-        <div v-for="error of v$.name.$errors" :key="error.$uid">
-          <div>{{ error.$message }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-sm-center">
-      <label for="tag_list" class="col-form-label col-sm-3">{{ $t('model.frame.tag_list') }}：</label>
-      <div class="col-sm-4">
-        <input type="text" name="tag_editor" id="tag_editor" value="" class="form-control" >
-        <input type="hidden" id="tag_list" v-model="frame.tag_list">
-        <div v-for="error of v$.tags.$errors" :key="error.$uid">
-          <div>{{ error.$message }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-sm-center">
-      <label for="comment" class="col-form-label col-sm-3">{{ $t('model.frame.shooted_at') }}：</label>
-      <div class="col-sm-4">
-        <input type="datetime-local" v-model="frame.shooted_at" class="form-control">
-      </div>
-    </div>
-    <div class="row d-flex justify-content-sm-center">
-      <label for="comment" class="col-form-label col-sm-3">{{ $t('model.frame.comment') }}：</label>
-      <div class="col-sm-4">
-        <textarea v-model="frame.comment" class="form-control"></textarea>
+      <div class="col-sm-7">
+        <table class="table table-bordered table_rounded">
+          <tbody>
+            <tr>
+              <td style="width: 20%;">
+                <label for="name" class="col-form-label">{{ $t('model.frame.name') }}：</label>
+              </td>
+              <td style="width: 80%;">
+                <input type="text" v-model="frame.name" :placeholder="$t('model.frame.name')" class="form-control">
+                <div v-for="error of v$.name.$errors" :key="error.$uid">
+                  <div>{{ error.$message }}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="tag_list" class="col-form-label">{{ $t('model.frame.tag_list') }}：</label>
+              </td>
+              <td>
+                <input type="text" name="tag_editor" id="tag_editor" value="" class="form-control" >
+                <input type="hidden" id="tag_list" v-model="frame.tag_list">
+                <div v-for="error of v$.tags.$errors" :key="error.$uid">
+                  <div>{{ error.$message }}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="shooted_at" class="col-form-label">{{ $t('model.frame.shooted_at') }}：</label>
+              </td>
+              <td>
+                <input type="datetime-local" v-model="frame.shooted_at" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="comment" class="col-form-label">{{ $t('model.frame.comment') }}：</label>
+              </td>
+              <td>
+                <textarea v-model="frame.comment" class="form-control"></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <br>

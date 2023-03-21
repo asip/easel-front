@@ -20,6 +20,31 @@ body {
   -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
   -moz-border-radius: 5px;   /* Firefox用 */
 }
+
+.table_rounded {
+  border: 1px solid lavender;
+  border-radius: 5px;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+.table_rounded tr td {
+  border: none;
+  border-bottom: 1px solid lavender;
+  border-right: 1px solid lavender;
+}
+.table_rounded tr td:first-child {
+  border-left: none;
+}
+.table_rounded tr td:last-child {
+  border-right: none;
+}
+.table_rounded tr:first-child td {
+  border-top: none;
+}
+.table_rounded tr:last-child td {
+  border-bottom: none;
+}
+
 /* .white-space-pre {
   white-space: pre;
  } */
