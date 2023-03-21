@@ -9,15 +9,12 @@
             {{ $t('action.frame.upload') }}
           </div>
         </div>
-        <br>
-
         <!-- unless @frame.confirming == 'true' -->
         <FramesNewInput />
         <!-- else -->
         <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
         <!-- end -->
       </div>
-      <br>
     </form>
   </div>
 </template>

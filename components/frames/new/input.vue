@@ -66,7 +66,7 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
-      <div class="col-sm-6">
+      <div class="col-sm-7">
         <button type="button" class="btn btn-primary" @click="onCreateClick">{{ $t('action.model.create') }}</button>&nbsp;
         <NuxtLink :to="`/`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
       </div>

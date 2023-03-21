@@ -73,7 +73,7 @@ export default defineNuxtConfig({
               create: 'Regist',
               update: 'Edit',
               delete: 'Delete',
-              return: 'Return'
+              return: 'Back'
             },
             user: {
               login: 'Login',

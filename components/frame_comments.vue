@@ -1,6 +1,5 @@
 <template>
   <FramesComment />
-  <br>
   <FramesComments />
   <br>
 </template>

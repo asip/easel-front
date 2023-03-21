@@ -31,6 +31,7 @@
       <br>
     </div>
   </div>
+  <br v-if="logged_in">
 </template>
 
 <script setup lang="ts">

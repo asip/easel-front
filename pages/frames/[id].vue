@@ -44,10 +44,8 @@
           </table>
         </div>
       </div>
-    </div>
-    <div class="card-body">
       <div class="row d-flex" >
-        <div class="col-12 clearfix">
+        <div class="col-sm-12 clearfix">
           <!-- <div class="float-start"></div> -->
           <div class="float-end">
             <NuxtLink :to="`/users/${frame.user_id}`" class="text-decoration-none">
@@ -64,11 +62,6 @@
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">{{ $t('action.model.delete') }}</button>
         </div>
-      </div>
-    </div>
-    <div v-else class="card-body">
-      <div class="row d-flex justify-content-sm-center">
-        <br>
       </div>
     </div>
   </div>

@@ -50,7 +50,7 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
-      <div class="col-sm-6">
+      <div class="col-sm-7">
         <button type="button" class="btn btn-primary" @click="onEditClick">{{ $t('action.model.update') }}</button>&nbsp;
         <NuxtLink :to="`/frames/${frame?.id}`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
       </div>
