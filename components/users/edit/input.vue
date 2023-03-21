@@ -96,7 +96,6 @@
           </tbody>
         </table>
       </div>
-      <br>
     </div>
     <div class="d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
