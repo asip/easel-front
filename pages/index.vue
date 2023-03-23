@@ -14,7 +14,7 @@
     </div>
   </div>
   <br>
-  <div class="d-flex col-sm-12 justify-content-sm-center">
+  <div v-if="frame_query.pages > 1" class="d-flex col-sm-12 justify-content-sm-center">
     <ClientOnly>
       <Paginate
         v-model="frame_query.page"
