@@ -1,4 +1,5 @@
 import {useLoginUser} from './use_login_user';
+import {useLocale} from "~/composables/use_locale";
 
 export interface Comment {
   id: number | null
@@ -27,6 +28,8 @@ export function useComment() {
 
   const nuxtApp = useNuxtApp()
   const { baseApiURL } = useConstants()
+
+  const { locale } = useLocale()
   const { login_user } = useLoginUser()
 
   const getComments = async () => {
@@ -82,6 +85,7 @@ export function useComment() {
           body: postData,
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
+            'Accept-Language' : locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         }
@@ -130,6 +134,7 @@ export function useComment() {
           method: 'delete',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
+            'Accept-Language' : locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         }
