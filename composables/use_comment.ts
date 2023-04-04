@@ -5,9 +5,9 @@ import {useVuelidate} from "@vuelidate/core";
 
 export interface Comment {
   id: number | null
-  frame_id: number | null | undefined,
+  frame_id: number | null | undefined
   body: string
-  user_id: number | null,
+  user_id: number | null
   user_name: string
   user_image_url: string
   updated_at: string | null
