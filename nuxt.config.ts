@@ -59,7 +59,8 @@ export default defineNuxtConfig({
               comment: 'Comment'
             },
             comment: {
-              model_name: 'Comment'
+              model_name: 'Comment',
+              body: 'Comment'
             }
           },
           component: {
@@ -116,7 +117,8 @@ export default defineNuxtConfig({
               comment: 'コメント'
             },
             comment: {
-              model_name: 'コメント'
+              model_name: 'コメント',
+              body: 'コメント'
             }
           },
           component: {
