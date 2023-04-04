@@ -1,6 +1,6 @@
 import {useLoginUser} from './use_login_user';
 import {useLocale} from "~/composables/use_locale";
-import { required} from "~/utils/i18n-validators";
+import { required } from "~/utils/i18n-validators";
 import {useVuelidate} from "@vuelidate/core";
 
 export interface Comment {
@@ -124,10 +124,13 @@ export function useComment() {
     i18n.global.locale.value = locale.value
     const result = await cv$.value.$validate();
 
+    //console.log(cv$.value.body.$invalid)
     //console.log(cv$.value.$invalid)
+    //console.log(cv$.value.$error)
+    //console.log(cv$.value.$errors)
     //console.log(comment.body)
 
-    if (comment.body !== '') {
+    if (!cv$.value.body.$invalid) {
       //console.log(comment.userId);
       //console.log(comment.frameId);
       //console.log(comment.body);
