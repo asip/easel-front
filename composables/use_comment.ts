@@ -1,5 +1,7 @@
 import {useLoginUser} from './use_login_user';
 import {useLocale} from "~/composables/use_locale";
+import { required} from "~/utils/i18n-validators";
+import {useVuelidate} from "@vuelidate/core";
 
 export interface Comment {
   id: number | null
@@ -24,10 +26,19 @@ export function useComment() {
 
   const comments: Comment[] = reactive<Comment[]>([]);
 
-  const error_messages: string[] = reactive<string[]>([]);
+  const error_messages = reactive({
+    body: [],
+    base: []
+  })
 
   const nuxtApp = useNuxtApp()
   const { baseApiURL } = useConstants()
+
+  const rules = {
+    body: { required }
+  }
+
+  const cv$ = useVuelidate(rules, comment)
 
   const { locale } = useLocale()
   const { login_user } = useLoginUser()
@@ -95,38 +106,63 @@ export function useComment() {
     const json_data: any = data.value
 
     if (json_data && json_data.data) {
-      const error_message_list = json_data.data.attributes.error_messages
-      if (error_message_list && error_message_list.length > 0) {
-        error_messages.splice(0, error_messages.length);
-        for (let error_message of error_message_list) {
-          error_messages.push(error_message)
-        }
-      } else {
-        comment.body = '';
-      }
+      comment.body = '';
+      cv$.value.$reset()
+    }else if(json_data && json_data.errors){
+      const errors = json_data.errors
+
+      setErrorMessages(errors)
     } else if (error.value) {
-      error_messages.splice(0, error_messages.length);
-      error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
+      clearErrorMessages()
+      // @ts-ignore
+      error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
     }
   }
 
   const createComment = async () => {
-    if (comment.body != '') {
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await cv$.value.$validate();
+
+    //console.log(cv$.value.$invalid)
+    //console.log(comment.body)
+
+    if (comment.body !== '') {
       //console.log(comment.userId);
       //console.log(comment.frameId);
       //console.log(comment.body);
       await postComment();
-      error_messages.splice(0, error_messages.length);
-    } else {
-      error_messages.splice(0, error_messages.length);
-      error_messages.push(nuxtApp.$i18n.t('action.comment.required'));
-    }
 
-    if(error_messages.length == 0){
-      comments.splice(0, comments.length);
-      await getComments()
+      if(isSuccess()){
+        comments.splice(0, comments.length);
+        await getComments()
+      }
     }
   };
+
+  const setErrorMessages = (errors: any) => {
+    if(errors.body){
+      error_messages.body = errors.body
+    } else {
+      error_messages.body = []
+    }
+  }
+
+  const clearErrorMessages = () => {
+    error_messages.body = []
+    error_messages.base = []
+  }
+
+  const isSuccess = () => {
+    let result: boolean = true
+
+    if(error_messages.body.length > 0){
+      result = false
+    }
+
+    return result
+  }
+
   const deleteComment = async (comment: any) => {
     const {data, error} = await useAsyncData('delete_comment', () =>
       $fetch(`/api/comments/${comment.id}`,
@@ -141,19 +177,20 @@ export function useComment() {
       )
     )
 
-    error_messages.splice(0, error_messages.length);
+    clearErrorMessages();
 
     if (error.value) {
-      error_messages.push(nuxtApp.$i18n.t('action.comment.login'));
+      // @ts-ignore
+      error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
     }
 
-    if(error_messages.length == 0){
+    if(isSuccess()){
       comments.splice(0, comments.length);
       await getComments()
     }
   };
 
   return {
-    comment, comments, error_messages ,getComments, createComment, deleteComment
+    comment, comments, error_messages ,getComments, cv$, createComment, deleteComment
   }
 }
