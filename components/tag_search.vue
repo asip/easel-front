@@ -1,5 +1,5 @@
 <template>
-  <client-only>
+
     <div style="padding-left:5px;">
       <a class="btn btn-outline-success me-2 me-sm-0" data-bs-toggle="offcanvas" href="#offcanvas-calendar"
          role="button" aria-expanded="false" aria-controls="offcanvas-calendar">
@@ -16,9 +16,9 @@
         </div>
         <div class="offcanvas-body">
           <div class="d-flex justify-content-sm-center">
-
+            <client-only>
             <v-date-picker v-model="date_word" :masks="masks" :locale="locale"/>
-
+            </client-only>
           </div>
           <br>
           <div class="d-flex justify-content-sm-center">
@@ -32,7 +32,7 @@
         </div>
       </div>
     </teleport>
-  </client-only>
+
 </template>
 
 <script lang="ts" setup>
