@@ -49,7 +49,6 @@
 
   const onLogoutClick = async () => {
     await logout()
-    navigateTo('/')
   }
 
   onMounted(() =>{

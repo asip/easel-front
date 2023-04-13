@@ -5,9 +5,9 @@ export function useFollow() {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
   const { baseApiURL } = useConstants()
-  const { login_user } = useLoginUser()
+  const { login_user, navigateLogoutTo } = useLoginUser()
   const isFollowing = async (userId: string) => {
-    const { data } = await useAsyncData('getFrame', () =>
+    const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${baseApiURL}/profile/following/${userId}`, {
         method: 'get',
         headers: {
@@ -21,11 +21,13 @@ export function useFollow() {
 
     if(json_data){
       following.value = json_data.following
+    } else if (error.value){
+      navigateLogoutTo('/')
     }
   }
 
   const follow = async (userId: number | null) => {
-    const { data } = await useAsyncData('getFrame', () =>
+    const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${baseApiURL}/users/${userId}/follow_relationships`, {
         method: 'post',
         headers: {
@@ -35,11 +37,15 @@ export function useFollow() {
       })
     )
 
+    if (error.value){
+      navigateLogoutTo('/')
+    }
+
     following.value = true
   }
 
   const unfollow = async (userId: number | null) => {
-    const { data } = await useAsyncData('getFrame', () =>
+    const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${baseApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',
         headers: {
@@ -48,6 +54,10 @@ export function useFollow() {
         }
       })
     )
+
+    if (error.value){
+      navigateLogoutTo('/')
+    }
 
     following.value = false
   }

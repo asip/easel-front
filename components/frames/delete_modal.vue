@@ -30,6 +30,5 @@
   const onDeleteClick = async () => {
     await deleteFrame()
     removeBackdrop()
-    navigateTo('/')
   }
 </script>

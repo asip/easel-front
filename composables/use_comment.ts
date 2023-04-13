@@ -41,7 +41,7 @@ export function useComment() {
   const cv$ = useVuelidate(rules, comment)
 
   const { locale } = useLocale()
-  const { login_user } = useLoginUser()
+  const { login_user, navigateLogoutTo } = useLoginUser()
 
   const getComments = async () => {
     //console.log(comment.frame_id);
@@ -115,7 +115,8 @@ export function useComment() {
     } else if (error.value) {
       clearErrorMessages()
       // @ts-ignore
-      error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
+      // error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
+      navigateLogoutTo('/')
     }
   }
 
@@ -184,7 +185,8 @@ export function useComment() {
 
     if (error.value) {
       // @ts-ignore
-      error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
+      // error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
+      navigateLogoutTo('/')
     }
 
     if(isSuccess()){

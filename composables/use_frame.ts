@@ -60,7 +60,7 @@ export const useFrame = () => {
   const v$ = useVuelidate(rules, frame)
 
   const { locale } = useLocale()
-  const { login_user } = useLoginUser()
+  const { login_user, navigateLogoutTo } = useLoginUser()
 
   const getFrame = async (id: string ) => {
     const { data } = await useAsyncData('getFrame', () =>
@@ -75,10 +75,8 @@ export const useFrame = () => {
     const json_data: any = data.value
     //console.log(json_data)
 
-    if(json_data){
-      if(json_data.data){
-        setJson2Frame(json_data)
-      }
+    if(json_data && json_data.data){
+      setJson2Frame(json_data)
     }
   }
 
@@ -118,7 +116,7 @@ export const useFrame = () => {
 
       //console.log(login_user.value.token)
 
-      const { data } = await useAsyncData('createFrame', () =>
+      const { data, error } = await useAsyncData('createFrame', () =>
         $fetch('/api/frames/', {
           method: 'post',
           body: formData,
@@ -131,12 +129,14 @@ export const useFrame = () => {
 
       const json_data: any = data.value
 
-      if(json_data.data){
+      if (json_data && json_data.data){
         frame.id = json_data.data.id
-      }else{
+      } else if (json_data && json_data.errors){
         const errors = json_data.errors
 
         setErrorMessages(errors)
+      } else if (error.value) {
+        navigateLogoutTo('/')
       }
     }
   }
@@ -190,7 +190,7 @@ export const useFrame = () => {
 
       //console.log(login_user.value.token)
 
-      const { data } = await useAsyncData('updateFrame', () =>
+      const { data, error } = await useAsyncData('updateFrame', () =>
         $fetch(`/api/frames/${frame.id}`, {
           method: 'put',
           body: postData,
@@ -204,10 +204,12 @@ export const useFrame = () => {
 
       const json_data: any = data.value
 
-      if (!json_data.data) {
+      if (json_data && !json_data.data && json_data.errors) {
         const errors = json_data.errors
 
         setErrorMessages(errors)
+      }else if (error.value) {
+        navigateLogoutTo('/')
       }
     }
   }
@@ -215,7 +217,7 @@ export const useFrame = () => {
   const deleteFrame = async () => {
     //console.log(frame.id)
 
-    const { data } = await useAsyncData('deleteFrame', () =>
+    const { data, error } = await useAsyncData('deleteFrame', () =>
       $fetch(`/api/frames/${frame.id}`, {
         method: 'delete',
         headers: {
@@ -224,6 +226,12 @@ export const useFrame = () => {
         }
       })
     )
+
+    if(error.value){
+      navigateLogoutTo('/')
+    }else{
+      navigateTo('/')
+    }
 
     //const json_data = data.value
   }

@@ -216,7 +216,7 @@ export const useLoginUser = () => {
       formData.append('user[password]', user.value.password)
       formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-      const { data } = await useAsyncData('updateProfile', () =>
+      const { data, error } = await useAsyncData('updateProfile', () =>
         $fetch('/api/profile/', {
           method: 'put',
           body: formData,
@@ -232,11 +232,13 @@ export const useLoginUser = () => {
 
       //console.log(json_data)
 
-      if (json_data.data) {
+      if (json_data && json_data.data) {
         setJson2LoginUser(json_data)
-      } else {
+      } else if(json_data && json_data.errors) {
         const errors = json_data.errors
         setErrorMessages(errors)
+      } else if (error.value) {
+        navigateLogoutTo('/')
       }
     }
   }
@@ -284,7 +286,7 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    const { data } = await useAsyncData('logout', () =>
+    const { data, error } = await useAsyncData('logout', () =>
       $fetch('/api/sessions/logout', {
         method: 'delete',
         headers: {
@@ -296,11 +298,17 @@ export const useLoginUser = () => {
 
     const json_data: any = data.value
 
-    if(json_data.data) {
-      clearLoginUser()
-
-      access_token.value = null
+    if(json_data && json_data.data) {
+      navigateLogoutTo('/')
+    } else if(error.value) {
+      navigateLogoutTo('/')
     }
+  }
+
+  const navigateLogoutTo = (path: string) => {
+    clearLoginUser()
+
+    navigateTo(path)
   }
 
   const clearLoginUser = () => {
@@ -313,6 +321,8 @@ export const useLoginUser = () => {
     login_user.value.image_one_url = null
     login_user.value.image_three_url = null
     login_user.value.social_login = false
+
+    access_token.value = null
   }
 
   return {
@@ -327,6 +337,7 @@ export const useLoginUser = () => {
     login,
     login_with_google,
     logout,
+    navigateLogoutTo,
     error_message,
     v$,
     error_messages
