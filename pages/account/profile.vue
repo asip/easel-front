@@ -12,17 +12,29 @@
     </div>
     <div class="card-block">
       <br>
-      <UsersPreviewImage :original="false" />
+      <UsersPreviewImage :original="false"/>
       <div class="row d-flex justify-content-sm-center">
-        <label for="name" class="form-label col-sm-3 label-bg-style">{{ $t('model.user.name') }}</label>
-        <div class="form-group col-sm-4">
-          <div class="form-control-plaintext">{{ login_user.name }}</div>
-        </div>
-      </div>
-      <div class="row d-flex justify-content-sm-center">
-        <label for="email" class="form-label col-sm-3 label-bg-style">{{ $t('model.user.email') }}</label>
-        <div class="form-group col-sm-4">
-          <div class="form-control-plaintext">{{ login_user.email }}</div>
+        <div class="col-sm-6">
+          <table class="table table-bordered table_rounded">
+            <tbody>
+            <tr>
+              <td style="width: 25%;">
+                <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
+              </td>
+              <td style="width: 75%;">
+                <div class="form-control-plaintext">{{ login_user.name }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
+              </td>
+              <td>
+                <div class="form-control-plaintext">{{ login_user.email }}</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <br>
@@ -32,6 +44,8 @@
 </template>
 
 <script setup lang="ts">
+  import Input from "~/components/users/edit/input.vue";
+
   const { logged_in, login_user } = useLoginUser()
 
   provide('user', login_user)
