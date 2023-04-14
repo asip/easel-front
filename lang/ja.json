@@ -1,0 +1,58 @@
+{
+  "model": {
+    "user": {
+      "model_name": "プロフィール",
+      "name": "ユーザー名",
+      "image": "アイコン",
+      "email": "Eメール ",
+      "password": "パスワード",
+      "password_confirmation": "パスワード(確認)"
+    },
+    "frame": {
+      "model_name": "",
+      "name": "名前",
+      "file": "ファイル",
+      "tag_list": "タグ",
+      "shooted_at": "撮影日時",
+      "comment": "コメント"
+    },
+    "comment": {
+      "model_name": "コメント",
+      "body": "コメント"
+    }
+  },
+  "component": {
+    "tag_search": {
+      "placeholder": "タグ or 名前 or 撮影/更新日",
+      "search": "検索"
+    }
+  },
+  "action": {
+    "model": {
+      "create": "登録",
+      "update": "編集",
+      "delete": "削除",
+      "return": "戻る"
+    },
+    "user": {
+      "login": "ログイン",
+      "new": "ユーザー登録",
+      "follow": "フォローする",
+      "unfollow": "フォローを外す"
+    },
+    "frame": {
+      "upload": "アップロード"
+    },
+    "comment": {
+      "post": "投稿",
+      "required": "コメントを入力してください",
+      "login": "ログインしてください"
+    },
+    "modal": {
+      "close": "閉じる",
+      "delete": {
+        "message": "削除してもよろしいですか？"
+      }
+    }
+  }
+}

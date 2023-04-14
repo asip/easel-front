@@ -21,11 +21,11 @@ export const useFrameSearch = () => {
     }
   })
 
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const searchFrame = async () => {
     const { data } = await useAsyncData('searchFrame', () =>
-      $fetch(`${baseApiURL}/frames`, {
+      $fetch(`${backendApiURL}/frames`, {
         method: 'get',
         query: {
           q: frame_query.value.word,

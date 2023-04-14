@@ -18,11 +18,11 @@ export const useUser = () => {
     }
   )
 
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const getUser = async (id: string) => {
     const { data } = await useAsyncData('profile', () =>
-      $fetch(`${baseApiURL}/users/${id}`, {
+      $fetch(`${backendApiURL}/users/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

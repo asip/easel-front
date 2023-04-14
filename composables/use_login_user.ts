@@ -63,7 +63,7 @@ export const useLoginUser = () => {
 
   const error_message = ref('')
 
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const error_messages = reactive({
     image: [],
@@ -93,7 +93,7 @@ export const useLoginUser = () => {
 
     if(login_user.value.token) {
       const { data } = await useAsyncData('profile', () =>
-        $fetch(`${baseApiURL}/profile`, {
+        $fetch(`${backendApiURL}/profile`, {
           method: 'get',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
@@ -153,7 +153,7 @@ export const useLoginUser = () => {
     }
 
     const { data } = await useAsyncData('login', () =>
-      $fetch(`${baseApiURL}/oauth/sessions/`, {
+      $fetch(`${backendApiURL}/oauth/sessions/`, {
         method: 'post',
         body: postData,
         headers: {

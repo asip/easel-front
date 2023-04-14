@@ -8,7 +8,7 @@ export const useLocale = () => {
     //console.log(locales.value)
 
     // @ts-ignore
-    locale.value = (browserLocale && locales.value.includes(browserLocale) ? browserLocale : 'en')
+    locale.value = browserLocale
   }
 
   return { locale, autoDetect }

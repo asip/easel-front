@@ -4,11 +4,11 @@ import { Ref } from "vue";
 export function useFollow() {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
   const { login_user, navigateLogoutTo } = useLoginUser()
   const isFollowing = async (userId: string) => {
     const { data, error } = await useAsyncData('getFrame', () =>
-      $fetch(`${baseApiURL}/profile/following/${userId}`, {
+      $fetch(`${backendApiURL}/profile/following/${userId}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -28,7 +28,7 @@ export function useFollow() {
 
   const follow = async (userId: number | null) => {
     const { data, error } = await useAsyncData('getFrame', () =>
-      $fetch(`${baseApiURL}/users/${userId}/follow_relationships`, {
+      $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'post',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -46,7 +46,7 @@ export function useFollow() {
 
   const unfollow = async (userId: number | null) => {
     const { data, error } = await useAsyncData('getFrame', () =>
-      $fetch(`${baseApiURL}/users/${userId}/follow_relationships`, {
+      $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

@@ -50,7 +50,7 @@ export const useFrame = () => {
     file: []
   })
 
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const rules = {
     name: { required, minLength: minLength(1), maxLength: maxLength(20) },
@@ -64,7 +64,7 @@ export const useFrame = () => {
 
   const getFrame = async (id: string ) => {
     const { data } = await useAsyncData('getFrame', () =>
-      $fetch(`${baseApiURL}/frames/${id}`, {
+      $fetch(`${backendApiURL}/frames/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

@@ -32,7 +32,7 @@ export function useComment() {
   })
 
   const nuxtApp = useNuxtApp()
-  const { baseApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const rules = {
     body: { required }
@@ -46,7 +46,7 @@ export function useComment() {
   const getComments = async () => {
     //console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
-      $fetch(`${baseApiURL}/frames/${comment.frame_id}/comments`, {
+      $fetch(`${backendApiURL}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

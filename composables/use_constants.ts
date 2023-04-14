@@ -1,9 +1,9 @@
 export const useConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
-  const baseURL: string = runtimeConfig.public.baseURL
-  const baseApiURL: string = runtimeConfig.public.baseApiURL
+  const backendOriginURL: string = runtimeConfig.public.backendOriginURL
+  const backendApiURL: string = runtimeConfig.public.backendApiURL
   const googleClientID: string = runtimeConfig.googleClientId
 
-  return { baseURL, baseApiURL, googleClientID }
+  return { backendOriginURL, backendApiURL, googleClientID }
 }
