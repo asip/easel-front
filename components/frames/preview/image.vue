@@ -1,10 +1,10 @@
 <template>
   <div v-if="props.original" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="props.spotlight" class="mx-auto spotlight" :to="`${baseURL}${frame?.file_url}`"><img :src="`${baseURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
-    <NuxtLink v-else class="mx-auto" name="lm" :to="`${baseURL}${frame?.file_url}`"><img :src="`${baseURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
+    <NuxtLink v-if="props.spotlight" class="mx-auto spotlight" :to="`${backendOriginURL}${frame?.file_url}`"><img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
+    <NuxtLink v-else class="mx-auto" name="lm" :to="`${backendOriginURL}${frame?.file_url}`"><img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
-    <img :src="`${baseURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
   </div>
   <br>
 </template>
@@ -20,7 +20,7 @@
 
   const { frame } = inject('framer') as any
 
-  const { baseURL } = useConstants()
+  const { backendOriginURL } = useConstants()
 
   onMounted(() => {
     if (props.spotlight){
