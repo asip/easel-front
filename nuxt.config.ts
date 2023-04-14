@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   i18n: {
     lazy: true,
     defaultLocale: 'en',
-    fallbackLocale: "en",
+    vueI18n: './i18n.config.ts',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
