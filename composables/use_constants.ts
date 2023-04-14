@@ -3,7 +3,7 @@ export const useConstants = () => {
 
   const backendOriginURL: string = runtimeConfig.public.backendOriginURL
   const backendApiURL: string = runtimeConfig.public.backendApiURL
-  const googleClientID: string = runtimeConfig.googleClientId
+  const googleClientID: string = runtimeConfig.public.googleClientId
 
   return { backendOriginURL, backendApiURL, googleClientID }
 }
