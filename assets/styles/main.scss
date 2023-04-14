@@ -3,6 +3,10 @@
 @import "spotlight.js/dist/css/spotlight.min";
 @import "@yaireo/tagify/dist/tagify";
 
+%offcanvas-css-vars {
+  --bs-offcanvas-width: 300px;
+}
+
 body {
   background-color: aliceblue;
   padding-top: 50px;
