@@ -17,6 +17,15 @@ export interface User {
   social_login: boolean | null | undefined
 }
 
+export interface SignupParams {
+  image: Blob | null | undefined
+  preview_url: string | null | undefined
+  name: string
+  email: string
+  password: string
+  password_confirmation: string
+}
+
 export const useLoginUser = () => {
   const login_params = reactive({
     email: '',
@@ -57,6 +66,15 @@ export const useLoginUser = () => {
     }
   )
 
+  const signup_params = reactive<SignupParams>({
+    image: null,
+    preview_url: null,
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: ''
+  })
+
   const logged_in = useState<Boolean>('logged_in', ()=> {
     return false
   })
@@ -82,9 +100,57 @@ export const useLoginUser = () => {
 
   const v$ = useVuelidate(rules, user)
 
+  const su_rules = {
+    name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+    email: { required, email },
+    password: { required, minLength: minLength(3) },
+    password_confirmation: { required }
+  }
+
+  const suv$ = useVuelidate(su_rules, signup_params)
+
   const access_token = useCookie('access_token')
 
   const { locale } = useLocale()
+
+  const signup = async () => {
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await suv$.value.$validate();
+
+    //console.log(signup_params.image)
+
+    if(!suv$.value.$invalid){
+      let formData = new FormData();
+
+      if(signup_params.image){
+        formData.append('user[image]', signup_params.image)
+      }
+      formData.append('user[name]', signup_params.name)
+      formData.append('user[email]', signup_params.email)
+      formData.append('user[password]', signup_params.password)
+      formData.append('user[password_confirmation]', signup_params.password_confirmation)
+
+      const { data } = await useAsyncData('signup', () =>
+        $fetch('/api/users/', {
+          method: 'post',
+          body: formData,
+          headers: {
+            'Accept-Language' : locale.value
+          }
+        })
+      )
+
+      const json_data: any = data.value
+
+      //console.log(json_data)
+
+      if (!json_data.data) {
+        const errors = json_data.errors
+        setErrorMessages(errors)
+      }
+    }
+  }
 
   const authenticate = async () => {
 
@@ -271,7 +337,6 @@ export const useLoginUser = () => {
     }
   }
 
-
   const isSuccess = () => {
     let result: boolean = true
 
@@ -328,8 +393,10 @@ export const useLoginUser = () => {
   return {
     login_user,
     user,
+    signup_params,
     logged_in,
     login_params,
+    signup,
     authenticate,
     setUser,
     updateProfile,
@@ -340,6 +407,7 @@ export const useLoginUser = () => {
     navigateLogoutTo,
     error_message,
     v$,
+    suv$,
     error_messages
   }
 }

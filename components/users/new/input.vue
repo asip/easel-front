@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { signup_params, suv$, signup, error_messages, isSuccess } = useSignup()
+  const { signup_params, suv$, signup, error_messages, isSuccess } = useLoginUser()
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
