@@ -34,11 +34,11 @@ export function useComment() {
   const nuxtApp = useNuxtApp()
   const { backendApiURL } = useConstants()
 
-  const rules = {
+  const cm_rules = {
     body: { required }
   }
 
-  const cv$ = useVuelidate(rules, comment)
+  const cv$ = useVuelidate(cm_rules, comment)
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
