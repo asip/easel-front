@@ -5,7 +5,7 @@ import {useLocale} from "~/composables/use_locale";
 export interface User {
   name: string
   email: string
-  token: string | null
+  token: string | null | undefined
   id: number | null
   image: Blob | null | undefined
   image_thumb_url: string | null
