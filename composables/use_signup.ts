@@ -29,25 +29,25 @@ export const useSignup = () => {
     password_confirmation: []
   })
 
-  const rules = {
+  const su_rules = {
     name: { required, minLength: minLength(3), maxLength: maxLength(40) },
     email: { required, email },
     password: { required, minLength: minLength(3) },
     password_confirmation: { required }
   }
 
-  const v$ = useVuelidate(rules, signup_params)
+  const suv$ = useVuelidate(su_rules, signup_params)
 
   const { locale } = useLocale()
 
   const signup = async () => {
     // @ts-ignore
     i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
+    const result = await suv$.value.$validate();
 
     //console.log(signup_params.image)
 
-    if(!v$.value.$invalid){
+    if(!suv$.value.$invalid){
       let formData = new FormData();
 
       if(signup_params.image){
@@ -120,5 +120,5 @@ export const useSignup = () => {
     return result
   }
 
-  return { signup_params, v$, signup, error_messages, isSuccess }
+  return { signup_params, suv$, signup, error_messages, isSuccess }
 }
