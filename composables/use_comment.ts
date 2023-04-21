@@ -13,6 +13,10 @@ export interface Comment {
   updated_at: string | null
 }
 
+const cm_rules = {
+  body: { required }
+}
+
 export function useComment() {
   const comment: Comment = reactive<Comment>({
     id: null,
@@ -34,11 +38,7 @@ export function useComment() {
   const nuxtApp = useNuxtApp()
   const { backendApiURL } = useConstants()
 
-  const cm_rules = {
-    body: { required }
-  }
-
-  const cv$ = useVuelidate(cm_rules, comment)
+  const cmv$ = useVuelidate(cm_rules, comment)
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
@@ -107,7 +107,7 @@ export function useComment() {
 
     if (json_data && json_data.data) {
       comment.body = '';
-      cv$.value.$reset()
+      cmv$.value.$reset()
     }else if(json_data && json_data.errors){
       const errors = json_data.errors
 
@@ -123,15 +123,15 @@ export function useComment() {
   const createComment = async () => {
     // @ts-ignore
     i18n.global.locale.value = locale.value
-    const result = await cv$.value.$validate();
+    const result = await cmv$.value.$validate();
 
-    //console.log(cv$.value.body.$invalid)
-    //console.log(cv$.value.$invalid)
-    //console.log(cv$.value.$error)
-    //console.log(cv$.value.$errors)
+    //console.log(cmv$.value.body.$invalid)
+    //console.log(cmv$.value.$invalid)
+    //console.log(cmv$.value.$error)
+    //console.log(cmv$.value.$errors)
     //console.log(comment.body)
 
-    if (!cv$.value.body.$invalid) {
+    if (!cmv$.value.body.$invalid) {
       //console.log(comment.userId);
       //console.log(comment.frameId);
       //console.log(comment.body);
@@ -196,6 +196,6 @@ export function useComment() {
   };
 
   return {
-    comment, comments, error_messages ,getComments, cv$, createComment, deleteComment
+    comment, comments, error_messages ,getComments, cmv$, createComment, deleteComment
   }
 }

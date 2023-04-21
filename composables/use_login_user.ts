@@ -26,6 +26,20 @@ export interface SignupParams {
   password_confirmation: string
 }
 
+const su_rules = {
+  name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+  email: { required, email },
+  password: { required, minLength: minLength(3) },
+  password_confirmation: { required }
+}
+
+const usr_rules = {
+  name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+  email: { required, email },
+  password: {},
+  password_confirmation: {}
+}
+
 export const useLoginUser = () => {
   const login_params = reactive({
     email: '',
@@ -91,21 +105,7 @@ export const useLoginUser = () => {
     password_confirmation: []
   })
 
-  const rules = {
-    name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-    email: { required, email },
-    password: {},
-    password_confirmation: {}
-  }
-
-  const v$ = useVuelidate(rules, user)
-
-  const su_rules = {
-    name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-    email: { required, email },
-    password: { required, minLength: minLength(3) },
-    password_confirmation: { required }
-  }
+  const v$ = useVuelidate(usr_rules, user)
 
   const suv$ = useVuelidate(su_rules, signup_params)
 

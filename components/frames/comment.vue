@@ -19,7 +19,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="col-10">
-            <div v-for="error of cv$.body.$errors" :key="error.$uid">
+            <div v-for="error of cmv$.body.$errors" :key="error.$uid">
               <div style="color: red;">{{ error.$message }}</div>
             </div>
             <div v-for="message of error_messages.body">
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
   const { logged_in } = useLoginUser()
-  const { comment, cv$, createComment, error_messages } = inject('commenter') as any
+  const { comment, cmv$, createComment, error_messages } = inject('commenter') as any
 
   const { frame } = inject('framer') as any
 

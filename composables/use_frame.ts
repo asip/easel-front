@@ -20,6 +20,11 @@ export interface Frame {
   updated_at: string
 }
 
+const frm_rules = {
+  name: { required, minLength: minLength(1), maxLength: maxLength(20) },
+  tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
+}
+
 export const useFrame = () => {
 
   let frame: Frame = reactive<Frame>({
@@ -52,12 +57,7 @@ export const useFrame = () => {
 
   const { backendApiURL } = useConstants()
 
-  const rules = {
-    name: { required, minLength: minLength(1), maxLength: maxLength(20) },
-    tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
-  }
-
-  const v$ = useVuelidate(rules, frame)
+  const v$ = useVuelidate(frm_rules, frame)
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
