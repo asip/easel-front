@@ -25,7 +25,7 @@
             </td>
             <td>
               <input type="text" v-model="signup_params.name" :placeholder="$t('model.user.name')" class="form-control">
-              <div v-for="error of suv$.name.$errors" :key="error.$uid">
+              <div v-for="error of v$.name.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
               <div v-for="message of error_messages.name">
@@ -39,7 +39,7 @@
             </td>
             <td>
               <input type="text" v-model="signup_params.email" :placeholder="$t('model.user.email')" class="form-control" >
-              <div v-for="error of suv$.email.$errors" :key="error.$uid">
+              <div v-for="error of v$.email.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
               <div v-for="message of error_messages.email">
@@ -53,7 +53,7 @@
             </td>
             <td>
               <input type="password" v-model="signup_params.password" :placeholder="$t('model.user.password')" class="form-control">
-              <div v-for="error of suv$.password.$errors" :key="error.$uid">
+              <div v-for="error of v$.password.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
               <div v-for="message of error_messages.password">
@@ -67,7 +67,7 @@
             </td>
             <td>
               <input type="password" v-model="signup_params.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
-              <div v-for="error of suv$.password_confirmation.$errors" :key="error.$uid">
+              <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
               <div v-for="message of error_messages.password_confirmation">
@@ -92,7 +92,7 @@
 
   const { signup_params, su_rules, signup, error_messages, isSuccess, locale } = useLoginUser()
 
-  const suv$ = useVuelidate(su_rules, signup_params)
+  const v$ = useVuelidate(su_rules, signup_params)
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
@@ -124,9 +124,9 @@
   const onSignupClick= async () =>{
     // @ts-ignore
     i18n.global.locale.value = locale.value
-    const result = await suv$.value.$validate();
+    const result = await v$.value.$validate();
 
-    if(!suv$.value.$invalid){
+    if(!v$.value.$invalid){
       await signup()
 
       if(isSuccess()){

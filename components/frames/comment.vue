@@ -19,7 +19,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="col-10">
-            <div v-for="error of cmv$.body.$errors" :key="error.$uid">
+            <div v-for="error of v$.body.$errors" :key="error.$uid">
               <div style="color: red;">{{ error.$message }}</div>
             </div>
             <div v-for="message of error_messages.body">
@@ -45,7 +45,7 @@
   const { logged_in } = useLoginUser()
   const { comment, cm_rules, createComment, error_messages, isSuccess, locale } = inject('commenter') as any
 
-  const cmv$ = useVuelidate(cm_rules, comment)
+  const v$ = useVuelidate(cm_rules, comment)
 
   const { frame } = inject('framer') as any
 
@@ -54,18 +54,18 @@
   const onCommentClick = async () => {
     // @ts-ignore
     i18n.global.locale.value = locale.value
-    const result = await cmv$.value.$validate();
+    const result = await v$.value.$validate();
 
-    //console.log(cmv$.value.body.$invalid)
-    //console.log(cmv$.value.$invalid)
-    //console.log(cmv$.value.$error)
-    //console.log(cmv$.value.$errors)
+    //console.log(v$.value.body.$invalid)
+    //console.log(v$.value.$invalid)
+    //console.log(v$.value.$error)
+    //console.log(v$.value.$errors)
     //console.log(comment.body)
 
-    if (!cmv$.value.body.$invalid) {
+    if (!v$.value.body.$invalid) {
       await createComment()
       if(isSuccess()){
-        cmv$.value.$reset()
+        v$.value.$reset()
       }
     }
   }
