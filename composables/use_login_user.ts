@@ -1,4 +1,4 @@
-import { useVuelidate } from '@vuelidate/core'
+
 import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
 import {useLocale} from "~/composables/use_locale";
 
@@ -105,50 +105,43 @@ export const useLoginUser = () => {
     password_confirmation: []
   })
 
-  const v$ = useVuelidate(usr_rules, user)
-
-  const suv$ = useVuelidate(su_rules, signup_params)
-
   const access_token = useCookie('access_token')
 
   const { locale } = useLocale()
 
   const signup = async () => {
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await suv$.value.$validate();
 
     //console.log(signup_params.image)
 
-    if(!suv$.value.$invalid){
-      let formData = new FormData();
+    let formData = new FormData();
 
-      if(signup_params.image){
-        formData.append('user[image]', signup_params.image)
-      }
-      formData.append('user[name]', signup_params.name)
-      formData.append('user[email]', signup_params.email)
-      formData.append('user[password]', signup_params.password)
-      formData.append('user[password_confirmation]', signup_params.password_confirmation)
+    if(signup_params.image){
+      formData.append('user[image]', signup_params.image)
+    }
+    formData.append('user[name]', signup_params.name)
+    formData.append('user[email]', signup_params.email)
+    formData.append('user[password]', signup_params.password)
+    formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
-      const { data } = await useAsyncData('signup', () =>
-        $fetch('/api/users/', {
-          method: 'post',
-          body: formData,
-          headers: {
-            'Accept-Language' : locale.value
-          }
-        })
-      )
+    const { data } = await useAsyncData('signup', () =>
+      $fetch('/api/users/', {
+        method: 'post',
+        body: formData,
+        headers: {
+          'Accept-Language' : locale.value
+        }
+      })
+    )
 
-      const json_data: any = data.value
+    clearErrorMessages()
 
-      //console.log(json_data)
+    const json_data: any = data.value
 
-      if (!json_data.data) {
-        const errors = json_data.errors
-        setErrorMessages(errors)
-      }
+    //console.log(json_data)
+
+    if (!json_data.data) {
+      const errors = json_data.errors
+      setErrorMessages(errors)
     }
   }
 
@@ -265,47 +258,43 @@ export const useLoginUser = () => {
 
   const updateProfile = async () => {
 
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
-
     //console.log(signup_params.image)
 
-    if(!v$.value.$invalid){
-      let formData = new FormData();
+    let formData = new FormData();
 
-      if(user.value.image){
-        formData.append('user[image]', user.value.image)
-      }
-      formData.append('user[name]', user.value.name)
-      formData.append('user[email]', user.value.email)
-      formData.append('user[password]', user.value.password)
-      formData.append('user[password_confirmation]', user.value.password_confirmation)
+    if(user.value.image){
+      formData.append('user[image]', user.value.image)
+    }
+    formData.append('user[name]', user.value.name)
+    formData.append('user[email]', user.value.email)
+    formData.append('user[password]', user.value.password)
+    formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-      const { data, error } = await useAsyncData('updateProfile', () =>
-        $fetch('/api/profile/', {
-          method: 'put',
-          body: formData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language' : locale.value,
-            'Authorization': `Bearer ${user.value.token}`
-          }
-        })
-      )
+    const { data, error } = await useAsyncData('updateProfile', () =>
+      $fetch('/api/profile/', {
+        method: 'put',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept-Language' : locale.value,
+          'Authorization': `Bearer ${user.value.token}`
+        }
+      })
+    )
 
-      const json_data: any = data.value
+    clearErrorMessages()
 
-      //console.log(json_data)
+    const json_data: any = data.value
 
-      if (json_data && json_data.data) {
-        setJson2LoginUser(json_data)
-      } else if(json_data && json_data.errors) {
-        const errors = json_data.errors
-        setErrorMessages(errors)
-      } else if (error.value) {
-        navigateLogoutTo('/')
-      }
+    //console.log(json_data)
+
+    if (json_data && json_data.data) {
+      setJson2LoginUser(json_data)
+    } else if(json_data && json_data.errors) {
+      const errors = json_data.errors
+      setErrorMessages(errors)
+    } else if (error.value) {
+      navigateLogoutTo('/')
     }
   }
 
@@ -335,6 +324,14 @@ export const useLoginUser = () => {
     } else {
       error_messages.password_confirmation = []
     }
+  }
+
+  const clearErrorMessages = () => {
+    error_messages.image = []
+    error_messages.name = []
+    error_messages.email = []
+    error_messages.password = []
+    error_messages.password_confirmation = []
   }
 
   const isSuccess = () => {
@@ -406,8 +403,9 @@ export const useLoginUser = () => {
     logout,
     navigateLogoutTo,
     error_message,
-    v$,
-    suv$,
-    error_messages
+    usr_rules,
+    su_rules,
+    error_messages,
+    locale
   }
 }

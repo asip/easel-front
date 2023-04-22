@@ -1,7 +1,7 @@
 import {useLoginUser} from './use_login_user';
 import {useLocale} from "~/composables/use_locale";
 import { required } from "~/utils/i18n-validators";
-import {useVuelidate} from "@vuelidate/core";
+
 
 export interface Comment {
   id: number | null
@@ -37,8 +37,6 @@ export function useComment() {
 
   const nuxtApp = useNuxtApp()
   const { backendApiURL } = useConstants()
-
-  const cmv$ = useVuelidate(cm_rules, comment)
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
@@ -107,7 +105,6 @@ export function useComment() {
 
     if (json_data && json_data.data) {
       comment.body = '';
-      cmv$.value.$reset()
     }else if(json_data && json_data.errors){
       const errors = json_data.errors
 
@@ -121,26 +118,15 @@ export function useComment() {
   }
 
   const createComment = async () => {
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await cmv$.value.$validate();
 
-    //console.log(cmv$.value.body.$invalid)
-    //console.log(cmv$.value.$invalid)
-    //console.log(cmv$.value.$error)
-    //console.log(cmv$.value.$errors)
-    //console.log(comment.body)
+    //console.log(comment.userId);
+    //console.log(comment.frameId);
+    //console.log(comment.body);
+    await postComment();
 
-    if (!cmv$.value.body.$invalid) {
-      //console.log(comment.userId);
-      //console.log(comment.frameId);
-      //console.log(comment.body);
-      await postComment();
-
-      if(isSuccess()){
-        comments.splice(0, comments.length);
-        await getComments()
-      }
+    if(isSuccess()){
+      comments.splice(0, comments.length);
+      await getComments()
     }
   };
 
@@ -196,6 +182,8 @@ export function useComment() {
   };
 
   return {
-    comment, comments, error_messages ,getComments, cmv$, createComment, deleteComment
+    comment, comments, error_messages ,
+    getComments, cm_rules, createComment, deleteComment,
+    locale
   }
 }

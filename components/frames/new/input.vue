@@ -75,10 +75,13 @@
 </template>
 
 <script setup lang="ts">
+  import { useVuelidate } from '@vuelidate/core'
   import Tagify from '@yaireo/tagify'
   import Image from "~/components/users/preview/image.vue";
 
-  const { frame, v$, frameId, createFrame, error_messages, isSuccess } = inject('framer') as any
+  const { frame, frm_rules, frameId, createFrame, error_messages, isSuccess, locale } = inject('framer') as any
+
+  const v$ = useVuelidate(frm_rules, frame)
 
   //console.log(frame)
   //console.log(frame.tags)
@@ -118,9 +121,17 @@
   }
 
   const onCreateClick = async () => {
-    await createFrame()
-    if(!v$.value.$invalid && isSuccess()){
-      navigateTo(`/frames/${frameId.value}`)
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await v$.value.$validate();
+
+    //console.log(frame)
+    if(!v$.value.$invalid){
+      await createFrame()
+
+      if(isSuccess()){
+        navigateTo(`/frames/${frameId.value}`)
+      }
     }
   }
 

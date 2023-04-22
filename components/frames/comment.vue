@@ -40,14 +40,33 @@
 </template>
 
 <script setup lang="ts">
+  import {useVuelidate} from "@vuelidate/core";
+
   const { logged_in } = useLoginUser()
-  const { comment, cmv$, createComment, error_messages } = inject('commenter') as any
+  const { comment, cm_rules, createComment, error_messages, isSuccess, locale } = inject('commenter') as any
+
+  const cmv$ = useVuelidate(cm_rules, comment)
 
   const { frame } = inject('framer') as any
 
   comment.frame_id = frame?.id;
 
   const onCommentClick = async () => {
-    await createComment()
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await cmv$.value.$validate();
+
+    //console.log(cmv$.value.body.$invalid)
+    //console.log(cmv$.value.$invalid)
+    //console.log(cmv$.value.$error)
+    //console.log(cmv$.value.$errors)
+    //console.log(comment.body)
+
+    if (!cmv$.value.body.$invalid) {
+      await createComment()
+      if(isSuccess()){
+        cmv$.value.$reset()
+      }
+    }
   }
 </script>

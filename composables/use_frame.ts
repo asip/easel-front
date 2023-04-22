@@ -1,4 +1,3 @@
-import { useVuelidate } from '@vuelidate/core'
 import { required,minLength , maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import {useLocale} from "~/composables/use_locale";
 
@@ -57,8 +56,6 @@ export const useFrame = () => {
 
   const { backendApiURL } = useConstants()
 
-  const v$ = useVuelidate(frm_rules, frame)
-
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
 
@@ -98,46 +95,41 @@ export const useFrame = () => {
 
   const createFrame = async () => {
 
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
+    let formData = new FormData();
 
-    //console.log(frame)
-    if(!v$.value.$invalid){
-      let formData = new FormData();
-
-      if(frame.file){
-        formData.append('frame[file]', frame.file)
-      }
-      formData.append('frame[name]', frame.name)
-      formData.append('frame[tag_list]', frame.tag_list)
-      formData.append('frame[comment]', frame.comment)
-      formData.append('frame[shooted_at]',frame.shooted_at)
+    if(frame.file){
+      formData.append('frame[file]', frame.file)
+    }
+    formData.append('frame[name]', frame.name)
+    formData.append('frame[tag_list]', frame.tag_list)
+    formData.append('frame[comment]', frame.comment)
+    formData.append('frame[shooted_at]',frame.shooted_at)
 
       //console.log(login_user.value.token)
 
-      const { data, error } = await useAsyncData('createFrame', () =>
-        $fetch('/api/frames/', {
-          method: 'post',
-          body: formData,
-          headers: {
-            'Accept-Language' : locale.value,
-            Authorization: `Bearer ${login_user.value.token}`
-          }
-        })
-      )
+    const { data, error } = await useAsyncData('createFrame', () =>
+      $fetch('/api/frames/', {
+        method: 'post',
+        body: formData,
+        headers: {
+          'Accept-Language' : locale.value,
+          Authorization: `Bearer ${login_user.value.token}`
+        }
+      })
+    )
 
-      const json_data: any = data.value
+    clearErrorMessages()
 
-      if (json_data && json_data.data){
-        frame.id = json_data.data.id
-      } else if (json_data && json_data.errors){
-        const errors = json_data.errors
+    const json_data: any = data.value
 
-        setErrorMessages(errors)
-      } else if (error.value) {
-        navigateLogoutTo('/')
-      }
+    if (json_data && json_data.data){
+      frame.id = json_data.data.id
+    } else if (json_data && json_data.errors){
+      const errors = json_data.errors
+
+      setErrorMessages(errors)
+    } else if (error.value) {
+      navigateLogoutTo('/')
     }
   }
 
@@ -159,6 +151,12 @@ export const useFrame = () => {
     }
   }
 
+  const clearErrorMessages = () => {
+    error_messages.file = []
+    error_messages.name = []
+    error_messages.tags = []
+  }
+
   const isSuccess = () => {
     let result: boolean = true
 
@@ -173,44 +171,39 @@ export const useFrame = () => {
 
   const updateFrame = async () => {
 
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
+    const postData = {
+      frame: {
+        name: frame.name,
+        tag_list: frame.tag_list,
+        comment: frame.comment,
+        shooted_at: frame.shooted_at
+      }
+    }
 
-    //console.log(frame)
-    if(!v$.value.$invalid){
-      const postData = {
-        frame: {
-          name: frame.name,
-          tag_list: frame.tag_list,
-          comment: frame.comment,
-          shooted_at: frame.shooted_at
+    //console.log(login_user.value.token)
+
+    const { data, error } = await useAsyncData('updateFrame', () =>
+      $fetch(`/api/frames/${frame.id}`, {
+        method: 'put',
+        body: postData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept-Language' : locale.value,
+          Authorization: `Bearer ${login_user.value.token}`
         }
-      }
+      })
+    )
 
-      //console.log(login_user.value.token)
+    clearErrorMessages()
 
-      const { data, error } = await useAsyncData('updateFrame', () =>
-        $fetch(`/api/frames/${frame.id}`, {
-          method: 'put',
-          body: postData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language' : locale.value,
-            Authorization: `Bearer ${login_user.value.token}`
-          }
-        })
-      )
+    const json_data: any = data.value
 
-      const json_data: any = data.value
+    if (json_data && !json_data.data && json_data.errors) {
+      const errors = json_data.errors
 
-      if (json_data && !json_data.data && json_data.errors) {
-        const errors = json_data.errors
-
-        setErrorMessages(errors)
-      }else if (error.value) {
-        navigateLogoutTo('/')
-      }
+      setErrorMessages(errors)
+    }else if (error.value) {
+      navigateLogoutTo('/')
     }
   }
 
@@ -237,6 +230,7 @@ export const useFrame = () => {
   }
 
   return {
-    getFrame, frame, frameId, v$, updateFrame, createFrame, deleteFrame, error_messages, isSuccess
+    getFrame, frame, frameId, frm_rules, updateFrame, createFrame, deleteFrame,
+    error_messages, isSuccess, locale
   }
 }

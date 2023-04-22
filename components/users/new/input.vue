@@ -88,7 +88,11 @@
 </template>
 
 <script lang="ts" setup>
-  const { signup_params, suv$, signup, error_messages, isSuccess } = useLoginUser()
+  import { useVuelidate } from '@vuelidate/core'
+
+  const { signup_params, su_rules, signup, error_messages, isSuccess, locale } = useLoginUser()
+
+  const suv$ = useVuelidate(su_rules, signup_params)
 
   const onSelectFile = ( event: Event ) => {
     const target = event.target as HTMLInputElement
@@ -118,9 +122,16 @@
   }
 
   const onSignupClick= async () =>{
-    await signup()
-    if(!suv$.value.$invalid && isSuccess()){
-      navigateTo('/')
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await suv$.value.$validate();
+
+    if(!suv$.value.$invalid){
+      await signup()
+
+      if(isSuccess()){
+        navigateTo('/')
+      }
     }
   }
 

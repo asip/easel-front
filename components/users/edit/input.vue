@@ -107,7 +107,11 @@
 </template>
 
 <script setup lang="ts">
-  const { login_user, user, v$, setUser, updateProfile, error_messages, isSuccess } = useLoginUser()
+  import { useVuelidate } from '@vuelidate/core'
+
+  const { login_user, user, usr_rules, setUser, updateProfile, error_messages, isSuccess, locale } = useLoginUser()
+
+  const v$ = useVuelidate(usr_rules, user)
 
   setUser(login_user)
 
@@ -139,9 +143,16 @@
   }
 
   const onUpdateClick= async () =>{
-    await updateProfile()
-    if(!v$.value.$invalid && isSuccess()){
-      navigateTo('/account/profile')
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await v$.value.$validate();
+
+    if(!v$.value.$invalid){
+      await updateProfile()
+
+      if(isSuccess()){
+        navigateTo('/account/profile')
+      }
     }
   }
 

@@ -59,18 +59,29 @@
 </template>
 
 <script setup lang="ts">
+  import { useVuelidate } from '@vuelidate/core'
   import Tagify from '@yaireo/tagify'
 
-  const { frame, v$, updateFrame, isSuccess } = inject('framer') as any
+  const { frame, frm_rules, updateFrame, isSuccess, locale } = inject('framer') as any
+
+  const v$ = useVuelidate(frm_rules, frame)
 
   //console.log(frame)
   //console.log(frame.tags)
   //console.log(frame.tag_list)
 
   const onEditClick = async () => {
-    await updateFrame()
-    if(!v$.value.$invalid && isSuccess()){
-      navigateTo(`/frames/${frame?.id}`)
+    // @ts-ignore
+    i18n.global.locale.value = locale.value
+    const result = await v$.value.$validate();
+
+    //console.log(frame)
+    if(!v$.value.$invalid){
+      await updateFrame()
+
+      if(isSuccess()){
+        navigateTo(`/frames/${frame?.id}`)
+      }
     }
   }
 
