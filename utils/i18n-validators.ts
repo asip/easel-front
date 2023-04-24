@@ -13,6 +13,7 @@ export const i18n = createI18n({
         email: "is invalid format.",
         minLength: "More than {min} characters.",
         maxLength: "are limited to {max} characters.",
+        sameAs: "Passwords don't match.",
         tagLength: "are limited to 10 characters."
       }
     },
@@ -23,6 +24,7 @@ export const i18n = createI18n({
         minLength: "{min}文字以上です。",
         maxLength: "{max}文字までです。",
         tagArrayLength: "５つまでです。",
+        sameAs: "パスワードとパスワード(確認)の入力が一致しません。",
         tagLength: "10文字までです。"
       },
     }
@@ -44,6 +46,10 @@ export const minLength = withI18nMessage(validators.minLength, {
 export const maxLength = withI18nMessage(validators.maxLength, {
   withArguments: true,
 });
+
+export const sameAs = withI18nMessage(validators.sameAs, {
+  withArguments: true,
+})
 
 export let tagArrayLength = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },

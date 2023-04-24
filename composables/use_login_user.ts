@@ -1,5 +1,5 @@
 
-import { required ,email, minLength, maxLength } from '~~/utils/i18n-validators'
+import { required ,email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import {useLocale} from "~/composables/use_locale";
 
 export interface User {
@@ -24,20 +24,6 @@ export interface SignupParams {
   email: string
   password: string
   password_confirmation: string
-}
-
-const su_rules = {
-  name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-  email: { required, email },
-  password: { required, minLength: minLength(3) },
-  password_confirmation: { required }
-}
-
-const usr_rules = {
-  name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-  email: { required, email },
-  password: {},
-  password_confirmation: {}
 }
 
 export const useLoginUser = () => {
@@ -108,6 +94,24 @@ export const useLoginUser = () => {
   const access_token = useCookie('access_token')
 
   const { locale } = useLocale()
+
+  const su_rules = computed(() => {
+    return  {
+      name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+      email: { required, email },
+      password: { required, minLength: minLength(3) },
+      password_confirmation: { required, sameAs: sameAs(signup_params.password) }
+    }
+  })
+
+  const usr_rules = computed(() => {
+    return {
+      name: { required, minLength: minLength(3), maxLength: maxLength(40) },
+      email: { required, email },
+      password: {},
+      password_confirmation: { sameAs: sameAs(user.value.password) }
+    }
+  })
 
   const signup = async () => {
 
