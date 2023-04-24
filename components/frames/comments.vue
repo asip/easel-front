@@ -1,5 +1,5 @@
 <template>
-  <div v-for="comment in comments as Comment[]">
+  <div v-for="(comment, idx) in comments as Comment[]" :key="comment.id">
     <div class="card">
       <div class="card-block">
         <div class="row d-flex">
@@ -14,7 +14,7 @@
               <div class="badge rounded-pill bg-light text-info">{{ comment.updated_at }}</div>
             </div>
             <div class="float-end" v-show="logged_in && comment.user_id == login_user.id">
-              <button class="btn btn-link btn-sm" v-on:click="onDeleteClick(comment)">{{ $t('action.model.delete') }}</button>&nbsp;
+              <button class="btn btn-link btn-sm" v-on:click="onDeleteClick(comment, idx)">{{ $t('action.model.delete') }}</button>&nbsp;
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
     return sanitizeHtml(row.body).replace(/\n/g, '<br>');
   };
 
-  const onDeleteClick = async (comment: Comment) => {
-    await deleteComment(comment)
+  const onDeleteClick = async (comment: Comment, idx: number) => {
+    await deleteComment(comment, idx)
   }
 </script>

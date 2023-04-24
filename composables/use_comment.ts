@@ -101,6 +101,8 @@ export function useComment() {
       )
     )
 
+    clearErrorMessages()
+
     const json_data: any = data.value
 
     if (json_data && json_data.data) {
@@ -153,7 +155,7 @@ export function useComment() {
     return result
   }
 
-  const deleteComment = async (comment: any) => {
+  const deleteComment = async (comment: any, idx: number) => {
     const {data, error} = await useAsyncData('delete_comment', () =>
       $fetch(`/api/comments/${comment.id}`,
         {
@@ -176,14 +178,13 @@ export function useComment() {
     }
 
     if(isSuccess()){
-      comments.splice(0, comments.length);
-      await getComments()
+      comments.splice(idx, 1);
     }
   };
 
   return {
     comment, comments, error_messages ,
     getComments, cm_rules, createComment, deleteComment,
-    locale
+    isSuccess ,locale
   }
 }
