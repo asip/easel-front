@@ -12,7 +12,9 @@
       client_id: googleClientID,
       callback: handleCredentialResponse, //method to run after user clicks the Google sign in button
     });
+
     google.accounts.id.renderButton(
+      // @ts-ignore
       document.getElementById("googleButton"),
       { theme: "outline", size: "large" } // customization attributes
     );
