@@ -8,17 +8,18 @@
   const { login_with_google } = useLoginUser()
 
   onMounted(() => {
-    google.accounts.id.initialize({
-      client_id: googleClientID,
-      callback: handleCredentialResponse, //method to run after user clicks the Google sign in button
-    });
-
-    google.accounts.id.renderButton(
-      // @ts-ignore
-      document.getElementById("googleButton"),
-      { theme: "outline", size: "large" } // customization attributes
-    );
-    google.accounts.id.prompt(); // also display the One Tap dialog
+    let googleButton = document.getElementById("googleButton")
+    if(googleButton){
+      google.accounts.id.initialize({
+        client_id: googleClientID,
+        callback: handleCredentialResponse, //method to run after user clicks the Google sign in button
+      });
+      google.accounts.id.renderButton(
+        googleButton,
+        { type: "standard",theme: "outline", size: "large" } // customization attributes
+      );
+      google.accounts.id.prompt(); // also display the One Tap dialog
+    }
   })
 
   const handleCredentialResponse = async (response: any) => {
