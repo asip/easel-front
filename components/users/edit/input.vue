@@ -6,10 +6,10 @@
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
-              <td style="width: 25%;">
+              <td style="width: 30%;">
                 <label for="image" class="col-form-label">{{ $t('model.user.image') }}：</label>
               </td>
-              <td style="width: 75%;">
+              <td style="width: 70%;">
                 <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
                 <div v-for="message of error_messages.image">
                   <div>{{ message }}</div>
