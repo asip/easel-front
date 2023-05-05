@@ -2,10 +2,10 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@nuxt/image-edge':
-    specifier: ^1.0.0-28020728.5df24eb
+    specifier: 1.0.0-28050764.aaee7ac
     version: 1.0.0-28050764.aaee7ac
   '@nuxtjs/i18n':
-    specifier: ^8.0.0-beta.11
+    specifier: 8.0.0-beta.11
     version: 8.0.0-beta.11(vue@3.2.47)
   '@popperjs/core':
     specifier: ^2.11.7
@@ -35,7 +35,7 @@ dependencies:
     specifier: ^5.2.3
     version: 5.2.3(@popperjs/core@2.11.7)
   bootstrap-icons:
-    specifier: ^1.10.4
+    specifier: ^1.10.5
     version: 1.10.5
   cdate:
     specifier: ^0.0.5
@@ -44,19 +44,19 @@ dependencies:
     specifier: ^2.4.0
     version: 2.4.0
   sanitize-html:
-    specifier: ^2.8.1
+    specifier: ^2.10.0
     version: 2.10.0
   sass:
-    specifier: ^1.60.0
+    specifier: ^1.62.1
     version: 1.62.1
   spotlight.js:
     specifier: ^0.7.8
     version: 0.7.8
   v-calendar:
-    specifier: ^3.0.0-alpha.8
+    specifier: ^3.0.3
     version: 3.0.3(@popperjs/core@2.11.7)(vue@3.2.47)
   vue-i18n:
-    specifier: ^9.3.0-beta.14-77e850b
+    specifier: 9.3.0-beta.14-77e850b
     version: 9.3.0-beta.14-77e850b(vue@3.2.47)
   vuejs-paginate-next:
     specifier: ^1.0.2
