@@ -30,23 +30,23 @@ export const useUser = () => {
       })
     )
 
-    const json_data: any = data.value
+    const { data: userJson } = data.value as any
     //console.log(json_data)
 
-    if(json_data && json_data.data){
+    if(userJson){
       //console.log('test3')
-      setJson2User(json_data)
+      setJson2User(userJson)
     }
   }
 
-  const setJson2User = (json_data: any) => {
-    user.name = json_data.data.attributes.name
-    user.email = json_data.data.attributes.email
-    user.token = json_data.data.attributes.token
-    user.id = json_data.data.id
-    user.image_thumb_url = json_data.data.attributes.image_thumb_url
-    user.image_one_url = json_data.data.attributes.image_one_url
-    user.image_three_url = json_data.data.attributes.image_three_url
+  const setJson2User = (userJson: any) => {
+    user.name = userJson.attributes.name
+    user.email = userJson.attributes.email
+    user.token = userJson.attributes.token
+    user.id = userJson.id
+    user.image_thumb_url = userJson.attributes.image_thumb_url
+    user.image_one_url = userJson.attributes.image_one_url
+    user.image_three_url = userJson.attributes.image_three_url
   }
 
   return { user, getUser }
