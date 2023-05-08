@@ -17,10 +17,10 @@ export function useFollow() {
       })
     )
 
-    const json_data: any = data.value
+    const { following: followingValue }  = data.value as any
 
-    if(json_data){
-      following.value = json_data.following
+    if(followingValue !=null || followingValue != undefined){
+      following.value = followingValue
     } else if (error.value){
       navigateLogoutTo('/')
     }
