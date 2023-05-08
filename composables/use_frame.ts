@@ -69,28 +69,28 @@ export const useFrame = () => {
       })
     )
 
-    const json_data: any = data.value
+    const { data: frameJson } = data.value as any
     //console.log(json_data)
 
-    if(json_data && json_data.data){
-      setJson2Frame(json_data)
+    if(frameJson){
+      setJson2Frame(frameJson)
     }
   }
 
-  const setJson2Frame = (json_data: any) => {
-    frame.id = json_data.data.id
-    frame.user_id = json_data.data.attributes.user_id
-    frame.user_name = json_data.data.attributes.user_name
-    frame.name = json_data.data.attributes.name
-    frame.comment = json_data.data.attributes.comment
-    frame.tag_list = json_data.data.attributes.tag_list
-    frame.tags = json_data.data.attributes.tags
-    frame.shooted_at = json_data.data.attributes.shooted_at
-    frame.shooted_at_html = json_data.data.attributes.shooted_at_html
-    frame.updated_at = json_data.data.attributes.updated_at
-    frame.file_url = json_data.data.attributes.file_url
-    frame.file_two_url = json_data.data.attributes.file_two_url
-    frame.file_three_url = json_data.data.attributes.file_three_url
+  const setJson2Frame = (frameJson: any) => {
+    frame.id = frameJson.id
+    frame.user_id = frameJson.attributes.user_id
+    frame.user_name = frameJson.attributes.user_name
+    frame.name = frameJson.attributes.name
+    frame.comment = frameJson.attributes.comment
+    frame.tag_list = frameJson.attributes.tag_list
+    frame.tags = frameJson.attributes.tags
+    frame.shooted_at = frameJson.attributes.shooted_at
+    frame.shooted_at_html = frameJson.attributes.shooted_at_html
+    frame.updated_at = frameJson.attributes.updated_at
+    frame.file_url = frameJson.attributes.file_url
+    frame.file_two_url = frameJson.attributes.file_two_url
+    frame.file_three_url = frameJson.attributes.file_three_url
   }
 
   const createFrame = async () => {
@@ -120,13 +120,11 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const json_data: any = data.value
+    const { data: frameJson, errors: errors } = data.value as any
 
-    if (json_data && json_data.data){
-      frame.id = json_data.data.id
-    } else if (json_data && json_data.errors){
-      const errors = json_data.errors
-
+    if (frameJson){
+      frame.id = frameJson.id
+    } else if (errors){
       setErrorMessages(errors)
     } else if (error.value) {
       navigateLogoutTo('/')
@@ -196,11 +194,9 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const json_data: any = data.value
+    const { data: frameJson, errors: errors } = data.value as any
 
-    if (json_data && !json_data.data && json_data.errors) {
-      const errors = json_data.errors
-
+    if (!frameJson && errors) {
       setErrorMessages(errors)
     }else if (error.value) {
       navigateLogoutTo('/')
