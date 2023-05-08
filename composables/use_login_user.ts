@@ -139,12 +139,11 @@ export const useLoginUser = () => {
 
     clearErrorMessages()
 
-    const json_data: any = data.value
+    const { data: userJson, errors: errors } = data.value as any
 
-    //console.log(json_data)
+    //console.log(userJson)
 
-    if (!json_data.data) {
-      const errors = json_data.errors
+    if (!userJson) {
       setErrorMessages(errors)
     }
   }
@@ -165,13 +164,17 @@ export const useLoginUser = () => {
         })
       )
 
-      const json_data: any = data.value
-      //console.log(json_data)
+      const json_data = data.value as any
 
-      if(json_data && json_data.data){
-        //console.log('test3')
-        setJson2LoginUser(json_data)
-        logged_in.value = true
+      if(json_data){
+        const { data: userJson } = json_data
+        //console.log(userJson)
+
+        if(userJson){
+          //console.log('test3')
+          setJson2LoginUser(userJson)
+          logged_in.value = true
+        }
       }
     }
   }
@@ -194,17 +197,17 @@ export const useLoginUser = () => {
       })
     )
 
-    const json_data: any = data.value
+    const { data: userJson, message: message } = data.value as any
 
-    if(json_data.data){
-      setJson2LoginUser(json_data)
+    if(userJson){
+      setJson2LoginUser(userJson)
       logged_in.value = true
       //console.log(login_user.value)
 
       access_token.value = login_user.value.token
       error_message.value = ''
     }else{
-      error_message.value = json_data.message
+      error_message.value = message
       //console.log(error_message.value)
     }
   }
@@ -225,10 +228,10 @@ export const useLoginUser = () => {
       })
     )
 
-    const json_data: any = data.value
+    const { data: userJson } = data.value as any
 
-    if(json_data && json_data.data){
-      setJson2LoginUser(json_data)
+    if(userJson){
+      setJson2LoginUser(userJson)
       logged_in.value = true
       //console.log(login_user.value)
 
@@ -238,15 +241,15 @@ export const useLoginUser = () => {
     error_message.value = ''
   }
 
-  const setJson2LoginUser = (json_data: any)  => {
-    login_user.value.name = json_data.data.attributes.name
-    login_user.value.email = json_data.data.attributes.email
-    login_user.value.token = json_data.data.attributes.token
-    login_user.value.id = json_data.data.id
-    login_user.value.image_thumb_url = json_data.data.attributes.image_thumb_url
-    login_user.value.image_one_url = json_data.data.attributes.image_one_url
-    login_user.value.image_three_url = json_data.data.attributes.image_three_url
-    login_user.value.social_login = json_data.data.attributes.social_login
+  const setJson2LoginUser = (userJson: any)  => {
+    login_user.value.name = userJson.attributes.name
+    login_user.value.email = userJson.attributes.email
+    login_user.value.token = userJson.attributes.token
+    login_user.value.id = userJson.id
+    login_user.value.image_thumb_url = userJson.attributes.image_thumb_url
+    login_user.value.image_one_url = userJson.attributes.image_one_url
+    login_user.value.image_three_url = userJson.attributes.image_three_url
+    login_user.value.social_login = userJson.attributes.social_login
   }
 
   const setUser = (login_user: Ref<User>) => {
@@ -288,14 +291,14 @@ export const useLoginUser = () => {
 
     clearErrorMessages()
 
-    const json_data: any = data.value
+    const { data: userJson, errors: errors } = data.value as any
 
-    //console.log(json_data)
+    //console.log(userJson)
+    //console.log(errors)
 
-    if (json_data && json_data.data) {
-      setJson2LoginUser(json_data)
-    } else if(json_data && json_data.errors) {
-      const errors = json_data.errors
+    if (userJson) {
+      setJson2LoginUser(userJson)
+    } else if(errors) {
       setErrorMessages(errors)
     } else if (error.value) {
       navigateLogoutTo('/')
@@ -362,9 +365,9 @@ export const useLoginUser = () => {
       })
     )
 
-    const json_data: any = data.value
+    const { data: userJson } = data.value as any
 
-    if(json_data && json_data.data) {
+    if(userJson) {
       navigateLogoutTo('/')
     } else if(error.value) {
       navigateLogoutTo('/')
