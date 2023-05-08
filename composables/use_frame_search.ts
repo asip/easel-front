@@ -38,7 +38,8 @@ export const useFrameSearch = () => {
     )
 
     const {data: frameList, meta: meta} = data.value as any
-    //console.log(json_data)
+    //console.log(frameList)
+    //console.log(meta)
 
     if(frameList){
       frames.value.splice(0, frames.value.length);

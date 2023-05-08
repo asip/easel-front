@@ -31,7 +31,7 @@ export const useUser = () => {
     )
 
     const { data: userJson } = data.value as any
-    //console.log(json_data)
+    //console.log(userJson)
 
     if(userJson){
       //console.log('test3')

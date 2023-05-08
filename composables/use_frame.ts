@@ -70,7 +70,7 @@ export const useFrame = () => {
     )
 
     const { data: frameJson } = data.value as any
-    //console.log(json_data)
+    //console.log(frameJson)
 
     if(frameJson){
       setJson2Frame(frameJson)
@@ -222,7 +222,7 @@ export const useFrame = () => {
       navigateTo('/')
     }
 
-    //const json_data = data.value
+    //const { data: frameJson } = data.value
   }
 
   return {
