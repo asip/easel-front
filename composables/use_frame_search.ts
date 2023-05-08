@@ -37,22 +37,19 @@ export const useFrameSearch = () => {
       })
     )
 
-    const json_data: any = data.value
+    const {data: frameList, meta: meta} = data.value as any
     //console.log(json_data)
 
-    if(json_data){
-      if(json_data.data){
-        const frame_list = json_data.data
-        frames.value.splice(0, frames.value.length);
-        for (let frame of frame_list as []) {
-          //console.log(comment);
-          frames.value.push(createFrameFromJson(frame));
-        }
-        //console.log(frames)
+    if(frameList){
+      frames.value.splice(0, frames.value.length);
+      for (let frame of frameList as []) {
+        //console.log(comment);
+        frames.value.push(createFrameFromJson(frame));
       }
-      if(json_data.meta){
-        frame_query.value.pages = json_data.meta.pagination.pages
-      }
+      //console.log(frames)
+    }
+    if(meta){
+      frame_query.value.pages = meta.pagination.pages
     }
   }
 
