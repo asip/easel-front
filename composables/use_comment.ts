@@ -52,14 +52,13 @@ export function useComment() {
       })
     )
 
-    const json_data: any = data.value
+    const { data: commentList } = data.value as any
     //console.log(json_data)
 
-    if (json_data && json_data.data) {
-      const comment_list = json_data.data;
+    if (commentList) {
       //console.log(comment_list);
       comments.splice(0, comments.length);
-      for (let comment of comment_list) {
+      for (let comment of commentList) {
         //console.log(comment);
         comments.push(createCommentFromJson(comment));
       }
@@ -87,7 +86,7 @@ export function useComment() {
       }
     }
 
-    const {data, error} = await useAsyncData('post_comment', () =>
+    const { data , error }  = await useAsyncData('post_comment', () =>
       $fetch(`/api/frames/${comment.frame_id}/comments`,
         {
           method: 'post',
@@ -103,13 +102,11 @@ export function useComment() {
 
     clearErrorMessages()
 
-    const json_data: any = data.value
+    const { data: commentJson, errors: errors } = data.value as any
 
-    if (json_data && json_data.data) {
+    if (commentJson) {
       comment.body = '';
-    }else if(json_data && json_data.errors){
-      const errors = json_data.errors
-
+    }else if(errors){
       setErrorMessages(errors)
     } else if (error.value) {
       clearErrorMessages()
@@ -156,7 +153,7 @@ export function useComment() {
   }
 
   const deleteComment = async (comment: any, idx: number) => {
-    const {data, error} = await useAsyncData('delete_comment', () =>
+    const { data, error } = await useAsyncData('delete_comment', () =>
       $fetch(`/api/comments/${comment.id}`,
         {
           method: 'delete',
