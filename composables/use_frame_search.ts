@@ -24,7 +24,7 @@ export const useFrameSearch = () => {
   const { backendApiURL } = useConstants()
 
   const searchFrame = async () => {
-    const { data } = await useAsyncData('searchFrame', () =>
+    const { data } = await useAsyncData('search_frame', () =>
       $fetch(`${backendApiURL}/frames`, {
         method: 'get',
         query: {

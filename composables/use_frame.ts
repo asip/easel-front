@@ -60,7 +60,7 @@ export const useFrame = () => {
   const { login_user, navigateLogoutTo } = useLoginUser()
 
   const getFrame = async (id: string ) => {
-    const { data } = await useAsyncData('getFrame', () =>
+    const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL}/frames/${id}`, {
         method: 'get',
         headers: {
@@ -107,7 +107,7 @@ export const useFrame = () => {
 
       //console.log(login_user.value.token)
 
-    const { data, error } = await useAsyncData('createFrame', () =>
+    const { data, error } = await useAsyncData('create_frame', () =>
       $fetch('/api/frames/', {
         method: 'post',
         body: formData,
@@ -180,7 +180,7 @@ export const useFrame = () => {
 
     //console.log(login_user.value.token)
 
-    const { data, error } = await useAsyncData('updateFrame', () =>
+    const { data, error } = await useAsyncData('update_frame', () =>
       $fetch(`/api/frames/${frame.id}`, {
         method: 'put',
         body: postData,
@@ -206,7 +206,7 @@ export const useFrame = () => {
   const deleteFrame = async () => {
     //console.log(frame.id)
 
-    const { data, error } = await useAsyncData('deleteFrame', () =>
+    const { data, error } = await useAsyncData('delete_frame', () =>
       $fetch(`/api/frames/${frame.id}`, {
         method: 'delete',
         headers: {

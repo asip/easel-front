@@ -154,7 +154,7 @@ export const useLoginUser = () => {
     //console.log(login_user.value.token)
 
     if(login_user.value.token) {
-      const { data } = await useAsyncData('profile', () =>
+      const { data } = await useAsyncData('authenticate', () =>
         $fetch(`${backendApiURL}/profile`, {
           method: 'get',
           headers: {
@@ -218,7 +218,7 @@ export const useLoginUser = () => {
       credential: response.credential
     }
 
-    const { data } = await useAsyncData('login', () =>
+    const { data } = await useAsyncData('login_with_google', () =>
       $fetch(`${backendApiURL}/oauth/sessions/`, {
         method: 'post',
         body: postData,
@@ -277,7 +277,7 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error } = await useAsyncData('updateProfile', () =>
+    const { data, error } = await useAsyncData('update_profile', () =>
       $fetch('/api/profile/', {
         method: 'put',
         body: formData,

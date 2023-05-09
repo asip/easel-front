@@ -17,17 +17,20 @@ export function useFollow() {
       })
     )
 
-    const { following: followingValue }  = data.value as any
+    const json_data = data.value as any
+    if(json_data){
+      const { following: followingValue } = json_data
 
-    if(followingValue !=null || followingValue != undefined){
-      following.value = followingValue
+      if(followingValue != null || followingValue != undefined){
+        following.value = followingValue
+      }
     } else if (error.value){
       navigateLogoutTo('/')
     }
   }
 
   const follow = async (userId: number | null) => {
-    const { data, error } = await useAsyncData('getFrame', () =>
+    const { data, error } = await useAsyncData('follow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'post',
         headers: {
@@ -45,7 +48,7 @@ export function useFollow() {
   }
 
   const unfollow = async (userId: number | null) => {
-    const { data, error } = await useAsyncData('getFrame', () =>
+    const { data, error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',
         headers: {
