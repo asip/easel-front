@@ -9,7 +9,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "^3.4.3"
+    "nuxt": "^3.4.3",
+    "@nuxt/devtools": "0.4.6"
   },
   "dependencies": {
     "@nuxt/image-edge": "1.0.0-28050764.aaee7ac",

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/image-edge',
     '@nuxtjs/i18n'
   ],
+
   i18n: {
     lazy: true,
     defaultLocale: 'en',
@@ -29,6 +30,7 @@ export default defineNuxtConfig({
       }
     ]
   },
+
   // @ts-ignore
   runtimeConfig: {
     public: {
@@ -37,8 +39,11 @@ export default defineNuxtConfig({
       googleClientId: ''
     }
   },
+
   css: [
     "@/assets/styles/main.scss",
     "bootstrap-icons/font/bootstrap-icons.css"
-  ]
+  ],
+
+  devtools: true
 })
