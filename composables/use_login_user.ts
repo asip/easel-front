@@ -79,7 +79,7 @@ export const useLoginUser = () => {
     return false
   })
 
-  const error_message = ref('')
+  const login_messages = ref<String[]>([])
 
   const { backendApiURL } = useConstants()
 
@@ -197,7 +197,7 @@ export const useLoginUser = () => {
       })
     )
 
-    const { data: userJson, message: message } = data.value as any
+    const { data: userJson, messages: messages } = data.value as any
 
     if(userJson){
       setJson2LoginUser(userJson)
@@ -205,10 +205,10 @@ export const useLoginUser = () => {
       //console.log(login_user.value)
 
       access_token.value = login_user.value.token
-      error_message.value = ''
+      login_messages.value = []
     }else{
-      error_message.value = message
-      //console.log(error_message.value)
+      login_messages.value = messages
+      //console.log(login_messages.value)
     }
   }
 
@@ -409,7 +409,7 @@ export const useLoginUser = () => {
     login_with_google,
     logout,
     navigateLogoutTo,
-    error_message,
+    login_messages,
     usr_rules,
     su_rules,
     error_messages,

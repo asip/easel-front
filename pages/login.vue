@@ -35,9 +35,9 @@
             </table>
           </div>
         </div>
-        <div class="row d-flex justify-content-sm-center">
+        <div v-for="message of login_messages" class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
-            {{ error_message }}
+            {{ message }}<br>
           </div>
         </div>
         <br>
@@ -56,11 +56,11 @@
 </template>
 
 <script lang="ts" setup>
-  const { login_params, login, error_message } = useLoginUser();
+  const { login_params, login, login_messages } = useLoginUser();
 
   const onLoginClick = async () => {
     await login()
-    if(error_message.value == '') {
+    if(login_messages.value.length == 0) {
       navigateTo('/')
     }
   }
