@@ -35,7 +35,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       backendOriginURL: 'http://localhost:3000',
-      backendApiURL: 'http://localhost:3000/api/v1',
       googleClientId: ''
     }
   },
