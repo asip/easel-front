@@ -238,7 +238,7 @@ export const useLoginUser = () => {
       access_token.value = login_user.value.token
     }
 
-    error_message.value = ''
+    login_messages.value = []
   }
 
   const setJson2LoginUser = (userJson: any)  => {
