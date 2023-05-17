@@ -20,6 +20,14 @@ Make sure to install the dependencies:
 pnpm install --shamefully-hoist
 ```
 
+## Setup environment variables
+
+Make sure to set environment variables
+
+```bash
+cp .env.sample .env
+```
+
 ## Development Server
 
 Start the development server on http://localhost:3030
