@@ -58,7 +58,7 @@
     if(login_messages.value.length == 0) {
       navigateTo('/')
     } else{
-      for(let message of login_messages.value){
+      for(let message of login_messages.value.reverse()){
         setTimeout(
           () => {
             $toast.error(message)
