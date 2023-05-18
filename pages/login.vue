@@ -1,5 +1,4 @@
 <template>
-  <Toaster position="top-right" expand :visibleToasts="9" :duration="3000" />
   <br>
   <UsersLoginGoogle />
   <form>
