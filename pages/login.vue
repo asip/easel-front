@@ -1,4 +1,5 @@
 <template>
+  <Toaster position="top-right" expand :visibleToasts="9" :duration="3000" />
   <br>
   <UsersLoginGoogle />
   <form>
@@ -35,12 +36,6 @@
             </table>
           </div>
         </div>
-        <div v-for="message of login_messages" class="row d-flex justify-content-sm-center">
-          <div class="form-group col-sm-6">
-            {{ message }}<br>
-          </div>
-        </div>
-        <br>
         <div class="row d-flex justify-content-sm-center">
           <div class="form-group col-sm-6">
             &nbsp;
@@ -56,12 +51,20 @@
 </template>
 
 <script lang="ts" setup>
+  const { $toast } = useNuxtApp() as any
   const { login_params, login, login_messages } = useLoginUser();
 
   const onLoginClick = async () => {
     await login()
     if(login_messages.value.length == 0) {
       navigateTo('/')
+    } else{
+      for(let message of login_messages.value){
+        setTimeout(
+          () => {
+            $toast.error(message)
+          }, 1000)
+      }
     }
   }
 </script>

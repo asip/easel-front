@@ -58,6 +58,9 @@ dependencies:
   vue-i18n:
     specifier: 9.3.0-beta.17
     version: 9.3.0-beta.17(vue@3.3.2)
+  vue-sonner:
+    specifier: ^0.3.2
+    version: 0.3.2
   vuejs-paginate-next:
     specifier: ^1.0.2
     version: 1.0.2
@@ -6610,6 +6613,10 @@ packages:
       vue: ^3.2.0
     dependencies:
       vue: 3.3.2
+    dev: false
+
+  /vue-sonner@0.3.2:
+    resolution: {integrity: sha512-T0QZhtG1r9r5Ohu3xLqwUdgCHfurZwtHTEb/nTmRs/IPWEEscC/c2/ZjLhhtJ9ldz/lrAsutt5xfRghaLz1njw==}
     dev: false
 
   /vue@3.3.2:
