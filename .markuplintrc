@@ -10,6 +10,7 @@
   },
   "rules": {
     "require-accessible-name": false,
-    "no-hard-code-id": false
+    "no-hard-code-id": false,
+    "required-attr": false
   }
 }
