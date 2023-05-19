@@ -1,5 +1,5 @@
-import { required,minLength , maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
-import {useLocale} from "~/composables/use_locale";
+import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
+import { useLocale } from '~/composables/use_locale'
 
 export interface Frame {
   id: number | null | undefined
@@ -25,8 +25,7 @@ const frm_rules = {
 }
 
 export const useFrame = () => {
-
-  let frame: Frame = reactive<Frame>({
+  const frame: Frame = reactive<Frame>({
     id: null,
     user_id: null,
     user_name: '',
@@ -59,7 +58,7 @@ export const useFrame = () => {
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
 
-  const getFrame = async (id: string ) => {
+  const getFrame = async (id: string) => {
     const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL}/frames/${id}`, {
         method: 'get',
@@ -70,9 +69,9 @@ export const useFrame = () => {
     )
 
     const { data: frameJson } = data.value as any
-    //console.log(frameJson)
+    // console.log(frameJson)
 
-    if(frameJson){
+    if (frameJson) {
       setJson2Frame(frameJson)
     }
   }
@@ -94,25 +93,24 @@ export const useFrame = () => {
   }
 
   const createFrame = async () => {
+    const formData = new FormData()
 
-    let formData = new FormData();
-
-    if(frame.file){
+    if (frame.file) {
       formData.append('frame[file]', frame.file)
     }
     formData.append('frame[name]', frame.name)
     formData.append('frame[tag_list]', frame.tag_list)
     formData.append('frame[comment]', frame.comment)
-    formData.append('frame[shooted_at]',frame.shooted_at)
+    formData.append('frame[shooted_at]', frame.shooted_at)
 
-      //console.log(login_user.value.token)
+    // console.log(login_user.value.token)
 
     const { data, error } = await useAsyncData('create_frame', () =>
       $fetch('/api/frames/', {
         method: 'post',
         body: formData,
         headers: {
-          'Accept-Language' : locale.value,
+          'Accept-Language': locale.value,
           Authorization: `Bearer ${login_user.value.token}`
         }
       })
@@ -120,11 +118,11 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const { data: frameJson, errors: errors } = data.value as any
+    const { data: frameJson, errors } = data.value as any
 
-    if (frameJson){
+    if (frameJson) {
       frame.id = frameJson.id
-    } else if (errors){
+    } else if (errors) {
       setErrorMessages(errors)
     } else if (error.value) {
       navigateLogoutTo('/')
@@ -132,17 +130,17 @@ export const useFrame = () => {
   }
 
   const setErrorMessages = (errors: any) => {
-    if(errors.file){
+    if (errors.file) {
       error_messages.file = errors.file
     } else {
       error_messages.file = []
     }
-    if(errors.name){
+    if (errors.name) {
       error_messages.name = errors.name
     } else {
       error_messages.name = []
     }
-    if(errors.tag_list){
+    if (errors.tag_list) {
       error_messages.tags = errors.tag_list
     } else {
       error_messages.tags = []
@@ -156,11 +154,11 @@ export const useFrame = () => {
   }
 
   const isSuccess = () => {
-    let result: boolean = true
+    let result = true
 
-    if(error_messages.file.length > 0 || error_messages.name.length > 0 ||
-      error_messages.tags.length> 0
-    ){
+    if (error_messages.file.length > 0 || error_messages.name.length > 0 ||
+      error_messages.tags.length > 0
+    ) {
       result = false
     }
 
@@ -168,7 +166,6 @@ export const useFrame = () => {
   }
 
   const updateFrame = async () => {
-
     const postData = {
       frame: {
         name: frame.name,
@@ -178,7 +175,7 @@ export const useFrame = () => {
       }
     }
 
-    //console.log(login_user.value.token)
+    // console.log(login_user.value.token)
 
     const { data, error } = await useAsyncData('update_frame', () =>
       $fetch(`/api/frames/${frame.id}`, {
@@ -186,7 +183,7 @@ export const useFrame = () => {
         body: postData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Accept-Language' : locale.value,
+          'Accept-Language': locale.value,
           Authorization: `Bearer ${login_user.value.token}`
         }
       })
@@ -194,39 +191,47 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const { data: frameJson, errors: errors } = data.value as any
+    const { data: frameJson, errors } = data.value as any
 
     if (!frameJson && errors) {
       setErrorMessages(errors)
-    }else if (error.value) {
+    } else if (error.value) {
       navigateLogoutTo('/')
     }
   }
 
   const deleteFrame = async () => {
-    //console.log(frame.id)
+    // console.log(frame.id)
 
     const { data, error } = await useAsyncData('delete_frame', () =>
       $fetch(`/api/frames/${frame.id}`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Authorization': `Bearer ${login_user.value.token}`
+          Authorization: `Bearer ${login_user.value.token}`
         }
       })
     )
 
-    if(error.value){
+    if (error.value) {
       navigateLogoutTo('/')
-    }else{
+    } else {
       navigateTo('/')
     }
 
-    //const { data: frameJson } = data.value
+    // const { data: frameJson } = data.value
   }
 
   return {
-    getFrame, frame, frameId, frm_rules, updateFrame, createFrame, deleteFrame,
-    error_messages, isSuccess, locale
+    getFrame,
+    frame,
+    frameId,
+    frm_rules,
+    updateFrame,
+    createFrame,
+    deleteFrame,
+    error_messages,
+    isSuccess,
+    locale
   }
 }

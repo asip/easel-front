@@ -14,22 +14,28 @@
       <form>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <textarea v-model="comment.body" class="form-control col-12"></textarea>
+            <textarea v-model="comment.body" class="form-control col-12" />
           </div>
         </div>
         <div class="d-flex justify-content-center">
           <div class="col-10">
             <div v-for="error of v$.body.$errors" :key="error.$uid">
-              <div style="color: red;">{{ error.$message }}</div>
+              <div style="color: red;">
+                {{ error.$message }}
+              </div>
             </div>
             <div v-for="message of error_messages.body">
-              <p style="color: red;">{{$t('model.comment.body')}}{{message}}</p>
+              <p style="color: red;">
+                {{ $t('model.comment.body') }}{{ message }}
+              </p>
             </div>
           </div>
         </div>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <button type="button" class="btn btn-light col-12 form-control" v-on:click="onCommentClick">{{ $t('action.comment.post') }}</button>
+            <button type="button" class="btn btn-light col-12 form-control" @click="onCommentClick">
+              {{ $t('action.comment.post') }}
+            </button>
           </div>
         </div>
       </form>
@@ -40,33 +46,33 @@
 </template>
 
 <script setup lang="ts">
-  import {useVuelidate} from "@vuelidate/core";
+import { useVuelidate } from '@vuelidate/core'
 
-  const { logged_in } = useLoginUser()
-  const { comment, cm_rules, createComment, error_messages, isSuccess, locale } = inject('commenter') as any
+const { logged_in } = useLoginUser()
+const { comment, cm_rules, createComment, error_messages, isSuccess, locale } = inject('commenter') as any
 
-  const v$ = useVuelidate(cm_rules, comment)
+const v$ = useVuelidate(cm_rules, comment)
 
-  const { frame } = inject('framer') as any
+const { frame } = inject('framer') as any
 
-  comment.frame_id = frame?.id;
+comment.frame_id = frame?.id
 
-  const onCommentClick = async () => {
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
+const onCommentClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  const result = await v$.value.$validate()
 
-    //console.log(v$.value.body.$invalid)
-    //console.log(v$.value.$invalid)
-    //console.log(v$.value.$error)
-    //console.log(v$.value.$errors)
-    //console.log(comment.body)
+  // console.log(v$.value.body.$invalid)
+  // console.log(v$.value.$invalid)
+  // console.log(v$.value.$error)
+  // console.log(v$.value.$errors)
+  // console.log(comment.body)
 
-    if (!v$.value.body.$invalid) {
-      await createComment()
-      if(isSuccess()){
-        v$.value.$reset()
-      }
+  if (!v$.value.body.$invalid) {
+    await createComment()
+    if (isSuccess()) {
+      v$.value.$reset()
     }
   }
+}
 </script>

@@ -1,7 +1,7 @@
-import { useLoginUser } from './use_login_user';
-import { Ref } from "vue";
+import { Ref } from 'vue'
+import { useLoginUser } from './use_login_user'
 
-export function useFollow() {
+export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
   const { backendApiURL } = useConstants()
@@ -18,13 +18,13 @@ export function useFollow() {
     )
 
     const json_data = data.value as any
-    if(json_data){
+    if (json_data) {
       const { following: followingValue } = json_data
 
-      if(followingValue != null || followingValue != undefined){
+      if (followingValue != null || followingValue !== undefined) {
         following.value = followingValue
       }
-    } else if (error.value){
+    } else if (error.value) {
       navigateLogoutTo('/')
     }
   }
@@ -40,7 +40,7 @@ export function useFollow() {
       })
     )
 
-    if (error.value){
+    if (error.value) {
       navigateLogoutTo('/')
     }
 
@@ -58,7 +58,7 @@ export function useFollow() {
       })
     )
 
-    if (error.value){
+    if (error.value) {
       navigateLogoutTo('/')
     }
 

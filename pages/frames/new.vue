@@ -5,7 +5,9 @@
       <div class="card">
         <div class="card-header">
           <div class="float-start">
-            <NuxtLink to="/"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
+            <NuxtLink to="/">
+              <i class="bi bi-arrow-left-circle" />
+            </NuxtLink>
             {{ $t('action.frame.upload') }}
           </div>
         </div>
@@ -21,12 +23,12 @@
 
 <script setup lang="ts">
 
-  const { logged_in } = useLoginUser()
-  const framer = useFrame()
+const { logged_in } = useLoginUser()
+const framer = useFrame()
 
-  if(!logged_in.value ){
-    await navigateTo('/')
-  }
+if (!logged_in.value) {
+  await navigateTo('/')
+}
 
-  provide('framer', framer)
+provide('framer', framer)
 </script>

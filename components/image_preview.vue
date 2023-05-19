@@ -7,14 +7,14 @@
 
 <script setup lang="ts">
 
-  const { backendOriginURL } = useConstants()
-  const model: any = inject('model')
+const { backendOriginURL } = useConstants()
+const model: any = inject('model')
 
-  if(model){
-    if(model.file) {
-      model.preview_url = `${backendOriginURL}${model?.file_three_url}`
-    } else if(model.image) {
-      model.preview_url  = `${backendOriginURL}${model?.image_three_url}`
-    }
+if (model) {
+  if (model.file) {
+    model.preview_url = `${backendOriginURL}${model?.file_three_url}`
+  } else if (model.image) {
+    model.preview_url = `${backendOriginURL}${model?.image_three_url}`
   }
+}
 </script>

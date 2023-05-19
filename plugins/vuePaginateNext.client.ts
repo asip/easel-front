@@ -1,6 +1,6 @@
 // @ts-ignore
-import Paginate from "vuejs-paginate-next";
+import Paginate from 'vuejs-paginate-next'
 
-export default defineNuxtPlugin(nuxtApp => {
+export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Paginate', Paginate)
 })

@@ -1,31 +1,54 @@
 <template>
   <div style="padding-left:5px;">
-    <a class="btn btn-outline-success me-2 me-sm-0" data-bs-toggle="offcanvas" href="#offcanvas-calendar"
-       role="button" aria-expanded="false" aria-controls="offcanvas-calendar">
-      <i class="bi bi-search"></i>
+    <a
+      class="btn btn-outline-success me-2 me-sm-0"
+      data-bs-toggle="offcanvas"
+      href="#offcanvas-calendar"
+      role="button"
+      aria-expanded="false"
+      aria-controls="offcanvas-calendar"
+    >
+      <i class="bi bi-search" />
     </a>
   </div>
   <teleport to="#sidebar-calendar">
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvas-calendar"
-         aria-labelledby="offcanvasCalendarLabel">
+    <div
+      id="offcanvas-calendar"
+      class="offcanvas offcanvas-end"
+      data-bs-scroll="true"
+      tabindex="-1"
+      aria-labelledby="offcanvasCalendarLabel"
+    >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLabel"></h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                :aria-label="$t('action.modal.close')"></button>
+        <h5 id="offcanvasLabel" class="offcanvas-title" />
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          :aria-label="$t('action.modal.close')"
+        />
       </div>
       <div class="offcanvas-body">
         <div class="d-flex justify-content-sm-center">
           <client-only>
-            <v-date-picker v-model="date_word" :masks="masks" :locale="locale"/>
+            <v-date-picker v-model="date_word" :masks="masks" :locale="locale" />
           </client-only>
         </div>
         <br>
         <div class="d-flex justify-content-sm-center">
           <form class="d-flex">
-            <input type="text" v-model="frame_query.word" :placeholder="$t('component.tag_search.placeholder')"
-                   class="form-control me-sm-2">
-            <input type="button" :value="$t('component.tag_search.search')"
-                   class="btn btn-outline-success me-2 me-sm-0" @click="onSearchClick">
+            <input
+              v-model="frame_query.word"
+              type="text"
+              :placeholder="$t('component.tag_search.placeholder')"
+              class="form-control me-sm-2"
+            >
+            <input
+              type="button"
+              :value="$t('component.tag_search.search')"
+              class="btn btn-outline-success me-2 me-sm-0"
+              @click="onSearchClick"
+            >
           </form>
         </div>
       </div>
@@ -34,19 +57,19 @@
 </template>
 
 <script lang="ts" setup>
-  const route = useRoute()
-  const { date_word ,frame_query, searchFrame } = useFrameSearch();
+const route = useRoute()
+const { date_word, frame_query, searchFrame } = useFrameSearch()
 
-  const masks= {
-    input: 'YYYY/MM/DD'
-  }
-  const locale = 'ja-jp'
+const masks = {
+  input: 'YYYY/MM/DD'
+}
+const locale = 'ja-jp'
 
-  const onSearchClick = async () => {
-    frame_query.value.page = 1
-    await searchFrame()
-    if(route.path != '/'){
-      navigateTo('/')
-    }
+const onSearchClick = async () => {
+  frame_query.value.page = 1
+  await searchFrame()
+  if (route.path !== '/') {
+    navigateTo('/')
   }
+}
 </script>

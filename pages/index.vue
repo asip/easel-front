@@ -2,12 +2,16 @@
   <br>
   <div class="row col-sm-12">
     <div v-for="frame in frames" class="card col-sm-3 kadomaru">
-      <NuxtLink :to="`${backendOriginURL}${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;"><img :src="frame.file_two_url" :alt="frame.name" class="card-img-top"></NuxtLink>
+      <NuxtLink :to="`${backendOriginURL}${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;">
+        <img :src="frame.file_two_url" :alt="frame.name" class="card-img-top">
+      </NuxtLink>
       <br>
       <div class="card-block">
         <div class="d-flex justify-content-sm-center">
           <div class="mx-auto" style="padding-bottom: 10px;">
-            <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">{{frame.name}}</NuxtLink>
+            <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">
+              {{ frame.name }}
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -26,44 +30,43 @@
         :next-text="'Next'"
         :container-class="'pagination'"
         :page-class="'page-item'"
-      >
-      </Paginate>
+      />
     </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-  // @ts-ignore
-  import { LuminousGallery } from 'luminous-lightbox'
+// @ts-ignore
+import { LuminousGallery } from 'luminous-lightbox'
 
-  const route = useRoute()
-  const q = route.query.q
+const route = useRoute()
+const q = route.query.q
 
-  const { frame_query, searchFrame, frames } = useFrameSearch()
+const { frame_query, searchFrame, frames } = useFrameSearch()
 
-  const { backendOriginURL } = useConstants()
+const { backendOriginURL } = useConstants()
 
-  let gallery: LuminousGallery = null;
+let gallery: LuminousGallery = null
 
-  if(q){
-    frame_query.value.word = q as string
-  }
+if (q) {
+  frame_query.value.word = q as string
+}
 
-  //console.log('searchFrame: start')
-  searchFrame()
+// console.log('searchFrame: start')
+searchFrame()
 
-  const clickCallback = async (pageNum: number) => {
-    frame_query.value.page = pageNum
-    await searchFrame()
-  }
+const clickCallback = async (pageNum: number) => {
+  frame_query.value.page = pageNum
+  await searchFrame()
+}
 
-  onUpdated(()=> {
-    if(gallery){ gallery.destroy() }
-    const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('lum-lightbox');
-    Array.from(elements).forEach(e => e.remove());
+onUpdated(() => {
+  if (gallery) { gallery.destroy() }
+  const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('lum-lightbox')
+  Array.from(elements).forEach(e => e.remove())
 
-    const elms = document.querySelectorAll('[name="lm"]')
-    gallery = new LuminousGallery(elms, { showCloseButton: true })
-  })
+  const elms = document.querySelectorAll('[name="lm"]')
+  gallery = new LuminousGallery(elms, { showCloseButton: true })
+})
 
 </script>

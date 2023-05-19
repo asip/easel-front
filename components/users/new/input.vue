@@ -8,7 +8,7 @@
               <label for="image" class="col-form-label">{{ $t('model.user.image') }}：</label>
             </td>
             <td style="width: 70%;">
-              <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" @change="onSelectFile" class="form-control-file" >
+              <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" class="form-control-file" @change="onSelectFile">
               <div v-for="message of error_messages.image">
                 <div>{{ message }}</div>
               </div>
@@ -24,7 +24,7 @@
               <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
             </td>
             <td>
-              <input type="text" v-model="signup_params.name" :placeholder="$t('model.user.name')" class="form-control">
+              <input v-model="signup_params.name" type="text" :placeholder="$t('model.user.name')" class="form-control">
               <div v-for="error of v$.name.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
@@ -38,7 +38,7 @@
               <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
             </td>
             <td>
-              <input type="text" v-model="signup_params.email" :placeholder="$t('model.user.email')" class="form-control" >
+              <input v-model="signup_params.email" type="text" :placeholder="$t('model.user.email')" class="form-control">
               <div v-for="error of v$.email.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
@@ -52,7 +52,7 @@
               <label for="password" class="col-form-label">{{ $t('model.user.password') }}：</label>
             </td>
             <td>
-              <input type="password" v-model="signup_params.password" :placeholder="$t('model.user.password')" class="form-control">
+              <input v-model="signup_params.password" type="password" :placeholder="$t('model.user.password')" class="form-control">
               <div v-for="error of v$.password.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
@@ -66,7 +66,7 @@
               <label for="password_confirmation" class="col-form-label">{{ $t('model.user.password_confirmation') }}：</label>
             </td>
             <td>
-              <input type="password" v-model="signup_params.password_confirmation" :placeholder="$t('model.user.password_confirmation')" class="form-control">
+              <input v-model="signup_params.password_confirmation" type="password" :placeholder="$t('model.user.password_confirmation')" class="form-control">
               <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
                 <div>{{ error.$message }}</div>
               </div>
@@ -81,59 +81,63 @@
   </div>
   <div class="d-flex justify-content-sm-center">
     <div class="form-group col-sm-6">
-      <button type="button" @click="onSignupClick" class="btn btn-primary">{{ $t('action.model.create') }}</button>&nbsp;
-      <NuxtLink :to="`/login`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
+      <button type="button" class="btn btn-primary" @click="onSignupClick">
+        {{ $t('action.model.create') }}
+      </button>&nbsp;
+      <NuxtLink :to="`/login`" class="btn btn-outline-secondary">
+        {{ $t('action.model.return') }}
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useVuelidate } from '@vuelidate/core'
+import { useVuelidate } from '@vuelidate/core'
 
-  const { signup_params, su_rules, signup, error_messages, isSuccess, locale } = useLoginUser()
+const { signup_params, su_rules, signup, error_messages, isSuccess, locale } = useLoginUser()
 
-  const v$ = useVuelidate(su_rules, signup_params)
+const v$ = useVuelidate(su_rules, signup_params)
 
-  const onSelectFile = ( event: Event ) => {
-    const target = event.target as HTMLInputElement
-    signup_params.image = target.files![0] ;
+const onSelectFile = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  signup_params.image = target.files![0]
 
-    const file: { name?: string, ext?: string, data?: Blob | null } = {};
-    file.name = target.value;
-    file.ext = file?.name?.replace(/^.*\./, '').toLowerCase();
-    //console.log(file.name)
-    if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
-      // .file_filedからデータを取得して変数file.dataに代入します
-      file.data = signup_params.image
-      //console.log(file.data)
-      // FileReaderオブジェクトを作成します
-      let reader = new FileReader()
-      // 読み込みが完了したら処理が実行されます
-      reader.onload = (function() {
-        // 読み込んだファイルの内容を取得して変数imageに代入します
-        let image: string | ArrayBuffer | null = reader.result;
-        signup_params.preview_url = image as string
-      })
-      // DataURIScheme文字列を取得します
-      reader.readAsDataURL(file?.data)
-      //preview.src = URL.createObjectURL(file.data)
-      // プレビュー画像がなければ表示します
+  const file: { name?: string, ext?: string, data?: Blob | null } = {}
+  file.name = target.value
+  file.ext = file?.name?.replace(/^.*\./, '').toLowerCase()
+  // console.log(file.name)
+  if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
+    // .file_filedからデータを取得して変数file.dataに代入します
+    file.data = signup_params.image
+    // console.log(file.data)
+    // FileReaderオブジェクトを作成します
+    const reader = new FileReader()
+    // 読み込みが完了したら処理が実行されます
+    reader.onload = function () {
+      // 読み込んだファイルの内容を取得して変数imageに代入します
+      const image: string | ArrayBuffer | null = reader.result
+      signup_params.preview_url = image as string
+    }
+    // DataURIScheme文字列を取得します
+    reader.readAsDataURL(file?.data)
+    // preview.src = URL.createObjectURL(file.data)
+    // プレビュー画像がなければ表示します
+  }
+}
+
+const onSignupClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  const result = await v$.value.$validate()
+
+  if (!v$.value.$invalid) {
+    await signup()
+
+    if (isSuccess()) {
+      navigateTo('/')
     }
   }
+}
 
-  const onSignupClick= async () =>{
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
-
-    if(!v$.value.$invalid){
-      await signup()
-
-      if(isSuccess()){
-        navigateTo('/')
-      }
-    }
-  }
-
-  provide('model', signup_params)
+provide('model', signup_params)
 </script>

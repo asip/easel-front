@@ -1,7 +1,11 @@
 <template>
   <div v-if="props.original" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="props.spotlight" class="mx-auto spotlight" :to="`${backendOriginURL}${frame?.file_url}`"><img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
-    <NuxtLink v-else class="mx-auto" name="lm" :to="`${backendOriginURL}${frame?.file_url}`"><img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto"></NuxtLink>
+    <NuxtLink v-if="props.spotlight" class="mx-auto spotlight" :to="`${backendOriginURL}${frame?.file_url}`">
+      <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    </NuxtLink>
+    <NuxtLink v-else class="mx-auto" name="lm" :to="`${backendOriginURL}${frame?.file_url}`">
+      <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    </NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
     <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
@@ -10,27 +14,27 @@
 </template>
 
 <script setup lang="ts">
-  // @ts-ignore
-  import { Luminous } from 'luminous-lightbox'
+// @ts-ignore
+import { Luminous } from 'luminous-lightbox'
 
-  const props = defineProps({
-    original: Boolean,
-    spotlight: Boolean
-  })
+const props = defineProps({
+  original: Boolean,
+  spotlight: Boolean
+})
 
-  const { frame } = inject('framer') as any
+const { frame } = inject('framer') as any
 
-  const { backendOriginURL } = useConstants()
+const { backendOriginURL } = useConstants()
 
-  onMounted(() => {
-    if (props.spotlight){
-      // @ts-ignore
-      import('spotlight.js/src/js/spotlight').then(module =>
-        module.init()
-      )
-    } else {
-      const elm = document.querySelector('[name="lm"]')
-      new Luminous(elm, { showCloseButton: true })
-    }
-  })
+onMounted(() => {
+  if (props.spotlight) {
+    // @ts-ignore
+    import('spotlight.js/src/js/spotlight').then(module =>
+      module.init()
+    )
+  } else {
+    const elm = document.querySelector('[name="lm"]')
+    new Luminous(elm, { showCloseButton: true })
+  }
+})
 </script>

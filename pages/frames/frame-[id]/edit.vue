@@ -1,12 +1,14 @@
 <template>
-  <br>
   <form>
+    <br>
     <div class="card">
       <div class="card-block">
         <div class="row d-flex">
           <div class="col-12 clearfix">
             <div class="float-start">
-              &nbsp;<NuxtLink :to="`/frames/${frame.id}`"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
+              &nbsp;<NuxtLink :to="`/frames/${frame.id}`">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -27,24 +29,24 @@
 </template>
 
 <script setup lang="ts">
-  //import { Frame } from '~/composables/use_frame';
+// import { Frame } from '~/composables/use_frame';
 
-  const route = useRoute();
-  const { id  } = route.params;
+const route = useRoute()
+const { id } = route.params
 
-  const { logged_in, login_user } = useLoginUser()
+const { logged_in, login_user } = useLoginUser()
 
-  const framer = useFrame()
-  const { frame, getFrame } = framer
+const framer = useFrame()
+const { frame, getFrame } = framer
 
-  await getFrame(id as string)
+await getFrame(id as string)
 
-  //console.log(frame.user_id)
-  //console.log(login_user.value.id)
+// console.log(frame.user_id)
+// console.log(login_user.value.id)
 
-  if(!logged_in.value || frame.user_id != login_user.value.id ){
-    await navigateTo(`/frames/${id}`)
-  }
+if (!logged_in.value || frame.user_id !== login_user.value.id) {
+  await navigateTo(`/frames/${id}`)
+}
 
-  provide('framer', framer)
+provide('framer', framer)
 </script>

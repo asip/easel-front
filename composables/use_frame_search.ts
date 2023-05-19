@@ -1,5 +1,5 @@
-import {cdate} from 'cdate'
-import {Frame} from '~/composables/use_frame'
+import { cdate } from 'cdate'
+import { Frame } from '~/composables/use_frame'
 
 export const useFrameSearch = () => {
   const frame_query = useState('frame_query', () => {
@@ -13,10 +13,10 @@ export const useFrameSearch = () => {
   const frames = useState<Frame[]>('frames', () => { return [] })
 
   const date_word = computed({
-    get(){
+    get () {
       return cdate().format('YYYY/MM/DD')
     },
-    set(value: any){
+    set (value: any) {
       frame_query.value.word = cdate(value).format('YYYY/MM/DD')
     }
   })
@@ -37,19 +37,19 @@ export const useFrameSearch = () => {
       })
     )
 
-    const {data: frameList, meta: meta} = data.value as any
-    //console.log(frameList)
-    //console.log(meta)
+    const { data: frameList, meta } = data.value as any
+    // console.log(frameList)
+    // console.log(meta)
 
-    if(frameList){
-      frames.value.splice(0, frames.value.length);
-      for (let frame of frameList as []) {
-        //console.log(comment);
-        frames.value.push(createFrameFromJson(frame));
+    if (frameList) {
+      frames.value.splice(0, frames.value.length)
+      for (const frame of frameList as []) {
+        // console.log(comment);
+        frames.value.push(createFrameFromJson(frame))
       }
-      //console.log(frames)
+      // console.log(frames)
     }
-    if(meta){
+    if (meta) {
       frame_query.value.pages = meta.pagination.pages
     }
   }

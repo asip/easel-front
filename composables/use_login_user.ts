@@ -1,6 +1,6 @@
 
-import { required ,email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
-import {useLocale} from "~/composables/use_locale";
+import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
+import { useLocale } from '~/composables/use_locale'
 
 export interface User {
   name: string
@@ -75,7 +75,7 @@ export const useLoginUser = () => {
     password_confirmation: ''
   })
 
-  const logged_in = useState<Boolean>('logged_in', ()=> {
+  const logged_in = useState<Boolean>('logged_in', () => {
     return false
   })
 
@@ -96,7 +96,7 @@ export const useLoginUser = () => {
   const { locale } = useLocale()
 
   const su_rules = computed(() => {
-    return  {
+    return {
       name: { required, minLength: minLength(3), maxLength: maxLength(40) },
       email: { required, email },
       password: { required, minLength: minLength(3) },
@@ -114,12 +114,11 @@ export const useLoginUser = () => {
   })
 
   const signup = async () => {
+    // console.log(signup_params.image)
 
-    //console.log(signup_params.image)
+    const formData = new FormData()
 
-    let formData = new FormData();
-
-    if(signup_params.image){
+    if (signup_params.image) {
       formData.append('user[image]', signup_params.image)
     }
     formData.append('user[name]', signup_params.name)
@@ -132,16 +131,16 @@ export const useLoginUser = () => {
         method: 'post',
         body: formData,
         headers: {
-          'Accept-Language' : locale.value
+          'Accept-Language': locale.value
         }
       })
     )
 
     clearErrorMessages()
 
-    const { data: userJson, errors: errors } = data.value as any
+    const { data: userJson, errors } = data.value as any
 
-    //console.log(userJson)
+    // console.log(userJson)
 
     if (!userJson) {
       setErrorMessages(errors)
@@ -149,11 +148,10 @@ export const useLoginUser = () => {
   }
 
   const authenticate = async () => {
-
     login_user.value.token = access_token.value
-    //console.log(login_user.value.token)
+    // console.log(login_user.value.token)
 
-    if(login_user.value.token) {
+    if (login_user.value.token) {
       const { data } = await useAsyncData('authenticate', () =>
         $fetch(`${backendApiURL}/profile`, {
           method: 'get',
@@ -166,12 +164,12 @@ export const useLoginUser = () => {
 
       const json_data = data.value as any
 
-      if(json_data){
+      if (json_data) {
         const { data: userJson } = json_data
-        //console.log(userJson)
+        // console.log(userJson)
 
-        if(userJson){
-          //console.log('test3')
+        if (userJson) {
+          // console.log('test3')
           setJson2LoginUser(userJson)
           logged_in.value = true
         }
@@ -197,23 +195,23 @@ export const useLoginUser = () => {
       })
     )
 
-    const { data: userJson, messages: messages } = data.value as any
+    const { data: userJson, messages } = data.value as any
 
-    if(userJson){
+    if (userJson) {
       setJson2LoginUser(userJson)
       logged_in.value = true
-      //console.log(login_user.value)
+      // console.log(login_user.value)
 
       access_token.value = login_user.value.token
       login_messages.value = []
-    }else{
+    } else {
       login_messages.value = messages
-      //console.log(login_messages.value)
+      // console.log(login_messages.value)
     }
   }
 
   const login_with_google = async (response: any) => {
-    let postData = {
+    const postData = {
       provider: 'google',
       credential: response.credential
     }
@@ -230,10 +228,10 @@ export const useLoginUser = () => {
 
     const { data: userJson } = data.value as any
 
-    if(userJson){
+    if (userJson) {
       setJson2LoginUser(userJson)
       logged_in.value = true
-      //console.log(login_user.value)
+      // console.log(login_user.value)
 
       access_token.value = login_user.value.token
     }
@@ -241,7 +239,7 @@ export const useLoginUser = () => {
     login_messages.value = []
   }
 
-  const setJson2LoginUser = (userJson: any)  => {
+  const setJson2LoginUser = (userJson: any) => {
     login_user.value.name = userJson.attributes.name
     login_user.value.email = userJson.attributes.email
     login_user.value.token = userJson.attributes.token
@@ -264,12 +262,11 @@ export const useLoginUser = () => {
   }
 
   const updateProfile = async () => {
+    // console.log(signup_params.image)
 
-    //console.log(signup_params.image)
+    const formData = new FormData()
 
-    let formData = new FormData();
-
-    if(user.value.image){
+    if (user.value.image) {
       formData.append('user[image]', user.value.image)
     }
     formData.append('user[name]', user.value.name)
@@ -283,22 +280,22 @@ export const useLoginUser = () => {
         body: formData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Accept-Language' : locale.value,
-          'Authorization': `Bearer ${user.value.token}`
+          'Accept-Language': locale.value,
+          Authorization: `Bearer ${user.value.token}`
         }
       })
     )
 
     clearErrorMessages()
 
-    const { data: userJson, errors: errors } = data.value as any
+    const { data: userJson, errors } = data.value as any
 
-    //console.log(userJson)
-    //console.log(errors)
+    // console.log(userJson)
+    // console.log(errors)
 
     if (userJson) {
       setJson2LoginUser(userJson)
-    } else if(errors) {
+    } else if (errors) {
       setErrorMessages(errors)
     } else if (error.value) {
       navigateLogoutTo('/')
@@ -342,12 +339,12 @@ export const useLoginUser = () => {
   }
 
   const isSuccess = () => {
-    let result: boolean = true
+    let result = true
 
-    if(error_messages.image.length > 0 || error_messages.name.length > 0 ||
-      error_messages.email.length> 0 || error_messages.password.length > 0 ||
+    if (error_messages.image.length > 0 || error_messages.name.length > 0 ||
+      error_messages.email.length > 0 || error_messages.password.length > 0 ||
       error_messages.password_confirmation.length > 0
-    ){
+    ) {
       result = false
     }
 
@@ -360,16 +357,16 @@ export const useLoginUser = () => {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
-          'Authorization': `Bearer ${login_user.value.token}`
+          Authorization: `Bearer ${login_user.value.token}`
         }
       })
     )
 
     const { data: userJson } = data.value as any
 
-    if(userJson) {
+    if (userJson) {
       navigateLogoutTo('/')
-    } else if(error.value) {
+    } else if (error.value) {
       navigateLogoutTo('/')
     }
   }

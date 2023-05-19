@@ -31,10 +31,10 @@ export const useUser = () => {
     )
 
     const { data: userJson } = data.value as any
-    //console.log(userJson)
+    // console.log(userJson)
 
-    if(userJson){
-      //console.log('test3')
+    if (userJson) {
+      // console.log('test3')
       setJson2User(userJson)
     }
   }

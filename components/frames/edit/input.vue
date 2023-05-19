@@ -9,7 +9,7 @@
                 <label for="name" class="col-form-label">{{ $t('model.frame.name') }}：</label>
               </td>
               <td style="width: 80%;">
-                <input type="text" v-model="frame.name" :placeholder="$t('model.frame.name')" class="form-control">
+                <input v-model="frame.name" type="text" :placeholder="$t('model.frame.name')" class="form-control">
                 <div v-for="error of v$.name.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -20,8 +20,8 @@
                 <label for="tag_list" class="col-form-label">{{ $t('model.frame.tag_list') }}：</label>
               </td>
               <td>
-                <input type="text" name="tag_editor" id="tag_editor" value="" class="form-control" >
-                <input type="hidden" id="tag_list" v-model="frame.tag_list">
+                <input id="tag_editor" type="text" name="tag_editor" value="" class="form-control">
+                <input id="tag_list" v-model="frame.tag_list" type="hidden">
                 <div v-for="error of v$.tags.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -32,7 +32,7 @@
                 <label for="shooted_at" class="col-form-label">{{ $t('model.frame.shooted_at') }}：</label>
               </td>
               <td>
-                <input type="datetime-local" v-model="frame.shooted_at" class="form-control">
+                <input v-model="frame.shooted_at" type="datetime-local" class="form-control">
               </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                 <label for="comment" class="col-form-label">{{ $t('model.frame.comment') }}：</label>
               </td>
               <td>
-                <textarea v-model="frame.comment" class="form-control"></textarea>
+                <textarea v-model="frame.comment" class="form-control" />
               </td>
             </tr>
           </tbody>
@@ -51,71 +51,75 @@
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
       <div class="col-sm-7">
-        <button type="button" class="btn btn-primary" @click="onEditClick">{{ $t('action.model.update') }}</button>&nbsp;
-        <NuxtLink :to="`/frames/${frame?.id}`" class="btn btn-outline-secondary">{{ $t('action.model.return') }}</NuxtLink>
+        <button type="button" class="btn btn-primary" @click="onEditClick">
+          {{ $t('action.model.update') }}
+        </button>&nbsp;
+        <NuxtLink :to="`/frames/${frame?.id}`" class="btn btn-outline-secondary">
+          {{ $t('action.model.return') }}
+        </NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useVuelidate } from '@vuelidate/core'
-  import Tagify from '@yaireo/tagify'
+import { useVuelidate } from '@vuelidate/core'
+import Tagify from '@yaireo/tagify'
 
-  const { frame, frm_rules, updateFrame, isSuccess, locale } = inject('framer') as any
+const { frame, frm_rules, updateFrame, isSuccess, locale } = inject('framer') as any
 
-  const v$ = useVuelidate(frm_rules, frame)
+const v$ = useVuelidate(frm_rules, frame)
 
-  //console.log(frame)
-  //console.log(frame.tags)
-  //console.log(frame.tag_list)
+// console.log(frame)
+// console.log(frame.tags)
+// console.log(frame.tag_list)
 
-  const onEditClick = async () => {
-    // @ts-ignore
-    i18n.global.locale.value = locale.value
-    const result = await v$.value.$validate();
+const onEditClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  const result = await v$.value.$validate()
 
-    //console.log(frame)
-    if(!v$.value.$invalid){
-      await updateFrame()
+  // console.log(frame)
+  if (!v$.value.$invalid) {
+    await updateFrame()
 
-      if(isSuccess()){
-        navigateTo(`/frames/${frame?.id}`)
-      }
+    if (isSuccess()) {
+      navigateTo(`/frames/${frame?.id}`)
     }
   }
+}
 
-  onMounted(() => {
-    //console.log(frame)
+onMounted(() => {
+  // console.log(frame)
 
-    const elm_te: HTMLInputElement | null = document.querySelector('#tag_editor')
+  const elm_te: HTMLInputElement | null = document.querySelector('#tag_editor')
 
-    if(elm_te) {
-      const tag_editor = new Tagify(elm_te, {
-        maxTags: 5,
-        dropdown: {
-          classname: "color-blue",
-          enabled: 0,
-          maxItems: 30,
-          closeOnSelect: false,
-          highlightFirst: true,
-        }
-      })
-
-      tag_editor.removeAllTags();
-      if(frame?.tags){
-        tag_editor.addTags(frame?.tags);
+  if (elm_te) {
+    const tag_editor = new Tagify(elm_te, {
+      maxTags: 5,
+      dropdown: {
+        classname: 'color-blue',
+        enabled: 0,
+        maxItems: 30,
+        closeOnSelect: false,
+        highlightFirst: true
       }
+    })
 
-      const saveTagList = () => {
-        if(frame) {
-          frame.tags = tag_editor.value.map(v => v.value)
-          frame.tag_list = frame.tags?.join(",");
-        }
-      }
-
-      tag_editor.on('add', () => saveTagList());
-      tag_editor.on('remove', () => saveTagList());
+    tag_editor.removeAllTags()
+    if (frame?.tags) {
+      tag_editor.addTags(frame?.tags)
     }
-  })
+
+    const saveTagList = () => {
+      if (frame) {
+        frame.tags = tag_editor.value.map(v => v.value)
+        frame.tag_list = frame.tags?.join(',')
+      }
+    }
+
+    tag_editor.on('add', () => saveTagList())
+    tag_editor.on('remove', () => saveTagList())
+  }
+})
 </script>

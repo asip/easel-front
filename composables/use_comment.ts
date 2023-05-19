@@ -1,7 +1,6 @@
-import {useLoginUser} from './use_login_user';
-import {useLocale} from "~/composables/use_locale";
-import { required } from "~/utils/i18n-validators";
-
+import { useLoginUser } from './use_login_user'
+import { useLocale } from '~/composables/use_locale'
+import { required } from '~/utils/i18n-validators'
 
 export interface Comment {
   id: number
@@ -17,7 +16,7 @@ const cm_rules = {
   body: { required }
 }
 
-export function useComment() {
+export function useComment () {
   const comment: Comment = reactive<Comment>({
     id: 0,
     frame_id: null,
@@ -26,9 +25,9 @@ export function useComment() {
     user_name: '',
     user_image_url: '',
     updated_at: null
-  });
+  })
 
-  const comments: Comment[] = reactive<Comment[]>([]);
+  const comments: Comment[] = reactive<Comment[]>([])
 
   const error_messages = reactive({
     body: [],
@@ -42,7 +41,7 @@ export function useComment() {
   const { login_user, navigateLogoutTo } = useLoginUser()
 
   const getComments = async () => {
-    //console.log(comment.frame_id);
+    // console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL}/frames/${comment.frame_id}/comments`, {
         method: 'get',
@@ -53,20 +52,20 @@ export function useComment() {
     )
 
     const { data: commentList } = data.value as any
-    //console.log(commentList)
+    // console.log(commentList)
 
     if (commentList) {
-      //console.log(comment_list);
-      comments.splice(0, comments.length);
-      for (let comment of commentList) {
-        //console.log(comment);
-        comments.push(createCommentFromJson(comment));
+      // console.log(comment_list);
+      comments.splice(0, comments.length)
+      for (const comment of commentList) {
+        // console.log(comment);
+        comments.push(createCommentFromJson(comment))
       }
-      //console.log(comments);
+      // console.log(comments);
     }
-  };
+  }
 
-  const createCommentFromJson = (row_data: any): Comment =>{
+  const createCommentFromJson = (row_data: any): Comment => {
     return {
       id: row_data.id,
       frame_id: row_data.attributes.frame_id,
@@ -86,14 +85,14 @@ export function useComment() {
       }
     }
 
-    const { data , error }  = await useAsyncData('post_comment', () =>
+    const { data, error } = await useAsyncData('post_comment', () =>
       $fetch(`/api/frames/${comment.frame_id}/comments`,
         {
           method: 'post',
           body: postData,
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language' : locale.value,
+            'Accept-Language': locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         }
@@ -102,11 +101,11 @@ export function useComment() {
 
     clearErrorMessages()
 
-    const { data: commentJson, errors: errors } = data.value as any
+    const { data: commentJson, errors } = data.value as any
 
     if (commentJson) {
-      comment.body = '';
-    }else if(errors){
+      comment.body = ''
+    } else if (errors) {
       setErrorMessages(errors)
     } else if (error.value) {
       clearErrorMessages()
@@ -117,20 +116,19 @@ export function useComment() {
   }
 
   const createComment = async () => {
+    // console.log(comment.userId);
+    // console.log(comment.frameId);
+    // console.log(comment.body);
+    await postComment()
 
-    //console.log(comment.userId);
-    //console.log(comment.frameId);
-    //console.log(comment.body);
-    await postComment();
-
-    if(isSuccess()){
-      comments.splice(0, comments.length);
+    if (isSuccess()) {
+      comments.splice(0, comments.length)
       await getComments()
     }
-  };
+  }
 
   const setErrorMessages = (errors: any) => {
-    if(errors.body){
+    if (errors.body) {
       error_messages.body = errors.body
     } else {
       error_messages.body = []
@@ -143,9 +141,9 @@ export function useComment() {
   }
 
   const isSuccess = () => {
-    let result: boolean = true
+    let result = true
 
-    if(error_messages.body.length > 0){
+    if (error_messages.body.length > 0) {
       result = false
     }
 
@@ -159,14 +157,14 @@ export function useComment() {
           method: 'delete',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language' : locale.value,
+            'Accept-Language': locale.value,
             Authorization: `Bearer ${login_user.value.token}`
           }
         }
       )
     )
 
-    clearErrorMessages();
+    clearErrorMessages()
 
     if (error.value) {
       // @ts-ignore
@@ -174,14 +172,20 @@ export function useComment() {
       navigateLogoutTo('/')
     }
 
-    if(isSuccess()){
-      comments.splice(idx, 1);
+    if (isSuccess()) {
+      comments.splice(idx, 1)
     }
-  };
+  }
 
   return {
-    comment, comments, error_messages ,
-    getComments, cm_rules, createComment, deleteComment,
-    isSuccess ,locale
+    comment,
+    comments,
+    error_messages,
+    getComments,
+    cm_rules,
+    createComment,
+    deleteComment,
+    isSuccess,
+    locale
   }
 }
