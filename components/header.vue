@@ -28,7 +28,7 @@
         </ul>
         <ul v-else class="navbar-nav justify-content-sm-center me-auto">
           <li class="nav-item dropdown small">
-            <button id="navbarDropdownMenuLink" class="nav-link dropdown-toggle btn btn-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button id="navbarDropdownMenuLink" class="nav-link dropdown-toggle btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
               {{ login_user.name }}
             </button>
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
