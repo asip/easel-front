@@ -29,6 +29,7 @@ const user: User | undefined = inject('user')
 onMounted(() => {
   if (props.original) {
     const elm = document.querySelector('[name="lm"]')
+    // eslint-disable-next-line no-new
     new Luminous(elm, { showCloseButton: true })
   }
 })

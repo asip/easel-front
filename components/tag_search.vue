@@ -17,7 +17,6 @@
       class="offcanvas offcanvas-end"
       data-bs-scroll="true"
       tabindex="-1"
-      aria-labelledby="offcanvasCalendarLabel"
     >
       <div class="offcanvas-header">
         <h5 id="offcanvasLabel" class="offcanvas-title" />

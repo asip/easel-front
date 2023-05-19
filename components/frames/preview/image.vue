@@ -34,6 +34,7 @@ onMounted(() => {
     )
   } else {
     const elm = document.querySelector('[name="lm"]')
+    // eslint-disable-next-line no-new
     new Luminous(elm, { showCloseButton: true })
   }
 })
