@@ -81,7 +81,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import Tagify from '@yaireo/tagify'
-import Image from '~/components/users/preview/image.vue'
 
 const { frame, frm_rules, frameId, createFrame, error_messages, isSuccess, locale } = inject('framer') as any
 
