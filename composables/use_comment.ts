@@ -4,7 +4,7 @@ import { required } from "~/utils/i18n-validators";
 
 
 export interface Comment {
-  id: number | null
+  id: number
   frame_id: number | null | undefined
   body: string
   user_id: number | null
@@ -19,7 +19,7 @@ const cm_rules = {
 
 export function useComment() {
   const comment: Comment = reactive<Comment>({
-    id: null,
+    id: 0,
     frame_id: null,
     body: '',
     user_id: null,
