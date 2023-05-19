@@ -8,7 +8,7 @@
             &nbsp;<NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }"><i class="bi bi-arrow-left-circle"></i></NuxtLink>
           </div>
           <div class="float-end">
-            {{ frame.updated_at }}&nbsp
+            {{ frame.updated_at }}&nbsp;
           </div>
         </div>
       </div>
