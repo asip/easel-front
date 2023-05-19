@@ -31,7 +31,7 @@ export const i18n = createI18n({
   }
 })
 
-const { createI18nMessage, helpers } = validators
+const { createI18nMessage } = validators
 
 const withI18nMessage = createI18nMessage({ t: i18n.global.t.bind(i18n) })
 
@@ -51,18 +51,18 @@ export const sameAs = withI18nMessage(validators.sameAs, {
   withArguments: true
 })
 
-export let tagArrayLength = (size: number) => validators.helpers.withParams(
+const tagArrayLength_ = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },
   (value: string) => {
     return !validators.helpers.req(value) || value.length <= size
   }
 )
 
-tagArrayLength = withI18nMessage(tagArrayLength, {
+export const tagArrayLength = withI18nMessage(tagArrayLength_, {
   withArguments: true
 })
 
-export let tagLength = (size: number) => validators.helpers.withParams(
+const tagLength_ = (size: number) => validators.helpers.withParams(
   { type: 'tagLength', value: size },
   (value: string[]) => {
     let res = true
@@ -74,6 +74,6 @@ export let tagLength = (size: number) => validators.helpers.withParams(
   }
 )
 
-tagLength = withI18nMessage(tagLength, {
+export const tagLength = withI18nMessage(tagLength_, {
   withArguments: true
 })

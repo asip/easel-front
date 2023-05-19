@@ -150,7 +150,7 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: any, idx: number) => {
-    const { data, error } = await useAsyncData('delete_comment', () =>
+    const { error } = await useAsyncData('delete_comment', () =>
       $fetch(`/api/comments/${comment.id}`,
         {
           method: 'delete',

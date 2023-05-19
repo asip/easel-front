@@ -11,7 +11,7 @@
               </td>
               <td style="width: 70%;">
                 <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" class="form-control-file" @change="onSelectFile">
-                <div v-for="message of error_messages.image">
+                <div v-for="(message, idx) in error_messages.image" :key="idx">
                   <div>{{ message }}</div>
                 </div>
               </td>
@@ -30,7 +30,7 @@
                 <div v-for="error of v$.name.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
-                <div v-for="message of error_messages.name">
+                <div v-for="(message, idx) in error_messages.name" :key="idx">
                   <div>{{ $t('model.user.name') }}{{ message }}</div>
                 </div>
               </td>
@@ -54,7 +54,7 @@
                 <div v-for="error of v$.email.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
-                <div v-for="message of error_messages.email">
+                <div v-for="(message, idx) in error_messages.email" :key="idx">
                   <div>{{ $t('model.user.email') }}{{ message }}</div>
                 </div>
               </td>
@@ -78,7 +78,7 @@
                 <div v-for="error of v$.password.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
-                <div v-for="message of error_messages.password">
+                <div v-for="(message, idx) in error_messages.password" :key="idx">
                   <div>{{ $t('model.user.password') }}{{ message }}</div>
                 </div>
               </td>
@@ -92,7 +92,7 @@
                 <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
-                <div v-for="message of error_messages.password_confirmation">
+                <div v-for="(message, idx) in error_messages.password_confirmation" :key="idx">
                   <div>{{ $t('model.user.password_confirmation') }}{{ message }}</div>
                 </div>
               </td>
@@ -153,7 +153,7 @@ const onSelectFile = (event: Event) => {
 const onUpdateClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
-  const result = await v$.value.$validate()
+  await v$.value.$validate()
 
   if (!v$.value.$invalid) {
     await updateProfile()

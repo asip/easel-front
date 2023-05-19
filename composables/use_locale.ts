@@ -1,7 +1,7 @@
 import { useBrowserLocale } from '#i18n'
 
 export const useLocale = () => {
-  const { locale, locales } = useI18n()
+  const { locale } = useI18n()
   const autoDetect = () => {
     const browserLocale: string | null = useBrowserLocale()
     // console.log(browserLocale)

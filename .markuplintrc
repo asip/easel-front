@@ -9,8 +9,8 @@
     ".vue$": "@markuplint/vue-spec"
   },
   "rules": {
+    "required-attr": false,
     "require-accessible-name": false,
-    "no-hard-code-id": false,
-    "required-attr": false
+    "no-hard-code-id": false
   }
 }

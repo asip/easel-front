@@ -203,7 +203,7 @@ export const useFrame = () => {
   const deleteFrame = async () => {
     // console.log(frame.id)
 
-    const { data, error } = await useAsyncData('delete_frame', () =>
+    const { error } = await useAsyncData('delete_frame', () =>
       $fetch(`/api/frames/${frame.id}`, {
         method: 'delete',
         headers: {

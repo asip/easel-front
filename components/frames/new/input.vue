@@ -10,7 +10,7 @@
               </td>
               <td style="width: 80%;">
                 <input type="file" accept="image/jpg,image/jpeg,image/png" class="form-control-file" @change="onSelectFile">
-                <div v-for="message of error_messages.file">
+                <div v-for="(message, idx) in error_messages.file" :key="idx">
                   <div>{{ $t('model.frame.file') }}{{ message }}</div>
                 </div>
               </td>
@@ -126,7 +126,7 @@ const onSelectFile = (event: Event) => {
 const onCreateClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
-  const result = await v$.value.$validate()
+  await v$.value.$validate()
 
   // console.log(frame)
   if (!v$.value.$invalid) {

@@ -24,7 +24,7 @@
                 {{ error.$message }}
               </div>
             </div>
-            <div v-for="message of error_messages.body">
+            <div v-for="(message, idx) in error_messages.body" :key="idx">
               <p style="color: red;">
                 {{ $t('model.comment.body') }}{{ message }}
               </p>
@@ -60,7 +60,7 @@ comment.frame_id = frame?.id
 const onCommentClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
-  const result = await v$.value.$validate()
+  await v$.value.$validate()
 
   // console.log(v$.value.body.$invalid)
   // console.log(v$.value.$invalid)

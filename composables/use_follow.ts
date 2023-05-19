@@ -30,7 +30,7 @@ export function useFollow () {
   }
 
   const follow = async (userId: number | null) => {
-    const { data, error } = await useAsyncData('follow', () =>
+    const { error } = await useAsyncData('follow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'post',
         headers: {
@@ -48,7 +48,7 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null) => {
-    const { data, error } = await useAsyncData('unfollow', () =>
+    const { error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',
         headers: {

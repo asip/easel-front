@@ -77,7 +77,7 @@ const v$ = useVuelidate(frm_rules, frame)
 const onEditClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
-  const result = await v$.value.$validate()
+  await v$.value.$validate()
 
   // console.log(frame)
   if (!v$.value.$invalid) {
