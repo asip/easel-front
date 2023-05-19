@@ -9,8 +9,16 @@
     ".vue$": "@markuplint/vue-spec"
   },
   "rules": {
-    "required-attr": false,
+    "required-attr": true,
     "require-accessible-name": false,
     "no-hard-code-id": false
-  }
+  },
+  "nodeRules": [
+    {
+      "selector": "img",
+      "rules": {
+        "required-attr": "alt"
+      }
+    }
+  ]
 }
