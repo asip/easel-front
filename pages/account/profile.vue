@@ -54,7 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import Input from '~/components/users/edit/input.vue'
 
 const { logged_in, login_user } = useLoginUser()
 

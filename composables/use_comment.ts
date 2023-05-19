@@ -34,7 +34,6 @@ export function useComment () {
     base: []
   })
 
-  const nuxtApp = useNuxtApp()
   const { backendApiURL } = useConstants()
 
   const { locale } = useLocale()
