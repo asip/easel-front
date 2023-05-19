@@ -40,9 +40,11 @@ export default defineNuxtConfig({
   },
 
   css: [
-    "@/assets/styles/main.scss",
-    "bootstrap-icons/font/bootstrap-icons.css"
+    '@/assets/styles/main.scss',
+    'bootstrap-icons/font/bootstrap-icons.css'
   ],
-
+  build: {
+    transpile: ['vue-sonner']
+  },
   devtools: true
 })
