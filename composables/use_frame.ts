@@ -13,8 +13,8 @@ export interface Frame {
   shooted_at_html: string | null | undefined
   file: Blob | undefined | null,
   file_url: string | null | undefined
-  file_two_url: string | null | undefined
-  file_three_url: string | null | undefined
+  file_two_url: string | undefined
+  file_three_url: string | undefined
   preview_url: string | null | undefined
   updated_at: string
 }
