@@ -2,7 +2,7 @@ import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/ut
 import { useLocale } from '~/composables/use_locale'
 
 export interface Frame {
-  id: number | null | undefined
+  id: number | undefined
   user_id: number | null | undefined
   user_name: string
   name: string
@@ -26,7 +26,7 @@ const frm_rules = {
 
 export const useFrame = () => {
   const frame: Frame = reactive<Frame>({
-    id: null,
+    id: 0,
     user_id: null,
     user_name: '',
     name: '',

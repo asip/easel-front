@@ -1,23 +1,25 @@
 <template>
-  <br>
   <div>
-    <form>
-      <div class="card">
-        <div class="card-header">
-          <div class="float-start">
-            <NuxtLink to="/">
-              <i class="bi bi-arrow-left-circle" />
-            </NuxtLink>
-            {{ $t('action.frame.upload') }}
+    <br>
+    <div>
+      <form>
+        <div class="card">
+          <div class="card-header">
+            <div class="float-start">
+              <NuxtLink to="/">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
+              {{ $t('action.frame.upload') }}
+            </div>
           </div>
-        </div>
-        <!-- unless @frame.confirming == 'true' -->
-        <FramesNewInput />
+          <!-- unless @frame.confirming == 'true' -->
+          <FramesNewInput />
         <!-- else -->
         <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
         <!-- end -->
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
