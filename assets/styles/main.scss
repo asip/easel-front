@@ -16,14 +16,14 @@ body {
 }
 .label-bg-style {
   background-color: lavender;
-  border-radius: 5px;        /* CSS3草案 */
+  -moz-border-radius: 5px;        /* CSS3草案 */
   -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
-  -moz-border-radius: 5px;   /* Firefox用 */
+  border-radius: 5px;   /* Firefox用 */
 }
 .kadomaru {
-  border-radius: 5px;        /* CSS3草案 */
+  -moz-border-radius: 5px;        /* CSS3草案 */
   -webkit-border-radius: 5px;    /* Safari,Google Chrome用 */
-  -moz-border-radius: 5px;   /* Firefox用 */
+  border-radius: 5px;   /* Firefox用 */
 }
 
 .table_rounded {
