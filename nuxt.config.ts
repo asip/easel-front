@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
       cookieCrossOrigin: true,
-      redirectOn: 'root',  // recommended
+      redirectOn: 'root'// recommended
     },
     strategy: 'no_prefix',
     langDir: 'lang',
@@ -46,5 +46,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vue-sonner']
   },
-  devtools: true
+  devtools: {
+    enabled: true
+  }
 })
