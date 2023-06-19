@@ -33,7 +33,7 @@
     "@yaireo/tagify": "^4.17.8",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
-    "cdate": "^0.0.5",
+    "cdate": "^0.0.6",
     "luminous-lightbox": "^2.4.0",
     "sanitize-html": "^2.10.0",
     "sass": "^1.62.1",

@@ -42,8 +42,8 @@ dependencies:
     specifier: ^1.10.5
     version: 1.10.5
   cdate:
-    specifier: ^0.0.5
-    version: 0.0.5
+    specifier: ^0.0.6
+    version: 0.0.6
   luminous-lightbox:
     specifier: ^2.4.0
     version: 2.4.0
@@ -3064,8 +3064,8 @@ packages:
   /caniuse-lite@1.0.30001495:
     resolution: {integrity: sha512-F6x5IEuigtUfU5ZMQK2jsy5JqUUlEFRVZq8bO2a+ysq5K7jD6PPc9YXZj78xDNS3uNchesp1Jw47YXEqr+Viyg==}
 
-  /cdate@0.0.5:
-    resolution: {integrity: sha512-0jnsyJCTV4EsYwLf1mqEn8UNMU7y2+QFybdSnsBOCWcM+EJvYXj/zYYwd2BmsBngHXsfR0o7d3NQX9zxU2nQtQ==}
+  /cdate@0.0.6:
+    resolution: {integrity: sha512-aB5QRt+f9rd/0CeKrFy+HHXeRTBd48A1l4Ct0rl3BGYcdgdcXZYu4bpYBcnQn3XdA6y0ZvmMW1HDq+GNGrEVJw==}
     dev: false
 
   /chalk@2.4.2:
