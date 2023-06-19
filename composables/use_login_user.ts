@@ -1,4 +1,3 @@
-
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 
