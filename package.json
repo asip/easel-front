@@ -18,7 +18,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "eslint": "^8.43.0",
     "markuplint": "^3.11.0",
-    "nuxt": "^3.5.3"
+    "nuxt": "^3.6.0"
   },
   "dependencies": {
     "@nuxt/image-edge": "1.0.0-rc.1-28116474.c4a8ff6",
