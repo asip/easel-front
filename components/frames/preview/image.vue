@@ -1,5 +1,5 @@
 <template>
-  <div v-if="props.original" id="image" class="d-flex justify-content-sm-center">
+  <div v-if="props.original" id="image" ref="root" class="d-flex justify-content-sm-center">
     <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${backendOriginURL}${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
@@ -31,16 +31,11 @@ const { backendOriginURL } = useConstants()
 
 let lightbox: any
 
+const root: Ref = ref(null)
+
 onMounted(() => {
   if (props.photoswipe) {
-    const gallery = document.querySelectorAll('#image > a')
-    gallery.forEach((el: any) => {
-      loadImage(el.href).then((img: any) => {
-        el.setAttribute('data-pswp-width', img.naturalWidth)
-        el.setAttribute('data-pswp-height', img.naturalHeight)
-        el.firstElementChild.removeAttribute('style')
-      })
-    })
+    assignSize()
 
     lightbox = new PhotoSwipeLightbox({
       gallery: '#image',
@@ -61,6 +56,17 @@ onUnmounted(() => {
     lightbox = null
   }
 })
+
+function assignSize(){
+  const gallery = root.value?.querySelectorAll('a')
+  gallery?.forEach((el: any) => {
+    loadImage(el.href).then((img: any) => {
+      el.setAttribute('data-pswp-width', img.naturalWidth)
+      el.setAttribute('data-pswp-height', img.naturalHeight)
+      el.firstElementChild.removeAttribute('style')
+    })
+  })
+}
 
 function loadImage (src: any) {
   return new Promise((resolve, reject) => {
