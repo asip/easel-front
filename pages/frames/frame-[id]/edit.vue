@@ -17,7 +17,7 @@
           <div class="card-block">
           <!-- render(partial: 'layouts/error_messages', locals: {model: @frame}) -->
           </div>
-          <FramesPreviewImage :original="true" :spotlight="false" />
+          <FramesPreviewImage :original="true" :photoswipe="false" />
           <!-- unless @frame.confirming == 'true' -->
           <FramesEditInput />
         <!-- else -->
