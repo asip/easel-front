@@ -57,14 +57,13 @@ onUnmounted(() => {
   }
 })
 
-function assignSize(){
+function assignSize () {
   const gallery = root.value?.querySelectorAll('a')
-  gallery?.forEach((el: any) => {
-    loadImage(el.href).then((img: any) => {
-      el.setAttribute('data-pswp-width', img.naturalWidth)
-      el.setAttribute('data-pswp-height', img.naturalHeight)
-      el.firstElementChild.removeAttribute('style')
-    })
+  gallery?.forEach(async (el: any) => {
+    const img: any = await loadImage(el.href)
+    el.setAttribute('data-pswp-width', img.naturalWidth)
+    el.setAttribute('data-pswp-height', img.naturalHeight)
+    el.firstElementChild.removeAttribute('style')
   })
 }
 
