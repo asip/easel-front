@@ -71,4 +71,10 @@ onUpdated(() => {
   gallery = new LuminousGallery(elms, { showCloseButton: true })
 })
 
+onUnmounted(() => {
+  if (gallery) {
+    gallery.destroy()
+    gallery = null
+  }
+})
 </script>

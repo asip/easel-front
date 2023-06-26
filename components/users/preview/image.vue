@@ -26,11 +26,19 @@ const user: User | undefined = inject('user')
 
 // console.log(login_user?.value.image_three_url)
 
+let lightbox: any
+
 onMounted(() => {
   if (props.original) {
     const elm = document.querySelector('[name="lm"]')
-    // eslint-disable-next-line no-new
-    new Luminous(elm, { showCloseButton: true })
+    lightbox = new Luminous(elm, { showCloseButton: true })
+  }
+})
+
+onMounted(() => {
+  if (lightbox) {
+    lightbox.destroy()
+    lightbox = null
   }
 })
 </script>
