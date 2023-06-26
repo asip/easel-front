@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.original" id="image" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="props.spotlight" class="mx-auto" :to="`${backendOriginURL}${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
+    <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${backendOriginURL}${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
     <NuxtLink v-else class="mx-auto" name="lm" :to="`${backendOriginURL}${frame?.file_url}`">
@@ -22,7 +22,7 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
 const props = defineProps({
   original: Boolean,
-  spotlight: Boolean
+  photoswipe: Boolean
 })
 
 const { frame } = inject('framer') as any
@@ -32,7 +32,7 @@ const { backendOriginURL } = useConstants()
 let lightbox: any
 
 onMounted(() => {
-  if (props.spotlight) {
+  if (props.photoswipe) {
     const gallery = document.querySelectorAll('#image > a')
     gallery.forEach((el: any) => {
       loadImage(el.href).then((img: any) => {

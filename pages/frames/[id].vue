@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="card-body">
-        <FramesPreviewImage :original="true" :spotlight="true" />
+        <FramesPreviewImage :original="true" :photoswipe="true" />
         <FramesPreviewTags />
       </div>
       <div class="card-body">
