@@ -18,6 +18,7 @@
 import { Luminous } from 'luminous-lightbox'
 // @ts-ignore
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
+import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 // import 'photoswipe/style.css';
 
 const props = defineProps({
@@ -43,6 +44,7 @@ onMounted(() => {
       initialZoomLevel: 'fit',
       pswpModule: () => import('photoswipe')
     })
+    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
     lightbox.init()
   } else {
     const elm = document.querySelector('[name="lm"]')

@@ -50,6 +50,9 @@ dependencies:
   photoswipe:
     specifier: 5.3.7
     version: 5.3.7
+  photoswipe-fullscreen:
+    specifier: git+https://github.com/arnowelzel/photoswipe-fullscreen
+    version: github.com/arnowelzel/photoswipe-fullscreen/eb8bdfad985c7236152d5af448a42ba0a9b9446f
   sanitize-html:
     specifier: ^2.11.0
     version: 2.11.0
@@ -9935,3 +9938,9 @@ packages:
       compress-commons: 4.1.1
       readable-stream: 3.6.2
     dev: true
+
+  github.com/arnowelzel/photoswipe-fullscreen/eb8bdfad985c7236152d5af448a42ba0a9b9446f:
+    resolution: {tarball: https://codeload.github.com/arnowelzel/photoswipe-fullscreen/tar.gz/eb8bdfad985c7236152d5af448a42ba0a9b9446f}
+    name: photoswipe-fullscreen
+    version: 1.0.5
+    dev: false
