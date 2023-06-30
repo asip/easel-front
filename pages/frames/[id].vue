@@ -10,13 +10,13 @@
               <NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }">
                 <i class="bi bi-arrow-left-circle" />
               </NuxtLink>
+              <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
+                <i class="bi bi-pencil-square" />
+              </NuxtLink>
               <!-- Button trigger modal -->
               <button v-if="logged_in && frame.user_id == login_user.id" type="button" class="btn-icon-local" data-bs-toggle="modal" data-bs-config="{backdrop:true}" data-bs-target="#delete_modal">
                 <i class="bi bi-x-circle" />
               </button>
-              <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
-                <i class="bi bi-pencil-square" />
-              </NuxtLink>
             </div>
             <div class="float-end">
               {{ frame.updated_at }}&nbsp;
