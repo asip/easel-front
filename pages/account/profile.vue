@@ -11,7 +11,7 @@
         </div>
         <div class="float-end">
           <NuxtLink to="/account/edit">
-            <i class="bi bi-arrow-right-circle" />
+            <i class="bi bi-pencil-square" />
           </NuxtLink>
         </div>
       </div>
