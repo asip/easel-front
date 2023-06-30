@@ -10,6 +10,10 @@
               <NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }">
                 <i class="bi bi-arrow-left-circle" />
               </NuxtLink>
+              <!-- Button trigger modal -->
+              <button v-if="logged_in && frame.user_id == login_user.id" type="button" class="btn-icon-local" data-bs-toggle="modal" data-bs-config="{backdrop:true}" data-bs-target="#delete_modal">
+                <i class="bi bi-x-circle" />
+              </button>
             </div>
             <div class="float-end">
               {{ frame.updated_at }}&nbsp;
@@ -66,11 +70,7 @@
           <div class="form-group col-sm-6">
             <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">
               {{ $t('action.model.update') }}
-            </NuxtLink>&nbsp;
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">
-              {{ $t('action.model.delete') }}
-            </button>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -100,3 +100,11 @@ const sanitizedComment = computed(() => {
   return sanitizeHtml(frame.comment).replace(/\n/g, '<br>')
 })
 </script>
+
+<style>
+.btn-icon-local {
+  padding: 0;
+  background: none;
+  border: none;
+}
+</style>
