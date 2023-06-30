@@ -14,6 +14,9 @@
               <button v-if="logged_in && frame.user_id == login_user.id" type="button" class="btn-icon-local" data-bs-toggle="modal" data-bs-config="{backdrop:true}" data-bs-target="#delete_modal">
                 <i class="bi bi-x-circle" />
               </button>
+              <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
+                <i class="bi bi-pencil-square" />
+              </NuxtLink>
             </div>
             <div class="float-end">
               {{ frame.updated_at }}&nbsp;
@@ -62,15 +65,6 @@
                 {{ frame.user_name }}&nbsp;
               </NuxtLink>
             </div>
-          </div>
-        </div>
-      </div>
-      <div v-if="logged_in && frame.user_id == login_user.id" class="card-footer">
-        <div class="row d-flex justify-content-sm-center">
-          <div class="form-group col-sm-6">
-            <NuxtLink :to="`/frames/frame-${frame.id}/edit`" class="btn btn-primary">
-              {{ $t('action.model.update') }}
-            </NuxtLink>
           </div>
         </div>
       </div>
