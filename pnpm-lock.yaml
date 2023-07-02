@@ -27,11 +27,11 @@ dependencies:
     specifier: ^4.17.0
     version: 4.17.0
   '@vuelidate/core':
-    specifier: ^2.0.2
-    version: 2.0.2(vue@3.3.4)
+    specifier: ^2.0.3
+    version: 2.0.3(vue@3.3.4)
   '@vuelidate/validators':
-    specifier: ^2.0.2
-    version: 2.0.2(vue@3.3.4)
+    specifier: ^2.0.3
+    version: 2.0.3(vue@3.3.4)
   '@yaireo/tagify':
     specifier: ^4.17.8
     version: 4.17.8(prop-types@15.8.1)
@@ -2657,8 +2657,8 @@ packages:
       vue-component-type-helpers: 1.6.5
     dev: false
 
-  /@vuelidate/core@2.0.2(vue@3.3.4):
-    resolution: {integrity: sha512-aG1OZWv6xVws3ljyKy/pyxq1rdZZ2ryj+FEREcC9d4GP4qOvNHHZUl/NQxa0Bck3Ooc0RfXU8vwCA9piRoWy6w==}
+  /@vuelidate/core@2.0.3(vue@3.3.4):
+    resolution: {integrity: sha512-AN6l7KF7+mEfyWG0doT96z+47ljwPpZfi9/JrNMkOGLFv27XVZvKzRLXlmDPQjPl/wOB1GNnHuc54jlCLRNqGA==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^2.0.0 || >=3.0.0
@@ -2670,8 +2670,8 @@ packages:
       vue-demi: 0.13.11(vue@3.3.4)
     dev: false
 
-  /@vuelidate/validators@2.0.2(vue@3.3.4):
-    resolution: {integrity: sha512-6y6QLoK567XVmaLP3Paf1vkg6K2zO6xax3yTyczy1RnJ4PsLDLLGzP1PFzSpwb16aw4CKduBgI63HvIuctJhQg==}
+  /@vuelidate/validators@2.0.3(vue@3.3.4):
+    resolution: {integrity: sha512-P4WtmczPRbwmVihKlSAs3pIjIil4xjHW+Qoi58MCw7vnKuYr/IHarOFkwp0K8eIIqiQqY4URM5Gb4aeDjna6Yw==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^2.0.0 || >=3.0.0
