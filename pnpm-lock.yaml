@@ -48,8 +48,8 @@ dependencies:
     specifier: ^2.4.0
     version: 2.4.0
   photoswipe:
-    specifier: 5.3.7
-    version: 5.3.7
+    specifier: 5.3.8
+    version: 5.3.8
   photoswipe-fullscreen:
     specifier: git+https://github.com/arnowelzel/photoswipe-fullscreen
     version: github.com/arnowelzel/photoswipe-fullscreen/eb8bdfad985c7236152d5af448a42ba0a9b9446f
@@ -66,7 +66,7 @@ dependencies:
     specifier: 9.3.0-beta.21
     version: 9.3.0-beta.21(vue@3.3.4)
   vue-sonner:
-    specifier: ^0.3.2
+    specifier: ^0.3.3
     version: 0.3.3
   vuejs-paginate-next:
     specifier: ^1.0.2
@@ -7350,8 +7350,8 @@ packages:
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  /photoswipe@5.3.7:
-    resolution: {integrity: sha512-zsyLsTTLFrj0XR1m4/hO7qNooboFKUrDy+Zt5i2d6qjFPAtBjzaj/Xtydso4uxzcXpcqbTmyxDibb3BcSISseg==}
+  /photoswipe@5.3.8:
+    resolution: {integrity: sha512-4vTzOQt8GP4Chsm0s+8j2xDtVHAEN252PxrU12A1zXauNn0zD5HRHgjALKO2GKTyBnTnOrJUOxbV8LTrFIMrYw==}
     engines: {node: '>= 0.12.0'}
     dev: false
 

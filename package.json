@@ -35,13 +35,13 @@
     "bootstrap-icons": "^1.10.5",
     "cdate": "^0.0.6",
     "luminous-lightbox": "^2.4.0",
-    "photoswipe": "5.3.7",
+    "photoswipe": "5.3.8",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "sanitize-html": "^2.11.0",
     "sass": "^1.63.6",
     "v-calendar": "^3.0.3",
     "vue-i18n": "9.3.0-beta.21",
-    "vue-sonner": "^0.3.2",
+    "vue-sonner": "^0.3.3",
     "vuejs-paginate-next": "^1.0.2"
   }
 }
