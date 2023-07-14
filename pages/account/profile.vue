@@ -50,12 +50,15 @@
       </div>
     </div>
     <br>
+    <UsersFrameList :user_id="user_id" />
   </div>
 </template>
 
 <script setup lang="ts">
 
 const { logged_in, login_user } = useLoginUser()
+
+const user_id = login_user.value.id?.toString()
 
 provide('user', login_user)
 

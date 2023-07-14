@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-sm-12">
     <br>
     <div class="card">
       <div class="card-header">
@@ -27,6 +27,7 @@
       </div>
     </div>
     <br>
+    <UsersFrameList :user_id="user_id" />
   </div>
 </template>
 
@@ -42,10 +43,12 @@ const { user, getUser } = useUser()
 const { logged_in, login_user } = useLoginUser()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
-await getUser(id as string)
+const user_id  = id as string
+
+await getUser(user_id)
 
 if (logged_in.value) {
-  await isFollowing(id as string)
+  await isFollowing(user_id)
 }
 
 provide('user', user)
