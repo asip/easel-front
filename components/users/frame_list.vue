@@ -37,13 +37,14 @@
 </template>
 
 <script lang="ts" setup>
+// @ts-ignore
 import { LuminousGallery } from 'luminous-lightbox'
 import { useUserFrames } from '~/composables/use_user_frames'
-// @ts-ignore
 
-const props = defineProps({
-  user_id: String
-})
+const props = defineProps<{
+  user_id: string
+  page?: string
+}>()
 
 const { frame_query, getFrames, frames } = useUserFrames()
 
