@@ -9,7 +9,10 @@
         <div class="card-block">
           <div class="d-flex justify-content-sm-center">
             <div class="mx-auto" style="padding-bottom: 10px;">
-              <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">
+              <NuxtLink v-if="props.page" :to="{ path: `/frames/${frame.id}`, query: { ref: props.page } }" class="mx-auto">
+                {{ frame.name }}
+              </NuxtLink>
+              <NuxtLink v-else :to="`/frames/${frame.id}`" class="mx-auto">
                 {{ frame.name }}
               </NuxtLink>
             </div>
@@ -42,7 +45,7 @@ import { LuminousGallery } from 'luminous-lightbox'
 import { useUserFrames } from '~/composables/use_user_frames'
 
 const props = defineProps<{
-  user_id: string
+  user_id: string | undefined
   page?: string
 }>()
 

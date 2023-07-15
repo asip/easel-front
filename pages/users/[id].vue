@@ -27,7 +27,7 @@
       </div>
     </div>
     <br>
-    <UsersFrameList :user_id="user_id" />
+    <UsersFrameList :user_id="user_id" page="user_profile" />
   </div>
 </template>
 

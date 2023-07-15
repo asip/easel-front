@@ -50,7 +50,7 @@
       </div>
     </div>
     <br>
-    <UsersFrameList :user_id="user_id" />
+    <UsersFrameList :user_id="user_id" page="profile" />
   </div>
 </template>
 
