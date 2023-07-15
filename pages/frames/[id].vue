@@ -14,7 +14,14 @@
                 <i class="bi bi-pencil-square" />
               </NuxtLink>
               <!-- Button trigger modal -->
-              <button v-if="logged_in && frame.user_id == login_user.id" type="button" class="btn-icon-local" data-bs-toggle="modal" data-bs-config="{backdrop:true}" data-bs-target="#delete_modal">
+              <button
+                v-if="logged_in && frame.user_id == login_user.id"
+                type="button"
+                class="btn-icon-local"
+                data-bs-toggle="modal"
+                data-bs-config="{backdrop:true}"
+                data-bs-target="#delete_modal"
+              >
                 <i class="bi bi-x-circle" />
               </button>
             </div>

@@ -43,7 +43,7 @@ const { user, getUser } = useUser()
 const { logged_in, login_user } = useLoginUser()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
-const user_id  = id as string
+const user_id = id as string
 
 await getUser(user_id)
 

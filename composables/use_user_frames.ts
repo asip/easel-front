@@ -6,7 +6,7 @@ interface UserFrameQuery {
   pages: number
 }
 
-export function useUserFrames() {
+export function useUserFrames () {
   const frame_query = useState<UserFrameQuery>('user.frame_query', () => {
     return {
       user_id: null,
