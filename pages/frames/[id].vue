@@ -7,7 +7,13 @@
           <div class="col-12 clearfix">
             <div class="float-start">
             &nbsp;
-              <NuxtLink :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }">
+              <NuxtLink v-if="ref_page == 'profile'" :to="{ path: '/account/profile' }">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
+              <NuxtLink v-if="ref_page == 'user_profile'" :to="{ path: `/users/${ref_id}` }">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
+              <NuxtLink v-else :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }">
                 <i class="bi bi-arrow-left-circle" />
               </NuxtLink>
               <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
@@ -68,7 +74,7 @@
           <div class="col-sm-12 clearfix">
             <!-- <div class="float-start"></div> -->
             <div class="float-end">
-              <NuxtLink :to="`/users/${frame.user_id}`" class="text-decoration-none">
+              <NuxtLink :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frame_id } }" class="text-decoration-none">
                 {{ frame.user_name }}&nbsp;
               </NuxtLink>
             </div>
@@ -87,6 +93,8 @@ import sanitizeHtml from 'sanitize-html'
 
 const route = useRoute()
 const { id } = route.params
+const ref_page = route.query.ref
+const ref_id = route.query.ref_id
 
 const { frame_query } = useFrameSearch()
 const { logged_in, login_user } = useLoginUser()
@@ -95,7 +103,9 @@ const { frame, getFrame } = framer
 
 provide('framer', framer)
 
-await getFrame(id as string)
+const frame_id = id as string
+
+await getFrame(frame_id)
 
 const sanitizedComment = computed(() => {
   return sanitizeHtml(frame.comment).replace(/\n/g, '<br>')

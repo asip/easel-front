@@ -36,6 +36,8 @@ import { useFollow } from '~/composables/use_follow'
 
 const route = useRoute()
 const { id } = route.params
+const ref_page = route.query.ref
+const ref_id = route.query.ref_id
 
 const router = useRouter()
 
@@ -54,7 +56,11 @@ if (logged_in.value) {
 provide('user', user)
 
 const onPageBack = () => {
-  router.go(-1)
+  if(ref_page === 'frame'){
+    router.push({ path: `/frames/${ref_id}` })
+  } else {
+    router.push({ path: '/' })
+  }
 }
 
 const onFollowClick = async () => {
