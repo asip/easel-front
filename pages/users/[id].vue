@@ -56,7 +56,7 @@ if (logged_in.value) {
 provide('user', user)
 
 const onPageBack = () => {
-  if(ref_page === 'frame'){
+  if (ref_page === 'frame') {
     router.push({ path: `/frames/${ref_id}` })
   } else {
     router.push({ path: '/' })
