@@ -50,7 +50,7 @@
       </div>
     </div>
     <br>
-    <UsersFrameList :user_id="user_id" page="profile" />
+    <UsersFrameList :userId="userId" page="profile" />
   </div>
 </template>
 
@@ -58,7 +58,7 @@
 
 const { logged_in, login_user } = useLoginUser()
 
-const user_id = login_user.value.id?.toString()
+const userId = login_user.value.id?.toString()
 
 provide('user', login_user)
 

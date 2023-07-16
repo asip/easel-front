@@ -27,7 +27,7 @@
       </div>
     </div>
     <br>
-    <UsersFrameList :user_id="user_id" page="user_profile" />
+    <UsersFrameList :userId="userId" page="user_profile" />
   </div>
 </template>
 
@@ -45,12 +45,12 @@ const { user, getUser } = useUser()
 const { logged_in, login_user } = useLoginUser()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
-const user_id = id as string
+const userId = id as string
 
-await getUser(user_id)
+await getUser(userId)
 
 if (logged_in.value) {
-  await isFollowing(user_id)
+  await isFollowing(userId)
 }
 
 provide('user', user)
