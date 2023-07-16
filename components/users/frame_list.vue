@@ -48,7 +48,7 @@ import { LuminousGallery } from 'luminous-lightbox'
 import { useUserFrames } from '~/composables/use_user_frames'
 
 const props = defineProps<{
-  user_id: string | undefined
+  userId: string | undefined
   page?: string
 }>()
 
@@ -58,20 +58,20 @@ const { backendOriginURL } = useConstants()
 
 let gallery: LuminousGallery = null
 
-if (props.user_id) {
-  if (frame_query.value.user_id !== props.user_id) {
+if (props.userId) {
+  if (frame_query.value.user_id !== props.userId) {
     frame_query.value.page = 1
     frame_query.value.pages = 1
   }
-  frame_query.value.user_id = props.user_id
+  frame_query.value.user_id = props.userId // eslint-disable-line vue/no-setup-props-destructure
 }
 
 // console.log('searchFrame: start')
-getFrames(props.user_id)
+getFrames(props.userId)
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
-  await getFrames(props.user_id)
+  await getFrames(props.userId)
 }
 
 onUpdated(() => {
