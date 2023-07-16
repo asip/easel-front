@@ -7,15 +7,7 @@
           <div class="col-12 clearfix">
             <div class="float-start">
             &nbsp;
-              <NuxtLink v-if="ref_page == 'profile'" :to="{ path: '/account/profile' }">
-                <i class="bi bi-arrow-left-circle" />
-              </NuxtLink>
-              <NuxtLink v-if="ref_page == 'user_profile'" :to="{ path: `/users/${ref_id}` }">
-                <i class="bi bi-arrow-left-circle" />
-              </NuxtLink>
-              <NuxtLink v-else :to="{ path: '/' , query: { q: frame_query.word, page: frame_query.page } }">
-                <i class="bi bi-arrow-left-circle" />
-              </NuxtLink>
+              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
               <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
                 <i class="bi bi-pencil-square" />
               </NuxtLink>
@@ -96,6 +88,8 @@ const { id } = route.params
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
+const router = useRouter()
+
 const { frame_query } = useFrameSearch()
 const { logged_in, login_user } = useLoginUser()
 const framer = useFrame()
@@ -110,6 +104,16 @@ await getFrame(frame_id)
 const sanitizedComment = computed(() => {
   return sanitizeHtml(frame.comment).replace(/\n/g, '<br>')
 })
+
+const onPageBack = () => {
+  if (ref_page === 'profile') {
+    router.push({ path: '/account/profile' })
+  } else if (ref_page === 'user_profile') {
+    router.push({ path: `/users/${ref_id}` })
+  } else {
+    router.push({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
+  }
+}
 </script>
 
 <style>
