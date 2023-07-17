@@ -89,7 +89,7 @@ devDependencies:
     specifier: ^12.0.0
     version: 12.0.0(eslint@8.45.0)(typescript@5.1.6)
   eslint:
-    specifier: ^8.44.0
+    specifier: ^8.45.0
     version: 8.45.0
   markuplint:
     specifier: ^3.12.0
