@@ -40,7 +40,7 @@
     "sanitize-html": "^2.11.0",
     "sass": "^1.63.6",
     "v-calendar": "^3.0.3",
-    "vue-i18n": "9.3.0-beta.22",
+    "vue-i18n": "9.3.0-beta.24",
     "vue-sonner": "^0.3.3",
     "vuejs-paginate-next": "^1.0.2"
   }
