@@ -1,4 +1,5 @@
 import { User } from '~/composables/use_login_user'
+import { RefQuery } from '~/interfaces/ref_query'
 
 export const useUser = () => {
   const user = reactive<User>(
@@ -17,6 +18,13 @@ export const useUser = () => {
       social_login: false
     }
   )
+
+  const refQuery = useState<RefQuery>('user.ref_query', () => {
+    return {
+      page: null,
+      id: null
+    }
+  })
 
   const { backendApiURL } = useConstants()
 
@@ -49,5 +57,5 @@ export const useUser = () => {
     user.image_three_url = userJson.attributes.image_three_url
   }
 
-  return { user, getUser }
+  return { user, refQuery, getUser }
 }

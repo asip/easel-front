@@ -1,5 +1,6 @@
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
+import { RefQuery } from '~/interfaces/ref_query'
 
 export interface Frame {
   id: number | undefined
@@ -41,6 +42,13 @@ export const useFrame = () => {
     file_three_url: '',
     preview_url: null,
     updated_at: ''
+  })
+
+  const refQuery = useState<RefQuery>('frame.ref_query', () => {
+    return {
+      page: null,
+      id: null
+    }
   })
 
   const frameId = computed(() => {
@@ -225,6 +233,7 @@ export const useFrame = () => {
   return {
     getFrame,
     frame,
+    refQuery,
     frameId,
     frm_rules,
     updateFrame,
