@@ -57,7 +57,7 @@ dependencies:
     specifier: ^2.11.0
     version: 2.11.0
   sass:
-    specifier: ^1.63.6
+    specifier: ^1.64.0
     version: 1.64.0
   v-calendar:
     specifier: ^3.0.3
