@@ -16,5 +16,6 @@ RUN pnpm install
 # RUN npx nuxi upgrade --force
 
 EXPOSE 3030
+EXPOSE 24678
 
 # CMD ["pnpm", "dev"]
