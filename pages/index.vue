@@ -55,7 +55,7 @@ if (q) {
 }
 
 // console.log('searchFrame: start')
-searchFrame()
+searchFrame(true)
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum

@@ -17,11 +17,13 @@ export function useUserFrames () {
 
   const frames = useState<Frame[]>('user.frames', () => { return [] })
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
 
-  const getFrames = async (user_id: string | undefined) => {
+  const getFrames = async (user_id: string | undefined, ssr = false) => {
+    isSSR.value = ssr
+
     const { data } = await useAsyncData('get_frames_by_user_id', () =>
-      $fetch(`${backendApiURL}/users/${user_id}/frames`, {
+      $fetch(`${backendApiURL.value}/users/${user_id}/frames`, {
         method: 'get',
         query: {
           page: frame_query.value.page

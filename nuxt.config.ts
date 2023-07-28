@@ -36,7 +36,8 @@ export default defineNuxtConfig({
     public: {
       backendOriginURL: 'http://localhost:3000',
       googleClientId: ''
-    }
+    },
+    backendOriginURL: 'http://localhost:3000'
   },
 
   css: [

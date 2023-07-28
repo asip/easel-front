@@ -80,7 +80,7 @@ export const useLoginUser = () => {
 
   const login_messages = ref<String[]>([])
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
 
   const error_messages = reactive({
     image: [],
@@ -146,13 +146,15 @@ export const useLoginUser = () => {
     }
   }
 
-  const authenticate = async () => {
+  const authenticate = async (ssr = false) => {
+    isSSR.value = ssr
+
     login_user.value.token = access_token.value
     // console.log(login_user.value.token)
 
     if (login_user.value.token) {
       const { data } = await useAsyncData('authenticate', () =>
-        $fetch(`${backendApiURL}/profile`, {
+        $fetch(`${backendApiURL.value}/profile`, {
           method: 'get',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
@@ -209,14 +211,16 @@ export const useLoginUser = () => {
     }
   }
 
-  const login_with_google = async (response: any) => {
+  const login_with_google = async (response: any, ssr = false) => {
+    isSSR.value = ssr
+
     const postData = {
       provider: 'google',
       credential: response.credential
     }
 
     const { data } = await useAsyncData('login_with_google', () =>
-      $fetch(`${backendApiURL}/oauth/sessions/`, {
+      $fetch(`${backendApiURL.value}/oauth/sessions/`, {
         method: 'post',
         body: postData,
         headers: {

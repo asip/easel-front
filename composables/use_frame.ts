@@ -61,14 +61,16 @@ export const useFrame = () => {
     file: []
   })
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
 
-  const getFrame = async (id: string) => {
+  const getFrame = async (id: string, ssr = false) => {
+    isSSR.value = ssr
+
     const { data } = await useAsyncData('get_frame', () =>
-      $fetch(`${backendApiURL}/frames/${id}`, {
+      $fetch(`${backendApiURL.value}/frames/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

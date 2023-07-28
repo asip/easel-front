@@ -67,7 +67,7 @@ const { login_user, logged_in, authenticate, logout } = useLoginUser()
 // console.log(logged_in.value)
 if (!logged_in.value) {
   // console.log('test2')
-  await authenticate()
+  await authenticate(true)
 }
 
 const onLogoutClick = async () => {

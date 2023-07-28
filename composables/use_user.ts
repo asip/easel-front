@@ -26,11 +26,13 @@ export const useUser = () => {
     }
   })
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
 
-  const getUser = async (id: string) => {
+  const getUser = async (id: string, ssr = false) => {
+    isSSR.value = ssr
+
     const { data } = await useAsyncData('get_user', () =>
-      $fetch(`${backendApiURL}/users/${id}`, {
+      $fetch(`${backendApiURL.value}/users/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

@@ -34,15 +34,17 @@ export function useComment () {
     base: []
   })
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
 
-  const getComments = async () => {
+  const getComments = async (ssr = false) => {
+    isSSR.value = ssr
+
     // console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
-      $fetch(`${backendApiURL}/frames/${comment.frame_id}/comments`, {
+      $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'

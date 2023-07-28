@@ -4,11 +4,15 @@ import { useLoginUser } from './use_login_user'
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
-  const { backendApiURL } = useConstants()
+  const { isSSR, backendApiURL } = useConstants()
+
   const { login_user, navigateLogoutTo } = useLoginUser()
-  const isFollowing = async (userId: string) => {
+
+  const isFollowing = async (userId: string, ssr = false) => {
+    isSSR.value = ssr
+
     const { data, error } = await useAsyncData('getFrame', () =>
-      $fetch(`${backendApiURL}/profile/following/${userId}`, {
+      $fetch(`${backendApiURL.value}/profile/following/${userId}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -29,9 +33,11 @@ export function useFollow () {
     }
   }
 
-  const follow = async (userId: number | null) => {
+  const follow = async (userId: number | null, ssr = false) => {
+    isSSR.value = ssr
+
     const { error } = await useAsyncData('follow', () =>
-      $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
+      $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
         method: 'post',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -47,7 +53,9 @@ export function useFollow () {
     following.value = true
   }
 
-  const unfollow = async (userId: number | null) => {
+  const unfollow = async (userId: number | null, ssr = false) => {
+    isSSR.value = ssr
+
     const { error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',

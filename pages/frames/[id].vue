@@ -99,7 +99,7 @@ provide('framer', framer)
 
 const frame_id = id as string
 
-await getFrame(frame_id)
+await getFrame(frame_id, true)
 
 const sanitizedComment = computed(() => {
   return sanitizeHtml(frame.comment).replace(/\n/g, '<br>')
