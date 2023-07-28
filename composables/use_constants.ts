@@ -1,10 +1,8 @@
 export const useConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
-  const isSSR = ref(false)
-
   const backendOriginURL: Ref = computed(
-    () => isSSR.value ? (runtimeConfig.backendOriginURL as string) : (runtimeConfig.public.backendOriginURL as string)
+    () => runtimeConfig.backendOriginURL ? (runtimeConfig.backendOriginURL as string) : (runtimeConfig.public.backendOriginURL as string)
   )
 
   const backendApiURL: Ref = computed(
@@ -13,5 +11,5 @@ export const useConstants = () => {
 
   const googleClientID: string = runtimeConfig.public.googleClientId
 
-  return { isSSR, backendOriginURL, backendApiURL, googleClientID }
+  return { backendOriginURL, backendApiURL, googleClientID }
 }

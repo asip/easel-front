@@ -14,5 +14,5 @@ provide('commenter', commenter)
 comment.frame_id = frame?.id
 
 // console.log(comment.frame_id);
-await getComments(true)
+await getComments()
 </script>

@@ -26,11 +26,9 @@ export const useUser = () => {
     }
   })
 
-  const { isSSR, backendApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
-  const getUser = async (id: string, ssr = false) => {
-    isSSR.value = ssr
-
+  const getUser = async (id: string) => {
     const { data } = await useAsyncData('get_user', () =>
       $fetch(`${backendApiURL.value}/users/${id}`, {
         method: 'get',

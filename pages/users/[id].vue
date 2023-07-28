@@ -47,10 +47,10 @@ const { following, follow, unfollow, isFollowing } = useFollow()
 
 const userId = id as string
 
-await getUser(userId, true)
+await getUser(userId)
 
 if (logged_in.value) {
-  await isFollowing(userId, true)
+  await isFollowing(userId)
 }
 
 provide('user', user)

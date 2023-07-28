@@ -61,14 +61,12 @@ export const useFrame = () => {
     file: []
   })
 
-  const { isSSR, backendApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const { locale } = useLocale()
   const { login_user, navigateLogoutTo } = useLoginUser()
 
-  const getFrame = async (id: string, ssr = false) => {
-    isSSR.value = ssr
-
+  const getFrame = async (id: string) => {
     const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${id}`, {
         method: 'get',

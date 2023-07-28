@@ -4,13 +4,11 @@ import { useLoginUser } from './use_login_user'
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
-  const { isSSR, backendApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const { login_user, navigateLogoutTo } = useLoginUser()
 
-  const isFollowing = async (userId: string, ssr = false) => {
-    isSSR.value = ssr
-
+  const isFollowing = async (userId: string) => {
     const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${backendApiURL.value}/profile/following/${userId}`, {
         method: 'get',
@@ -33,9 +31,7 @@ export function useFollow () {
     }
   }
 
-  const follow = async (userId: number | null, ssr = false) => {
-    isSSR.value = ssr
-
+  const follow = async (userId: number | null) => {
     const { error } = await useAsyncData('follow', () =>
       $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
         method: 'post',
@@ -53,9 +49,7 @@ export function useFollow () {
     following.value = true
   }
 
-  const unfollow = async (userId: number | null, ssr = false) => {
-    isSSR.value = ssr
-
+  const unfollow = async (userId: number | null) => {
     const { error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
         method: 'delete',

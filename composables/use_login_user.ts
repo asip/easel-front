@@ -80,7 +80,7 @@ export const useLoginUser = () => {
 
   const login_messages = ref<String[]>([])
 
-  const { isSSR, backendApiURL } = useConstants()
+  const { backendApiURL } = useConstants()
 
   const error_messages = reactive({
     image: [],
@@ -146,9 +146,7 @@ export const useLoginUser = () => {
     }
   }
 
-  const authenticate = async (ssr = false) => {
-    isSSR.value = ssr
-
+  const authenticate = async () => {
     login_user.value.token = access_token.value
     // console.log(login_user.value.token)
 
@@ -211,9 +209,7 @@ export const useLoginUser = () => {
     }
   }
 
-  const login_with_google = async (response: any, ssr = false) => {
-    isSSR.value = ssr
-
+  const login_with_google = async (response: any) => {
     const postData = {
       provider: 'google',
       credential: response.credential

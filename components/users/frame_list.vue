@@ -67,7 +67,7 @@ if (props.userId) {
 }
 
 // console.log('searchFrame: start')
-getFrames(props.userId, true)
+getFrames(props.userId)
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
