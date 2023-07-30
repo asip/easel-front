@@ -114,7 +114,7 @@ export const useFrame = () => {
     // console.log(login_user.value.token)
 
     const { data, error } = await useAsyncData('create_frame', () =>
-      $fetch('/api/frames/', {
+      $fetch(`${backendApiURL.value}/frames/`, {
         method: 'post',
         body: formData,
         headers: {
@@ -186,7 +186,7 @@ export const useFrame = () => {
     // console.log(login_user.value.token)
 
     const { data, error } = await useAsyncData('update_frame', () =>
-      $fetch(`/api/frames/${frame.id}`, {
+      $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'put',
         body: postData,
         headers: {
@@ -212,7 +212,7 @@ export const useFrame = () => {
     // console.log(frame.id)
 
     const { error } = await useAsyncData('delete_frame', () =>
-      $fetch(`/api/frames/${frame.id}`, {
+      $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

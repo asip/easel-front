@@ -85,7 +85,7 @@ export function useComment () {
     }
 
     const { data, error } = await useAsyncData('post_comment', () =>
-      $fetch(`/api/frames/${comment.frame_id}/comments`,
+      $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`,
         {
           method: 'post',
           body: postData,
@@ -151,7 +151,7 @@ export function useComment () {
 
   const deleteComment = async (comment: any, idx: number) => {
     const { error } = await useAsyncData('delete_comment', () =>
-      $fetch(`/api/comments/${comment.id}`,
+      $fetch(`${backendApiURL.value}/comments/${comment.id}`,
         {
           method: 'delete',
           headers: {

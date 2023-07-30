@@ -126,7 +126,7 @@ export const useLoginUser = () => {
     formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
     const { data } = await useAsyncData('signup', () =>
-      $fetch('/api/users/', {
+      $fetch(`${backendApiURL.value}/users/`, {
         method: 'post',
         body: formData,
         headers: {
@@ -185,7 +185,7 @@ export const useLoginUser = () => {
     }
 
     const { data } = await useAsyncData('login', () =>
-      $fetch('/api/sessions/', {
+      $fetch(`${backendApiURL.value}/sessions/`, {
         method: 'post',
         body: postData,
         headers: {
@@ -274,7 +274,7 @@ export const useLoginUser = () => {
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
     const { data, error } = await useAsyncData('update_profile', () =>
-      $fetch('/api/profile/', {
+      $fetch(`${backendApiURL.value}/profile/`, {
         method: 'put',
         body: formData,
         headers: {
@@ -352,7 +352,7 @@ export const useLoginUser = () => {
 
   const logout = async () => {
     const { data, error } = await useAsyncData('logout', () =>
-      $fetch('/api/sessions/logout', {
+      $fetch(`${backendApiURL.value}/sessions/logout`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',

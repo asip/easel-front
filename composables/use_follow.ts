@@ -51,7 +51,7 @@ export function useFollow () {
 
   const unfollow = async (userId: number | null) => {
     const { error } = await useAsyncData('unfollow', () =>
-      $fetch(`${backendApiURL}/users/${userId}/follow_relationships`, {
+      $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
