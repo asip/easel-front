@@ -31,7 +31,7 @@
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.3",
     "@yaireo/tagify": "^4.17.8",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "cdate": "^0.0.6",
     "luminous-lightbox": "^2.4.0",
