@@ -42,8 +42,8 @@ dependencies:
     specifier: ^1.10.5
     version: 1.10.5
   cdate:
-    specifier: ^0.0.6
-    version: 0.0.6
+    specifier: ^0.0.7
+    version: 0.0.7
   luminous-lightbox:
     specifier: ^2.4.0
     version: 2.4.0
@@ -995,6 +995,11 @@ packages:
 
   /@intlify/shared@9.3.0-beta.25:
     resolution: {integrity: sha512-Zg+ECV9RPdp227tCJOgvPb+S3i651nf4kKHsMojSyWCppVK/4NFuDrBG2lIQSQL6Iq5LKVr5MkezHCW2NBTQRg==}
+    engines: {node: '>= 16'}
+    dev: false
+
+  /@intlify/shared@9.3.0-beta.26:
+    resolution: {integrity: sha512-RpCtfSYIg4tSskrazTr5+WCHyw6qpgwdIxC+x3nCnrPGxyk+en9FoSbadVfx/w7uDTdyhKslEw4d2+qhNc0s4Q==}
     engines: {node: '>= 16'}
     dev: false
 
@@ -3288,8 +3293,8 @@ packages:
   /caniuse-lite@1.0.30001517:
     resolution: {integrity: sha512-Vdhm5S11DaFVLlyiKu4hiUTkpZu+y1KA/rZZqVQfOD5YdDT/eQKlkt7NaE0WGOFgX32diqt9MiP9CAiFeRklaA==}
 
-  /cdate@0.0.6:
-    resolution: {integrity: sha512-aB5QRt+f9rd/0CeKrFy+HHXeRTBd48A1l4Ct0rl3BGYcdgdcXZYu4bpYBcnQn3XdA6y0ZvmMW1HDq+GNGrEVJw==}
+  /cdate@0.0.7:
+    resolution: {integrity: sha512-11EnUjVX6hwL0FcDNE2F0wh+0KnQieTfPUdPHNdQHbrvFdEbqfRULkA8nMcfT2tXCGw/ABRdYLqQ0SmbeWawTA==}
     dev: false
 
   /chalk@2.4.2:
@@ -9674,7 +9679,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.25
+      '@intlify/shared': 9.3.0-beta.26
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.24)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.1.2

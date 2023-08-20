@@ -33,7 +33,7 @@
     "@yaireo/tagify": "^4.17.8",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
-    "cdate": "^0.0.6",
+    "cdate": "^0.0.7",
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.3.8",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
