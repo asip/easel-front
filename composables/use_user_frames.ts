@@ -1,4 +1,4 @@
-import { Frame } from '~/composables/use_frame'
+import { Frame } from '~/interfaces/frame'
 
 interface UserFrameQuery {
   user_id: string | null

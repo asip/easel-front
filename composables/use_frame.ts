@@ -1,24 +1,7 @@
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import { RefQuery } from '~/interfaces/ref_query'
-
-export interface Frame {
-  id: number | undefined
-  user_id: number | null | undefined
-  user_name: string
-  name: string
-  tag_list: string
-  tags: string[]
-  comment: string
-  shooted_at: string
-  shooted_at_html: string | null | undefined
-  file: Blob | undefined | null,
-  file_url: string | null | undefined
-  file_two_url: string | undefined
-  file_three_url: string | undefined
-  preview_url: string | null | undefined
-  updated_at: string
-}
+import { Frame } from '~/interfaces/frame'
 
 const frm_rules = {
   name: { required, minLength: minLength(1), maxLength: maxLength(20) },

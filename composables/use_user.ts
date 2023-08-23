@@ -1,4 +1,4 @@
-import { User } from '~/composables/use_login_user'
+import { User } from '~/interfaces/user'
 import { RefQuery } from '~/interfaces/ref_query'
 
 export const useUser = () => {

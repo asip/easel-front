@@ -1,5 +1,5 @@
 import { cdate } from 'cdate'
-import { Frame } from '~/composables/use_frame'
+import { Frame } from '~/interfaces/frame'
 
 export const useFrameSearch = () => {
   const frame_query = useState('frame_query', () => {

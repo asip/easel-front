@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 import { useConstants } from '~/composables/use_constants'
-import { Comment } from '~/composables/use_comment'
+import { Comment } from '~/interfaces/comment'
 
 const { logged_in, login_user } = useLoginUser()
 
