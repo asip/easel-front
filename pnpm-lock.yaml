@@ -24,7 +24,7 @@ dependencies:
     specifier: ^2.9.0
     version: 2.9.0
   '@types/yaireo__tagify':
-    specifier: ^4.17.0
+    specifier: ^4.17.1
     version: 4.17.1
   '@vuelidate/core':
     specifier: ^2.0.3
@@ -33,7 +33,7 @@ dependencies:
     specifier: ^2.0.3
     version: 2.0.4(vue@3.3.4)
   '@yaireo/tagify':
-    specifier: ^4.17.8
+    specifier: ^4.17.9
     version: 4.17.9(prop-types@15.8.1)
   bootstrap:
     specifier: ^5.3.1
