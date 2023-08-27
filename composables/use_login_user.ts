@@ -1,6 +1,6 @@
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
-import { User} from '~/interfaces/user'
+import { User } from '~/interfaces/user'
 
 export interface SignupParams {
   image: Blob | null | undefined

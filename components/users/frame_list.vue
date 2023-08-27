@@ -63,7 +63,7 @@ if (props.userId) {
     frame_query.value.page = 1
     frame_query.value.pages = 1
   }
-  frame_query.value.user_id = props.userId // eslint-disable-line vue/no-setup-props-destructure
+  frame_query.value.user_id = props.userId
 }
 
 // console.log('searchFrame: start')
