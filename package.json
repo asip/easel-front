@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@nuxt/image-edge": "1.0.0-rc.1-28116474.c4a8ff6",
-    "@nuxtjs/i18n": "8.0.0-rc.2",
+    "@nuxtjs/i18n": "8.0.0-rc.3",
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.6",
     "@types/google.accounts": "^0.0.8",
@@ -40,7 +40,7 @@
     "sanitize-html": "^2.11.0",
     "sass": "^1.66.1",
     "v-calendar": "^3.0.3",
-    "vue-i18n": "9.3.0-beta.25",
+    "vue-i18n": "9.3.0-beta.26",
     "vue-sonner": "^0.4.3",
     "vuejs-paginate-next": "^1.0.2"
   }
