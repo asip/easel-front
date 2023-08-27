@@ -25,7 +25,7 @@
     "@nuxtjs/i18n": "8.0.0-rc.3",
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.6",
-    "@types/google.accounts": "^0.0.8",
+    "@types/google.accounts": "^0.0.9",
     "@types/sanitize-html": "^2.9.0",
     "@types/yaireo__tagify": "^4.17.0",
     "@vuelidate/core": "^2.0.3",
