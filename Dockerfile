@@ -8,9 +8,6 @@ RUN npm install -g pnpm
 
 COPY . /frontend
 
-RUN rm -rf .git/
-RUN rm -rf node_modules
-
 RUN pnpm install
 
 # RUN npx nuxi upgrade --force
