@@ -1,14 +1,14 @@
 <template>
   <div v-if="props.original" id="image" ref="root" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${backendOriginURL}${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
-      <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
+      <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else class="mx-auto" name="lm" :to="`${backendOriginURL}${frame?.file_url}`">
-      <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    <NuxtLink v-else class="mx-auto" name="lm" :to="`${frame?.file_url}`">
+      <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
-    <img :src="`${backendOriginURL}${frame?.file_three_url}`" alt="" class="mx-auto">
+    <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
   </div>
   <br>
 </template>

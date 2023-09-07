@@ -3,8 +3,8 @@
     <br>
     <div class="row col-sm-12">
       <div v-for="frame in frames" :key="frame.id" class="card col-sm-3 kadomaru">
-        <NuxtLink :to="`${backendOriginURL}${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;">
-          <img :src="`${backendOriginURL}${frame.file_two_url}`" :alt="frame.name" class="card-img-top">
+        <NuxtLink :to="`${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;">
+          <img :src="`${frame.file_two_url}`" :alt="frame.name" class="card-img-top">
         </NuxtLink>
         <br>
         <div class="card-block">

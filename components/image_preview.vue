@@ -12,9 +12,9 @@ const model: any = inject('model')
 
 if (model) {
   if (model.file) {
-    model.preview_url = `${backendOriginURL.value}${model?.file_three_url}`
+    model.preview_url = `${model?.file_three_url}`
   } else if (model.image) {
-    model.preview_url = `${backendOriginURL.value}${model?.image_three_url}`
+    model.preview_url = `${model?.image_three_url}`
   }
 }
 </script>
