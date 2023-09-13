@@ -30,7 +30,7 @@ dependencies:
     specifier: ^2.0.3
     version: 2.0.3(vue@3.3.4)
   '@vuelidate/validators':
-    specifier: ^2.0.3
+    specifier: ^2.0.4
     version: 2.0.4(vue@3.3.4)
   '@yaireo/tagify':
     specifier: ^4.17.9

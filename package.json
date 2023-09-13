@@ -29,7 +29,7 @@
     "@types/sanitize-html": "^2.9.0",
     "@types/yaireo__tagify": "^4.17.2",
     "@vuelidate/core": "^2.0.3",
-    "@vuelidate/validators": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "@yaireo/tagify": "^4.17.9",
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.11.0",
