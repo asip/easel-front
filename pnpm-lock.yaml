@@ -24,7 +24,7 @@ dependencies:
     specifier: ^2.9.0
     version: 2.9.0
   '@types/yaireo__tagify':
-    specifier: ^4.17.1
+    specifier: ^4.17.2
     version: 4.17.2
   '@vuelidate/core':
     specifier: ^2.0.3

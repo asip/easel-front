@@ -27,7 +27,7 @@
     "@types/bootstrap": "^5.2.6",
     "@types/google.accounts": "^0.0.9",
     "@types/sanitize-html": "^2.9.0",
-    "@types/yaireo__tagify": "^4.17.1",
+    "@types/yaireo__tagify": "^4.17.2",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.3",
     "@yaireo/tagify": "^4.17.9",
