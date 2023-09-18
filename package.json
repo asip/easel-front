@@ -24,7 +24,7 @@
     "@nuxt/image-edge": "1.0.0-rc.1-28116474.c4a8ff6",
     "@nuxtjs/i18n": "8.0.0-rc.4",
     "@popperjs/core": "^2.11.8",
-    "@types/bootstrap": "^5.2.6",
+    "@types/bootstrap": "^5.2.7",
     "@types/google.accounts": "^0.0.9",
     "@types/sanitize-html": "^2.9.0",
     "@types/yaireo__tagify": "^4.17.2",
