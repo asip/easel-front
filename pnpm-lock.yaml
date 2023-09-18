@@ -48,8 +48,8 @@ dependencies:
     specifier: ^2.4.0
     version: 2.4.0
   photoswipe:
-    specifier: 5.4.0
-    version: 5.4.0
+    specifier: 5.4.1
+    version: 5.4.1
   photoswipe-fullscreen:
     specifier: git+https://github.com/arnowelzel/photoswipe-fullscreen
     version: github.com/arnowelzel/photoswipe-fullscreen/eb8bdfad985c7236152d5af448a42ba0a9b9446f
@@ -7429,8 +7429,8 @@ packages:
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
-  /photoswipe@5.4.0:
-    resolution: {integrity: sha512-PZvdK1D94TApU0MNWc9H6eXOolKJOMkgt7CJ9ZfIdkHR4CrEj47MOe4Vrlcv6ZpHslK+uKS6Ai3y3VIe7gsi+Q==}
+  /photoswipe@5.4.1:
+    resolution: {integrity: sha512-iauO0fP4oMdZvjlXzeIe8um1fZatkGE0bqdoIwpb65jlo/KK1KhfD7Z51+0YhS2tC4FOoOtE1p0c4o/HbY1s2Q==}
     engines: {node: '>= 0.12.0'}
     dev: false
 
