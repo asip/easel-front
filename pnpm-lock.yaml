@@ -18,8 +18,8 @@ dependencies:
     specifier: ^5.2.7
     version: 5.2.7
   '@types/google.accounts':
-    specifier: ^0.0.9
-    version: 0.0.9
+    specifier: ^0.0.10
+    version: 0.0.10
   '@types/sanitize-html':
     specifier: ^2.9.0
     version: 2.9.0
@@ -2266,8 +2266,8 @@ packages:
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
 
-  /@types/google.accounts@0.0.9:
-    resolution: {integrity: sha512-brOjhe+gTlZ241FMKcLjKp44CRSwdXNe8cWvHg23FBXEop1QRNhK9Gzs438dbCwCnZ0cCWDkQaaMBBYsZatZJg==}
+  /@types/google.accounts@0.0.10:
+    resolution: {integrity: sha512-5Zm+YxQNClGsWvFt055SO+CMDYEXJtPd0W9IM+yT0alQWF4+tleKYQCp46QeJWdpOOz9Ndus2oCIDLuiXcEgnQ==}
     dev: false
 
   /@types/has-yarn@1.0.1:
