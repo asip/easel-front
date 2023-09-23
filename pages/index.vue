@@ -46,6 +46,7 @@ const q = route.query.q
 
 const { frame_query, searchFrame, frames } = useFrameSearch()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { backendOriginURL } = useConstants()
 
 let gallery: LuminousGallery = null

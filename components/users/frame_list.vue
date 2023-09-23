@@ -54,6 +54,7 @@ const props = defineProps<{
 
 const { frame_query, getFrames, frames } = useUserFrames()
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { backendOriginURL } = useConstants()
 
 let gallery: LuminousGallery = null

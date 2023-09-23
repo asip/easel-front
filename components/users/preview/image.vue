@@ -21,6 +21,7 @@ const props = defineProps({
   original: Boolean
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { backendOriginURL } = useConstants()
 const user: User | undefined = inject('user')
 
