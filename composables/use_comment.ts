@@ -91,17 +91,18 @@ export function useComment () {
 
     clearErrorMessages()
 
-    const { data: commentJson, errors } = data.value as any
-
-    if (commentJson) {
-      comment.body = ''
-    } else if (errors) {
-      setErrorMessages(errors)
-    } else if (error.value) {
+    if (error.value) {
       clearErrorMessages()
       // @ts-ignore
       // error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
       navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: commentJson, errors } = data.value as any
+      if (commentJson) {
+        comment.body = ''
+      } else if (errors) {
+        setErrorMessages(errors)
+      }
     }
   }
 

@@ -109,14 +109,15 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const { data: frameJson, errors } = data.value as any
-
-    if (frameJson) {
-      frame.id = frameJson.id
-    } else if (errors) {
-      setErrorMessages(errors)
-    } else if (error.value) {
+    if (error.value) {
       navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: frameJson, errors } = data.value as any
+      if (frameJson) {
+        frame.id = frameJson.id
+      } else if (errors) {
+        setErrorMessages(errors)
+      }
     }
   }
 
@@ -182,12 +183,13 @@ export const useFrame = () => {
 
     clearErrorMessages()
 
-    const { data: frameJson, errors } = data.value as any
-
-    if (!frameJson && errors) {
-      setErrorMessages(errors)
-    } else if (error.value) {
+    if (error.value) {
       navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: frameJson, errors } = data.value as any
+      if (!frameJson && errors) {
+        setErrorMessages(errors)
+      }
     }
   }
 

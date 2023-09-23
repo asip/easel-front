@@ -273,17 +273,18 @@ export const useLoginUser = () => {
 
     clearErrorMessages()
 
-    const { data: userJson, errors } = data.value as any
-
     // console.log(userJson)
     // console.log(errors)
 
-    if (userJson) {
-      setJson2LoginUser(userJson)
-    } else if (errors) {
-      setErrorMessages(errors)
-    } else if (error.value) {
+    if (error.value) {
       navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: userJson, errors } = data.value as any
+      if (userJson) {
+        setJson2LoginUser(userJson)
+      } else if (errors) {
+        setErrorMessages(errors)
+      }
     }
   }
 
@@ -347,12 +348,13 @@ export const useLoginUser = () => {
       })
     )
 
-    const { data: userJson } = data.value as any
-
-    if (userJson) {
+    if (error.value) {
       navigateLogoutTo('/')
-    } else if (error.value) {
-      navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: userJson } = data.value as any
+      if (userJson) {
+        navigateLogoutTo('/')
+      }
     }
   }
 

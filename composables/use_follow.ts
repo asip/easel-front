@@ -20,14 +20,15 @@ export function useFollow () {
     )
 
     const json_data = data.value as any
-    if (json_data) {
+
+    if (error.value) {
+      navigateLogoutTo('/')
+    } else if (json_data) {
       const { following: followingValue } = json_data
 
       if (followingValue != null || followingValue !== undefined) {
         following.value = followingValue
       }
-    } else if (error.value) {
-      navigateLogoutTo('/')
     }
   }
 
