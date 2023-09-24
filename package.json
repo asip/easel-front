@@ -11,13 +11,13 @@
     "markuplint": "markuplint '*/**/*.vue'"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^3.9.1",
-    "@markuplint/vue-spec": "^3.10.1",
+    "@markuplint/vue-parser": "^3.10.0",
+    "@markuplint/vue-spec": "^3.11.0",
     "@nuxt/devtools": "0.8.3",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "eslint": "^8.49.0",
-    "markuplint": "^3.12.1",
+    "markuplint": "^3.13.0",
     "nuxt": "^3.7.3"
   },
   "dependencies": {
