@@ -35,7 +35,7 @@
     "bootstrap-icons": "^1.11.1",
     "cdate": "^0.0.7",
     "luminous-lightbox": "^2.4.0",
-    "photoswipe": "5.4.1",
+    "photoswipe": "5.4.2",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "sanitize-html": "^2.11.0",
     "sass": "^1.68.0",
