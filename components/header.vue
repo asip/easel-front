@@ -22,7 +22,7 @@
         <ul v-if="!logged_in" class="navbar-nav me-auto">
           <li class="nav-item">
             <NuxtLink :to="`/login`" class="nav-link">
-              Login
+              {{ $t('action.user.login') }}
             </NuxtLink>
           </li>
         </ul>
@@ -34,17 +34,17 @@
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
               <li>
                 <NuxtLink to="/account/profile" class="dropdown-item">
-                  profile
+                  {{ $t('model.user.model_name') }}
                 </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/frames/new" class="dropdown-item">
-                  Upload
+                  {{ $t('action.frame.upload') }}
                 </NuxtLink>
               </li>
               <li>
                 <button type="button" class="dropdown-item" @click="onLogoutClick">
-                  Logout
+                  {{ $t('action.user.logout') }}
                 </button>
               </li>
             </ul>
