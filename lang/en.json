@@ -35,7 +35,8 @@
       "return": "Back"
     },
     "user": {
-      "login": "Login",
+      "login": "Sign In",
+      "logout": "Sign Out",
       "new": "User Registration",
       "follow": "Follow",
       "unfollow": "Now following"
