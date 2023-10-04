@@ -21,7 +21,7 @@
     "nuxt": "^3.7.4"
   },
   "dependencies": {
-    "@nuxt/image-edge": "1.0.0-rc.2-28257829.3628546",
+    "@nuxt/image-edge": "1.0.0-rc.3-28272445.06c91ae",
     "@nuxtjs/i18n": "8.0.0-rc.5",
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.7",
