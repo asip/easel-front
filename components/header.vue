@@ -5,7 +5,7 @@
   <nav class="navbar navbar-expand-sm fixed-top navbar-light c-bgcolor">
     <div class="container-fluid">
       <div class="align-middle">
-        <NuxtLink :to="`/`" class="navbar-brand">
+        <NuxtLink class="navbar-brand" @click="onTopPageClick">
           <i class="bi bi-palette" /> Easel
         </NuxtLink>
       </div>
@@ -63,8 +63,11 @@
 <script lang="ts" setup>
 import { useLocale } from '~/composables/use_locale'
 
+const route = useRoute()
+
 const { autoDetect } = useLocale()
 const { login_user, logged_in, authenticate, logout } = useLoginUser()
+const { frame_query, searchFrame } = useFrameSearch()
 
 // console.log(logged_in.value)
 if (!logged_in.value) {
@@ -74,6 +77,16 @@ if (!logged_in.value) {
 
 const onLogoutClick = async () => {
   await logout()
+}
+
+const onTopPageClick = async () => {
+  frame_query.value.word = ''
+  // frame_query.value.page = 1
+  // frame_query.value.pages = 1
+  await searchFrame()
+  if (route.path !== '/') {
+    navigateTo('/')
+  }
 }
 
 onMounted(() => {
