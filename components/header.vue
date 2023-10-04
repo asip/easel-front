@@ -1,5 +1,7 @@
 <template>
-  <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
+  <ClientOnly>
+    <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
+  </ClientOnly>
   <nav class="navbar navbar-expand-sm fixed-top navbar-light c-bgcolor">
     <div class="container-fluid">
       <div class="align-middle">
