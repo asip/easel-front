@@ -37,6 +37,7 @@
     "user": {
       "login": "ログイン",
       "logout": "ログアウト",
+      "delete": "退会",
       "new": "ユーザー登録",
       "follow": "フォローする",
       "unfollow": "フォローを外す"
@@ -53,6 +54,11 @@
       "close": "閉じる",
       "delete": {
         "message": "削除してもよろしいですか？"
+      },
+      "user": {
+        "delete": {
+          "message": "退会してもよろしいですか？"
+        }
       }
     }
   }

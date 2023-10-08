@@ -37,6 +37,7 @@
     "user": {
       "login": "Sign In",
       "logout": "Sign Out",
+      "delete": "Delete",
       "new": "User Registration",
       "follow": "Follow",
       "unfollow": "Now following"
@@ -53,6 +54,11 @@
       "close": "Close",
       "delete": {
         "message": "Are you sure you want to delete it?"
+      },
+      "user": {
+        "delete": {
+          "message": "Are you sure you want to delete account?"
+        }
       }
     }
   }

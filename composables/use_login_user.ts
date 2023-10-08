@@ -358,6 +358,27 @@ export const useLoginUser = () => {
     }
   }
 
+  const deleteAccount = async () => {
+    const { data, error } = await useAsyncData('logout', () =>
+      $fetch(`${backendApiURL.value}/profile`, {
+        method: 'delete',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          Authorization: `Bearer ${login_user.value.token}`
+        }
+      })
+    )
+
+    if (error.value) {
+      navigateLogoutTo('/')
+    } else if (data.value) {
+      const { data: userJson } = data.value as any
+      if (userJson) {
+        navigateLogoutTo('/')
+      }
+    }
+  }
+
   const navigateLogoutTo = (path: string) => {
     clearLoginUser()
 
@@ -392,6 +413,7 @@ export const useLoginUser = () => {
     login,
     login_with_google,
     logout,
+    deleteAccount,
     navigateLogoutTo,
     login_messages,
     usr_rules,

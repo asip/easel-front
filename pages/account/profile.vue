@@ -13,6 +13,15 @@
           <NuxtLink to="/account/edit">
             <i class="bi bi-pencil-square" />
           </NuxtLink>
+          <button
+           type="button"
+           class="btn-icon-local"
+           data-bs-toggle="modal"
+           data-bs-config="{backdrop:true}"
+           data-bs-target="#delete_modal"
+          >
+            <i class="bi bi-x-circle" />
+          </button>
         </div>
       </div>
       <div class="card-block">
@@ -50,6 +59,7 @@
       </div>
     </div>
     <br>
+    <AccountDeleteModal />
     <UsersFrameList :user-id="userId" page="profile" />
   </div>
 </template>
