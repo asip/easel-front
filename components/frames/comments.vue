@@ -26,7 +26,7 @@
             </div>
             <div v-show="logged_in && comment.user_id == login_user.id" class="float-end">
               <button class="btn btn-link btn-sm" @click="onDeleteClick(comment, idx)">
-                {{ $t('action.model.delete') }}
+                <i class="bi bi-x-circle" />
               </button>&nbsp;
             </div>
           </div>
