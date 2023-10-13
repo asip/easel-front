@@ -38,10 +38,18 @@ export const useFrame = () => {
     return frame.id
   })
 
-  const error_messages = reactive({
+  interface ErrorMessages {
+    name: string[]
+    tags: string[]
+    file: string[]
+    base: string[]
+  }
+
+  const error_messages = reactive<ErrorMessages>({
     name: [],
     tags: [],
-    file: []
+    file: [],
+    base: []
   })
 
   const { backendApiURL } = useConstants()
@@ -110,6 +118,7 @@ export const useFrame = () => {
     clearErrorMessages()
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
@@ -119,6 +128,10 @@ export const useFrame = () => {
         setErrorMessages(errors)
       }
     }
+  }
+
+  const setErrorMessage = (error: any) => {
+    error_messages.base.push(error)
   }
 
   const setErrorMessages = (errors: any) => {
@@ -143,13 +156,14 @@ export const useFrame = () => {
     error_messages.file = []
     error_messages.name = []
     error_messages.tags = []
+    error_messages.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
     if (error_messages.file.length > 0 || error_messages.name.length > 0 ||
-      error_messages.tags.length > 0
+      error_messages.tags.length > 0 || error_messages.base.length > 0
     ) {
       result = false
     }
@@ -184,6 +198,7 @@ export const useFrame = () => {
     clearErrorMessages()
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
@@ -207,6 +222,7 @@ export const useFrame = () => {
     )
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else {
       navigateTo('/')

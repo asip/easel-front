@@ -20,7 +20,12 @@ export function useComment () {
 
   const comments: Comment[] = reactive<Comment[]>([])
 
-  const error_messages = reactive({
+  interface ErrorMessages{
+    body: string[]
+    base: string[]
+  }
+
+  const error_messages = reactive<ErrorMessages>({
     body: [],
     base: []
   })
@@ -92,7 +97,7 @@ export function useComment () {
     clearErrorMessages()
 
     if (error.value) {
-      clearErrorMessages()
+      setErrorMessage(error.value)
       // @ts-ignore
       // error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
       navigateLogoutTo('/')
@@ -118,6 +123,10 @@ export function useComment () {
     }
   }
 
+  const setErrorMessage = (error: any) => {
+    error_messages.base.push(error)
+  }
+
   const setErrorMessages = (errors: any) => {
     if (errors.body) {
       error_messages.body = errors.body
@@ -134,7 +143,7 @@ export function useComment () {
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.body.length > 0) {
+    if (error_messages.body.length > 0 || error_messages.base.length > 0) {
       result = false
     }
 
@@ -158,6 +167,7 @@ export function useComment () {
     clearErrorMessages()
 
     if (error.value) {
+      setErrorMessage(error.value)
       // @ts-ignore
       // error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
       navigateLogoutTo('/')

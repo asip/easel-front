@@ -68,12 +68,22 @@ export const useLoginUser = () => {
 
   const { backendApiURL } = useConstants()
 
-  const error_messages = reactive({
+  interface ErrorMessages {
+    image: string[]
+    name: string[]
+    email: string[]
+    password: string[]
+    password_confirmation: string[]
+    base: string[]
+  }
+
+  const error_messages = reactive<ErrorMessages>({
     image: [],
     name: [],
     email: [],
     password: [],
-    password_confirmation: []
+    password_confirmation: [],
+    base: []
   })
 
   const access_token = useCookie('access_token')
@@ -277,6 +287,7 @@ export const useLoginUser = () => {
     // console.log(errors)
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else if (data.value) {
       const { data: userJson, errors } = data.value as any
@@ -286,6 +297,10 @@ export const useLoginUser = () => {
         setErrorMessages(errors)
       }
     }
+  }
+
+  const setErrorMessage = (error: any) => {
+    error_messages.base.push(error)
   }
 
   const setErrorMessages = (errors: any) => {
@@ -322,6 +337,7 @@ export const useLoginUser = () => {
     error_messages.email = []
     error_messages.password = []
     error_messages.password_confirmation = []
+    error_messages.base = []
   }
 
   const isSuccess = () => {
@@ -329,7 +345,8 @@ export const useLoginUser = () => {
 
     if (error_messages.image.length > 0 || error_messages.name.length > 0 ||
       error_messages.email.length > 0 || error_messages.password.length > 0 ||
-      error_messages.password_confirmation.length > 0
+      error_messages.password_confirmation.length > 0 ||
+      error_messages.base.length > 0
     ) {
       result = false
     }
@@ -349,6 +366,7 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else if (data.value) {
       const { data: userJson } = data.value as any
@@ -370,6 +388,7 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
+      setErrorMessage(error.value)
       navigateLogoutTo('/')
     } else if (data.value) {
       const { data: userJson } = data.value as any
