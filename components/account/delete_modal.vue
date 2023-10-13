@@ -1,9 +1,9 @@
 <template>
   <ConfirmModal
-   id="delete_modal"
-   :message="$t('action.modal.user.delete.message')"
-   :label="$t('action.user.delete')"
-   @click="onDeleteClick"
+    id="delete_modal"
+    :message="$t('action.modal.user.delete.message')"
+    :label="$t('action.user.delete')"
+    @click="onDeleteClick"
   />
 </template>
 

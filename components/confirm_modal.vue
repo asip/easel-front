@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
+defineProps({
   id: String,
   message: String,
   label: String
@@ -36,7 +36,7 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
-const onClick = async () => {
+const onClick = () => {
   emit('click')
 }
 </script>
