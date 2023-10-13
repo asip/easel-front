@@ -80,6 +80,8 @@ export function useComment () {
       }
     }
 
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('post_comment', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`,
         {
@@ -89,6 +91,9 @@ export function useComment () {
             'X-Requested-With': 'XMLHttpRequest',
             'Accept-Language': locale.value,
             Authorization: `Bearer ${login_user.value.token}`
+          },
+          async onResponse ({ response }) {
+            statusCode = response.status
           }
         }
       )
@@ -100,7 +105,9 @@ export function useComment () {
       setErrorMessage(error.value)
       // @ts-ignore
       // error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: commentJson, errors } = data.value as any
       if (commentJson) {
@@ -151,6 +158,8 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: any, idx: number) => {
+    let statusCode!: number
+
     const { error } = await useAsyncData('delete_comment', () =>
       $fetch(`${backendApiURL.value}/comments/${comment.id}`,
         {
@@ -159,6 +168,9 @@ export function useComment () {
             'X-Requested-With': 'XMLHttpRequest',
             'Accept-Language': locale.value,
             Authorization: `Bearer ${login_user.value.token}`
+          },
+          async onResponse ({ response }) {
+            statusCode = response.status
           }
         }
       )
@@ -170,7 +182,9 @@ export function useComment () {
       setErrorMessage(error.value)
       // @ts-ignore
       // error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     }
 
     if (isSuccess()) {

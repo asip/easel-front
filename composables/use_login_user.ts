@@ -269,6 +269,8 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('update_profile', () =>
       $fetch(`${backendApiURL.value}/profile/`, {
         method: 'put',
@@ -277,6 +279,9 @@ export const useLoginUser = () => {
           'X-Requested-With': 'XMLHttpRequest',
           'Accept-Language': locale.value,
           Authorization: `Bearer ${user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
@@ -288,7 +293,9 @@ export const useLoginUser = () => {
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: userJson, errors } = data.value as any
       if (userJson) {
@@ -355,19 +362,26 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('logout', () =>
       $fetch(`${backendApiURL.value}/sessions/logout`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           Authorization: `Bearer ${login_user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: userJson } = data.value as any
       if (userJson) {
@@ -377,19 +391,26 @@ export const useLoginUser = () => {
   }
 
   const deleteAccount = async () => {
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('logout', () =>
       $fetch(`${backendApiURL.value}/profile`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           Authorization: `Bearer ${login_user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: userJson } = data.value as any
       if (userJson) {

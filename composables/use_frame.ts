@@ -104,6 +104,8 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('create_frame', () =>
       $fetch(`${backendApiURL.value}/frames/`, {
         method: 'post',
@@ -111,6 +113,9 @@ export const useFrame = () => {
         headers: {
           'Accept-Language': locale.value,
           Authorization: `Bearer ${login_user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
@@ -119,7 +124,9 @@ export const useFrame = () => {
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
       if (frameJson) {
@@ -183,6 +190,8 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
+    let statusCode!: number
+
     const { data, error } = await useAsyncData('update_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'put',
@@ -191,6 +200,9 @@ export const useFrame = () => {
           'X-Requested-With': 'XMLHttpRequest',
           'Accept-Language': locale.value,
           Authorization: `Bearer ${login_user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
@@ -199,7 +211,9 @@ export const useFrame = () => {
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
       if (!frameJson && errors) {
@@ -211,19 +225,26 @@ export const useFrame = () => {
   const deleteFrame = async () => {
     // console.log(frame.id)
 
+    let statusCode!: number
+
     const { error } = await useAsyncData('delete_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'delete',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
           Authorization: `Bearer ${login_user.value.token}`
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
     if (error.value) {
       setErrorMessage(error.value)
-      navigateLogoutTo('/')
+      if (statusCode === 401) {
+        navigateLogoutTo('/')
+      }
     } else {
       navigateTo('/')
     }
