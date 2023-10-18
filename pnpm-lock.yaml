@@ -77,8 +77,8 @@ devDependencies:
     specifier: ^12.1.0
     version: 12.1.0(eslint@8.50.0)(typescript@5.2.2)
   '@types/bootstrap':
-    specifier: ^5.2.7
-    version: 5.2.7
+    specifier: ^5.2.8
+    version: 5.2.8
   '@types/google.accounts':
     specifier: ^0.0.10
     version: 0.0.10
@@ -2183,8 +2183,8 @@ packages:
     resolution: {integrity: sha512-KNuP/hxVUX2+H5Gps3kCm1QtBWczQ82P2GEK61bcKqk7L0UkXWnsLOBoLm6lwmntnQwcGGSl/V3qwAtQM+aGhg==}
     dev: true
 
-  /@types/bootstrap@5.2.7:
-    resolution: {integrity: sha512-vWs0HzobIB8Af2F0B1GXpaVLSVn1NWULDYgTIWp08Et/r2B3aAwwhFBeOs/rRFWJA38EZTXkWP3tepIjpQkpLg==}
+  /@types/bootstrap@5.2.8:
+    resolution: {integrity: sha512-14do+aWZPc1w3G+YevSsy8eas1XEPhTOUNBhQX/r12YKn7ySssATJusBQ/HCQAd2nq54U8vvrftHSb1YpeJUXg==}
     dependencies:
       '@popperjs/core': 2.11.8
     dev: true
