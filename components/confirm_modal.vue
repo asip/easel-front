@@ -28,11 +28,11 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  id: String,
-  message: String,
+defineProps<{
+  id: String
+  message: String
   label: String
-})
+}>()
 
 const emit = defineEmits(['click'])
 
