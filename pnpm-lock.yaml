@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^5.2.8
     version: 5.2.8
   '@types/google.accounts':
-    specifier: ^0.0.10
-    version: 0.0.10
+    specifier: ^0.0.13
+    version: 0.0.13
   '@types/sanitize-html':
     specifier: ^2.9.1
     version: 2.9.1
@@ -2206,8 +2206,8 @@ packages:
   /@types/estree@1.0.2:
     resolution: {integrity: sha512-VeiPZ9MMwXjO32/Xu7+OwflfmeoRwkE/qzndw42gGtgJwZopBnzy2gD//NN1+go1mADzkDcqf/KnFRSjTJ8xJA==}
 
-  /@types/google.accounts@0.0.10:
-    resolution: {integrity: sha512-5Zm+YxQNClGsWvFt055SO+CMDYEXJtPd0W9IM+yT0alQWF4+tleKYQCp46QeJWdpOOz9Ndus2oCIDLuiXcEgnQ==}
+  /@types/google.accounts@0.0.13:
+    resolution: {integrity: sha512-c1ebT/Y4/20mD3SVegLCw215qiRjJk3VPVYtqUk9CVWvXb4haCEjtFaCxeXOC1SFR5c7JNyE8ls13t5EBlcqjw==}
     dev: true
 
   /@types/has-yarn@1.0.1:
