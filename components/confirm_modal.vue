@@ -29,9 +29,9 @@
 
 <script setup lang="ts">
 defineProps<{
-  id: String
-  message: String
-  label: String
+  id: string
+  message: string
+  label: string
 }>()
 
 const emit = defineEmits(['click'])
