@@ -3,7 +3,6 @@
 // @ts-ignore
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/image',
     '@nuxtjs/i18n'
   ],
 

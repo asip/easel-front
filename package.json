@@ -25,7 +25,6 @@
     "nuxt": "^3.8.0"
   },
   "dependencies": {
-    "@nuxt/image": "1.0.0",
     "@nuxtjs/i18n": "8.0.0-rc.5",
     "@popperjs/core": "^2.11.8",
     "@vuelidate/core": "^2.0.3",
