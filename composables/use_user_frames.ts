@@ -1,4 +1,4 @@
-import { Frame } from '~/interfaces/frame'
+import type { Frame } from '~/interfaces/frame'
 
 interface UserFrameQuery {
   user_id: string | null

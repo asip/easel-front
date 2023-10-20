@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 import { useLoginUser } from './use_login_user'
 
 export function useFollow () {

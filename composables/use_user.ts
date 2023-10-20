@@ -1,5 +1,5 @@
-import { User } from '~/interfaces/user'
-import { RefQuery } from '~/interfaces/ref_query'
+import type { User } from '~/interfaces/user'
+import type { RefQuery } from '~/interfaces/ref_query'
 
 export const useUser = () => {
   const user = reactive<User>(

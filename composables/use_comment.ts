@@ -1,7 +1,7 @@
 import { useLoginUser } from './use_login_user'
 import { useLocale } from '~/composables/use_locale'
 import { required } from '~/utils/i18n-validators'
-import { Comment } from '~/interfaces/comment'
+import type { Comment } from '~/interfaces/comment'
 
 const cm_rules = {
   body: { required }

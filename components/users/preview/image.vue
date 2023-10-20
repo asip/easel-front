@@ -14,7 +14,7 @@
 // @ts-ignore
 import { Luminous } from 'luminous-lightbox'
 import { onMounted } from 'vue'
-import { User } from '~/interfaces/user'
+import type { User } from '~/interfaces/user'
 import { useConstants } from '~/composables/use_constants'
 
 const props = defineProps({

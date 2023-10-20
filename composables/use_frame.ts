@@ -1,7 +1,7 @@
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
-import { RefQuery } from '~/interfaces/ref_query'
-import { Frame } from '~/interfaces/frame'
+import type { RefQuery } from '~/interfaces/ref_query'
+import type { Frame } from '~/interfaces/frame'
 
 const frm_rules = {
   name: { required, minLength: minLength(1), maxLength: maxLength(20) },

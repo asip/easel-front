@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-// import { Frame } from '~/interfaces/frame';
+// import type { Frame } from '~/interfaces/frame';
 
 const route = useRoute()
 const { id } = route.params
