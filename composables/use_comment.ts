@@ -179,7 +179,9 @@ export function useComment () {
     clearErrorMessages()
 
     if (error.value) {
-      setErrorMessage(error.value)
+      if (statusCode !== 404) {
+        setErrorMessage(error.value)
+      }
       // @ts-ignore
       // error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
       if (statusCode === 401) {
