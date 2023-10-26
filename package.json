@@ -20,7 +20,7 @@
     "@types/google.accounts": "^0.0.13",
     "@types/sanitize-html": "^2.9.2",
     "@types/yaireo__tagify": "^4.17.3",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "markuplint": "^3.14.0",
     "nuxt": "^3.8.0"
   },
