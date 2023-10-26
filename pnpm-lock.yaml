@@ -80,7 +80,7 @@ devDependencies:
     specifier: ^0.0.13
     version: 0.0.13
   '@types/sanitize-html':
-    specifier: ^2.9.2
+    specifier: ^2.9.3
     version: 2.9.3
   '@types/yaireo__tagify':
     specifier: ^4.17.3
