@@ -19,7 +19,7 @@
     "@types/bootstrap": "^5.2.8",
     "@types/google.accounts": "^0.0.13",
     "@types/sanitize-html": "^2.9.3",
-    "@types/yaireo__tagify": "^4.17.3",
+    "@types/yaireo__tagify": "^4.17.4",
     "eslint": "^8.52.0",
     "markuplint": "^3.14.0",
     "nuxt": "^3.8.0"
