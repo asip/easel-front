@@ -60,6 +60,7 @@ comment.frame_id = frame?.id
 const onCommentClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
+  v$.value.$reset()
   await v$.value.$validate()
 
   // console.log(v$.value.body.$invalid)
