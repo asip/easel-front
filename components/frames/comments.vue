@@ -6,7 +6,7 @@
           <div class="col-12" style="line-height: 35px;">
             <div class="float-start align-middle" style="padding-left:5px;">
               <img
-                :src="`${backendOriginURL}${comment.user_image_url}`"
+                :src="`${comment.user_image_url}`"
                 alt=""
                 class="rounded"
                 width="20"
@@ -47,13 +47,11 @@
 
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
-import { useConstants } from '~/composables/use_constants'
 import type { Comment } from '~/interfaces/comment'
 
 const { logged_in, login_user } = useLoginUser()
 
 const { comments, deleteComment } = inject('commenter') as any
-const { backendOriginURL } = useConstants()
 
 const getSanitizedCommentBody = (row: Comment): string => {
   return sanitizeHtml(row.body).replace(/\n/g, '<br>')
