@@ -7,8 +7,6 @@
 
 <script setup lang="ts">
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { backendOriginURL } = useConstants()
 const model: any = inject('model')
 
 if (model) {

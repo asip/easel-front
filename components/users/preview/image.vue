@@ -15,14 +15,11 @@
 import { Luminous } from 'luminous-lightbox'
 import { onMounted } from 'vue'
 import type { User } from '~/interfaces/user'
-import { useConstants } from '~/composables/use_constants'
 
 const props = defineProps({
   original: Boolean
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { backendOriginURL } = useConstants()
 const user: User | undefined = inject('user')
 
 // console.log(login_user?.value.image_three_url)

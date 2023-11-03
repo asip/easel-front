@@ -29,9 +29,6 @@ const props = defineProps({
 
 const { frame } = inject('framer') as any
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { backendOriginURL } = useConstants()
-
 let lightbox: any
 
 const root: Ref = ref(null)
