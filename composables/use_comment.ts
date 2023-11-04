@@ -75,7 +75,6 @@ export function useComment () {
   const postComment = async () => {
     const postData = {
       comment: {
-        frame_id: comment.frame_id,
         body: comment.body
       }
     }
