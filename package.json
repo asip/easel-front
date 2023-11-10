@@ -40,7 +40,7 @@
     "sass": "^1.69.5",
     "v-calendar": "^3.1.2",
     "vue-i18n": "9.6.5",
-    "vue-sonner": "^0.4.4",
+    "vue-sonner": "^1.0.2",
     "vuejs-paginate-next": "^1.0.2"
   }
 }
