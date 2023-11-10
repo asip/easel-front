@@ -17,7 +17,7 @@
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/bootstrap": "^5.2.9",
-    "@types/google.accounts": "^0.0.13",
+    "@types/google.accounts": "^0.0.14",
     "@types/sanitize-html": "^2.9.4",
     "@types/yaireo__tagify": "^4.17.5",
     "eslint": "^8.53.0",
