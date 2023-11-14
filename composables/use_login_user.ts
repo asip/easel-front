@@ -235,25 +235,12 @@ export const useLoginUser = () => {
   }
 
   const setJson2LoginUser = (userJson: any) => {
-    login_user.value.name = userJson.attributes.name
-    login_user.value.email = userJson.attributes.email
-    login_user.value.token = userJson.attributes.token
     login_user.value.id = userJson.id
-    login_user.value.image_thumb_url = userJson.attributes.image_thumb_url
-    login_user.value.image_one_url = userJson.attributes.image_one_url
-    login_user.value.image_three_url = userJson.attributes.image_three_url
-    login_user.value.social_login = userJson.attributes.social_login
+    Object.assign(login_user.value, userJson.attributes)
   }
 
   const setUser = (login_user: Ref<User>) => {
-    user.value.name = login_user.value.name
-    user.value.email = login_user.value.email
-    user.value.token = login_user.value.token
-    user.value.id = login_user.value.id
-    user.value.image_thumb_url = login_user.value.image_thumb_url
-    user.value.image_one_url = login_user.value.image_one_url
-    user.value.image_three_url = login_user.value.image_three_url
-    user.value.social_login = login_user.value.social_login
+    Object.assign(user.value, login_user.value)
   }
 
   const updateProfile = async () => {

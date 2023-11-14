@@ -77,18 +77,7 @@ export const useFrame = () => {
 
   const setJson2Frame = (frameJson: any) => {
     frame.id = frameJson.id
-    frame.user_id = frameJson.attributes.user_id
-    frame.user_name = frameJson.attributes.user_name
-    frame.name = frameJson.attributes.name
-    frame.comment = frameJson.attributes.comment
-    frame.tag_list = frameJson.attributes.tag_list
-    frame.tags = frameJson.attributes.tags
-    frame.shooted_at = frameJson.attributes.shooted_at
-    frame.shooted_at_html = frameJson.attributes.shooted_at_html
-    frame.updated_at = frameJson.attributes.updated_at
-    frame.file_url = frameJson.attributes.file_url
-    frame.file_two_url = frameJson.attributes.file_two_url
-    frame.file_three_url = frameJson.attributes.file_three_url
+    Object.assign(frame, frameJson.attributes)
   }
 
   const createFrame = async () => {

@@ -55,23 +55,12 @@ export const useFrameSearch = () => {
   }
 
   const createFrameFromJson = (row_data: any) : Frame => {
-    return {
-      id: row_data.id,
-      user_id: row_data.attributes.user_id,
-      user_name: row_data.attributes.user_name,
-      name: row_data.attributes.name,
-      tag_list: row_data.attributes.tag_list,
-      tags: row_data.attributes.tags,
-      comment: row_data.attributes.comment,
-      shooted_at: row_data.attributes.shooted_at,
-      shooted_at_html: row_data.attributes.shooted_at_html,
-      file: null,
-      file_url: row_data.attributes.file_url,
-      file_two_url: row_data.attributes.file_two_url,
-      file_three_url: row_data.attributes.file_three_url,
-      preview_url: null,
-      updated_at: row_data.attributes.updated_at
-    }
+    let frame: any = {}
+    frame.id = row_data.id
+    Object.assign(frame, row_data.attributes)
+    frame.file = null
+    frame.preview_url = null
+    return frame
   }
 
   return {

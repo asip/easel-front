@@ -48,13 +48,8 @@ export const useUser = () => {
   }
 
   const setJson2User = (userJson: any) => {
-    user.name = userJson.attributes.name
-    user.email = userJson.attributes.email
-    user.token = userJson.attributes.token
     user.id = userJson.id
-    user.image_thumb_url = userJson.attributes.image_thumb_url
-    user.image_one_url = userJson.attributes.image_one_url
-    user.image_three_url = userJson.attributes.image_three_url
+    Object.assign(user,userJson.attributes)
   }
 
   return { user, refQuery, getUser }
