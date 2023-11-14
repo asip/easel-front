@@ -55,7 +55,7 @@ export const useFrameSearch = () => {
   }
 
   const createFrameFromJson = (row_data: any) : Frame => {
-    let frame: any = {}
+    const frame: any = {}
     frame.id = row_data.id
     Object.assign(frame, row_data.attributes)
     frame.file = null

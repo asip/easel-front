@@ -61,7 +61,7 @@ export function useComment () {
   }
 
   const createCommentFromJson = (row_data: any): Comment => {
-    let comment: any = {}
+    const comment: any = {}
     comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
     return comment

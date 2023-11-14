@@ -49,7 +49,7 @@ export const useUser = () => {
 
   const setJson2User = (userJson: any) => {
     user.id = userJson.id
-    Object.assign(user,userJson.attributes)
+    Object.assign(user, userJson.attributes)
   }
 
   return { user, refQuery, getUser }
