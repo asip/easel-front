@@ -160,6 +160,10 @@ const onUpdateClick = async () => {
 
     if (isSuccess()) {
       navigateTo('/account/profile')
+    } else {
+      if(!login_user.value.id){
+        navigateTo('/')
+      }
     }
   }
 }

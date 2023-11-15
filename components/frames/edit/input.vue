@@ -66,6 +66,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import Tagify from '@yaireo/tagify'
 
+const { login_user } = useLoginUser()
 const { frame, frm_rules, updateFrame, isSuccess, locale } = inject('framer') as any
 
 const v$ = useVuelidate(frm_rules, frame)
@@ -85,6 +86,10 @@ const onEditClick = async () => {
 
     if (isSuccess()) {
       navigateTo(`/frames/${frame?.id}`)
+    } else {
+      if(!login_user.value.id){
+        navigateTo('/')
+      }
     }
   }
 }

@@ -4,12 +4,17 @@ import { useLoginUser } from './use_login_user'
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
+  const nuxtApp = useNuxtApp()
+
   const { backendApiURL } = useConstants()
 
-  const { login_user, navigateLogoutTo } = useLoginUser()
+  const { login_user, clearLoginUser } = useLoginUser()
+  const { flash, clearFlash } = useFlash()
 
   const isFollowing = async (userId: string) => {
     let statusCode!: number
+
+    clearFlash()
 
     const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${backendApiURL.value}/profile/following/${userId}`, {
@@ -27,8 +32,13 @@ export function useFollow () {
     const json_data = data.value as any
 
     if (error.value) {
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (json_data) {
       const { following: followingValue } = json_data
@@ -41,6 +51,8 @@ export function useFollow () {
 
   const follow = async (userId: number | null) => {
     let statusCode!: number
+
+    clearFlash()
 
     const { error } = await useAsyncData('follow', () =>
       $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
@@ -56,8 +68,13 @@ export function useFollow () {
     )
 
     if (error.value) {
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     }
 
@@ -66,6 +83,8 @@ export function useFollow () {
 
   const unfollow = async (userId: number | null) => {
     let statusCode!: number
+
+    clearFlash()
 
     const { error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
@@ -81,8 +100,13 @@ export function useFollow () {
     )
 
     if (error.value) {
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     }
 

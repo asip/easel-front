@@ -66,8 +66,6 @@ export const useLoginUser = () => {
 
   const login_messages = ref<String[]>([])
 
-  const { backendApiURL } = useConstants()
-
   interface ErrorMessages {
     image: string[]
     name: string[]
@@ -86,9 +84,13 @@ export const useLoginUser = () => {
     base: []
   })
 
+  const nuxtApp = useNuxtApp()
+
+  const { backendApiURL } = useConstants()
   const access_token = useCookie('access_token')
 
   const { locale } = useLocale()
+  const { flash, clearFlash } = useFlash()
 
   const su_rules = computed(() => {
     return {
@@ -109,6 +111,8 @@ export const useLoginUser = () => {
   })
 
   const signup = async () => {
+    clearFlash()
+    clearErrorMessages()
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -130,8 +134,6 @@ export const useLoginUser = () => {
         }
       })
     )
-
-    clearErrorMessages()
 
     const { data: userJson, errors } = data.value as any
 
@@ -244,6 +246,8 @@ export const useLoginUser = () => {
   }
 
   const updateProfile = async () => {
+    clearFlash()
+    clearErrorMessages()
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -273,15 +277,17 @@ export const useLoginUser = () => {
       })
     )
 
-    clearErrorMessages()
-
     // console.log(userJson)
     // console.log(errors)
 
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: userJson, errors } = data.value as any
@@ -291,10 +297,6 @@ export const useLoginUser = () => {
         setErrorMessages(errors)
       }
     }
-  }
-
-  const setErrorMessage = (error: any) => {
-    error_messages.base.push(error)
   }
 
   const setErrorMessages = (errors: any) => {
@@ -345,10 +347,16 @@ export const useLoginUser = () => {
       result = false
     }
 
+    if(flash.value.alert){
+      result = false
+    }
+
     return result
   }
 
   const logout = async () => {
+    clearFlash()
+
     let statusCode!: number
 
     const { data, error } = await useAsyncData('logout', () =>
@@ -365,20 +373,26 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: userJson } = data.value as any
       if (userJson) {
-        navigateLogoutTo('/')
+        clearLoginUser()
       }
     }
   }
 
   const deleteAccount = async () => {
     let statusCode!: number
+
+    clearFlash()
 
     const { data, error } = await useAsyncData('logout', () =>
       $fetch(`${backendApiURL.value}/profile`, {
@@ -394,22 +408,23 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        case 404:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: userJson } = data.value as any
       if (userJson) {
-        navigateLogoutTo('/')
+        clearLoginUser()
       }
     }
-  }
-
-  const navigateLogoutTo = (path: string) => {
-    clearLoginUser()
-
-    navigateTo(path)
   }
 
   const clearLoginUser = () => {
@@ -441,7 +456,7 @@ export const useLoginUser = () => {
     login_with_google,
     logout,
     deleteAccount,
-    navigateLogoutTo,
+    clearLoginUser,
     login_messages,
     usr_rules,
     su_rules,

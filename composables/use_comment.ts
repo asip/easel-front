@@ -2,6 +2,7 @@ import { useLoginUser } from './use_login_user'
 import { useLocale } from '~/composables/use_locale'
 import { required } from '~/utils/i18n-validators'
 import type { Comment } from '~/interfaces/comment'
+import { useFlash } from './use_flash'
 
 const cm_rules = {
   body: { required }
@@ -30,12 +31,18 @@ export function useComment () {
     base: []
   })
 
+  const nuxtApp = useNuxtApp()
+
   const { backendApiURL } = useConstants()
 
   const { locale } = useLocale()
-  const { login_user, navigateLogoutTo } = useLoginUser()
+  const { login_user, clearLoginUser } = useLoginUser()
+  const { flash, clearFlash } = useFlash()
 
   const getComments = async () => {
+    clearFlash()
+    clearErrorMessages()
+
     // console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
@@ -68,6 +75,9 @@ export function useComment () {
   }
 
   const postComment = async () => {
+    clearFlash()
+    clearErrorMessages()
+
     const postData = {
       comment: {
         body: comment.body
@@ -93,14 +103,14 @@ export function useComment () {
       )
     )
 
-    clearErrorMessages()
-
     if (error.value) {
-      setErrorMessage(error.value)
-      // @ts-ignore
-      // error_messages.base= [nuxtApp.$i18n.t('action.comment.login')];
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: commentJson, errors } = data.value as any
@@ -120,12 +130,7 @@ export function useComment () {
 
     if (isSuccess()) {
       comments.splice(0, comments.length)
-      await getComments()
     }
-  }
-
-  const setErrorMessage = (error: any) => {
-    error_messages.base.push(error)
   }
 
   const setErrorMessages = (errors: any) => {
@@ -148,10 +153,17 @@ export function useComment () {
       result = false
     }
 
+    if(flash.value.alert){
+      result = false
+    }
+
     return result
   }
 
   const deleteComment = async (comment: any, idx: number) => {
+    clearFlash()
+    clearErrorMessages()
+
     let statusCode!: number
 
     const { error } = await useAsyncData('delete_comment', () =>
@@ -170,16 +182,17 @@ export function useComment () {
       )
     )
 
-    clearErrorMessages()
-
     if (error.value) {
-      if (statusCode !== 404) {
-        setErrorMessage(error.value)
-      }
-      // @ts-ignore
-      // error_messages.base = [nuxtApp.$i18n.t('action.comment.login')];
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 404:
+          flash.value.alert = error.value.message
+          break
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     }
 

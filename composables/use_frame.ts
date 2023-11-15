@@ -52,12 +52,18 @@ export const useFrame = () => {
     base: []
   })
 
+  const nuxtApp = useNuxtApp()
+
   const { backendApiURL } = useConstants()
 
   const { locale } = useLocale()
-  const { login_user, navigateLogoutTo } = useLoginUser()
+  const { login_user, clearLoginUser } = useLoginUser()
+  const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
+    clearFlash()
+    clearErrorMessages()
+
     const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${id}`, {
         method: 'get',
@@ -81,6 +87,9 @@ export const useFrame = () => {
   }
 
   const createFrame = async () => {
+    clearFlash()
+    clearErrorMessages()
+
     const formData = new FormData()
 
     if (frame.file) {
@@ -109,12 +118,14 @@ export const useFrame = () => {
       })
     )
 
-    clearErrorMessages()
-
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
@@ -124,10 +135,6 @@ export const useFrame = () => {
         setErrorMessages(errors)
       }
     }
-  }
-
-  const setErrorMessage = (error: any) => {
-    error_messages.base.push(error)
   }
 
   const setErrorMessages = (errors: any) => {
@@ -164,10 +171,17 @@ export const useFrame = () => {
       result = false
     }
 
+    if(flash.value.alert){
+      result = false
+    }
+
     return result
   }
 
   const updateFrame = async () => {
+    clearFlash()
+    clearErrorMessages()
+
     const postData = {
       frame: {
         name: frame.name,
@@ -196,12 +210,14 @@ export const useFrame = () => {
       })
     )
 
-    clearErrorMessages()
-
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
     } else if (data.value) {
       const { data: frameJson, errors } = data.value as any
@@ -212,6 +228,8 @@ export const useFrame = () => {
   }
 
   const deleteFrame = async () => {
+    clearFlash()
+    clearErrorMessages()
     // console.log(frame.id)
 
     let statusCode!: number
@@ -230,12 +248,14 @@ export const useFrame = () => {
     )
 
     if (error.value) {
-      setErrorMessage(error.value)
-      if (statusCode === 401) {
-        navigateLogoutTo('/')
+      switch(statusCode){
+        case 401:
+          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
       }
-    } else {
-      navigateTo('/')
     }
 
     // const { data: frameJson } = data.value

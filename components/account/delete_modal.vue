@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 
-const { deleteAccount } = useLoginUser()
+const { login_user, deleteAccount } = useLoginUser()
 
 const removeBackdrop = () => {
   const backdrop = document.querySelector('.modal-backdrop')
@@ -19,5 +19,8 @@ const removeBackdrop = () => {
 const onDeleteClick = async () => {
   await deleteAccount()
   removeBackdrop()
+  if(!login_user.value.id){
+    navigateTo('/')
+  }
 }
 </script>

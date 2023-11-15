@@ -49,10 +49,11 @@
 import { useVuelidate } from '@vuelidate/core'
 
 const { logged_in } = useLoginUser()
-const { comment, cm_rules, createComment, error_messages, isSuccess, locale } = inject('commenter') as any
+const { comment, cm_rules, error_messages, isSuccess, locale, getComments, createComment } = inject('commenter') as any
 
 const v$ = useVuelidate(cm_rules, comment)
 
+const { login_user } = useLoginUser()
 const { frame } = inject('framer') as any
 
 comment.frame_id = frame?.id
@@ -73,6 +74,11 @@ const onCommentClick = async () => {
     await createComment()
     if (isSuccess()) {
       v$.value.$reset()
+      await getComments()
+    } else {
+      if(!login_user.value.id){
+        navigateTo('/')
+      }
     }
   }
 }
