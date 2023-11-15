@@ -32,7 +32,7 @@ export function useFollow () {
     const json_data = data.value as any
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()
@@ -68,7 +68,7 @@ export function useFollow () {
     )
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()
@@ -100,7 +100,7 @@ export function useFollow () {
     )
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()

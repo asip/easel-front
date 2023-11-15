@@ -19,7 +19,7 @@ const removeBackdrop = () => {
 const onDeleteClick = async () => {
   await deleteAccount()
   removeBackdrop()
-  if(!login_user.value.id){
+  if (!login_user.value.id) {
     navigateTo('/')
   }
 }

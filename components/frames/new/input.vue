@@ -135,10 +135,8 @@ const onCreateClick = async () => {
 
     if (isSuccess()) {
       navigateTo(`/frames/${frameId.value}`)
-    } else {
-      if(!login_user.value.id){
-        navigateTo('/')
-      }
+    } else if (!login_user.value.id) {
+      navigateTo('/')
     }
   }
 }

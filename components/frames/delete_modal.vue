@@ -21,12 +21,10 @@ const removeBackdrop = () => {
 const onDeleteClick = async () => {
   await deleteFrame()
   removeBackdrop()
-  if(isSuccess()){
+  if (isSuccess()) {
     navigateTo('/')
-  } else {
-    if(!login_user.value.id){
-      navigateTo('/')
-    }
+  } else if (!login_user.value.id) {
+    navigateTo('/')
   }
 }
 </script>

@@ -281,7 +281,7 @@ export const useLoginUser = () => {
     // console.log(errors)
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()
@@ -347,7 +347,7 @@ export const useLoginUser = () => {
       result = false
     }
 
-    if(flash.value.alert){
+    if (flash.value.alert) {
       result = false
     }
 
@@ -373,7 +373,7 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()
@@ -408,7 +408,7 @@ export const useLoginUser = () => {
     )
 
     if (error.value) {
-      switch(statusCode){
+      switch (statusCode) {
         case 401:
           flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()

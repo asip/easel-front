@@ -75,10 +75,8 @@ const onCommentClick = async () => {
     if (isSuccess()) {
       v$.value.$reset()
       await getComments()
-    } else {
-      if(!login_user.value.id){
-        navigateTo('/')
-      }
+    } else if (!login_user.value.id) {
+      navigateTo('/')
     }
   }
 }
