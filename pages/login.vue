@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-const { $toast } = useNuxtApp() as any
+const { setMessages } = useToast()
 const { login_params, login, login_messages } = useLoginUser()
 
 const onLoginClick = async () => {
@@ -69,12 +69,7 @@ const onLoginClick = async () => {
   if (login_messages.value.length === 0) {
     navigateTo('/')
   } else {
-    for (const message of login_messages.value.reverse()) {
-      setTimeout(
-        () => {
-          $toast.error(message)
-        }, 1000)
-    }
+    setMessages(login_messages.value)
   }
 }
 </script>

@@ -28,5 +28,14 @@ export function useToast () {
     }
   }
 
-  return { setFlash }
+  const setMessages = (messages: string[]) =>{
+    for (const message of messages.reverse()) {
+      setTimeout(
+        () => {
+          $toast.error(message)
+        }, 1000)
+    }
+  }
+
+  return { setFlash, setMessages }
 }

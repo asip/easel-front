@@ -64,7 +64,7 @@ export const useLoginUser = () => {
     return false
   })
 
-  const login_messages = ref<String[]>([])
+  const login_messages = ref<string[]>([])
 
   interface ErrorMessages {
     image: string[]
