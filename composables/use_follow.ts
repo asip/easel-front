@@ -114,6 +114,6 @@ export function useFollow () {
   }
 
   return {
-    following, follow, unfollow, isFollowing
+    following, follow, unfollow, isFollowing, flash
   }
 }

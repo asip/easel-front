@@ -454,6 +454,7 @@ export const useLoginUser = () => {
     setUser,
     updateProfile,
     isSuccess,
+    flash,
     login,
     login_with_google,
     logout,

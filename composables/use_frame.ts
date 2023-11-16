@@ -271,6 +271,7 @@ export const useFrame = () => {
     deleteFrame,
     error_messages,
     isSuccess,
+    flash,
     locale
   }
 }

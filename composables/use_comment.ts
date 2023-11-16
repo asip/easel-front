@@ -208,6 +208,7 @@ export function useComment () {
     createComment,
     deleteComment,
     isSuccess,
+    flash,
     locale
   }
 }
