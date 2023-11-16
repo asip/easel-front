@@ -47,8 +47,7 @@
     },
     "comment": {
       "post": "Post",
-      "required": "Required.",
-      "login": "Please login."
+      "required": "Required."
     },
     "modal": {
       "close": "Close",
@@ -60,6 +59,9 @@
           "message": "Are you sure you want to delete account?"
         }
       }
+    },
+    "error": {
+      "login": "Please login."
     }
   }
 }
