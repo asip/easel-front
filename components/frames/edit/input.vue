@@ -89,7 +89,7 @@ const onEditClick = async () => {
     if (isSuccess()) {
       navigateTo(`/frames/${frame?.id}`)
     } else if (!login_user.value.id) {
-      navigateTo('/')
+      navigateTo(`/frames/${frame?.id}`)
     }
   }
 }

@@ -25,8 +25,6 @@ const onDeleteClick = async () => {
   removeBackdrop()
   if (isSuccess()) {
     navigateTo('/')
-  } else if (!login_user.value.id) {
-    navigateTo('/')
   }
 }
 </script>
