@@ -66,8 +66,9 @@
 import { useVuelidate } from '@vuelidate/core'
 import Tagify from '@yaireo/tagify'
 
+const { setFlash } = useToast()
 const { login_user } = useLoginUser()
-const { frame, frm_rules, updateFrame, isSuccess, locale } = inject('framer') as any
+const { frame, frm_rules, updateFrame, isSuccess, flash, locale } = inject('framer') as any
 
 const v$ = useVuelidate(frm_rules, frame)
 
@@ -84,6 +85,7 @@ const onEditClick = async () => {
   if (!v$.value.$invalid) {
     await updateFrame()
 
+    setFlash(flash.value)
     if (isSuccess()) {
       navigateTo(`/frames/${frame?.id}`)
     } else if (!login_user.value.id) {

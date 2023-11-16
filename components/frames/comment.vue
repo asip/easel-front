@@ -48,12 +48,12 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 
-const { logged_in } = useLoginUser()
-const { comment, cm_rules, error_messages, isSuccess, locale, getComments, createComment } = inject('commenter') as any
+const { setFlash } = useToast()
+const { login_user, logged_in } = useLoginUser()
+const { comment, cm_rules, error_messages, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as any
 
 const v$ = useVuelidate(cm_rules, comment)
 
-const { login_user } = useLoginUser()
 const { frame } = inject('framer') as any
 
 comment.frame_id = frame?.id
@@ -72,6 +72,7 @@ const onCommentClick = async () => {
 
   if (!v$.value.body.$invalid) {
     await createComment()
+    setFlash(flash.value)
     if (isSuccess()) {
       v$.value.$reset()
       await getComments()

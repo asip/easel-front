@@ -10,8 +10,9 @@
 
 <script setup lang="ts">
 
+const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
-const { frame, deleteFrame, isSuccess } = inject('framer') as any
+const { frame, deleteFrame, isSuccess, flash } = inject('framer') as any
 
 const removeBackdrop = () => {
   const backdrop = document.querySelector('.modal-backdrop')
@@ -20,6 +21,7 @@ const removeBackdrop = () => {
 
 const onDeleteClick = async () => {
   await deleteFrame()
+  setFlash(flash.value)
   removeBackdrop()
   if (isSuccess()) {
     navigateTo('/')

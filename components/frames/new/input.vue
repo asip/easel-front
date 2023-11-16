@@ -82,8 +82,9 @@
 import { useVuelidate } from '@vuelidate/core'
 import Tagify from '@yaireo/tagify'
 
+const { setFlash } = useToast()
 const { login_user } = useLoginUser()
-const { frame, frm_rules, frameId, createFrame, error_messages, isSuccess, locale } = inject('framer') as any
+const { frame, frm_rules, frameId, createFrame, error_messages, isSuccess, flash, locale } = inject('framer') as any
 
 const v$ = useVuelidate(frm_rules, frame)
 
@@ -132,7 +133,7 @@ const onCreateClick = async () => {
   // console.log(frame)
   if (!v$.value.$invalid) {
     await createFrame()
-
+    setFlash(flash.value)
     if (isSuccess()) {
       navigateTo(`/frames/${frameId.value}`)
     } else if (!login_user.value.id) {

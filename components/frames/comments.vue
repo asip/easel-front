@@ -49,9 +49,10 @@
 import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '~/interfaces/comment'
 
+const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 
-const { comments, deleteComment } = inject('commenter') as any
+const { comments, deleteComment, flash } = inject('commenter') as any
 
 const getSanitizedCommentBody = (row: Comment): string => {
   return sanitizeHtml(row.body).replace(/\n/g, '<br>')
@@ -59,5 +60,6 @@ const getSanitizedCommentBody = (row: Comment): string => {
 
 const onDeleteClick = async (comment: Comment, idx: number) => {
   await deleteComment(comment, idx)
+  setFlash(flash.value)
 }
 </script>

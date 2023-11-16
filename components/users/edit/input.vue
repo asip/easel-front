@@ -117,7 +117,8 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 
-const { login_user, user, usr_rules, setUser, updateProfile, error_messages, isSuccess, locale } = useLoginUser()
+const { setFlash } = useToast()
+const { login_user, user, usr_rules, setUser, updateProfile, error_messages, isSuccess, flash, locale } = useLoginUser()
 
 const v$ = useVuelidate(usr_rules, user)
 
@@ -157,7 +158,7 @@ const onUpdateClick = async () => {
 
   if (!v$.value.$invalid) {
     await updateProfile()
-
+    setFlash(flash.value)
     if (isSuccess()) {
       navigateTo('/account/profile')
     } else if (!login_user.value.id) {

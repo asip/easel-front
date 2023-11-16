@@ -9,7 +9,8 @@
 
 <script setup lang="ts">
 
-const { login_user, deleteAccount } = useLoginUser()
+const { setFlash } = useToast()
+const { login_user, deleteAccount, flash } = useLoginUser()
 
 const removeBackdrop = () => {
   const backdrop = document.querySelector('.modal-backdrop')
@@ -18,6 +19,7 @@ const removeBackdrop = () => {
 
 const onDeleteClick = async () => {
   await deleteAccount()
+  setFlash(flash.value)
   removeBackdrop()
   if (!login_user.value.id) {
     navigateTo('/')
