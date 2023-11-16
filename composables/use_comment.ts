@@ -40,9 +40,6 @@ export function useComment () {
   const { flash, clearFlash } = useFlash()
 
   const getComments = async () => {
-    clearFlash()
-    clearErrorMessages()
-
     // console.log(comment.frame_id);
     const { data } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
@@ -52,6 +49,8 @@ export function useComment () {
         }
       })
     )
+
+    clearFlash()
 
     const { data: commentList } = data.value as any
     // console.log(commentList)
@@ -75,9 +74,6 @@ export function useComment () {
   }
 
   const postComment = async () => {
-    clearFlash()
-    clearErrorMessages()
-
     const postData = {
       comment: {
         body: comment.body
@@ -102,6 +98,9 @@ export function useComment () {
         }
       )
     )
+
+    clearFlash()
+    clearErrorMessages()
 
     if (error.value) {
       switch (statusCode) {
@@ -161,8 +160,6 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: any, idx: number) => {
-    clearFlash()
-    clearErrorMessages()
 
     let statusCode!: number
 
@@ -181,6 +178,8 @@ export function useComment () {
         }
       )
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {

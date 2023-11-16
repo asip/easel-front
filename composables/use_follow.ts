@@ -14,8 +14,6 @@ export function useFollow () {
   const isFollowing = async (userId: string) => {
     let statusCode!: number
 
-    clearFlash()
-
     const { data, error } = await useAsyncData('getFrame', () =>
       $fetch(`${backendApiURL.value}/profile/following/${userId}`, {
         method: 'get',
@@ -28,6 +26,8 @@ export function useFollow () {
         }
       })
     )
+
+    clearFlash()
 
     const json_data = data.value as any
 
@@ -52,8 +52,6 @@ export function useFollow () {
   const follow = async (userId: number | null) => {
     let statusCode!: number
 
-    clearFlash()
-
     const { error } = await useAsyncData('follow', () =>
       $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
         method: 'post',
@@ -66,6 +64,8 @@ export function useFollow () {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {
@@ -84,8 +84,6 @@ export function useFollow () {
   const unfollow = async (userId: number | null) => {
     let statusCode!: number
 
-    clearFlash()
-
     const { error } = await useAsyncData('unfollow', () =>
       $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
         method: 'delete',
@@ -98,6 +96,8 @@ export function useFollow () {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {

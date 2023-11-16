@@ -61,8 +61,6 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    clearFlash()
-    clearErrorMessages()
 
     const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${id}`, {
@@ -72,6 +70,8 @@ export const useFrame = () => {
         }
       })
     )
+
+    clearFlash()
 
     const { data: frameJson } = data.value as any
     // console.log(frameJson)
@@ -87,9 +87,6 @@ export const useFrame = () => {
   }
 
   const createFrame = async () => {
-    clearFlash()
-    clearErrorMessages()
-
     const formData = new FormData()
 
     if (frame.file) {
@@ -117,6 +114,9 @@ export const useFrame = () => {
         }
       })
     )
+
+    clearFlash()
+    clearErrorMessages()
 
     if (error.value) {
       switch (statusCode) {
@@ -179,9 +179,6 @@ export const useFrame = () => {
   }
 
   const updateFrame = async () => {
-    clearFlash()
-    clearErrorMessages()
-
     const postData = {
       frame: {
         name: frame.name,
@@ -210,6 +207,9 @@ export const useFrame = () => {
       })
     )
 
+    clearFlash()
+    clearErrorMessages()
+
     if (error.value) {
       switch (statusCode) {
         case 401:
@@ -228,8 +228,6 @@ export const useFrame = () => {
   }
 
   const deleteFrame = async () => {
-    clearFlash()
-    clearErrorMessages()
     // console.log(frame.id)
 
     let statusCode!: number
@@ -246,6 +244,8 @@ export const useFrame = () => {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {

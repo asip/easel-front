@@ -111,8 +111,6 @@ export const useLoginUser = () => {
   })
 
   const signup = async () => {
-    clearFlash()
-    clearErrorMessages()
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -134,6 +132,9 @@ export const useLoginUser = () => {
         }
       })
     )
+
+    clearFlash()
+    clearErrorMessages()
 
     const { data: userJson, errors } = data.value as any
 
@@ -246,8 +247,6 @@ export const useLoginUser = () => {
   }
 
   const updateProfile = async () => {
-    clearFlash()
-    clearErrorMessages()
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -279,6 +278,9 @@ export const useLoginUser = () => {
 
     // console.log(userJson)
     // console.log(errors)
+
+    clearFlash()
+    clearErrorMessages()
 
     if (error.value) {
       switch (statusCode) {
@@ -355,7 +357,6 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    clearFlash()
 
     let statusCode!: number
 
@@ -371,6 +372,8 @@ export const useLoginUser = () => {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {
@@ -392,8 +395,6 @@ export const useLoginUser = () => {
   const deleteAccount = async () => {
     let statusCode!: number
 
-    clearFlash()
-
     const { data, error } = await useAsyncData('logout', () =>
       $fetch(`${backendApiURL.value}/profile`, {
         method: 'delete',
@@ -406,6 +407,8 @@ export const useLoginUser = () => {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {
