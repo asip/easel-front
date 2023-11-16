@@ -357,7 +357,6 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-
     let statusCode!: number
 
     const { data, error } = await useAsyncData('logout', () =>

@@ -61,7 +61,6 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-
     const { data } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${id}`, {
         method: 'get',
@@ -71,7 +70,7 @@ export const useFrame = () => {
       })
     )
 
-    clearFlash()
+    // clearFlash()
 
     const { data: frameJson } = data.value as any
     // console.log(frameJson)

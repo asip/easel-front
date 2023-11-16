@@ -50,7 +50,7 @@ export function useComment () {
       })
     )
 
-    clearFlash()
+    // clearFlash()
 
     const { data: commentList } = data.value as any
     // console.log(commentList)
@@ -160,7 +160,6 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: any, idx: number) => {
-
     let statusCode!: number
 
     const { error } = await useAsyncData('delete_comment', () =>

@@ -27,18 +27,18 @@ export function useFollow () {
       })
     )
 
-    clearFlash()
+    // clearFlash()
 
     const json_data = data.value as any
 
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
+          // flash.value.alert = nuxtApp.$i18n.t('action.comment.login')
           clearLoginUser()
           break
-        default:
-          flash.value.alert = error.value.message
+        // default:
+        //  flash.value.alert = error.value.message
       }
     } else if (json_data) {
       const { following: followingValue } = json_data
