@@ -49,7 +49,7 @@
 import { useVuelidate } from '@vuelidate/core'
 
 const { setFlash } = useToast()
-const { login_user, logged_in } = useLoginUser()
+const { logged_in } = useLoginUser()
 const { comment, cm_rules, error_messages, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as any
 
 const v$ = useVuelidate(cm_rules, comment)
