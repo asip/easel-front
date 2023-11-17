@@ -29,8 +29,6 @@ export function useFollow () {
 
     // clearFlash()
 
-    const json_data = data.value as any
-
     if (error.value) {
       switch (statusCode) {
         case 401:
@@ -40,8 +38,8 @@ export function useFollow () {
         // default:
         //  flash.value.alert = error.value.message
       }
-    } else if (json_data) {
-      const { following: followingValue } = json_data
+    } else if (data.value) {
+      const { following: followingValue } = data.value as any
 
       if (followingValue != null || followingValue !== undefined) {
         following.value = followingValue
