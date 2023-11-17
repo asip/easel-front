@@ -28,7 +28,7 @@ export function useToast () {
     }
   }
 
-  const setMessages = (messages: string[]) =>{
+  const setMessages = (messages: string[]) => {
     for (const message of messages.reverse()) {
       setTimeout(
         () => {
