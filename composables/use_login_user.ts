@@ -214,19 +214,31 @@ export const useLoginUser = () => {
       credential: response.credential
     }
 
-    const { data } = await useAsyncData('login_with_google', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('login_with_google', () =>
       $fetch(`${backendApiURL.value}/oauth/sessions/`, {
         method: 'post',
         body: postData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    const { data: userJson } = data.value as any
-
-    if (userJson) {
+    if (error.value) {
+      switch (statusCode) {
+        case 409:
+          flash.value.alert = nuxtApp.$i18n.t('action.error.email.duplicated')
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
+    } else if (data.value) {
+      const { data: userJson } = data.value as any
       setJson2LoginUser(userJson)
       logged_in.value = true
       // console.log(login_user.value)

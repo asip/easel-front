@@ -61,7 +61,10 @@
       }
     },
     "error": {
-      "login": "Please login."
+      "login": "Please login.",
+      "email": {
+        "duplicated": "Your e-mail address is aleady registered"
+      }
     }
   }
 }
