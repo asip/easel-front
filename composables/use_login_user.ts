@@ -1,6 +1,7 @@
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
+import type { CredentialResponse } from '~/interfaces/credential_response'
 
 export interface SignupParams {
   image: Blob | null | undefined
@@ -208,7 +209,7 @@ export const useLoginUser = () => {
     }
   }
 
-  const login_with_google = async (response: any) => {
+  const login_with_google = async (response: CredentialResponse) => {
     const postData = {
       provider: 'google',
       credential: response.credential

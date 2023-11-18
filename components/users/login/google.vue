@@ -4,6 +4,9 @@
 
 <script setup lang="ts">
 /// <reference types='google.accounts' />
+
+import type { CredentialResponse } from '~/interfaces/credential_response'
+
 const { googleClientID } = useConstants()
 const { login_with_google } = useLoginUser()
 
@@ -22,7 +25,7 @@ onMounted(() => {
   }
 })
 
-const handleCredentialResponse = async (response: any) => {
+const handleCredentialResponse = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
   await login_with_google(response)
