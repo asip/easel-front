@@ -50,7 +50,7 @@ export function useUserFrames () {
   }
 
   const createFrameFromJson = (row_data: any) : Frame => {
-    const frame: any = {}
+    const frame: Frame = {}
     frame.id = row_data.id
     Object.assign(frame, row_data.attributes)
     frame.file = null
