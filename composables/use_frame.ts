@@ -91,10 +91,18 @@ export const useFrame = () => {
     if (frame.file) {
       formData.append('frame[file]', frame.file)
     }
-    formData.append('frame[name]', frame.name)
-    formData.append('frame[tag_list]', frame.tag_list)
-    formData.append('frame[comment]', frame.comment)
-    formData.append('frame[shooted_at]', frame.shooted_at)
+    if (frame.name) {
+      formData.append('frame[name]', frame.name)
+    }
+    if (frame.tag_list) {
+      formData.append('frame[tag_list]', frame.tag_list)
+    }
+    if (frame.comment) {
+      formData.append('frame[comment]', frame.comment)
+    }
+    if (frame.shooted_at) {
+      formData.append('frame[shooted_at]', frame.shooted_at)
+    }
 
     // console.log(login_user.value.token)
 
