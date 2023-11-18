@@ -67,7 +67,7 @@ export function useComment () {
   }
 
   const createCommentFromJson = (row_data: any): Comment => {
-    const comment: any = {}
+    const comment: Comment = {}
     comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
     return comment
@@ -159,7 +159,7 @@ export function useComment () {
     return result
   }
 
-  const deleteComment = async (comment: any, idx: number) => {
+  const deleteComment = async (comment: Comment, idx: number) => {
     let statusCode!: number
 
     const { error } = await useAsyncData('delete_comment', () =>
