@@ -94,7 +94,8 @@
 <script lang="ts" setup>
 import { useVuelidate } from '@vuelidate/core'
 
-const { signup_params, su_rules, signup, error_messages, isSuccess, locale } = useLoginUser()
+const { setFlash } = useToast()
+const { signup_params, su_rules, signup, error_messages, isSuccess, flash, locale } = useLoginUser()
 
 const v$ = useVuelidate(su_rules, signup_params)
 
@@ -132,7 +133,7 @@ const onSignupClick = async () => {
 
   if (!v$.value.$invalid) {
     await signup()
-
+    setFlash(flash.value)
     if (isSuccess()) {
       navigateTo('/')
     }
