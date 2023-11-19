@@ -19,8 +19,12 @@ export function useUserFrames () {
 
   const { backendApiURL } = useConstants()
 
+  const { flash, clearFlash } = useFlash()
+
   const getFrames = async (user_id: string | undefined) => {
-    const { data } = await useAsyncData('get_frames_by_user_id', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('get_frames_by_user_id', () =>
       $fetch(`${backendApiURL.value}/users/${user_id}/frames`, {
         method: 'get',
         query: {
@@ -28,24 +32,45 @@ export function useUserFrames () {
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    const { data: frameList, meta } = data.value as any
-    // console.log(frameList)
-    // console.log(meta)
+    clearFlash()
 
-    if (frameList) {
-      frames.value.splice(0, frames.value.length)
-      for (const frame of frameList as []) {
-        // console.log(comment);
-        frames.value.push(createFrameFromJson(frame))
+    if (error.value) {
+      switch (statusCode) {
+        case 500:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
       }
+
+      throw createError({
+        statusCode,
+        statusMessage: error.value.message,
+        message: flash.value.alert
+      })
+    } else if (data.value) {
+      const { data: frameList, meta } = data.value as any
+      // console.log(frameList)
+      // console.log(meta)
+
+      if (frameList) {
+        frames.value.splice(0, frames.value.length)
+        for (const frame of frameList as []) {
+        // console.log(comment);
+          frames.value.push(createFrameFromJson(frame))
+        }
       // console.log(frames)
-    }
-    if (meta) {
-      frame_query.value.pages = meta.pagination.pages
+      }
+      if (meta) {
+        frame_query.value.pages = meta.pagination.pages
+      }
     }
   }
 

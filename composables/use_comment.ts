@@ -40,29 +40,44 @@ export function useComment () {
   const { flash, clearFlash } = useFlash()
 
   const getComments = async () => {
+    let statusCode!: number
+
     // console.log(comment.frame_id);
-    const { data } = await useAsyncData('get_comments', () =>
+    const { data, error } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    // clearFlash()
+    clearFlash()
 
-    const { data: commentList } = data.value as any
-    // console.log(commentList)
-
-    if (commentList) {
-      // console.log(comment_list);
-      comments.splice(0, comments.length)
-      for (const comment of commentList) {
-        // console.log(comment);
-        comments.push(createCommentFromJson(comment))
+    if (error.value) {
+      switch (statusCode) {
+        case 500:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
       }
-      // console.log(comments);
+    } else if (data.value) {
+      const { data: commentList } = data.value as any
+      // console.log(commentList)
+
+      if (commentList) {
+        // console.log(comment_list);
+        comments.splice(0, comments.length)
+        for (const comment of commentList) {
+          // console.log(comment);
+          comments.push(createCommentFromJson(comment))
+        }
+        // console.log(comments);
+      }
     }
   }
 

@@ -61,22 +61,43 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    const { data } = await useAsyncData('get_frame', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('get_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${id}`, {
         method: 'get',
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    // clearFlash()
+    clearFlash()
 
-    const { data: frameJson } = data.value as any
-    // console.log(frameJson)
+    if (error.value) {
+      switch (statusCode) {
+        case 404:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
 
-    if (frameJson) {
-      setJson2Frame(frameJson)
+      throw createError({
+        statusCode,
+        statusMessage: error.value.message,
+        message: flash.value.alert
+      })
+    } else if (data.value) {
+      const { data: frameJson } = data.value as any
+      // console.log(frameJson)
+
+      if (frameJson) {
+        setJson2Frame(frameJson)
+      }
     }
   }
 

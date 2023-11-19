@@ -124,12 +124,17 @@ export const useLoginUser = () => {
     formData.append('user[password]', signup_params.password)
     formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
-    const { data } = await useAsyncData('signup', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('signup', () =>
       $fetch(`${backendApiURL.value}/users/`, {
         method: 'post',
         body: formData,
         headers: {
           'Accept-Language': locale.value
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
@@ -137,12 +142,22 @@ export const useLoginUser = () => {
     clearFlash()
     clearErrorMessages()
 
-    const { data: userJson, errors } = data.value as any
+    if (error.value) {
+      switch (statusCode) {
+        case 500:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
+    } else if (data.value) {
+      const { data: userJson, errors } = data.value as any
 
-    // console.log(userJson)
+      // console.log(userJson)
 
-    if (!userJson) {
-      setErrorMessages(errors)
+      if (!userJson) {
+        setErrorMessages(errors)
+      }
     }
   }
 
@@ -151,20 +166,34 @@ export const useLoginUser = () => {
     // console.log(login_user.value.token)
 
     if (login_user.value.token) {
-      const { data } = await useAsyncData('authenticate', () =>
+      let statusCode!: number
+
+      const { data, error } = await useAsyncData('authenticate', () =>
         $fetch(`${backendApiURL.value}/profile`, {
           method: 'get',
           headers: {
             'X-Requested-With': 'XMLHttpRequest',
             Authorization: `Bearer ${login_user.value.token}`
+          },
+          async onResponse ({ response }) {
+            statusCode = response.status
           }
         })
       )
 
-      const json_data = data.value as any
+      clearFlash()
 
-      if (json_data) {
-        const { data: userJson } = json_data
+      if (error.value) {
+        switch (statusCode) {
+          case 401:
+            flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+            clearLoginUser()
+            break
+          default:
+            flash.value.alert = error.value.message
+        }
+      } else if (data.value) {
+        const { data: userJson } = data.value as any
         // console.log(userJson)
 
         if (userJson) {
@@ -184,28 +213,45 @@ export const useLoginUser = () => {
       }
     }
 
-    const { data } = await useAsyncData('login', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('login', () =>
       $fetch(`${backendApiURL.value}/sessions/`, {
         method: 'post',
         body: postData,
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    const { data: userJson, messages } = data.value as any
+    clearFlash()
 
-    if (userJson) {
-      setJson2LoginUser(userJson)
-      logged_in.value = true
-      // console.log(login_user.value)
+    if (error.value) {
+      switch (statusCode) {
+        case 500:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
+    } else if (data.value) {
+      const { data: userJson, messages } = data.value as any
 
-      access_token.value = login_user.value.token
-      login_messages.value = []
-    } else {
-      login_messages.value = messages
+      if (userJson) {
+        setJson2LoginUser(userJson)
+        logged_in.value = true
+        // console.log(login_user.value)
+
+        access_token.value = login_user.value.token
+        login_messages.value = []
+      } else {
+        login_messages.value = messages
       // console.log(login_messages.value)
+      }
     }
   }
 
@@ -229,6 +275,8 @@ export const useLoginUser = () => {
         }
       })
     )
+
+    clearFlash()
 
     if (error.value) {
       switch (statusCode) {

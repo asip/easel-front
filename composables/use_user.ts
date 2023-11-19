@@ -28,8 +28,12 @@ export const useUser = () => {
 
   const { backendApiURL } = useConstants()
 
+  const { flash, clearFlash } = useFlash()
+
   const getUser = async (id: string) => {
-    const { data } = await useAsyncData('get_user', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('get_user', () =>
       $fetch(`${backendApiURL.value}/users/${id}`, {
         method: 'get',
         headers: {
@@ -38,12 +42,24 @@ export const useUser = () => {
       })
     )
 
-    const { data: userJson } = data.value as any
-    // console.log(userJson)
+    clearFlash()
 
-    if (userJson) {
+    if (error.value) {
+      switch (statusCode) {
+        case 404:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
+    } else if (data.value) {
+      const { data: userJson } = data.value as any
+      // console.log(userJson)
+
+      if (userJson) {
       // console.log('test3')
-      setJson2User(userJson)
+        setJson2User(userJson)
+      }
     }
   }
 

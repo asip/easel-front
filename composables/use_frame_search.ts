@@ -23,8 +23,12 @@ export const useFrameSearch = () => {
 
   const { backendApiURL } = useConstants()
 
+  const { flash, clearFlash } = useFlash()
+
   const searchFrame = async () => {
-    const { data } = await useAsyncData('search_frame', () =>
+    let statusCode!: number
+
+    const { data, error } = await useAsyncData('search_frame', () =>
       $fetch(`${backendApiURL.value}/frames`, {
         method: 'get',
         query: {
@@ -33,24 +37,38 @@ export const useFrameSearch = () => {
         },
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
+        },
+        async onResponse ({ response }) {
+          statusCode = response.status
         }
       })
     )
 
-    const { data: frameList, meta } = data.value as any
-    // console.log(frameList)
-    // console.log(meta)
+    clearFlash()
 
-    if (frameList) {
-      frames.value.splice(0, frames.value.length)
-      for (const frame of frameList as []) {
-        // console.log(comment);
-        frames.value.push(createFrameFromJson(frame))
+    if (error.value) {
+      switch (statusCode) {
+        case 500:
+          flash.value.alert = error.value.message
+          break
+        default:
+          flash.value.alert = error.value.message
       }
+    } else if (data.value) {
+      const { data: frameList, meta } = data.value as any
+      // console.log(frameList)
+
+      if (frameList) {
+        frames.value.splice(0, frames.value.length)
+        for (const frame of frameList as []) {
+        // console.log(comment);
+          frames.value.push(createFrameFromJson(frame))
+        }
       // console.log(frames)
-    }
-    if (meta) {
-      frame_query.value.pages = meta.pagination.pages
+      }
+      if (meta) {
+        frame_query.value.pages = meta.pagination.pages
+      }
     }
   }
 
