@@ -55,12 +55,12 @@ export const useFrameSearch = () => {
   }
 
   const createFrameFromJson = (row_data: any) : Frame => {
-    const frame: Frame = {}
+    const frame: Partial<Frame> = {}
     frame.id = row_data.id
     Object.assign(frame, row_data.attributes)
     frame.file = null
     frame.preview_url = null
-    return frame
+    return frame as Frame
   }
 
   return {

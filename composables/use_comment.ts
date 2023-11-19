@@ -67,10 +67,10 @@ export function useComment () {
   }
 
   const createCommentFromJson = (row_data: any): Comment => {
-    const comment: Comment = {}
+    const comment: Partial<Comment> = {}
     comment.id = row_data.id
     Object.assign(comment, row_data.attributes)
-    return comment
+    return comment as Comment
   }
 
   const postComment = async () => {
