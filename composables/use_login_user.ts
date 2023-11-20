@@ -85,7 +85,7 @@ export const useLoginUser = () => {
     base: []
   })
 
-  const nuxtApp = useNuxtApp()
+  const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
   const access_token = useCookie('access_token')
@@ -186,7 +186,7 @@ export const useLoginUser = () => {
       if (error.value) {
         switch (statusCode) {
           case 401:
-            flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+            flash.value.alert = $i18n.t('action.error.login')
             clearLoginUser()
             break
           default:
@@ -281,7 +281,7 @@ export const useLoginUser = () => {
     if (error.value) {
       switch (statusCode) {
         case 409:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.email.duplicated')
+          flash.value.alert = $i18n.t('action.error.email.duplicated')
           break
         default:
           flash.value.alert = error.value.message
@@ -346,7 +346,7 @@ export const useLoginUser = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
@@ -438,7 +438,7 @@ export const useLoginUser = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
@@ -473,7 +473,7 @@ export const useLoginUser = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         case 404:

@@ -52,7 +52,7 @@ export const useFrame = () => {
     base: []
   })
 
-  const nuxtApp = useNuxtApp()
+  const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
 
@@ -149,7 +149,7 @@ export const useFrame = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
@@ -241,7 +241,7 @@ export const useFrame = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
@@ -278,7 +278,7 @@ export const useFrame = () => {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:

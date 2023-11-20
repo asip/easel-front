@@ -4,7 +4,7 @@ import { useLoginUser } from './use_login_user'
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
 
-  const nuxtApp = useNuxtApp()
+  const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
 
@@ -32,7 +32,7 @@ export function useFollow () {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          // flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          // flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         // default:
@@ -68,7 +68,7 @@ export function useFollow () {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
@@ -100,7 +100,7 @@ export function useFollow () {
     if (error.value) {
       switch (statusCode) {
         case 401:
-          flash.value.alert = nuxtApp.$i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
