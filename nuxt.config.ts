@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       redirectOn: 'root'// recommended
     },
     strategy: 'no_prefix',
-    langDir: 'lang',
+    langDir: 'locales',
     locales: [
       {
         code: 'en',
