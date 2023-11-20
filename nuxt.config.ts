@@ -8,16 +8,6 @@ export default defineNuxtConfig({
 
   i18n: {
     lazy: true,
-    defaultLocale: 'en',
-    vueI18n: './i18n.config.ts',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      cookieCrossOrigin: true,
-      redirectOn: 'root'// recommended
-    },
-    strategy: 'no_prefix',
-    langDir: 'locales',
     locales: [
       {
         code: 'en',
@@ -27,7 +17,17 @@ export default defineNuxtConfig({
         code: 'ja',
         file: 'ja.js'
       }
-    ]
+    ],
+    defaultLocale: 'en',
+    langDir: 'locales',
+    vueI18n: './i18n.config.ts',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      cookieCrossOrigin: true,
+      redirectOn: 'root'// recommended
+    },
+    strategy: 'no_prefix'
   },
 
   // @ts-ignore
