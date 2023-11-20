@@ -3,6 +3,10 @@
     <br>
     <UsersLoginGoogle />
     <br>
+    <NuxtLink :to="`/signup`" class="btn btn-light btn-outline-secondary">
+      {{ $t('action.user.new') }}
+    </NuxtLink><br>
+    <br>
     <form>
       <div class="card">
         <div class="card-header">
@@ -45,9 +49,6 @@
               <button type="button" class="btn btn-primary" @click="onLoginClick">
                 {{ $t('action.user.login') }}
               </button>&nbsp;
-              <NuxtLink :to="`/signup`" class="btn btn-primary">
-                {{ $t('action.user.new') }}
-              </NuxtLink>&nbsp;
               <NuxtLink :to="`/`" class="btn btn-outline-secondary">
                 {{ $t('action.model.return') }}
               </NuxtLink>
