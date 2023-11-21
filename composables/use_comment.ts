@@ -31,6 +31,8 @@ export function useComment () {
     base: []
   })
 
+  const processing = ref<boolean>(false)
+
   const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
@@ -42,8 +44,10 @@ export function useComment () {
   const getComments = async () => {
     let statusCode!: number
 
+    processing.value = true
+
     // console.log(comment.frame_id);
-    const { data, error } = await useAsyncData('get_comments', () =>
+    const { data, error, pending } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
@@ -79,6 +83,8 @@ export function useComment () {
         // console.log(comments);
       }
     }
+
+    processing.value = pending.value
   }
 
   const createCommentFromJson = (row_data: any): Comment => {
@@ -222,6 +228,7 @@ export function useComment () {
     cm_rules,
     createComment,
     deleteComment,
+    processing,
     isSuccess,
     flash,
     locale

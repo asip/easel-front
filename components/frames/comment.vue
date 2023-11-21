@@ -33,7 +33,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <button type="button" class="btn btn-light col-12 form-control" @click="onCommentClick">
+            <button type="button" class="btn btn-light col-12 form-control" :disabled="processing" @click="onCommentClick">
               {{ $t('action.comment.post') }}
             </button>
           </div>
@@ -50,7 +50,7 @@ import { useVuelidate } from '@vuelidate/core'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
-const { comment, cm_rules, error_messages, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as any
+const { comment, cm_rules, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as any
 
 const v$ = useVuelidate(cm_rules, comment)
 

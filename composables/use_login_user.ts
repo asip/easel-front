@@ -85,6 +85,8 @@ export const useLoginUser = () => {
     base: []
   })
 
+  const processing = ref<boolean>(false)
+
   const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
@@ -112,6 +114,7 @@ export const useLoginUser = () => {
   })
 
   const signup = async () => {
+    processing.value = true
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -126,7 +129,7 @@ export const useLoginUser = () => {
 
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('signup', () =>
+    const { data, error, pending } = await useAsyncData('signup', () =>
       $fetch(`${backendApiURL.value}/users/`, {
         method: 'post',
         body: formData,
@@ -159,6 +162,8 @@ export const useLoginUser = () => {
         setErrorMessages(errors)
       }
     }
+
+    processing.value = pending.value
   }
 
   const authenticate = async () => {
@@ -308,6 +313,7 @@ export const useLoginUser = () => {
   }
 
   const updateProfile = async () => {
+    processing.value = true
     // console.log(signup_params.image)
 
     const formData = new FormData()
@@ -322,7 +328,7 @@ export const useLoginUser = () => {
 
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('update_profile', () =>
+    const { data, error, pending } = await useAsyncData('update_profile', () =>
       $fetch(`${backendApiURL.value}/profile/`, {
         method: 'put',
         body: formData,
@@ -360,6 +366,8 @@ export const useLoginUser = () => {
         setErrorMessages(errors)
       }
     }
+
+    processing.value = pending.value
   }
 
   const setErrorMessages = (errors: any) => {
@@ -514,6 +522,7 @@ export const useLoginUser = () => {
     authenticate,
     setUser,
     updateProfile,
+    processing,
     isSuccess,
     flash,
     login,

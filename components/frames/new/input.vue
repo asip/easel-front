@@ -67,7 +67,7 @@
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
       <div class="col-sm-7">
-        <button type="button" class="btn btn-primary" @click="onCreateClick">
+        <button type="button" class="btn btn-primary" :disabled="processing" @click="onCreateClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
         <NuxtLink :to="`/`" class="btn btn-outline-secondary">
@@ -84,7 +84,7 @@ import Tagify from '@yaireo/tagify'
 
 const { setFlash } = useToast()
 const { login_user } = useLoginUser()
-const { frame, frm_rules, frameId, createFrame, error_messages, isSuccess, flash, locale } = inject('framer') as any
+const { frame, frm_rules, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as any
 
 const v$ = useVuelidate(frm_rules, frame)
 

@@ -52,6 +52,8 @@ export const useFrame = () => {
     base: []
   })
 
+  const processing = ref<boolean>(false)
+
   const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
@@ -107,6 +109,8 @@ export const useFrame = () => {
   }
 
   const createFrame = async () => {
+    processing.value = true
+
     const formData = new FormData()
 
     if (frame.file) {
@@ -129,7 +133,7 @@ export const useFrame = () => {
 
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('create_frame', () =>
+    const { data, error, pending } = await useAsyncData('create_frame', () =>
       $fetch(`${backendApiURL.value}/frames/`, {
         method: 'post',
         body: formData,
@@ -163,6 +167,8 @@ export const useFrame = () => {
         setErrorMessages(errors)
       }
     }
+
+    processing.value = pending.value
   }
 
   const setErrorMessages = (errors: any) => {
@@ -207,6 +213,8 @@ export const useFrame = () => {
   }
 
   const updateFrame = async () => {
+    processing.value = true
+
     const postData = {
       frame: {
         name: frame.name,
@@ -220,7 +228,7 @@ export const useFrame = () => {
 
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('update_frame', () =>
+    const { data, error, pending } = await useAsyncData('update_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'put',
         body: postData,
@@ -253,14 +261,17 @@ export const useFrame = () => {
         setErrorMessages(errors)
       }
     }
+
+    processing.value = pending.value
   }
 
   const deleteFrame = async () => {
+    processing.value = true
     // console.log(frame.id)
 
     let statusCode!: number
 
-    const { error } = await useAsyncData('delete_frame', () =>
+    const { error, pending } = await useAsyncData('delete_frame', () =>
       $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
         method: 'delete',
         headers: {
@@ -287,6 +298,8 @@ export const useFrame = () => {
     }
 
     // const { data: frameJson } = data.value
+
+    processing.value = pending.value
   }
 
   return {
@@ -299,6 +312,7 @@ export const useFrame = () => {
     createFrame,
     deleteFrame,
     error_messages,
+    processing,
     isSuccess,
     flash,
     locale

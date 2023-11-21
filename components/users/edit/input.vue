@@ -103,7 +103,7 @@
     </div>
     <div class="d-flex justify-content-sm-center">
       <div class="form-group col-sm-6">
-        <button type="button" class="btn btn-primary" @click="onUpdateClick">
+        <button type="button" class="btn btn-primary" :disabled="processing" @click="onUpdateClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
         <NuxtLink :to="`/account/profile`" class="btn btn-outline-secondary">
@@ -118,7 +118,7 @@
 import { useVuelidate } from '@vuelidate/core'
 
 const { setFlash } = useToast()
-const { login_user, user, usr_rules, setUser, updateProfile, error_messages, isSuccess, flash, locale } = useLoginUser()
+const { login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 
 const v$ = useVuelidate(usr_rules, user)
 
