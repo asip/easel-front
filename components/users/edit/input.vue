@@ -31,7 +31,7 @@
                   <div>{{ error.$message }}</div>
                 </div>
                 <div v-for="(message, idx) in error_messages.name" :key="idx">
-                  <div>{{ $t('model.user.name') }}{{ message }}</div>
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>
@@ -55,7 +55,7 @@
                   <div>{{ error.$message }}</div>
                 </div>
                 <div v-for="(message, idx) in error_messages.email" :key="idx">
-                  <div>{{ $t('model.user.email') }}{{ message }}</div>
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>
@@ -79,7 +79,7 @@
                   <div>{{ error.$message }}</div>
                 </div>
                 <div v-for="(message, idx) in error_messages.password" :key="idx">
-                  <div>{{ $t('model.user.password') }}{{ message }}</div>
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>
@@ -93,7 +93,7 @@
                   <div>{{ error.$message }}</div>
                 </div>
                 <div v-for="(message, idx) in error_messages.password_confirmation" :key="idx">
-                  <div>{{ $t('model.user.password_confirmation') }}{{ message }}</div>
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>

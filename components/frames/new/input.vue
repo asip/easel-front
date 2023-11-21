@@ -11,7 +11,7 @@
               <td style="width: 80%;">
                 <input type="file" accept="image/jpg,image/jpeg,image/png" class="form-control-file" @change="onSelectFile">
                 <div v-for="(message, idx) in error_messages.file" :key="idx">
-                  <div>{{ $t('model.frame.file') }}{{ message }}</div>
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>

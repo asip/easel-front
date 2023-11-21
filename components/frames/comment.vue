@@ -26,7 +26,7 @@
             </div>
             <div v-for="(message, idx) in error_messages.body" :key="idx">
               <p style="color: red;">
-                {{ $t('model.comment.body') }}{{ message }}
+                {{ message }}
               </p>
             </div>
           </div>
