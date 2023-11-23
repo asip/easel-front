@@ -34,7 +34,7 @@ defineProps<{
   label: string
 }>()
 
-const emit = defineEmits(['click'])
+const emit = defineEmits<{(e: 'click'): void}>()
 
 const onClick = () => {
   emit('click')
