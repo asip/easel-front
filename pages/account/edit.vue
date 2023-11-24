@@ -14,7 +14,9 @@
               </div>
             </div>
           </div>
-          <div class="text-center">プロフィール編集</div>
+          <div class="text-center">
+            プロフィール編集
+          </div>
           <br>
           <UsersEditInput />
           <br>

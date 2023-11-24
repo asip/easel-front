@@ -11,7 +11,9 @@
             </div>
           </div>
         </div>
-        <div class="text-center">{{ user.name }}</div>
+        <div class="text-center">
+          {{ user.name }}
+        </div>
         <br>
         <UsersPreviewImage :original="false" />
         <div class="row d-flex justify-content-sm-center">

@@ -23,10 +23,11 @@
                 <i class="bi bi-x-circle" />
               </button>
             </div>
-            <div class="float-end"></div>
           </div>
         </div>
-        <div class="text-center">{{ $t('model.user.model_name') }}</div>
+        <div class="text-center">
+          {{ $t('model.user.model_name') }}
+        </div>
         <br>
         <UsersPreviewImage :original="false" />
         <div class="row d-flex justify-content-sm-center">
