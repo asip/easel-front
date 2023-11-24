@@ -80,7 +80,7 @@ const onLogoutClick = async () => {
   if (route.path === '/account/profile' || route.path === '/account/edit' ||
     route.path === '/frames/new') {
     navigateTo('/')
-  } else if (route.path.match(/\/frames\/frame-\d*\/edit/)) {
+  } else if (route.path.match(/\/frames\/frame-\d+\/edit/)) {
     navigateTo(`/frames/${route.params.id}`)
   }
 }
