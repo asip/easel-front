@@ -3,15 +3,18 @@
     <br>
     <form>
       <div class="card" data-controller="preview">
-        <div class="card-header">
-          <div class="float-start">
-            <NuxtLink to="/account/profile">
-              <i class="bi bi-arrow-left-circle" />
-            </NuxtLink>
-            プロフィール編集
-          </div>
-        </div>
         <div class="card-block">
+          <div class="row">
+            <div class="col-sm-12 clearfix">
+              <div class="float-start">
+                &nbsp;
+                <NuxtLink to="/account/profile">
+                  <i class="bi bi-arrow-left-circle" />
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">プロフィール編集</div>
           <br>
           <UsersEditInput />
           <br>

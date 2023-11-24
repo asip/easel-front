@@ -2,13 +2,16 @@
   <div class="col-sm-12">
     <br>
     <div class="card">
-      <div class="card-header">
-        <div class="float-start">
-          <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
-          {{ user.name }}
-        </div>
-      </div>
       <div class="card-block">
+        <div class="row">
+          <div class="col-sm-12 clearfix">
+            <div class="float-start">
+              &nbsp;
+              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">{{ user.name }}</div>
         <br>
         <UsersPreviewImage :original="false" />
         <div class="row d-flex justify-content-sm-center">

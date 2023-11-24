@@ -2,29 +2,31 @@
   <div>
     <br>
     <div class="card">
-      <div class="card-header">
-        <div class="float-start">
-          <NuxtLink to="/">
-            <i class="bi bi-arrow-left-circle" />
-          </NuxtLink>
-          {{ $t('model.user.model_name') }}
-        </div>
-        <div class="float-end">
-          <NuxtLink to="/account/edit">
-            <i class="bi bi-pencil-square" />
-          </NuxtLink>
-          <button
-            type="button"
-            class="btn-icon-local"
-            data-bs-toggle="modal"
-            data-bs-config="{backdrop:true}"
-            data-bs-target="#delete_modal"
-          >
-            <i class="bi bi-x-circle" />
-          </button>
-        </div>
-      </div>
       <div class="card-block">
+        <div class="row">
+          <div class="col-sm-12 clearfix">
+            <div class="float-start">
+              &nbsp;
+              <NuxtLink to="/">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>&nbsp;
+              <NuxtLink to="/account/edit">
+                <i class="bi bi-pencil-square" />
+              </NuxtLink>&nbsp;
+              <button
+                type="button"
+                class="btn-icon-local"
+                data-bs-toggle="modal"
+                data-bs-config="{backdrop:true}"
+                data-bs-target="#delete_modal"
+              >
+                <i class="bi bi-x-circle" />
+              </button>
+            </div>
+            <div class="float-end"></div>
+          </div>
+        </div>
+        <div class="text-center">{{ $t('model.user.model_name') }}</div>
         <br>
         <UsersPreviewImage :original="false" />
         <div class="row d-flex justify-content-sm-center">

@@ -7,10 +7,10 @@
           <div class="col-12 clearfix">
             <div class="float-start">
             &nbsp;
-              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>&nbsp;
               <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/frame-${frame.id}/edit`">
                 <i class="bi bi-pencil-square" />
-              </NuxtLink>
+              </NuxtLink>&nbsp;
               <!-- Button trigger modal -->
               <button
                 v-if="logged_in && frame.user_id == login_user.id"
