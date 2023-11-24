@@ -77,6 +77,12 @@ if (!logged_in.value) {
 
 const onLogoutClick = async () => {
   await logout()
+  if (route.path === '/account/profile' || route.path === '/account/edit' ||
+    route.path === '/frames/new') {
+    navigateTo('/')
+  } else if (route.path.match(/\/frames\/frame-\d*\/edit/)) {
+    navigateTo(`/frames/${route.params.id}`)
+  }
 }
 
 const onTopPageClick = async () => {
