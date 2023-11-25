@@ -60,15 +60,15 @@ onUnmounted(() => {
 
 function assignSize () {
   const gallery = root.value?.querySelectorAll('a')
-  gallery?.forEach(async (el: any) => {
-    const img: any = await loadImage(el.href)
-    el.setAttribute('data-pswp-width', img.naturalWidth)
-    el.setAttribute('data-pswp-height', img.naturalHeight)
-    el.firstElementChild.removeAttribute('style')
+  gallery?.forEach(async (el: HTMLAnchorElement) => {
+    const img: HTMLImageElement = await loadImage(el.href)
+    el.setAttribute('data-pswp-width', img.naturalWidth.toString())
+    el.setAttribute('data-pswp-height', img.naturalHeight.toString())
+    el.firstElementChild?.removeAttribute('style')
   })
 }
 
-function loadImage (src: any) {
+function loadImage (src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = () => resolve(img)
