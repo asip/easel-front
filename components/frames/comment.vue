@@ -20,12 +20,12 @@
         <div class="d-flex justify-content-center">
           <div class="col-10">
             <div v-for="error of v$.body.$errors" :key="error.$uid">
-              <div style="color: red;">
+              <div class="text-danger">
                 {{ error.$message }}
               </div>
             </div>
             <div v-for="(message, idx) in error_messages.body" :key="idx">
-              <p style="color: red;">
+              <p class="text-danger">
                 {{ message }}
               </p>
             </div>
