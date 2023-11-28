@@ -11,11 +11,11 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        file: 'en.js'
+        file: 'en.json'
       },
       {
         code: 'ja',
-        file: 'ja.js'
+        file: 'ja.json'
       }
     ],
     defaultLocale: 'en',
