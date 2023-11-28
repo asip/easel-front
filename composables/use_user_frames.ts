@@ -61,7 +61,7 @@ export function useUserFrames () {
       // console.log(meta)
 
       if (frameList) {
-        frames.value.splice(0, frames.value.length)
+        frames.value.splice(0)
         for (const frame of frameList as []) {
         // console.log(comment);
           frames.value.push(createFrameFromJson(frame))

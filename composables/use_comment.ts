@@ -75,7 +75,7 @@ export function useComment () {
 
       if (commentList) {
         // console.log(comment_list);
-        comments.splice(0, comments.length)
+        comments.splice(0)
         for (const comment of commentList) {
           // console.log(comment);
           comments.push(createCommentFromJson(comment))
@@ -149,7 +149,7 @@ export function useComment () {
     await postComment()
 
     if (isSuccess()) {
-      comments.splice(0, comments.length)
+      comments.splice(0)
     }
   }
 
