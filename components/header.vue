@@ -66,14 +66,8 @@ import { useLocale } from '~/composables/use_locale'
 const route = useRoute()
 
 const { autoDetect } = useLocale()
-const { login_user, logged_in, authenticate, logout } = useLoginUser()
+const { login_user, logged_in, logout } = useLoginUser()
 const { frame_query, searchFrame } = useFrameSearch()
-
-// console.log(logged_in.value)
-if (!logged_in.value) {
-  // console.log('test2')
-  await authenticate()
-}
 
 const onLogoutClick = async () => {
   await logout()

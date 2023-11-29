@@ -30,6 +30,13 @@ useHead(
 )
 
 const { autoDetect } = useLocale()
+const { logged_in, authenticate } = useLoginUser()
+
+// console.log(logged_in.value)
+if (!logged_in.value) {
+  // console.log('test2')
+  await authenticate()
+}
 
 onUpdated(() => {
   autoDetect()
