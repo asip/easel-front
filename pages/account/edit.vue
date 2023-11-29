@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="text-center">
-            プロフィール編集
+            {{ $t('action.user.edit') }}
           </div>
           <br>
           <UsersEditInput />

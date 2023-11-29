@@ -39,6 +39,7 @@
       "logout": "Sign Out",
       "delete": "Delete",
       "new": "User Registration",
+      "edit": "Profile Editing",
       "follow": "Follow",
       "unfollow": "Now following"
     },
