@@ -44,6 +44,7 @@
     "vuejs-paginate-next": "^1.0.2"
   },
   "resolutions": {
-    "@intlify/shared": "^9.8.0"
+    "@intlify/shared": "^9.8.0",
+    "@typescript-eslint/typescript-estree": "6.13.2"
   }
 }
