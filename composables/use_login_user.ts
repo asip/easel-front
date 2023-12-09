@@ -312,6 +312,12 @@ export const useLoginUser = () => {
     Object.assign(user.value, login_user.value)
   }
 
+  const setToken2Cookie = () => {
+    if (login_user.value.token !== access_token.value) {
+      access_token.value = login_user.value.token
+    }
+  }
+
   const updateProfile = async () => {
     processing.value = true
     // console.log(signup_params.image)
@@ -362,6 +368,7 @@ export const useLoginUser = () => {
       const { data: userJson, errors } = data.value as any
       if (userJson) {
         setJson2LoginUser(userJson)
+        setToken2Cookie()
       } else if (errors) {
         setErrorMessages(errors)
       }
@@ -463,7 +470,7 @@ export const useLoginUser = () => {
   const deleteAccount = async () => {
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('logout', () =>
+    const { data, error } = await useAsyncData('delete_account', () =>
       $fetch(`${backendApiURL.value}/profile`, {
         method: 'delete',
         headers: {
