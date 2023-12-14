@@ -16,7 +16,16 @@ export default [
         'import/no-named-as-default-member': 0,
         'vue/multi-word-component-names': 0,
         'vue/no-v-html': 0
-      }
+      },
+      overrides: [
+        {
+          files: ['**/*.vue'],
+          rules: {
+            '@typescript-eslint/no-unused-vars': 0,
+            'vue/valid-v-for': 0
+          }
+        }
+      ]
     }
   )
 ]
