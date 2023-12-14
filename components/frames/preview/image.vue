@@ -43,7 +43,7 @@ onMounted(() => {
       initialZoomLevel: 'fit',
       pswpModule: () => import('photoswipe')
     })
-    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox) // eslint-disable-line @typescript-eslint/no-unused-vars
+    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
   } else {
     const elm = document.querySelector('[name="lm"]')
