@@ -60,13 +60,11 @@ onUnmounted(() => {
 })
 
 async function assignSize () {
-  const gallery = imageRef.value?.querySelectorAll('a')
-  for await (const el of gallery) {
-    const img: HTMLImageElement = await loadImage(el.href)
-    el.setAttribute('data-pswp-width', img.naturalWidth.toString())
-    el.setAttribute('data-pswp-height', img.naturalHeight.toString())
-    el.firstElementChild?.removeAttribute('style')
-  }
+  const el = imageRef.value?.querySelector('a')
+  const img: HTMLImageElement = await loadImage(el.href)
+  el.setAttribute('data-pswp-width', img.naturalWidth.toString())
+  el.setAttribute('data-pswp-height', img.naturalHeight.toString())
+  el.firstElementChild?.removeAttribute('style')
 }
 
 function loadImage (src: string): Promise<HTMLImageElement> {
