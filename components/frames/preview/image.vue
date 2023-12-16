@@ -1,9 +1,9 @@
 <template>
-  <div v-if="props.original" id="image" ref="root" class="d-flex justify-content-sm-center">
+  <div v-if="props.original" id="image" ref="imageRef" class="d-flex justify-content-sm-center">
     <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else class="mx-auto" name="lm" :to="`${frame?.file_url}`">
+    <NuxtLink v-else ref="lightboxRef" class="mx-auto" :to="`${frame?.file_url}`">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
@@ -31,7 +31,8 @@ const { frame } = inject('framer') as any
 
 let lightbox: any
 
-const root: Ref = ref(null)
+const imageRef: Ref = ref(null)
+const lightboxRef: Ref = ref(null)
 
 onMounted(async () => {
   if (props.photoswipe) {
@@ -46,7 +47,7 @@ onMounted(async () => {
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
   } else {
-    const elm = document.querySelector('[name="lm"]')
+    const elm = lightboxRef.value
     lightbox = new Luminous(elm, { showCloseButton: true })
   }
 })
@@ -59,7 +60,7 @@ onUnmounted(() => {
 })
 
 async function assignSize () {
-  const gallery = root.value?.querySelectorAll('a')
+  const gallery = imageRef.value?.querySelectorAll('a')
   for await (const el of gallery) {
     const img: HTMLImageElement = await loadImage(el.href)
     el.setAttribute('data-pswp-width', img.naturalWidth.toString())
