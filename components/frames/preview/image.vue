@@ -33,9 +33,9 @@ let lightbox: any
 
 const root: Ref = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
   if (props.photoswipe) {
-    assignSize()
+    await assignSize()
 
     lightbox = new PhotoSwipeLightbox({
       gallery: '#image',
@@ -58,14 +58,14 @@ onUnmounted(() => {
   }
 })
 
-function assignSize () {
+async function assignSize () {
   const gallery = root.value?.querySelectorAll('a')
-  gallery?.forEach(async (el: HTMLAnchorElement) => {
+  for await (const el of gallery) {
     const img: HTMLImageElement = await loadImage(el.href)
     el.setAttribute('data-pswp-width', img.naturalWidth.toString())
     el.setAttribute('data-pswp-height', img.naturalHeight.toString())
     el.firstElementChild?.removeAttribute('style')
-  })
+  }
 }
 
 function loadImage (src: string): Promise<HTMLImageElement> {
