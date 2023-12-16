@@ -74,7 +74,7 @@ const clickCallback = async (pageNum: number) => {
 
 onUpdated(() => {
   if (gallery) { gallery.destroy() }
-  const elements: HTMLCollectionOf<Element> = document.getElementsByClassName('lum-lightbox')
+  const elements: NodeListOf<Element> = document.querySelectorAll('.lum-lightbox')
   Array.from(elements).forEach(e => e.remove())
 
   const elms = document.querySelectorAll('[name="lm"]')
