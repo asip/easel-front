@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.original" class="d-flex justify-content-sm-center">
-    <NuxtLink class="mx-auto" name="lm" :to="`${user?.image_three_url}`">
+    <NuxtLink ref="lightboxRef" class="mx-auto" :to="`${user?.image_three_url}`">
       <img :src="`${user?.image_three_url}`" alt="" class="mx-auto" style="width:100px;height:100px;">
     </NuxtLink>
   </div>
@@ -26,9 +26,11 @@ const user: User | undefined = inject('user')
 
 let lightbox: any
 
+const lightboxRef = ref(null)
+
 onMounted(() => {
   if (props.original) {
-    const elm = document.querySelector('[name="lm"]')
+    const elm = lightboxRef.value
     lightbox = new Luminous(elm, { showCloseButton: true })
   }
 })
