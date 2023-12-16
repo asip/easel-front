@@ -20,7 +20,7 @@
                 <label for="tag_list" class="col-form-label">{{ $t('model.frame.tag_list') }}：</label>
               </td>
               <td>
-                <input id="tag_editor" type="text" name="tag_editor" value="" class="form-control">
+                <input ref="tagEditorRef" type="text" name="tag_editor" value="" class="form-control">
                 <input id="tag_list" v-model="frame.tag_list" type="hidden">
                 <div v-for="error of v$.tags.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
@@ -72,6 +72,8 @@ const { frame, frm_rules, updateFrame, processing, isSuccess, flash, locale } = 
 
 const v$ = useVuelidate(frm_rules, frame)
 
+const tagEditorRef = ref(null)
+
 // console.log(frame)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
@@ -97,10 +99,10 @@ const onEditClick = async () => {
 onMounted(() => {
   // console.log(frame)
 
-  const elm_te: HTMLInputElement | null = document.querySelector('#tag_editor')
+  const elmTe: HTMLInputElement | null = tagEditorRef.value
 
-  if (elm_te) {
-    const tag_editor = new Tagify(elm_te, {
+  if (elmTe) {
+    const tag_editor = new Tagify(elmTe, {
       maxTags: 5,
       dropdown: {
         classname: 'color-blue',
