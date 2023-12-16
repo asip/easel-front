@@ -3,7 +3,7 @@
     <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else ref="lightboxRef" class="mx-auto" :to="`${frame?.file_url}`">
+    <NuxtLink v-else ref="luminousRef" class="mx-auto" :to="`${frame?.file_url}`">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
@@ -32,7 +32,7 @@ const { frame } = inject('framer') as any
 let lightbox: any
 
 const imageRef: Ref = ref(null)
-const lightboxRef: Ref = ref(null)
+const luminousRef: Ref = ref(null)
 
 onMounted(async () => {
   if (props.photoswipe) {
@@ -47,7 +47,7 @@ onMounted(async () => {
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
   } else {
-    const elm = lightboxRef.value
+    const elm = luminousRef.value
     lightbox = new Luminous(elm, { showCloseButton: true })
   }
 })
