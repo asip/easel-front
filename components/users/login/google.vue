@@ -1,5 +1,5 @@
 <template>
-  <div v-if="googleClientID !== ''" id="googleButton" />
+  <div v-if="googleClientID !== ''" ref="googleButtonRef" />
 </template>
 
 <script setup lang="ts">
@@ -10,8 +10,11 @@ import type { CredentialResponse } from '~/interfaces/credential_response'
 const { googleClientID } = useConstants()
 const { login_with_google } = useLoginUser()
 
+const googleButtonRef = ref(null)
+
 onMounted(() => {
-  const googleButton = document.getElementById('googleButton')
+  const googleButton = googleButtonRef.value
+
   if (googleButton) {
     google.accounts.id.initialize({
       client_id: googleClientID,
