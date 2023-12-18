@@ -44,10 +44,8 @@ export function useComment () {
   const getComments = async () => {
     let statusCode!: number
 
-    processing.value = true
-
     // console.log(comment.frame_id);
-    const { data, error, pending } = await useAsyncData('get_comments', () =>
+    const { data, error } = await useAsyncData('get_comments', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
         method: 'get',
         headers: {
@@ -83,8 +81,6 @@ export function useComment () {
         // console.log(comments);
       }
     }
-
-    processing.value = pending.value
   }
 
   const createCommentFromJson = (row_data: any): Comment => {
@@ -95,6 +91,8 @@ export function useComment () {
   }
 
   const postComment = async () => {
+    processing.value = true
+
     const postData = {
       comment: {
         body: comment.body
@@ -103,7 +101,7 @@ export function useComment () {
 
     let statusCode!: number
 
-    const { data, error } = await useAsyncData('post_comment', () =>
+    const { data, error, pending } = await useAsyncData('post_comment', () =>
       $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`,
         {
           method: 'post',
@@ -140,6 +138,8 @@ export function useComment () {
         setErrorMessages(errors)
       }
     }
+
+    processing.value = pending.value
   }
 
   const createComment = async () => {
