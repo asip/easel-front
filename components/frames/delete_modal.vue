@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useToast } from '~/composables/ui/use_toast';
+import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()

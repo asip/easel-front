@@ -116,7 +116,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useToast } from '~/composables/ui/use_toast';
+import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
 const { login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
