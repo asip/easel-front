@@ -21,7 +21,7 @@
     "@types/google.accounts": "^0.0.14",
     "@types/sanitize-html": "^2.9.5",
     "@types/yaireo__tagify": "^4.17.5",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "markuplint": "^3.15.0",
     "nuxt": "^3.8.2"
   },
@@ -46,6 +46,6 @@
   },
   "resolutions": {
     "@intlify/shared": "^9.8.0",
-    "@typescript-eslint/typescript-estree": "6.13.2"
+    "@typescript-eslint/typescript-estree": "6.15.0"
   }
 }
