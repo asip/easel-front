@@ -62,6 +62,8 @@
 </template>
 
 <script lang="ts" setup>
+import { useToast } from '~/composables/ui/use_toast';
+
 const { setMessages } = useToast()
 const { login_params, login, login_messages } = useLoginUser()
 

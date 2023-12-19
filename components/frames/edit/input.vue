@@ -65,6 +65,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import Tagify from '@yaireo/tagify'
+import { useToast } from '~/composables/ui/use_toast';
 
 const { setFlash } = useToast()
 const { login_user } = useLoginUser()

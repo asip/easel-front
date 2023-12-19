@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { useToast } from '~/composables/ui/use_toast';
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()

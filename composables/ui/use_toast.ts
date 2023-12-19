@@ -33,7 +33,7 @@ export function useToast () {
       setTimeout(
         () => {
           $toast.error(message)
-        }, 1000)
+        }, 500)
     }
   }
 

@@ -47,6 +47,7 @@
 
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
+import { useToast } from '~/composables/ui/use_toast';
 import type { Comment } from '~/interfaces/comment'
 
 const { setFlash } = useToast()
