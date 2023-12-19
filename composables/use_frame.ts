@@ -1,4 +1,5 @@
 import { useGetApi } from './api/use_get_api'
+import { usePostApi } from './api/use_post_api'
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { RefQuery } from '~/interfaces/ref_query'
@@ -123,21 +124,13 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
-    let statusCode!: number
-
-    const { data, error, pending } = await useAsyncData('create_frame', () =>
-      $fetch(`${backendApiURL.value}/frames/`, {
-        method: 'post',
-        body: formData,
-        headers: {
-          'Accept-Language': locale.value,
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, pending, statusCode } = await usePostApi({
+      key: 'create_frame',
+      url: `${backendApiURL.value}/frames/`,
+      body: formData,
+      token: login_user.value.token,
+      locale: locale.value
+    })
 
     clearFlash()
     clearErrorMessages()

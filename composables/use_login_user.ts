@@ -1,4 +1,5 @@
 import { useGetApi } from './api/use_get_api'
+import { usePostApi } from './api/use_post_api'
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
@@ -128,20 +129,12 @@ export const useLoginUser = () => {
     formData.append('user[password]', signup_params.password)
     formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
-    let statusCode!: number
-
-    const { data, error, pending } = await useAsyncData('signup', () =>
-      $fetch(`${backendApiURL.value}/users/`, {
-        method: 'post',
-        body: formData,
-        headers: {
-          'Accept-Language': locale.value
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, pending, statusCode } = await usePostApi({
+      key: 'signup',
+      url: `${backendApiURL.value}/users/`,
+      body: formData,
+      locale: locale.value
+    })
 
     clearFlash()
     clearErrorMessages()
@@ -210,20 +203,12 @@ export const useLoginUser = () => {
       }
     }
 
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('login', () =>
-      $fetch(`${backendApiURL.value}/sessions/`, {
-        method: 'post',
-        body: postData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await usePostApi({
+      key: 'login',
+      url: `${backendApiURL.value}/sessions/`,
+      body: postData,
+      locale: locale.value
+    })
 
     clearFlash()
 
@@ -258,20 +243,11 @@ export const useLoginUser = () => {
       credential: response.credential
     }
 
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('login_with_google', () =>
-      $fetch(`${backendApiURL.value}/oauth/sessions/`, {
-        method: 'post',
-        body: postData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await usePostApi({
+      key: 'login_with_google',
+      url: `${backendApiURL.value}/oauth/sessions/`,
+      body: postData
+    })
 
     clearFlash()
 

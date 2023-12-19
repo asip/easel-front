@@ -1,6 +1,7 @@
 import { useLoginUser } from './use_login_user'
 import { useFlash } from './use_flash'
 import { useGetApi } from './api/use_get_api'
+import { usePostApi } from './api/use_post_api'
 import { useLocale } from '~/composables/use_locale'
 import { required } from '~/utils/i18n-validators'
 import type { Comment } from '~/interfaces/comment'
@@ -91,24 +92,13 @@ export function useComment () {
       }
     }
 
-    let statusCode!: number
-
-    const { data, error, pending } = await useAsyncData('post_comment', () =>
-      $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`,
-        {
-          method: 'post',
-          body: postData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language': locale.value,
-            Authorization: `Bearer ${login_user.value.token}`
-          },
-          async onResponse ({ response }) {
-            statusCode = response.status
-          }
-        }
-      )
-    )
+    const { data, error, pending, statusCode } = await usePostApi({
+      key: 'post_comment',
+      url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`,
+      body: postData,
+      token: login_user.value.token,
+      locale: locale.value
+    })
 
     clearFlash()
     clearErrorMessages()
