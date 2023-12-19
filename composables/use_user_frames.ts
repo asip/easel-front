@@ -1,3 +1,4 @@
+import { useGetApi } from './api/use_get_api'
 import type { Frame } from '~/interfaces/frame'
 
 interface UserFrameQuery {
@@ -22,22 +23,13 @@ export function useUserFrames () {
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (user_id: string | undefined) => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('get_frames_by_user_id', () =>
-      $fetch(`${backendApiURL.value}/users/${user_id}/frames`, {
-        method: 'get',
-        query: {
-          page: frame_query.value.page
-        },
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'get_frames_by_user_id',
+      url: `${backendApiURL.value}/users/${user_id}/frames`,
+      query: {
+        page: frame_query.value.page
+      }
+    })
 
     clearFlash()
 

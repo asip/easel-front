@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import { useLoginUser } from './use_login_user'
+import { useGetApi } from './api/use_get_api'
 
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
@@ -12,20 +13,11 @@ export function useFollow () {
   const { flash, clearFlash } = useFlash()
 
   const isFollowing = async (userId: string) => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('getFrame', () =>
-      $fetch(`${backendApiURL.value}/profile/following/${userId}`, {
-        method: 'get',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'is_following',
+      url: `${backendApiURL.value}/profile/following/${userId}`,
+      token: login_user.value.token
+    })
 
     // clearFlash()
 

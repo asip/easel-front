@@ -1,3 +1,4 @@
+import { useGetApi } from './api/use_get_api'
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
@@ -171,20 +172,11 @@ export const useLoginUser = () => {
     // console.log(login_user.value.token)
 
     if (login_user.value.token) {
-      let statusCode!: number
-
-      const { data, error } = await useAsyncData('authenticate', () =>
-        $fetch(`${backendApiURL.value}/profile`, {
-          method: 'get',
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            Authorization: `Bearer ${login_user.value.token}`
-          },
-          async onResponse ({ response }) {
-            statusCode = response.status
-          }
-        })
-      )
+      const { data, error, statusCode } = await useGetApi({
+        key: 'authenticate',
+        url: `${backendApiURL.value}/profile`,
+        token: login_user.value.token
+      })
 
       clearFlash()
 

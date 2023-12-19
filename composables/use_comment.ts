@@ -1,5 +1,6 @@
 import { useLoginUser } from './use_login_user'
 import { useFlash } from './use_flash'
+import { useGetApi } from './api/use_get_api'
 import { useLocale } from '~/composables/use_locale'
 import { required } from '~/utils/i18n-validators'
 import type { Comment } from '~/interfaces/comment'
@@ -42,20 +43,11 @@ export function useComment () {
   const { flash, clearFlash } = useFlash()
 
   const getComments = async () => {
-    let statusCode!: number
-
     // console.log(comment.frame_id);
-    const { data, error } = await useAsyncData('get_comments', () =>
-      $fetch(`${backendApiURL.value}/frames/${comment.frame_id}/comments`, {
-        method: 'get',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'get_comments',
+      url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`
+    })
 
     clearFlash()
 

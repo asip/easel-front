@@ -1,3 +1,4 @@
+import { useGetApi } from './api/use_get_api'
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { RefQuery } from '~/interfaces/ref_query'
@@ -63,19 +64,10 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('get_frame', () =>
-      $fetch(`${backendApiURL.value}/frames/${id}`, {
-        method: 'get',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'get_frame',
+      url: `${backendApiURL.value}/frames/${id}`
+    })
 
     clearFlash()
 

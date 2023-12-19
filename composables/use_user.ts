@@ -1,3 +1,4 @@
+import { useGetApi } from './api/use_get_api'
 import type { User } from '~/interfaces/user'
 import type { RefQuery } from '~/interfaces/ref_query'
 
@@ -31,16 +32,10 @@ export const useUser = () => {
   const { flash, clearFlash } = useFlash()
 
   const getUser = async (id: string) => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('get_user', () =>
-      $fetch(`${backendApiURL.value}/users/${id}`, {
-        method: 'get',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'get_user',
+      url: `${backendApiURL.value}/users/${id}`
+    })
 
     clearFlash()
 

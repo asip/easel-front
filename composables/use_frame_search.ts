@@ -1,4 +1,5 @@
 import { cdate } from 'cdate'
+import { useGetApi } from './api/use_get_api'
 import type { Frame } from '~/interfaces/frame'
 
 export const useFrameSearch = () => {
@@ -26,23 +27,14 @@ export const useFrameSearch = () => {
   const { flash, clearFlash } = useFlash()
 
   const searchFrame = async () => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('search_frame', () =>
-      $fetch(`${backendApiURL.value}/frames`, {
-        method: 'get',
-        query: {
-          q: frame_query.value.word,
-          page: frame_query.value.page
-        },
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useGetApi({
+      key: 'search_frame',
+      url: `${backendApiURL.value}/frames`,
+      query: {
+        q: frame_query.value.word,
+        page: frame_query.value.page
+      }
+    })
 
     clearFlash()
 
