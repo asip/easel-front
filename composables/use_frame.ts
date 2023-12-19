@@ -1,6 +1,7 @@
 import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
 import { usePutApi } from './api/use_put_api'
+import { useDeleteApi } from './api/use_delete_api'
 import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { RefQuery } from '~/interfaces/ref_query'
@@ -246,20 +247,11 @@ export const useFrame = () => {
     processing.value = true
     // console.log(frame.id)
 
-    let statusCode!: number
-
-    const { error, pending } = await useAsyncData('delete_frame', () =>
-      $fetch(`${backendApiURL.value}/frames/${frame.id}`, {
-        method: 'delete',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { error, pending, statusCode } = await useDeleteApi({
+      key: 'delete_frame',
+      url: `${backendApiURL.value}/frames/${frame.id}`,
+      token: login_user.value.token
+    })
 
     clearFlash()
 

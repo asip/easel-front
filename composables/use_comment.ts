@@ -2,6 +2,7 @@ import { useLoginUser } from './use_login_user'
 import { useFlash } from './use_flash'
 import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
+import { useDeleteApi } from './api/use_delete_api'
 import { useLocale } from '~/composables/use_locale'
 import { required } from '~/utils/i18n-validators'
 import type { Comment } from '~/interfaces/comment'
@@ -163,23 +164,12 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: Comment, idx: number) => {
-    let statusCode!: number
-
-    const { error } = await useAsyncData('delete_comment', () =>
-      $fetch(`${backendApiURL.value}/comments/${comment.id}`,
-        {
-          method: 'delete',
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept-Language': locale.value,
-            Authorization: `Bearer ${login_user.value.token}`
-          },
-          async onResponse ({ response }) {
-            statusCode = response.status
-          }
-        }
-      )
-    )
+    const { error, statusCode } = await useDeleteApi({
+      key: 'delete_comment',
+      url: `${backendApiURL.value}/comments/${comment.id}`,
+      token: login_user.value.token,
+      locale: locale.value
+    })
 
     clearFlash()
 

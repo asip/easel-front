@@ -1,6 +1,7 @@
 import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
 import { usePutApi } from './api/use_put_api'
+import { useDeleteApi } from './api/use_delete_api'
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
@@ -393,20 +394,11 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('logout', () =>
-      $fetch(`${backendApiURL.value}/sessions/logout`, {
-        method: 'delete',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useDeleteApi({
+      key: 'logout',
+      url: `${backendApiURL.value}/sessions/logout`,
+      token: login_user.value.token
+    })
 
     clearFlash()
 
@@ -428,20 +420,11 @@ export const useLoginUser = () => {
   }
 
   const deleteAccount = async () => {
-    let statusCode!: number
-
-    const { data, error } = await useAsyncData('delete_account', () =>
-      $fetch(`${backendApiURL.value}/profile`, {
-        method: 'delete',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, statusCode } = await useDeleteApi({
+      key: 'delete_account',
+      url: `${backendApiURL.value}/profile`,
+      token: login_user.value.token
+    })
 
     clearFlash()
 

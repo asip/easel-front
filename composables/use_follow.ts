@@ -2,6 +2,7 @@ import type { Ref } from 'vue'
 import { useLoginUser } from './use_login_user'
 import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
+import { useDeleteApi } from './api/use_delete_api'
 
 export function useFollow () {
   const following: Ref<Boolean> = ref<Boolean>(false)
@@ -64,20 +65,13 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null) => {
-    let statusCode!: number
+    // let statusCode!: number
 
-    const { error } = await useAsyncData('unfollow', () =>
-      $fetch(`${backendApiURL.value}/users/${userId}/follow_relationships`, {
-        method: 'delete',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          Authorization: `Bearer ${login_user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { error, statusCode } = await useDeleteApi({
+      key: 'unfollow',
+      url: `${backendApiURL.value}/users/${userId}/follow_relationships`,
+      token: login_user.value.token
+    })
 
     clearFlash()
 
