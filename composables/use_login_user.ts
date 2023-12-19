@@ -1,5 +1,6 @@
 import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
+import { usePutApi } from './api/use_put_api'
 import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
@@ -300,22 +301,13 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    let statusCode!: number
-
-    const { data, error, pending } = await useAsyncData('update_profile', () =>
-      $fetch(`${backendApiURL.value}/profile/`, {
-        method: 'put',
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Accept-Language': locale.value,
-          Authorization: `Bearer ${user.value.token}`
-        },
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
-      })
-    )
+    const { data, error, pending, statusCode } = await usePutApi({
+      key: 'update_profile',
+      url: `${backendApiURL.value}/profile/`,
+      body: formData,
+      token: user.value.token,
+      locale: locale.value
+    })
 
     // console.log(userJson)
     // console.log(errors)
