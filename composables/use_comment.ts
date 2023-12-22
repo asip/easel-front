@@ -68,19 +68,18 @@ export function useComment () {
       if (commentList) {
         // console.log(comment_list);
         comments.splice(0)
-        for (const comment of commentList) {
+        for (const commentAttrs of commentList as any[]) {
           // console.log(comment);
-          comments.push(createCommentFromJson(comment))
+          comments.push(createCommentFromJson(commentAttrs.attributes))
         }
         // console.log(comments);
       }
     }
   }
 
-  const createCommentFromJson = (row_data: any): Comment => {
+  const createCommentFromJson = (resource: any): Comment => {
     const comment: Partial<Comment> = {}
-    comment.id = row_data.id
-    Object.assign(comment, row_data.attributes)
+    Object.assign(comment, resource)
     return comment as Comment
   }
 
@@ -114,8 +113,8 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: commentJson, errors } = data.value as any
-      if (commentJson) {
+      const { data: commentAttrs, errors } = data.value as any
+      if (commentAttrs) {
         comment.body = ''
       } else if (errors) {
         setErrorMessages(errors)

@@ -89,18 +89,17 @@ export const useFrame = () => {
         message: flash.value.alert
       })
     } else if (data.value) {
-      const { data: frameJson } = data.value as any
-      // console.log(frameJson)
+      const { data: frameAttrs } = data.value as any
+      // console.log(frameAttrs)
 
-      if (frameJson) {
-        setJson2Frame(frameJson)
+      if (frameAttrs) {
+        setJson2Frame(frameAttrs.attributes)
       }
     }
   }
 
-  const setJson2Frame = (frameJson: any) => {
-    frame.id = frameJson.id
-    Object.assign(frame, frameJson.attributes)
+  const setJson2Frame = (resource: any) => {
+    Object.assign(frame, resource)
   }
 
   const createFrame = async () => {
@@ -147,9 +146,9 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: frameJson, errors } = data.value as any
-      if (frameJson) {
-        frame.id = frameJson.id
+      const { data: frameAttrs, errors } = data.value as any
+      if (frameAttrs) {
+        frame.id = frameAttrs.attributes.id
       } else if (errors) {
         setErrorMessages(errors)
       }
@@ -234,8 +233,8 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: frameJson, errors } = data.value as any
-      if (!frameJson && errors) {
+      const { data: frameAttrs, errors } = data.value as any
+      if (!frameAttrs && errors) {
         setErrorMessages(errors)
       }
     }
@@ -266,7 +265,7 @@ export const useFrame = () => {
       }
     }
 
-    // const { data: frameJson } = data.value
+    // const { data: frameAttrs } = data.value
 
     processing.value = pending.value
   }

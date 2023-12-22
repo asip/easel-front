@@ -48,19 +48,18 @@ export const useUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson } = data.value as any
-      // console.log(userJson)
+      const { data: userAttrs } = data.value as any
+      // console.log(userAttrs)
 
-      if (userJson) {
+      if (userAttrs) {
       // console.log('test3')
-        setJson2User(userJson)
+        setJson2User(userAttrs.attributes)
       }
     }
   }
 
-  const setJson2User = (userJson: any) => {
-    user.id = userJson.id
-    Object.assign(user, userJson.attributes)
+  const setJson2User = (resource: any) => {
+    Object.assign(user, resource)
   }
 
   return { user, refQuery, getUser }

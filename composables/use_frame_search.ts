@@ -52,11 +52,10 @@ export const useFrameSearch = () => {
 
       if (frameList) {
         frames.value.splice(0)
-        for (const frame of frameList as []) {
-        // console.log(comment);
-          frames.value.push(createFrameFromJson(frame))
+        for (const frameAttrs of frameList as any[]) {
+          frames.value.push(createFrameFromJson(frameAttrs.attributes))
         }
-      // console.log(frames)
+        // console.log(frames)
       }
       if (meta) {
         frame_query.value.pages = meta.pagination.pages
@@ -64,10 +63,9 @@ export const useFrameSearch = () => {
     }
   }
 
-  const createFrameFromJson = (row_data: any) : Frame => {
+  const createFrameFromJson = (resource: any) : Frame => {
     const frame: Partial<Frame> = {}
-    frame.id = row_data.id
-    Object.assign(frame, row_data.attributes)
+    Object.assign(frame, resource)
     frame.file = null
     frame.preview_url = null
     return frame as Frame

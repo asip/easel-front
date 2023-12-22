@@ -150,11 +150,11 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson, errors } = data.value as any
+      const { data: userAttrs, errors } = data.value as any
 
-      // console.log(userJson)
+      // console.log(userAttrs)
 
-      if (!userJson) {
+      if (!userAttrs) {
         setErrorMessages(errors)
       }
     }
@@ -185,12 +185,12 @@ export const useLoginUser = () => {
             flash.value.alert = error.value.message
         }
       } else if (data.value) {
-        const { data: userJson } = data.value as any
-        // console.log(userJson)
+        const { data: userAttrs } = data.value as any
+        // console.log(userAttrs)
 
-        if (userJson) {
+        if (userAttrs) {
           // console.log('test3')
-          setJson2LoginUser(userJson)
+          setJson2LoginUser(userAttrs.attributes)
           logged_in.value = true
         }
       }
@@ -223,10 +223,10 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson, messages } = data.value as any
+      const { data: userAttrs, messages } = data.value as any
 
-      if (userJson) {
-        setJson2LoginUser(userJson)
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs.attributes)
         logged_in.value = true
         // console.log(login_user.value)
 
@@ -262,8 +262,8 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson } = data.value as any
-      setJson2LoginUser(userJson)
+      const { data: userAttrs } = data.value as any
+      setJson2LoginUser(userAttrs.attributes)
       logged_in.value = true
       // console.log(login_user.value)
 
@@ -273,9 +273,8 @@ export const useLoginUser = () => {
     login_messages.value = []
   }
 
-  const setJson2LoginUser = (userJson: any) => {
-    login_user.value.id = userJson.id
-    Object.assign(login_user.value, userJson.attributes)
+  const setJson2LoginUser = (resource: any) => {
+    Object.assign(login_user.value, resource)
   }
 
   const setUser = (login_user: Ref<User>) => {
@@ -310,7 +309,7 @@ export const useLoginUser = () => {
       locale: locale.value
     })
 
-    // console.log(userJson)
+    // console.log(data)
     // console.log(errors)
 
     clearFlash()
@@ -326,9 +325,9 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson, errors } = data.value as any
-      if (userJson) {
-        setJson2LoginUser(userJson)
+      const { data: userAttrs, errors } = data.value as any
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs.attributes)
         setToken2Cookie()
       } else if (errors) {
         setErrorMessages(errors)
@@ -412,8 +411,8 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson } = data.value as any
-      if (userJson) {
+      const { data: userAttrs } = data.value as any
+      if (userAttrs) {
         clearLoginUser()
       }
     }
@@ -441,8 +440,8 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userJson } = data.value as any
-      if (userJson) {
+      const { data: userAttrs } = data.value as any
+      if (userAttrs) {
         clearLoginUser()
       }
     }
