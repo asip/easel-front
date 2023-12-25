@@ -81,6 +81,7 @@
   </div>
   <div class="d-flex justify-content-sm-center">
     <div class="form-group col-sm-6">
+      &nbsp;
       <button type="button" class="btn btn-primary" :disabled="processing" @click="onSignupClick">
         {{ $t('action.model.create') }}
       </button>&nbsp;

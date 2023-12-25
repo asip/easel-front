@@ -5,10 +5,10 @@
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
-              <td style="width: 20%;">
+              <td style="width: 25%;">
                 <label for="name" class="col-form-label">{{ $t('model.frame.name') }}：</label>
               </td>
-              <td style="width: 80%;">
+              <td style="width: 75%;">
                 <input v-model="frame.name" type="text" :placeholder="$t('model.frame.name')" class="form-control">
                 <div v-for="error of v$.name.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
