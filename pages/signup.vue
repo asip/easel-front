@@ -10,11 +10,9 @@
           {{ $t('action.user.new') }}
         </div>
       </div>
-      <div class="card-block">
-        <br>
-        <UsersNewInput />
-        <br>
-      </div>
+      <br>
+      <UsersNewInput />
+      <br>
     </div>
   </form>
 </template>

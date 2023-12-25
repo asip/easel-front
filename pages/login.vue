@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="col-sm-12 mx-auto">
     <br>
-    <UsersLoginGoogle />
-    <br>
-    <NuxtLink :to="`/signup`" class="btn btn-light btn-outline-secondary">
-      {{ $t('action.user.new') }}
-    </NuxtLink><br>
+    <div class="col-sm-8 mx-auto">
+      <NuxtLink :to="`/signup`" class="btn btn-light btn-outline-secondary">
+        {{ $t('action.user.new') }}
+      </NuxtLink><br>
+    </div>
     <br>
     <form>
-      <div class="card">
+      <div class="card col-sm-8 mx-auto">
         <div class="card-header">
           <div class="float-start">
             <NuxtLink :to="`/`">
@@ -18,16 +18,18 @@
           </div>
         </div>
         <div class="card-block">
-          <br>
           <div class="row d-flex justify-content-sm-center border border-white">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
+              <br>
+              <UsersLoginGoogle />
+              <br>
               <table class="table table-bordered table_rounded">
                 <tbody>
                   <tr>
-                    <td style="width: 30%;">
+                    <td style="width: 5em:">
                       <label for="email" class="col-form-label-sm">{{ $t('model.user.email') }}</label>
                     </td>
-                    <td style="width: 70%;">
+                    <td>
                       <input v-model="login_params.email" type="text" :placeholder="$t('model.user.email')" class="form-control">
                     </td>
                   </tr>
@@ -44,7 +46,7 @@
             </div>
           </div>
           <div class="row d-flex justify-content-sm-center">
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-8">
             &nbsp;
               <button type="button" class="btn btn-primary" @click="onLoginClick">
                 {{ $t('action.user.login') }}
