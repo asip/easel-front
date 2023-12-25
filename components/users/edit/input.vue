@@ -2,15 +2,15 @@
   <div class="card-block">
     <br>
     <div class="row d-flex justify-content-sm-center">
-      <div class="col-sm-6">
+      <div class="col-sm-10">
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
-              <td class="width: 40%;">
+              <td style="width: 10em;">
                 <label for="image" class="col-form-label">{{ $t('model.user.image') }}：</label>
               </td>
-              <td style="width: 60%;">
-                <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" class="form-control-file" @change="onSelectFile">
+              <td>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" multiple="false" class="form-control" @change="onSelectFile">
                 <div v-for="(message, idx) in error_messages.image" :key="idx">
                   <div>{{ message }}</div>
                 </div>
@@ -73,7 +73,7 @@
               <td>
                 <label for="password" class="col-form-label">{{ $t('model.user.password') }}：</label>
               </td>
-              <td class="form-group col-sm-4">
+              <td class="form-group">
                 <input v-model="user.password" type="password" :placeholder="$t('model.user.password')" class="form-control">
                 <div v-for="error of v$.password.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
@@ -102,7 +102,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-sm-center">
-      <div class="form-group col-sm-6">
+      <div class="form-group">
         &nbsp;
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onUpdateClick">
           {{ $t('action.model.create') }}
