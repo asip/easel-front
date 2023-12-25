@@ -39,10 +39,10 @@
             <table class="table table-bordered table_rounded">
               <tbody>
                 <tr>
-                  <td style="width:20%;">
+                  <td style="width:25%;">
                     {{ $t('model.frame.name') }}：
                   </td>
-                  <td style="width:80%;">
+                  <td style="width:75%;">
                     {{ frame.name }}
                   </td>
                 </tr>
