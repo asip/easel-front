@@ -13,7 +13,7 @@
       <br>
       <form>
         <div class="d-flex justify-content-center">
-          <div class="form-group col-10">
+          <div class="form-group">
             <textarea v-model="comment.body" class="form-control col-12" />
           </div>
         </div>
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <div class="form-group col-10">
+          <div class="form-group">
             <button type="button" class="btn btn-light col-12 form-control" :disabled="processing" @click="onCommentClick">
               {{ $t('action.comment.post') }}
             </button>
