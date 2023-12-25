@@ -3,7 +3,7 @@
     <br>
     <div>
       <form>
-        <div class="card">
+        <div class="card col-sm-8 mx-auto">
           <div class="card-header">
             <div class="float-start">
               <NuxtLink to="/">
@@ -14,9 +14,9 @@
           </div>
           <!-- unless @frame.confirming == 'true' -->
           <FramesNewInput />
-        <!-- else -->
-        <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
-        <!-- end -->
+          <!-- else -->
+          <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
+          <!-- end -->
         </div>
       </form>
     </div>

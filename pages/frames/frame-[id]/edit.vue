@@ -2,10 +2,10 @@
   <div>
     <br>
     <form>
-      <div class="card">
+      <div class="card col-sm-8 mx-auto">
         <div class="card-block">
           <div class="row d-flex">
-            <div class="col-12 clearfix">
+            <div class="clearfix">
               <div class="float-start">
                 &nbsp;<NuxtLink :to="`/frames/${frame.id}`">
                   <i class="bi bi-arrow-left-circle" />
@@ -13,17 +13,14 @@
               </div>
             </div>
           </div>
-          <br>
-          <div class="card-block">
-          <!-- render(partial: 'layouts/error_messages', locals: {model: @frame}) -->
-          </div>
-          <FramesPreviewImage :original="true" :photoswipe="false" />
-          <!-- unless @frame.confirming == 'true' -->
-          <FramesEditInput />
+        </div>
+        <br>
+        <FramesPreviewImage :original="true" :photoswipe="false" />
+        <!-- unless @frame.confirming == 'true' -->
+        <FramesEditInput />
         <!-- else -->
         <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
         <!-- end -->
-        </div>
       </div>
       <br>
     </form>

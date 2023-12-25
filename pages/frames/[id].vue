@@ -1,10 +1,10 @@
 <template>
   <div>
     <br>
-    <div class="card">
+    <div class="card col-sm-8 mx-auto">
       <div class="card-block">
         <div class="row d-flex">
-          <div class="col-12 clearfix">
+          <div class="clearfix">
             <div class="float-start">
             &nbsp;
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>&nbsp;
@@ -35,14 +35,14 @@
       </div>
       <div class="card-body">
         <div class="row d-flex justify-content-sm-center">
-          <div class="col-sm-7">
+          <div class="col-sm-10">
             <table class="table table-bordered table_rounded">
               <tbody>
                 <tr>
-                  <td style="width:25%;">
+                  <td style="width: 7em;">
                     {{ $t('model.frame.name') }}：
                   </td>
-                  <td style="width:75%;">
+                  <td>
                     {{ frame.name }}
                   </td>
                 </tr>
