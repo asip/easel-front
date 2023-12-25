@@ -1,29 +1,27 @@
 <template>
-  <div>
-    <br>
-    <form>
-      <div class="card" data-controller="preview">
-        <div class="card-block">
-          <div class="row">
-            <div class="col-sm-12 clearfix">
-              <div class="float-start">
+  <br>
+  <form>
+    <div class="card col-sm-12 mx-auto">
+      <div class="card-block">
+        <div class="row">
+          <div class="clearfix">
+            <div class="float-start">
                 &nbsp;
-                <NuxtLink to="/account/profile">
-                  <i class="bi bi-arrow-left-circle" />
-                </NuxtLink>
-              </div>
+              <NuxtLink to="/account/profile">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
             </div>
           </div>
-          <div class="text-center">
-            {{ $t('action.user.edit') }}
-          </div>
-          <br>
-          <UsersEditInput />
-          <br>
+        </div>
+        <div class="text-center">
+          {{ $t('action.user.edit') }}
         </div>
       </div>
-    </form>
-  </div>
+      <br>
+      <UsersEditInput />
+      <br>
+    </div>
+  </form>
 </template>
 
 <script setup lang="ts">
