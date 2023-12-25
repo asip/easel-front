@@ -1,6 +1,6 @@
 <template>
   <div v-for="(comment, idx) in comments as Comment[]" :key="comment.id">
-    <div class="card">
+    <div class="card col-sm-8 mx-auto">
       <div class="card-block">
         <div class="row d-flex">
           <div class="col-12" style="line-height: 35px;">

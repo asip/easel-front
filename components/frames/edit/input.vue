@@ -1,14 +1,14 @@
 <template>
   <div class="card-body">
     <div class="row d-flex justify-content-sm-center">
-      <div class="col-sm-7">
+      <div class="col-sm-10">
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
-              <td style="width: 25%;">
+              <td style="width: 7em;">
                 <label for="name" class="col-form-label">{{ $t('model.frame.name') }}：</label>
               </td>
-              <td style="width: 75%;">
+              <td>
                 <input v-model="frame.name" type="text" :placeholder="$t('model.frame.name')" class="form-control">
                 <div v-for="error of v$.name.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
@@ -50,7 +50,7 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
-      <div class="col-sm-7">
+      <div class="col-sm-10">
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onEditClick">
           {{ $t('action.model.update') }}
         </button>&nbsp;

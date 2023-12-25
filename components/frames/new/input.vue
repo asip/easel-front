@@ -1,15 +1,15 @@
 <template>
   <div class="card-body">
     <div class="row d-flex justify-content-sm-center">
-      <div class="col-sm-7">
+      <div class="col-sm-10">
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
-              <td style="width: 25%;">
+              <td style="width: 7em;">
                 <label for="file" class="col-form-label">{{ $t('model.frame.file') }}：</label>
               </td>
-              <td style="width: 75%;">
-                <input type="file" accept="image/jpg,image/jpeg,image/png" class="form-control-file" @change="onSelectFile">
+              <td>
+                <input type="file" accept="image/jpg,image/jpeg,image/png" class="form-control" @change="onSelectFile">
                 <div v-for="(message, idx) in error_messages.file" :key="idx">
                   <div>{{ message }}</div>
                 </div>
@@ -66,7 +66,7 @@
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-sm-center">
-      <div class="col-sm-7">
+      <div class="col-sm-10">
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onCreateClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
