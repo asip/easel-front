@@ -5,13 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@intlify/shared': ^9.8.0
   '@typescript-eslint/typescript-estree': 6.15.0
 
 dependencies:
   '@nuxtjs/i18n':
-    specifier: 8.0.0-rc.11
-    version: 8.0.0-rc.11(rollup@3.29.4)(vue@3.3.8)
+    specifier: 8.0.0
+    version: 8.0.0(rollup@3.29.4)(vue@3.3.8)
   '@popperjs/core':
     specifier: ^2.11.8
     version: 2.11.8
@@ -1177,8 +1176,8 @@ packages:
     engines: {node: '>= 16'}
     dev: false
 
-  /@intlify/unplugin-vue-i18n@1.5.0(rollup@3.29.4)(vue-i18n@9.8.0):
-    resolution: {integrity: sha512-jW0MCCdwxybxcwjEfCunAcKjVoxyO3i+cnLL6v+MNGRLUHqrpELF6zQAJUhgAK2afhY7mCliy8RxTFWKdXm26w==}
+  /@intlify/unplugin-vue-i18n@2.0.0(rollup@3.29.4)(vue-i18n@9.8.0):
+    resolution: {integrity: sha512-1oKvm92L9l2od2H9wKx2ZvR4tzn7gUtd7bPLI7AWUmm7U9H1iEypndt5d985ypxGsEs0gToDaKTrytbBIJwwSg==}
     engines: {node: '>= 14.16'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -1194,7 +1193,7 @@ packages:
     dependencies:
       '@intlify/bundle-utils': 7.4.0(vue-i18n@9.8.0)
       '@intlify/shared': 9.8.0
-      '@rollup/pluginutils': 5.0.5(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       '@vue/compiler-sfc': 3.3.8
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -1557,7 +1556,7 @@ packages:
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0 || ^3.0.0
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       json5: 2.2.3
       rollup: 3.29.4
     dev: false
@@ -1964,13 +1963,13 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.11(rollup@3.29.4)(vue@3.3.8):
-    resolution: {integrity: sha512-+jR96NgUXwZi/5WKxomnjTyoWGlrbTgYWHO3/w5byH2fIZo2txFoZDaxcht0UpvcbWApgd777uTxEK3OL242ng==}
+  /@nuxtjs/i18n@8.0.0(rollup@3.29.4)(vue@3.3.8):
+    resolution: {integrity: sha512-h436bYKJ9a8NpLoY5kc5QyM6WTsuFU2IGtSErm+iRgWBinguLg/gp0cvgji35WgVlRUAhocYkxOqTSpZiUZyYA==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/h3': 0.5.0
       '@intlify/shared': 9.8.0
-      '@intlify/unplugin-vue-i18n': 1.5.0(rollup@3.29.4)(vue-i18n@9.8.0)
+      '@intlify/unplugin-vue-i18n': 2.0.0(rollup@3.29.4)(vue-i18n@9.8.0)
       '@intlify/utils': 0.12.0
       '@miyaneee/rollup-plugin-json5': 1.1.2(rollup@3.29.4)
       '@nuxt/kit': 3.8.2(rollup@3.29.4)
@@ -2419,7 +2418,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@3.29.4)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.4)
       js-yaml: 4.1.0
       rollup: 3.29.4
       tosource: 2.0.0-alpha.3
@@ -2490,7 +2489,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.29.4
-    dev: true
 
   /@rollup/pluginutils@5.1.0(rollup@4.9.1):
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
