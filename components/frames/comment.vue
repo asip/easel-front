@@ -13,12 +13,12 @@
       <br>
       <form>
         <div class="d-flex justify-content-center">
-          <div class="form-group">
+          <div class="form-group col-sm-10">
             <textarea v-model="comment.body" class="form-control col-12" />
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <div class="col-10">
+          <div class="col-sm-10">
             <div v-for="error of v$.body.$errors" :key="error.$uid">
               <div class="text-danger">
                 {{ error.$message }}
@@ -32,8 +32,8 @@
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <div class="form-group">
-            <button type="button" class="btn btn-light col-12 form-control" :disabled="processing" @click="onCommentClick">
+          <div class="form-group col-sm-10">
+            <button type="button" class="btn btn-light form-control" :disabled="processing" @click="onCommentClick">
               {{ $t('action.comment.post') }}
             </button>
           </div>
