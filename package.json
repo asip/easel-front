@@ -23,7 +23,7 @@
     "@types/yaireo__tagify": "^4.17.5",
     "eslint": "^8.56.0",
     "markuplint": "^3.15.0",
-    "nuxt": "^3.8.2"
+    "nuxt": "^3.9.0"
   },
   "dependencies": {
     "@nuxtjs/i18n": "8.0.0",
