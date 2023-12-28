@@ -19,14 +19,14 @@
         </div>
         <div class="card-block">
           <div class="row d-flex justify-content-sm-center border border-white">
-            <div class="col-sm-8">
+            <div class="col-sm-10">
               <br>
               <UsersLoginGoogle />
               <br>
               <table class="table table-bordered table_rounded">
                 <tbody>
                   <tr>
-                    <td style="width: 5em:">
+                    <td style="width: 6em:">
                       <label for="email" class="col-form-label-sm">{{ $t('model.user.email') }}</label>
                     </td>
                     <td>
