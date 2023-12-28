@@ -255,9 +255,9 @@ export const useLoginUser = () => {
 
     if (error.value) {
       switch (statusCode) {
-        case 409:
-          flash.value.alert = $i18n.t('action.error.email.duplicated')
-          break
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
         default:
           flash.value.alert = error.value.message
       }
