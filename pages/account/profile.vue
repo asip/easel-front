@@ -1,67 +1,69 @@
 <template>
-  <br>
-  <div class="card">
-    <div class="card-block">
-      <div class="row">
-        <div class="col-sm-12 clearfix">
-          <div class="float-start">
+  <div>
+    <br>
+    <div class="card">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-sm-12 clearfix">
+            <div class="float-start">
               &nbsp;
-            <NuxtLink to="/">
-              <i class="bi bi-arrow-left-circle" />
-            </NuxtLink>&nbsp;
-            <NuxtLink to="/account/edit">
-              <i class="bi bi-pencil-square" />
-            </NuxtLink>&nbsp;
-            <a
-              href="#"
-              data-bs-toggle="modal"
-              data-bs-config="{backdrop:true}"
-              data-bs-target="#delete_modal"
-            >
-              <i class="bi bi-x-circle" />
-            </a>
+              <NuxtLink to="/">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>&nbsp;
+              <NuxtLink to="/account/edit">
+                <i class="bi bi-pencil-square" />
+              </NuxtLink>&nbsp;
+              <a
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-config="{backdrop:true}"
+                data-bs-target="#delete_modal"
+              >
+                <i class="bi bi-x-circle" />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="text-center">
-        {{ $t('model.user.model_name') }}
-      </div>
-      <br>
-      <UsersPreviewImage :original="false" />
-      <div class="row d-flex justify-content-sm-center">
-        <div class="col-sm-8">
-          <table class="table table-bordered table_rounded">
-            <tbody>
-              <tr>
-                <td style="width: 8em;">
-                  <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
-                </td>
-                <td>
-                  <div class="form-control-plaintext">
-                    {{ login_user.name }}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
-                </td>
-                <td>
-                  <div class="form-control-plaintext">
-                    {{ login_user.email }}
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="text-center">
+          {{ $t('model.user.model_name') }}
         </div>
+        <br>
+        <UsersPreviewImage :original="false" />
+        <div class="row d-flex justify-content-sm-center">
+          <div class="col-sm-8">
+            <table class="table table-bordered table_rounded">
+              <tbody>
+                <tr>
+                  <td style="width: 8em;">
+                    <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
+                  </td>
+                  <td>
+                    <div class="form-control-plaintext">
+                      {{ login_user.name }}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
+                  </td>
+                  <td>
+                    <div class="form-control-plaintext">
+                      {{ login_user.email }}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
       </div>
-      <br>
     </div>
+    <br>
+    <AccountDeleteModal />
+    <UsersFrameList :user-id="userId" page="profile" />
   </div>
-  <br>
-  <AccountDeleteModal />
-  <UsersFrameList :user-id="userId" page="profile" />
 </template>
 
 <script setup lang="ts">
