@@ -67,9 +67,9 @@
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setMessages } = useToast()
-const { login_params, login, login_user, login_messages } = useLoginUser()
+const { login_params, login, logged_in, login_messages } = useLoginUser()
 
-if (login_user.value.id) {
+if (logged_in.value) {
   navigateTo('/')
 }
 
