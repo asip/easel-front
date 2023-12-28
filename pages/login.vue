@@ -67,7 +67,11 @@
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setMessages } = useToast()
-const { login_params, login, login_messages } = useLoginUser()
+const { login_params, login, login_user, login_messages } = useLoginUser()
+
+if (login_user.value.id) {
+  navigateTo('/')
+}
 
 const onLoginClick = async () => {
   await login()
