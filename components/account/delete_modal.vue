@@ -11,7 +11,7 @@
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
-const { login_user, deleteAccount, flash } = useLoginUser()
+const { logged_in, deleteAccount, flash } = useLoginUser()
 
 const removeBackdrop = () => {
   const backdrop = document.querySelector('.modal-backdrop')
@@ -22,8 +22,8 @@ const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
   removeBackdrop()
-  if (!login_user.value.id) {
-    navigateTo('/')
+  if (!logged_in.value) {
+    navigateTo('/login')
   }
 }
 </script>

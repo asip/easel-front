@@ -120,7 +120,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
-const { login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { logged_in, login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 
 const v$ = useVuelidate(usr_rules, user)
 
@@ -163,8 +163,8 @@ const onUpdateClick = async () => {
     setFlash(flash.value)
     if (isSuccess()) {
       navigateTo('/account/profile')
-    } else if (!login_user.value.id) {
-      navigateTo('/')
+    } else if (!logged_in.value) {
+      navigateTo('/login')
     }
   }
 }
