@@ -117,6 +117,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { useImagePreview } from '~/composables/ui/use_image_preview'
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
@@ -128,29 +129,7 @@ setUser(login_user)
 
 const onSelectFile = (event: Event) => {
   const target = event.target as HTMLInputElement
-  user.value.image = target.files![0]
-
-  const file: { name?: string, ext?: string, data?: Blob | null } = {}
-  file.name = target.value
-  file.ext = file?.name?.replace(/^.*\./, '').toLowerCase()
-  // console.log(file.name)
-  if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
-    // .file_filedからデータを取得して変数file.dataに代入します
-    file.data = user.value.image
-    // console.log(file.data)
-    // FileReaderオブジェクトを作成します
-    const reader = new FileReader()
-    // 読み込みが完了したら処理が実行されます
-    reader.onload = function () {
-      // 読み込んだファイルの内容を取得して変数imageに代入します
-      const image: string | ArrayBuffer | null = reader.result
-      user.value.preview_url = image as string
-    }
-    // DataURIScheme文字列を取得します
-    reader.readAsDataURL(file?.data)
-    // preview.src = URL.createObjectURL(file.data)
-    // プレビュー画像がなければ表示します
-  }
+  useImagePreview(target, user.value)
 }
 
 const onUpdateClick = async () => {
