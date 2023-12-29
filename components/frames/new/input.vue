@@ -80,8 +80,8 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import Tagify from '@yaireo/tagify'
 import { useToast } from '~/composables/ui/use_toast'
+import { useFrameTagEditor } from '~/composables/ui/use_frame_tag_editor'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
@@ -147,35 +147,6 @@ const onCreateClick = async () => {
 
 onMounted(() => {
   // console.log(frame)
-
-  const elmTe: HTMLInputElement | null = tagEditorRef.value
-
-  if (elmTe) {
-    const tag_editor = new Tagify(elmTe, {
-      maxTags: 5,
-      dropdown: {
-        classname: 'color-blue',
-        enabled: 0,
-        maxItems: 30,
-        closeOnSelect: false,
-        highlightFirst: true
-      }
-    })
-
-    tag_editor.removeAllTags()
-    if (frame?.tags) {
-      tag_editor.addTags(frame?.tags)
-    }
-
-    const saveTagList = () => {
-      if (frame) {
-        frame.tags = tag_editor.value.map(v => v.value)
-        frame.tag_list = frame.tags?.join(',')
-      }
-    }
-
-    tag_editor.on('add', () => saveTagList())
-    tag_editor.on('remove', () => saveTagList())
-  }
+  useFrameTagEditor(tagEditorRef, frame)
 })
 </script>
