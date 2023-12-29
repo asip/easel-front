@@ -13,12 +13,12 @@ export function useImageGallery(){
     gallery = new LuminousGallery(elms, { showCloseButton: true })
   }
 
-  const destroyGallery = () => {
+  const closeGallery = () => {
     if (gallery) {
       gallery.destroy()
       gallery = null
     }
   }
 
-  return { initGallery, destroyGallery }
+  return { initGallery, closeGallery }
 }

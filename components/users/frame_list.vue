@@ -51,7 +51,7 @@ const props = defineProps<{
   page?: string
 }>()
 
-const { initGallery, destroyGallery } = useImageGallery()
+const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, getFrames, frames } = useUserFrames()
 
 if (props.userId) {
@@ -79,6 +79,6 @@ onUpdated(() => {
 })
 
 onUnmounted(() => {
-  destroyGallery()
+  closeGallery()
 })
 </script>

@@ -43,7 +43,7 @@ import { useImageGallery } from '~/composables/ui/use_image_gallery';
 const route = useRoute()
 const q = route.query.q
 
-const { initGallery, destroyGallery } = useImageGallery()
+const { initGallery, closeGallery } = useImageGallery()
 
 const { frame_query, searchFrame, frames } = useFrameSearch()
 
@@ -68,6 +68,6 @@ onUpdated(() => {
 })
 
 onUnmounted(() => {
-  destroyGallery()
+  closeGallery()
 })
 </script>
