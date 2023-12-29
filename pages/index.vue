@@ -38,15 +38,14 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
-import { LuminousGallery } from 'luminous-lightbox'
+import { useImageGallery } from '~/composables/ui/use_image_gallery';
 
 const route = useRoute()
 const q = route.query.q
 
-const { frame_query, searchFrame, frames } = useFrameSearch()
+const { initGallery, destroyGallery } = useImageGallery()
 
-let gallery: LuminousGallery = null
+const { frame_query, searchFrame, frames } = useFrameSearch()
 
 if (q) {
   frame_query.value.word = q as string
@@ -60,15 +59,6 @@ const clickCallback = async (pageNum: number) => {
   await searchFrame()
 }
 
-const initGallery = () => {
-  if (gallery) { gallery.destroy() }
-  const elements: NodeListOf<Element> = document.querySelectorAll('.lum-lightbox')
-  Array.from(elements).forEach(e => e.remove())
-
-  const elms = document.querySelectorAll('[name="lm"]')
-  gallery = new LuminousGallery(elms, { showCloseButton: true })
-}
-
 onMounted(() => {
   initGallery()
 })
@@ -78,9 +68,6 @@ onUpdated(() => {
 })
 
 onUnmounted(() => {
-  if (gallery) {
-    gallery.destroy()
-    gallery = null
-  }
+  destroyGallery()
 })
 </script>

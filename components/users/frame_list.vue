@@ -43,8 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-// @ts-ignore
-import { LuminousGallery } from 'luminous-lightbox'
+import { useImageGallery } from '~/composables/ui/use_image_gallery';
 import { useUserFrames } from '~/composables/use_user_frames'
 
 const props = defineProps<{
@@ -52,9 +51,8 @@ const props = defineProps<{
   page?: string
 }>()
 
+const { initGallery, destroyGallery } = useImageGallery()
 const { frame_query, getFrames, frames } = useUserFrames()
-
-let gallery: LuminousGallery = null
 
 if (props.userId) {
   if (frame_query.value.user_id !== props.userId) {
@@ -72,15 +70,6 @@ const clickCallback = async (pageNum: number) => {
   await getFrames(props.userId)
 }
 
-const initGallery = () => {
-  if (gallery) { gallery.destroy() }
-  const elements: NodeListOf<Element> = document.querySelectorAll('.lum-lightbox')
-  Array.from(elements).forEach(e => e.remove())
-
-  const elms = document.querySelectorAll('[name="lm"]')
-  gallery = new LuminousGallery(elms, { showCloseButton: true })
-}
-
 onMounted(() => {
   initGallery()
 })
@@ -90,9 +79,6 @@ onUpdated(() => {
 })
 
 onUnmounted(() => {
-  if (gallery) {
-    gallery.destroy()
-    gallery = null
-  }
+  destroyGallery()
 })
 </script>
