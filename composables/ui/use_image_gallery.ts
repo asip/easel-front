@@ -1,7 +1,7 @@
 // @ts-ignore
 import { LuminousGallery } from 'luminous-lightbox'
 
-export function useImageGallery(){
+export function useImageGallery () {
   let gallery: LuminousGallery = null
 
   const initGallery = () => {

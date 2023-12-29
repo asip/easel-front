@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useImageGallery } from '~/composables/ui/use_image_gallery';
+import { useImageGallery } from '~/composables/ui/use_image_gallery'
 import { useUserFrames } from '~/composables/use_user_frames'
 
 const props = defineProps<{

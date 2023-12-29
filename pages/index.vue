@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { useImageGallery } from '~/composables/ui/use_image_gallery';
+import { useImageGallery } from '~/composables/ui/use_image_gallery'
 
 const route = useRoute()
 const q = route.query.q
