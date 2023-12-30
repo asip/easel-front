@@ -84,13 +84,12 @@ import { useToast } from '~/composables/ui/use_toast'
 import { useFrameTagEditor } from '~/composables/ui/use_frame_tag_editor'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 
+const { tagEditorRef, initTagEditor } = useFrameTagEditor()
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frm_rules, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as any
 
 const v$ = useVuelidate(frm_rules, frame)
-
-const tagEditorRef = ref(null)
 
 // console.log(frame)
 // console.log(frame.tags)
@@ -122,6 +121,6 @@ const onCreateClick = async () => {
 
 onMounted(() => {
   // console.log(frame)
-  useFrameTagEditor(tagEditorRef, frame)
+  initTagEditor(frame)
 })
 </script>
