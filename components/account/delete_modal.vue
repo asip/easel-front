@@ -8,15 +8,12 @@
 </template>
 
 <script setup lang="ts">
+import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
 
+const { removeBackdrop } = useModal()
 const { setFlash } = useToast()
 const { logged_in, deleteAccount, flash } = useLoginUser()
-
-const removeBackdrop = () => {
-  const backdrop = document.querySelector('.modal-backdrop')
-  backdrop?.remove()
-}
 
 const onDeleteClick = async () => {
   await deleteAccount()

@@ -9,16 +9,13 @@
 </template>
 
 <script setup lang="ts">
+import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
 
+const { removeBackdrop } = useModal()
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 const { frame, deleteFrame, isSuccess, flash } = inject('framer') as any
-
-const removeBackdrop = () => {
-  const backdrop = document.querySelector('.modal-backdrop')
-  backdrop?.remove()
-}
 
 const onDeleteClick = async () => {
   await deleteFrame()
