@@ -1,9 +1,9 @@
 <template>
-  <div v-if="props.original" id="image" ref="imageRef" class="d-flex justify-content-sm-center">
+  <div v-if="props.original" id="gallery" ref="galleryRef" class="d-flex justify-content-sm-center">
     <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else ref="luminousRef" class="mx-auto" :to="`${frame?.file_url}`">
+    <NuxtLink v-else ref="lightboxRef" class="mx-auto" :to="`${frame?.file_url}`">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
@@ -14,65 +14,26 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
-import { Luminous } from 'luminous-lightbox'
-// @ts-ignore
-import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-ignore
-import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
-// import 'photoswipe/style.css';
+import { useLightbox } from '~/composables/ui/use_lightbox'
 
 const props = defineProps({
   original: Boolean,
   photoswipe: Boolean
 })
 
+const { galleryRef, lightboxRef, initPSLightbox, initLLightbox, closeLightbox } = useLightbox()
+
 const { frame } = inject('framer') as any
-
-let lightbox: any
-
-const imageRef: Ref = ref(null)
-const luminousRef: Ref = ref(null)
 
 onMounted(async () => {
   if (props.photoswipe) {
-    await assignSize()
-
-    lightbox = new PhotoSwipeLightbox({
-      gallery: '#image',
-      children: 'a',
-      initialZoomLevel: 'fit',
-      pswpModule: () => import('photoswipe')
-    })
-    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
-    lightbox.init()
+    await initPSLightbox()
   } else {
-    const elm = luminousRef.value
-    lightbox = new Luminous(elm, { showCloseButton: true })
+    initLLightbox()
   }
 })
 
 onUnmounted(() => {
-  if (lightbox) {
-    lightbox.destroy()
-    lightbox = null
-  }
+  closeLightbox()
 })
-
-async function assignSize () {
-  const el = imageRef.value?.querySelector('a')
-  const img: HTMLImageElement = await loadImage(el.href)
-  el.setAttribute('data-pswp-width', img.naturalWidth.toString())
-  el.setAttribute('data-pswp-height', img.naturalHeight.toString())
-  el.firstElementChild?.removeAttribute('style')
-}
-
-function loadImage (src: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.onload = () => resolve(img)
-    img.onerror = e => reject(e)
-    img.src = src
-  })
-}
 </script>

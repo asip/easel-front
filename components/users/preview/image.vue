@@ -12,33 +12,27 @@
 
 <script setup lang="ts">
 // @ts-ignore
-import { Luminous } from 'luminous-lightbox'
 import { onMounted } from 'vue'
+import { useLightbox } from '~/composables/ui/use_lightbox'
 import type { User } from '~/interfaces/user'
 
 const props = defineProps({
   original: Boolean
 })
 
+const { lightboxRef, initLLightbox, closeLightbox } = useLightbox()
+
 const user: User | undefined = inject('user')
 
 // console.log(login_user?.value.image_three_url)
 
-let lightbox: any
-
-const lightboxRef = ref(null)
-
 onMounted(() => {
   if (props.original) {
-    const elm = lightboxRef.value
-    lightbox = new Luminous(elm, { showCloseButton: true })
+    initLLightbox()
   }
 })
 
 onMounted(() => {
-  if (lightbox) {
-    lightbox.destroy()
-    lightbox = null
-  }
+  closeLightbox()
 })
 </script>
