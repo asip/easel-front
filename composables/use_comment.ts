@@ -46,7 +46,7 @@ export function useComment () {
 
   const getComments = async () => {
     // console.log(comment.frame_id);
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'get_comments',
       url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`
     })
@@ -54,7 +54,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 500:
           flash.value.alert = error.value.message
           break
@@ -92,7 +92,7 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending, statusCode } = await usePostApi({
+    const { data, error, pending } = await usePostApi({
       key: 'post_comment',
       url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`,
       body: postData,
@@ -104,7 +104,7 @@ export function useComment () {
     clearErrorMessages()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -163,7 +163,7 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: Comment, idx: number) => {
-    const { error, statusCode } = await useDeleteApi({
+    const { error } = await useDeleteApi({
       key: 'delete_comment',
       url: `${backendApiURL.value}/comments/${comment.id}`,
       token: login_user.value.token,
@@ -173,7 +173,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 404:
           flash.value.alert = error.value.message
           break

@@ -67,7 +67,7 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'get_frame',
       url: `${backendApiURL.value}/frames/${id}`
     })
@@ -75,7 +75,7 @@ export const useFrame = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 404:
           flash.value.alert = error.value.message
           break
@@ -84,7 +84,7 @@ export const useFrame = () => {
       }
 
       throw createError({
-        statusCode,
+        statusCode: error.value.statusCode,
         statusMessage: error.value.message,
         message: flash.value.alert
       })
@@ -125,7 +125,7 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
-    const { data, error, pending, statusCode } = await usePostApi({
+    const { data, error, pending } = await usePostApi({
       key: 'create_frame',
       url: `${backendApiURL.value}/frames/`,
       body: formData,
@@ -137,7 +137,7 @@ export const useFrame = () => {
     clearErrorMessages()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -212,7 +212,7 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
-    const { data, error, pending, statusCode } = await usePutApi({
+    const { data, error, pending } = await usePutApi({
       key: 'update_frame',
       url: `${backendApiURL.value}/frames/${frame.id}`,
       body: postData,
@@ -224,7 +224,7 @@ export const useFrame = () => {
     clearErrorMessages()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -246,7 +246,7 @@ export const useFrame = () => {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending, statusCode } = await useDeleteApi({
+    const { error, pending } = await useDeleteApi({
       key: 'delete_frame',
       url: `${backendApiURL.value}/frames/${frame.id}`,
       token: login_user.value.token
@@ -255,7 +255,7 @@ export const useFrame = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()

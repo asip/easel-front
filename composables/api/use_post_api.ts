@@ -3,8 +3,6 @@ type PostAPIOptions = {
 }
 
 export const usePostApi = async ({ key, url, body = {}, token = null, locale = null }: PostAPIOptions) => {
-  let statusCode!: number
-
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -21,12 +19,9 @@ export const usePostApi = async ({ key, url, body = {}, token = null, locale = n
     $fetch(url, {
       method: 'post',
       body,
-      headers,
-      async onResponse ({ response }) {
-        statusCode = response.status
-      }
+      headers
     })
   )
 
-  return { data, error, pending, statusCode }
+  return { data, error, pending }
 }

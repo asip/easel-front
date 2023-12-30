@@ -3,8 +3,6 @@ type DeleteAPIOptions = {
 }
 
 export const useDeleteApi = async ({ key, url, token = null, locale = null }: DeleteAPIOptions) => {
-  let statusCode!: number
-
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -21,13 +19,10 @@ export const useDeleteApi = async ({ key, url, token = null, locale = null }: De
     $fetch(url,
       {
         method: 'delete',
-        headers,
-        async onResponse ({ response }) {
-          statusCode = response.status
-        }
+        headers
       }
     )
   )
 
-  return { data, error, pending, statusCode }
+  return { data, error, pending }
 }

@@ -1,8 +1,6 @@
 type GetAPIOptions = { key:string, url:string, query?: any, token?: string | null }
 
 export const useGetApi = async ({ key, url, query = {}, token = null }: GetAPIOptions) => {
-  let statusCode!: number
-
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -15,12 +13,9 @@ export const useGetApi = async ({ key, url, query = {}, token = null }: GetAPIOp
     $fetch(url, {
       method: 'get',
       query,
-      headers,
-      async onResponse ({ response }) {
-        statusCode = response.status
-      }
+      headers
     })
   )
 
-  return { data, error, statusCode }
+  return { data, error }
 }

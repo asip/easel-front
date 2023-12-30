@@ -15,7 +15,7 @@ export function useFollow () {
   const { flash, clearFlash } = useFlash()
 
   const isFollowing = async (userId: string) => {
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'is_following',
       url: `${backendApiURL.value}/profile/following/${userId}`,
       token: login_user.value.token
@@ -24,7 +24,7 @@ export function useFollow () {
     // clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -42,7 +42,7 @@ export function useFollow () {
   }
 
   const follow = async (userId: number | null) => {
-    const { error, statusCode } = await usePostApi({
+    const { error } = await usePostApi({
       key: 'follow',
       url: `${backendApiURL.value}/users/${userId}/follow_relationships`,
       token: login_user.value.token
@@ -51,7 +51,7 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -65,9 +65,7 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null) => {
-    // let statusCode!: number
-
-    const { error, statusCode } = await useDeleteApi({
+    const { error } = await useDeleteApi({
       key: 'unfollow',
       url: `${backendApiURL.value}/users/${userId}/follow_relationships`,
       token: login_user.value.token
@@ -76,7 +74,7 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()

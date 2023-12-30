@@ -131,7 +131,7 @@ export const useLoginUser = () => {
     formData.append('user[password]', signup_params.password)
     formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
-    const { data, error, pending, statusCode } = await usePostApi({
+    const { data, error, pending } = await usePostApi({
       key: 'signup',
       url: `${backendApiURL.value}/users/`,
       body: formData,
@@ -142,7 +142,7 @@ export const useLoginUser = () => {
     clearErrorMessages()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 500:
           flash.value.alert = error.value.message
           break
@@ -167,7 +167,7 @@ export const useLoginUser = () => {
     // console.log(login_user.value.token)
 
     if (login_user.value.token) {
-      const { data, error, statusCode } = await useGetApi({
+      const { data, error } = await useGetApi({
         key: 'authenticate',
         url: `${backendApiURL.value}/profile`,
         token: login_user.value.token
@@ -176,7 +176,7 @@ export const useLoginUser = () => {
       clearFlash()
 
       if (error.value) {
-        switch (statusCode) {
+        switch (error.value.statusCode) {
           case 401:
             flash.value.alert = $i18n.t('action.error.login')
             clearLoginUser()
@@ -205,7 +205,7 @@ export const useLoginUser = () => {
       }
     }
 
-    const { data, error, statusCode } = await usePostApi({
+    const { data, error } = await usePostApi({
       key: 'login',
       url: `${backendApiURL.value}/sessions/`,
       body: postData,
@@ -215,7 +215,7 @@ export const useLoginUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 500:
           flash.value.alert = error.value.message
           break
@@ -245,7 +245,7 @@ export const useLoginUser = () => {
       credential: response.credential
     }
 
-    const { data, error, statusCode } = await usePostApi({
+    const { data, error } = await usePostApi({
       key: 'login_with_google',
       url: `${backendApiURL.value}/oauth/sessions/`,
       body: postData
@@ -254,7 +254,7 @@ export const useLoginUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         // case 500:
         //  flash.value.alert = error.value.message
         //  break
@@ -301,7 +301,7 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending, statusCode } = await usePutApi({
+    const { data, error, pending } = await usePutApi({
       key: 'update_profile',
       url: `${backendApiURL.value}/profile/`,
       body: formData,
@@ -316,7 +316,7 @@ export const useLoginUser = () => {
     clearErrorMessages()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -393,7 +393,7 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    const { data, error, statusCode } = await useDeleteApi({
+    const { data, error } = await useDeleteApi({
       key: 'logout',
       url: `${backendApiURL.value}/sessions/logout`,
       token: login_user.value.token
@@ -402,7 +402,7 @@ export const useLoginUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -419,7 +419,7 @@ export const useLoginUser = () => {
   }
 
   const deleteAccount = async () => {
-    const { data, error, statusCode } = await useDeleteApi({
+    const { data, error } = await useDeleteApi({
       key: 'delete_account',
       url: `${backendApiURL.value}/profile`,
       token: login_user.value.token
@@ -428,7 +428,7 @@ export const useLoginUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()

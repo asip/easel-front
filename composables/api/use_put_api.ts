@@ -3,8 +3,6 @@ type PutAPIOptions = {
 }
 
 export const usePutApi = async ({ key, url, body = {}, token = null, locale = null }: PutAPIOptions) => {
-  let statusCode!: number
-
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -21,12 +19,9 @@ export const usePutApi = async ({ key, url, body = {}, token = null, locale = nu
     $fetch(url, {
       method: 'put',
       body,
-      headers,
-      async onResponse ({ response }) {
-        statusCode = response.status
-      }
+      headers
     })
   )
 
-  return { data, error, pending, statusCode }
+  return { data, error, pending }
 }

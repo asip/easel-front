@@ -32,7 +32,7 @@ export const useUser = () => {
   const { flash, clearFlash } = useFlash()
 
   const getUser = async (id: string) => {
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'get_user',
       url: `${backendApiURL.value}/users/${id}`
     })
@@ -40,7 +40,7 @@ export const useUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 404:
           flash.value.alert = error.value.message
           break

@@ -23,7 +23,7 @@ export function useUserFrames () {
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (user_id: string | undefined) => {
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'get_frames_by_user_id',
       url: `${backendApiURL.value}/users/${user_id}/frames`,
       query: {
@@ -34,7 +34,7 @@ export function useUserFrames () {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 500:
           flash.value.alert = error.value.message
           break
@@ -43,7 +43,7 @@ export function useUserFrames () {
       }
 
       throw createError({
-        statusCode,
+        statusCode: error.value.statusCode,
         statusMessage: error.value.message,
         message: flash.value.alert
       })

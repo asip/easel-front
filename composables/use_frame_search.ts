@@ -27,7 +27,7 @@ export const useFrameSearch = () => {
   const { flash, clearFlash } = useFlash()
 
   const searchFrame = async () => {
-    const { data, error, statusCode } = await useGetApi({
+    const { data, error } = await useGetApi({
       key: 'search_frame',
       url: `${backendApiURL.value}/frames`,
       query: {
@@ -39,7 +39,7 @@ export const useFrameSearch = () => {
     clearFlash()
 
     if (error.value) {
-      switch (statusCode) {
+      switch (error.value.statusCode) {
         case 500:
           flash.value.alert = error.value.message
           break
