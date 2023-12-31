@@ -6,13 +6,15 @@
 </template>
 
 <script setup lang="ts">
+import type { Frame } from '~/interfaces/frame'
+import type { User } from '~/interfaces/user'
 
-const model: any = inject('model')
+const model = inject('model') as Frame | User
 
 if (model) {
-  if (model.file) {
+  if ('file' in model) {
     model.preview_url = `${model?.file_three_url}`
-  } else if (model.image) {
+  } else if ('image' in model) {
     model.preview_url = `${model?.image_three_url}`
   }
 }
