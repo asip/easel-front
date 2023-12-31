@@ -4,7 +4,6 @@ import { Luminous } from 'luminous-lightbox'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-ignore
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
-import type { Component } from 'nuxt/schema'
 // import 'photoswipe/style.css';
 
 export function useLightbox () {
