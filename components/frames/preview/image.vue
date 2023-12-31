@@ -3,7 +3,7 @@
     <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else ref="lightboxRef" class="mx-auto" :to="`${frame?.file_url}`">
+    <NuxtLink v-else id="image" class="mx-auto" :to="`${frame?.file_url}`">
       <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
@@ -16,20 +16,22 @@
 <script setup lang="ts">
 import { useLightbox } from '~/composables/ui/use_lightbox'
 
-const props = defineProps({
-  original: Boolean,
-  photoswipe: Boolean
-})
+const props = defineProps<{
+  original: boolean,
+  photoswipe: boolean
+}>()
 
-const { galleryRef, lightboxRef, initPSLightbox, initLLightbox, closeLightbox } = useLightbox()
+const { galleryRef, initPSLightbox, initLMLightbox, closeLightbox } = useLightbox()
 
 const { frame } = inject('framer') as any
 
 onMounted(async () => {
-  if (props.photoswipe) {
-    await initPSLightbox()
-  } else {
-    initLLightbox()
+  if (props.original) {
+    if (props.photoswipe) {
+      await initPSLightbox()
+    } else {
+      initLMLightbox()
+    }
   }
 })
 

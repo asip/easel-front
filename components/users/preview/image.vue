@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.original" class="d-flex justify-content-sm-center">
-    <NuxtLink ref="lightboxRef" class="mx-auto" :to="`${user?.image_three_url}`">
+    <NuxtLink id="image" class="mx-auto" :to="`${user?.image_three_url}`">
       <img :src="`${user?.image_three_url}`" alt="" class="mx-auto" style="width:100px;height:100px;">
     </NuxtLink>
   </div>
@@ -16,11 +16,11 @@ import { onMounted } from 'vue'
 import { useLightbox } from '~/composables/ui/use_lightbox'
 import type { User } from '~/interfaces/user'
 
-const props = defineProps({
-  original: Boolean
-})
+const props = defineProps<{
+  original: boolean
+}>()
 
-const { lightboxRef, initLLightbox, closeLightbox } = useLightbox()
+const { initLMLightbox, closeLightbox } = useLightbox()
 
 const user: User | undefined = inject('user')
 
@@ -28,7 +28,7 @@ const user: User | undefined = inject('user')
 
 onMounted(() => {
   if (props.original) {
-    initLLightbox()
+    initLMLightbox()
   }
 })
 

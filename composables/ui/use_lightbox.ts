@@ -4,11 +4,11 @@ import { Luminous } from 'luminous-lightbox'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-ignore
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
+import type { Component } from 'nuxt/schema'
 // import 'photoswipe/style.css';
 
 export function useLightbox () {
   const galleryRef: Ref = ref(null)
-  const lightboxRef: Ref = ref(null)
 
   let lightbox: any
 
@@ -28,14 +28,14 @@ export function useLightbox () {
     lightbox.init()
   }
 
-  const initLLightbox = () => {
-    const elm = lightboxRef.value
-    lightbox = new Luminous(elm, { showCloseButton: true })
+  const initLMLightbox = () => {
+    const imageEl: HTMLAnchorElement | null = document.querySelector('#image')
+    lightbox = new Luminous(imageEl, { showCloseButton: true })
   }
 
   const assignSize = async (gallery: HTMLDivElement) => {
-    const el = gallery.querySelector('a')
-    if (el) {
+    const galleryAnchors = gallery?.querySelectorAll('a')
+    for await (const el of galleryAnchors) {
       const img: HTMLImageElement = await loadImage(el.href)
       el.setAttribute('data-pswp-width', img.naturalWidth.toString())
       el.setAttribute('data-pswp-height', img.naturalHeight.toString())
@@ -59,5 +59,5 @@ export function useLightbox () {
     }
   }
 
-  return { galleryRef, lightboxRef, initPSLightbox, initLLightbox, closeLightbox }
+  return { galleryRef, initPSLightbox, initLMLightbox, closeLightbox }
 }
