@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 // @ts-ignore
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useLightbox } from '~/composables/ui/use_lightbox'
 import type { User } from '~/interfaces/user'
 
@@ -32,7 +32,7 @@ onMounted(() => {
   }
 })
 
-onMounted(() => {
+onUnmounted(() => {
   closeLightbox()
 })
 </script>
