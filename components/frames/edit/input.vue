@@ -67,7 +67,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 import { useFrameTagEditor } from '~/composables/ui/use_frame_tag_editor'
 
-const { tagEditorRef, initTagEditor } = useFrameTagEditor()
+const { tagEditorRef, initTagEditor, closeTagEditor } = useFrameTagEditor()
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frm_rules, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as any
@@ -99,5 +99,9 @@ const onEditClick = async () => {
 onMounted(() => {
   // console.log(frame)
   initTagEditor(frame)
+})
+
+onUnmounted(() => {
+  closeTagEditor()
 })
 </script>

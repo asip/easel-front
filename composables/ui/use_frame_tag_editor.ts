@@ -4,11 +4,13 @@ import type { Frame } from '~/interfaces/frame'
 export function useFrameTagEditor () {
   const tagEditorRef = ref(null)
 
+  let tagEditor: Tagify | null = null
+
   const initTagEditor = (frame: Frame) => {
     const elmTe: HTMLInputElement | null = tagEditorRef.value
 
     if (elmTe) {
-      const tag_editor = new Tagify(elmTe, {
+      tagEditor = new Tagify(elmTe, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',
@@ -19,22 +21,29 @@ export function useFrameTagEditor () {
         }
       })
 
-      tag_editor.removeAllTags()
+      tagEditor.removeAllTags()
       if (frame?.tags) {
-        tag_editor.addTags(frame?.tags)
+        tagEditor.addTags(frame?.tags)
       }
 
       const saveTagList = () => {
-        if (frame) {
-          frame.tags = tag_editor.value.map(v => v.value)
+        if (frame && tagEditor) {
+          frame.tags = tagEditor.value.map(v => v.value)
           frame.tag_list = frame.tags?.join(',')
         }
       }
 
-      tag_editor.on('add', () => saveTagList())
-      tag_editor.on('remove', () => saveTagList())
+      tagEditor.on('add', () => saveTagList())
+      tagEditor.on('remove', () => saveTagList())
     }
   }
 
-  return { tagEditorRef, initTagEditor }
+  const closeTagEditor = () => {
+    if (tagEditor) {
+      tagEditor.destroy()
+      tagEditor = null
+    }
+  }
+
+  return { tagEditorRef, initTagEditor, closeTagEditor }
 }
