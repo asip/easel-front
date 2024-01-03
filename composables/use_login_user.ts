@@ -94,7 +94,7 @@ export const useLoginUser = () => {
   const { $i18n } = useNuxtApp()
 
   const { backendApiURL } = useConstants()
-  const access_token = useCookie('access_token')
+  const access_token = useCookie('access_token', { sameSite: 'lax' })
 
   const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
