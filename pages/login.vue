@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="row d-flex justify-content-sm-center">
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-10">
             &nbsp;
               <button type="button" class="btn btn-primary" @click="onLoginClick">
                 {{ $t('action.user.login') }}
