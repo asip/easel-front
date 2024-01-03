@@ -19,8 +19,8 @@ useHead(
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { href: '/palette.svg', type: 'image/svg+xml', rel: 'icon' },
-      { href: '/palette.svg', type: 'image/svg+xml', rel: 'mask-icon', color: '#000000' }
+      { rel: 'icon', type: 'image/png', href: '/palette.png' },
+      { rel: 'icon', type: 'image/svg+xml', href: '/palette.svg' }
     ],
     script: [
       { src: 'https://apis.google.com/js/api.js' },
