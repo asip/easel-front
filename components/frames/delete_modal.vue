@@ -2,10 +2,15 @@
   <ConfirmModal
     v-if="logged_in && frame?.user_id == login_user.id"
     id="delete_modal"
-    :message="$t('action.modal.delete.message')"
-    :label="$t('action.model.delete')"
     @click="onDeleteClick"
-  />
+  >
+    <template #message >
+      {{ $t('action.modal.delete.message') }}
+    </template>
+    <template #label >
+      {{ $t('action.model.delete') }}
+    </template>
+  </ConfirmModal>
 </template>
 
 <script setup lang="ts">

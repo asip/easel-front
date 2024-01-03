@@ -12,11 +12,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          {{ message }}
+          <slot name="message"></slot>
         </div>
         <div class="modal-footer">
           <button class="btn btn-outline-danger" @click="onClick">
-            {{ label }}
+            <slot name="label"></slot>
           </button>
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
             {{ $t('action.modal.close') }}
@@ -30,8 +30,11 @@
 <script setup lang="ts">
 defineProps<{
   id: string
-  message: string
-  label: string
+}>()
+
+defineSlots<{
+  message?: () => any
+  label?: () => any
 }>()
 
 const emit = defineEmits<{click: []}>()

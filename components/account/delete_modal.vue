@@ -1,10 +1,15 @@
 <template>
   <ConfirmModal
     id="delete_modal"
-    :message="$t('action.modal.user.delete.message')"
-    :label="$t('action.user.delete')"
     @click="onDeleteClick"
-  />
+  >
+    <template #message >
+      {{ $t('action.modal.user.delete.message') }}
+    </template>
+    <template #label >
+      {{ $t('action.user.delete') }}
+    </template>
+  </ConfirmModal>
 </template>
 
 <script setup lang="ts">
