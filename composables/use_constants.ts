@@ -2,7 +2,13 @@ export const useConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
   const backendOriginURL: Ref = computed(
-    () => runtimeConfig.backendOriginURL ? (runtimeConfig.backendOriginURL as string) : (runtimeConfig.public.backendOriginURL as string)
+    () => {
+      if (import.meta.client) {
+        return runtimeConfig.public.backendOriginURL
+      } else if (import.meta.server) {
+        return runtimeConfig.backendOriginURL
+      }
+    }
   )
 
   const backendApiURL: Ref = computed(
