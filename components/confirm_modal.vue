@@ -12,11 +12,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
         <div class="modal-body">
-          <slot name="message"></slot>
+          <slot name="message" />
         </div>
         <div class="modal-footer">
           <button class="btn btn-outline-danger" @click="onClick">
-            <slot name="label"></slot>
+            <slot name="label" />
           </button>
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
             {{ $t('action.modal.close') }}
@@ -33,7 +33,7 @@ defineProps<{
 }>()
 
 defineSlots<{
-  message?: () => any
+  message?:() => any
   label?: () => any
 }>()
 

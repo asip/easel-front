@@ -4,10 +4,10 @@
     id="delete_modal"
     @click="onDeleteClick"
   >
-    <template #message >
+    <template #message>
       {{ $t('action.modal.delete.message') }}
     </template>
-    <template #label >
+    <template #label>
       {{ $t('action.model.delete') }}
     </template>
   </ConfirmModal>
