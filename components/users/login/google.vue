@@ -5,8 +5,10 @@
 <script setup lang="ts">
 /// <reference types='google.accounts' />
 
+import { useModal } from '~/composables/ui/use_modal'
 import type { CredentialResponse } from '~/interfaces/credential_response'
 
+const { closeModal } = useModal()
 const { googleClientID } = useConstants()
 const { login_with_google } = useLoginUser()
 
@@ -32,7 +34,6 @@ const handleCredentialResponse = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
   await login_with_google(response)
-
-  navigateTo('/')
+  closeModal('#login_modal')
 }
 </script>

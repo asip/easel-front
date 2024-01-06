@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n'
   ],
 
+  plugins: [
+    { src: '~/plugins/bootstrap.client.ts', mode: 'client' }
+  ],
+
   i18n: {
     lazy: true,
     locales: [

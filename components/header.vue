@@ -23,9 +23,15 @@
       <div id="navbarNavDropdown" class="collapse navbar-collapse">
         <ul v-if="!logged_in" class="navbar-nav me-auto">
           <li class="nav-item">
-            <NuxtLink :to="`/login`" class="nav-link">
+            <a
+              href="#"
+              class="nav-link"
+              data-bs-toggle="modal"
+              data-bs-config="{backdrop:true}"
+              data-bs-target="#login_modal"
+            >
               {{ $t('action.user.login') }}
-            </NuxtLink>
+            </a>
           </li>
         </ul>
         <ul v-else class="navbar-nav justify-content-sm-center me-auto">
@@ -58,6 +64,7 @@
       </div>
     </div>
   </nav>
+  <LoginModal />
 </template>
 
 <script lang="ts" setup>
@@ -73,7 +80,7 @@ const onLogoutClick = async () => {
   await logout()
   if (route.path === '/account/profile' || route.path === '/account/edit' ||
     route.path === '/frames/new') {
-    navigateTo('/login')
+    navigateTo('/')
   } else if (route.path.match(/^\/frames\/frame-\d+\/edit$/)) {
     navigateTo(`/frames/${route.params.id}`)
   }

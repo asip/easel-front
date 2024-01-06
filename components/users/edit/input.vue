@@ -143,7 +143,7 @@ const onUpdateClick = async () => {
     if (isSuccess()) {
       navigateTo('/account/profile')
     } else if (!logged_in.value) {
-      navigateTo('/login')
+      navigateTo('/')
     }
   }
 }

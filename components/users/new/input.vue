@@ -86,7 +86,7 @@
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onSignupClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
-        <NuxtLink :to="`/login`" class="btn btn-outline-secondary">
+        <NuxtLink :to="`/`" class="btn btn-outline-secondary">
           {{ $t('action.model.return') }}
         </NuxtLink>
       </div>
@@ -118,7 +118,7 @@ const onSignupClick = async () => {
     await signup()
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo('/login')
+      navigateTo('/')
     }
   }
 }

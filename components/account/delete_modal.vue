@@ -25,7 +25,7 @@ const onDeleteClick = async () => {
   setFlash(flash.value)
   removeBackdrop()
   if (!logged_in.value) {
-    navigateTo('/login')
+    navigateTo('/')
   }
 }
 </script>
