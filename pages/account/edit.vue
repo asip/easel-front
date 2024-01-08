@@ -8,7 +8,7 @@
             <div class="clearfix">
               <div class="float-start">
                 &nbsp;
-                <NuxtLink to="/account/profile">
+                <NuxtLink to="/">
                   <i class="bi bi-arrow-left-circle" />
                 </NuxtLink>
               </div>

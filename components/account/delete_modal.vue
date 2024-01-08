@@ -16,16 +16,14 @@
 import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
 
-const { removeBackdrop } = useModal()
+const { closeModal } = useModal()
 const { setFlash } = useToast()
-const { logged_in, deleteAccount, flash } = useLoginUser()
+const { deleteAccount, flash } = useLoginUser()
 
 const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
-  removeBackdrop()
-  if (!logged_in.value) {
-    navigateTo('/')
-  }
+  closeModal('#delete_modal')
+  
 }
 </script>

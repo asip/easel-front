@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <br>
-    <div class="card">
-      <div class="card-block">
-        <div class="row">
-          <div class="col-sm-12 clearfix">
+  <div
+    id="profile_modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="false"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content col-sm-8">
+        <div class="modal-header">
+          <div class="float-start">
             <div class="float-start">
-              &nbsp;
-              <NuxtLink to="/">
+              <a href="#" @click="onCloseClick">
                 <i class="bi bi-arrow-left-circle" />
-              </NuxtLink>&nbsp;
-              <NuxtLink to="/account/edit">
+              </a>&nbsp;
+              <a href="#" @click="onEditClick">
                 <i class="bi bi-pencil-square" />
-              </NuxtLink>&nbsp;
+              </a>&nbsp;
               <a
                 href="#"
                 data-bs-toggle="modal"
@@ -22,15 +26,18 @@
                 <i class="bi bi-x-circle" />
               </a>
             </div>
+            {{ $t('model.user.model_name') }}
           </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
         </div>
-        <div class="text-center">
-          {{ $t('model.user.model_name') }}
-        </div>
-        <br>
-        <UsersPreviewImage :original="false" />
+        <div class="modal-body">
+          <div class="row d-flex justify-content-sm-center border border-white">
+
+            <UsersPreviewImage :original="false" />
+
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-8">
+            <br>
             <table class="table table-bordered table_rounded">
               <tbody>
                 <tr>
@@ -58,23 +65,31 @@
           </div>
         </div>
         <br>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-    <AccountDeleteModal />
-    <UsersFrameList :user-id="userId" page="profile" />
-  </div>
+  <AccountDeleteModal />
 </template>
 
 <script setup lang="ts">
+import { useModal } from '~/composables/ui/use_modal';
 
-const { logged_in, login_user } = useLoginUser()
+const { closeModal } = useModal()
+const { login_user } = useLoginUser()
 
-const userId = login_user.value.id?.toString()
+// const userId = login_user.value.id?.toString()
 
 provide('user', login_user)
 
-if (!logged_in.value) {
-  await navigateTo('/')
+const onCloseClick = () => {
+  closeModal('#profile_modal')
 }
+
+const onEditClick = () => {
+  closeModal('#profile_modal')
+  navigateTo('/account/edit')
+}
+
 </script>

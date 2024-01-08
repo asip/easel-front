@@ -107,7 +107,7 @@
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onUpdateClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
-        <NuxtLink :to="`/account/profile`" class="btn btn-outline-secondary">
+        <NuxtLink :to="`/`" class="btn btn-outline-secondary">
           {{ $t('action.model.return') }}
         </NuxtLink>
       </div>
@@ -141,7 +141,7 @@ const onUpdateClick = async () => {
     await updateProfile()
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo('/account/profile')
+      navigateTo('/')
     } else if (!logged_in.value) {
       navigateTo('/')
     }

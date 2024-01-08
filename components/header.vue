@@ -41,9 +41,15 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <NuxtLink to="/account/profile" class="dropdown-item">
+                  <a
+              href="#"
+              class="dropdown-item"
+              data-bs-toggle="modal"
+              data-bs-config="{backdrop:true}"
+              data-bs-target="#profile_modal"
+            >
                   {{ $t('model.user.model_name') }}
-                </NuxtLink>
+                </a>
               </li>
               <li>
                 <NuxtLink to="/frames/new" class="dropdown-item">
@@ -65,6 +71,7 @@
     </div>
   </nav>
   <LoginModal />
+  <AccountProfileModal />
 </template>
 
 <script lang="ts" setup>
@@ -78,7 +85,7 @@ const { frame_query, searchFrame } = useFrameSearch()
 
 const onLogoutClick = async () => {
   await logout()
-  if (route.path === '/account/profile' || route.path === '/account/edit' ||
+  if (route.path === '/account/edit' ||
     route.path === '/frames/new') {
     navigateTo('/')
   } else if (route.path.match(/^\/frames\/frame-\d+\/edit$/)) {
