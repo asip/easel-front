@@ -38,7 +38,7 @@
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "sanitize-html": "^2.11.0",
-    "sass": "^1.69.5",
+    "sass": "^1.69.7",
     "v-calendar": "^3.1.2",
     "vue": "3.4.5",
     "vue-i18n": "9.9.0",
