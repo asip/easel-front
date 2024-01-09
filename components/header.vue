@@ -86,8 +86,7 @@ const { frame_query, searchFrame } = useFrameSearch()
 
 const onLogoutClick = async () => {
   await logout()
-  if (route.path === '/account/edit' ||
-    route.path === '/frames/new') {
+  if (route.path === '/frames/new') {
     navigateTo('/')
   } else if (route.path.match(/^\/frames\/frame-\d+\/edit$/)) {
     navigateTo(`/frames/${route.params.id}`)
