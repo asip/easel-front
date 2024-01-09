@@ -18,7 +18,7 @@
                 class="btn-icon-local"
                 data-bs-toggle="modal"
                 data-bs-config="{backdrop:true}"
-                data-bs-target="#delete_modal"
+                data-bs-target="#delete_frame_modal"
               >
                 <i class="bi bi-x-circle" />
               </button>

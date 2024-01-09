@@ -1,7 +1,7 @@
 <template>
   <ConfirmModal
     v-if="logged_in && frame?.user_id == login_user.id"
-    id="delete_modal"
+    id="delete_frame_modal"
     @click="onDeleteClick"
   >
     <template #message>

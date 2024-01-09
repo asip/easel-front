@@ -21,7 +21,7 @@
                 href="#"
                 data-bs-toggle="modal"
                 data-bs-config="{backdrop:true}"
-                data-bs-target="#delete_modal"
+                data-bs-target="#delete_account_modal"
               >
                 <i class="bi bi-x-circle" />
               </a>

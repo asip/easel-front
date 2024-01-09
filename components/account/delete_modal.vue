@@ -1,6 +1,6 @@
 <template>
   <ConfirmModal
-    id="delete_modal"
+    id="delete_account_modal"
     @click="onDeleteClick"
   >
     <template #message>
@@ -23,6 +23,6 @@ const { deleteAccount, flash } = useLoginUser()
 const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
-  closeModal('#delete_modal')
+  closeModal('#delete_account_modal')
 }
 </script>
