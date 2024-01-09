@@ -24,6 +24,5 @@ const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
   closeModal('#delete_modal')
-  
 }
 </script>

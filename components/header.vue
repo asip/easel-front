@@ -41,13 +41,13 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                  <a
-              href="#"
-              class="dropdown-item"
-              data-bs-toggle="modal"
-              data-bs-config="{backdrop:true}"
-              data-bs-target="#profile_modal"
-            >
+                <a
+                  href="#"
+                  class="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-config="{backdrop:true}"
+                  data-bs-target="#profile_modal"
+                >
                   {{ $t('model.user.model_name') }}
                 </a>
               </li>
