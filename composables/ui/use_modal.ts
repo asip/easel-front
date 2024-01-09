@@ -6,6 +6,15 @@ export function useModal () {
     backdrop?.remove()
   }
 
+  const openModal = (selector :string) => {
+    const modalEl: HTMLDivElement | null = document.querySelector(selector)
+    if (modalEl) {
+      // @ts-ignore
+      const modal = new $bootstrap.Modal(modalEl)
+      modal.show()
+    }
+  }
+
   const closeModal = (selector :string) => {
     const modalEl: HTMLDivElement | null = document.querySelector(selector)
     if (modalEl) {
@@ -15,5 +24,5 @@ export function useModal () {
     }
   }
 
-  return { removeBackdrop, closeModal }
+  return { removeBackdrop, openModal, closeModal }
 }

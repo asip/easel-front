@@ -72,6 +72,7 @@
   </nav>
   <LoginModal />
   <AccountProfileModal />
+  <AccountEditModal />
 </template>
 
 <script lang="ts" setup>

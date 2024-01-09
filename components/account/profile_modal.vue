@@ -75,7 +75,7 @@
 <script setup lang="ts">
 import { useModal } from '~/composables/ui/use_modal'
 
-const { closeModal } = useModal()
+const { openModal, closeModal } = useModal()
 const { login_user } = useLoginUser()
 
 // const userId = login_user.value.id?.toString()
@@ -88,7 +88,7 @@ const onCloseClick = () => {
 
 const onEditClick = () => {
   closeModal('#profile_modal')
-  navigateTo('/account/edit')
+  openModal('#edit_profile_modal')
 }
 
 </script>

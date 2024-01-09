@@ -1,6 +1,5 @@
 <template>
   <div class="card-block">
-    <br>
     <div class="row d-flex justify-content-sm-center">
       <div class="col-sm-10">
         <table class="table table-bordered table_rounded">
@@ -107,9 +106,9 @@
         <button type="button" class="btn btn-primary" :disabled="processing" @click="onUpdateClick">
           {{ $t('action.model.create') }}
         </button>&nbsp;
-        <NuxtLink :to="`/`" class="btn btn-outline-secondary">
+        <a href="#" class="btn btn-outline-secondary" @click="onBackClick">
           {{ $t('action.model.return') }}
-        </NuxtLink>
+        </a>
       </div>
     </div>
   </div>
@@ -118,14 +117,18 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
+import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
+const { openModal, closeModal } = useModal()
 const { logged_in, login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 
 const v$ = useVuelidate(usr_rules, user)
 
-setUser(login_user)
+onMounted(() => {
+  setUser(login_user)
+})
 
 const onSelectFile = (event: Event) => {
   const target = event.target as HTMLInputElement
@@ -141,11 +144,17 @@ const onUpdateClick = async () => {
     await updateProfile()
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo('/')
+      closeModal('#edit_profile_modal')
+      openModal('#profile_modal')
     } else if (!logged_in.value) {
-      navigateTo('/')
+      closeModal('#edit_profile_modal')
     }
   }
+}
+
+const onBackClick = () => {
+  closeModal('#edit_profile_modal')
+  openModal('#profile_modal')
 }
 
 provide('model', user)
