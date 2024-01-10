@@ -41,7 +41,8 @@
       "new": "User Registration",
       "edit": "Profile Editing",
       "follow": "Follow",
-      "unfollow": "Now following"
+      "unfollow": "Now following",
+      "frame_list": "My List"
     },
     "frame": {
       "upload": "Upload"

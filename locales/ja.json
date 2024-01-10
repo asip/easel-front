@@ -41,7 +41,8 @@
       "new": "ユーザー登録",
       "edit": "プロフィール編集",
       "follow": "フォローする",
-      "unfollow": "フォローを外す"
+      "unfollow": "フォローを外す",
+      "frame_list": "マイ リスト"
     },
     "frame": {
       "upload": "アップロード"

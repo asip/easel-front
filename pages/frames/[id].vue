@@ -107,7 +107,7 @@ const sanitizedComment = computed(() => {
 
 const onPageBack = () => {
   if (ref_page === 'profile') {
-    router.push({ path: '/account/profile' })
+    router.push({ path: '/account/frames' })
   } else if (ref_page === 'user_profile') {
     router.push({ path: `/users/${ref_id}` })
   } else {

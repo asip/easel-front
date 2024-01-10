@@ -52,6 +52,11 @@
                 </a>
               </li>
               <li>
+                <NuxtLink to="/account/frames" class="dropdown-item">
+                  {{ $t('action.user.frame_list') }}
+                </NuxtLink>
+              </li>
+              <li>
                 <NuxtLink to="/frames/new" class="dropdown-item">
                   {{ $t('action.frame.upload') }}
                 </NuxtLink>
@@ -86,7 +91,7 @@ const { frame_query, searchFrame } = useFrameSearch()
 
 const onLogoutClick = async () => {
   await logout()
-  if (route.path === '/frames/new') {
+  if (route.path === '/frames/new' || route.path === '/account/frames') {
     navigateTo('/')
   } else if (route.path.match(/^\/frames\/frame-\d+\/edit$/)) {
     navigateTo(`/frames/${route.params.id}`)
