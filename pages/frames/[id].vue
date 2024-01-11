@@ -76,7 +76,7 @@
     </div>
     <FramesDeleteModal />
     <br>
-    <FrameComments />
+    <FramesCommentList />
   </div>
 </template>
 
