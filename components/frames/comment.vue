@@ -1,19 +1,31 @@
 <template>
+  <br v-if="logged_in">
   <div v-if="logged_in" class="card col-sm-8 mx-auto">
-    <div class="card-header">
-      <div class="d-flex justify-content-sm-center">
-        <div class="clearfix">
-          <div class="float-left">
-            {{ $t('model.comment.model_name') }}
+    <div class="card-block">
+      <div class="row d-flex">
+        <div class="clearfix " style="line-height: 35px;">
+          <div class="float-start" style="padding-left:5px;">
+            <img
+              :src="`${login_user.image_thumb_url}`"
+              alt=""
+              class="rounded"
+              width="20"
+              height="20"
+              decoding="async"
+            >
+          </div>
+          <div class="float-start small align-middle" style="padding-left:5px;">
+            <div class="badge rounded-pill bg-light text-info">
+              {{ login_user.name }}
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="card-block">
-      <br>
       <form>
         <div class="d-flex justify-content-center">
-          <div class="form-group col-sm-10">
+          <div class="form-group col-10">
             <textarea v-model="comment.body" class="form-control col-12" />
           </div>
         </div>
@@ -32,17 +44,15 @@
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <div class="form-group col-sm-10">
+          <div class="form-group col-10" style="padding-bottom:10px;">
             <button type="button" class="btn btn-light form-control" :disabled="processing" @click="onCommentClick">
               {{ $t('action.comment.post') }}
             </button>
           </div>
         </div>
       </form>
-      <br>
     </div>
   </div>
-  <br v-if="logged_in">
 </template>
 
 <script setup lang="ts">
@@ -50,7 +60,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 
 const { setFlash } = useToast()
-const { logged_in } = useLoginUser()
+const { logged_in, login_user } = useLoginUser()
 const { comment, cm_rules, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as any
 
 const v$ = useVuelidate(cm_rules, comment)

@@ -3,7 +3,7 @@
     <div class="card col-sm-8 mx-auto">
       <div class="card-block">
         <div class="row d-flex">
-          <div class="col-12" style="line-height: 35px;">
+          <div class="col-sm-12" style="line-height: 35px;">
             <div class="float-start align-middle" style="padding-left:5px;">
               <img
                 :src="`${comment.user_image_url}`"
