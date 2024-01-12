@@ -26,7 +26,7 @@
             <div class="row d-flex justify-content-sm-center border border-white">
               <div class="col-sm-10">
                 <br>
-                <UsersLoginGoogle />
+                <AccountLoginGoogle v-if="!logged_in" />
                 <br>
                 <table class="table table-bordered table_rounded">
                   <tbody>
@@ -72,7 +72,7 @@ import { useToast } from '~/composables/ui/use_toast'
 
 const { closeModal } = useModal()
 const { setMessages } = useToast()
-const { login_params, login, login_messages } = useLoginUser()
+const { logged_in ,login_params, login, login_messages } = useLoginUser()
 
 const onSignupClick = () => {
   closeModal('#login_modal')
