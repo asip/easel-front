@@ -85,7 +85,6 @@ import { useLocale } from '~/composables/use_locale'
 
 const route = useRoute()
 
-const { autoDetect } = useLocale()
 const { login_user, logged_in, logout } = useLoginUser()
 const { frame_query, searchFrame } = useFrameSearch()
 
@@ -107,8 +106,4 @@ const onTopPageClick = async () => {
     navigateTo('/')
   }
 }
-
-onMounted(() => {
-  autoDetect()
-})
 </script>

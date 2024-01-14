@@ -38,6 +38,10 @@ if (!logged_in.value) {
   await authenticate()
 }
 
+onMounted(() => {
+  autoDetect()
+})
+
 onUpdated(() => {
   autoDetect()
 })
