@@ -72,7 +72,7 @@ import { useToast } from '~/composables/ui/use_toast'
 
 const { closeModal } = useModal()
 const { setMessages } = useToast()
-const { logged_in ,login_params, login, login_messages } = useLoginUser()
+const { logged_in, login_params, login, login_messages } = useLoginUser()
 
 const onSignupClick = () => {
   closeModal('#login_modal')
