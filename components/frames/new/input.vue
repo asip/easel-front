@@ -83,11 +83,12 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 import { useFrameTagEditor } from '~/composables/ui/use_frame_tag_editor'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
+import type { UseFrameType } from '~/composables/use_frame'
 
 const { tagEditorRef, initTagEditor, closeTagEditor } = useFrameTagEditor()
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
-const { frame, frm_rules, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as any
+const { frame, frm_rules, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 
 const v$ = useVuelidate(frm_rules, frame)
 

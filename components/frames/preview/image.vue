@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { useLightbox } from '~/composables/ui/use_lightbox'
+import type { UseFrameType } from '~/composables/use_frame'
 
 const props = defineProps<{
   original: boolean,
@@ -23,7 +24,7 @@ const props = defineProps<{
 
 const { galleryRef, initPSLightbox, initLMLightbox, closeLightbox } = useLightbox()
 
-const { frame } = inject('framer') as any
+const { frame } = inject('framer') as UseFrameType
 
 onMounted(async () => {
   if (props.original) {

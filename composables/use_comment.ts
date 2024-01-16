@@ -205,3 +205,5 @@ export function useComment () {
     locale
   }
 }
+
+export type UseCommentType = ReturnType<typeof useComment>

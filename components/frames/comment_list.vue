@@ -5,9 +5,11 @@
 </template>
 
 <script setup lang="ts">
+import type { UseFrameType } from '~/composables/use_frame'
+
 const commenter = useComment()
 const { comment, getComments } = commenter
-const { frame } = inject('framer') as any
+const { frame } = inject('framer') as UseFrameType
 
 provide('commenter', commenter)
 

@@ -9,5 +9,7 @@
 </template>
 
 <script setup lang="ts">
-const { frame } = inject('framer') as any
+import type { UseFrameType } from '~/composables/use_frame'
+
+const { frame } = inject('framer') as UseFrameType
 </script>

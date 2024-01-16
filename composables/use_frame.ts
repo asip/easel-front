@@ -286,3 +286,5 @@ export const useFrame = () => {
     locale
   }
 }
+
+export type UseFrameType = ReturnType<typeof useFrame>
