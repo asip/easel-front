@@ -42,13 +42,11 @@ export function useLightbox () {
     }
   }
 
-  const loadImage = (src: string): Promise<HTMLImageElement> => {
-    return new Promise((resolve, reject) => {
-      const img = new Image()
-      img.onload = () => resolve(img)
-      img.onerror = e => reject(e)
-      img.src = src
-    })
+  const loadImage = async (src: string) => {
+    const img: HTMLImageElement = new window.Image()
+    img.src = src
+    await img.decode()
+    return img
   }
 
   const closeLightbox = () => {
