@@ -30,9 +30,7 @@
         </div>
         <div class="offcanvas-body">
           <div class="d-flex justify-content-sm-center">
-            <client-only>
-              <v-date-picker v-model="date_word" :masks="masks" :locale="locale" />
-            </client-only>
+            <v-date-picker v-model="date_word" :masks="masks" :locale="locale" />
           </div>
           <br>
           <div class="d-flex justify-content-sm-center">
