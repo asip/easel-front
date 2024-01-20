@@ -3,17 +3,15 @@
     <br>
     <div class="row col-sm-12">
       <div v-for="frame in frames" :key="frame.id" class="card col-sm-3 kadomaru">
-        <NuxtLink :to="`${frame.file_url}`" name="lm" class="mx-auto" style="padding-top: 10px;">
-          <img :src="`${frame.file_two_url}`" :alt="frame.name" class="card-img-top">
-        </NuxtLink>
-        <br>
-        <div class="card-block">
+        <div class="card-block" style="padding-top: 10px;padding-bottom: 10px;">
+          <NuxtLink :to="`${frame.file_url}`" name="lm" class="mx-auto" >
+            <img :src="`${frame.file_two_url}`" :alt="frame.name" class="card-img-top">
+          </NuxtLink>
+          <br>
           <div class="d-flex justify-content-sm-center">
-            <div class="mx-auto" style="padding-bottom: 10px;">
-              <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">
-                {{ frame.name }}
-              </NuxtLink>
-            </div>
+            <NuxtLink :to="`/frames/${frame.id}`" class="mx-auto">
+              {{ frame.name }}
+            </NuxtLink>
           </div>
         </div>
       </div>
