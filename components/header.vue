@@ -81,7 +81,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useLocale } from '~/composables/use_locale'
 
 const route = useRoute()
 
