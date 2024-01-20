@@ -20,7 +20,7 @@ export function useModal () {
     if (modalEl) {
       // @ts-ignore
       const modal = $bootstrap.Modal.getInstance(modalEl)
-      modal.hide()
+      modal?.hide()
     }
   }
 
