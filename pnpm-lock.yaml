@@ -83,8 +83,8 @@ devDependencies:
     specifier: ^2.9.5
     version: 2.9.5
   '@types/yaireo__tagify':
-    specifier: ^4.17.5
-    version: 4.17.5
+    specifier: ^4.18.0
+    version: 4.18.0
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -2209,8 +2209,8 @@ packages:
     resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
     dev: true
 
-  /@types/yaireo__tagify@4.17.5:
-    resolution: {integrity: sha512-nYk4xqky1ZnbgTlP7dO24GA/Kz4Q7mvNGNOsRPygnaVV8kBXIhROFVLG141Y0EF+TZKbmIMUolaJ+Z69Pr9FwQ==}
+  /@types/yaireo__tagify@4.18.0:
+    resolution: {integrity: sha512-iT1it1OyTiuZl7G9Gh2mTBGQ2dssiWChJpmD41/+zLux1x1r2tSroIZ+mXFvdsoqG1yprjd2x+taV+0u9QF9zA==}
     dependencies:
       '@types/react': 18.2.48
     dev: true
