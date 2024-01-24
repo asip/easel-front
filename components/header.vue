@@ -30,7 +30,7 @@
               data-bs-config="{backdrop:true}"
               data-bs-target="#login_modal"
             >
-              {{ $t('action.user.login') }}
+              <i class="bi bi-box-arrow-in-right" />&nbsp;{{ $t('action.user.login') }}
             </a>
           </li>
         </ul>
@@ -48,22 +48,22 @@
                   data-bs-config="{backdrop:true}"
                   data-bs-target="#profile_modal"
                 >
-                  {{ $t('model.user.model_name') }}
+                  <i class="bi bi-person-fill" />&nbsp;{{ $t('model.user.model_name') }}
                 </a>
               </li>
               <li>
                 <NuxtLink to="/account/frames" class="dropdown-item">
-                  {{ $t('action.user.frame_list') }}
+                  <i class="bi bi-list" />&nbsp;{{ $t('action.user.frame_list') }}
                 </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/frames/new" class="dropdown-item">
-                  {{ $t('action.frame.upload') }}
+                  <i class="bi bi-box-arrow-up" />&nbsp;{{ $t('action.frame.upload') }}
                 </NuxtLink>
               </li>
               <li>
                 <button type="button" class="dropdown-item" @click="onLogoutClick">
-                  {{ $t('action.user.logout') }}
+                  <i class="bi bi-box-arrow-right" />&nbsp;{{ $t('action.user.logout') }}
                 </button>
               </li>
             </ul>
