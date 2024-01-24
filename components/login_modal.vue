@@ -17,8 +17,8 @@
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
             <div class="col-sm-10">
-              <button class="btn btn-light btn-outline-secondary" @click="onSignupClick">
-                {{ $t('action.user.new') }}
+              <button class="btn btn-outline-secondary" @click="onSignupClick">
+                <i class="bi bi-person-plus-fill" />&nbsp;{{ $t('action.user.new') }}
               </button>
             </div>
           </div>
@@ -53,7 +53,7 @@
             <div class="row d-flex justify-content-sm-center">
               <div class="form-group col-sm-10">
             &nbsp;
-                <button type="button" class="btn btn-primary" @click="onLoginClick">
+                <button type="button" class="btn btn-outline-primary" @click="onLoginClick">
                   {{ $t('action.user.login') }}
                 </button>
               </div>
