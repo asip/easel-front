@@ -35,7 +35,7 @@
             <UsersPreviewImage :original="false" />
 
             <div class="row d-flex justify-content-sm-center">
-              <div class="col-sm-8">
+              <div class="col-sm-10">
                 <br>
                 <table class="table table-bordered table_rounded">
                   <tbody>
