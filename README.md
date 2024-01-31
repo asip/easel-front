@@ -4,7 +4,7 @@
 
 This is SPA Frontend of Easel.
 
-Nuxt3.9.2 + Bootstrap5
+Nuxt3.10.0 + Bootstrap5
 
 Look at the [backend](https://github.com/asip/easel-back)
 
