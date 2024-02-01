@@ -25,7 +25,7 @@ pnpm install --shamefully-hoist
 Make sure to set environment variables
 
 ```bash
-cp .env.sample .env
+cp .env.local.example .env
 ```
 
 ## Development Server

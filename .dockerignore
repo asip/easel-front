@@ -6,6 +6,7 @@
 # Ignore all environment files.
 /.env*
 !/.env.example
+!/.env.local.example
 
 # Ignore assets.
 /node_modules/
