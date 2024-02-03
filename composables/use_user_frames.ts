@@ -18,14 +18,11 @@ export function useUserFrames () {
 
   const frames = useState<Frame[]>('user.frames', () => { return [] })
 
-  const { backendApiURL } = useConstants()
-
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (user_id: string | undefined) => {
     const { data, error } = await useGetApi({
-      key: 'get_frames_by_user_id',
-      url: `${backendApiURL.value}/users/${user_id}/frames`,
+      url: `/users/${user_id}/frames`,
       query: {
         page: frame_query.value.page
       }

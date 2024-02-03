@@ -60,16 +60,13 @@ export const useFrame = () => {
 
   const { $i18n } = useNuxtApp()
 
-  const { backendApiURL } = useConstants()
-
   const { locale } = useLocale()
   const { login_user, clearLoginUser } = useLoginUser()
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
     const { data, error } = await useGetApi({
-      key: 'get_frame',
-      url: `${backendApiURL.value}/frames/${id}`
+      url: `/frames/${id}`
     })
 
     clearFlash()
@@ -126,8 +123,7 @@ export const useFrame = () => {
     // console.log(login_user.value.token)
 
     const { data, error, pending } = await usePostApi({
-      key: 'create_frame',
-      url: `${backendApiURL.value}/frames/`,
+      url: '/frames/',
       body: formData,
       token: login_user.value.token,
       locale: locale.value
@@ -213,8 +209,7 @@ export const useFrame = () => {
     // console.log(login_user.value.token)
 
     const { data, error, pending } = await usePutApi({
-      key: 'update_frame',
-      url: `${backendApiURL.value}/frames/${frame.id}`,
+      url: `/frames/${frame.id}`,
       body: postData,
       token: login_user.value.token,
       locale: locale.value
@@ -247,8 +242,7 @@ export const useFrame = () => {
     // console.log(frame.id)
 
     const { error, pending } = await useDeleteApi({
-      key: 'delete_frame',
-      url: `${backendApiURL.value}/frames/${frame.id}`,
+      url: `/frames/${frame.id}`,
       token: login_user.value.token
     })
 

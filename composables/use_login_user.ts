@@ -93,7 +93,6 @@ export const useLoginUser = () => {
 
   const { $i18n } = useNuxtApp()
 
-  const { backendApiURL } = useConstants()
   const access_token = useCookie('access_token', { sameSite: 'lax' })
 
   const { locale } = useLocale()
@@ -132,8 +131,7 @@ export const useLoginUser = () => {
     formData.append('user[password_confirmation]', signup_params.password_confirmation)
 
     const { data, error, pending } = await usePostApi({
-      key: 'signup',
-      url: `${backendApiURL.value}/users/`,
+      url: '/users/',
       body: formData,
       locale: locale.value
     })
@@ -168,8 +166,7 @@ export const useLoginUser = () => {
 
     if (login_user.value.token) {
       const { data, error } = await useGetApi({
-        key: 'authenticate',
-        url: `${backendApiURL.value}/profile`,
+        url: '/profile',
         token: login_user.value.token
       })
 
@@ -206,8 +203,7 @@ export const useLoginUser = () => {
     }
 
     const { data, error } = await usePostApi({
-      key: 'login',
-      url: `${backendApiURL.value}/sessions/`,
+      url: '/sessions/',
       body: postData,
       locale: locale.value
     })
@@ -246,8 +242,7 @@ export const useLoginUser = () => {
     }
 
     const { data, error } = await usePostApi({
-      key: 'login_with_google',
-      url: `${backendApiURL.value}/oauth/sessions/`,
+      url: '/oauth/sessions/',
       body: postData
     })
 
@@ -302,8 +297,7 @@ export const useLoginUser = () => {
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
     const { data, error, pending } = await usePutApi({
-      key: 'update_profile',
-      url: `${backendApiURL.value}/profile/`,
+      url: '/profile/',
       body: formData,
       token: user.value.token,
       locale: locale.value
@@ -394,8 +388,7 @@ export const useLoginUser = () => {
 
   const logout = async () => {
     const { data, error } = await useDeleteApi({
-      key: 'logout',
-      url: `${backendApiURL.value}/sessions/logout`,
+      url: '/sessions/logout',
       token: login_user.value.token
     })
 
@@ -420,8 +413,7 @@ export const useLoginUser = () => {
 
   const deleteAccount = async () => {
     const { data, error } = await useDeleteApi({
-      key: 'delete_account',
-      url: `${backendApiURL.value}/profile`,
+      url: '/profile',
       token: login_user.value.token
     })
 

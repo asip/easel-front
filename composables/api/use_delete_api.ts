@@ -1,8 +1,12 @@
 type DeleteAPIOptions = {
-  key:string, url:string, token?: string | null, locale?: string | null
+  url:string, token?: string | null, locale?: string | null
 }
 
-export const useDeleteApi = async ({ key, url, token = null, locale = null }: DeleteAPIOptions) => {
+export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteAPIOptions) => {
+  const { backendApiURL } = useConstants()
+
+  const fullURL = `${backendApiURL.value}${url}`
+
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -15,8 +19,8 @@ export const useDeleteApi = async ({ key, url, token = null, locale = null }: De
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, pending } = await useAsyncData(key, () =>
-    $fetch(url,
+  const { data, error, pending } = await useAsyncData(url, () =>
+    $fetch(fullURL,
       {
         method: 'delete',
         headers

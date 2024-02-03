@@ -27,14 +27,11 @@ export const useUser = () => {
     }
   })
 
-  const { backendApiURL } = useConstants()
-
   const { flash, clearFlash } = useFlash()
 
   const getUser = async (id: string) => {
     const { data, error } = await useGetApi({
-      key: 'get_user',
-      url: `${backendApiURL.value}/users/${id}`
+      url: `/users/${id}`
     })
 
     clearFlash()

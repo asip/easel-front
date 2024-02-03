@@ -38,8 +38,6 @@ export function useComment () {
 
   const { $i18n } = useNuxtApp()
 
-  const { backendApiURL } = useConstants()
-
   const { locale } = useLocale()
   const { login_user, clearLoginUser } = useLoginUser()
   const { flash, clearFlash } = useFlash()
@@ -47,8 +45,7 @@ export function useComment () {
   const getComments = async () => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi({
-      key: 'get_comments',
-      url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`
+      url: `/frames/${comment.frame_id}/comments`
     })
 
     clearFlash()
@@ -93,8 +90,7 @@ export function useComment () {
     }
 
     const { data, error, pending } = await usePostApi({
-      key: 'post_comment',
-      url: `${backendApiURL.value}/frames/${comment.frame_id}/comments`,
+      url: `/frames/${comment.frame_id}/comments`,
       body: postData,
       token: login_user.value.token,
       locale: locale.value
@@ -164,8 +160,7 @@ export function useComment () {
 
   const deleteComment = async (comment: Comment, idx: number) => {
     const { error } = await useDeleteApi({
-      key: 'delete_comment',
-      url: `${backendApiURL.value}/comments/${comment.id}`,
+      url: `/comments/${comment.id}`,
       token: login_user.value.token,
       locale: locale.value
     })

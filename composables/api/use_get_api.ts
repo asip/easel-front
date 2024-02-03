@@ -1,6 +1,10 @@
-type GetAPIOptions = { key:string, url:string, query?: any, token?: string | null }
+type GetAPIOptions = { url:string, query?: any, token?: string | null }
 
-export const useGetApi = async ({ key, url, query = {}, token = null }: GetAPIOptions) => {
+export const useGetApi = async ({ url, query = {}, token = null }: GetAPIOptions) => {
+  const { backendApiURL } = useConstants()
+
+  const fullURL = `${backendApiURL.value}${url}`
+
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -9,8 +13,8 @@ export const useGetApi = async ({ key, url, query = {}, token = null }: GetAPIOp
     headers.Authorization = `Bearer ${token}`
   }
 
-  const { data, error } = await useAsyncData(key, () =>
-    $fetch(url, {
+  const { data, error } = await useAsyncData(url, () =>
+    $fetch(fullURL, {
       method: 'get',
       query,
       headers

@@ -22,14 +22,11 @@ export const useFrameSearch = () => {
     }
   })
 
-  const { backendApiURL } = useConstants()
-
   const { flash, clearFlash } = useFlash()
 
   const searchFrame = async () => {
     const { data, error } = await useGetApi({
-      key: 'search_frame',
-      url: `${backendApiURL.value}/frames`,
+      url: '/frames',
       query: {
         q: frame_query.value.word,
         page: frame_query.value.page
