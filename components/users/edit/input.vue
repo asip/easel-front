@@ -157,5 +157,7 @@ const onBackClick = () => {
   openModal('#profile_modal')
 }
 
-provide('model', user)
+onMounted(() => {
+  provide('model', user)
+})
 </script>
