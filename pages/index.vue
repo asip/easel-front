@@ -49,9 +49,6 @@ if (q) {
   frame_query.value.word = q as string
 }
 
-// console.log('searchFrame: start')
-await searchFrame()
-
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await searchFrame()
@@ -68,4 +65,7 @@ onUpdated(() => {
 onUnmounted(() => {
   closeGallery()
 })
+
+// console.log('searchFrame: start')
+await searchFrame()
 </script>
