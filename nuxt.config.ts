@@ -3,7 +3,8 @@
 // @ts-ignore
 export default defineNuxtConfig({
   modules: [
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxt/test-utils/module'
   ],
 
   plugins: [
