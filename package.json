@@ -17,7 +17,7 @@
     "@nuxt/devtools": "1.0.8",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtjs/i18n": "8.0.1",
+    "@nuxtjs/i18n": "8.0.2",
     "@types/bootstrap": "^5.2.10",
     "@types/google.accounts": "^0.0.14",
     "@types/sanitize-html": "^2.9.5",
