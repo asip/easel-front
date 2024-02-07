@@ -11,7 +11,7 @@
         </div>
       </div>
       <br>
-      <UsersNewInput />
+      <UsersNewForm />
       <br>
     </div>
   </form>
