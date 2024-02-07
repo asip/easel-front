@@ -20,7 +20,7 @@
         </div>
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
-            <UsersEditInput />
+            <UsersEditForm />
             <br>
           </div>
         </div>
