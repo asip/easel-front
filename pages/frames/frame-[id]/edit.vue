@@ -1,29 +1,27 @@
 <template>
   <div>
     <br>
-    <form>
-      <div class="card col-sm-8 mx-auto">
-        <div class="card-block">
-          <div class="row d-flex">
-            <div class="clearfix">
-              <div class="float-start">
-                &nbsp;<NuxtLink :to="`/frames/${frame.id}`">
-                  <i class="bi bi-arrow-left-circle" />
-                </NuxtLink>
-              </div>
+    <div class="card col-sm-8 mx-auto">
+      <div class="card-block">
+        <div class="row d-flex">
+          <div class="clearfix">
+            <div class="float-start">
+              &nbsp;<NuxtLink :to="`/frames/${frame.id}`">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>
             </div>
           </div>
         </div>
-        <br>
-        <FramesPreviewImage :original="true" :photoswipe="false" />
-        <!-- unless @frame.confirming == 'true' -->
-        <FramesEditInput />
-        <!-- else -->
-        <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
-        <!-- end -->
       </div>
       <br>
-    </form>
+      <FramesPreviewImage :original="true" :photoswipe="false" />
+      <!-- unless @frame.confirming == 'true' -->
+      <FramesEditForm />
+      <!-- else -->
+      <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
+      <!-- end -->
+    </div>
+    <br>
   </div>
 </template>
 
