@@ -3,24 +3,21 @@ import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
 
 export function useImagePreview (target: HTMLInputElement, model: Frame | User | SignupParams) {
-  if ('file' in model) {
-    model.file = target.files![0]
-  } else if ('image' in model) {
-    model.image = target.files![0]
-  }
-
   const file: { name?: string, ext?: string, data?: Blob | null } = {}
   file.name = target.value
   file.ext = file?.name?.replace(/^.*\./, '').toLowerCase()
+  // (アップロードされたデータを取得して変数file.dataに代入します)
+  file.data = target.files![0]
+  // console.log(file.data)
+
+  if ('file' in model) {
+    model.file = file.data
+  } else if ('image' in model) {
+    model.image = file.data
+  }
+
   // console.log(file.name)
   if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
-    // (アップロードされたデータを取得して変数file.dataに代入します)
-    if ('file' in model) {
-      file.data = model?.file
-    } else if ('image' in model) {
-      file.data = model?.image
-    }
-    // console.log(file.data)
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
