@@ -74,11 +74,11 @@ devDependencies:
     specifier: ^12.1.0
     version: 12.1.0(eslint@8.56.0)(typescript@5.3.3)
   '@nuxtjs/i18n':
-    specifier: 8.0.2
-    version: 8.0.2(rollup@4.9.6)(vue@3.4.18)
+    specifier: 8.1.0
+    version: 8.1.0(rollup@4.9.6)(vue@3.4.18)
   '@testing-library/vue':
     specifier: 8.0.1
-    version: 8.0.1(@vue/compiler-sfc@3.4.15)(vue@3.4.18)
+    version: 8.0.1(@vue/compiler-sfc@3.4.18)(vue@3.4.18)
   '@types/bootstrap':
     specifier: ^5.2.10
     version: 5.2.10
@@ -1032,7 +1032,7 @@ packages:
       '@intlify/bundle-utils': 7.5.0(vue-i18n@9.9.1)
       '@intlify/shared': 9.9.1
       '@rollup/pluginutils': 5.1.0(rollup@4.9.6)
-      '@vue/compiler-sfc': 3.4.15
+      '@vue/compiler-sfc': 3.4.18
       debug: 4.3.4
       fast-glob: 3.3.2
       js-yaml: 4.1.0
@@ -1691,7 +1691,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.10.1(rollup@4.9.6)
       '@nuxt/schema': 3.10.1(rollup@4.9.6)
-      '@testing-library/vue': 8.0.1(@vue/compiler-sfc@3.4.15)(vue@3.4.18)
+      '@testing-library/vue': 8.0.1(@vue/compiler-sfc@3.4.18)(vue@3.4.18)
       '@vue/test-utils': 2.4.4(vue@3.4.18)
       c12: 1.6.1
       consola: 3.2.3
@@ -1831,8 +1831,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n@8.0.2(rollup@4.9.6)(vue@3.4.18):
-    resolution: {integrity: sha512-cIZc6PvSjSJ15FTol6XT8AV9jwF8OKu5pmPje/wsQeG41phQAqEGcLwv+3hrhZgBZhQ3k9w/asWl/uTWGqTgFw==}
+  /@nuxtjs/i18n@8.1.0(rollup@4.9.6)(vue@3.4.18):
+    resolution: {integrity: sha512-4J3rvqb8TAAwMWgQxU4qzu+61bJBm/4531ISN1dDG498zT4ozpwHC72noAd9h2iV6BpRA4wFASiqFMSMnFBBZQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/h3': 0.5.0
@@ -1842,7 +1842,7 @@ packages:
       '@miyaneee/rollup-plugin-json5': 1.2.0(rollup@4.9.6)
       '@nuxt/kit': 3.10.1(rollup@4.9.6)
       '@rollup/plugin-yaml': 4.1.2(rollup@4.9.6)
-      '@vue/compiler-sfc': 3.4.15
+      '@vue/compiler-sfc': 3.4.18
       debug: 4.3.4
       defu: 6.1.4
       estree-walker: 3.0.3
@@ -2357,7 +2357,7 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@testing-library/vue@8.0.1(@vue/compiler-sfc@3.4.15)(vue@3.4.18):
+  /@testing-library/vue@8.0.1(@vue/compiler-sfc@3.4.18)(vue@3.4.18):
     resolution: {integrity: sha512-l51ZEpjTQ6glq3wM+asQ1GbKJMGcxwgHEygETx0aCRN4TjFEGvMZy4YdWKs/y7bu4bmLrxcxhbEPP7iPSW/2OQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -2366,7 +2366,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.9
       '@testing-library/dom': 9.3.4
-      '@vue/compiler-sfc': 3.4.15
+      '@vue/compiler-sfc': 3.4.18
       '@vue/test-utils': 2.4.4(vue@3.4.18)
       vue: 3.4.18(typescript@5.3.3)
     transitivePeerDependencies:
