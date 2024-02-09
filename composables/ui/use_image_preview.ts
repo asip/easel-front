@@ -5,7 +5,7 @@ import type { User } from '~/interfaces/user'
 export function useImagePreview (target: HTMLInputElement, model: Frame | User | SignupParams) {
   const file: { name?: string, ext?: string, data?: Blob | null } = {}
   file.name = target.value
-  file.ext = file?.name?.replace(/^.*\./, '').toLowerCase()
+  file.ext = file.name?.replace(/^.*\./, '').toLowerCase()
   // (アップロードされたデータを取得して変数file.dataに代入します)
   file.data = target.files![0]
   // console.log(file.data)
@@ -17,7 +17,7 @@ export function useImagePreview (target: HTMLInputElement, model: Frame | User |
   }
 
   // console.log(file.name)
-  if (file?.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
+  if (file.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
@@ -29,8 +29,6 @@ export function useImagePreview (target: HTMLInputElement, model: Frame | User |
       }
     }
     // (DataURIScheme文字列を取得します)
-    if (file?.data) {
-      reader.readAsDataURL(file?.data)
-    }
+    reader.readAsDataURL(file.data)
   }
 }
