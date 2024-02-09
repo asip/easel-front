@@ -24,9 +24,7 @@ export function useImagePreview (target: HTMLInputElement, model: Frame | User |
     reader.onload = function () {
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = reader.result
-      if (model) {
-        model.preview_url = image as string
-      }
+      model.preview_url = image as string
     }
     // (DataURIScheme文字列を取得します)
     reader.readAsDataURL(file.data)
