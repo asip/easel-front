@@ -9,7 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import type { UseFrameType } from '~/composables/use_frame'
+import type { Frame } from '~/interfaces/frame';
 
-const { frame } = inject('framer') as UseFrameType
+defineProps<{
+  frame: Frame
+}>()
 </script>

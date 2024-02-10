@@ -31,7 +31,7 @@
       </div>
       <div class="card-body">
         <FramesPreviewImage :frame="frame" :original="true" :photoswipe="true" />
-        <FramesPreviewTags />
+        <FramesPreviewTags :frame="frame" />
       </div>
       <div class="card-body">
         <div class="row d-flex justify-content-sm-center">
