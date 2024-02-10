@@ -74,9 +74,9 @@
         </div>
       </div>
     </div>
-    <FramesDeleteModal />
+    <FramesDeleteModal :frame="frame" />
     <br>
-    <FramesCommentList />
+    <FramesComments :frame="frame" />
   </div>
 </template>
 

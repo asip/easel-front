@@ -59,7 +59,11 @@
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 import type { UseCommentType } from '~/composables/use_comment'
-import type { UseFrameType } from '~/composables/use_frame'
+import type { Frame } from '~/interfaces/frame';
+
+const props = defineProps<{
+  frame: Frame
+}>()
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
@@ -67,9 +71,7 @@ const { comment, cm_rules, error_messages, processing, isSuccess, flash, locale,
 
 const v$ = useVuelidate(cm_rules, comment)
 
-const { frame } = inject('framer') as UseFrameType
-
-comment.frame_id = frame?.id
+comment.frame_id = props.frame.id
 
 const onCommentClick = async () => {
   // @ts-ignore
