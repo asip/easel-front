@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="card-body">
-        <FramesPreviewImage :original="true" :photoswipe="true" />
+        <FramesPreviewImage :frame="frame" :original="true" :photoswipe="true" />
         <FramesPreviewTags />
       </div>
       <div class="card-body">

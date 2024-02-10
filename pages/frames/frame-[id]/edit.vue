@@ -14,7 +14,7 @@
         </div>
       </div>
       <br>
-      <FramesPreviewImage :original="true" :photoswipe="false" />
+      <FramesPreviewImage :frame="frame" :original="true" :photoswipe="false" />
       <!-- unless @frame.confirming == 'true' -->
       <FramesEditForm />
       <!-- else -->
