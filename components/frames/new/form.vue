@@ -18,7 +18,7 @@
               </tr>
               <tr v-if="frame.file !== null">
                 <td colspan="2">
-                  <ImagePreview />
+                  <ImagePreview :model="frame" />
                 </td>
               </tr>
               <tr>
@@ -97,8 +97,6 @@ const v$ = useVuelidate(frm_rules, frame)
 // console.log(frame)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
-
-provide('model', frame)
 
 const onSelectFile = (event: Event) => {
   const target = event.target as HTMLInputElement

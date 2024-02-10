@@ -17,7 +17,7 @@
             </tr>
             <tr v-if="signup_params.image !== null">
               <td colspan="2">
-                <ImagePreview />
+                <ImagePreview :model="signup_params" />
               </td>
             </tr>
             <tr>
@@ -122,6 +122,4 @@ const onSignupClick = async () => {
     }
   }
 }
-
-provide('model', signup_params)
 </script>

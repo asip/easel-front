@@ -17,7 +17,7 @@
             </tr>
             <tr v-if="user.image !== null">
               <td colspan="2">
-                <ImagePreview />
+                <ImagePreview :model="user" />
               </td>
             </tr>
             <tr v-if="!user.social_login">
@@ -156,8 +156,4 @@ const onBackClick = () => {
   closeModal('#edit_profile_modal')
   openModal('#profile_modal')
 }
-
-onMounted(() => {
-  provide('model', user)
-})
 </script>

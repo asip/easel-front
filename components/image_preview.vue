@@ -9,13 +9,19 @@
 import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
 
-const model = inject('model') as Frame | User
+const props = defineProps<{
+  model: Frame | User | SignupParams
+}>()
 
-if (model) {
-  if ('file' in model) {
-    model.preview_url = `${model?.file_three_url}`
-  } else if ('image' in model) {
-    model.preview_url = `${model?.image_three_url}`
+const model = computed(() => {
+  return props.model
+})
+
+if ('file' in model.value) {
+  model.value.preview_url = `${model.value.file_three_url}`
+} else if ('image' in model.value) {
+  if ('image_three_url' in model.value) {
+    model.value.preview_url = `${model.value.image_three_url}`
   }
 }
 </script>
