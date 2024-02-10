@@ -17,12 +17,11 @@ import { useLightbox } from '~/composables/ui/use_lightbox'
 import type { User } from '~/interfaces/user'
 
 const props = defineProps<{
-  original: boolean
+  original: boolean,
+  user: User
 }>()
 
 const { initLMLightbox, closeLightbox } = useLightbox()
-
-const user: User | undefined = inject('user')
 
 // console.log(login_user?.value.image_three_url)
 

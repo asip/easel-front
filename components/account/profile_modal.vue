@@ -32,7 +32,7 @@
         </div>
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
-            <UsersPreviewImage :original="false" />
+            <UsersPreviewImage :user="login_user" :original="false" />
 
             <div class="row d-flex justify-content-sm-center">
               <div class="col-sm-10">

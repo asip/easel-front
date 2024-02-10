@@ -15,7 +15,7 @@
           {{ user.name }}
         </div>
         <br>
-        <UsersPreviewImage :original="false" />
+        <UsersPreviewImage :user="user" :original="false" />
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-6 text-center">
             <div v-if="logged_in && user.id != login_user.id">
