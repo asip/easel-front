@@ -1,6 +1,6 @@
 import { helpers } from '@vuelidate/validators'
 
-export default function(size: number) {
+export default function (size: number) {
   return (value: string[]) => {
     let res = true
     value.forEach((tag) => {

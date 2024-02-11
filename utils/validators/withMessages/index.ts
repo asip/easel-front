@@ -1,4 +1,4 @@
-import tagArrayLength from "./tagArrayLength";
-import tagLength from "./tagLength";
+import tagArrayLength from './tagArrayLength'
+import tagLength from './tagLength'
 
 export { tagArrayLength, tagLength }

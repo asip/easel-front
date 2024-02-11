@@ -1,6 +1,6 @@
-import tagLength from "../raw/tagLength"
+import tagLength from '../raw/tagLength'
 
-export default function(size: number){
+export default function (size: number) {
   return {
     $validator: tagLength(size),
     $message: ({ $params }: { $params: any }) => `are limited to ${$params.size} characters.`,
