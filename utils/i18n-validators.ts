@@ -1,5 +1,6 @@
 import * as validators from '@vuelidate/validators'
 import { createI18n } from 'vue-i18n'
+import { tagLength as tagLength_, tagArrayLength as tagArrayLength_ } from './validators/index'
 
 export const i18n = createI18n({
   legacy: false,
@@ -9,12 +10,12 @@ export const i18n = createI18n({
     en: {
       validations: {
         required: 'Required.',
-        tagArrayLength: 'are limited to 5.',
         email: 'is invalid format.',
         minLength: 'More than {min} characters.',
         maxLength: 'are limited to {max} characters.',
         sameAs: "Passwords don't match.",
-        tagLength: 'are limited to 10 characters.'
+        tagArrayLength: 'are limited to {size}.',
+        tagLength: 'are limited to {size} characters.'
       }
     },
     ja: {
@@ -23,9 +24,9 @@ export const i18n = createI18n({
         email: '正しいメールアドレスの形式で入力してください。',
         minLength: '{min}文字以上です。',
         maxLength: '{max}文字までです。',
-        tagArrayLength: '５つまでです。',
         sameAs: 'パスワードとパスワード(確認)の入力が一致しません。',
-        tagLength: '10文字までです。'
+        tagArrayLength: '{size}つまでです。',
+        tagLength: '{size}文字までです。'
       }
     }
   }
@@ -51,28 +52,9 @@ export const sameAs = withI18nMessage(validators.sameAs, {
   withArguments: true
 })
 
-const tagArrayLength_ = (size: number) => validators.helpers.withParams(
-  { type: 'tagLength', value: size },
-  (value: string) => {
-    return !validators.helpers.req(value) || value.length <= size
-  }
-)
-
 export const tagArrayLength = withI18nMessage(tagArrayLength_, {
   withArguments: true
 })
-
-const tagLength_ = (size: number) => validators.helpers.withParams(
-  { type: 'tagLength', value: size },
-  (value: string[]) => {
-    let res = true
-    value.forEach((tag) => {
-      const res_row = tag.length > size
-      if (res_row) { res = false }
-    })
-    return !validators.helpers.req(value) || res
-  }
-)
 
 export const tagLength = withI18nMessage(tagLength_, {
   withArguments: true
