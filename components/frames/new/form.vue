@@ -98,8 +98,8 @@ const v$ = useVuelidate(frm_rules, frame)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
 
-const onSelectFile = (event: Event) => {
-  const target = event.target as HTMLInputElement
+const onSelectFile = (evt: Event) => {
+  const target = evt.target as HTMLInputElement
   useImagePreview(target, frame)
 }
 

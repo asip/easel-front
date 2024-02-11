@@ -130,8 +130,8 @@ onMounted(() => {
   setUser(login_user)
 })
 
-const onSelectFile = (event: Event) => {
-  const target = event.target as HTMLInputElement
+const onSelectFile = (evt: Event) => {
+  const target = evt.target as HTMLInputElement
   useImagePreview(target, user.value)
 }
 

@@ -104,8 +104,8 @@ const { signup_params, su_rules, signup, error_messages, processing, isSuccess, 
 
 const v$ = useVuelidate(su_rules, signup_params)
 
-const onSelectFile = (event: Event) => {
-  const target = event.target as HTMLInputElement
+const onSelectFile = (evt: Event) => {
+  const target = evt.target as HTMLInputElement
   useImagePreview(target, signup_params)
 }
 
