@@ -60,6 +60,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
 import type { UseCommentType } from '~/composables/use_comment'
 import type { Frame } from '~/interfaces/frame'
+import { useCommentRule } from '~/composables/validation/use_comment_rule'
 
 const props = defineProps<{
   frame: Frame
@@ -67,9 +68,10 @@ const props = defineProps<{
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
-const { comment, cm_rules, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
+const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
+const comment_rule = useCommentRule()
 
-const v$ = useVuelidate(cm_rules, comment)
+const v$ = useVuelidate(comment_rule, comment)
 
 comment.frame_id = props.frame.id
 

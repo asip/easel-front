@@ -4,12 +4,7 @@ import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
 import { useDeleteApi } from './api/use_delete_api'
 import { useLocale } from '~/composables/use_locale'
-import { required } from '~/utils/i18n-validators'
 import type { Comment } from '~/interfaces/comment'
-
-const cm_rules = {
-  body: { required }
-}
 
 export function useComment () {
   const comment: Comment = reactive<Comment>({
@@ -191,7 +186,6 @@ export function useComment () {
     comments,
     error_messages,
     getComments,
-    cm_rules,
     createComment,
     deleteComment,
     processing,
