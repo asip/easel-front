@@ -98,11 +98,13 @@
 import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 import { useToast } from '~/composables/ui/use_toast'
+import { useSignupRule } from '~/composables/validation/use_signup_rule'
 
 const { setFlash } = useToast()
-const { signup_params, su_rules, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { signup_params, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const signup_rule = useSignupRule(signup_params)
 
-const v$ = useVuelidate(su_rules, signup_params)
+const v$ = useVuelidate(signup_rule, signup_params)
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement

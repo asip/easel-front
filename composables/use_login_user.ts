@@ -2,7 +2,6 @@ import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
 import { usePutApi } from './api/use_put_api'
 import { useDeleteApi } from './api/use_delete_api'
-import { required, email, minLength, maxLength, sameAs } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
 import type { CredentialResponse } from '~/interfaces/credential_response'
@@ -57,10 +56,10 @@ export const useLoginUser = () => {
   )
 
   const signup_params = reactive<SignupParams>({
-    image: null,
-    preview_url: null,
     name: '',
     email: '',
+    image: null,
+    preview_url: null,
     password: '',
     password_confirmation: ''
   })
@@ -97,24 +96,6 @@ export const useLoginUser = () => {
 
   const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
-
-  const su_rules = computed(() => {
-    return {
-      name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-      email: { required, email },
-      password: { required, minLength: minLength(3) },
-      password_confirmation: { required, sameAs: sameAs(signup_params.password) }
-    }
-  })
-
-  const usr_rules = computed(() => {
-    return {
-      name: { required, minLength: minLength(3), maxLength: maxLength(40) },
-      email: { required, email },
-      password: {},
-      password_confirmation: { sameAs: sameAs(user.value.password) }
-    }
-  })
 
   const signup = async () => {
     processing.value = true
@@ -472,8 +453,6 @@ export const useLoginUser = () => {
     deleteAccount,
     clearLoginUser,
     login_messages,
-    usr_rules,
-    su_rules,
     error_messages,
     locale
   }

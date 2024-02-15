@@ -119,12 +119,14 @@ import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
+import { useUserRule } from '~/composables/validation/use_user_rule'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { logged_in, login_user, user, usr_rules, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { logged_in, login_user, user, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const user_rule = useUserRule(user.value)
 
-const v$ = useVuelidate(usr_rules, user)
+const v$ = useVuelidate(user_rule, user)
 
 onMounted(() => {
   setUser(login_user)
