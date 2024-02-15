@@ -2,15 +2,9 @@ import { useGetApi } from './api/use_get_api'
 import { usePostApi } from './api/use_post_api'
 import { usePutApi } from './api/use_put_api'
 import { useDeleteApi } from './api/use_delete_api'
-import { required, minLength, maxLength, tagArrayLength, tagLength } from '~~/utils/i18n-validators'
 import { useLocale } from '~/composables/use_locale'
 import type { RefQuery } from '~/interfaces/ref_query'
 import type { Frame } from '~/interfaces/frame'
-
-const frm_rules = {
-  name: { required, minLength: minLength(1), maxLength: maxLength(20) },
-  tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
-}
 
 export const useFrame = () => {
   const frame: Frame = reactive<Frame>({
@@ -269,7 +263,6 @@ export const useFrame = () => {
     frame,
     refQuery,
     frameId,
-    frm_rules,
     updateFrame,
     createFrame,
     deleteFrame,
