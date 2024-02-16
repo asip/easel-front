@@ -32,7 +32,7 @@
     "nuxt": "^3.10.1",
     "playwright-core": "^1.41.2",
     "vitest": "^1.2.2",
-    "vue": "3.4.18",
+    "vue": "3.4.19",
     "vue-router": "4.2.5"
   },
   "dependencies": {
