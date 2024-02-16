@@ -6,15 +6,6 @@ import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
 import type { CredentialResponse } from '~/interfaces/credential_response'
 
-export interface SignupParams {
-  image: Blob | null | undefined
-  preview_url: string | null | undefined
-  name: string
-  email: string
-  password: string
-  password_confirmation: string
-}
-
 export const useLoginUser = () => {
   const login_params = reactive({
     email: '',
@@ -55,15 +46,6 @@ export const useLoginUser = () => {
     }
   )
 
-  const signup_params = reactive<SignupParams>({
-    name: '',
-    email: '',
-    image: null,
-    preview_url: null,
-    password: '',
-    password_confirmation: ''
-  })
-
   const logged_in = useState<Boolean>('logged_in', () => {
     return false
   })
@@ -99,17 +81,17 @@ export const useLoginUser = () => {
 
   const signup = async () => {
     processing.value = true
-    // console.log(signup_params.image)
+    // console.log(user.image)
 
     const formData = new FormData()
 
-    if (signup_params.image) {
-      formData.append('user[image]', signup_params.image)
+    if (user.value.image) {
+      formData.append('user[image]', user.value.image)
     }
-    formData.append('user[name]', signup_params.name)
-    formData.append('user[email]', signup_params.email)
-    formData.append('user[password]', signup_params.password)
-    formData.append('user[password_confirmation]', signup_params.password_confirmation)
+    formData.append('user[name]', user.value.name)
+    formData.append('user[email]', user.value.email)
+    formData.append('user[password]', user.value.password)
+    formData.append('user[password_confirmation]', user.value.password_confirmation)
 
     const { data, error, pending } = await usePostApi({
       url: '/users/',
@@ -265,7 +247,7 @@ export const useLoginUser = () => {
 
   const updateProfile = async () => {
     processing.value = true
-    // console.log(signup_params.image)
+    // console.log(user.image)
 
     const formData = new FormData()
 
@@ -437,7 +419,6 @@ export const useLoginUser = () => {
   return {
     login_user,
     user,
-    signup_params,
     logged_in,
     login_params,
     signup,

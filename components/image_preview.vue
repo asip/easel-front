@@ -10,7 +10,7 @@ import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
 
 const props = defineProps<{
-  model: Frame | User | SignupParams
+  model: Frame | User
 }>()
 
 const model = computed(() => {
@@ -20,8 +20,6 @@ const model = computed(() => {
 if ('file' in model.value) {
   model.value.preview_url = `${model.value.file_three_url}`
 } else if ('image' in model.value) {
-  if ('image_three_url' in model.value) {
-    model.value.preview_url = `${model.value.image_three_url}`
-  }
+  model.value.preview_url = `${model.value.image_three_url}`
 }
 </script>

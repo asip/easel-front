@@ -15,9 +15,9 @@
                 </div>
               </td>
             </tr>
-            <tr v-if="signup_params.image !== null">
+            <tr v-if="user.image !== null">
               <td colspan="2">
-                <ImagePreview :model="signup_params" />
+                <ImagePreview :model="user" />
               </td>
             </tr>
             <tr>
@@ -25,7 +25,7 @@
                 <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
               </td>
               <td>
-                <input v-model="signup_params.name" type="text" :placeholder="$t('model.user.name')" class="form-control">
+                <input v-model="user.name" type="text" :placeholder="$t('model.user.name')" class="form-control">
                 <div v-for="error of v$.name.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -39,7 +39,7 @@
                 <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
               </td>
               <td>
-                <input v-model="signup_params.email" type="text" :placeholder="$t('model.user.email')" class="form-control">
+                <input v-model="user.email" type="text" :placeholder="$t('model.user.email')" class="form-control">
                 <div v-for="error of v$.email.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -53,7 +53,7 @@
                 <label for="password" class="col-form-label">{{ $t('model.user.password') }}：</label>
               </td>
               <td>
-                <input v-model="signup_params.password" type="password" :placeholder="$t('model.user.password')" class="form-control">
+                <input v-model="user.password" type="password" :placeholder="$t('model.user.password')" class="form-control">
                 <div v-for="error of v$.password.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -67,7 +67,7 @@
                 <label for="password_confirmation" class="col-form-label">{{ $t('model.user.password_confirmation') }}：</label>
               </td>
               <td>
-                <input v-model="signup_params.password_confirmation" type="password" :placeholder="$t('model.user.password_confirmation')" class="form-control">
+                <input v-model="user.password_confirmation" type="password" :placeholder="$t('model.user.password_confirmation')" class="form-control">
                 <div v-for="error of v$.password_confirmation.$errors" :key="error.$uid">
                   <div>{{ error.$message }}</div>
                 </div>
@@ -101,14 +101,14 @@ import { useToast } from '~/composables/ui/use_toast'
 import { useSignupRule } from '~/composables/validation/use_signup_rule'
 
 const { setFlash } = useToast()
-const { signup_params, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
-const signup_rule = useSignupRule(signup_params)
+const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const signup_rule = useSignupRule(user.value)
 
-const v$ = useVuelidate(signup_rule, signup_params)
+const v$ = useVuelidate(signup_rule, user)
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview(target, signup_params)
+  useImagePreview(target, user.value)
 }
 
 const onSignupClick = async () => {

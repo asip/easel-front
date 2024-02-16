@@ -1,6 +1,6 @@
-import type { SignupParams } from '../use_login_user'
+import type { User } from '~/interfaces/user'
 
-export function useSignupRule (user: SignupParams) {
+export function useSignupRule (user: User) {
   const siginup_rule = computed(() => {
     return {
       name: { required, minLength: minLength(3), maxLength: maxLength(40) },

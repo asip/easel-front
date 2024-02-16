@@ -1,8 +1,7 @@
-import type { SignupParams } from './../use_login_user'
 import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
 
-export function useImagePreview (target: HTMLInputElement, model: Frame | User | SignupParams) {
+export function useImagePreview (target: HTMLInputElement, model: Frame | User) {
   const file: { name?: string, ext?: string, data?: Blob | null } = {}
   file.name = target.value
   file.ext = file.name?.replace(/^.*\./, '').toLowerCase()
