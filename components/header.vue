@@ -75,7 +75,7 @@
       </div>
     </div>
   </nav>
-  <LoginModal />
+  <AccountLoginModal />
   <AccountProfileModal />
   <AccountEditModal />
 </template>
