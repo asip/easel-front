@@ -37,8 +37,7 @@
                   <label for="tag_list" class="col-form-label">{{ $t('model.frame.tag_list') }}：</label>
                 </td>
                 <td>
-                  <input ref="tagEditorRef" type="text" name="tag_editor" value="" class="form-control">
-                  <input id="tag_list" v-model="frame.tag_list" type="hidden">
+                  <TagEdit v-model="frame" />
                   <div v-for="error of v$.tags.$errors" :key="error.$uid">
                     <div>{{ error.$message }}</div>
                   </div>
@@ -83,12 +82,10 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
-import { useTagEditor } from '~/composables/ui/use_tag_editor'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 import type { UseFrameType } from '~/composables/use_frame'
 import { useFrameRule } from '~/composables/validation/use_frame_rule'
 
-const { tagEditorRef, initTagEditor, closeTagEditor } = useTagEditor()
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
@@ -121,13 +118,4 @@ const onCreateClick = async () => {
     }
   }
 }
-
-onMounted(() => {
-  // console.log(frame)
-  initTagEditor(frame)
-})
-
-onUnmounted(() => {
-  closeTagEditor()
-})
 </script>
