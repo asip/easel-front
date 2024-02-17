@@ -1,7 +1,7 @@
 import Tagify from '@yaireo/tagify'
 import type { Frame } from '~/interfaces/frame'
 
-export function useFrameTagEditor () {
+export function useTagEditor () {
   const tagEditorRef = ref(null)
 
   let tagEditor: Tagify | null = null

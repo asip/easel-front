@@ -83,12 +83,12 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use_toast'
-import { useFrameTagEditor } from '~/composables/ui/use_frame_tag_editor'
+import { useTagEditor } from '~/composables/ui/use_tag_editor'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 import type { UseFrameType } from '~/composables/use_frame'
 import { useFrameRule } from '~/composables/validation/use_frame_rule'
 
-const { tagEditorRef, initTagEditor, closeTagEditor } = useFrameTagEditor()
+const { tagEditorRef, initTagEditor, closeTagEditor } = useTagEditor()
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
