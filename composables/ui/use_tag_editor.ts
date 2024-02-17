@@ -6,7 +6,7 @@ export function useTagEditor () {
 
   let tagEditor: Tagify | null = null
 
-  const initTagEditor = (frame: Frame) => {
+  const initTagEditor = (model: Frame) => {
     const elmTe: HTMLInputElement | null = tagEditorRef.value
 
     if (elmTe) {
@@ -22,14 +22,14 @@ export function useTagEditor () {
       })
 
       tagEditor.removeAllTags()
-      if (frame?.tags) {
-        tagEditor.addTags(frame?.tags)
+      if (model?.tags) {
+        tagEditor.addTags(model?.tags)
       }
 
       const saveTagList = () => {
-        if (frame && tagEditor) {
-          frame.tags = tagEditor.value.map(v => v.value)
-          frame.tag_list = frame.tags?.join(',')
+        if (model && tagEditor) {
+          model.tags = tagEditor.value.map(v => v.value)
+          model.tag_list = model.tags?.join(',')
         }
       }
 
