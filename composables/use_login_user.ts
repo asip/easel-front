@@ -231,6 +231,11 @@ export const useLoginUser = () => {
     login_messages.value = []
   }
 
+  const resetLoginParams = () => {
+    login_params.email = ''
+    login_params.password = ''
+  }
+
   const setJson2LoginUser = (resource: any) => {
     Object.assign(login_user.value, resource)
   }
@@ -429,6 +434,7 @@ export const useLoginUser = () => {
     isSuccess,
     flash,
     login,
+    resetLoginParams,
     login_with_google,
     logout,
     deleteAccount,
