@@ -20,7 +20,7 @@
         tabindex="-1"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasLabel" class="offcanvas-title" />
+          <!-- <h5 id="offcanvasLabel" class="offcanvas-title" /> -->
           <button
             type="button"
             class="btn-close text-reset"
