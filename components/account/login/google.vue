@@ -17,7 +17,7 @@ const googleButtonRef = ref(null)
 onMounted(() => {
   const googleButton = googleButtonRef.value
 
-  if (googleButton) {
+  if (google && googleButton) {
     google.accounts.id.initialize({
       client_id: googleClientID,
       callback: handleCredentialResponse // method to run after user clicks the Google sign in button
