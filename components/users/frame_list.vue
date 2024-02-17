@@ -58,6 +58,9 @@ if (props.userId) {
   frame_query.value.user_id = props.userId
 }
 
+// console.log('searchFrame: start')
+await getFrames(props.userId)
+
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await getFrames(props.userId)
@@ -74,7 +77,4 @@ onUpdated(() => {
 onUnmounted(() => {
   closeGallery()
 })
-
-// console.log('searchFrame: start')
-await getFrames(props.userId)
 </script>
