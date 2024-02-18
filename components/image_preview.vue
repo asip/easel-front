@@ -12,18 +12,18 @@ import type { User } from '~/interfaces/user'
 const modelValue = defineModel<Frame | User>()
 
 const preview_url = computed(() => {
-if (modelValue.value && 'file' in modelValue.value) {
-  if(!modelValue.value.file){
-    return `${modelValue.value.file_three_url}`
-  } else {
-    return modelValue.value.preview_url
+  if (modelValue.value && 'file' in modelValue.value) {
+    if (!modelValue.value.file) {
+      return `${modelValue.value.file_three_url}`
+    } else {
+      return modelValue.value.preview_url
+    }
+  } else if (modelValue.value && 'image' in modelValue.value) {
+    if (!modelValue.value.image) {
+      return `${modelValue.value.image_three_url}`
+    } else {
+      return modelValue.value.preview_url
+    }
   }
-} else if (modelValue.value && 'image' in modelValue.value) {
-  if(!modelValue.value.image){
-    return `${modelValue.value.image_three_url}`
-  } else {
-    return modelValue.value.preview_url
-  }
-}
 })
 </script>
