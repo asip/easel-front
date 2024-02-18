@@ -11,8 +11,6 @@ const modelValue = defineModel<Frame>()
 
 const frame = computed(() => modelValue.value)
 
-console.log(modelValue.value)
-
 const commenter = useComment()
 const { comment } = commenter
 
