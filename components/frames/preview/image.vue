@@ -1,14 +1,14 @@
 <template>
   <div v-if="props.original" id="gallery" ref="galleryRef" class="d-flex justify-content-sm-center">
-    <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${frame?.file_url}`" data-pswp-width="" data-pswp-height="">
-      <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
+    <NuxtLink v-if="props.photoswipe" class="mx-auto" :to="`${modelValue?.file_url}`" data-pswp-width="" data-pswp-height="">
+      <img :src="`${modelValue?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
-    <NuxtLink v-else id="image" class="mx-auto" :to="`${frame?.file_url}`">
-      <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
+    <NuxtLink v-else id="image" class="mx-auto" :to="`${modelValue?.file_url}`">
+      <img :src="`${modelValue?.file_three_url}`" alt="" class="mx-auto">
     </NuxtLink>
   </div>
   <div v-else class="d-flex justify-content-sm-center">
-    <img :src="`${frame?.file_three_url}`" alt="" class="mx-auto">
+    <img :src="`${modelValue?.file_three_url}`" alt="" class="mx-auto">
   </div>
   <br>
 </template>
@@ -17,10 +17,11 @@
 import { useLightbox } from '~/composables/ui/use_lightbox'
 import type { Frame } from '~/interfaces/frame'
 
+const modelValue = defineModel<Frame>()
+
 const props = defineProps<{
   original: boolean,
   photoswipe: boolean
-  frame: Frame
 }>()
 
 const { galleryRef, initPSLightbox, initLMLightbox, closeLightbox } = useLightbox()

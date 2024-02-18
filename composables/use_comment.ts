@@ -7,7 +7,7 @@ import { useLocale } from '~/composables/use_locale'
 import type { Comment } from '~/interfaces/comment'
 
 export function useComment () {
-  const comment: Comment = reactive<Comment>({
+  const comment: Ref<Comment> = ref<Comment>({
     id: 0,
     frame_id: null,
     body: '',
@@ -17,14 +17,14 @@ export function useComment () {
     updated_at: null
   })
 
-  const comments: Comment[] = reactive<Comment[]>([])
+  const comments: Ref<Comment[]> = ref<Comment[]>([])
 
   interface ErrorMessages{
     body: string[]
     base: string[]
   }
 
-  const error_messages = reactive<ErrorMessages>({
+  const error_messages = ref<ErrorMessages>({
     body: [],
     base: []
   })
@@ -40,7 +40,7 @@ export function useComment () {
   const getComments = async () => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi({
-      url: `/frames/${comment.frame_id}/comments`
+      url: `/frames/${comment.value.frame_id}/comments`
     })
 
     clearFlash()
@@ -59,10 +59,10 @@ export function useComment () {
 
       if (commentList) {
         // console.log(comment_list);
-        comments.splice(0)
+        comments.value.splice(0)
         for (const commentAttrs of commentList as any[]) {
           // console.log(comment);
-          comments.push(createCommentFromJson(commentAttrs.attributes))
+          comments.value.push(createCommentFromJson(commentAttrs.attributes))
         }
         // console.log(comments);
       }
@@ -80,12 +80,12 @@ export function useComment () {
 
     const postData = {
       comment: {
-        body: comment.body
+        body: comment.value.body
       }
     }
 
     const { data, error, pending } = await usePostApi({
-      url: `/frames/${comment.frame_id}/comments`,
+      url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: login_user.value.token,
       locale: locale.value
@@ -106,7 +106,7 @@ export function useComment () {
     } else if (data.value) {
       const { data: commentAttrs, errors } = data.value as any
       if (commentAttrs) {
-        comment.body = ''
+        comment.value.body = ''
       } else if (errors) {
         setErrorMessages(errors)
       }
@@ -122,27 +122,27 @@ export function useComment () {
     await postComment()
 
     if (isSuccess()) {
-      comments.splice(0)
+      comments.value.splice(0)
     }
   }
 
   const setErrorMessages = (errors: any) => {
     if (errors.body) {
-      error_messages.body = errors.body
+      error_messages.value.body = errors.body
     } else {
-      error_messages.body = []
+      error_messages.value.body = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.body = []
-    error_messages.base = []
+    error_messages.value.body = []
+    error_messages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.body.length > 0 || error_messages.base.length > 0) {
+    if (error_messages.value.body.length > 0 || error_messages.value.base.length > 0) {
       result = false
     }
 
@@ -177,7 +177,7 @@ export function useComment () {
     }
 
     if (isSuccess()) {
-      comments.splice(idx, 1)
+      comments.value.splice(idx, 1)
     }
   }
 

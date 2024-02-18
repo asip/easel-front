@@ -15,7 +15,7 @@
           {{ user.name }}
         </div>
         <br>
-        <UsersPreviewImage :user="user" :original="false" />
+        <UsersPreviewImage v-model="user" :original="false" />
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-6 text-center">
             <div v-if="logged_in && user.id != login_user.id">
@@ -69,10 +69,10 @@ const onPageBack = () => {
 }
 
 const onFollowClick = async () => {
-  await follow(user.id)
+  await follow(user.value.id)
 }
 
 const onUnfollowClick = async () => {
-  await unfollow(user.id)
+  await unfollow(user.value.id)
 }
 </script>

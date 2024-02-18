@@ -30,8 +30,8 @@
         </div>
       </div>
       <div class="card-body">
-        <FramesPreviewImage :frame="frame" :original="true" :photoswipe="true" />
-        <FramesPreviewTags :frame="frame" />
+        <FramesPreviewImage v-model="frame" :original="true" :photoswipe="true" />
+        <FramesPreviewTags v-model="frame" />
       </div>
       <div class="card-body">
         <div class="row d-flex justify-content-sm-center">
@@ -74,9 +74,9 @@
         </div>
       </div>
     </div>
-    <FramesDeleteModal :frame="frame" />
+    <FramesDeleteModal />
     <br>
-    <FramesComments :frame="frame" />
+    <FramesComments v-model="frame" />
   </div>
 </template>
 
@@ -102,7 +102,7 @@ const frame_id = id as string
 await getFrame(frame_id)
 
 const sanitizedComment = computed(() => {
-  return sanitizeHtml(frame.comment).replace(/\n/g, '<br>')
+  return sanitizeHtml(frame.value.comment).replace(/\n/g, '<br>')
 })
 
 const onPageBack = () => {

@@ -18,7 +18,7 @@
               </tr>
               <tr v-if="frame.file !== null">
                 <td colspan="2">
-                  <ImagePreview :model="frame" />
+                  <ImagePreview v-model="frame" />
                 </td>
               </tr>
               <tr>
@@ -99,7 +99,7 @@ const v$ = useVuelidate(frame_rule, frame)
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview(target, frame)
+  useImagePreview(target, frame.value)
 }
 
 const onCreateClick = async () => {

@@ -1,6 +1,6 @@
 <template>
-  <div v-if="model?.preview_url" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
-    <img :src="model.preview_url" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
+  <div v-if="preview_url" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
+    <img :src="preview_url" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
     <br>
   </div>
 </template>
@@ -9,17 +9,13 @@
 import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
 
-const props = defineProps<{
-  model: Frame | User
-}>()
+const modelValue = defineModel<Frame | User>()
 
-const model = computed(() => {
-  return props.model
-})
+const preview_url = computed(() => modelValue.value?.preview_url)
 
-if ('file' in model.value) {
-  model.value.preview_url = `${model.value.file_three_url}`
-} else if ('image' in model.value) {
-  model.value.preview_url = `${model.value.image_three_url}`
+if (modelValue.value && 'file' in modelValue.value) {
+  modelValue.value.preview_url = `${modelValue.value.file_three_url}`
+} else if (modelValue.value && 'image' in modelValue.value) {
+  modelValue.value.preview_url = `${modelValue.value.image_three_url}`
 }
 </script>

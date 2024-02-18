@@ -1,19 +1,21 @@
 <template>
-  <FramesCommentList :frame="frame" />
-  <FramesCommentNewForm :frame="frame" />
+  <FramesCommentList v-model="frame" />
+  <FramesCommentNewForm v-model="frame" />
   <br>
 </template>
 
 <script setup lang="ts">
 import type { Frame } from '~/interfaces/frame'
 
-const props = defineProps<{
-  frame: Frame
-}>()
+const modelValue = defineModel<Frame>()
+
+const frame = computed(() => modelValue.value)
+
+console.log(modelValue.value)
 
 const commenter = useComment()
 const { comment } = commenter
 
-comment.frame_id = props.frame.id
+comment.value.frame_id = modelValue.value?.id
 provide('commenter', commenter)
 </script>

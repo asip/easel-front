@@ -7,7 +7,7 @@ import type { RefQuery } from '~/interfaces/ref_query'
 import type { Frame } from '~/interfaces/frame'
 
 export const useFrame = () => {
-  const frame: Frame = reactive<Frame>({
+  const frame: Ref<Frame> = ref<Frame>({
     id: 0,
     user_id: null,
     user_name: '',
@@ -33,7 +33,7 @@ export const useFrame = () => {
   })
 
   const frameId = computed(() => {
-    return frame.id
+    return frame.value.id
   })
 
   interface ErrorMessages {
@@ -43,7 +43,7 @@ export const useFrame = () => {
     base: string[]
   }
 
-  const error_messages = reactive<ErrorMessages>({
+  const error_messages = ref<ErrorMessages>({
     name: [],
     tags: [],
     file: [],
@@ -90,7 +90,7 @@ export const useFrame = () => {
   }
 
   const setJson2Frame = (resource: any) => {
-    Object.assign(frame, resource)
+    Object.assign(frame.value, resource)
   }
 
   const createFrame = async () => {
@@ -98,20 +98,20 @@ export const useFrame = () => {
 
     const formData = new FormData()
 
-    if (frame.file) {
-      formData.append('frame[file]', frame.file)
+    if (frame.value.file) {
+      formData.append('frame[file]', frame.value.file)
     }
-    if (frame.name) {
-      formData.append('frame[name]', frame.name)
+    if (frame.value.name) {
+      formData.append('frame[name]', frame.value.name)
     }
-    if (frame.tag_list) {
-      formData.append('frame[tag_list]', frame.tag_list)
+    if (frame.value.tag_list) {
+      formData.append('frame[tag_list]', frame.value.tag_list)
     }
-    if (frame.comment) {
-      formData.append('frame[comment]', frame.comment)
+    if (frame.value.comment) {
+      formData.append('frame[comment]', frame.value.comment)
     }
-    if (frame.shooted_at) {
-      formData.append('frame[shooted_at]', frame.shooted_at)
+    if (frame.value.shooted_at) {
+      formData.append('frame[shooted_at]', frame.value.shooted_at)
     }
 
     // console.log(login_user.value.token)
@@ -138,7 +138,7 @@ export const useFrame = () => {
     } else if (data.value) {
       const { data: frameAttrs, errors } = data.value as any
       if (frameAttrs) {
-        frame.id = frameAttrs.attributes.id
+        frame.value.id = frameAttrs.attributes.id
       } else if (errors) {
         setErrorMessages(errors)
       }
@@ -149,34 +149,34 @@ export const useFrame = () => {
 
   const setErrorMessages = (errors: any) => {
     if (errors.file) {
-      error_messages.file = errors.file
+      error_messages.value.file = errors.file
     } else {
-      error_messages.file = []
+      error_messages.value.file = []
     }
     if (errors.name) {
-      error_messages.name = errors.name
+      error_messages.value.name = errors.name
     } else {
-      error_messages.name = []
+      error_messages.value.name = []
     }
     if (errors.tag_list) {
-      error_messages.tags = errors.tag_list
+      error_messages.value.tags = errors.tag_list
     } else {
-      error_messages.tags = []
+      error_messages.value.tags = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.file = []
-    error_messages.name = []
-    error_messages.tags = []
-    error_messages.base = []
+    error_messages.value.file = []
+    error_messages.value.name = []
+    error_messages.value.tags = []
+    error_messages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.file.length > 0 || error_messages.name.length > 0 ||
-      error_messages.tags.length > 0 || error_messages.base.length > 0
+    if (error_messages.value.file.length > 0 || error_messages.value.name.length > 0 ||
+      error_messages.value.tags.length > 0 || error_messages.value.base.length > 0
     ) {
       result = false
     }
@@ -193,17 +193,17 @@ export const useFrame = () => {
 
     const postData = {
       frame: {
-        name: frame.name,
-        tag_list: frame.tag_list,
-        comment: frame.comment,
-        shooted_at: frame.shooted_at
+        name: frame.value.name,
+        tag_list: frame.value.tag_list,
+        comment: frame.value.comment,
+        shooted_at: frame.value.shooted_at
       }
     }
 
     // console.log(login_user.value.token)
 
     const { data, error, pending } = await usePutApi({
-      url: `/frames/${frame.id}`,
+      url: `/frames/${frame.value.id}`,
       body: postData,
       token: login_user.value.token,
       locale: locale.value
@@ -236,7 +236,7 @@ export const useFrame = () => {
     // console.log(frame.id)
 
     const { error, pending } = await useDeleteApi({
-      url: `/frames/${frame.id}`,
+      url: `/frames/${frame.value.id}`,
       token: login_user.value.token
     })
 

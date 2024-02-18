@@ -7,7 +7,7 @@ import type { User } from '~/interfaces/user'
 import type { CredentialResponse } from '~/interfaces/credential_response'
 
 export const useLoginUser = () => {
-  const login_params = reactive({
+  const login_params = ref({
     email: '',
     password: ''
   })
@@ -61,7 +61,7 @@ export const useLoginUser = () => {
     base: string[]
   }
 
-  const error_messages = reactive<ErrorMessages>({
+  const error_messages = ref<ErrorMessages>({
     image: [],
     name: [],
     email: [],
@@ -160,8 +160,8 @@ export const useLoginUser = () => {
   const login = async () => {
     const postData = {
       user: {
-        email: login_params.email,
-        password: login_params.password
+        email: login_params.value.email,
+        password: login_params.value.password
       }
     }
 
@@ -232,8 +232,8 @@ export const useLoginUser = () => {
   }
 
   const resetLoginParams = () => {
-    login_params.email = ''
-    login_params.password = ''
+    login_params.value.email = ''
+    login_params.value.password = ''
   }
 
   const setJson2LoginUser = (resource: any) => {
@@ -301,48 +301,48 @@ export const useLoginUser = () => {
 
   const setErrorMessages = (errors: any) => {
     if (errors.image) {
-      error_messages.image = errors.image
+      error_messages.value.image = errors.image
     } else {
-      error_messages.image = []
+      error_messages.value.image = []
     }
     if (errors.name) {
-      error_messages.name = errors.name
+      error_messages.value.name = errors.name
     } else {
-      error_messages.name = []
+      error_messages.value.name = []
     }
     if (errors.email) {
-      error_messages.email = errors.email
+      error_messages.value.email = errors.email
     } else {
-      error_messages.email = []
+      error_messages.value.email = []
     }
     if (errors.password) {
-      error_messages.password = errors.password
+      error_messages.value.password = errors.password
     } else {
-      error_messages.password = []
+      error_messages.value.password = []
     }
     if (errors.password_confirmation) {
-      error_messages.password_confirmation = errors.password_confirmation
+      error_messages.value.password_confirmation = errors.password_confirmation
     } else {
-      error_messages.password_confirmation = []
+      error_messages.value.password_confirmation = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.image = []
-    error_messages.name = []
-    error_messages.email = []
-    error_messages.password = []
-    error_messages.password_confirmation = []
-    error_messages.base = []
+    error_messages.value.image = []
+    error_messages.value.name = []
+    error_messages.value.email = []
+    error_messages.value.password = []
+    error_messages.value.password_confirmation = []
+    error_messages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.image.length > 0 || error_messages.name.length > 0 ||
-      error_messages.email.length > 0 || error_messages.password.length > 0 ||
-      error_messages.password_confirmation.length > 0 ||
-      error_messages.base.length > 0
+    if (error_messages.value.image.length > 0 || error_messages.value.name.length > 0 ||
+      error_messages.value.email.length > 0 || error_messages.value.password.length > 0 ||
+      error_messages.value.password_confirmation.length > 0 ||
+      error_messages.value.base.length > 0
     ) {
       result = false
     }

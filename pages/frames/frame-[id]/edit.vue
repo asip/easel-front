@@ -14,7 +14,7 @@
         </div>
       </div>
       <br>
-      <FramesPreviewImage :frame="frame" :original="true" :photoswipe="false" />
+      <FramesPreviewImage v-model="frame" :original="true" :photoswipe="false" />
       <!-- unless @frame.confirming == 'true' -->
       <FramesEditForm />
       <!-- else -->
@@ -42,7 +42,7 @@ await getFrame(id as string)
 // console.log(login_user.value.id)
 
 // eslint-disable-next-line eqeqeq
-if (!logged_in.value || frame.user_id != login_user.value.id) {
+if (!logged_in.value || frame.value.user_id != login_user.value.id) {
   await navigateTo(`/frames/${id}`)
 }
 

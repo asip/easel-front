@@ -52,9 +52,7 @@ import type { UseCommentType } from '~/composables/use_comment'
 import type { Comment } from '~/interfaces/comment'
 import type { Frame } from '~/interfaces/frame'
 
-defineProps<{
-  frame: Frame
-}>()
+defineModel<Frame>()
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()

@@ -62,9 +62,7 @@ import type { UseCommentType } from '~/composables/use_comment'
 import type { Frame } from '~/interfaces/frame'
 import { useCommentRule } from '~/composables/validation/use_comment_rule'
 
-const props = defineProps<{
-  frame: Frame
-}>()
+const modelValue = defineModel<Frame>()
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
@@ -73,7 +71,7 @@ const comment_rule = useCommentRule()
 
 const v$ = useVuelidate(comment_rule, comment)
 
-comment.frame_id = props.frame.id
+comment.value.frame_id = modelValue.value?.id
 
 const onCommentClick = async () => {
   // @ts-ignore

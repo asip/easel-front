@@ -17,7 +17,7 @@
             </tr>
             <tr v-if="user.image !== null">
               <td colspan="2">
-                <ImagePreview :model="user" />
+                <ImagePreview v-model="user" />
               </td>
             </tr>
             <tr v-if="!user.social_login">

@@ -3,7 +3,7 @@ import type { User } from '~/interfaces/user'
 import type { RefQuery } from '~/interfaces/ref_query'
 
 export const useUser = () => {
-  const user = reactive<User>(
+  const user = ref<User>(
     {
       name: '',
       email: '',
@@ -56,7 +56,7 @@ export const useUser = () => {
   }
 
   const setJson2User = (resource: any) => {
-    Object.assign(user, resource)
+    Object.assign(user.value, resource)
   }
 
   return { user, refQuery, getUser }
