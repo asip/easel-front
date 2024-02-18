@@ -74,13 +74,14 @@
 
 <script setup lang="ts">
 import { useModal } from '~/composables/ui/use_modal'
+import type { UseLoginUserType } from '~/composables/use_login_user'
 
 const { openModal, closeModal } = useModal()
-const { login_user } = useLoginUser()
+const { login_user, setUser } = inject('accounter') as UseLoginUserType
 
 // const userId = login_user.value.id?.toString()
 
-provide('user', login_user)
+// provide('user', login_user)
 
 const onCloseClick = () => {
   closeModal('#profile_modal')
@@ -88,6 +89,7 @@ const onCloseClick = () => {
 
 const onEditClick = () => {
   closeModal('#profile_modal')
+  setUser(login_user)
   openModal('#edit_profile_modal')
 }
 

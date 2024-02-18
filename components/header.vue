@@ -84,8 +84,11 @@
 
 const route = useRoute()
 
-const { login_user, logged_in, logout } = useLoginUser()
+const accounter = useLoginUser()
+const { login_user, logged_in, logout } = accounter
 const { frame_query, searchFrame } = useFrameSearch()
+
+provide('accounter', accounter)
 
 const onLogoutClick = async () => {
   await logout()

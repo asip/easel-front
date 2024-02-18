@@ -119,11 +119,12 @@ import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use_image_preview'
 import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
+import type { UseLoginUserType } from '~/composables/use_login_user'
 import { useUserRule } from '~/composables/validation/use_user_rule'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { logged_in, login_user, user, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { logged_in, login_user, user, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
 const user_rule = useUserRule(user.value)
 
 const v$ = useVuelidate(user_rule, user)

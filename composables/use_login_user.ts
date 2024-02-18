@@ -444,3 +444,5 @@ export const useLoginUser = () => {
     locale
   }
 }
+
+export type UseLoginUserType = ReturnType<typeof useLoginUser>
