@@ -62,7 +62,8 @@ const { date_word, frame_query, searchFrame } = useFrameSearch()
 const masks = {
   input: 'YYYY/MM/DD'
 }
-const locale = 'ja-jp'
+
+const { locale } = useLocale()
 
 const onSearchClick = async () => {
   frame_query.value.page = 1
