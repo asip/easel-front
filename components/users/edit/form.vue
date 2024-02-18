@@ -15,7 +15,7 @@
                 </div>
               </td>
             </tr>
-            <tr v-if="user.image !== null">
+            <tr>
               <td colspan="2">
                 <ImagePreview v-model="user" />
               </td>
