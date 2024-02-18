@@ -72,7 +72,7 @@ import { useToast } from '~/composables/ui/use_toast'
 
 const { closeModal } = useModal()
 const { setMessages } = useToast()
-const { logged_in, login_params, login, login_messages, resetLoginParams } = useLoginUser()
+const { logged_in, login_params, login, login_messages, resetLoginParams } = inject('accounter') as UseLoginUserType
 
 const onSignupClick = () => {
   closeModal('#login_modal')
