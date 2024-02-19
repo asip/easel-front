@@ -124,14 +124,10 @@ import { useUserRule } from '~/composables/validation/use_user_rule'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { logged_in, login_user, user, setUser, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
+const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
 const user_rule = useUserRule(user.value)
 
 const v$ = useVuelidate(user_rule, user)
-
-onMounted(() => {
-  setUser(login_user)
-})
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
