@@ -71,8 +71,6 @@ const comment_rule = useCommentRule()
 
 const v$ = useVuelidate(comment_rule, comment)
 
-comment.value.frame_id = modelValue.value?.id
-
 const onCommentClick = async () => {
   // @ts-ignore
   i18n.global.locale.value = locale.value
