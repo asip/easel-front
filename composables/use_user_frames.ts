@@ -16,7 +16,7 @@ export function useUserFrames () {
     }
   })
 
-  const frames = useState<Frame[]>('user.frames', () => { return [] })
+  const frames = ref<Frame[]>([])
 
   const { flash, clearFlash } = useFlash()
 
