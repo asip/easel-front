@@ -70,7 +70,7 @@
           </li>
         </ul>
         <span class="navbar-nav justify-content-sm-center">
-          <TagSearch />
+          <SearchBar />
         </span>
       </div>
     </div>
