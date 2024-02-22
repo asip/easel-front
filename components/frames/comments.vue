@@ -1,6 +1,6 @@
 <template>
-  <FramesCommentList v-model="frame" />
-  <FramesCommentNewForm v-model="frame" />
+  <FramesCommentList />
+  <FramesCommentNewForm />
   <br>
 </template>
 
@@ -8,8 +8,6 @@
 import type { Frame } from '~/interfaces/frame'
 
 const modelValue = defineModel<Frame>()
-
-const frame = computed(() => modelValue.value)
 
 const commenter = useComment()
 const { comment } = commenter

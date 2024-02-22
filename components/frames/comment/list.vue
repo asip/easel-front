@@ -50,9 +50,6 @@ import sanitizeHtml from 'sanitize-html'
 import { useToast } from '~/composables/ui/use_toast'
 import type { UseCommentType } from '~/composables/use_comment'
 import type { Comment } from '~/interfaces/comment'
-import type { Frame } from '~/interfaces/frame'
-
-defineModel<Frame>()
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
