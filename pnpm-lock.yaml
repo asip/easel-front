@@ -36,8 +36,8 @@ dependencies:
     specifier: git+https://github.com/arnowelzel/photoswipe-fullscreen
     version: github.com/arnowelzel/photoswipe-fullscreen/eb8bdfad985c7236152d5af448a42ba0a9b9446f
   sanitize-html:
-    specifier: ^2.11.0
-    version: 2.11.0
+    specifier: ^2.12.0
+    version: 2.12.0
   sass:
     specifier: ^1.71.0
     version: 1.71.0
@@ -7915,8 +7915,8 @@ packages:
     dev: true
     optional: true
 
-  /sanitize-html@2.11.0:
-    resolution: {integrity: sha512-BG68EDHRaGKqlsNjJ2xUB7gpInPA8gVx/mvjO743hZaeMCZ2DwzW7xvsqZ+KNU4QKwj86HJ3uu2liISf2qBBUA==}
+  /sanitize-html@2.12.0:
+    resolution: {integrity: sha512-2pq2H0b4npSaMPrRuauYVml1Q3BzaL67Y8WDOk9gsqoS8gS+VFZcgwF1ITJbfOCHgw1sUQMG14KwXyVE+75tSg==}
     dependencies:
       deepmerge: 4.3.1
       escape-string-regexp: 4.0.0
