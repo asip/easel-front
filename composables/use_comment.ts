@@ -153,7 +153,7 @@ export function useComment () {
     return result
   }
 
-  const deleteComment = async (comment: Comment, idx: number) => {
+  const deleteComment = async (comment: Comment) => {
     const { error } = await useDeleteApi({
       url: `/comments/${comment.id}`,
       token: login_user.value.token,
@@ -174,10 +174,6 @@ export function useComment () {
         default:
           flash.value.alert = error.value.message
       }
-    }
-
-    if (isSuccess()) {
-      comments.value.splice(idx, 1)
     }
   }
 
