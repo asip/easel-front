@@ -35,7 +35,7 @@
       <div class="d-flex">
         <div class="col-12 align-middle">
           <div class="float-start">
-            <span v-html="getSanitizedCommentBody()" />
+            <span v-html="sanitizedCommentBody" />
           </div>
         </div>
       </div>
@@ -55,9 +55,9 @@ const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 
-const getSanitizedCommentBody = (): string => {
+const sanitizedCommentBody = computed(() => {
   return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
-}
+})
 
 const onDeleteClick = async () => {
   comment.value && await deleteComment(comment.value)
