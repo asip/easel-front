@@ -94,7 +94,7 @@ const onLogoutClick = async () => {
   await logout()
   if (route.path === '/frames/new' || route.path === '/account/frames') {
     navigateTo('/')
-  } else if (route.path.match(/^\/frames\/frame-\d+\/edit$/)) {
+  } else if (route.path.match(/^\/frames\/\d+\/edit$/)) {
     navigateTo(`/frames/${route.params.id}`)
   }
 }
