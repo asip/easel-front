@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formkit/tempo':
+    specifier: 0.0.13
+    version: 0.0.13
   '@popperjs/core':
     specifier: ^2.11.8
     version: 2.11.8
@@ -23,9 +26,6 @@ dependencies:
   bootstrap-icons:
     specifier: ^1.11.3
     version: 1.11.3
-  cdate:
-    specifier: ^0.0.7
-    version: 0.0.7
   luminous-lightbox:
     specifier: ^2.4.0
     version: 2.4.0
@@ -934,6 +934,10 @@ packages:
     resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
     engines: {node: '>=14'}
     dev: true
+
+  /@formkit/tempo@0.0.13:
+    resolution: {integrity: sha512-DV13jzjwcjvIqQh1j7MJikd8s7+/bIqKB65zJObUszlIzE22YwLcoPqhB+qLwGtcAxTRTD5Ofy5DFTGW1FQpnA==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -3472,10 +3476,6 @@ packages:
   /caniuse-lite@1.0.30001589:
     resolution: {integrity: sha512-vNQWS6kI+q6sBlHbh71IIeC+sRwK2N3EDySc/updIGhIee2x5z00J4c1242/5/d6EpEMdOnk/m+6tuk4/tcsqg==}
     dev: true
-
-  /cdate@0.0.7:
-    resolution: {integrity: sha512-11EnUjVX6hwL0FcDNE2F0wh+0KnQieTfPUdPHNdQHbrvFdEbqfRULkA8nMcfT2tXCGw/ABRdYLqQ0SmbeWawTA==}
-    dev: false
 
   /chai@4.4.1:
     resolution: {integrity: sha512-13sOfMv2+DWduEU+/xbun3LScLoqN17nBeTLUsmDfKdoiC1fr0n9PU4guu4AhRcOVFk/sW8LyZWHuhWtQZiF+g==}

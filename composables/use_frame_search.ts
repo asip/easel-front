@@ -1,4 +1,4 @@
-import { cdate } from 'cdate'
+import { format, parse } from '@formkit/tempo'
 import { useGetApi } from './api/use_get_api'
 import type { Frame } from '~/interfaces/frame'
 
@@ -13,12 +13,14 @@ export const useFrameSearch = () => {
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
+  const { locale } = useLocale()
+
   const date_word = computed({
     get () {
-      return cdate().format('YYYY/MM/DD')
+      return format(new Date(), 'YYYY/MM/DD', locale.value)
     },
     set (value: any) {
-      frame_query.value.word = cdate(value).format('YYYY/MM/DD')
+      frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
     }
   })
 

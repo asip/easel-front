@@ -42,7 +42,7 @@
     "@yaireo/tagify": "^4.21.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "cdate": "^0.0.7",
+    "@formkit/tempo": "0.0.13",
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
