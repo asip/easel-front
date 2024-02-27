@@ -5,6 +5,7 @@ import { useDeleteApi } from './api/use_delete_api'
 import { useLocale } from '~/composables/use_locale'
 import type { User } from '~/interfaces/user'
 import type { CredentialResponse } from '~/interfaces/credential_response'
+import type { ErrorMessages } from '~/interfaces/error_messages'
 
 export const useLoginUser = () => {
   const login_params = ref({
@@ -52,16 +53,7 @@ export const useLoginUser = () => {
 
   const login_messages = ref<string[]>([])
 
-  interface ErrorMessages {
-    image: string[]
-    name: string[]
-    email: string[]
-    password: string[]
-    password_confirmation: string[]
-    base: string[]
-  }
-
-  const error_messages = ref<ErrorMessages>({
+  const error_messages = ref<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation' | 'base'>>({
     image: [],
     name: [],
     email: [],

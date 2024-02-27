@@ -5,6 +5,7 @@ import { useDeleteApi } from './api/use_delete_api'
 import { useLocale } from '~/composables/use_locale'
 import type { RefQuery } from '~/interfaces/ref_query'
 import type { Frame } from '~/interfaces/frame'
+import type { ErrorMessages } from '~/interfaces/error_messages'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
@@ -36,14 +37,7 @@ export const useFrame = () => {
     return frame.value.id
   })
 
-  interface ErrorMessages {
-    name: string[]
-    tags: string[]
-    file: string[]
-    base: string[]
-  }
-
-  const error_messages = ref<ErrorMessages>({
+  const error_messages = ref<ErrorMessages<'name' | 'tags' | 'file' | 'base'>>({
     name: [],
     tags: [],
     file: [],
