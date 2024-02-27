@@ -33,7 +33,7 @@ defineProps<{
 }>()
 
 defineSlots<{
-  message?:() => any
+  message?: () => any
   label?: () => any
 }>()
 
