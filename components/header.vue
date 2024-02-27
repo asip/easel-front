@@ -93,9 +93,9 @@ provide('accounter', accounter)
 const onLogoutClick = async () => {
   await logout()
   if (route.path === '/frames/new' || route.path === '/account/frames') {
-    navigateTo('/')
+    await navigateTo('/')
   } else if (route.path.match(/^\/frames\/\d+\/edit$/)) {
-    navigateTo(`/frames/${route.params.id}`)
+    await navigateTo(`/frames/${route.params.id}`)
   }
 }
 
@@ -105,7 +105,7 @@ const onTopPageClick = async () => {
   // frame_query.value.pages = 1
   await searchFrame()
   if (route.path !== '/') {
-    navigateTo('/')
+    await navigateTo('/')
   }
 }
 </script>

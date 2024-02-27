@@ -69,7 +69,7 @@ const onSearchClick = async () => {
   frame_query.value.page = 1
   await searchFrame()
   if (route.path !== '/') {
-    navigateTo('/')
+    await navigateTo('/')
   }
 }
 </script>

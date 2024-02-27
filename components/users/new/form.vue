@@ -120,7 +120,7 @@ const onSignupClick = async () => {
     await signup()
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo('/')
+      await navigateTo('/')
     }
   }
 }

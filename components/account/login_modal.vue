@@ -74,10 +74,10 @@ const { closeModal } = useModal()
 const { setMessages } = useToast()
 const { logged_in, login_params, login, login_messages, resetLoginParams } = inject('accounter') as UseLoginUserType
 
-const onSignupClick = () => {
+const onSignupClick = async () => {
   closeModal('#login_modal')
   resetLoginParams()
-  navigateTo('/signup')
+  await navigateTo('/signup')
 }
 
 const onLoginClick = async () => {

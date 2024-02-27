@@ -91,9 +91,9 @@ const onEditClick = async () => {
 
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo(`/frames/${frame?.value.id}`)
+      await navigateTo(`/frames/${frame?.value.id}`)
     } else if (!logged_in.value) {
-      navigateTo(`/frames/${frame?.value.id}`)
+      await navigateTo(`/frames/${frame?.value.id}`)
     }
   }
 }

@@ -28,7 +28,7 @@ const onDeleteClick = async () => {
   setFlash(flash.value)
   removeBackdrop()
   if (isSuccess()) {
-    navigateTo('/')
+    await navigateTo('/')
   }
 }
 </script>

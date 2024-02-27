@@ -112,9 +112,9 @@ const onCreateClick = async () => {
     await createFrame()
     setFlash(flash.value)
     if (isSuccess()) {
-      navigateTo(`/frames/${frameId.value}`)
+      await navigateTo(`/frames/${frameId.value}`)
     } else if (!logged_in.value) {
-      navigateTo('/')
+      await navigateTo('/')
     }
   }
 }
