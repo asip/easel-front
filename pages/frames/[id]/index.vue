@@ -88,8 +88,6 @@ const { id } = route.params
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
-const router = useRouter()
-
 const { frame_query } = useFrameSearch()
 const { logged_in, login_user } = useLoginUser()
 const framer = useFrame()
@@ -105,13 +103,13 @@ const sanitizedComment = computed(() => {
   return sanitizeHtml(frame.value.comment).replace(/\n/g, '<br>')
 })
 
-const onPageBack = () => {
+const onPageBack = async () => {
   if (ref_page === 'profile') {
-    router.push({ path: '/account/frames' })
+    await navigateTo({ path: '/account/frames' })
   } else if (ref_page === 'user_profile') {
-    router.push({ path: `/users/${ref_id}` })
+    await navigateTo({ path: `/users/${ref_id}` })
   } else {
-    router.push({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
+    await navigateTo({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
   }
 }
 </script>
