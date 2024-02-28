@@ -44,8 +44,6 @@ const { id } = route.params
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
-const router = useRouter()
-
 const { user, getUser } = useUser()
 const { logged_in, login_user } = useLoginUser()
 const { following, follow, unfollow, isFollowing } = useFollow()
@@ -60,11 +58,11 @@ if (logged_in.value) {
 
 provide('user', user)
 
-const onPageBack = () => {
+const onPageBack = async () => {
   if (ref_page === 'frame') {
-    router.push({ path: `/frames/${ref_id}` })
+    await navigateTo({ path: `/frames/${ref_id}` })
   } else {
-    router.push({ path: '/' })
+    await navigateTo({ path: '/' })
   }
 }
 
