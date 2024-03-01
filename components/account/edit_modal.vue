@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="logged_in"
     id="edit_profile_modal"
     class="modal fade"
     tabindex="-1"
@@ -33,7 +34,7 @@
 import { useModal } from '~/composables/ui/use_modal'
 
 const { openModal, closeModal } = useModal()
-const { login_user, setUser } = inject('accounter') as UseLoginUserType
+const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
 
 const onBackClick = () => {
   closeModal('#edit_profile_modal')

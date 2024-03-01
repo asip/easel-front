@@ -1,5 +1,6 @@
 <template>
   <ConfirmModal
+    v-if="logged_in"
     id="delete_account_modal"
     @click="onDeleteClick"
   >
@@ -18,7 +19,7 @@ import { useToast } from '~/composables/ui/use_toast'
 
 const { closeModal } = useModal()
 const { setFlash } = useToast()
-const { deleteAccount, flash } = useLoginUser()
+const { logged_in, deleteAccount, flash } = useLoginUser()
 
 const onDeleteClick = async () => {
   await deleteAccount()

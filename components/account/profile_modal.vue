@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="logged_in"
     id="profile_modal"
     class="modal fade"
     tabindex="-1"
@@ -77,7 +78,7 @@ import { useModal } from '~/composables/ui/use_modal'
 import type { UseLoginUserType } from '~/composables/use_login_user'
 
 const { openModal, closeModal } = useModal()
-const { login_user, setUser } = inject('accounter') as UseLoginUserType
+const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
 
 // const userId = login_user.value.id?.toString()
 
