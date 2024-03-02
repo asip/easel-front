@@ -1,62 +1,17 @@
 <template>
   <div>
     <br>
-    <div class="row col-sm-12">
-      <div v-for="(frame, i) in frames" :key="frame.id" class="card col-sm-3 kadomaru">
-        <FramesListItem v-model="frames[i]" />
-      </div>
-    </div>
-    <br>
-    <div v-if="frame_query.pages > 1" class="d-flex col-sm-12 justify-content-sm-center">
-      <ClientOnly>
-        <Paginate
-          v-model="frame_query.page"
-          :page-count="frame_query.pages"
-          :page-range="3"
-          :margin-pages="2"
-          :click-handler="clickCallback"
-          :prev-text="'Prev'"
-          :next-text="'Next'"
-          :container-class="'pagination'"
-          :page-class="'page-item'"
-        />
-      </ClientOnly>
-    </div>
+    <FramesList />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useImageGallery } from '~/composables/ui/use_image_gallery'
-
 const route = useRoute()
 const q = route.query.q
 
-const { initGallery, closeGallery } = useImageGallery()
-
-const { frame_query, searchFrame, frames } = useFrameSearch()
+const { frame_query } = useFrameSearch()
 
 if (q) {
   frame_query.value.word = q as string
 }
-
-// console.log('searchFrame: start')
-await searchFrame()
-
-const clickCallback = async (pageNum: number) => {
-  frame_query.value.page = pageNum
-  await searchFrame()
-}
-
-onMounted(() => {
-  initGallery()
-})
-
-onUpdated(() => {
-  initGallery()
-})
-
-onUnmounted(() => {
-  closeGallery()
-})
-
 </script>
