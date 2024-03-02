@@ -1,0 +1,30 @@
+<template>
+  <div class="card-block" style="padding-top: 10px;padding-bottom: 10px;padding-bottom: 10px;">
+    <NuxtLink :to="`${frame?.file_url}`" name="lm" class="mx-auto">
+      <img :src="frame?.file_two_url" :alt="frame?.name" class="card-img-top">
+    </NuxtLink>
+    <br>
+    <div class="d-flex justify-content-sm-center">
+      <NuxtLink v-if="props.page == 'profile'" :to="{ path: `/frames/${frame?.id}`, query: { ref: props.page } }" class="mx-auto">
+        {{ frame?.name }}
+      </NuxtLink>
+      <NuxtLink v-else-if="props.page == 'user_profile'" :to="{ path: `/frames/${frame?.id}`, query: { ref: props.page, ref_id: props.userId} }" class="mx-auto">
+        {{ frame?.name }}
+      </NuxtLink>
+      <NuxtLink v-else :to="`/frames/${frame?.id}`" class="mx-auto">
+        {{ frame?.name }}
+      </NuxtLink>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import type { Frame } from '~/interfaces/frame'
+
+const frame = defineModel<Frame>()
+
+const props = defineProps<{
+  userId: string | undefined
+  page?: string
+}>()
+</script>
