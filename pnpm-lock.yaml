@@ -48,8 +48,8 @@ dependencies:
     specifier: 9.10.1
     version: 9.10.1(vue@3.4.21)
   vue-sonner:
-    specifier: ^1.0.3
-    version: 1.0.3
+    specifier: ^1.1.1
+    version: 1.1.1
   vuejs-paginate-next:
     specifier: ^1.0.2
     version: 1.0.2(typescript@5.3.3)
@@ -9356,8 +9356,8 @@ packages:
       vue: 3.4.21(typescript@5.3.3)
     dev: false
 
-  /vue-sonner@1.0.3:
-    resolution: {integrity: sha512-uJPvtcftMjmiXfpsMtB77+TkzWn8gEPI0l5sN+X+UqYuAOVacf0dk7ONqRsc5DWy1ilJtLexz/wSggwjimkYKA==}
+  /vue-sonner@1.1.1:
+    resolution: {integrity: sha512-TYuqPLNACSU5QG2EuN59Ho/uQylezKxpiZ3TOa1jP9WpyWLSb3lMH9LU/jmJY4hOvXsvOFtl3Q1QUaJ0yA+FSQ==}
     dev: false
 
   /vue@3.4.21(typescript@5.3.3):
