@@ -84,7 +84,7 @@
 import sanitizeHtml from 'sanitize-html'
 
 const route = useRoute()
-const { id } = route.params
+const frame_id = route.params.id as string
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
@@ -94,8 +94,6 @@ const framer = useFrame()
 const { frame, getFrame } = framer
 
 provide('framer', framer)
-
-const frame_id = id as string
 
 await getFrame(frame_id)
 
