@@ -32,8 +32,6 @@
       <div class="card-body">
         <FramesPreviewImage v-model="frame" :original="true" :photoswipe="true" />
         <FramesPreviewTags v-model="frame" />
-      </div>
-      <div class="card-body">
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-10">
             <table class="table table-bordered table_rounded">
