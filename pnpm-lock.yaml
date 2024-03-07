@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@formkit/tempo':
-    specifier: 0.0.14
-    version: 0.0.14
+    specifier: 0.0.15
+    version: 0.0.15
   '@popperjs/core':
     specifier: ^2.11.8
     version: 2.11.8
@@ -938,8 +938,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@formkit/tempo@0.0.14:
-    resolution: {integrity: sha512-W4FN0sL4SItj9sIuLHJnddvx0eKwPeYgEuTY6akSPBZ8Pw0u1U3R4h6yqOLfYDKDmT8y31b18IWbp9kUZ3Yl1A==}
+  /@formkit/tempo@0.0.15:
+    resolution: {integrity: sha512-jDz5yrCAG2gPoalgoqKUtJWOgdLGCtHgBYLZBRUjAUpvX5DMBAJz2QqyfTdLhXCfhfOrugl2FQtSaBxIPcKcyw==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
