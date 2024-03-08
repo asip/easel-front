@@ -86,7 +86,7 @@ describe('frames/:id/edit', () => {
         params: {
           id: '49'
         },
-        path: '/frames/49'
+        path: '/frames/49/edit'
       }
     })
 
