@@ -18,8 +18,8 @@ dependencies:
     specifier: ^2.0.4
     version: 2.0.4(vue@3.4.21)
   '@yaireo/tagify':
-    specifier: ^4.21.1
-    version: 4.21.1(prop-types@15.8.1)
+    specifier: ^4.21.2
+    version: 4.21.2(prop-types@15.8.1)
   bootstrap:
     specifier: ^5.3.3
     version: 5.3.3(@popperjs/core@2.11.8)
@@ -3003,8 +3003,8 @@ packages:
       vue-demi: 0.13.11(vue@3.4.21)
     dev: false
 
-  /@yaireo/tagify@4.21.1(prop-types@15.8.1):
-    resolution: {integrity: sha512-5k/IJkMKHlIHpadt5EeEb+MtYPlbsrKFGnbAcQqgUnxhvmI8z3UcPCTW8AYTKpsxHNeJJUfOpDeLwc2d454mfg==}
+  /@yaireo/tagify@4.21.2(prop-types@15.8.1):
+    resolution: {integrity: sha512-uE7/rimuYDHqBCue5OnOGDGrPIzugD8/01+aTtRZJItkKusmdx6U47j6JVbRdpj6+6KF+VQ6HK6iEccwmmrDyw==}
     engines: {node: '>=14.20.0', npm: '>=8.0.0'}
     peerDependencies:
       prop-types: ^15.7.2
