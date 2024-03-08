@@ -29,18 +29,18 @@
 // import type { Frame } from '~/interfaces/frame';
 
 const route = useRoute()
-const { id } = route.params
+const frame_id = route.params.id as string
 
 const { logged_in, login_user } = useLoginUser()
 
 const framer = useFrame()
 const { frame, getFrame } = framer
 
-await getFrame(id as string)
+await getFrame(frame_id)
 
 // eslint-disable-next-line eqeqeq
 if (!logged_in.value || frame.value.user_id != login_user.value.id) {
-  await navigateTo(`/frames/${id}`)
+  await navigateTo(`/frames/${frame_id}`)
 }
 
 // console.log(frame.user_id)
