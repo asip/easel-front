@@ -2,7 +2,7 @@ import { describe, test } from 'vitest'
 import { mountSuspended, registerEndpoint } from '@nuxt/test-utils/runtime'
 import Index from '~/pages/index.vue'
 
-describe('Index', () => {
+describe('index', () => {
   const endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames`
 
   registerEndpoint(endpoint, {
