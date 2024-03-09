@@ -17,7 +17,7 @@ const { useRouteMock } = vi.hoisted(() => {
   }
 })
 
-vi.mock('nuxt/app', () => ({
+vi.mock('#app', () => ({ // #app -> nuxt/app
   useRoute: useRouteMock
 }))
 
