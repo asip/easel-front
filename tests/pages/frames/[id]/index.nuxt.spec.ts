@@ -2,14 +2,14 @@ import { vi, describe, test } from 'vitest'
 import { mountSuspended, registerEndpoint } from '@nuxt/test-utils/runtime'
 import FramesIdIndex from '~/pages/frames/[id]/index.vue'
 
-//vi.mock('nuxt/app', () => ({
+// vi.mock('nuxt/app', () => ({
 //  useRoute: vi.fn(() => ({
 //    params: {
 //      id: '49'
 //    },
 //    path: '/frames/49'
 //  }))
-//}))
+// }))
 
 const { useRouteMock } = vi.hoisted(() => {
   return {
