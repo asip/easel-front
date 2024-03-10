@@ -31,20 +31,10 @@
 const route = useRoute()
 const frame_id = route.params.id as string
 
-const { logged_in, login_user } = useLoginUser()
-
 const framer = useFrame()
 const { frame, getFrame } = framer
 
 await getFrame(frame_id)
-
-// eslint-disable-next-line eqeqeq
-if (!logged_in.value || frame.value.user_id != login_user.value.id) {
-  await navigateTo(`/frames/${frame_id}`)
-}
-
-// console.log(frame.user_id)
-// console.log(login_user.value.id)
 
 provide('framer', framer)
 </script>

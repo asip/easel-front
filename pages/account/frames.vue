@@ -26,8 +26,4 @@
 const { logged_in, login_user } = useLoginUser()
 
 const userId = login_user.value.id?.toString()
-
-if (!logged_in.value) {
-  await navigateTo('/')
-}
 </script>

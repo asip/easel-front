@@ -20,13 +20,7 @@
 </template>
 
 <script setup lang="ts">
-
-const { logged_in } = useLoginUser()
 const framer = useFrame()
-
-if (!logged_in.value) {
-  await navigateTo('/')
-}
 
 provide('framer', framer)
 </script>
