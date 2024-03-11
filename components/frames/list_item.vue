@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import type { Frame } from '~/interfaces/frame'
+
+const frame = defineModel<Frame>()
+</script>
+
 <template>
   <div class="card-block" style="padding-top: 10px;padding-bottom: 10px;">
     <NuxtLink :to="`${frame?.file_url}`" name="lm" class="mx-auto">
@@ -11,9 +17,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import type { Frame } from '~/interfaces/frame'
-
-const frame = defineModel<Frame>()
-</script>

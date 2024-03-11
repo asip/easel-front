@@ -1,3 +1,39 @@
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { useToast } from '~/composables/ui/use_toast'
+import type { UseFrameType } from '~/composables/use_frame'
+import { useFrameRule } from '~/composables/validation/use_frame_rule'
+
+const { setFlash } = useToast()
+const { logged_in } = useLoginUser()
+const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
+const frame_rule = useFrameRule()
+
+const v$ = useVuelidate(frame_rule, frame)
+
+// console.log(frame)
+// console.log(frame.tags)
+// console.log(frame.tag_list)
+
+const onEditClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  await v$.value.$validate()
+
+  // console.log(frame)
+  if (!v$.value.$invalid) {
+    await updateFrame()
+
+    setFlash(flash.value)
+    if (isSuccess()) {
+      await navigateTo(`/frames/${frame?.value.id}`)
+    } else if (!logged_in.value) {
+      await navigateTo(`/frames/${frame?.value.id}`)
+    }
+  }
+}
+</script>
+
 <template>
   <form>
     <div class="card-body">
@@ -62,40 +98,3 @@
     </div>
   </form>
 </template>
-
-<script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseFrameType } from '~/composables/use_frame'
-import { useFrameRule } from '~/composables/validation/use_frame_rule'
-
-const { setFlash } = useToast()
-const { logged_in } = useLoginUser()
-const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
-const frame_rule = useFrameRule()
-
-const v$ = useVuelidate(frame_rule, frame)
-
-// console.log(frame)
-// console.log(frame.tags)
-// console.log(frame.tag_list)
-
-const onEditClick = async () => {
-  // @ts-ignore
-  i18n.global.locale.value = locale.value
-  await v$.value.$validate()
-
-  // console.log(frame)
-  if (!v$.value.$invalid) {
-    await updateFrame()
-
-    setFlash(flash.value)
-    if (isSuccess()) {
-      await navigateTo(`/frames/${frame?.value.id}`)
-    } else if (!logged_in.value) {
-      await navigateTo(`/frames/${frame?.value.id}`)
-    }
-  }
-}
-
-</script>

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const { logged_in, login_user } = useLoginUser()
+
+const userId = login_user.value.id?.toString()
+</script>
+
 <template>
   <div>
     <br>
@@ -21,9 +27,3 @@
     <UsersFrameList v-if="logged_in" :user-id="userId" page="profile" />
   </div>
 </template>
-
-<script setup lang="ts">
-const { logged_in, login_user } = useLoginUser()
-
-const userId = login_user.value.id?.toString()
-</script>

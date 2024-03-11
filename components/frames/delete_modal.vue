@@ -1,18 +1,3 @@
-<template>
-  <ConfirmModal
-    v-if="logged_in && frame?.user_id == login_user.id"
-    id="delete_frame_modal"
-    @click="onDeleteClick"
-  >
-    <template #message>
-      {{ $t('action.modal.delete.message') }}
-    </template>
-    <template #label>
-      {{ $t('action.model.delete') }}
-    </template>
-  </ConfirmModal>
-</template>
-
 <script setup lang="ts">
 import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
@@ -32,3 +17,18 @@ const onDeleteClick = async () => {
   }
 }
 </script>
+
+<template>
+  <ConfirmModal
+    v-if="logged_in && frame?.user_id == login_user.id"
+    id="delete_frame_modal"
+    @click="onDeleteClick"
+  >
+    <template #message>
+      {{ $t('action.modal.delete.message') }}
+    </template>
+    <template #label>
+      {{ $t('action.model.delete') }}
+    </template>
+  </ConfirmModal>
+</template>

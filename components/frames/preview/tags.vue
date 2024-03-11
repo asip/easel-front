@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import type { Frame } from '~/interfaces/frame'
+
+const modelValue = defineModel<Frame>()
+</script>
+
 <template>
   <div class="d-flex justify-content-sm-center">
     <div class="col-sm-10">
@@ -7,9 +13,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Frame } from '~/interfaces/frame'
-
-const modelValue = defineModel<Frame>()
-</script>

@@ -1,3 +1,35 @@
+<script setup lang="ts">
+import sanitizeHtml from 'sanitize-html'
+
+const route = useRoute()
+const frame_id = route.params.id as string
+const ref_page = route.query.ref
+const ref_id = route.query.ref_id
+
+const { frame_query } = useFrameSearch()
+const { logged_in, login_user } = useLoginUser()
+const framer = useFrame()
+const { frame, getFrame } = framer
+
+provide('framer', framer)
+
+await getFrame(frame_id)
+
+const sanitizedComment = computed(() => {
+  return sanitizeHtml(frame.value.comment).replace(/\n/g, '<br>')
+})
+
+const onPageBack = async () => {
+  if (ref_page === 'profile') {
+    await navigateTo({ path: '/account/frames' })
+  } else if (ref_page === 'user_profile') {
+    await navigateTo({ path: `/users/${ref_id}` })
+  } else {
+    await navigateTo({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
+  }
+}
+</script>
+
 <template>
   <div>
     <br>
@@ -77,38 +109,6 @@
     <FramesComments v-model="frame" />
   </div>
 </template>
-
-<script setup lang="ts">
-import sanitizeHtml from 'sanitize-html'
-
-const route = useRoute()
-const frame_id = route.params.id as string
-const ref_page = route.query.ref
-const ref_id = route.query.ref_id
-
-const { frame_query } = useFrameSearch()
-const { logged_in, login_user } = useLoginUser()
-const framer = useFrame()
-const { frame, getFrame } = framer
-
-provide('framer', framer)
-
-await getFrame(frame_id)
-
-const sanitizedComment = computed(() => {
-  return sanitizeHtml(frame.value.comment).replace(/\n/g, '<br>')
-})
-
-const onPageBack = async () => {
-  if (ref_page === 'profile') {
-    await navigateTo({ path: '/account/frames' })
-  } else if (ref_page === 'user_profile') {
-    await navigateTo({ path: `/users/${ref_id}` })
-  } else {
-    await navigateTo({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
-  }
-}
-</script>
 
 <style>
 .btn-icon-local {

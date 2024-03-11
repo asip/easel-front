@@ -1,3 +1,20 @@
+<script setup lang="ts">
+defineProps<{
+  id: string
+}>()
+
+defineSlots<{
+  message?:() => any
+  label?: () => any
+}>()
+
+const emit = defineEmits<{click: []}>()
+
+const onClick = () => {
+  emit('click')
+}
+</script>
+
 <template>
   <div
     :id="id"
@@ -26,20 +43,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  id: string
-}>()
-
-defineSlots<{
-  message?:() => any
-  label?: () => any
-}>()
-
-const emit = defineEmits<{click: []}>()
-
-const onClick = () => {
-  emit('click')
-}
-</script>

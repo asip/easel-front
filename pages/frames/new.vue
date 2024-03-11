@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const framer = useFrame()
+
+provide('framer', framer)
+</script>
+
 <template>
   <div>
     <br>
@@ -18,9 +24,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const framer = useFrame()
-
-provide('framer', framer)
-</script>

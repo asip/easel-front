@@ -1,8 +1,3 @@
-<template>
-  <input ref="tagEditorRef" type="text" name="tag_editor" value="" class="form-control">
-  <input id="tag_list" v-model="tag_list" type="hidden">
-</template>
-
 <script lang="ts" setup>
 import { useTagEditor } from '~/composables/ui/use_tag_editor'
 import type { Frame } from '~/interfaces/frame'
@@ -22,3 +17,8 @@ onUnmounted(() => {
   closeTagEditor()
 })
 </script>
+
+<template>
+  <input ref="tagEditorRef" type="text" name="tag_editor" value="" class="form-control">
+  <input id="tag_list" v-model="tag_list" type="hidden">
+</template>

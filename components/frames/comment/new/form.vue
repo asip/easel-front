@@ -1,3 +1,39 @@
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { useToast } from '~/composables/ui/use_toast'
+import type { UseCommentType } from '~/composables/use_comment'
+import { useCommentRule } from '~/composables/validation/use_comment_rule'
+
+const { setFlash } = useToast()
+const { logged_in, login_user } = useLoginUser()
+const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
+const comment_rule = useCommentRule()
+
+const v$ = useVuelidate(comment_rule, comment)
+
+const onCreateCommentClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  v$.value.$reset()
+  await v$.value.$validate()
+
+  // console.log(v$.value.body.$invalid)
+  // console.log(v$.value.$invalid)
+  // console.log(v$.value.$error)
+  // console.log(v$.value.$errors)
+  // console.log(comment.body)
+
+  if (!v$.value.body.$invalid) {
+    await createComment()
+    setFlash(flash.value)
+    if (isSuccess()) {
+      v$.value.$reset()
+      await getComments()
+    }
+  }
+}
+</script>
+
 <template>
   <br v-if="logged_in">
   <div v-if="logged_in" class="card col-sm-8 mx-auto">
@@ -45,7 +81,7 @@
         </div>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10" style="padding-bottom:10px;">
-            <button type="button" class="btn btn-light form-control" :disabled="processing" @click="onCommentClick">
+            <button type="button" class="btn btn-light form-control" :disabled="processing" @click="onCreateCommentClick">
               {{ $t('action.comment.post') }}
             </button>
           </div>
@@ -54,39 +90,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseCommentType } from '~/composables/use_comment'
-import { useCommentRule } from '~/composables/validation/use_comment_rule'
-
-const { setFlash } = useToast()
-const { logged_in, login_user } = useLoginUser()
-const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
-const comment_rule = useCommentRule()
-
-const v$ = useVuelidate(comment_rule, comment)
-
-const onCommentClick = async () => {
-  // @ts-ignore
-  i18n.global.locale.value = locale.value
-  v$.value.$reset()
-  await v$.value.$validate()
-
-  // console.log(v$.value.body.$invalid)
-  // console.log(v$.value.$invalid)
-  // console.log(v$.value.$error)
-  // console.log(v$.value.$errors)
-  // console.log(comment.body)
-
-  if (!v$.value.body.$invalid) {
-    await createComment()
-    setFlash(flash.value)
-    if (isSuccess()) {
-      v$.value.$reset()
-      await getComments()
-    }
-  }
-}
-</script>

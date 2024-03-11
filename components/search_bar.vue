@@ -1,3 +1,22 @@
+<script lang="ts" setup>
+const route = useRoute()
+const { date_word, frame_query, searchFrame } = useFrameSearch()
+
+const masks = {
+  input: 'YYYY/MM/DD'
+}
+
+const { locale } = useLocale()
+
+const onSearchClick = async () => {
+  frame_query.value.page = 1
+  await searchFrame()
+  if (route.path !== '/') {
+    await navigateTo('/')
+  }
+}
+</script>
+
 <template>
   <div style="padding-left:5px;">
     <a
@@ -54,22 +73,3 @@
     </teleport>
   </client-only>
 </template>
-
-<script lang="ts" setup>
-const route = useRoute()
-const { date_word, frame_query, searchFrame } = useFrameSearch()
-
-const masks = {
-  input: 'YYYY/MM/DD'
-}
-
-const { locale } = useLocale()
-
-const onSearchClick = async () => {
-  frame_query.value.page = 1
-  await searchFrame()
-  if (route.path !== '/') {
-    await navigateTo('/')
-  }
-}
-</script>

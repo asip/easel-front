@@ -1,7 +1,3 @@
-<template>
-  <div v-if="googleClientID !== ''" ref="googleButtonRef" />
-</template>
-
 <script setup lang="ts">
 /// <reference types='google.accounts' />
 
@@ -37,3 +33,7 @@ const handleCredentialResponse = async (response: CredentialResponse) => {
   closeModal('#login_modal')
 }
 </script>
+
+<template>
+  <div v-if="googleClientID !== ''" ref="googleButtonRef" />
+</template>

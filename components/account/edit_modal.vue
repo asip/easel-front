@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import { useModal } from '~/composables/ui/use_modal'
+
+const { openModal, closeModal } = useModal()
+const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
+
+const onBackClick = () => {
+  closeModal('#edit_profile_modal')
+  openModal('#profile_modal')
+}
+
+onMounted(() => {
+  setUser(login_user)
+})
+</script>
+
 <template>
   <div
     v-if="logged_in"
@@ -29,19 +45,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useModal } from '~/composables/ui/use_modal'
-
-const { openModal, closeModal } = useModal()
-const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
-
-const onBackClick = () => {
-  closeModal('#edit_profile_modal')
-  openModal('#profile_modal')
-}
-
-onMounted(() => {
-  setUser(login_user)
-})
-</script>

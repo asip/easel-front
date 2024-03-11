@@ -1,3 +1,46 @@
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { useImagePreview } from '~/composables/ui/use_image_preview'
+import { useModal } from '~/composables/ui/use_modal'
+import { useToast } from '~/composables/ui/use_toast'
+import type { UseLoginUserType } from '~/composables/use_login_user'
+import { useUserRule } from '~/composables/validation/use_user_rule'
+
+const { setFlash } = useToast()
+const { openModal, closeModal } = useModal()
+const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
+const user_rule = useUserRule(user.value)
+
+const v$ = useVuelidate(user_rule, user)
+
+const onSelectFile = (evt: Event) => {
+  const target = evt.target as HTMLInputElement
+  useImagePreview(target, user.value)
+}
+
+const onUpdateClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  await v$.value.$validate()
+
+  if (!v$.value.$invalid) {
+    await updateProfile()
+    setFlash(flash.value)
+    if (isSuccess()) {
+      closeModal('#edit_profile_modal')
+      openModal('#profile_modal')
+    } else if (!logged_in.value) {
+      closeModal('#edit_profile_modal')
+    }
+  }
+}
+
+const onBackClick = () => {
+  closeModal('#edit_profile_modal')
+  openModal('#profile_modal')
+}
+</script>
+
 <template>
   <div class="card-block">
     <div class="row d-flex justify-content-sm-center">
@@ -113,46 +156,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
-import { useImagePreview } from '~/composables/ui/use_image_preview'
-import { useModal } from '~/composables/ui/use_modal'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseLoginUserType } from '~/composables/use_login_user'
-import { useUserRule } from '~/composables/validation/use_user_rule'
-
-const { setFlash } = useToast()
-const { openModal, closeModal } = useModal()
-const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
-const user_rule = useUserRule(user.value)
-
-const v$ = useVuelidate(user_rule, user)
-
-const onSelectFile = (evt: Event) => {
-  const target = evt.target as HTMLInputElement
-  useImagePreview(target, user.value)
-}
-
-const onUpdateClick = async () => {
-  // @ts-ignore
-  i18n.global.locale.value = locale.value
-  await v$.value.$validate()
-
-  if (!v$.value.$invalid) {
-    await updateProfile()
-    setFlash(flash.value)
-    if (isSuccess()) {
-      closeModal('#edit_profile_modal')
-      openModal('#profile_modal')
-    } else if (!logged_in.value) {
-      closeModal('#edit_profile_modal')
-    }
-  }
-}
-
-const onBackClick = () => {
-  closeModal('#edit_profile_modal')
-  openModal('#profile_modal')
-}
-</script>

@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import sanitizeHtml from 'sanitize-html'
+import { useToast } from '~/composables/ui/use_toast'
+import type { UseCommentType } from '~/composables/use_comment'
+import type { Comment } from '~/interfaces/comment'
+
+const comment = defineModel<Comment>()
+
+const { setFlash } = useToast()
+const { logged_in, login_user } = useLoginUser()
+const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
+
+const sanitizedCommentBody = computed(() => {
+  return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
+})
+
+const onDeleteClick = async () => {
+  comment.value && await deleteComment(comment.value)
+  setFlash(flash.value)
+  if (isSuccess()) {
+    await getComments()
+  }
+}
+</script>
+
 <template>
   <div class="card col-sm-8 mx-auto">
     <div class="card-block">
@@ -42,28 +67,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import sanitizeHtml from 'sanitize-html'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseCommentType } from '~/composables/use_comment'
-import type { Comment } from '~/interfaces/comment'
-
-const comment = defineModel<Comment>()
-
-const { setFlash } = useToast()
-const { logged_in, login_user } = useLoginUser()
-const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
-
-const sanitizedCommentBody = computed(() => {
-  return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
-})
-
-const onDeleteClick = async () => {
-  comment.value && await deleteComment(comment.value)
-  setFlash(flash.value)
-  if (isSuccess()) {
-    await getComments()
-  }
-}
-</script>

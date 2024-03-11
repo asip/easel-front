@@ -1,10 +1,3 @@
-<template>
-  <div v-if="preview_url" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
-    <img :src="preview_url" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
-    <br>
-  </div>
-</template>
-
 <script setup lang="ts">
 import type { Frame } from '~/interfaces/frame'
 import type { User } from '~/interfaces/user'
@@ -27,3 +20,10 @@ const preview_url = computed(() => {
   }
 })
 </script>
+
+<template>
+  <div v-if="preview_url" class="d-flex justify-content-sm-center" style="display: block;padding-bottom:5px;">
+    <img :src="preview_url" alt="" class="mx-auto" style="max-width: 300px; max-height: 300px; display: block;">
+    <br>
+  </div>
+</template>

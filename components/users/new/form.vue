@@ -1,3 +1,35 @@
+<script lang="ts" setup>
+import { useVuelidate } from '@vuelidate/core'
+import { useImagePreview } from '~/composables/ui/use_image_preview'
+import { useToast } from '~/composables/ui/use_toast'
+import { useSignupRule } from '~/composables/validation/use_signup_rule'
+
+const { setFlash } = useToast()
+const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const signup_rule = useSignupRule(user.value)
+
+const v$ = useVuelidate(signup_rule, user)
+
+const onSelectFile = (evt: Event) => {
+  const target = evt.target as HTMLInputElement
+  useImagePreview(target, user.value)
+}
+
+const onSignupClick = async () => {
+  // @ts-ignore
+  i18n.global.locale.value = locale.value
+  await v$.value.$validate()
+
+  if (!v$.value.$invalid) {
+    await signup()
+    setFlash(flash.value)
+    if (isSuccess()) {
+      await navigateTo('/')
+    }
+  }
+}
+</script>
+
 <template>
   <div class="card-block">
     <div class="row d-flex justify-content-sm-center">
@@ -93,35 +125,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
-import { useImagePreview } from '~/composables/ui/use_image_preview'
-import { useToast } from '~/composables/ui/use_toast'
-import { useSignupRule } from '~/composables/validation/use_signup_rule'
-
-const { setFlash } = useToast()
-const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
-const signup_rule = useSignupRule(user.value)
-
-const v$ = useVuelidate(signup_rule, user)
-
-const onSelectFile = (evt: Event) => {
-  const target = evt.target as HTMLInputElement
-  useImagePreview(target, user.value)
-}
-
-const onSignupClick = async () => {
-  // @ts-ignore
-  i18n.global.locale.value = locale.value
-  await v$.value.$validate()
-
-  if (!v$.value.$invalid) {
-    await signup()
-    setFlash(flash.value)
-    if (isSuccess()) {
-      await navigateTo('/')
-    }
-  }
-}
-</script>

@@ -1,3 +1,17 @@
+<script setup lang="ts">
+// import type { Frame } from '~/interfaces/frame';
+
+const route = useRoute()
+const frame_id = route.params.id as string
+
+const framer = useFrame()
+const { frame, getFrame } = framer
+
+await getFrame(frame_id)
+
+provide('framer', framer)
+</script>
+
 <template>
   <div>
     <br>
@@ -24,17 +38,3 @@
     <br>
   </div>
 </template>
-
-<script setup lang="ts">
-// import type { Frame } from '~/interfaces/frame';
-
-const route = useRoute()
-const frame_id = route.params.id as string
-
-const framer = useFrame()
-const { frame, getFrame } = framer
-
-await getFrame(frame_id)
-
-provide('framer', framer)
-</script>

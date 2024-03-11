@@ -1,3 +1,33 @@
+<script lang="ts" setup>
+
+const route = useRoute()
+
+const accounter = useLoginUser()
+const { login_user, logged_in, logout } = accounter
+const { frame_query, searchFrame } = useFrameSearch()
+
+provide('accounter', accounter)
+
+const onLogoutClick = async () => {
+  await logout()
+  if (route.path === '/frames/new' || route.path === '/account/frames') {
+    await navigateTo('/')
+  } else if (route.path.match(/^\/frames\/\d+\/edit$/)) {
+    await navigateTo(`/frames/${route.params.id}`)
+  }
+}
+
+const onTopPageClick = async () => {
+  frame_query.value.word = ''
+  // frame_query.value.page = 1
+  // frame_query.value.pages = 1
+  await searchFrame()
+  if (route.path !== '/') {
+    await navigateTo('/')
+  }
+}
+</script>
+
 <template>
   <ClientOnly>
     <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
@@ -79,33 +109,3 @@
   <AccountProfileModal />
   <AccountEditModal />
 </template>
-
-<script lang="ts" setup>
-
-const route = useRoute()
-
-const accounter = useLoginUser()
-const { login_user, logged_in, logout } = accounter
-const { frame_query, searchFrame } = useFrameSearch()
-
-provide('accounter', accounter)
-
-const onLogoutClick = async () => {
-  await logout()
-  if (route.path === '/frames/new' || route.path === '/account/frames') {
-    await navigateTo('/')
-  } else if (route.path.match(/^\/frames\/\d+\/edit$/)) {
-    await navigateTo(`/frames/${route.params.id}`)
-  }
-}
-
-const onTopPageClick = async () => {
-  frame_query.value.word = ''
-  // frame_query.value.page = 1
-  // frame_query.value.pages = 1
-  await searchFrame()
-  if (route.path !== '/') {
-    await navigateTo('/')
-  }
-}
-</script>
