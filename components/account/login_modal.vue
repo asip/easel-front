@@ -52,7 +52,6 @@ const onLoginClick = async () => {
               <div class="col-sm-10">
                 <br>
                 <AccountLoginGoogle v-if="!logged_in" />
-                <br>
                 <table class="table table-bordered table_rounded">
                   <tbody>
                     <tr>

@@ -1,39 +1,34 @@
 <script setup lang="ts">
-/// <reference types='google.accounts' />
-
+// @ts-ignore
+import { GoogleSignInButton, useOneTap, type CredentialResponse } from 'vue3-google-signin'
 import { useModal } from '~/composables/ui/use_modal'
-import type { CredentialResponse } from '~/interfaces/credential_response'
 
 const { closeModal } = useModal()
-const { googleClientID } = useConstants()
 const { login_with_google } = useLoginUser()
 
-const googleButtonRef = ref(null)
-
-onMounted(() => {
-  const googleButton = googleButtonRef.value
-
-  if (google && googleButton) {
-    google.accounts.id.initialize({
-      client_id: googleClientID,
-      callback: handleCredentialResponse // method to run after user clicks the Google sign in button
-    })
-    google.accounts.id.renderButton(
-      googleButton,
-      { type: 'standard', theme: 'outline', size: 'large' } // customization attributes
-    )
-    google.accounts.id.prompt() // also display the One Tap dialog
-  }
-})
-
-const handleCredentialResponse = async (response: CredentialResponse) => {
+// handle success event
+const handleLoginSuccess = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
   await login_with_google(response)
   closeModal('#login_modal')
 }
+
+// handle an error event
+const handleLoginError = () => {
+  // console.error("Login failed");
+}
+
+useOneTap({
+  disableAutomaticPrompt: false,
+  onSuccess: handleLoginSuccess,
+  onError: handleLoginError
+})
 </script>
 
 <template>
-  <div v-if="googleClientID !== ''" ref="googleButtonRef" />
+  <GoogleSignInButton
+    @success="handleLoginSuccess"
+    @error="handleLoginError"
+  />
 </template>

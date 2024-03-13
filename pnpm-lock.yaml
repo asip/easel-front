@@ -50,6 +50,9 @@ dependencies:
   vue-sonner:
     specifier: ^1.1.2
     version: 1.1.2
+  vue3-google-signin:
+    specifier: 1.3.4
+    version: 1.3.4(vue@3.4.21)
   vuejs-paginate-next:
     specifier: ^1.0.2
     version: 1.0.2(typescript@5.4.2)
@@ -9372,6 +9375,14 @@ packages:
 
   /vue-sonner@1.1.2:
     resolution: {integrity: sha512-yg4f5s0a3oiiI7cNvO0Dajux1Y7s04lxww3vnQtnwQawJ3KqaKA9RIRMdI9wGTosRGIOwgYFniFRGl4+IuKPZw==}
+    dev: false
+
+  /vue3-google-signin@1.3.4(vue@3.4.21):
+    resolution: {integrity: sha512-vNu8PhZxWAeb9kqdNcTvaZv6n0eldyTTE+CxDgCMf3J0olzQsk6HPor3lTLhxNyW69TwY/nFiwiF/iVQC33ymg==}
+    peerDependencies:
+      vue: ^3
+    dependencies:
+      vue: 3.4.21(typescript@5.4.2)
     dev: false
 
   /vue@3.4.21(typescript@5.4.2):

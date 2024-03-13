@@ -12,10 +12,7 @@ useHead(
       { rel: 'icon', type: 'image/png', href: '/palette.png' },
       { rel: 'icon', type: 'image/svg+xml', href: '/palette.svg' }
     ],
-    script: [
-      { src: 'https://apis.google.com/js/api.js' },
-      { src: 'https://accounts.google.com/gsi/client' }
-    ]
+    script: []
   }
 )
 
