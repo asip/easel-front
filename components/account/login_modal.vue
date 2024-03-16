@@ -2,14 +2,14 @@
 import { useModal } from '~/composables/ui/use_modal'
 import { useToast } from '~/composables/ui/use_toast'
 
-const { closeModal } = useModal()
+const { closeModal, openModal } = useModal()
 const { setMessages } = useToast()
 const { logged_in, login_params, login, login_messages, resetLoginParams } = inject('accounter') as UseLoginUserType
 
-const onSignupClick = async () => {
+const onSignupClick = () => {
   closeModal('#login_modal')
   resetLoginParams()
-  await navigateTo('/signup')
+  openModal('#signup_modal')
 }
 
 const onLoginClick = async () => {

@@ -106,6 +106,7 @@ const onTopPageClick = async () => {
     </div>
   </nav>
   <AccountLoginModal />
+  <AccountSignupModal />
   <AccountProfileModal />
   <AccountEditModal />
 </template>
