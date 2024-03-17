@@ -29,7 +29,7 @@
     "eslint": "^8.57.0",
     "happy-dom": "^13.8.6",
     "markuplint": "^4.3.0",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "playwright-core": "^1.42.1",
     "typescript": "5.4.2",
     "vitest": "^1.4.0",
@@ -37,22 +37,22 @@
     "vue-router": "4.3.0"
   },
   "dependencies": {
+    "@formkit/tempo": "0.0.15",
     "@popperjs/core": "^2.11.8",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
-    "@yaireo/tagify": "^4.21.2",
+    "@yaireo/tagify": "^4.22.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "@formkit/tempo": "0.0.15",
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "sanitize-html": "^2.12.1",
     "sass": "^1.72.0",
     "v-calendar": "^3.1.2",
-    "vue3-google-signin": "1.3.5",
     "vue-i18n": "9.10.2",
     "vue-sonner": "^1.1.2",
+    "vue3-google-signin": "1.3.5",
     "vuejs-paginate-next": "^1.0.2"
   }
 }
