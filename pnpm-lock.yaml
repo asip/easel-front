@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@formkit/tempo':
-    specifier: 0.0.15
-    version: 0.0.15
+    specifier: 0.0.16
+    version: 0.0.16
   '@popperjs/core':
     specifier: ^2.11.8
     version: 2.11.8
@@ -18,7 +18,7 @@ dependencies:
     specifier: ^2.0.4
     version: 2.0.4(vue@3.4.21)
   '@yaireo/tagify':
-    specifier: ^4.21.2
+    specifier: ^4.22.0
     version: 4.22.0(prop-types@15.8.1)
   bootstrap:
     specifier: ^5.3.3
@@ -918,8 +918,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@formkit/tempo@0.0.15:
-    resolution: {integrity: sha512-jDz5yrCAG2gPoalgoqKUtJWOgdLGCtHgBYLZBRUjAUpvX5DMBAJz2QqyfTdLhXCfhfOrugl2FQtSaBxIPcKcyw==}
+  /@formkit/tempo@0.0.16:
+    resolution: {integrity: sha512-uVSwN80+dy+oMDnw0/MmauZDRMaxzlCNX/gfF4hwyrhoxyZGEN83T5FcsJJn+VY4iaWEjGyxfISTpVNvhvfUBw==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
