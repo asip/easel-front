@@ -37,7 +37,7 @@
     "vue-router": "4.3.0"
   },
   "dependencies": {
-    "@formkit/tempo": "0.0.16",
+    "@formkit/tempo": "0.0.17",
     "@popperjs/core": "^2.11.8",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
