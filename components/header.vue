@@ -30,12 +30,20 @@ const onTopPageClick = async () => {
 
 <template>
   <ClientOnly>
-    <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
+    <Toaster
+      position="top-right"
+      expand
+      :visible-toasts="9"
+      :duration="2000"
+    />
   </ClientOnly>
   <nav class="navbar navbar-expand-sm fixed-top navbar-light c-bgcolor">
     <div class="container-fluid">
       <div class="align-middle">
-        <NuxtLink class="navbar-brand" @click="onTopPageClick">
+        <NuxtLink
+          class="navbar-brand"
+          @click="onTopPageClick"
+        >
           <i class="bi bi-palette" /> Easel
         </NuxtLink>
       </div>
@@ -50,8 +58,14 @@ const onTopPageClick = async () => {
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div id="navbarNavDropdown" class="collapse navbar-collapse">
-        <ul v-if="!logged_in" class="navbar-nav me-auto">
+      <div
+        id="navbarNavDropdown"
+        class="collapse navbar-collapse"
+      >
+        <ul
+          v-if="!logged_in"
+          class="navbar-nav me-auto"
+        >
           <li class="nav-item">
             <a
               href="#"
@@ -64,12 +78,23 @@ const onTopPageClick = async () => {
             </a>
           </li>
         </ul>
-        <ul v-else class="navbar-nav justify-content-sm-center me-auto">
+        <ul
+          v-else
+          class="navbar-nav justify-content-sm-center me-auto"
+        >
           <li class="nav-item dropdown small">
-            <button id="navbarDropdownMenuLink" class="nav-link dropdown-toggle btn btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+            <button
+              id="navbarDropdownMenuLink"
+              class="nav-link dropdown-toggle btn btn-light"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               {{ login_user.name }}
             </button>
-            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDropdownMenuLink">
+            <ul
+              class="dropdown-menu dropdown-menu-light"
+              aria-labelledby="navbarDropdownMenuLink"
+            >
               <li>
                 <a
                   href="#"
@@ -82,17 +107,27 @@ const onTopPageClick = async () => {
                 </a>
               </li>
               <li>
-                <NuxtLink to="/account/frames" class="dropdown-item">
+                <NuxtLink
+                  to="/account/frames"
+                  class="dropdown-item"
+                >
                   <i class="bi bi-list" />&nbsp;{{ $t('action.user.frame_list') }}
                 </NuxtLink>
               </li>
               <li>
-                <NuxtLink to="/frames/new" class="dropdown-item">
+                <NuxtLink
+                  to="/frames/new"
+                  class="dropdown-item"
+                >
                   <i class="bi bi-box-arrow-up" />&nbsp;{{ $t('action.frame.upload') }}
                 </NuxtLink>
               </li>
               <li>
-                <button type="button" class="dropdown-item" @click="onLogoutClick">
+                <button
+                  type="button"
+                  class="dropdown-item"
+                  @click="onLogoutClick"
+                >
                   <i class="bi bi-box-arrow-right" />&nbsp;{{ $t('action.user.logout') }}
                 </button>
               </li>

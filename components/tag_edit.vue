@@ -19,6 +19,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <input ref="tagEditorRef" type="text" name="tag_editor" value="" class="form-control">
-  <input id="tag_list" v-model="tag_list" type="hidden">
+  <input
+    ref="tagEditorRef"
+    type="text"
+    name="tag_editor"
+    value=""
+    class="form-control"
+  >
+  <input
+    id="tag_list"
+    v-model="tag_list"
+    type="hidden"
+  >
 </template>

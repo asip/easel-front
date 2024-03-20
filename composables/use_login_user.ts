@@ -47,7 +47,7 @@ export const useLoginUser = () => {
     }
   )
 
-  const logged_in = useState<Boolean>('logged_in', () => {
+  const logged_in = useState<boolean>('logged_in', () => {
     return false
   })
 

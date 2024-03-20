@@ -27,8 +27,14 @@ const onDeleteClick = async () => {
   <div class="card col-sm-8 mx-auto">
     <div class="card-block">
       <div class="row d-flex">
-        <div class="col-sm-12" style="line-height: 35px;">
-          <div class="float-start align-middle" style="padding-left:5px;">
+        <div
+          class="col-sm-12"
+          style="line-height: 35px;"
+        >
+          <div
+            class="float-start align-middle"
+            style="padding-left:5px;"
+          >
             <img
               :src="`${comment?.user_image_url}`"
               alt=""
@@ -38,25 +44,40 @@ const onDeleteClick = async () => {
               decoding="async"
             >
           </div>
-          <div class="float-start small align-middle" style="padding-left:5px;">
+          <div
+            class="float-start small align-middle"
+            style="padding-left:5px;"
+          >
             <div class="badge rounded-pill bg-light text-info">
               {{ comment?.user_name }}
             </div>
           </div>
-          <div class="float-start small align-middle" style="padding-left:5px;">
+          <div
+            class="float-start small align-middle"
+            style="padding-left:5px;"
+          >
             <div class="badge rounded-pill bg-light text-info">
               {{ comment?.updated_at }}
             </div>
           </div>
-          <div v-show="logged_in && comment?.user_id == login_user.id" class="float-end">
-            <button class="btn btn-link btn-sm" @click="onDeleteClick">
+          <div
+            v-show="logged_in && comment?.user_id == login_user.id"
+            class="float-end"
+          >
+            <button
+              class="btn btn-link btn-sm"
+              @click="onDeleteClick"
+            >
               <i class="bi bi-x-circle" />
             </button>&nbsp;
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer" style="background-color: white; border-color: white;">
+    <div
+      class="card-footer"
+      style="background-color: white; border-color: white;"
+    >
       <div class="d-flex">
         <div class="col-12 align-middle">
           <div class="float-start">

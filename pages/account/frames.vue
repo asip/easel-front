@@ -24,6 +24,10 @@ const userId = login_user.value.id?.toString()
       <br>
     </div>
     <br>
-    <UsersFrameList v-if="logged_in" :user-id="userId" page="profile" />
+    <UsersFrameList
+      v-if="logged_in"
+      :user-id="userId"
+      page="profile"
+    />
   </div>
 </template>

@@ -23,12 +23,18 @@ onMounted(() => {
     role="dialog"
     aria-hidden="false"
   >
-    <div class="modal-dialog" role="document">
+    <div
+      class="modal-dialog"
+      role="document"
+    >
       <div class="modal-content col-sm-8">
         <div class="modal-header">
           <div class="float-start">
             <div class="float-start">
-              <a href="#" @click="onBackClick">
+              <a
+                href="#"
+                @click="onBackClick"
+              >
                 <i class="bi bi-arrow-left-circle" />
               </a>
             </div>

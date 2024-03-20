@@ -5,7 +5,7 @@ import { usePostApi } from './api/use_post_api'
 import { useDeleteApi } from './api/use_delete_api'
 
 export function useFollow () {
-  const following: Ref<Boolean> = ref<Boolean>(false)
+  const following: Ref<boolean> = ref<boolean>(false)
 
   const { $i18n } = useNuxtApp()
 

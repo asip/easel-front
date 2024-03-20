@@ -54,14 +54,25 @@ const onUnfollowClick = async () => {
           {{ user.name }}
         </div>
         <br>
-        <UsersPreviewImage v-model="user" :original="false" />
+        <UsersPreviewImage
+          v-model="user"
+          :original="false"
+        />
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-6 text-center">
             <div v-if="logged_in && user.id != login_user.id">
-              <button v-if="following" class="btn btn-primary btn-sm" @click="onUnfollowClick">
+              <button
+                v-if="following"
+                class="btn btn-primary btn-sm"
+                @click="onUnfollowClick"
+              >
                 {{ $t('action.user.unfollow') }}
               </button>
-              <button v-else class="btn btn-outline-primary btn-sm" @click="onFollowClick">
+              <button
+                v-else
+                class="btn btn-outline-primary btn-sm"
+                @click="onFollowClick"
+              >
                 {{ $t('action.user.follow') }}
               </button>
             </div>
@@ -71,6 +82,9 @@ const onUnfollowClick = async () => {
       </div>
     </div>
     <br>
-    <UsersFrameList :user-id="userId" page="user_profile" />
+    <UsersFrameList
+      :user-id="userId"
+      page="user_profile"
+    />
   </div>
 </template>

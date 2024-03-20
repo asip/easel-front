@@ -36,11 +36,20 @@ const onCreateCommentClick = async () => {
 
 <template>
   <br v-if="logged_in">
-  <div v-if="logged_in" class="card col-sm-8 mx-auto">
+  <div
+    v-if="logged_in"
+    class="card col-sm-8 mx-auto"
+  >
     <div class="card-block">
       <div class="row d-flex">
-        <div class="clearfix " style="line-height: 35px;">
-          <div class="float-start" style="padding-left:5px;">
+        <div
+          class="clearfix "
+          style="line-height: 35px;"
+        >
+          <div
+            class="float-start"
+            style="padding-left:5px;"
+          >
             <img
               :src="`${login_user.image_thumb_url}`"
               alt=""
@@ -50,7 +59,10 @@ const onCreateCommentClick = async () => {
               decoding="async"
             >
           </div>
-          <div class="float-start small align-middle" style="padding-left:5px;">
+          <div
+            class="float-start small align-middle"
+            style="padding-left:5px;"
+          >
             <div class="badge rounded-pill bg-light text-info">
               {{ login_user.name }}
             </div>
@@ -62,17 +74,26 @@ const onCreateCommentClick = async () => {
       <form>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <textarea v-model="comment.body" class="form-control col-12" />
+            <textarea
+              v-model="comment.body"
+              class="form-control col-12"
+            />
           </div>
         </div>
         <div class="d-flex justify-content-center">
           <div class="col-sm-10">
-            <div v-for="error of v$.body.$errors" :key="error.$uid">
+            <div
+              v-for="error of v$.body.$errors"
+              :key="error.$uid"
+            >
               <div class="text-danger">
                 {{ error.$message }}
               </div>
             </div>
-            <div v-for="(message, idx) in error_messages.body" :key="idx">
+            <div
+              v-for="(message, idx) in error_messages.body"
+              :key="idx"
+            >
               <p class="text-danger">
                 {{ message }}
               </p>
@@ -80,8 +101,16 @@ const onCreateCommentClick = async () => {
           </div>
         </div>
         <div class="d-flex justify-content-center">
-          <div class="form-group col-10" style="padding-bottom:10px;">
-            <button type="button" class="btn btn-light form-control" :disabled="processing" @click="onCreateCommentClick">
+          <div
+            class="form-group col-10"
+            style="padding-bottom:10px;"
+          >
+            <button
+              type="button"
+              class="btn btn-light form-control"
+              :disabled="processing"
+              @click="onCreateCommentClick"
+            >
               {{ $t('action.comment.post') }}
             </button>
           </div>

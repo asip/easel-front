@@ -25,15 +25,24 @@ const onEditClick = () => {
     role="dialog"
     aria-hidden="false"
   >
-    <div class="modal-dialog" role="document">
+    <div
+      class="modal-dialog"
+      role="document"
+    >
       <div class="modal-content col-sm-8">
         <div class="modal-header">
           <div class="float-start">
             <div class="float-start">
-              <a href="#" @click="onCloseClick">
+              <a
+                href="#"
+                @click="onCloseClick"
+              >
                 <i class="bi bi-arrow-left-circle" />
               </a>&nbsp;
-              <a href="#" @click="onEditClick">
+              <a
+                href="#"
+                @click="onEditClick"
+              >
                 <i class="bi bi-pencil-square" />
               </a>&nbsp;
               <a
@@ -47,11 +56,19 @@ const onEditClick = () => {
             </div>
             {{ $t('model.user.model_name') }}
           </div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          />
         </div>
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
-            <UsersPreviewImage v-model="login_user" :original="false" />
+            <UsersPreviewImage
+              v-model="login_user"
+              :original="false"
+            />
 
             <div class="row d-flex justify-content-sm-center">
               <div class="col-sm-10">
@@ -60,7 +77,10 @@ const onEditClick = () => {
                   <tbody>
                     <tr>
                       <td style="width: 8em;">
-                        <label for="name" class="col-form-label">{{ $t('model.user.name') }}：</label>
+                        <label
+                          for="name"
+                          class="col-form-label"
+                        >{{ $t('model.user.name') }}：</label>
                       </td>
                       <td>
                         <div class="form-control-plaintext">
@@ -70,7 +90,10 @@ const onEditClick = () => {
                     </tr>
                     <tr>
                       <td>
-                        <label for="email" class="col-form-label">{{ $t('model.user.email') }}：</label>
+                        <label
+                          for="email"
+                          class="col-form-label"
+                        >{{ $t('model.user.email') }}：</label>
                       </td>
                       <td>
                         <div class="form-control-plaintext">

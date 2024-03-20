@@ -40,7 +40,10 @@ const onPageBack = async () => {
             <div class="float-start">
             &nbsp;
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>&nbsp;
-              <NuxtLink v-if="logged_in && frame.user_id == login_user.id" :to="`/frames/${frame.id}/edit`">
+              <NuxtLink
+                v-if="logged_in && frame.user_id == login_user.id"
+                :to="`/frames/${frame.id}/edit`"
+              >
                 <i class="bi bi-pencil-square" />
               </NuxtLink>&nbsp;
               <!-- Button trigger modal -->
@@ -62,7 +65,11 @@ const onPageBack = async () => {
         </div>
       </div>
       <div class="card-body">
-        <FramesPreviewImage v-model="frame" :original="true" :photoswipe="true" />
+        <FramesPreviewImage
+          v-model="frame"
+          :original="true"
+          :photoswipe="true"
+        />
         <FramesPreviewTags v-model="frame" />
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-10">
@@ -96,7 +103,10 @@ const onPageBack = async () => {
           <div class="col-sm-12 clearfix">
             <!-- <div class="float-start"></div> -->
             <div class="float-end">
-              <NuxtLink :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frame_id } }" class="text-decoration-none">
+              <NuxtLink
+                :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frame_id } }"
+                class="text-decoration-none"
+              >
                 {{ frame.user_name }}&nbsp;
               </NuxtLink>
             </div>

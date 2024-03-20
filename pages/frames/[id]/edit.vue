@@ -28,7 +28,11 @@ provide('framer', framer)
         </div>
       </div>
       <br>
-      <FramesPreviewImage v-model="frame" :original="true" :photoswipe="false" />
+      <FramesPreviewImage
+        v-model="frame"
+        :original="true"
+        :photoswipe="false"
+      />
       <!-- unless @frame.confirming == 'true' -->
       <FramesEditForm />
       <!-- else -->

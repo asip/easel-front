@@ -2,7 +2,6 @@
 import { useModal } from '~/composables/ui/use_modal'
 
 const { openModal, closeModal } = useModal()
-const { logged_in } = inject('accounter') as UseLoginUserType
 
 const onBackClick = () => {
   closeModal('#signup_modal')
@@ -18,18 +17,29 @@ const onBackClick = () => {
     role="dialog"
     aria-hidden="false"
   >
-    <div class="modal-dialog" role="document">
+    <div
+      class="modal-dialog"
+      role="document"
+    >
       <div class="modal-content col-sm-8">
         <div class="modal-header">
           <div class="float-start">
             <div class="float-start">
-              <a href="#" @click="onBackClick">
+              <a
+                href="#"
+                @click="onBackClick"
+              >
                 <i class="bi bi-arrow-left-circle" />
               </a>&nbsp;
             </div>
             {{ $t('action.user.new') }}
           </div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          />
         </div>
         <br>
         <UsersNewForm />
