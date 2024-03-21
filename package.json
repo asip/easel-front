@@ -30,7 +30,7 @@
     "markuplint": "^4.3.0",
     "nuxt": "^3.11.1",
     "playwright-core": "^1.42.1",
-    "typescript": "5.4.2",
+    "typescript": "5.4.3",
     "vitest": "^1.4.0",
     "vue": "3.4.21",
     "vue-router": "4.3.0"
