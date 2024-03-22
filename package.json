@@ -46,7 +46,7 @@
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
-    "sanitize-html": "^2.12.1",
+    "sanitize-html": "^2.13.0",
     "sass": "^1.72.0",
     "v-calendar": "^3.1.2",
     "vue-i18n": "9.10.2",
