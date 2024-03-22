@@ -3,10 +3,9 @@ import typescriptESLint from '@typescript-eslint/eslint-plugin'
 import vueESLint from 'eslint-plugin-vue'
 import vueESLintParser from 'vue-eslint-parser'
 
-import nuxt from './.nuxt/eslint.config.mjs'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default [
-  ...nuxt,
+export default withNuxt(
   {
     rules: {
       camelcase: 0,
@@ -35,4 +34,4 @@ export default [
       'vue/return-in-computed-property': 0
     }
   }
-]
+)
