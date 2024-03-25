@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useToast } from '~/composables/ui/use_toast'
-import { useImagePreview } from '~/composables/ui/use_image_preview'
-import type { UseFrameType } from '~/composables/use_frame'
-import { useFrameRule } from '~/composables/validation/use_frame_rule'
+import { useToast } from '~/composables/ui/use-toast'
+import { useImagePreview } from '~/composables/ui/use-image-preview'
+import type { UseFrameType } from '~/composables/use-frame'
+import { useFrameRule } from '~/composables/validation/use-frame-rule'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()

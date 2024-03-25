@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useTagEditor } from '~/composables/ui/use_tag_editor'
+import { useTagEditor } from '~/composables/ui/use-tag-editor'
 import type { Frame } from '~/interfaces/frame'
 
 const modelValue = defineModel<Frame>()

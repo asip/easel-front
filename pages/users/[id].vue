@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFollow } from '~/composables/use_follow'
+import { useFollow } from '~/composables/use-follow'
 
 const route = useRoute()
 const { id } = route.params

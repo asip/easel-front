@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseCommentType } from '~/composables/use_comment'
-import { useCommentRule } from '~/composables/validation/use_comment_rule'
+import { useToast } from '~/composables/ui/use-toast'
+import type { UseCommentType } from '~/composables/use-comment'
+import { useCommentRule } from '~/composables/validation/use-comment-rule'
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()

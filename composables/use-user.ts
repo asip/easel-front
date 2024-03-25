@@ -1,6 +1,6 @@
-import { useGetApi } from './api/use_get_api'
+import { useGetApi } from './api/use-get-api'
 import type { User } from '~/interfaces/user'
-import type { RefQuery } from '~/interfaces/ref_query'
+import type { RefQuery } from '~/interfaces/ref-query'
 
 export const useUser = () => {
   const user = ref<User>(

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLocale } from '~/composables/use_locale'
+import { useLocale } from '~/composables/use-locale'
 
 useHead(
   {

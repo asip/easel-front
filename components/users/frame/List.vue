@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useImageGallery } from '~/composables/ui/use_image_gallery'
-import { useUserFrames } from '~/composables/use_user_frames'
+import { useImageGallery } from '~/composables/ui/use-image-gallery'
+import { useUserFrames } from '~/composables/use-user-frames'
 
 const props = defineProps<{
   userId: string | undefined

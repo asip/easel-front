@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseCommentType } from '~/composables/use_comment'
+import { useToast } from '~/composables/ui/use-toast'
+import type { UseCommentType } from '~/composables/use-comment'
 import type { Comment } from '~/interfaces/comment'
 
 const comment = defineModel<Comment>()

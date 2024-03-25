@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UseCommentType } from '~/composables/use_comment'
+import type { UseCommentType } from '~/composables/use-comment'
 import type { Comment } from '~/interfaces/comment'
 
 const { comments, getComments } = inject('commenter') as UseCommentType

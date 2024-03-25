@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useModal } from '~/composables/ui/use_modal'
-import type { UseLoginUserType } from '~/composables/use_login_user'
+import { useModal } from '~/composables/ui/use-modal'
+import type { UseLoginUserType } from '~/composables/use-login-user'
 
 const { openModal, closeModal } = useModal()
 const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType

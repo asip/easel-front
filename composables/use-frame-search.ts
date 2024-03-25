@@ -1,29 +1,36 @@
-import { useGetApi } from './api/use_get_api'
+import { format } from '@formkit/tempo'
+import { useGetApi } from './api/use-get-api'
 import type { Frame } from '~/interfaces/frame'
 
-interface UserFrameQuery {
-  user_id: string | null
-  page: number
-  pages: number
-}
-
-export function useUserFrames () {
-  const frame_query = useState<UserFrameQuery>('user.frame_query', () => {
+export const useFrameSearch = () => {
+  const frame_query = useState('frame_query', () => {
     return {
-      user_id: null,
+      word: '',
       page: 1,
       pages: 1
     }
   })
 
-  const frames = ref<Frame[]>([])
+  const frames = useState<Frame[]>('frames', () => { return [] })
+
+  const { locale } = useLocale()
+
+  const date_word = computed({
+    get () {
+      return format(new Date(), 'YYYY/MM/DD', locale.value)
+    },
+    set (value: any) {
+      frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+    }
+  })
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (user_id: string | undefined) => {
+  const searchFrame = async () => {
     const { data, error } = await useGetApi({
-      url: `/users/${user_id}/frames`,
+      url: '/frames',
       query: {
+        q: frame_query.value.word,
         page: frame_query.value.page
       }
     })
@@ -38,24 +45,16 @@ export function useUserFrames () {
         default:
           flash.value.alert = error.value.message
       }
-
-      throw createError({
-        statusCode: error.value.statusCode,
-        statusMessage: error.value.message,
-        message: flash.value.alert
-      })
     } else if (data.value) {
       const { data: frameList, meta } = data.value as any
       // console.log(frameList)
-      // console.log(meta)
 
       if (frameList) {
         frames.value.splice(0)
-        for (const frame of frameList as any[]) {
-        // console.log(comment);
-          frames.value.push(createFrameFromJson(frame.attributes))
+        for (const frameAttrs of frameList as any[]) {
+          frames.value.push(createFrameFromJson(frameAttrs.attributes))
         }
-      // console.log(frames)
+        // console.log(frames)
       }
       if (meta) {
         frame_query.value.pages = meta.pagination.pages
@@ -72,6 +71,6 @@ export function useUserFrames () {
   }
 
   return {
-    frame_query, getFrames, frames
+    frame_query, date_word, searchFrame, frames
   }
 }

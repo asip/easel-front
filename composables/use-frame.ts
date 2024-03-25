@@ -1,11 +1,11 @@
-import { useGetApi } from './api/use_get_api'
-import { usePostApi } from './api/use_post_api'
-import { usePutApi } from './api/use_put_api'
-import { useDeleteApi } from './api/use_delete_api'
-import { useLocale } from '~/composables/use_locale'
-import type { RefQuery } from '~/interfaces/ref_query'
+import { useGetApi } from './api/use-get-api'
+import { usePostApi } from './api/use-post-api'
+import { usePutApi } from './api/use-put-api'
+import { useDeleteApi } from './api/use-delete-api'
+import { useLocale } from '~/composables/use-locale'
+import type { RefQuery } from '~/interfaces/ref-query'
 import type { Frame } from '~/interfaces/frame'
-import type { ErrorMessages } from '~/interfaces/error_messages'
+import type { ErrorMessages } from '~/interfaces/error-messages'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({

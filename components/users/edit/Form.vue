@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useImagePreview } from '~/composables/ui/use_image_preview'
-import { useModal } from '~/composables/ui/use_modal'
-import { useToast } from '~/composables/ui/use_toast'
-import type { UseLoginUserType } from '~/composables/use_login_user'
-import { useUserRule } from '~/composables/validation/use_user_rule'
+import { useImagePreview } from '~/composables/ui/use-image-preview'
+import { useModal } from '~/composables/ui/use-modal'
+import { useToast } from '~/composables/ui/use-toast'
+import type { UseLoginUserType } from '~/composables/use-login-user'
+import { useUserRule } from '~/composables/validation/use-user-rule'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()

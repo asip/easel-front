@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useImageGallery } from '~/composables/ui/use_image_gallery'
+import { useImageGallery } from '~/composables/ui/use-image-gallery'
 
 const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, searchFrame, frames } = useFrameSearch()

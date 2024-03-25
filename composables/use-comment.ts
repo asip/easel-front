@@ -1,11 +1,11 @@
-import { useLoginUser } from './use_login_user'
-import { useFlash } from './use_flash'
-import { useGetApi } from './api/use_get_api'
-import { usePostApi } from './api/use_post_api'
-import { useDeleteApi } from './api/use_delete_api'
-import { useLocale } from '~/composables/use_locale'
+import { useLoginUser } from './use-login-user'
+import { useFlash } from './use-flash'
+import { useGetApi } from './api/use-get-api'
+import { usePostApi } from './api/use-post-api'
+import { useDeleteApi } from './api/use-delete-api'
+import { useLocale } from '~/composables/use-locale'
 import type { Comment } from '~/interfaces/comment'
-import type { ErrorMessages } from '~/interfaces/error_messages'
+import type { ErrorMessages } from '~/interfaces/error-messages'
 
 export function useComment () {
   const comment: Ref<Comment> = ref<Comment>({
