@@ -59,11 +59,11 @@ dependencies:
 
 devDependencies:
   '@markuplint/vue-parser':
-    specifier: ^4.2.0
-    version: 4.2.0(eslint@8.57.0)
+    specifier: ^4.3.0
+    version: 4.3.0(eslint@8.57.0)
   '@markuplint/vue-spec':
-    specifier: ^4.1.0
-    version: 4.1.0
+    specifier: ^4.2.0
+    version: 4.2.0
   '@nuxt/devtools':
     specifier: 1.1.3
     version: 1.1.3(@unocss/reset@0.58.6)(floating-vue@5.2.2)(nuxt@3.11.1)(rollup@4.13.0)(unocss@0.58.6)(vite@5.1.6)(vue@3.4.21)
@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^14.3.6
     version: 14.3.6
   markuplint:
-    specifier: ^4.3.0
-    version: 4.3.0(typescript@5.4.3)
+    specifier: ^4.4.0
+    version: 4.4.0(typescript@5.4.3)
   nuxt:
     specifier: ^3.11.1
     version: 3.11.1(@unocss/reset@0.58.6)(eslint@8.57.0)(floating-vue@5.2.2)(rollup@4.13.0)(sass@1.72.0)(typescript@5.4.3)(unocss@0.58.6)(vite@5.1.6)
@@ -1254,8 +1254,8 @@ packages:
       - supports-color
     dev: true
 
-  /@markuplint/cli-utils@4.1.0:
-    resolution: {integrity: sha512-sSPCgXGVICmTmQvCWPx6OcNwo1yEbYc6sy4ZYRJoX6dt1/yVHOk3Kln8ptm4VDZgcLbSQTcoPWHn5Z73pP8bAA==}
+  /@markuplint/cli-utils@4.2.0:
+    resolution: {integrity: sha512-N0pksf5qoNSg320VA8axCiHS5NcnDks0JAvStGYjz9pUnQznq2fpbXl0lDdfLSzMxbV3PtVDzFF9kxLbaWYbRA==}
     dependencies:
       cli-color: 2.0.4
       detect-installed: 2.0.4
@@ -1265,24 +1265,24 @@ packages:
       strip-ansi: 7.1.0
     dev: true
 
-  /@markuplint/config-presets@4.1.0:
-    resolution: {integrity: sha512-q9YJNRVFblJUXFJA54DYwDcwLanTf1AtCXKPNj+iqq2VdTiOEZ61McCENS3LeySmoomTAP90pvcc/j4UlH1kqQ==}
+  /@markuplint/config-presets@4.2.0:
+    resolution: {integrity: sha512-c+eNePJQEwIFqP4QFLH9CpwN0MUKsncXg0LZcRm9lhBaDTUuSC4ekG2w69FQpfHP1MnnMsF2J6EUTlawXhSAMQ==}
     dev: true
 
-  /@markuplint/file-resolver@4.3.0(typescript@5.4.3):
-    resolution: {integrity: sha512-vH50kcfWlr4UXjxe0skxUbU/6LIqC5S6u+dyTrScu/mjMmNsPeE/nBit/sBsC72PntWAu62fLcv1hG0c010U2w==}
+  /@markuplint/file-resolver@4.4.0(typescript@5.4.3):
+    resolution: {integrity: sha512-lY/GNuud8XlwMxm0MMRCOEBG+t7NCwMO9VPC9p+Qfb0N/7hAH0R+ZQbk3M6NwdyU/C2+834u++X+8I3IMmbkEw==}
     dependencies:
-      '@markuplint/html-parser': 4.2.0
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/ml-config': 4.2.0
-      '@markuplint/ml-core': 4.3.0
-      '@markuplint/ml-spec': 4.1.0
-      '@markuplint/parser-utils': 4.2.0
-      '@markuplint/selector': 4.2.0
-      '@markuplint/shared': 4.0.1
+      '@markuplint/html-parser': 4.3.0
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/ml-config': 4.3.0
+      '@markuplint/ml-core': 4.4.0
+      '@markuplint/ml-spec': 4.2.0
+      '@markuplint/parser-utils': 4.3.0
+      '@markuplint/selector': 4.3.0
+      '@markuplint/shared': 4.1.0
       cosmiconfig: 9.0.0(typescript@5.4.3)
       debug: 4.3.4
-      glob: 10.3.10
+      glob: 10.3.9
       ignore: 5.3.1
       jsonc: 2.0.0
       minimatch: 9.0.3
@@ -1291,134 +1291,134 @@ packages:
       - typescript
     dev: true
 
-  /@markuplint/html-parser@4.2.0:
-    resolution: {integrity: sha512-K0W70P7uIcRSJIslIvRxdx4d5xkeJJF6/EE/x4sfSvagUt23hI5PWeOfRQHeKJa8CorC+gEpE+qes26u8OuOGg==}
+  /@markuplint/html-parser@4.3.0:
+    resolution: {integrity: sha512-YV3bTFLRp1qTEiMvWaf1qpkhDNGLCNpKRYLqZpHymIDtFPiYzQdynqCg+OM21EJKEWMlEuU4rGNeQzrFz6amCA==}
     dependencies:
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/parser-utils': 4.2.0
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/parser-utils': 4.3.0
       parse5: 7.1.2
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/html-spec@4.3.0:
-    resolution: {integrity: sha512-885ga/fUSxufUd3J4TEMB3UqMVsBClUM2li7+Fb1rBwf+JtSc09EvfgVlUyUxGiPJbTmimYSGSueso/iOYyPmg==}
+  /@markuplint/html-spec@4.4.0:
+    resolution: {integrity: sha512-Y27Htzb9Hl8Zy8Y5sg9DC8i9Puj4Ki0nDZ/sXSrAjri3aUndanDr0PMvxB9V5S8l9zcZGVl5/wIrCawFrIkKjg==}
     dependencies:
-      '@markuplint/ml-spec': 4.1.0
+      '@markuplint/ml-spec': 4.2.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/i18n@4.1.0:
-    resolution: {integrity: sha512-+kKJH9OJhLBVpDU0TlrOJjXxC8GKK0lXjnced8WtrvJ/FEvXNhbsMXUKdwsKJZnjnhQGrnOuUOWWeTF8DNankA==}
+  /@markuplint/i18n@4.2.0:
+    resolution: {integrity: sha512-HlZ73YDQTEYfiw0mJQpA95lgpoaZwbuFNP+SHBHPE8NVx6t1UYbvE1TcASMArC0sM9k0gcHx0n8iTZMfhzef8w==}
     dev: true
 
-  /@markuplint/ml-ast@4.0.1:
-    resolution: {integrity: sha512-7ZrgvUyPQ4YmUor+Iv/aHcnEVtktN88TNvmDNokLzMZlBxc5alpoCPAv3cJvU4t+dAgW+1P6SnZ2hVGaJkep6A==}
+  /@markuplint/ml-ast@4.1.0:
+    resolution: {integrity: sha512-X1qEGVRIb15yw4Aj1nrW+aMc4UceKe5s43UnFWZdT4yGhuiAszvmM8w/cOKoVuSVXyHmFmiwXjTK7663nby6mA==}
     dev: true
 
-  /@markuplint/ml-config@4.2.0:
-    resolution: {integrity: sha512-wGUEsptelMc7KdNmy2A/oCFbmQWDH7C7EGmOPrMepZhJdedidj8j0zF+/kPhGhcy4ScdTX/zQuHOdqB/S7+Wrg==}
+  /@markuplint/ml-config@4.3.0:
+    resolution: {integrity: sha512-zN8/4ZyyW5yyciWcmvQ/VByWv2EcDcV+QXLeP6yZL6tOiZ34wsNiy3q710WlCHKyiCkSUgAkibuvX/mN/EocDQ==}
     dependencies:
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/selector': 4.2.0
-      '@markuplint/shared': 4.0.1
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/selector': 4.3.0
+      '@markuplint/shared': 4.1.0
       '@types/mustache': 4.2.5
       deepmerge: 4.3.1
       is-plain-object: 5.0.0
       mustache: 4.2.0
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/ml-core@4.3.0:
-    resolution: {integrity: sha512-7H2i+PDoNSRsdiFvFPbUaSkOK6RNSSs9Eh7M59dA0xVFZYc71rKKu6kmsjuJ3vrXwqzhkJaiRJO6okJqB6Efgg==}
+  /@markuplint/ml-core@4.4.0:
+    resolution: {integrity: sha512-NXbE//LXrhK4DeQgW+G67cS9EkOYygE73eoCv9NJMjxKWEHD8b2yoEI8h6TsAcwA1bYmhWB7RI+qVRu4eSoqqw==}
     dependencies:
-      '@markuplint/config-presets': 4.1.0
-      '@markuplint/html-parser': 4.2.0
-      '@markuplint/html-spec': 4.3.0
-      '@markuplint/i18n': 4.1.0
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/ml-config': 4.2.0
-      '@markuplint/ml-spec': 4.1.0
-      '@markuplint/parser-utils': 4.2.0
-      '@markuplint/selector': 4.2.0
+      '@markuplint/config-presets': 4.2.0
+      '@markuplint/html-parser': 4.3.0
+      '@markuplint/html-spec': 4.4.0
+      '@markuplint/i18n': 4.2.0
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/ml-config': 4.3.0
+      '@markuplint/ml-spec': 4.2.0
+      '@markuplint/parser-utils': 4.3.0
+      '@markuplint/selector': 4.3.0
       '@types/debug': 4.1.12
       debug: 4.3.4
       is-plain-object: 5.0.0
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/ml-spec@4.1.0:
-    resolution: {integrity: sha512-ZKfIozGAlnEv+gMT824yNJEGEG+D6kKcPRSzxspe16k8yvwkSILq+GTeT5adPnLdq7XFkiG4JW2hBAS8QOfiRg==}
+  /@markuplint/ml-spec@4.2.0:
+    resolution: {integrity: sha512-rV+qYAbJqGxSRjnq28Z7GLIYcAoMWxj6K8otFhY8B1HSjPptnp/0T9jruQDMEF6D9TEj1JHojdsp24R0MUh4jw==}
     dependencies:
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/types': 4.0.2
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/types': 4.1.0
       dom-accessibility-api: 0.6.3
       is-plain-object: 5.0.0
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/parser-utils@4.2.0:
-    resolution: {integrity: sha512-Dc8P9uq6CTScvgmeouvwF6drTNOiHvudvDOEmkz0JS+MiA0rR5uOhST2zlNCTKxScwOYc+LSpYwFz5zoHQ+03Q==}
+  /@markuplint/parser-utils@4.3.0:
+    resolution: {integrity: sha512-9g2wgp36YnToCqLdhUcBQxdrxPHsBmJ69e982Z5YtoNJ7a2O8bFBVUF3eEwjX71t67P7vi5h59d0H2Oq1T3GjA==}
     dependencies:
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/ml-spec': 4.1.0
-      '@markuplint/types': 4.0.2
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/ml-spec': 4.2.0
+      '@markuplint/types': 4.1.0
       '@types/uuid': 9.0.8
       debug: 4.3.4
       espree: 10.0.1
-      type-fest: 4.12.0
+      type-fest: 4.14.0
       uuid: 9.0.1
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/rules@4.3.0:
-    resolution: {integrity: sha512-XZAkFW4+aQyRlNl92y5D3Zv8mknJf5z5HrNdShfV0OUtOOSzPY3qj7vvDOiCnMRZjOSerPbl6HmaRfM5L1lkpQ==}
+  /@markuplint/rules@4.4.0:
+    resolution: {integrity: sha512-qP+kSu6GXRz7vL4uZjavKaAOv8MsEK4h4/OZ2qlHZid0QzWd8NgS6zs7JnoO1bCdifz+SkTQv+MM7TxIHki9EA==}
     dependencies:
-      '@markuplint/html-spec': 4.3.0
-      '@markuplint/ml-core': 4.3.0
-      '@markuplint/ml-spec': 4.1.0
-      '@markuplint/selector': 4.2.0
-      '@markuplint/shared': 4.0.1
-      '@markuplint/types': 4.0.2
+      '@markuplint/html-spec': 4.4.0
+      '@markuplint/ml-core': 4.4.0
+      '@markuplint/ml-spec': 4.2.0
+      '@markuplint/selector': 4.3.0
+      '@markuplint/shared': 4.1.0
+      '@markuplint/types': 4.1.0
       '@types/debug': 4.1.12
       '@ungap/structured-clone': 1.2.0
       ansi-colors: 4.1.3
       chrono-node: 2.7.5
       debug: 4.3.4
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/selector@4.2.0:
-    resolution: {integrity: sha512-596d9/eAX7gEwcoVRRkAHXFrsZM+gwkugl+2UwAwv5RXJsgyexvytu7CiSbcvgh4+f+U3UPTTQVap1mX7ZCrvA==}
+  /@markuplint/selector@4.3.0:
+    resolution: {integrity: sha512-OyFqgc5uPMHZlXiIghUHqi7uZgzhnyXc4SOsCb9/bLGLYySKZtmkaQku+hjfxzVpEUkGvSdydbWv5SfkdAeMHQ==}
     dependencies:
-      '@markuplint/ml-spec': 4.1.0
+      '@markuplint/ml-spec': 4.2.0
       '@types/debug': 4.1.12
       debug: 4.3.4
       postcss-selector-parser: 6.0.16
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/shared@4.0.1:
-    resolution: {integrity: sha512-RggPgyahqgunGHa7K5hEFm52+dyjwpgp4YfdNPq7wVhJOu9x/zuVmjzjfyuzdG5zcr68ek8IWh76aaqRYfSwXw==}
+  /@markuplint/shared@4.1.0:
+    resolution: {integrity: sha512-sJ0vlBmNxo2siqz/ZK6e5US3Gqq83y2T1pofuIB8fuCUx3WL7G3Jt58ZVcldhNEX7f6JPJXpFr1ALA2gBpJbJw==}
     dependencies:
       html-entities: 2.5.2
     dev: true
 
-  /@markuplint/types@4.0.2:
-    resolution: {integrity: sha512-Us/OPFOzqsIWLPY9KVhIYk55INo1k8JYggL/6Hk5XhjEGVKdoR2hfn4iDPnkFS3RrClr3mw9ClNwCozC19KGaA==}
+  /@markuplint/types@4.1.0:
+    resolution: {integrity: sha512-oyXeZTdfjmRwvbs8XfvGTYVu2H9jJCVVWw1CU9KH0FJy7AwL8rcufhHp0rxCU3elsdiXA1rbPbbHcF8CgJpbew==}
     dependencies:
       '@types/css-tree': 2.3.7
       '@types/debug': 4.1.12
@@ -1427,28 +1427,28 @@ packages:
       css-tree: 2.3.1
       debug: 4.3.4
       leven: 4.0.0
-      type-fest: 4.12.0
+      type-fest: 4.14.0
       whatwg-mimetype: 4.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@markuplint/vue-parser@4.2.0(eslint@8.57.0):
-    resolution: {integrity: sha512-iQoRej19OKs/N2huGWfxmrc4xRolEkR2XtX14D7hZGs2qo4TgxEH839v1g0J7vzNHkeInO/xeQoCOH8ebp/iuw==}
+  /@markuplint/vue-parser@4.3.0(eslint@8.57.0):
+    resolution: {integrity: sha512-2hz4lbAe6QUjfxa9N/+G4LicfucFD834pLhPlvZFtGzsXgdK4mNDBz4bWvM3RT58Up0jZAtsnJGM5MHtPeQ8zw==}
     dependencies:
-      '@markuplint/html-parser': 4.2.0
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/parser-utils': 4.2.0
+      '@markuplint/html-parser': 4.3.0
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/parser-utils': 4.3.0
       vue-eslint-parser: 9.4.2(eslint@8.57.0)
     transitivePeerDependencies:
       - eslint
       - supports-color
     dev: true
 
-  /@markuplint/vue-spec@4.1.0:
-    resolution: {integrity: sha512-x3PciF5wqHTvraL9i8+nA3ZmPv4mi2vsm9PWETLGWproz34Dmx6BIdsmrJ/6qK8CEiLB3cy07hnTQpKhEZ/8Yw==}
+  /@markuplint/vue-spec@4.2.0:
+    resolution: {integrity: sha512-d6OcM3TmWf55Y+GVLCwOFHQ1/Lj/DiUSdCAIXZWvimUYpEBRRH68NEijlrlzvJOuSuI/9atGkwZJwVPMVbyHDw==}
     dependencies:
-      '@markuplint/ml-spec': 4.1.0
+      '@markuplint/ml-spec': 4.2.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5668,6 +5668,18 @@ packages:
       minipass: 7.0.4
       path-scurry: 1.10.1
 
+  /glob@10.3.9:
+    resolution: {integrity: sha512-2tU/LKevAQvDVuVJ9pg9Yv9xcbSh+TqHuTaXTNbQwf+0kDl9Fm6bMovi4Nm5c8TVvfxo2LLcqCGtmO9KoJaGWg==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    hasBin: true
+    dependencies:
+      foreground-child: 3.1.1
+      jackspeak: 2.3.6
+      minimatch: 9.0.3
+      minipass: 7.0.4
+      path-scurry: 1.10.1
+    dev: true
+
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     dependencies:
@@ -6736,21 +6748,21 @@ packages:
       - supports-color
     dev: true
 
-  /markuplint@4.3.0(typescript@5.4.3):
-    resolution: {integrity: sha512-W4kMzVcJMJHJj0VdkCHBg5QkYzChNhHzyT26NHiGZ6m4eMtSh409v9HItEj7VyvZUvMLgEDhplo1/PLq+ymKlg==}
+  /markuplint@4.4.0(typescript@5.4.3):
+    resolution: {integrity: sha512-IRUIpOF5ornaUK4gftXWBdskDCpQZwv0R5aTd5xEnvojrtGmZwneTI1yJuITYORXN4JChFc5pxxQNLo9FbhSwA==}
     hasBin: true
     dependencies:
-      '@markuplint/cli-utils': 4.1.0
-      '@markuplint/file-resolver': 4.3.0(typescript@5.4.3)
-      '@markuplint/html-parser': 4.2.0
-      '@markuplint/html-spec': 4.3.0
-      '@markuplint/i18n': 4.1.0
-      '@markuplint/ml-ast': 4.0.1
-      '@markuplint/ml-config': 4.2.0
-      '@markuplint/ml-core': 4.3.0
-      '@markuplint/ml-spec': 4.1.0
-      '@markuplint/rules': 4.3.0
-      '@markuplint/shared': 4.0.1
+      '@markuplint/cli-utils': 4.2.0
+      '@markuplint/file-resolver': 4.4.0(typescript@5.4.3)
+      '@markuplint/html-parser': 4.3.0
+      '@markuplint/html-spec': 4.4.0
+      '@markuplint/i18n': 4.2.0
+      '@markuplint/ml-ast': 4.1.0
+      '@markuplint/ml-config': 4.3.0
+      '@markuplint/ml-core': 4.4.0
+      '@markuplint/ml-spec': 4.2.0
+      '@markuplint/rules': 4.4.0
+      '@markuplint/shared': 4.1.0
       '@types/debug': 4.1.12
       chokidar: 3.6.0
       debug: 4.3.4
@@ -6759,7 +6771,7 @@ packages:
       os-locale: 6.0.2
       strict-event-emitter: 0.5.1
       strip-ansi: 7.1.0
-      type-fest: 4.12.0
+      type-fest: 4.14.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -9073,8 +9085,8 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /type-fest@4.12.0:
-    resolution: {integrity: sha512-5Y2/pp2wtJk8o08G0CMkuFPCO354FGwk/vbidxrdhRGZfd0tFnb4Qb8anp9XxXriwBgVPjdWbKpGl4J9lJY2jQ==}
+  /type-fest@4.14.0:
+    resolution: {integrity: sha512-on5/Cw89wwqGZQu+yWO0gGMGu8VNxsaW9SB2HE8yJjllEk7IDTwnSN1dUVldYILhYPN5HzD7WAaw2cc/jBfn0Q==}
     engines: {node: '>=16'}
     dev: true
 
