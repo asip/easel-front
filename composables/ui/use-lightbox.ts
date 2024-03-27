@@ -22,7 +22,7 @@ export function useLightbox () {
       initialZoomLevel: 'fit',
       pswpModule: () => import('photoswipe')
     })
-    // eslint-disable-next-line
+
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
   }

@@ -15,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
   if (to.path.match(/^\/frames\/\d+\/edit$/)) {
     const frame_id = to.params.id as string
     await getFrame(frame_id)
-    // eslint-disable-next-line eqeqeq
+
     if (!logged_in.value || frame.value.user_id != login_user.value.id) {
       return navigateTo(`/frames/${frame_id}`)
     }
