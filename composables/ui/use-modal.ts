@@ -9,7 +9,7 @@ export function useModal () {
   const openModal = (selector :string) => {
     const modalEl: HTMLDivElement | null = document.querySelector(selector)
     if (modalEl) {
-      // @ts-ignore
+      // @ts-expect-error
       const modal = new $bootstrap.Modal(modalEl)
       modal.show()
     }
@@ -18,7 +18,7 @@ export function useModal () {
   const closeModal = (selector :string) => {
     const modalEl: HTMLDivElement | null = document.querySelector(selector)
     if (modalEl) {
-      // @ts-ignore
+      // @ts-expect-error
       const modal = $bootstrap.Modal.getInstance(modalEl)
       modal?.hide()
     }

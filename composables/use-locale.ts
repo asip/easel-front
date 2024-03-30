@@ -7,7 +7,7 @@ export const useLocale = () => {
     // console.log(browserLocale)
     // console.log(locales.value)
 
-    // @ts-ignore
+    // @ts-expect-error
     locale.value = browserLocale
   }
 

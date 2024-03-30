@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-ignore
 import { GoogleSignInButton, useOneTap, type CredentialResponse } from 'vue3-google-signin'
 import { useModal } from '~/composables/ui/use-modal'
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-ignore
 import { onMounted, onUnmounted } from 'vue'
 import { useLightbox } from '~/composables/ui/use-lightbox'
 import type { User } from '~/interfaces/user'

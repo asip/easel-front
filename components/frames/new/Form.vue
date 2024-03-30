@@ -22,7 +22,7 @@ const onSelectFile = (evt: Event) => {
 }
 
 const onCreateClick = async () => {
-  // @ts-ignore
+  // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
 

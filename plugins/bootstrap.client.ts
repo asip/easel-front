@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 
 export default defineNuxtPlugin((nuxtApp) => {

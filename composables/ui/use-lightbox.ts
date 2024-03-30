@@ -1,8 +1,7 @@
-// @ts-ignore
+// @ts-expect-error
 import { Luminous } from 'luminous-lightbox'
-// @ts-ignore
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-ignore
+// @ts-expect-error
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 // import 'photoswipe/style.css';
 

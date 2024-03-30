@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import { LuminousGallery } from 'luminous-lightbox'
 
 export function useImageGallery () {

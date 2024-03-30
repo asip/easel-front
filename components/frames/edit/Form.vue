@@ -16,7 +16,7 @@ const v$ = useVuelidate(frame_rule, frame)
 // console.log(frame.tag_list)
 
 const onEditClick = async () => {
-  // @ts-ignore
+  // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
 

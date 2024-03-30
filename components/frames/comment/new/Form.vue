@@ -12,7 +12,7 @@ const comment_rule = useCommentRule()
 const v$ = useVuelidate(comment_rule, comment)
 
 const onCreateCommentClick = async () => {
-  // @ts-ignore
+  // @ts-expect-error
   i18n.global.locale.value = locale.value
   v$.value.$reset()
   await v$.value.$validate()

@@ -1,4 +1,3 @@
-// @ts-ignore
 import GoogleSignInPlugin from 'vue3-google-signin'
 
 export default defineNuxtPlugin((nuxtApp) => {
