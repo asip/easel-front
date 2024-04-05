@@ -98,7 +98,7 @@ devDependencies:
     specifier: ^8.57.0
     version: 8.57.0
   happy-dom:
-    specifier: ^14.3.10
+    specifier: ^14.5.1
     version: 14.5.1
   markuplint:
     specifier: ^4.5.0
