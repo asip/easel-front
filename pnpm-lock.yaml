@@ -68,7 +68,7 @@ devDependencies:
     specifier: 1.1.5
     version: 1.1.5(@unocss/reset@0.58.9)(floating-vue@5.2.2)(nuxt@3.11.2)(rollup@4.14.0)(unocss@0.58.9)(vite@5.2.8)(vue@3.4.21)
   '@nuxt/eslint':
-    specifier: ^0.3.0-beta.7
+    specifier: ^0.3.0-beta.9
     version: 0.3.0-beta.9(eslint@8.57.0)(nuxt@3.11.2)(rollup@4.14.0)(typescript@5.4.4)(vite@5.2.8)
   '@nuxt/test-utils':
     specifier: ^3.12.0
