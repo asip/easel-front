@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Quill } from '@vueup/vue-quill'
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use-toast'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
@@ -9,6 +10,8 @@ const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 const frame_rule = useFrameRule()
+
+const editorRef = ref(null)
 
 const v$ = useVuelidate(frame_rule, frame)
 
@@ -22,6 +25,12 @@ const onSelectFile = (evt: Event) => {
 }
 
 const onCreateClick = async () => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') == ''){
+    frame.value.comment = ''
+  }
+
   // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
@@ -35,6 +44,16 @@ const onCreateClick = async () => {
     } else if (!logged_in.value) {
       await navigateTo('/')
     }
+  }
+}
+
+const updateContent = (content: string) => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') != ''){
+    frame.value.comment = content
+  } else {
+    frame.value.comment = ''
   }
 }
 </script>
@@ -135,10 +154,17 @@ const onCreateClick = async () => {
                   >{{ $t('model.frame.comment') }}：</label>
                 </td>
                 <td>
-                  <textarea
-                    v-model="frame.comment"
-                    class="form-control"
-                  />
+                  <div class="kadomaru" style="border: 1px solid lavender;">
+                    <ClientOnly>
+                      <VueQuill
+                        ref="editorRef"
+                        v-model:content="frame.comment"
+                        theme="bubble"
+                        content-type="html"
+                        @update:content="updateContent"
+                      />
+                    </ClientOnly>
+                  </div>
                 </td>
               </tr>
             </tbody>

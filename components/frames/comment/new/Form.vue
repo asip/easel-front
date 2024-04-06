@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
 import { useCommentRule } from '~/composables/validation/use-comment-rule'
@@ -9,9 +10,17 @@ const { logged_in, login_user } = useLoginUser()
 const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
 const comment_rule = useCommentRule()
 
+const editorRef = ref(null)
+
 const v$ = useVuelidate(comment_rule, comment)
 
 const onCreateCommentClick = async () => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') == ''){
+    comment.value.body = ''
+  }
+
   // @ts-expect-error
   i18n.global.locale.value = locale.value
   v$.value.$reset()
@@ -28,8 +37,20 @@ const onCreateCommentClick = async () => {
     setFlash(flash.value)
     if (isSuccess()) {
       v$.value.$reset()
+      editorEl.setHTML('')
+      comment.value.body = ''
       await getComments()
     }
+  }
+}
+
+const updateContent = (content: string) => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') != ''){
+    comment.value.body = content
+  } else {
+    comment.value.body = ''
   }
 }
 </script>
@@ -74,10 +95,17 @@ const onCreateCommentClick = async () => {
       <form>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <textarea
-              v-model="comment.body"
-              class="form-control col-12"
-            />
+            <div class="col-12 kadomaru" style="border: 1px solid lavender;">
+              <ClientOnly>
+                <VueQuill
+                  ref="editorRef"
+                  v-model:content="comment.body"
+                  theme="bubble"
+                  content-type="html"
+                  @update:content="updateContent"
+                />
+              </ClientOnly>
+            </div>
           </div>
         </div>
         <div class="d-flex justify-content-center">

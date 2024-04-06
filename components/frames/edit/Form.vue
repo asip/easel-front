@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseFrameType } from '~/composables/use-frame'
 import { useFrameRule } from '~/composables/validation/use-frame-rule'
@@ -9,6 +10,8 @@ const { logged_in } = useLoginUser()
 const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 const frame_rule = useFrameRule()
 
+const editorRef = ref(null)
+
 const v$ = useVuelidate(frame_rule, frame)
 
 // console.log(frame)
@@ -16,6 +19,12 @@ const v$ = useVuelidate(frame_rule, frame)
 // console.log(frame.tag_list)
 
 const onEditClick = async () => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') == ''){
+    frame.value.comment = ''
+  }
+
   // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
@@ -30,6 +39,16 @@ const onEditClick = async () => {
     } else if (!logged_in.value) {
       await navigateTo(`/frames/${frame?.value.id}`)
     }
+  }
+}
+
+const updateContent = (content: string) => {
+  const editorEl: Quill = editorRef?.value
+
+  if (editorEl.getText().replace(/\n/g, '') != ''){
+    frame.value.comment = content
+  } else {
+    frame.value.comment = ''
   }
 }
 </script>
@@ -103,10 +122,17 @@ const onEditClick = async () => {
                   >{{ $t('model.frame.comment') }}：</label>
                 </td>
                 <td>
-                  <textarea
-                    v-model="frame.comment"
-                    class="form-control"
-                  />
+                  <div class="kadomaru" style="border: 1px solid lavender;">
+                    <ClientOnly>
+                      <VueQuill
+                        ref="editorRef"
+                        v-model:content="frame.comment"
+                        theme="bubble"
+                        content-type="html"
+                        @update:content="updateContent"
+                      />
+                    </ClientOnly>
+                  </div>
                 </td>
               </tr>
             </tbody>

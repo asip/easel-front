@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
+import { useQuill } from '~/composables/ui/use-quill';
 
 const route = useRoute()
 const frame_id = route.params.id as string
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
+const { p2br } = useQuill()
 const { frame_query } = useFrameSearch()
 const { logged_in, login_user } = useLoginUser()
 const framer = useFrame()
@@ -16,7 +18,7 @@ provide('framer', framer)
 await getFrame(frame_id)
 
 const sanitizedComment = computed(() => {
-  return sanitizeHtml(frame.value.comment).replace(/\n/g, '<br>')
+  return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')
 })
 
 const onPageBack = async () => {

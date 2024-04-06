@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
+import { useQuill } from '~/composables/ui/use-quill'
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
 import type { Comment } from '~/interfaces/comment'
 
 const comment = defineModel<Comment>()
 
+const { p2br } = useQuill()
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 
 const sanitizedCommentBody = computed(() => {
-  return sanitizeHtml(comment.value?.body ?? '').replace(/\n/g, '<br>')
+  return p2br(sanitizeHtml(comment.value?.body ?? '')).replace(/\n/g, '<br>')
 })
 
 const onDeleteClick = async () => {
