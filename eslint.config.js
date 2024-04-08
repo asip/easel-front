@@ -1,8 +1,3 @@
-import typescriptESLintParser from '@typescript-eslint/parser'
-import typescriptESLint from '@typescript-eslint/eslint-plugin'
-import vueESLint from 'eslint-plugin-vue'
-import vueESLintParser from 'vue-eslint-parser'
-
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
