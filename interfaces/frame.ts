@@ -13,5 +13,6 @@ export interface Frame {
   file_two_url: string | undefined
   file_three_url: string | undefined
   preview_url: string | null | undefined
+  private: boolean
   updated_at: string
 }

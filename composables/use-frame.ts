@@ -23,6 +23,7 @@ export const useFrame = () => {
     file_two_url: '',
     file_three_url: '',
     preview_url: null,
+    private: false,
     updated_at: ''
   })
 
@@ -49,38 +50,71 @@ export const useFrame = () => {
   const { $i18n } = useNuxtApp()
 
   const { locale } = useLocale()
-  const { login_user, clearLoginUser } = useLoginUser()
+  const { logged_in, login_user, clearLoginUser } = useLoginUser()
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    const { data, error } = await useGetApi({
-      url: `/frames/${id}`
-    })
-
-    clearFlash()
-
-    if (error.value) {
-      switch (error.value.statusCode) {
-        case 404:
-          flash.value.alert = error.value.message
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
-
-      throw createError({
-        statusCode: error.value.statusCode,
-        statusMessage: error.value.message,
-        message: flash.value.alert
+    if(!logged_in){
+      const { data, error } = await useGetApi({
+        url: `/frames/${id}`
       })
-    } else if (data.value) {
-      const { data: frameAttrs } = data.value as any
-      // console.log(frameAttrs)
 
-      if (frameAttrs) {
-        setJson2Frame(frameAttrs.attributes)
+      clearFlash()
+
+      if (error.value) {
+        switch (error.value.statusCode) {
+          case 404:
+            flash.value.alert = error.value.message
+            break
+          default:
+            flash.value.alert = error.value.message
+        }
+
+        throw createError({
+          statusCode: error.value.statusCode,
+          statusMessage: error.value.message,
+          message: flash.value.alert
+        })
+      } else if (data.value) {
+        const { data: frameAttrs } = data.value as any
+        // console.log(frameAttrs)
+
+        if (frameAttrs) {
+          setJson2Frame(frameAttrs.attributes)
+        }
+      }
+    } else {
+      const { data, error } = await useGetApi({
+        url: `/account/frames/${id}`,
+        token: login_user?.value.token
+      })
+
+      clearFlash()
+
+      if (error.value) {
+        switch (error.value.statusCode) {
+          case 404:
+            flash.value.alert = error.value.message
+            break
+          default:
+            flash.value.alert = error.value.message
+        }
+
+        throw createError({
+          statusCode: error.value.statusCode,
+          statusMessage: error.value.message,
+          message: flash.value.alert
+        })
+      } else if (data.value) {
+        const { data: frameAttrs } = data.value as any
+        // console.log(frameAttrs)
+
+        if (frameAttrs) {
+          setJson2Frame(frameAttrs.attributes)
+        }
       }
     }
+
   }
 
   const setJson2Frame = (resource: any) => {
