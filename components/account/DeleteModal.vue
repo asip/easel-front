@@ -2,7 +2,7 @@
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
 
-const { closeModal } = useModal()
+const { closeModal, removeBackdrop } = useModal()
 const { setFlash } = useToast()
 const { logged_in, deleteAccount, flash } = useLoginUser()
 
@@ -10,6 +10,7 @@ const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
   closeModal('#delete_account_modal')
+  removeBackdrop()
 }
 </script>
 
