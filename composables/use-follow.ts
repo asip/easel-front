@@ -14,7 +14,7 @@ export function useFollow () {
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi({
-      url: `/profile/following/${userId}`,
+      url: `/account/following/${userId}`,
       token: login_user.value.token
     })
 

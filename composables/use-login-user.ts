@@ -121,7 +121,7 @@ export const useLoginUser = () => {
 
     if (login_user.value.token) {
       const { data, error } = await useGetApi({
-        url: '/profile',
+        url: '/account/profile',
         token: login_user.value.token
       })
 
@@ -257,7 +257,7 @@ export const useLoginUser = () => {
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
     const { data, error, pending } = await usePutApi({
-      url: '/profile/',
+      url: '/account/profile/',
       body: formData,
       token: user.value.token,
       locale: locale.value
@@ -373,7 +373,7 @@ export const useLoginUser = () => {
 
   const deleteAccount = async () => {
     const { data, error } = await useDeleteApi({
-      url: '/profile',
+      url: '/account',
       token: login_user.value.token
     })
 
