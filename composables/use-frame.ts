@@ -54,7 +54,7 @@ export const useFrame = () => {
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    if(!logged_in){
+    if(!logged_in.value){
       const { data, error } = await useGetApi({
         url: `/frames/${id}`
       })
