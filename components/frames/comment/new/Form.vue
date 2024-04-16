@@ -97,7 +97,7 @@ const updateContent = (content: string) => {
           <div class="form-group col-10">
             <div class="col-12 kadomaru" style="border: 1px solid lavender;">
               <ClientOnly>
-                <VueQuill
+                <QuillEditor
                   ref="editorRef"
                   v-model:content="comment.body"
                   theme="bubble"

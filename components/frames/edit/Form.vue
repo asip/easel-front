@@ -124,7 +124,7 @@ const updateContent = (content: string) => {
                 <td>
                   <div class="kadomaru" style="border: 1px solid lavender;">
                     <ClientOnly>
-                      <VueQuill
+                      <QuillEditor
                         ref="editorRef"
                         v-model:content="frame.comment"
                         theme="bubble"
