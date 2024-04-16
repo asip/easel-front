@@ -19,13 +19,15 @@ export const usePostApi = async ({ url, body = {}, token = null, locale = null }
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, pending } = await useAsyncData(url, () =>
+  const { data, error, status } = await useAsyncData(url, () =>
     $fetch(fullURL, {
       method: 'post',
       body,
       headers
     })
   )
+
+  const pending = status.value === 'pending'
 
   return { data, error, pending }
 }

@@ -19,7 +19,7 @@ export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteA
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, pending } = await useAsyncData(url, () =>
+  const { data, error, status } = await useAsyncData(url, () =>
     $fetch(fullURL,
       {
         method: 'delete',
@@ -27,6 +27,8 @@ export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteA
       }
     )
   )
+
+  const pending = status.value === 'pending'
 
   return { data, error, pending }
 }
