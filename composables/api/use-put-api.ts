@@ -11,6 +11,8 @@ export const usePutApi = async ({ url, body = {}, token = null, locale = null }:
     'X-Requested-With': 'XMLHttpRequest'
   }
 
+  const pending = ref<boolean>(false)
+
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
@@ -27,7 +29,7 @@ export const usePutApi = async ({ url, body = {}, token = null, locale = null }:
     })
   )
 
-  const pending = ref<boolean>(status.value === 'pending')
+  pending.value = status.value === 'pending'
 
   return { data, error, pending }
 }
