@@ -28,7 +28,7 @@ export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteA
     )
   )
 
-  const pending = status.value === 'pending'
+  const pending = ref<boolean>(status.value === 'pending')
 
   return { data, error, pending }
 }

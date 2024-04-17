@@ -27,7 +27,7 @@ export const usePostApi = async ({ url, body = {}, token = null, locale = null }
     })
   )
 
-  const pending = status.value === 'pending'
+  const pending = ref<boolean>(status.value === 'pending')
 
   return { data, error, pending }
 }
