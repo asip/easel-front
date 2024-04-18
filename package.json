@@ -16,7 +16,7 @@
     "@markuplint/vue-parser": "^4.5.0",
     "@markuplint/vue-spec": "^4.4.0",
     "@nuxt/devtools": "1.1.5",
-    "@nuxt/eslint": "^0.3.7",
+    "@nuxt/eslint": "^0.3.8",
     "@nuxt/test-utils": "^3.12.1",
     "@nuxtjs/i18n": "8.3.0",
     "@testing-library/vue": "8.0.3",
