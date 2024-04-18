@@ -1,10 +1,13 @@
-FROM node:21-slim
+ARG NODE_VERSION=21.7.3
+ARG PNPM_VERSION=9.0.2
+
+FROM node:${NODE_VERSION}-slim
 
 ENV TZ Asia/Tokyo
 
 WORKDIR /frontend
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@${PNPM_VERSION}
 
 COPY . /frontend
 
