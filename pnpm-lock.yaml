@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@formkit/tempo':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: 0.1.1
+        version: 0.1.1
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -520,8 +520,8 @@ packages:
   '@floating-ui/utils@0.2.1':
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
 
-  '@formkit/tempo@0.1.0':
-    resolution: {integrity: sha512-dMsNBwXbCjgqRh7Zyr95za+wfnIJEqP7ePKgB1D8sSH1RTx3IbJZ/eEfsl4BLyVRhrv+xO58Yv1v76dq22fSIw==}
+  '@formkit/tempo@0.1.1':
+    resolution: {integrity: sha512-nepRwKnCIjukLkblqh339sSXYI6P3cqktF/T7ECj3vURW+Pd+YzTv/I/lwjRqPGmlQJG93LORodIAkvgoExIAg==}
 
   '@humanwhocodes/config-array@0.12.3':
     resolution: {integrity: sha512-jsNnTBlMWuTpDkeE3on7+dWJi0D6fdDfeANj/w7MpS8ztROCoLvIO2nG0CcFj+E4k8j4QrSTh4Oryi3i2G669g==}
@@ -5880,7 +5880,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.1': {}
 
-  '@formkit/tempo@0.1.0': {}
+  '@formkit/tempo@0.1.1': {}
 
   '@humanwhocodes/config-array@0.12.3':
     dependencies:
