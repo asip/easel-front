@@ -18,4 +18,4 @@ RUN pnpm install
 EXPOSE 3030
 EXPOSE 24678
 
-# CMD ["pnpm", "dev"]
+CMD ["pnpm", "dev"]
