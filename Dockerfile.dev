@@ -1,0 +1,21 @@
+ARG NODE_VERSION=21.7.3
+ARG PNPM_VERSION=9.0.4
+
+FROM node:${NODE_VERSION}-slim
+
+ENV TZ Asia/Tokyo
+
+WORKDIR /frontend
+
+RUN npm install -g pnpm@${PNPM_VERSION}
+
+COPY . /frontend
+
+RUN pnpm install
+
+# RUN npx nuxi upgrade --force
+
+EXPOSE 3030
+EXPOSE 24678
+
+CMD ["pnpm", "dev"]
