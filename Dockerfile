@@ -27,7 +27,7 @@ ENV PORT 3030
 # COPY --from=builder /frontend/node_modules ./node_modules
 
 EXPOSE 3030
-EXPOSE 24678
+# EXPOSE 24678
 
-# CMD ["node", ".output/server/index.mjs"]
-CMD ["pnpm", "dev"]
+# CMD ["pnpm", "dev"]
+CMD ["node", ".output/server/index.mjs"]

@@ -12,7 +12,7 @@
 /node_modules/
 
 # Ignore Output Directory
-/.output/
+# /.output/
 
 # Ignore editor directory
 /.idea/
