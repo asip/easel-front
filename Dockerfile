@@ -7,7 +7,7 @@ WORKDIR /frontend
 
 RUN npm install -g pnpm@${PNPM_VERSION}
 
-FROM base as builder
+# FROM base as builder
 
 COPY --link .npmrc package.json pnpm-lock.yaml ./
 RUN pnpm install
@@ -16,15 +16,15 @@ COPY --link . .
 
 # RUN npx nuxi upgrade --force
 
-RUN pnpm build
+# RUN pnpm build
 
-FROM base
+# FROM base
 
 ENV TZ Asia/Tokyo
 ENV PORT 3030
 
-COPY --from=builder /frontend/.output .
-COPY --from=builder /frontend/node_modules ./node_modules
+# COPY --from=builder /frontend/.output .
+# COPY --from=builder /frontend/node_modules ./node_modules
 
 EXPOSE 3030
 EXPOSE 24678
