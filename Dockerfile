@@ -1,7 +1,7 @@
 ARG NODE_VERSION=21.7.3
 ARG PNPM_VERSION=9.0.4
 
-FROM node:${NODE_VERSION}-slim AS base
+FROM node:${NODE_VERSION}-slim as base
 
 WORKDIR /frontend
 
