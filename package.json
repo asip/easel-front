@@ -18,7 +18,7 @@
     "@nuxt/devtools": "1.2.0",
     "@nuxt/eslint": "^0.3.9",
     "@nuxt/test-utils": "^3.12.1",
-    "@nuxtjs/i18n": "8.3.0",
+    "@nuxtjs/i18n": "8.3.1",
     "@testing-library/vue": "8.0.3",
     "@types/bootstrap": "^5.2.10",
     "@types/google.accounts": "^0.0.14",
