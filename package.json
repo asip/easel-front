@@ -41,7 +41,7 @@
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "@vueup/vue-quill": "^1.2.0",
-    "@yaireo/tagify": "^4.24.0",
+    "@yaireo/tagify": "^4.25.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "luminous-lightbox": "^2.4.0",
