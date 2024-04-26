@@ -22,6 +22,11 @@ const frame = defineModel<Frame>()
     </NuxtLink>
     <br>
     <div class="d-flex justify-content-sm-center">
+      <NuxtLink :to="`/users/${frame?.user_id}`">
+        <div class="badge rounded-pill bg-light text-info">{{ frame?.user_name }}</div>
+      </NuxtLink>
+    </div>
+    <div class="d-flex justify-content-sm-center">
       <NuxtLink
         :to="`/frames/${frame?.id}`"
         class="mx-auto"
