@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useImageGallery } from '~/composables/ui/use-image-gallery'
 
+const router = useRouter()
+
 const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, searchFrame, frames } = useFrameSearch()
 
@@ -10,6 +12,7 @@ await searchFrame()
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await searchFrame()
+  router.replace({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
 }
 
 onMounted(() => {
