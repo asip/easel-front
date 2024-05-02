@@ -48,7 +48,6 @@
     "luminous-lightbox": "^2.4.0",
     "photoswipe": "5.4.3",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
-    "quill": "^2.0.0",
     "sanitize-html": "^2.13.0",
     "sass": "^1.75.0",
     "v-calendar": "^3.1.2",
