@@ -34,7 +34,7 @@
     "vite": "5.2.13",
     "vitest": "^1.6.0",
     "vue": "3.4.27",
-    "vue-router": "4.3.2"
+    "vue-router": "4.3.3"
   },
   "dependencies": {
     "@formkit/tempo": "0.1.1",
