@@ -2,9 +2,7 @@
 
 // @ts-ignore
 export default defineNuxtConfig({
-  future: {
-    compatibilityVersion: 4,
-  },
+  srcDir: 'app/',
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
