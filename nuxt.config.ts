@@ -2,6 +2,9 @@
 
 // @ts-ignore
 export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4,
+  },
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
