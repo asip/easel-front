@@ -30,7 +30,7 @@
     "markuplint": "^4.9.1",
     "nuxt": "^3.12.2",
     "playwright-core": "^1.44.1",
-    "typescript": "5.4.5",
+    "typescript": "5.5.2",
     "vite": "5.3.1",
     "vitest": "^1.6.0",
     "vue": "3.4.29",
