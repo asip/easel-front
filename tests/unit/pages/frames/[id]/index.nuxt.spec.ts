@@ -1,3 +1,5 @@
+/* work in progress */
+
 import { vi, describe, test } from 'vitest'
 import { mountSuspended, registerEndpoint } from '@nuxt/test-utils/runtime'
 import FramesIdIndex from '~/pages/frames/[id]/index.vue'
@@ -21,7 +23,16 @@ vi.mock('#app', () => ({ // #app -> nuxt/app
   useRoute: useRouteMock
 }))
 
-describe('frames/:id/index', () => {
+/*
+mockNuxtImport('useRoute', () => () => ({
+  params: {
+    id: '49'
+  },
+  path: '/frames/49'
+}));
+*/
+
+describe('frames/:id/index', async () => {
   const frame_endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/undefined`
   const comments_endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/undefined/comments`
 
