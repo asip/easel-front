@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useTagEditor } from '~/composables/ui/use-tag-editor'
 import type { Frame } from '~/interfaces/frame'
+import '@yaireo/tagify/dist/tagify.css'
 
 const modelValue = defineModel<Frame>()
 
