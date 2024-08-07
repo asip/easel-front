@@ -11,7 +11,7 @@ const tag_list = computed(() => modelValue.value?.tag_list)
 
 onMounted(() => {
   // console.log(frame)
-  modelValue.value && initTagEditor(modelValue.value)
+  if(modelValue.value){ initTagEditor(modelValue.value) }
 })
 
 onUnmounted(() => {

@@ -17,7 +17,7 @@ const sanitizedCommentBody = computed(() => {
 })
 
 const onDeleteClick = async () => {
-  comment.value && await deleteComment(comment.value)
+  if(comment.value) { await deleteComment(comment.value) }
   setFlash(flash.value)
   if (isSuccess()) {
     await getComments()
