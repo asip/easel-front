@@ -31,9 +31,9 @@
     "nuxt": "^3.12.4",
     "playwright-core": "^1.46.0",
     "typescript": "5.5.4",
-    "vite": "5.3.5",
+    "vite": "5.4.0",
     "vitest": "^1.6.0",
-    "vue": "3.4.36",
+    "vue": "3.4.37",
     "vue-router": "4.4.3"
   },
   "dependencies": {
