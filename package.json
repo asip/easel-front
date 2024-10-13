@@ -15,7 +15,7 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^4.6.7",
     "@markuplint/vue-spec": "^4.5.7",
-    "@nuxt/devtools": "1.5.2",
+    "@nuxt/devtools": "1.6.0",
     "@nuxt/eslint": "^0.5.7",
     "@nuxt/test-utils": "^3.14.3",
     "@nuxtjs/i18n": "8.5.5",
@@ -32,8 +32,8 @@
     "playwright-core": "^1.48.0",
     "typescript": "5.5.4",
     "vite": "5.4.8",
-    "vitest": "^1.6.0",
-    "vue": "3.5.11",
+    "vitest": "^2.1.2",
+    "vue": "3.5.12",
     "vue-router": "4.4.5"
   },
   "dependencies": {
@@ -49,9 +49,9 @@
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
     "sanitize-html": "^2.13.1",
-    "sass": "^1.79.4",
+    "sass": "^1.79.5",
     "v-calendar": "^3.1.2",
-    "vue-i18n": "9.14.0",
+    "vue-i18n": "10.0.4",
     "vue-sonner": "^1.2.1",
     "vue3-google-signin": "2.0.0",
     "vuejs-paginate-next": "^1.0.2"
