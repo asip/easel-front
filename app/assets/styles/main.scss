@@ -1,6 +1,6 @@
-@import "bootstrap/scss/bootstrap.scss";
-@import "luminous-lightbox/dist/luminous-basic";
-@import "photoswipe/dist/photoswipe.css";
+@use "bootstrap/scss/bootstrap.scss";
+@use "luminous-lightbox/dist/luminous-basic";
+@use "photoswipe/dist/photoswipe.css";
 
 body {
   background-color: aliceblue;
