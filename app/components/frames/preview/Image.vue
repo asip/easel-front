@@ -4,7 +4,7 @@ import type { Frame } from '~/interfaces/frame'
 
 const modelValue = defineModel<Frame>()
 
-const props = defineProps<{
+const { original, photoswipe } = defineProps<{
   original: boolean,
   photoswipe: boolean
 }>()
@@ -12,8 +12,8 @@ const props = defineProps<{
 const { galleryRef, initPSLightbox, initLMLightbox, closeLightbox } = useLightbox()
 
 onMounted(async () => {
-  if (props.original) {
-    if (props.photoswipe) {
+  if (original) {
+    if (photoswipe) {
       await initPSLightbox()
     } else {
       initLMLightbox()
@@ -28,13 +28,13 @@ onUnmounted(() => {
 
 <template>
   <div
-    v-if="props.original"
+    v-if="original"
     id="gallery"
     ref="galleryRef"
     class="d-flex justify-content-sm-center"
   >
     <NuxtLink
-      v-if="props.photoswipe"
+      v-if="photoswipe"
       class="mx-auto"
       :to="`${modelValue?.file_url}`"
       data-pswp-width=""

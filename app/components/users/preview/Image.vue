@@ -5,7 +5,7 @@ import type { User } from '~/interfaces/user'
 
 const modelValue = defineModel<User>()
 
-const props = defineProps<{
+const { original } = defineProps<{
   original: boolean
 }>()
 
@@ -14,7 +14,7 @@ const { initLMLightbox, closeLightbox } = useLightbox()
 // console.log(login_user?.value.image_three_url)
 
 onMounted(() => {
-  if (props.original) {
+  if (original) {
     initLMLightbox()
   }
 })
@@ -26,7 +26,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    v-if="props.original"
+    v-if="original"
     class="d-flex justify-content-sm-center"
   >
     <NuxtLink

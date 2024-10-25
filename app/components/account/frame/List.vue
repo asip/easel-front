@@ -6,7 +6,7 @@ import { useAccountFrames } from '~/composables/use-account-frames'
 
 const user = defineModel<User>()
 
-const props = defineProps<{
+const { page } = defineProps<{
   page?: string
 }>()
 
@@ -46,7 +46,7 @@ onUnmounted(() => {
       <UsersFrameListItem
         v-model="frames[i]"
         :user-id="userId"
-        :page="props.page"
+        :page="page"
       />
     </div>
   </div>

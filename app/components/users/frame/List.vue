@@ -2,7 +2,7 @@
 import { useImageGallery } from '~/composables/ui/use-image-gallery'
 import { useUserFrames } from '~/composables/use-user-frames'
 
-const props = defineProps<{
+const { userId, page } = defineProps<{
   userId: string | undefined
   page?: string
 }>()
@@ -10,20 +10,20 @@ const props = defineProps<{
 const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, getFrames, frames } = useUserFrames()
 
-if (props.userId) {
-  if (frame_query.value.user_id !== props.userId) {
+if (userId) {
+  if (frame_query.value.user_id !== userId) {
     frame_query.value.page = 1
     frame_query.value.pages = 1
   }
-  frame_query.value.user_id = props.userId
+  frame_query.value.user_id = userId
 }
 
 // console.log('searchFrame: start')
-await getFrames(props.userId)
+await getFrames(userId)
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
-  await getFrames(props.userId)
+  await getFrames(userId)
 }
 
 onMounted(() => {
@@ -48,8 +48,8 @@ onUnmounted(() => {
     >
       <UsersFrameListItem
         v-model="frames[i]"
-        :user-id="props.userId"
-        :page="props.page"
+        :user-id="userId"
+        :page="page"
       />
     </div>
   </div>

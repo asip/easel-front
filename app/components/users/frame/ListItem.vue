@@ -3,7 +3,7 @@ import type { Frame } from '~/interfaces/frame'
 
 const frame = defineModel<Frame>()
 
-const props = defineProps<{
+const { userId, page } = defineProps<{
   userId: string | undefined
   page?: string
 }>()
@@ -28,15 +28,15 @@ const props = defineProps<{
     <br>
     <div class="d-flex justify-content-sm-center">
       <NuxtLink
-        v-if="props.page == 'profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: props.page } }"
+        v-if="page == 'profile'"
+        :to="{ path: `/frames/${frame?.id}`, query: { ref: page } }"
         class="mx-auto"
       >
         {{ frame?.name }}
       </NuxtLink>
       <NuxtLink
-        v-else-if="props.page == 'user_profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: props.page, ref_id: props.userId} }"
+        v-else-if="page == 'user_profile'"
+        :to="{ path: `/frames/${frame?.id}`, query: { ref: page, ref_id: userId} }"
         class="mx-auto"
       >
         {{ frame?.name }}
