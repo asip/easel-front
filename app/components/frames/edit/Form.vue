@@ -10,7 +10,7 @@ const { logged_in } = useLoginUser()
 const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 const frame_rule = useFrameRule()
 
-const editorRef = ref(null)
+const editorRef = useTemplateRef('editorRef')
 
 const v$ = useVuelidate(frame_rule, frame)
 

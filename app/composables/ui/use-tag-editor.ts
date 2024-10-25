@@ -2,15 +2,14 @@ import Tagify from '@yaireo/tagify'
 import type { Frame } from '~/interfaces/frame'
 
 export function useTagEditor () {
-  const tagEditorRef = ref(null)
+  const tagEditorRef = useTemplateRef('tagEditorRef')
 
   let tagEditor: Tagify | null = null
 
   const initTagEditor = (model: Frame) => {
-    const elmTe: HTMLInputElement | null = tagEditorRef.value
 
-    if (elmTe) {
-      tagEditor = new Tagify(elmTe, {
+    if (tagEditorRef.value) {
+      tagEditor = new Tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',

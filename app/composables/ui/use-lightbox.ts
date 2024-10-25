@@ -6,7 +6,7 @@ import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.es
 // import 'photoswipe/style.css';
 
 export function useLightbox () {
-  const galleryRef: Ref = ref(null)
+  const galleryRef: Ref = useTemplateRef('galleryRef')
 
   let lightbox: any
 

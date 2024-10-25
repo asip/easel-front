@@ -10,7 +10,7 @@ const { logged_in, login_user } = useLoginUser()
 const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
 const comment_rule = useCommentRule()
 
-const editorRef = ref(null)
+const editorRef = useTemplateRef('editorRef')
 
 const v$ = useVuelidate(comment_rule, comment)
 
