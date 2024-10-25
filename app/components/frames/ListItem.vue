@@ -9,6 +9,13 @@ const frame = defineModel<Frame>()
     class="card-block"
     style="padding-top: 10px;padding-bottom: 10px;"
   >
+    <span
+      v-for="(tag, idx) in frame?.tags"
+      :key="idx"
+    >
+      <span class="badge rounded-pill bg-light text-info">{{ tag }}</span>
+    </span>
+    <br>
     <NuxtLink
       :to="`${frame?.file_url}`"
       name="lm"
