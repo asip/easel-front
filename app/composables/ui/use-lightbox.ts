@@ -5,8 +5,8 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 // import 'photoswipe/style.css';
 
-export function useLightbox () {
-  const galleryRef: Ref = useTemplateRef('galleryRef')
+export function useLightbox (refKey: string) {
+  const galleryRef: Ref = useTemplateRef(refKey)
 
   let lightbox: any
 
