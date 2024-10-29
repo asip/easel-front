@@ -2,7 +2,8 @@
 // import type { Frame } from '~/interfaces/frame';
 
 const route = useRoute()
-const frame_id = route.params.id as string
+const { id } = route.params
+const frame_id = id as string
 
 const framer = useFrame()
 const { frame, getFrame } = framer

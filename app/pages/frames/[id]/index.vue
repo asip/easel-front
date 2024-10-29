@@ -3,7 +3,8 @@ import sanitizeHtml from 'sanitize-html'
 import { useQuill } from '~/composables/ui/use-quill';
 
 const route = useRoute()
-const frame_id = route.params.id as string
+const { id } = route.params
+const frame_id = id as string
 const ref_page = route.query.ref
 const ref_id = route.query.ref_id
 
