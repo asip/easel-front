@@ -9,7 +9,7 @@ const { original, photoswipe } = defineProps<{
   photoswipe: boolean
 }>()
 
-const { initPSLightbox, initLMLightbox, closeLightbox } = useLightbox('galleryRef')
+const { initPSLightbox, initLMLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
 
 onMounted(async () => {
   if (original) {

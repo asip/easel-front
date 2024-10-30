@@ -5,8 +5,8 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 // import 'photoswipe/style.css';
 
-export function useLightbox (refKey: string) {
-  const galleryRef: Ref = useTemplateRef(refKey)
+export function useLightbox (galleryRefKey: string, imageSelector?: string) {
+  const galleryRef: Ref = useTemplateRef(galleryRefKey)
 
   let lightbox: any
 
@@ -27,8 +27,10 @@ export function useLightbox (refKey: string) {
   }
 
   const initLMLightbox = () => {
-    const imageEl: HTMLAnchorElement | null = document.querySelector('#image')
-    lightbox = new Luminous(imageEl, { showCloseButton: true })
+    if(imageSelector){
+      const imageEl: HTMLAnchorElement | null = document.querySelector(imageSelector)
+      lightbox = new Luminous(imageEl, { showCloseButton: true })
+    }
   }
 
   const assignSize = async (gallery: HTMLDivElement) => {
