@@ -44,5 +44,5 @@ export function useTagEditor () {
     }
   }
 
-  return { tagEditorRef, initTagEditor, closeTagEditor }
+  return { initTagEditor, closeTagEditor }
 }

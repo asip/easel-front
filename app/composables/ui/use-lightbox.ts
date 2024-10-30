@@ -55,5 +55,5 @@ export function useLightbox (refKey: string) {
     }
   }
 
-  return { galleryRef, initPSLightbox, initLMLightbox, closeLightbox }
+  return { initPSLightbox, initLMLightbox, closeLightbox }
 }
