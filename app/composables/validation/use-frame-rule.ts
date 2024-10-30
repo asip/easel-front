@@ -1,5 +1,5 @@
 const frame_rule = {
-  name: { required, minLength: minLength(1), maxLength: maxLength(20) },
+  name: { required, minLength: minLength(1), maxLength: maxLength(30) },
   tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
 }
 
