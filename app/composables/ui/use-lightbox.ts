@@ -29,7 +29,9 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
   const initLMLightbox = () => {
     if(imageSelector){
       const imageEl: HTMLAnchorElement | null = document.querySelector(imageSelector)
-      lightbox = new Luminous(imageEl, { showCloseButton: true })
+      if(imageEl){
+        lightbox = new Luminous(imageEl, { showCloseButton: true })
+      }
     }
   }
 

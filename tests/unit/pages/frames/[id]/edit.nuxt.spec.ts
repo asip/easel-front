@@ -1,7 +1,7 @@
 /* work in progress */
 
 import { vi, describe, test } from 'vitest'
-import { renderSuspended, registerEndpoint } from '@nuxt/test-utils/runtime'
+import { mountSuspended, registerEndpoint } from '@nuxt/test-utils/runtime'
 import FramesIdEdit from '~/pages/frames/[id]/edit.vue'
 
 // vi.mock('nuxt/app', () => ({
@@ -93,6 +93,6 @@ describe('frames/:id/edit', () => {
     })
 
     // const { container } =
-    await renderSuspended(FramesIdEdit)
+    await mountSuspended(FramesIdEdit)
   })
 })
