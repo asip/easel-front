@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    'vue-sonner/nuxt'
   ],
 
   plugins: [
