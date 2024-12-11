@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useModal } from '~/composables/ui/use-modal'
 
-const { openModal, closeModal } = useModal()
+const form: Ref = ref(null)
 
 const onBackClick = () => {
-  closeModal('#signup_modal')
-  openModal('#login_modal')
+  form.value?.onBackClick()
 }
 </script>
 
@@ -34,15 +32,15 @@ const onBackClick = () => {
             </div>
             {{ $t('action.user.new') }}
           </div>
-          <button
+          <!---<button
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
-          />
+          />-->
         </div>
         <br>
-        <UsersNewForm />
+        <UsersNewForm ref="form" />
         <br>
       </div>
     </div>

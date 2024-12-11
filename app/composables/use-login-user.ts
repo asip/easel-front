@@ -413,6 +413,21 @@ export const useLoginUser = () => {
     access_token.value = null
   }
 
+  const clearProfile = () => {
+    user.value.name = ''
+    user.value.email= ''
+    user.value.token = null
+    user.value.id = null
+    user.value.image = null
+    user.value.image_thumb_url= ''
+    user.value.image_one_url = ''
+    user.value.image_three_url= ''
+    user.value.preview_url = null
+    user.value.password = ''
+    user.value.password_confirmation= ''
+    user.value.social_login = false
+  }
+
   return {
     login_user,
     user,
@@ -431,6 +446,7 @@ export const useLoginUser = () => {
     logout,
     deleteAccount,
     clearLoginUser,
+    clearProfile,
     login_messages,
     error_messages,
     locale

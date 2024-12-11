@@ -7,7 +7,7 @@ import { useSignupRule } from '~/composables/validation/use-signup-rule'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { user, signup, clearProfile,error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 const signup_rule = useSignupRule(user.value)
 
 const v$ = useVuelidate(signup_rule, user)
@@ -18,7 +18,6 @@ const onSelectFile = (evt: Event) => {
 }
 
 const onSignupClick = async () => {
-  // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
 
@@ -33,9 +32,12 @@ const onSignupClick = async () => {
 }
 
 const onBackClick = () => {
+  clearProfile()
   closeModal('#signup_modal')
   openModal('#login_modal')
 }
+
+defineExpose({ onBackClick })
 </script>
 
 <template>
