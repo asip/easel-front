@@ -3,6 +3,7 @@
 // @ts-ignore
 export default defineNuxtConfig({
   srcDir: 'app/',
+
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
@@ -51,11 +52,15 @@ export default defineNuxtConfig({
     '@/assets/styles/main.scss',
     'bootstrap-icons/font/bootstrap-icons.css'
   ],
+
   build: {
     transpile: ['vue-sonner']
   },
+
   devtools: {
     enabled: true
   },
-  pages: true
+
+  pages: true,
+  compatibilityDate: '2024-12-26'
 })
