@@ -1,13 +1,13 @@
 ARG NODE_VERSION=22.12.0
 ARG PNPM_VERSION=9.15.1
 
-FROM node:${NODE_VERSION}-slim as base
+FROM node:${NODE_VERSION}-slim AS base
 
 WORKDIR /frontend
 
 RUN npm install -g pnpm@${PNPM_VERSION}
 
-# FROM base as builder
+# FROM base AS builder
 
 COPY --link .npmrc package.json pnpm-lock.yaml ./
 RUN pnpm install
@@ -20,8 +20,8 @@ COPY --link . .
 
 # FROM base
 
-ENV TZ Asia/Tokyo
-ENV PORT 3030
+ENV TZ=Asia/Tokyo
+ENV PORT=3030
 
 # COPY --from=builder /frontend/.output .
 # COPY --from=builder /frontend/node_modules ./node_modules
