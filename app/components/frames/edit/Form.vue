@@ -25,7 +25,6 @@ const onEditClick = async () => {
     frame.value.comment = ''
   }
 
-  // @ts-expect-error
   i18n.global.locale.value = locale.value
   await v$.value.$validate()
 
