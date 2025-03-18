@@ -3,7 +3,7 @@ import { useVuelidate } from '@vuelidate/core'
 import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseFrameType } from '~/composables/use-frame'
-import { frameRules } from '~/composables/validation/rules/frame-rules'
+import { frameRules } from '~/composables/validation/forms/frame-rules'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()

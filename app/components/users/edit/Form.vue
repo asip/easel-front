@@ -4,7 +4,7 @@ import { useImagePreview } from '~/composables/ui/use-image-preview'
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseLoginUserType } from '~/composables/use-login-user'
-import { getUserRules } from '~/composables/validation/rules/get-user-rules'
+import { getUserRules } from '~/composables/validation/forms/get-user-rules'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()

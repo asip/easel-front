@@ -3,7 +3,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
-import { getSignupRules } from '~/composables/validation/rules/get-signup-rules'
+import { getSignupRules } from '~/composables/validation/forms/get-signup-rules'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()

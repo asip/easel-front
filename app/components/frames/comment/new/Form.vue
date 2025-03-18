@@ -3,7 +3,7 @@ import { useVuelidate } from '@vuelidate/core'
 import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
-import { commentRules } from '~/composables/validation/rules/comment-rules'
+import { commentRules } from '~/composables/validation/forms/comment-rules'
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
