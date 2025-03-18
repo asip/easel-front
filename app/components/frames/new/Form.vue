@@ -4,16 +4,15 @@ import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use-toast'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
 import type { UseFrameType } from '~/composables/use-frame'
-import { useFrameRule } from '~/composables/validation/use-frame-rule'
+import { frameRules } from '~/composables/validation/rules/frame-rules'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
-const frame_rule = useFrameRule()
 
 const editorRef = useTemplateRef('editorRef')
 
-const v$ = useVuelidate(frame_rule, frame)
+const v$ = useVuelidate(frameRules, frame)
 
 // console.log(frame)
 // console.log(frame.tags)

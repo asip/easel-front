@@ -4,12 +4,12 @@ import { useImagePreview } from '~/composables/ui/use-image-preview'
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseLoginUserType } from '~/composables/use-login-user'
-import { useUserRule } from '~/composables/validation/use-user-rule'
+import { getUserRules } from '~/composables/validation/rules/get-user-rules'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
 const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
-const user_rule = useUserRule(user.value)
+const user_rule = getUserRules(user.value)
 
 const v$ = useVuelidate(user_rule, user)
 

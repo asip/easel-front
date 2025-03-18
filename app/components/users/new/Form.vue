@@ -3,12 +3,12 @@ import { useVuelidate } from '@vuelidate/core'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
-import { useSignupRule } from '~/composables/validation/use-signup-rule'
+import { getSignupRules } from '~/composables/validation/rules/get-signup-rules'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
 const { user, signup, clearProfile,error_messages, processing, isSuccess, flash, locale } = useLoginUser()
-const signup_rule = useSignupRule(user.value)
+const signup_rule = getSignupRules(user.value)
 
 const v$ = useVuelidate(signup_rule, user)
 

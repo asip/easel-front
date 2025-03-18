@@ -5,7 +5,7 @@ import { useDeleteApi } from './api/use-delete-api'
 import { useLocale } from '~/composables/use-locale'
 import type { RefQuery } from '~/interfaces/ref-query'
 import type { Frame } from '~/interfaces/frame'
-import type { ErrorMessages } from '~/interfaces/error-messages'
+import type { ErrorMessages } from '~/types/error-messages'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({

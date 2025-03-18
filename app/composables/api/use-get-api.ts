@@ -1,7 +1,7 @@
 type GetAPIOptions = { url:string, query?: any, token?: string | null }
 
 export const useGetApi = async ({ url, query = {}, token = null }: GetAPIOptions) => {
-  const { backendApiURL } = useConstants()
+  const { backendApiURL } = getConstants()
 
   const fullURL = `${backendApiURL.value}${url}`
 

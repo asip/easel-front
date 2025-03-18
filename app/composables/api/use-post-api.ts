@@ -3,7 +3,7 @@ type PostAPIOptions = {
 }
 
 export const usePostApi = async ({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
-  const { backendApiURL } = useConstants()
+  const { backendApiURL } = getConstants()
 
   const fullURL = `${backendApiURL.value}${url}`
 

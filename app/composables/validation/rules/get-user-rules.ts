@@ -1,7 +1,7 @@
 import type { User } from '~/interfaces/user'
 
-export function useUserRule (user: User) {
-  const user_rule = computed(() => {
+export function getUserRules (user: User) {
+  const userRules = computed(() => {
     return {
       name: { required, minLength: minLength(3), maxLength: maxLength(40) },
       email: { required, email },
@@ -10,5 +10,5 @@ export function useUserRule (user: User) {
     }
   })
 
-  return user_rule
+  return userRules
 }

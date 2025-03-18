@@ -3,16 +3,15 @@ import { useVuelidate } from '@vuelidate/core'
 import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
-import { useCommentRule } from '~/composables/validation/use-comment-rule'
+import { commentRules } from '~/composables/validation/rules/comment-rules'
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
-const comment_rule = useCommentRule()
 
 const editorRef = useTemplateRef('editorRef')
 
-const v$ = useVuelidate(comment_rule, comment)
+const v$ = useVuelidate(commentRules, comment)
 
 const onCreateCommentClick = async () => {
   const editorEl: Quill = editorRef?.value
@@ -21,7 +20,6 @@ const onCreateCommentClick = async () => {
     comment.value.body = ''
   }
 
-  // @ts-expect-error
   i18n.global.locale.value = locale.value
   v$.value.$reset()
   await v$.value.$validate()

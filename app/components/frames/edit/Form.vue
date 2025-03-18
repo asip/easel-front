@@ -3,16 +3,15 @@ import { useVuelidate } from '@vuelidate/core'
 import type { Quill } from '@vueup/vue-quill';
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseFrameType } from '~/composables/use-frame'
-import { useFrameRule } from '~/composables/validation/use-frame-rule'
+import { frameRules } from '~/composables/validation/rules/frame-rules'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
-const frame_rule = useFrameRule()
 
 const editorRef = useTemplateRef('editorRef')
 
-const v$ = useVuelidate(frame_rule, frame)
+const v$ = useVuelidate(frameRules, frame)
 
 // console.log(frame)
 // console.log(frame.tags)

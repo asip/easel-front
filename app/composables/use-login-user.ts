@@ -4,7 +4,7 @@ import { usePutApi } from './api/use-put-api'
 import { useDeleteApi } from './api/use-delete-api'
 import { useLocale } from '~/composables/use-locale'
 import type { User } from '~/interfaces/user'
-import type { ErrorMessages } from '~/interfaces/error-messages'
+import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
 
 export const useLoginUser = () => {

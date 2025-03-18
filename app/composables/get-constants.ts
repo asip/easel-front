@@ -1,4 +1,4 @@
-export const useConstants = () => {
+export const getConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
   const backendOriginURL: Ref = computed(

@@ -5,7 +5,7 @@ import { usePostApi } from './api/use-post-api'
 import { useDeleteApi } from './api/use-delete-api'
 import { useLocale } from '~/composables/use-locale'
 import type { Comment } from '~/interfaces/comment'
-import type { ErrorMessages } from '~/interfaces/error-messages'
+import type { ErrorMessages } from '~/types/error-messages'
 
 export function useComment () {
   const comment: Ref<Comment> = ref<Comment>({

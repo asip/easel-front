@@ -1,8 +1,4 @@
-const frame_rule = {
+export const frameRules = {
   name: { required, minLength: minLength(1), maxLength: maxLength(30) },
   tags: { tagArrayLength: tagArrayLength(5), tagLength: tagLength(10) }
-}
-
-export function useFrameRule () {
-  return frame_rule
 }
