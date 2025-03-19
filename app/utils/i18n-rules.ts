@@ -1,6 +1,6 @@
 import * as validators from '@vuelidate/validators'
 import { createI18n } from 'vue-i18n'
-import { tagLength as tagLength_, tagArrayLength as tagArrayLength_ } from './validators/index'
+import { tagLength as tagLength_, tagArrayLength as tagArrayLength_ } from './validation/index'
 
 export const i18n = createI18n({
   legacy: false,

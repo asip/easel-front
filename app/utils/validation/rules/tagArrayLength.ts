@@ -1,4 +1,4 @@
-import tagArrayLength from '../raw/tagArrayLength'
+import tagArrayLength from './raw/tagArrayLength'
 
 export default function (size: number) {
   return {

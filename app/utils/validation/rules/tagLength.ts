@@ -1,4 +1,4 @@
-import tagLength from '../raw/tagLength'
+import tagLength from './raw/tagLength'
 
 export default function (size: number) {
   return {
