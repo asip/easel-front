@@ -3,7 +3,7 @@ type PutAPIOptions = {
 }
 
 export const usePutApi = async ({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
-  const { backendApiURL } = getConstants()
+  const { backendApiURL } = useConstants()
 
   const fullURL = `${backendApiURL.value}${url}`
 

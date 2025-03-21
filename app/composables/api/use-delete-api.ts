@@ -3,7 +3,7 @@ type DeleteAPIOptions = {
 }
 
 export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteAPIOptions) => {
-  const { backendApiURL } = getConstants()
+  const { backendApiURL } = useConstants()
 
   const fullURL = `${backendApiURL.value}${url}`
 
