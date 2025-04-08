@@ -33,8 +33,6 @@ onMounted(async () => {
 })
 
 const onCreateCommentClick = async () => {
-  //editorEl = editorRef?.value
-
   if (quill?.getText().replace(/\n/g, '') == ''){
     comment.value.body = ''
   }
