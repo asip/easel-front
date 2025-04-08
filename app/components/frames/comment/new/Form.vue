@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import type { Quill } from '@vueup/vue-quill';
+import type Quill from "quill"
+import { QuillyEditor } from 'vue-quilly';
+
 import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
 import { commentRules } from '~/composables/validation/forms/comment-rules'
@@ -9,14 +11,31 @@ const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()
 const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
 
-const editorRef = useTemplateRef('editorRef')
+const options = ref({
+  theme: 'bubble',
+  modules: {
+    toolbar: true
+  },
+  placeholder: '',
+  readOnly: false
+})
+
+const editorRef: Ref = useTemplateRef('editorRef')
+let quill: Quill | undefined
 
 const v$ = useVuelidate(commentRules, comment)
 
-const onCreateCommentClick = async () => {
-  const editorEl: Quill = editorRef?.value
+onMounted(async () => {
+  if(import.meta.client){
+    const QuillClass = (await import('quill')).default
+    quill = editorRef.value?.initialize(QuillClass)
+  }
+})
 
-  if (editorEl.getText().replace(/\n/g, '') == ''){
+const onCreateCommentClick = async () => {
+  //editorEl = editorRef?.value
+
+  if (quill?.getText().replace(/\n/g, '') == ''){
     comment.value.body = ''
   }
 
@@ -35,7 +54,7 @@ const onCreateCommentClick = async () => {
     setFlash(flash.value)
     if (isSuccess()) {
       v$.value.$reset()
-      editorEl.setHTML('')
+      quill?.setText('')
       comment.value.body = ''
       await getComments()
     }
@@ -43,9 +62,7 @@ const onCreateCommentClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  const editorEl: Quill = editorRef?.value
-
-  if (editorEl.getText().replace(/\n/g, '') != ''){
+  if (quill?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
     comment.value.body = ''
@@ -93,14 +110,13 @@ const updateContent = (content: string) => {
       <form>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <div class="col-12 kadomaru" style="border: 1px solid lavender;">
+            <div class="col-12 kadomaru" style="border: 1px solid lavender; height: 50px;">
               <ClientOnly>
-                <QuillEditor
+                <QuillyEditor
                   ref="editorRef"
-                  v-model:content="comment.body"
-                  theme="bubble"
-                  content-type="html"
-                  @update:content="updateContent"
+                  v-model="comment.body"
+                  :options="options"
+                  @update:model-value="updateContent"
                 />
               </ClientOnly>
             </div>

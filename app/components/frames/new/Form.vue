@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Quill } from '@vueup/vue-quill'
+import type Quill from "quill"
+import { QuillyEditor } from 'vue-quilly';
 import { useVuelidate } from '@vuelidate/core'
 import { useToast } from '~/composables/ui/use-toast'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
@@ -10,7 +11,17 @@ const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 
+const options = ref({
+  theme: 'bubble',
+  modules: {
+    toolbar: true
+  },
+  placeholder: '',
+  readOnly: false
+})
+
 const editorRef = useTemplateRef('editorRef')
+let quill: Quill | undefined
 
 const v$ = useVuelidate(frameRules, frame)
 
@@ -18,15 +29,20 @@ const v$ = useVuelidate(frameRules, frame)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
 
+onMounted(async () => {
+  if(import.meta.client){
+    const QuillClass = (await import('quill')).default
+    quill = editorRef.value?.initialize(QuillClass)
+  }
+})
+
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
   useImagePreview(target, frame.value)
 }
 
 const onCreateClick = async () => {
-  const editorEl: Quill = editorRef?.value
-
-  if (editorEl.getText().replace(/\n/g, '') == ''){
+  if (quill?.getText().replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
 
@@ -46,9 +62,7 @@ const onCreateClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  const editorEl: Quill = editorRef?.value
-
-  if (editorEl.getText().replace(/\n/g, '') != ''){
+  if (quill?.getText().replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
     frame.value.comment = ''
@@ -152,14 +166,13 @@ const updateContent = (content: string) => {
                   >{{ $t('model.frame.comment') }}：</label>
                 </td>
                 <td>
-                  <div class="kadomaru" style="border: 1px solid lavender;">
+                  <div class="kadomaru" style="border: 1px solid lavender;height: 50px;">
                     <ClientOnly>
-                      <QuillEditor
+                      <QuillyEditor
                         ref="editorRef"
-                        v-model:content="frame.comment"
-                        theme="bubble"
-                        content-type="html"
-                        @update:content="updateContent"
+                        v-model="frame.comment"
+                        :options="options"
+                        @update:model-value="updateContent"
                       />
                     </ClientOnly>
                   </div>
@@ -192,3 +205,9 @@ const updateContent = (content: string) => {
     </div>
   </form>
 </template>
+
+<style scoped>
+.ql-container {
+  height: 100%;
+}
+</style>
