@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useVuelidate } from '@vuelidate/core'
+import { useRegle } from '@regle/core'
 import { useImagePreview } from '~/composables/ui/use-image-preview'
 import { useModal } from '~/composables/ui/use-modal'
 import { useToast } from '~/composables/ui/use-toast'
@@ -10,7 +10,11 @@ const { openModal, closeModal } = useModal()
 const { user, signup, clearProfile,error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 const signup_rule = getSignupRules(user.value)
 
-const v$ = useVuelidate(signup_rule, user)
+const { r$ } = useRegle(user, signup_rule)
+
+onMounted(() => {
+  i18n.global.locale.value = locale.value
+})
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
@@ -19,9 +23,9 @@ const onSelectFile = (evt: Event) => {
 
 const onSignupClick = async () => {
   i18n.global.locale.value = locale.value
-  await v$.value.$validate()
+  await r$.$validate()
 
-  if (!v$.value.$invalid) {
+  if (!r$.$invalid) {
     await signup()
     setFlash(flash.value)
     if (isSuccess()) {
@@ -90,10 +94,10 @@ defineExpose({ onBackClick })
                     class="form-control"
                   >
                   <div
-                    v-for="error of v$.name.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$errors.name"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                   <div
                     v-for="(message, idx) in error_messages.name"
@@ -118,10 +122,10 @@ defineExpose({ onBackClick })
                     class="form-control"
                   >
                   <div
-                    v-for="error of v$.email.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$errors.email"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                   <div
                     v-for="(message, idx) in error_messages.email"
@@ -146,10 +150,10 @@ defineExpose({ onBackClick })
                     class="form-control"
                   >
                   <div
-                    v-for="error of v$.password.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$errors.password"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                   <div
                     v-for="(message, idx) in error_messages.password"
@@ -174,10 +178,10 @@ defineExpose({ onBackClick })
                     class="form-control"
                   >
                   <div
-                    v-for="error of v$.password_confirmation.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$errors.password_confirmation"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                   <div
                     v-for="(message, idx) in error_messages.password_confirmation"

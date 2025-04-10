@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
     '@nuxt/eslint',
+    '@regle/nuxt',
     'vue-sonner/nuxt'
   ],
 

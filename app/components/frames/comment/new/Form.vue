@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
+import { useRegle } from '@regle/core'
 import type Quill from "quill"
 import { QuillyEditor } from 'vue-quilly';
 
@@ -23,9 +23,10 @@ const options = ref({
 const editorRef: Ref = useTemplateRef('editorRef')
 let quill: Quill | undefined
 
-const v$ = useVuelidate(commentRules, comment)
+const { r$ } = useRegle(comment,commentRules)
 
 onMounted(async () => {
+  i18n.global.locale.value = locale.value
   if(import.meta.client){
     const QuillClass = (await import('quill')).default
     quill = editorRef.value?.initialize(QuillClass)
@@ -38,20 +39,20 @@ const onCreateCommentClick = async () => {
   }
 
   i18n.global.locale.value = locale.value
-  v$.value.$reset()
-  await v$.value.$validate()
+  r$.$reset()
+  await r$.$validate()
 
-  // console.log(v$.value.body.$invalid)
-  // console.log(v$.value.$invalid)
-  // console.log(v$.value.$error)
-  // console.log(v$.value.$errors)
+  // console.log(r$.$fields.body.$invalid)
+  // console.log(r$..$invalid)
+  // console.log(r$.$error)
+  // console.log(r$.$errors)
   // console.log(comment.body)
 
-  if (!v$.value.body.$invalid) {
+  if (!r$.$fields.body.$invalid) {
     await createComment()
     setFlash(flash.value)
     if (isSuccess()) {
-      v$.value.$reset()
+      r$.$reset()
       quill?.setText('')
       comment.value.body = ''
       await getComments()
@@ -123,11 +124,11 @@ const updateContent = (content: string) => {
         <div class="d-flex justify-content-center">
           <div class="col-sm-10">
             <div
-              v-for="error of v$.body.$errors"
-              :key="error.$uid"
+              v-for="error of r$.$errors.body"
+              :key="error"
             >
               <div class="text-danger">
-                {{ error.$message }}
+                {{ error }}
               </div>
             </div>
             <div

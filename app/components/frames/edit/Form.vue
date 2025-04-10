@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVuelidate } from '@vuelidate/core'
+import { useRegle } from '@regle/core'
 import type Quill from "quill"
 import { QuillyEditor } from 'vue-quilly';
 import { useToast } from '~/composables/ui/use-toast'
@@ -22,13 +22,14 @@ const options = {
 const editorRef: Ref = useTemplateRef('editorRef')
 let quill: Quill | undefined
 
-const v$ = useVuelidate(frameRules, frame)
+const { r$ } = useRegle(frame, frameRules)
 
 // console.log(frame)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
 
 onMounted(async () => {
+  i18n.global.locale.value = locale.value
   if(import.meta.client){
     const QuillClass = (await import('quill')).default
     quill = editorRef.value?.initialize(QuillClass)
@@ -41,10 +42,10 @@ const onEditClick = async () => {
   }
 
   i18n.global.locale.value = locale.value
-  await v$.value.$validate()
+  await r$.$validate()
 
   // console.log(frame)
-  if (!v$.value.$invalid) {
+  if (!r$.$invalid) {
     await updateFrame()
 
     setFlash(flash.value)
@@ -87,10 +88,10 @@ const updateContent = (content: string) => {
                     class="form-control"
                   >
                   <div
-                    v-for="error of v$.name.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$errors.name"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                 </td>
               </tr>
@@ -104,10 +105,10 @@ const updateContent = (content: string) => {
                 <td>
                   <TagEdit v-model="frame" />
                   <div
-                    v-for="error of v$.tags.$errors"
-                    :key="error.$uid"
+                    v-for="error of r$.$fields.tags.$errors"
+                    :key="error"
                   >
-                    <div>{{ error.$message }}</div>
+                    <div>{{ error }}</div>
                   </div>
                 </td>
               </tr>

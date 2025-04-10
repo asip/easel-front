@@ -1,9 +1,10 @@
-import tagArrayLength from './raw/tagArrayLength'
+import { type Maybe ,createRule } from '@regle/core'
+import { isFilled } from '@regle/rules'
 
-export default function (size: number) {
-  return {
-    $validator: tagArrayLength(size),
-    $message: ({ $params }: { $params: { size: number } }) => `are limited to ${$params.size}.`,
-    $params: { size, type: 'tagArrayLength' }
-  }
-}
+export const tagArrayLength = createRule({
+  type: 'tagArrayLength',
+  validator: (value: Maybe<string[]>, size: number) =>{
+      return !isFilled(value) || value.length <= size
+  },
+  message: ({ $params: [size] }) => `are limited to ${size}.`
+})
