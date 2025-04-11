@@ -2,10 +2,7 @@
 import type Quill from "quill"
 import { QuillyEditor } from 'vue-quilly';
 import { useRegle } from '@regle/core'
-import { useToast } from '~/composables/ui/use-toast'
-import { useImagePreview } from '~/composables/ui/use-image-preview'
 import type { UseFrameType } from '~/composables/use-frame'
-import { frameRules } from '~/composables/validation/forms/frame-rules'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()

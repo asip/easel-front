@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useModal } from '~/composables/ui/use-modal'
-import { useToast } from '~/composables/ui/use-toast'
 import type { UseFrameType } from '~/composables/use-frame'
 
 const { removeBackdrop } = useModal()

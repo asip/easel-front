@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { useRegle } from '@regle/core'
 import type Quill from "quill"
 import { QuillyEditor } from 'vue-quilly';
-
-import { useToast } from '~/composables/ui/use-toast'
+import { useRegle } from '@regle/core'
 import type { UseCommentType } from '~/composables/use-comment'
-import { commentRules } from '~/composables/validation/forms/comment-rules'
 
 const { setFlash } = useToast()
 const { logged_in, login_user } = useLoginUser()

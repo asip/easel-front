@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useImageGallery } from '~/composables/ui/use-image-gallery'
-
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()

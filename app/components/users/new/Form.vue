@@ -1,9 +1,5 @@
 <script lang="ts" setup>
 import { useRegle } from '@regle/core'
-import { useImagePreview } from '~/composables/ui/use-image-preview'
-import { useModal } from '~/composables/ui/use-modal'
-import { useToast } from '~/composables/ui/use-toast'
-import { getSignupRules } from '~/composables/validation/forms/get-signup-rules'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()

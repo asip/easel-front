@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useLightbox } from '~/composables/ui/use-lightbox'
 import type { Frame } from '~/interfaces/frame'
 
 const modelValue = defineModel<Frame>()

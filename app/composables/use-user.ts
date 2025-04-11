@@ -1,4 +1,3 @@
-import { useGetApi } from './api/use-get-api'
 import type { User } from '~/interfaces/user'
 import type { RefQuery } from '~/interfaces/ref-query'
 

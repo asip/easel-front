@@ -1,5 +1,4 @@
 import { format } from '@formkit/tempo'
-import { useGetApi } from './api/use-get-api'
 import type { Frame } from '~/interfaces/frame'
 
 export const useFrameSearch = () => {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useModal } from '~/composables/ui/use-modal'
 import type { UseLoginUserType } from '~/composables/use-login-user'
 
 const { openModal, closeModal } = useModal()

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useImageGallery } from '~/composables/ui/use-image-gallery'
 import { useUserFrames } from '~/composables/use-user-frames'
 
 const { userId, page } = defineProps<{

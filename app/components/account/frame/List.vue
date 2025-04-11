@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { User } from '~/interfaces/user'
-import { useImageGallery } from '~/composables/ui/use-image-gallery'
 import { useAccountFrames } from '~/composables/use-account-frames'
-
 
 const user = defineModel<User>()
 

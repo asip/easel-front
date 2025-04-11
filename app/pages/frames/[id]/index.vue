@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
-import { useQuill } from '~/composables/ui/use-quill';
 
 const route = useRoute()
 const { id } = route.params

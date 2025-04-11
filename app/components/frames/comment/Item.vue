@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
-import { useQuill } from '~/composables/ui/use-quill'
-import { useToast } from '~/composables/ui/use-toast'
 import type { UseCommentType } from '~/composables/use-comment'
 import type { Comment } from '~/interfaces/comment'
 

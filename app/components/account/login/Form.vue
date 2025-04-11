@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useModal } from '~/composables/ui/use-modal'
-import { useToast } from '~/composables/ui/use-toast'
-
 const { closeModal } = useModal()
 
 const { setMessages } = useToast()

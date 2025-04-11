@@ -1,8 +1,5 @@
 import type { Ref } from 'vue'
 import { useLoginUser } from './use-login-user'
-import { useGetApi } from './api/use-get-api'
-import { usePostApi } from './api/use-post-api'
-import { useDeleteApi } from './api/use-delete-api'
 
 export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)

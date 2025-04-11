@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
-import { useModal } from '~/composables/ui/use-modal'
 
 const { closeModal } = useModal()
 const { login_with_google } = useLoginUser()
