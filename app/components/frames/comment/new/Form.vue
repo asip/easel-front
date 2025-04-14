@@ -37,7 +37,7 @@ const onCreateCommentClick = async () => {
 
   i18n.global.locale.value = locale.value
   r$.$reset()
-  await r$.$validate()
+  const { valid } =await r$.$validate()
 
   // console.log(r$.$fields.body.$invalid)
   // console.log(r$..$invalid)
@@ -45,7 +45,7 @@ const onCreateCommentClick = async () => {
   // console.log(r$.$errors)
   // console.log(comment.body)
 
-  if (!r$.$fields.body.$invalid) {
+  if (valid) {
     await createComment()
     setFlash(flash.value)
     if (isSuccess()) {

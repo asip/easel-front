@@ -40,10 +40,10 @@ const onEditClick = async () => {
   }
 
   i18n.global.locale.value = locale.value
-  await r$.$validate()
+  const { valid } = await r$.$validate()
 
   // console.log(frame)
-  if (!r$.$invalid) {
+  if (valid) {
     await updateFrame()
 
     setFlash(flash.value)

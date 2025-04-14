@@ -19,9 +19,9 @@ const onSelectFile = (evt: Event) => {
 
 const onSignupClick = async () => {
   i18n.global.locale.value = locale.value
-  await r$.$validate()
+  const { valid } = await r$.$validate()
 
-  if (!r$.$invalid) {
+  if (valid) {
     await signup()
     setFlash(flash.value)
     if (isSuccess()) {
