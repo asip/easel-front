@@ -47,7 +47,7 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: commentList } = data.value as any
+      const { comments: commentList } = data.value as any
       // console.log(commentList)
 
       if (commentList) {
@@ -55,7 +55,7 @@ export function useComment () {
         comments.value.splice(0)
         for (const commentAttrs of commentList as any[]) {
           // console.log(comment);
-          comments.value.push(createCommentFromJson(commentAttrs.attributes))
+          comments.value.push(createCommentFromJson(commentAttrs))
         }
         // console.log(comments);
       }
@@ -97,11 +97,14 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: commentAttrs, errors } = data.value as any
-      if (commentAttrs) {
-        comment.value.body = ''
-      } else if (errors) {
+      const { errors } = data.value as any
+      if (errors) {
         setErrorMessages(errors)
+      } else {
+        const commentAttrs = data.value as any
+        if (commentAttrs) {
+          comment.value.body = ''
+        }
       }
     }
 

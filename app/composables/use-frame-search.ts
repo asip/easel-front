@@ -45,13 +45,13 @@ export const useFrameSearch = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: frameList, meta } = data.value as any
+      const { frames: frameList, meta } = data.value as any
       // console.log(frameList)
 
       if (frameList) {
         frames.value.splice(0)
         for (const frameAttrs of frameList as any[]) {
-          frames.value.push(createFrameFromJson(frameAttrs.attributes))
+          frames.value.push(createFrameFromJson(frameAttrs))
         }
         // console.log(frames)
       }

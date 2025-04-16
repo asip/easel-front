@@ -72,11 +72,11 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const { data: frameAttrs } = data.value as any
+        const frameAttrs = data.value as any
         // console.log(frameAttrs)
 
         if (frameAttrs) {
-          setJson2Frame(frameAttrs.attributes)
+          setJson2Frame(frameAttrs)
         }
       }
     } else {
@@ -102,11 +102,11 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const { data: frameAttrs } = data.value as any
+        const frameAttrs = data.value as any
         // console.log(frameAttrs)
 
         if (frameAttrs) {
-          setJson2Frame(frameAttrs.attributes)
+          setJson2Frame(frameAttrs)
         }
       }
     }
@@ -160,11 +160,14 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: frameAttrs, errors } = data.value as any
-      if (frameAttrs) {
-        frame.value.id = frameAttrs.attributes.id
-      } else if (errors) {
+      const { errors } = data.value as any
+      if (errors) {
         setErrorMessages(errors)
+      } else {
+        const frameAttrs = data.value as any
+        if (frameAttrs) {
+          frame.value.id = frameAttrs.id
+        }
       }
     }
 
@@ -246,8 +249,8 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: frameAttrs, errors } = data.value as any
-      if (!frameAttrs && errors) {
+      const { errors } = data.value as any
+      if (errors) {
         setErrorMessages(errors)
       }
     }
@@ -277,7 +280,7 @@ export const useFrame = () => {
       }
     }
 
-    // const { data: frameAttrs } = data.value
+    // const frameAttrs = data.value
 
     processing.value = pending.value
   }

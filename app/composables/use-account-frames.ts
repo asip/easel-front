@@ -44,7 +44,7 @@ export function useAccountFrames () {
         message: flash.value.alert
       })
     } else if (data.value) {
-      const { data: frameList, meta } = data.value as any
+      const { frames: frameList, meta } = data.value as any
       // console.log(frameList)
       // console.log(meta)
 
@@ -52,7 +52,7 @@ export function useAccountFrames () {
         frames.value.splice(0)
         for (const frame of frameList as any[]) {
         // console.log(comment);
-          frames.value.push(createFrameFromJson(frame.attributes))
+          frames.value.push(createFrameFromJson(frame))
         }
       // console.log(frames)
       }

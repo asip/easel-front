@@ -44,12 +44,12 @@ export const useUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { data: userAttrs } = data.value as any
+      const userAttrs = data.value as any
       // console.log(userAttrs)
 
       if (userAttrs) {
       // console.log('test3')
-        setJson2User(userAttrs.attributes)
+        setJson2User(userAttrs)
       }
     }
   }
