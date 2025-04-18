@@ -2,7 +2,9 @@
 
 // @ts-ignore
 export default defineNuxtConfig({
-  srcDir: 'app/',
+  future: {
+    compatibilityVersion: 4,
+  },
 
   modules: [
     '@nuxtjs/i18n',
