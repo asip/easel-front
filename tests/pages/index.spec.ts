@@ -216,7 +216,6 @@ describe('index', () => {
   })
 
   test('display', async () => {
-    // Arrange
     // const { container } =
     await mountSuspended(Index, { route: '/' })
   })
