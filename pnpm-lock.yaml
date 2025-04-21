@@ -26,15 +26,15 @@ importers:
       '@yaireo/tagify':
         specifier: ^4.34.0
         version: 4.34.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      baguettebox.js:
+        specifier: 1.12.0
+        version: 1.12.0
       bootstrap:
         specifier: ^5.3.5
         version: 5.3.5(@popperjs/core@2.11.8)
       bootstrap-icons:
         specifier: ^1.11.3
         version: 1.11.3
-      luminous-lightbox:
-        specifier: ^2.4.0
-        version: 2.4.0
       photoswipe:
         specifier: 5.4.4
         version: 5.4.4
@@ -1830,6 +1830,9 @@ packages:
   b4a@1.6.7:
     resolution: {integrity: sha512-OnAYlL5b7LEkALw87fUVafQw5rVR9RjwGd4KUwNQ6DrrNmaVaUCgLipfVlzrPQ4tWOR9P0IXGNOx50jYCCdSJg==}
 
+  baguettebox.js@1.12.0:
+    resolution: {integrity: sha512-/pg/9xMpr5aL3MIpXwtoPegr1edO2feHmWwx0h2eVOuqFguOgLQWzlbyqWxzzAOLMKch/df87uO7sXMrQuwUmw==}
+
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -3265,9 +3268,6 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
-
-  luminous-lightbox@2.4.0:
-    resolution: {integrity: sha512-qu1IE2/+sTyAzUgEGffHPnBNenJ1CDDieSDy6yLgmJUsMVoTLCbTeDJuQvje4hpl+M3xZvq87TIP8hu3BsgaEQ==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -7007,6 +7007,8 @@ snapshots:
 
   b4a@1.6.7: {}
 
+  baguettebox.js@1.12.0: {}
+
   balanced-match@1.0.2: {}
 
   bare-events@2.5.4:
@@ -8492,8 +8494,6 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
-
-  luminous-lightbox@2.4.0: {}
 
   lz-string@1.5.0: {}
 

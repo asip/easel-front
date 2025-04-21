@@ -1,21 +1,18 @@
 // @ts-expect-error
-import { LuminousGallery } from 'luminous-lightbox'
+import baguetteBox from 'baguettebox.js'
 
-export function useImageGallery () {
-  let gallery: LuminousGallery = null
+export function useImageGallery (selector: string) {
+  let gallery: any = null
 
   const initGallery = () => {
-    if (gallery) { gallery.destroy() }
-    const elements: NodeListOf<Element> = document.querySelectorAll('.lum-lightbox')
-    Array.from(elements).forEach(e => e.remove())
+    if (gallery && document.querySelector('#baguetteBox-overlay')) { baguetteBox.destroy() }
 
-    const elms = document.querySelectorAll('[name="lm"]')
-    gallery = new LuminousGallery(elms, { showCloseButton: true })
+    gallery = baguetteBox.run(selector)
   }
 
   const closeGallery = () => {
-    if (gallery) {
-      gallery.destroy()
+    if (gallery && document.querySelector('#baguetteBox-overlay')) {
+      baguetteBox.destroy()
       gallery = null
     }
   }

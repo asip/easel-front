@@ -16,7 +16,6 @@ const { userId, page } = defineProps<{
   >
     <NuxtLink
       :to="`${frame?.file_url}`"
-      name="lm"
       class="mx-auto"
     >
       <img

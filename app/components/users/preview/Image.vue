@@ -9,7 +9,7 @@ const { original } = defineProps<{
   original: boolean
 }>()
 
-const { initLMLightbox, closeLightbox } = useLightbox('galleryRef')
+const { initLMLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
 
 // console.log(login_user?.value.image_three_url)
 

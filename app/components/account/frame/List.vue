@@ -8,7 +8,7 @@ const { page } = defineProps<{
   page?: string
 }>()
 
-const { initGallery, closeGallery } = useImageGallery()
+const { initGallery, closeGallery } = useImageGallery('.lb')
 const { frame_query, getFrames, frames } = useAccountFrames()
 
 // console.log('searchFrame: start')
@@ -35,7 +35,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="row col-sm-12">
+  <div class="row col-sm-12 lb">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
