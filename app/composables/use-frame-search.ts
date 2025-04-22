@@ -14,12 +14,14 @@ export const useFrameSearch = () => {
 
   const { locale } = useLocale()
 
-  const date_word = computed({
+  const dateWord = computed({
     get () {
       return format(new Date(), 'YYYY/MM/DD', locale.value)
     },
     set (value: any) {
-      frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+      if (value) {
+        frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+      }
     }
   })
 
@@ -70,6 +72,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frame_query, date_word, searchFrame, frames
+    frame_query, dateWord, searchFrame, frames
   }
 }
