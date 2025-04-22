@@ -1,12 +1,10 @@
+import { useApiFetch } from './use-api-fetch'
+
 type PutAPIOptions = {
   url:string, body?: any, token?: string | null, locale?: string | null
 }
 
 export const usePutApi = async ({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
-  const { backendApiURL } = useConstants()
-
-  const fullURL = `${backendApiURL.value}${url}`
-
   const headers: any = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -21,7 +19,7 @@ export const usePutApi = async ({ url, body = {}, token = null, locale = null }:
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useFetch(fullURL,
+  const { data, error, status } = await useApiFetch(url,
     {
       method: 'put',
       body,
