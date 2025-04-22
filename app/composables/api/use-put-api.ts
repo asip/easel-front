@@ -21,12 +21,12 @@ export const usePutApi = async ({ url, body = {}, token = null, locale = null }:
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData(url, () =>
-    $fetch(fullURL, {
+  const { data, error, status } = await useFetch(fullURL,
+    {
       method: 'put',
       body,
       headers
-    })
+    }
   )
 
   pending.value = status.value === 'pending'

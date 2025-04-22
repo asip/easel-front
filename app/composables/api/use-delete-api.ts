@@ -21,13 +21,11 @@ export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteA
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData(url, () =>
-    $fetch(fullURL,
-      {
-        method: 'delete',
-        headers
-      }
-    )
+  const { data, error, status } = await useFetch(fullURL,
+    {
+      method: 'delete',
+      headers
+    }
   )
 
   pending.value = status.value === 'pending'

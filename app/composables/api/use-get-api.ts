@@ -13,12 +13,12 @@ export const useGetApi = async ({ url, query = {}, token = null }: GetAPIOptions
     headers.Authorization = `Bearer ${token}`
   }
 
-  const { data, error } = await useAsyncData(url, () =>
-    $fetch(fullURL, {
+  const { data, error } = await useFetch(fullURL,
+    {
       method: 'get',
       query,
       headers
-    })
+    }
   )
 
   return { data, error }
