@@ -21,6 +21,8 @@ export const useFrameSearch = () => {
     set (value: any) {
       if (value) {
         frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+      } else {
+        frame_query.value.word = ''
       }
     }
   })

@@ -30,50 +30,51 @@ const onSearchClick = async () => {
       <i class="bi bi-search" />
     </a>
   </div>
-    <teleport to="#sidebar-calendar">
-      <div
-        id="offcanvas-calendar"
-        class="offcanvas offcanvas-end"
-        data-bs-scroll="true"
-        tabindex="-1"
-      >
-        <div class="offcanvas-header">
-          <!-- <h5 id="offcanvasLabel" class="offcanvas-title" /> -->
-          <button
-            type="button"
-            class="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            :aria-label="$t('action.modal.close')"
-          />
-        </div>
-        <div class="offcanvas-body">
-          <div class="d-flex justify-content-sm-center">
-            <client-only>
+  <teleport to="#sidebar-calendar">
+    <div
+      id="offcanvas-calendar"
+      class="offcanvas offcanvas-end"
+      data-bs-scroll="true"
+      tabindex="-1"
+    >
+      <div class="offcanvas-header">
+        <!-- <h5 id="offcanvasLabel" class="offcanvas-title" /> -->
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          :aria-label="$t('action.modal.close')"
+        />
+      </div>
+      <div class="offcanvas-body">
+        <div class="d-flex justify-content-sm-center">
+          <client-only>
             <v-date-picker
               v-model="dateWord"
+              mode="date"
               :masks="masks"
               :locale="locale"
             />
           </client-only>
-          </div>
-          <br>
-          <div class="d-flex justify-content-sm-center">
-            <form class="d-flex">
-              <input
-                v-model="frame_query.word"
-                type="text"
-                :placeholder="$t('component.tag_search.placeholder')"
-                class="form-control me-sm-2"
-              >
-              <input
-                type="button"
-                :value="$t('component.tag_search.search')"
-                class="btn btn-outline-success me-2 me-sm-0"
-                @click="onSearchClick"
-              >
-            </form>
-          </div>
+        </div>
+        <br>
+        <div class="d-flex justify-content-sm-center">
+          <form class="d-flex">
+            <input
+              v-model="frame_query.word"
+              type="text"
+              :placeholder="$t('component.tag_search.placeholder')"
+              class="form-control me-sm-2"
+            >
+            <input
+              type="button"
+              :value="$t('component.tag_search.search')"
+              class="btn btn-outline-success me-2 me-sm-0"
+              @click="onSearchClick"
+            >
+          </form>
         </div>
       </div>
-    </teleport>
+    </div>
+  </teleport>
 </template>
