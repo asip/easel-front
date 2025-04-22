@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const route = useRoute()
-const { date_word, frame_query, searchFrame } = useFrameSearch()
+const { dateWord, frame_query, searchFrame } = useFrameSearch()
 
 const masks = {
   input: 'YYYY/MM/DD'
@@ -30,7 +30,6 @@ const onSearchClick = async () => {
       <i class="bi bi-search" />
     </a>
   </div>
-  <client-only>
     <teleport to="#sidebar-calendar">
       <div
         id="offcanvas-calendar"
@@ -49,11 +48,13 @@ const onSearchClick = async () => {
         </div>
         <div class="offcanvas-body">
           <div class="d-flex justify-content-sm-center">
+            <client-only>
             <v-date-picker
-              v-model="date_word"
+              v-model="dateWord"
               :masks="masks"
               :locale="locale"
             />
+          </client-only>
           </div>
           <br>
           <div class="d-flex justify-content-sm-center">
@@ -75,5 +76,4 @@ const onSearchClick = async () => {
         </div>
       </div>
     </teleport>
-  </client-only>
 </template>
