@@ -5,7 +5,7 @@ type DeleteAPIOptions = {
 }
 
 export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteAPIOptions) => {
-  const headers: any = {
+  const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
 

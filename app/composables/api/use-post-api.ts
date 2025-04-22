@@ -1,11 +1,11 @@
 import { useApiFetch } from './use-api-fetch'
 
 type PostAPIOptions = {
-  url:string, body?: any, token?: string | null, locale?: string | null
+  url:string, body?: Record<string, any>, token?: string | null, locale?: string | null
 }
 
 export const usePostApi = async ({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
-  const headers: any = {
+  const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
 

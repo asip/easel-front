@@ -1,9 +1,13 @@
 import { useApiFetch } from './use-api-fetch'
 
-type GetAPIOptions = { url:string, query?: any, token?: string | null }
+interface SearchParams {
+  [key: string]: any
+}
+
+type GetAPIOptions = { url:string, query?: SearchParams, token?: string | null }
 
 export const useGetApi = async ({ url, query = {}, token = null }: GetAPIOptions) => {
-  const headers: any = {
+  const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
 
