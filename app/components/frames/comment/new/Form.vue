@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type Quill from "quill"
-import { QuillyEditor } from 'vue-quilly';
 import { useRegle } from '@regle/core'
 import type { UseCommentType } from '~/composables/use-comment'
 
@@ -17,25 +15,21 @@ const options = ref({
   readOnly: false
 })
 
-const editorRef: Ref = useTemplateRef('editorRef')
-let quill: Quill | undefined
+const editor: Ref = useTemplateRef('editor')
 
 const { r$ } = useRegle(comment,commentRules)
 
 onMounted(async () => {
   i18n.global.locale.value = locale.value
-  if(import.meta.client){
-    const QuillClass = (await import('quill')).default
-    quill = editorRef.value?.initialize(QuillClass)
-  }
 })
 
 const onCreateCommentClick = async () => {
-  if (quill?.getText().replace(/\n/g, '') == ''){
+  if (editor.value?.quill?.getText().replace(/\n/g, '') == ''){
     comment.value.body = ''
   }
 
   i18n.global.locale.value = locale.value
+  r$.$touch()
   r$.$reset()
   const { valid } =await r$.$validate()
 
@@ -49,16 +43,17 @@ const onCreateCommentClick = async () => {
     await createComment()
     setFlash(flash.value)
     if (isSuccess()) {
-      r$.$reset()
-      quill?.setContents([])
+      editor.value?.quill?.setContents([])
       comment.value.body = ''
+      r$.$touch()
+      r$.$reset()
       await getComments()
     }
   }
 }
 
 const updateContent = (content: string) => {
-  if (quill?.getText().replace(/\n/g, '') != ''){
+  if (editor.value?.quill?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
     comment.value.body = ''
@@ -107,14 +102,12 @@ const updateContent = (content: string) => {
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
             <div class="col-12 kadomaru" style="border: 1px solid lavender; height: 50px;">
-              <ClientOnly>
-                <QuillyEditor
-                  ref="editorRef"
-                  v-model="comment.body"
-                  :options="options"
-                  @update:model-value="updateContent"
-                />
-              </ClientOnly>
+              <Editor
+                ref="editor"
+                v-model="comment.body"
+                :options="options"
+                @update="updateContent"
+              />
             </div>
           </div>
         </div>
