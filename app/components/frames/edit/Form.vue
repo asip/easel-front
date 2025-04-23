@@ -1,24 +1,12 @@
 <script setup lang="ts">
 import { useRegle } from '@regle/core'
-import type Quill from "quill"
-import { QuillyEditor } from 'vue-quilly';
 import type { UseFrameType } from '~/composables/use-frame'
 
 const { setFlash } = useToast()
 const { logged_in } = useLoginUser()
 const { frame, updateFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 
-const options = {
-  theme: 'bubble',
-  modules: {
-    toolbar: true
-  },
-  placeholder: '',
-  readOnly: false
-}
-
-const editorRef: Ref = useTemplateRef('editorRef')
-let quill: Quill | undefined
+const editor: Ref = useTemplateRef('editor')
 
 const { r$ } = useRegle(frame, frameRules)
 
@@ -26,16 +14,12 @@ const { r$ } = useRegle(frame, frameRules)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
 
-onMounted(async () => {
+onMounted(() => {
   i18n.global.locale.value = locale.value
-  if(import.meta.client){
-    const QuillClass = (await import('quill')).default
-    quill = editorRef.value?.initialize(QuillClass)
-  }
 })
 
 const onEditClick = async () => {
-  if (quill?.getText().replace(/\n/g, '') == ''){
+  if (editor.value?.quill?.getText().replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
 
@@ -56,7 +40,7 @@ const onEditClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  if (quill?.getText().replace(/\n/g, '') != ''){
+  if (editor.value?.quill?.getText().replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
     frame.value.comment = ''
@@ -134,14 +118,11 @@ const updateContent = (content: string) => {
                 </td>
                 <td>
                   <div class="kadomaru" style="border: 1px solid lavender;height: 50px">
-                    <ClientOnly>
-                      <QuillyEditor
-                        ref="editorRef"
-                        v-model="frame.comment"
-                        :options="options"
-                        @update:model-value="updateContent"
-                      />
-                    </ClientOnly>
+                    <Editor
+                      ref="editor"
+                      v-model="frame.comment"
+                      @update="updateContent"
+                    />
                   </div>
                 </td>
               </tr>
@@ -172,9 +153,3 @@ const updateContent = (content: string) => {
     </div>
   </form>
 </template>
-
-<style scoped>
-.ql-editor {
-  height: 100%;
-}
-</style>
