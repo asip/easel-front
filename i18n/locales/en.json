@@ -24,7 +24,8 @@
   "component": {
     "tag_search": {
       "placeholder": "Tag or Name or Date",
-      "search": "Search"
+      "search": "Search",
+      "clear": "Clear"
     }
   },
   "action": {

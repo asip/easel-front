@@ -1,12 +1,24 @@
 <script lang="ts" setup>
+import { format } from '@formkit/tempo'
+
 const route = useRoute()
-const { dateWord, frame_query, searchFrame } = useFrameSearch()
+const { locale } = useLocale()
+const { frame_query, searchFrame } = useFrameSearch()
+
+const dateWord = defineModel<Date | null>({
+  default: new Date,
+  set (value: any) {
+    if (value) {
+      frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+    } else {
+      frame_query.value.word = ''
+    }
+  }
+})
 
 const masks = {
   input: 'YYYY/MM/DD'
 }
-
-const { locale } = useLocale()
 
 const onSearchClick = async () => {
   frame_query.value.page = 1
@@ -14,6 +26,11 @@ const onSearchClick = async () => {
   if (route.path !== '/') {
     await navigateTo('/')
   }
+}
+
+const onClearClick = () => {
+  frame_query.value.word = ''
+  dateWord.value= null
 }
 </script>
 
@@ -71,6 +88,13 @@ const onSearchClick = async () => {
               :value="$t('component.tag_search.search')"
               class="btn btn-outline-success me-2 me-sm-0"
               @click="onSearchClick"
+            >
+            &nbsp;
+            <input
+              type="button"
+              :value="$t('component.tag_search.clear')"
+              class="btn btn-outline-success me-2 me-sm-0"
+              @click="onClearClick"
             >
           </form>
         </div>

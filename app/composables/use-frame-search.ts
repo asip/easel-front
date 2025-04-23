@@ -1,4 +1,3 @@
-import { format } from '@formkit/tempo'
 import type { Frame } from '~/interfaces/frame'
 
 export const useFrameSearch = () => {
@@ -11,21 +10,6 @@ export const useFrameSearch = () => {
   })
 
   const frames = useState<Frame[]>('frames', () => { return [] })
-
-  const { locale } = useLocale()
-
-  const dateWord = computed({
-    get () {
-      return format(new Date(), 'YYYY/MM/DD', locale.value)
-    },
-    set (value: any) {
-      if (value) {
-        frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
-      } else {
-        frame_query.value.word = ''
-      }
-    }
-  })
 
   const { flash, clearFlash } = useFlash()
 
@@ -74,6 +58,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frame_query, dateWord, searchFrame, frames
+    frame_query, searchFrame, frames
   }
 }
