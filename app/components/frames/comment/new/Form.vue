@@ -50,7 +50,7 @@ const onCreateCommentClick = async () => {
     setFlash(flash.value)
     if (isSuccess()) {
       r$.$reset()
-      quill?.setText('')
+      quill?.setContents([])
       comment.value.body = ''
       await getComments()
     }
