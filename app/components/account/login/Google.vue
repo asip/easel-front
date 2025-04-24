@@ -8,8 +8,8 @@ const { login_with_google } = useLoginUser()
 const handleLoginSuccess = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
-  await login_with_google(response)
   closeModal('#login_modal')
+  await login_with_google(response)
 }
 
 /*
