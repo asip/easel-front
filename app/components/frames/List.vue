@@ -10,7 +10,7 @@ await searchFrame()
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await searchFrame()
-  router.replace({ path: '/', query: queryString.value })
+  router.push({ path: '/', query: queryString.value })
 }
 
 onMounted(() => {
