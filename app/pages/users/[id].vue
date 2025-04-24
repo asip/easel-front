@@ -8,7 +8,7 @@ const ref_id = route.query.ref_id
 
 const { user, getUser } = useUser()
 const { logged_in, login_user } = useLoginUser()
-const { frame_query } = useFrameSearch()
+const { queryString } = useFrameSearch()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
 const userId = id as string
@@ -25,7 +25,7 @@ const onPageBack = async () => {
   if (ref_page === 'frame') {
     await navigateTo({ path: `/frames/${ref_id}` })
   } else {
-    await navigateTo({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
+    await navigateTo({ path: '/', query: queryString.value })
   }
 }
 

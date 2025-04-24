@@ -2,7 +2,7 @@
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery('.lb')
-const { frame_query, searchFrame, frames } = useFrameSearch()
+const { frame_query, queryString, searchFrame, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
 await searchFrame()
@@ -10,7 +10,7 @@ await searchFrame()
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await searchFrame()
-  router.replace({ path: '/', query: { q: frame_query.value.word, page: frame_query.value.page } })
+  router.replace({ path: '/', query: queryString.value })
 }
 
 onMounted(() => {

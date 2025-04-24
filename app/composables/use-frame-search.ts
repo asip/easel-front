@@ -9,6 +9,18 @@ export const useFrameSearch = () => {
     }
   })
 
+  const queryString = computed(() => {
+    if (frame_query.value.word !== '' && frame_query.value.page) {
+      return { q: frame_query.value.word, page: frame_query.value.page }
+    } else if (frame_query.value.word == '' && frame_query.value.page) {
+      return { page: frame_query.value.page }
+    } else if (frame_query.value.word !== '' && !frame_query.value.page) {
+      return { q: frame_query.value.word }
+    } else if (frame_query.value.word == '' && !frame_query.value.page) {
+      return {}
+    }
+  })
+
   const frames = useState<Frame[]>('frames', () => { return [] })
 
   const { flash, clearFlash } = useFlash()
@@ -52,10 +64,7 @@ export const useFrameSearch = () => {
 
     router.push({
       path: '/',
-      query: {
-        q: frame_query.value.word,
-        page: frame_query.value.page
-      }
+      query: queryString.value
     })
   }
 
@@ -68,6 +77,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frame_query, searchFrame, frames
+    frame_query, searchFrame, frames, queryString
   }
 }
