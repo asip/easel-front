@@ -24,8 +24,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(vue@3.5.13(typescript@5.8.3))
       '@yaireo/tagify':
-        specifier: ^4.34.0
-        version: 4.34.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^4.35.0
+        version: 4.35.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       baguettebox.js:
         specifier: 1.12.0
         version: 1.12.0
@@ -1697,8 +1697,8 @@ packages:
   '@vue/test-utils@2.4.6':
     resolution: {integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==}
 
-  '@yaireo/tagify@4.34.0':
-    resolution: {integrity: sha512-+IckJUhvjii37n/YFX3YUTJvcp8rUU0CnjAqa87/psSKjiF5xwoK7Mo0rsadzdrPxycrcn6Uwzl8zPO6/8CXOQ==}
+  '@yaireo/tagify@4.35.0':
+    resolution: {integrity: sha512-D+o/c2rAhNA/Cmiw1sV1YtuxPCqB0UpVOXdnR9DXPuMHvU0quIEkU3FA6JDXTYMQV6FL7YGwonq2yPMfkc83lQ==}
     engines: {node: '>=16.15.0', npm: '>=9.0.0'}
     peerDependencies:
       prop-types: '>15.5.7'
@@ -6870,7 +6870,7 @@ snapshots:
       js-beautify: 1.15.1
       vue-component-type-helpers: 2.2.0
 
-  '@yaireo/tagify@4.34.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@yaireo/tagify@4.35.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       prop-types: 15.8.1
       react: 19.0.0
