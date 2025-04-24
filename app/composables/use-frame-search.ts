@@ -13,6 +13,8 @@ export const useFrameSearch = () => {
 
   const { flash, clearFlash } = useFlash()
 
+  const router = useRouter()
+
   const searchFrame = async () => {
     const { data, error } = await useGetApi({
       url: '/frames',
@@ -47,6 +49,14 @@ export const useFrameSearch = () => {
         frame_query.value.pages = meta.pagination.pages
       }
     }
+
+    router.push({
+      path: '/',
+      query: {
+        q: frame_query.value.word,
+        page: frame_query.value.page
+      }
+    })
   }
 
   const createFrameFromJson = (resource: any) : Frame => {
