@@ -12,9 +12,17 @@ export const useFrameSearch = () => {
 
   const queryString = computed(() => {
     if (frame_query.value.word !== '' && frame_query.value.page) {
-      return { q: frame_query.value.word, page: frame_query.value.page }
+      if (frame_query.value.page !== 1) {
+        return { q: frame_query.value.word, page: frame_query.value.page }
+      } else {
+        return { q: frame_query.value.word }
+      }
     } else if (frame_query.value.word == '' && frame_query.value.page) {
-      return { page: frame_query.value.page }
+      if (frame_query.value.page !== 1) {
+        return { page: frame_query.value.page }
+      } else {
+        return {}
+      }
     } else if (frame_query.value.word !== '' && !frame_query.value.page) {
       return { q: frame_query.value.word }
     } else if (frame_query.value.word == '' && !frame_query.value.page) {
