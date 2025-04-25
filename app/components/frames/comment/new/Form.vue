@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useRegle } from '@regle/core'
 import type { UseCommentType } from '~/composables/use-comment'
 
 const { setFlash } = useToast()
@@ -17,7 +16,7 @@ const options = ref({
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useRegle(comment,commentRules)
+const { r$ } = useI18nRegle(comment,commentRules)
 
 onMounted(async () => {
   i18n.global.locale.value = locale.value

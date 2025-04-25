@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import { useRegle } from '@regle/core'
-
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
 const { user, signup, clearProfile,error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 const signup_rule = getSignupRules(user.value)
 
-const { r$ } = useRegle(user, signup_rule)
+const { r$ } = useI18nRegle(user, signup_rule)
 
 onMounted(() => {
   i18n.global.locale.value = locale.value

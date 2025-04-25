@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
 
-import { tagArrayLength, tagLength } from './validation'
+export { tagArrayLength, tagLength } from './validation'
 
 const i18n = createI18n({
   legacy: false,
@@ -33,4 +33,3 @@ const i18n = createI18n({
 })
 
 export { i18n }
-export { tagArrayLength, tagLength }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useRegle } from '@regle/core'
 import type { UseLoginUserType } from '~/composables/use-login-user'
 
 const { setFlash } = useToast()
@@ -7,7 +6,7 @@ const { openModal, closeModal } = useModal()
 const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
 const user_rule = getUserRules(user.value)
 
-const { r$ } = useRegle(user, user_rule)
+const { r$ } = useI18nRegle(user, user_rule)
 
 onMounted(()=>{
   i18n.global.locale.value = locale.value

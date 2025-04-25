@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useRegle } from '@regle/core'
 import type { UseFrameType } from '~/composables/use-frame'
 
 const { setFlash } = useToast()
@@ -8,7 +7,7 @@ const { frame, frameId, createFrame, error_messages, processing, isSuccess, flas
 
 const editor = useTemplateRef('editor')
 
-const { r$ } = useRegle(frame, frameRules)
+const { r$ } = useI18nRegle(frame, frameRules)
 
 // console.log(frame)
 // console.log(frame.tags)
