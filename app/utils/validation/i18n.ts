@@ -1,8 +1,6 @@
 import { createI18n } from 'vue-i18n'
 
-export { tagArrayLength, tagLength } from './validation'
-
-const i18n = createI18n({
+export const i18n = createI18n({
   legacy: false,
   locale: 'en', // set locale
   fallbackLocale: 'en', // set fallback locale
@@ -32,4 +30,3 @@ const i18n = createI18n({
   }
 })
 
-export { i18n }
