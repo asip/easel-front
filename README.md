@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/asip/easel-front/blob/main/public/palette.svg)
 
-This is SPA Frontend of Easel.
+This is SPA Frontend of [Easel](https://github.com/asip/easel).
 
 Nuxt3.16 + Bootstrap5
 
