@@ -15,14 +15,14 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       '@regle/core':
-        specifier: ^1.1.0
-        version: 1.1.0(vue@3.5.13(typescript@5.8.3))
+        specifier: ^1.1.1
+        version: 1.1.1(vue@3.5.13(typescript@5.8.3))
       '@regle/nuxt':
-        specifier: 1.1.0
-        version: 1.1.0(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))
+        specifier: 1.1.1
+        version: 1.1.1(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))
       '@regle/rules':
-        specifier: ^1.1.0
-        version: 1.1.0(vue@3.5.13(typescript@5.8.3))
+        specifier: ^1.1.1
+        version: 1.1.1(vue@3.5.13(typescript@5.8.3))
       '@yaireo/tagify':
         specifier: ^4.35.0
         version: 4.35.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1114,8 +1114,8 @@ packages:
     resolution: {integrity: sha512-aQypoot0HPSJa6gDPEPTntc1GT6QINrSbgRlRhadGW2WaYqUK3tK4Bw9SBMZXhmxd3GeAlZjVcODHgiu+THY7A==}
     engines: {node: '>=18'}
 
-  '@regle/core@1.1.0':
-    resolution: {integrity: sha512-Tv/za6+k/Xf5fvgbD3EEAw44VTdjh44vjRmnFthL5jo2TECFu35UGwCtBE3eZLuTNyqSeDzIgIYQ3y0Eb3peTA==}
+  '@regle/core@1.1.1':
+    resolution: {integrity: sha512-yFQg1izUBeeFQ8YBF1bsBPCbLKpJGLoishmllGoEysJl5nE3epzRxoS/3gQupfX4hZB8/ZEypBATJj+B2qYI6g==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: '>=3.3.0'
@@ -1123,14 +1123,14 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.1.0':
-    resolution: {integrity: sha512-SmywfVjMRSNO905sDnHuTEDHSrvbMNWDE5oWsBKXiL/rVDtqJJEznHRBsljPcxerub75oZxeTJr8Vi0zmiiJVQ==}
+  '@regle/nuxt@1.1.1':
+    resolution: {integrity: sha512-UqxiVKyKSp2dPNpBMV1LB6x5ldu7bKM1fxElFDwdRVCiZ6UNoUi+4dbHepY6Y1VWa3DlI9qPOCY4poT98x//xQ==}
 
-  '@regle/rules@1.1.0':
-    resolution: {integrity: sha512-cz/vY1mQZzJ0UuofLEK9w/evjm6GUHuICnNtt4M1gPkOpX2zaLEe2hfDXjajKAbDgv+qVQ3OPdvXzJ0n8G5PQA==}
+  '@regle/rules@1.1.1':
+    resolution: {integrity: sha512-73MK2xMzEt6ve3XIsuETuAFpayR3COgM6iopSuTz9oUlnm84CByJB52709vSZdXIbu8vkG7XrOjJG/17Kk1ZJw==}
 
-  '@regle/schemas@1.1.0':
-    resolution: {integrity: sha512-NO6Il9y0A00pKHsJMDVE4sNbJLATEq4jsBSCL595JTMmMfLmo8joDnqJpdOo2z1VrjjBAF9TYUxsv/1MFDwcuw==}
+  '@regle/schemas@1.1.1':
+    resolution: {integrity: sha512-+kt7qL8bxBVdbxRIM5c4hhLEWS1aLWudmY2O5mG6MJ3KLZP6X2GKLjycRMlsmUUmPBaenBWaBy6G/GIdyncEog==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -6231,18 +6231,18 @@ snapshots:
 
   '@poppinss/exception@1.2.1': {}
 
-  '@regle/core@1.1.0(vue@3.5.13(typescript@5.8.3))':
+  '@regle/core@1.1.1(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
 
-  '@regle/nuxt@1.1.0(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))':
+  '@regle/nuxt@1.1.1(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
       '@nuxt/schema': 3.16.2
-      '@regle/core': 1.1.0(vue@3.5.13(typescript@5.8.3))
-      '@regle/rules': 1.1.0(vue@3.5.13(typescript@5.8.3))
+      '@regle/core': 1.1.1(vue@3.5.13(typescript@5.8.3))
+      '@regle/rules': 1.1.1(vue@3.5.13(typescript@5.8.3))
     optionalDependencies:
-      '@regle/schemas': 1.1.0(vue@3.5.13(typescript@5.8.3))
+      '@regle/schemas': 1.1.1(vue@3.5.13(typescript@5.8.3))
     transitivePeerDependencies:
       - arktype
       - magicast
@@ -6251,17 +6251,17 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.1.0(vue@3.5.13(typescript@5.8.3))':
+  '@regle/rules@1.1.1(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      '@regle/core': 1.1.0(vue@3.5.13(typescript@5.8.3))
+      '@regle/core': 1.1.1(vue@3.5.13(typescript@5.8.3))
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.1.0(vue@3.5.13(typescript@5.8.3))':
+  '@regle/schemas@1.1.1(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      '@regle/core': 1.1.0(vue@3.5.13(typescript@5.8.3))
-      '@regle/rules': 1.1.0(vue@3.5.13(typescript@5.8.3))
+      '@regle/core': 1.1.1(vue@3.5.13(typescript@5.8.3))
+      '@regle/rules': 1.1.1(vue@3.5.13(typescript@5.8.3))
       '@standard-schema/spec': 1.0.0
     transitivePeerDependencies:
       - pinia
