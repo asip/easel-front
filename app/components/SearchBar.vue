@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import { format } from '@formkit/tempo'
 
-const route = useRoute()
 const { locale } = useLocale()
-const { frame_query, searchFrame } = useFrameSearch()
+const { frame_query, queryString, searchFrame } = useFrameSearch()
 
 const dateWord = defineModel<Date | null>({
   default: new Date,
@@ -23,9 +22,7 @@ const masks = {
 const onSearchClick = async () => {
   frame_query.value.page = 1
   await searchFrame()
-  if (route.path !== '/') {
-    await navigateTo('/')
-  }
+  await navigateTo({ path: '/', query: queryString.value })
 }
 
 const onClearClick = () => {

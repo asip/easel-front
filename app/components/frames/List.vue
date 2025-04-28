@@ -1,16 +1,15 @@
 <script setup lang="ts">
-const router = useRouter()
-
 const { initGallery, closeGallery } = useImageGallery('.lb')
 const { frame_query, queryString, searchFrame, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
 await searchFrame()
+await navigateTo({ path: '/', query: queryString.value })
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
   await searchFrame()
-  router.push({ path: '/', query: queryString.value })
+  await navigateTo({ path: '/', query: queryString.value })
 }
 
 onMounted(() => {

@@ -63,11 +63,6 @@ export const useFrameSearch = () => {
         frame_query.value.pages = meta.pagination.pages
       }
     }
-
-    router.push({
-      path: '/',
-      query: queryString.value
-    })
   }
 
   const createFrameFromJson = (resource: any) : Frame => {

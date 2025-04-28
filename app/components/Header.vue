@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 
 const route = useRoute()
-const router = useRouter()
 
 const accounter = useLoginUser()
 const { login_user, logged_in, logout } = accounter
-const { frame_query, searchFrame } = useFrameSearch()
+const { frame_query, queryString, searchFrame } = useFrameSearch()
 
 provide('accounter', accounter)
 
@@ -23,11 +22,7 @@ const onTopPageClick = async () => {
   frame_query.value.page = 1
   // frame_query.value.pages = 1
   await searchFrame()
-  if (route.path !== '/') {
-    await navigateTo('/')
-  } else {
-    router.push('/')
-  }
+  await navigateTo({ path: '/', query: queryString.value })
 }
 </script>
 
