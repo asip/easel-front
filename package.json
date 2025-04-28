@@ -38,9 +38,9 @@
   "dependencies": {
     "@formkit/tempo": "0.1.2",
     "@popperjs/core": "^2.11.8",
-    "@regle/core": "^1.1.1",
-    "@regle/nuxt": "1.1.1",
-    "@regle/rules": "^1.1.1",
+    "@regle/core": "^1.1.2",
+    "@regle/nuxt": "1.1.2",
+    "@regle/rules": "^1.1.2",
     "@yaireo/tagify": "^4.35.0",
     "baguettebox.js": "1.12.0",
     "bootstrap": "^5.3.5",
