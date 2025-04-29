@@ -1,5 +1,3 @@
-// @ts-expect-error
-import baguetteBox from 'baguettebox.js'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
@@ -9,7 +7,6 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
   const galleryRef: Ref = useTemplateRef(galleryRefKey)
 
   let lightbox: any
-  let photoswipe: boolean = false
 
   const initPSLightbox = async () => {
     const galleryEl: HTMLDivElement = galleryRef.value
@@ -25,13 +22,12 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
 
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
-    photoswipe = true
   }
 
   const initBBLightbox = () => {
-    if(imageSelector){
-      lightbox = baguetteBox.run(imageSelector)
-    }
+    const { $glightbox} = useNuxtApp()
+
+    lightbox = $glightbox({ selector: imageSelector })
   }
 
   const assignSize = async (gallery: HTMLDivElement) => {
@@ -53,11 +49,7 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
 
   const closeLightbox = () => {
     if (lightbox) {
-      if (photoswipe) {
-        lightbox.destroy()
-      } else {
-        baguetteBox.destroy()
-      }
+      lightbox.destroy()
       lightbox = null
     }
   }

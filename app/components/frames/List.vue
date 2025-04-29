@@ -15,20 +15,26 @@ const clickCallback = async (pageNum: number) => {
 }
 
 onMounted(() => {
-  initGallery()
+  if (import.meta.client) {
+    initGallery()
+  }
 })
 
 onUpdated(() => {
-  initGallery()
+  if (import.meta.client) {
+    initGallery()
+  }
 })
 
 onUnmounted(() => {
-  closeGallery()
+  if (import.meta.client) {
+    closeGallery()
+  }
 })
 </script>
 
 <template>
-  <div class="row col-sm-12 lb">
+  <div class="row col-sm-12">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"

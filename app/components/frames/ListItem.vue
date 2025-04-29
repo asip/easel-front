@@ -12,7 +12,7 @@ const frame = defineModel<Frame>()
     <br>
     <NuxtLink
       :to="`${frame?.file_url}`"
-      class="mx-auto"
+      class="mx-auto lb"
     >
       <img
         :src="`${frame?.file_two_url}`"
