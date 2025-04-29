@@ -8,7 +8,7 @@ const { page } = defineProps<{
   page?: string
 }>()
 
-const { initGallery, closeGallery } = useImageGallery('.lb')
+//const { initGallery, closeGallery } = useImageGallery('.lb')
 const { frame_query, getFrames, frames } = useAccountFrames()
 
 // console.log('searchFrame: start')
@@ -22,20 +22,20 @@ const clickCallback = async (pageNum: number) => {
 }
 
 onMounted(() => {
-  initGallery()
+  //initGallery()
 })
 
 onUpdated(() => {
-  initGallery()
+  //initGallery()
 })
 
 onUnmounted(() => {
-  closeGallery()
+  //closeGallery()
 })
 </script>
 
 <template>
-  <div class="row col-sm-12 lb">
+  <div class="row col-sm-12">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
