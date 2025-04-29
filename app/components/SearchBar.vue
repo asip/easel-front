@@ -44,7 +44,8 @@ const onClearClick = () => {
       <i class="bi bi-search" />
     </a>
   </div>
-  <teleport to="#sidebar-calendar">
+  <client-only>
+  <teleport to="#sidebar">
     <div
       id="offcanvas-calendar"
       class="offcanvas offcanvas-end"
@@ -62,14 +63,12 @@ const onClearClick = () => {
       </div>
       <div class="offcanvas-body">
         <div class="d-flex justify-content-sm-center">
-          <client-only>
             <v-date-picker
               v-model="dateWord"
               mode="date"
               :masks="masks"
               :locale="locale"
             />
-          </client-only>
         </div>
         <br>
         <div class="d-flex justify-content-sm-center">
@@ -98,4 +97,5 @@ const onClearClick = () => {
       </div>
     </div>
   </teleport>
+  </client-only>
 </template>

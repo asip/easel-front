@@ -1,3 +1,3 @@
 <template>
-  <div id="sidebar-calendar" />
+  <div id="sidebar" />
 </template>
