@@ -13,7 +13,7 @@ const { userId, page } = defineProps<{
   <div
     class="card-block kadomaru top-10"
   >
-    <!--<NuxtLink
+    <!-- <NuxtLink
       :to="`${frame?.file_url}`"
       class="mx-auto"
     > -->
