@@ -8,14 +8,14 @@ const { original, photoswipe } = defineProps<{
   photoswipe: boolean
 }>()
 
-const { initPSLightbox, initLMLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
+const { initPSLightbox, initLBBLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
 
 onMounted(async () => {
   if (original) {
     if (photoswipe) {
       await initPSLightbox()
     } else {
-      initLMLightbox()
+      initBBLightbox()
     }
   }
 })

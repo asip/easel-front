@@ -9,13 +9,13 @@ const { original } = defineProps<{
   original: boolean
 }>()
 
-const { initLMLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
+const { initBBLightbox, closeLightbox } = useLightbox('galleryRef', '#image')
 
 // console.log(login_user?.value.image_three_url)
 
 onMounted(() => {
   if (original) {
-    initLMLightbox()
+    initBBLightbox()
   }
 })
 

@@ -28,7 +28,7 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
     photoswipe = true
   }
 
-  const initLMLightbox = () => {
+  const initBBLightbox = () => {
     if(imageSelector){
       lightbox = baguetteBox.run(imageSelector)
     }
@@ -62,5 +62,5 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
     }
   }
 
-  return { initPSLightbox, initLMLightbox, closeLightbox }
+  return { initPSLightbox, initBBLightbox, closeLightbox }
 }
