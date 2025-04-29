@@ -7,6 +7,7 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
   const galleryRef: Ref = useTemplateRef(galleryRefKey)
 
   let lightbox: any
+  let photoswipe: boolean
 
   const initPSLightbox = async () => {
     const galleryEl: HTMLDivElement = galleryRef.value
@@ -22,6 +23,7 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
 
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
+    photoswipe = true
   }
 
   const initBBLightbox = () => {
@@ -49,7 +51,11 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
 
   const closeLightbox = () => {
     if (lightbox) {
-      lightbox.destroy()
+      if (photoswipe) {
+        lightbox.destroy()
+      } else {
+        lightbox.close()
+      }
       lightbox = null
     }
   }
