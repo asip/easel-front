@@ -6,8 +6,7 @@ const frame = defineModel<Frame>()
 
 <template>
   <div
-    class="card-block"
-    style="padding-top: 10px;padding-bottom: 10px;"
+    class="card-block top-10 bottom-10"
   >
     <FramesPreviewTags v-model="frame" :list="true" />
     <br>

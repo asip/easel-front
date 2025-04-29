@@ -49,7 +49,7 @@ const updateContent = (content: string) => {
 
 <template>
   <form>
-    <div class="card-body">
+    <div class="card-body bottom-10">
       <div class="row d-flex justify-content-sm-center">
         <div class="col-sm-10">
           <table class="table table-bordered table_rounded">

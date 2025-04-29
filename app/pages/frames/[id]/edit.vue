@@ -16,11 +16,11 @@ provide('framer', framer)
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto">
+    <div class="card col-sm-8 mx-auto kadomaru">
       <div class="card-block">
         <div class="row d-flex">
           <div class="clearfix">
-            <div class="float-start">
+            <div class="float-start left-10 top-10">
               &nbsp;<NuxtLink :to="`/frames/${frame.id}`">
                 <i class="bi bi-arrow-left-circle" />
               </NuxtLink>

@@ -41,11 +41,11 @@ const onUnfollowClick = async () => {
 <template>
   <div class="col-sm-12">
     <br>
-    <div class="card">
+    <div class="card kadomaru">
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12 clearfix">
-            <div class="float-start">
+            <div class="float-start top-10 left-10">
               &nbsp;
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
             </div>

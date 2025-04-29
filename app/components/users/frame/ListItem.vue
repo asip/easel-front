@@ -11,8 +11,7 @@ const { userId, page } = defineProps<{
 
 <template>
   <div
-    class="card-block"
-    style="padding-top: 10px;padding-bottom: 10px;padding-bottom: 10px;"
+    class="card-block kadomaru top-10"
   >
     <NuxtLink
       :to="`${frame?.file_url}`"

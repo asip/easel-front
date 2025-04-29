@@ -19,7 +19,7 @@ const onBackClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8">
+      <div class="modal-content col-sm-8 kadomaru bottom-10">
         <div class="modal-header">
           <div class="float-start">
             <div class="float-start">
@@ -39,9 +39,9 @@ const onBackClick = () => {
             aria-label="Close"
           />-->
         </div>
-        <br>
-        <UsersNewForm ref="form" />
-        <br>
+        <div class="modal-body">
+          <UsersNewForm ref="form" />
+        </div>
       </div>
     </div>
   </div>

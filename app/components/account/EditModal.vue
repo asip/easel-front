@@ -25,24 +25,21 @@ onMounted(() => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8">
+      <div class="modal-content col-sm-8 kadomaru bottom-10">
         <div class="modal-header">
           <div class="float-start">
-            <div class="float-start">
-              <a
-                href="#"
-                @click="onBackClick"
-              >
-                <i class="bi bi-arrow-left-circle" />
-              </a>
-            </div>
+            <a
+              href="#"
+              @click="onBackClick"
+            >
+              <i class="bi bi-arrow-left-circle" />
+            </a>
             {{ $t('action.user.edit') }}
           </div>
         </div>
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
             <UsersEditForm />
-            <br>
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ const updateContent = (content: string) => {
   <br v-if="logged_in">
   <div
     v-if="logged_in"
-    class="card col-sm-8 mx-auto"
+    class="card col-sm-8 mx-auto kadomaru bottom-10"
   >
     <div class="card-block">
       <div class="row d-flex">
@@ -73,8 +73,7 @@ const updateContent = (content: string) => {
           style="line-height: 35px;"
         >
           <div
-            class="float-start"
-            style="padding-left:5px;"
+            class="float-start left-5"
           >
             <img
               :src="`${login_user.image_thumb_url}`"
@@ -86,8 +85,7 @@ const updateContent = (content: string) => {
             >
           </div>
           <div
-            class="float-start small align-middle"
-            style="padding-left:5px;"
+            class="float-start small align-middle left-5"
           >
             <div class="badge rounded-pill bg-light text-info">
               {{ login_user.name }}
@@ -100,7 +98,7 @@ const updateContent = (content: string) => {
       <form>
         <div class="d-flex justify-content-center">
           <div class="form-group col-10">
-            <div class="col-12 kadomaru" style="border: 1px solid lavender; height: 50px;">
+            <div class="col-12 kadomaru-5" style="border: 1px solid lavender; height: 50px;">
               <Editor
                 ref="editor"
                 v-model="comment.body"
@@ -132,8 +130,7 @@ const updateContent = (content: string) => {
         </div>
         <div class="d-flex justify-content-center">
           <div
-            class="form-group col-10"
-            style="padding-bottom:10px;"
+            class="form-group col-10 top-10"
           >
             <button
               type="button"

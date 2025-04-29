@@ -5,14 +5,15 @@ const { logged_in, login_user } = useLoginUser()
 <template>
   <div>
     <br>
-    <div class="card">
+    <div class="card kadomaru">
       <div class="card-block">
         <div class="row">
-          <div class="col-sm-12 clearfix">
-            &nbsp;
+          <div class="col-sm-12">
+            <div class="float-start left-10 top-10">
             <NuxtLink to="/">
               <i class="bi bi-arrow-left-circle" />
             </NuxtLink>&nbsp;
+            </div>
           </div>
         </div>
       </div>

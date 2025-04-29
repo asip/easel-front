@@ -28,31 +28,29 @@ const onEditClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8">
+      <div class="modal-content col-sm-8 kadomaru">
         <div class="modal-header">
           <div class="float-start">
-            <div class="float-start">
-              <a
-                href="#"
-                @click="onCloseClick"
-              >
-                <i class="bi bi-arrow-left-circle" />
-              </a>&nbsp;
-              <a
-                href="#"
-                @click="onEditClick"
-              >
-                <i class="bi bi-pencil-square" />
-              </a>&nbsp;
-              <a
-                href="#"
-                data-bs-toggle="modal"
-                data-bs-config="{backdrop:true}"
-                data-bs-target="#delete_account_modal"
-              >
-                <i class="bi bi-x-circle" />
-              </a>
-            </div>
+            <a
+              href="#"
+              @click="onCloseClick"
+            >
+              <i class="bi bi-arrow-left-circle" />
+            </a>&nbsp;
+            <a
+              href="#"
+              @click="onEditClick"
+            >
+               <i class="bi bi-pencil-square" />
+            </a>&nbsp;
+            <a
+              href="#"
+              data-bs-toggle="modal"
+              data-bs-config="{backdrop:true}"
+              data-bs-target="#delete_account_modal"
+            >
+              <i class="bi bi-x-circle" />
+            </a>
             {{ $t('model.user.model_name') }}
           </div>
           <button

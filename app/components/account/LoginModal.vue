@@ -21,7 +21,7 @@ const onSignupClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8">
+      <div class="modal-content col-sm-8 kadomaru bottom-10">
         <div class="modal-header">
           <div class="float-start">
             {{ $t('action.user.login') }}
@@ -45,7 +45,6 @@ const onSignupClick = () => {
             </div>
           </div>
           <AccountLoginForm />
-          <br>
         </div>
       </div>
     </div>

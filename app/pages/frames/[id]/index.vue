@@ -35,12 +35,11 @@ const onPageBack = async () => {
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto">
+    <div class="card col-sm-8 mx-auto kadomaru">
       <div class="card-block">
         <div class="row d-flex">
           <div class="clearfix">
-            <div class="float-start">
-            &nbsp;
+            <div class="float-start left-10 top-10">
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>&nbsp;
               <NuxtLink
                 v-if="logged_in && frame.user_id == login_user.id"
@@ -60,7 +59,7 @@ const onPageBack = async () => {
                 <i class="bi bi-x-circle" />
               </button>
             </div>
-            <div class="float-end">
+            <div class="float-end right-10 top-10">
               {{ frame.updated_at }}&nbsp;
             </div>
           </div>
@@ -104,12 +103,12 @@ const onPageBack = async () => {
         <div class="row d-flex">
           <div class="col-sm-12 clearfix">
             <!-- <div class="float-start"></div> -->
-            <div class="float-end">
+            <div class="float-end right-10">
               <NuxtLink
                 :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frame_id } }"
                 class="text-decoration-none"
               >
-                {{ frame.user_name }}&nbsp;
+                {{ frame.user_name }}
               </NuxtLink>
             </div>
           </div>
