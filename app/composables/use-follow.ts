@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import { useLoginUser } from './use-login-user'
+import type { FollowingResource } from '~/interfaces'
 
 export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
@@ -27,9 +28,9 @@ export function useFollow () {
         //  flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { following: followingValue } = data.value as any
+      const { following: followingValue } = data.value as FollowingResource
 
-      if (followingValue != null || followingValue !== undefined) {
+      if (followingValue != null && followingValue !== undefined) {
         following.value = followingValue
       }
     }

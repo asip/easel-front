@@ -2,6 +2,7 @@ import { useLocale } from '~/composables/use-locale'
 import type { User } from '~/interfaces/user'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
+import type { UserResource } from '~/interfaces'
 
 export const useLoginUser = () => {
   const login_params = ref({
@@ -132,7 +133,7 @@ export const useLoginUser = () => {
             flash.value.alert = error.value.message
         }
       } else if (data.value) {
-        const userAttrs = data.value as any
+        const userAttrs = data.value as UserResource
         // console.log(userAttrs)
 
         if (userAttrs) {
@@ -176,7 +177,7 @@ export const useLoginUser = () => {
 
         // console.log(login_messages.value)
       } else {
-        const userAttrs = data.value as any
+        const userAttrs = data.value as UserResource
         if (userAttrs) {
           setJson2LoginUser(userAttrs)
           logged_in.value = true
@@ -211,7 +212,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs  = data.value as any
+      const userAttrs  = data.value as UserResource
       setJson2LoginUser(userAttrs)
       logged_in.value = true
       // console.log(login_user.value)
@@ -227,7 +228,7 @@ export const useLoginUser = () => {
     login_params.value.password = ''
   }
 
-  const setJson2LoginUser = (resource: any) => {
+  const setJson2LoginUser = (resource: UserResource) => {
     Object.assign(login_user.value, resource)
   }
 
@@ -282,7 +283,7 @@ export const useLoginUser = () => {
       if (errors) {
         setErrorMessages(errors)
       } else {
-        const userAttrs = data.value as any
+        const userAttrs = data.value as UserResource
         if (userAttrs) {
           setJson2LoginUser(userAttrs)
           setToken2Cookie()
@@ -366,7 +367,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as any
+      const userAttrs = data.value as UserResource
       if (userAttrs) {
         clearLoginUser()
       }
@@ -394,7 +395,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as any
+      const userAttrs = data.value as UserResource
       if (userAttrs) {
         clearLoginUser()
       }

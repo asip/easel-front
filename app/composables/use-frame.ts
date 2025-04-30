@@ -2,6 +2,7 @@ import { useLocale } from '~/composables/use-locale'
 import type { RefQuery } from '~/interfaces/ref-query'
 import type { Frame } from '~/interfaces/frame'
 import type { ErrorMessages } from '~/types/error-messages'
+import type { FrameResource } from '~/interfaces'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
@@ -72,7 +73,7 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const frameAttrs = data.value as any
+        const frameAttrs = data.value as FrameResource
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -102,7 +103,7 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const frameAttrs = data.value as any
+        const frameAttrs = data.value as FrameResource
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -113,7 +114,7 @@ export const useFrame = () => {
 
   }
 
-  const setJson2Frame = (resource: any) => {
+  const setJson2Frame = (resource: FrameResource) => {
     Object.assign(frame.value, resource)
   }
 
@@ -164,7 +165,7 @@ export const useFrame = () => {
       if (errors) {
         setErrorMessages(errors)
       } else {
-        const frameAttrs = data.value as any
+        const frameAttrs = data.value as FrameResource
         if (frameAttrs) {
           frame.value.id = frameAttrs.id
         }

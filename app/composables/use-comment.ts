@@ -3,6 +3,7 @@ import { useFlash } from './use-flash'
 import { useLocale } from '~/composables/use-locale'
 import type { Comment } from '~/interfaces/comment'
 import type { ErrorMessages } from '~/types/error-messages'
+import type { CommentResource, CommentsResource } from '~/interfaces'
 
 export function useComment () {
   const comment: Ref<Comment> = ref<Comment>({
@@ -47,13 +48,13 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { comments: commentList } = data.value as any
+      const { comments: commentList } = data.value as CommentsResource
       // console.log(commentList)
 
       if (commentList) {
         // console.log(comment_list);
         comments.value.splice(0)
-        for (const commentAttrs of commentList as any[]) {
+        for (const commentAttrs of commentList) {
           // console.log(comment);
           comments.value.push(createCommentFromJson(commentAttrs))
         }
@@ -62,7 +63,7 @@ export function useComment () {
     }
   }
 
-  const createCommentFromJson = (resource: any): Comment => {
+  const createCommentFromJson = (resource: CommentResource): Comment => {
     const comment: Partial<Comment> = {}
     Object.assign(comment, resource)
     return comment as Comment
@@ -101,7 +102,7 @@ export function useComment () {
       if (errors) {
         setErrorMessages(errors)
       } else {
-        const commentAttrs = data.value as any
+        const commentAttrs = data.value as CommentResource
         if (commentAttrs) {
           comment.value.body = ''
         }

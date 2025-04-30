@@ -1,0 +1,6 @@
+export type { CommentResource } from './resources/comment-resource'
+export type { CommentsResource } from './resources/comments-resource'
+export type { FollowingResource } from './resources/following-resource'
+export type { FrameResource } from './resources/frame-resource'
+export type { FramesResource } from './resources/frames-resource'
+export type { UserResource } from './resources/user-resource'

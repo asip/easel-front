@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { UseCommentType } from '~/composables/use-comment'
-import type { Comment } from '~/interfaces/comment'
 
 const { comments, getComments } = inject('commenter') as UseCommentType
 
@@ -10,7 +9,7 @@ await getComments()
 
 <template>
   <div
-    v-for="(comment, i) in comments as Comment[]"
+    v-for="(comment, i) in comments"
     :key="comment.id"
   >
     <FramesCommentItem v-model="comments[i]" />

@@ -6,7 +6,7 @@ const { frame_query, queryString, searchFrame } = useFrameSearch()
 
 const dateWord = defineModel<Date | null>({
   default: new Date,
-  set (value: any) {
+  set (value: Date | null) {
     if (value) {
       frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
     } else {

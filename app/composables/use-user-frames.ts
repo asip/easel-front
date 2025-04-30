@@ -1,3 +1,4 @@
+import type { FrameResource, FramesResource } from '~/interfaces'
 import type { Frame } from '~/interfaces/frame'
 
 interface UserFrameQuery {
@@ -44,13 +45,13 @@ export function useUserFrames () {
         message: flash.value.alert
       })
     } else if (data.value) {
-      const { frames: frameList, meta } = data.value as any
+      const { frames: frameList, meta } = data.value as FramesResource
       // console.log(frameList)
       // console.log(meta)
 
       if (frameList) {
         frames.value.splice(0)
-        for (const frame of frameList as any[]) {
+        for (const frame of frameList) {
         // console.log(comment);
           frames.value.push(createFrameFromJson(frame))
         }
@@ -62,7 +63,7 @@ export function useUserFrames () {
     }
   }
 
-  const createFrameFromJson = (resource: any) : Frame => {
+  const createFrameFromJson = (resource: FrameResource) : Frame => {
     const frame: Partial<Frame> = {}
     Object.assign(frame, resource)
     frame.file = null

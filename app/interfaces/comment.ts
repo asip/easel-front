@@ -1,9 +1,3 @@
-export interface Comment {
-  id: number
-  frame_id: number | null | undefined
-  body: string
-  user_id: number | null
-  user_name: string
-  user_image_url: string
-  updated_at: string | null
-}
+import type { CommentResource } from "."
+
+export type Comment = CommentResource

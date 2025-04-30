@@ -1,5 +1,6 @@
 import type { User } from '~/interfaces/user'
 import type { RefQuery } from '~/interfaces/ref-query'
+import type { UserResource } from '~/interfaces'
 
 export const useUser = () => {
   const user = ref<User>(
@@ -44,7 +45,7 @@ export const useUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as any
+      const userAttrs = data.value as UserResource
       // console.log(userAttrs)
 
       if (userAttrs) {
@@ -54,7 +55,7 @@ export const useUser = () => {
     }
   }
 
-  const setJson2User = (resource: any) => {
+  const setJson2User = (resource: UserResource) => {
     Object.assign(user.value, resource)
   }
 

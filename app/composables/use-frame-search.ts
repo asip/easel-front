@@ -1,3 +1,4 @@
+import type { FrameResource, FramesResource } from '~/interfaces'
 import type { Frame } from '~/interfaces/frame'
 import type { FrameQuery } from '~/interfaces/frame-query'
 
@@ -49,12 +50,12 @@ export const useFrameSearch = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { frames: frameList, meta } = data.value as any
+      const { frames: frameList, meta } = data.value as FramesResource
       // console.log(frameList)
 
       if (frameList) {
         frames.value.splice(0)
-        for (const frameAttrs of frameList as any[]) {
+        for (const frameAttrs of frameList) {
           frames.value.push(createFrameFromJson(frameAttrs))
         }
         // console.log(frames)
@@ -65,7 +66,7 @@ export const useFrameSearch = () => {
     }
   }
 
-  const createFrameFromJson = (resource: any) : Frame => {
+  const createFrameFromJson = (resource: FrameResource) : Frame => {
     const frame: Partial<Frame> = {}
     Object.assign(frame, resource)
     frame.file = null
