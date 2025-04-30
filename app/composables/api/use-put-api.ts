@@ -4,7 +4,7 @@ type PutAPIOptions = {
   url:string, body?: Record<string, any>, token?: string | null, locale?: string | null
 }
 
-export const usePutApi = async ({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
+export const usePutApi = async <T>({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -19,7 +19,7 @@ export const usePutApi = async ({ url, body = {}, token = null, locale = null }:
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useApiFetch(url,
+  const { data, error, status } = await useApiFetch<T>(url,
     {
       method: 'put',
       body,

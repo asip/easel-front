@@ -20,7 +20,7 @@ export function useAccountFrames () {
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (user: User | undefined) => {
-    const { data, error } = await useGetApi({
+    const { data, error } = await useGetApi<FramesResource>({
       url: `/account/frames`,
       query: {
         page: frame_query.value.page
@@ -45,7 +45,7 @@ export function useAccountFrames () {
         message: flash.value.alert
       })
     } else if (data.value) {
-      const { frames: frameList, meta } = data.value as FramesResource
+      const { frames: frameList, meta } = data.value
       // console.log(frameList)
       // console.log(meta)
 

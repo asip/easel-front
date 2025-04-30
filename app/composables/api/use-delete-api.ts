@@ -4,7 +4,7 @@ type DeleteAPIOptions = {
   url:string, token?: string | null, locale?: string | null
 }
 
-export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteAPIOptions) => {
+export const useDeleteApi = async <T>({ url, token = null, locale = null }: DeleteAPIOptions) => {
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -19,7 +19,7 @@ export const useDeleteApi = async ({ url, token = null, locale = null }: DeleteA
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useApiFetch(url,
+  const { data, error, status } = await useApiFetch<T>(url,
     {
       method: 'delete',
       headers

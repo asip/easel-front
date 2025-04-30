@@ -31,7 +31,7 @@ export const useFrameSearch = () => {
   const router = useRouter()
 
   const searchFrame = async () => {
-    const { data, error } = await useGetApi({
+    const { data, error } = await useGetApi<FramesResource>({
       url: '/frames',
       query: {
         q: frame_query.value.word,
@@ -50,7 +50,7 @@ export const useFrameSearch = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { frames: frameList, meta } = data.value as FramesResource
+      const { frames: frameList, meta } = data.value
       // console.log(frameList)
 
       if (frameList) {

@@ -4,7 +4,7 @@ type PostAPIOptions = {
   url:string, body?: Record<string, any>, token?: string | null, locale?: string | null
 }
 
-export const usePostApi = async ({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
+export const usePostApi = async <T>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -19,7 +19,7 @@ export const usePostApi = async ({ url, body = {}, token = null, locale = null }
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useApiFetch(url,
+  const { data, error, status } = await useApiFetch<T>(url,
     {
       method: 'post',
       body,

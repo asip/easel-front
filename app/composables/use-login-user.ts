@@ -2,7 +2,7 @@ import { useLocale } from '~/composables/use-locale'
 import type { User } from '~/interfaces/user'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { UserResource } from '~/interfaces'
+import type { ErrorsResource, MessagesResource, UserResource } from '~/interfaces'
 
 export const useLoginUser = () => {
   const login_params = ref({
@@ -82,7 +82,7 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending } = await usePostApi({
+    const { data, error, pending } = await usePostApi<Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
       url: '/users/',
       body: formData,
       locale: locale.value
@@ -100,7 +100,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value as any
+      const { errors } = data.value
 
       // console.log(userAttrs)
       if (errors) {
@@ -116,7 +116,7 @@ export const useLoginUser = () => {
     // console.log(login_user.value.token)
 
     if (login_user.value.token) {
-      const { data, error } = await useGetApi({
+      const { data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
         token: login_user.value.token
       })
@@ -133,7 +133,7 @@ export const useLoginUser = () => {
             flash.value.alert = error.value.message
         }
       } else if (data.value) {
-        const userAttrs = data.value as UserResource
+        const userAttrs = data.value
         // console.log(userAttrs)
 
         if (userAttrs) {
@@ -153,7 +153,7 @@ export const useLoginUser = () => {
       }
     }
 
-    const { data, error } = await usePostApi({
+    const { data, error } = await usePostApi<Partial<UserResource> & Partial<MessagesResource>>({
       url: '/sessions/',
       body: postData,
       locale: locale.value
@@ -170,7 +170,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { messages } = data.value as any
+      const { messages } = data.value
 
       if (messages) {
         login_messages.value = messages
@@ -196,7 +196,7 @@ export const useLoginUser = () => {
       credential: response.credential
     }
 
-    const { data, error } = await usePostApi({
+    const { data, error } = await usePostApi<UserResource>({
       url: '/oauth/sessions/',
       body: postData
     })
@@ -212,7 +212,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs  = data.value as UserResource
+      const userAttrs  = data.value
       setJson2LoginUser(userAttrs)
       logged_in.value = true
       // console.log(login_user.value)
@@ -256,7 +256,7 @@ export const useLoginUser = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending } = await usePutApi({
+    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
       url: '/account/profile/',
       body: formData,
       token: user.value.token,
@@ -279,7 +279,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value as any
+      const { errors } = data.value
       if (errors) {
         setErrorMessages(errors)
       } else {
@@ -294,7 +294,7 @@ export const useLoginUser = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: any) => {
+  const setErrorMessages = (errors: ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>) => {
     if (errors.image) {
       error_messages.value.image = errors.image
     } else {
@@ -350,7 +350,7 @@ export const useLoginUser = () => {
   }
 
   const logout = async () => {
-    const { data, error } = await useDeleteApi({
+    const { data, error } = await useDeleteApi<UserResource>({
       url: '/sessions/logout',
       token: login_user.value.token
     })
@@ -367,7 +367,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as UserResource
+      const userAttrs = data.value
       if (userAttrs) {
         clearLoginUser()
       }
@@ -375,7 +375,7 @@ export const useLoginUser = () => {
   }
 
   const deleteAccount = async () => {
-    const { data, error } = await useDeleteApi({
+    const { data, error } = await useDeleteApi<UserResource>({
       url: '/account',
       token: login_user.value.token
     })
@@ -395,7 +395,7 @@ export const useLoginUser = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as UserResource
+      const userAttrs = data.value
       if (userAttrs) {
         clearLoginUser()
       }

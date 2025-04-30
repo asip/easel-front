@@ -3,7 +3,7 @@ import { useFlash } from './use-flash'
 import { useLocale } from '~/composables/use-locale'
 import type { Comment } from '~/interfaces/comment'
 import type { ErrorMessages } from '~/types/error-messages'
-import type { CommentResource, CommentsResource } from '~/interfaces'
+import type { CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 
 export function useComment () {
   const comment: Ref<Comment> = ref<Comment>({
@@ -33,7 +33,7 @@ export function useComment () {
 
   const getComments = async () => {
     // console.log(comment.frame_id);
-    const { data, error } = await useGetApi({
+    const { data, error } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`
     })
 
@@ -48,7 +48,7 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { comments: commentList } = data.value as CommentsResource
+      const { comments: commentList } = data.value
       // console.log(commentList)
 
       if (commentList) {
@@ -78,7 +78,7 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePostApi({
+    const { data, error, pending } = await usePostApi<Partial<CommentResource> & Partial<ErrorsResource<ErrorMessages<'body'>>>>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: login_user.value.token,
@@ -98,11 +98,11 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value as any
+      const { errors } = data.value
       if (errors) {
         setErrorMessages(errors)
       } else {
-        const commentAttrs = data.value as CommentResource
+        const commentAttrs = data.value
         if (commentAttrs) {
           comment.value.body = ''
         }
@@ -123,7 +123,7 @@ export function useComment () {
     }
   }
 
-  const setErrorMessages = (errors: any) => {
+  const setErrorMessages = (errors: ErrorMessages<'body'>) => {
     if (errors.body) {
       error_messages.value.body = errors.body
     } else {

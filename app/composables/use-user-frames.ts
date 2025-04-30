@@ -21,7 +21,7 @@ export function useUserFrames () {
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (user_id: string | undefined) => {
-    const { data, error } = await useGetApi({
+    const { data, error } = await useGetApi<FramesResource>({
       url: `/users/${user_id}/frames`,
       query: {
         page: frame_query.value.page
@@ -45,7 +45,7 @@ export function useUserFrames () {
         message: flash.value.alert
       })
     } else if (data.value) {
-      const { frames: frameList, meta } = data.value as FramesResource
+      const { frames: frameList, meta } = data.value
       // console.log(frameList)
       // console.log(meta)
 

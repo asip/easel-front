@@ -2,7 +2,7 @@ import { useLocale } from '~/composables/use-locale'
 import type { RefQuery } from '~/interfaces/ref-query'
 import type { Frame } from '~/interfaces/frame'
 import type { ErrorMessages } from '~/types/error-messages'
-import type { FrameResource } from '~/interfaces'
+import type { ErrorsResource, FrameResource } from '~/interfaces'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
@@ -52,7 +52,7 @@ export const useFrame = () => {
 
   const getFrame = async (id: string) => {
     if(!logged_in.value){
-      const { data, error } = await useGetApi({
+      const { data, error } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
 
@@ -73,7 +73,7 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const frameAttrs = data.value as FrameResource
+        const frameAttrs = data.value
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -81,7 +81,7 @@ export const useFrame = () => {
         }
       }
     } else {
-      const { data, error } = await useGetApi({
+      const { data, error } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
         token: login_user?.value.token
       })
@@ -103,7 +103,7 @@ export const useFrame = () => {
           message: flash.value.alert
         })
       } else if (data.value) {
-        const frameAttrs = data.value as FrameResource
+        const frameAttrs = data.value
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -141,7 +141,7 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
-    const { data, error, pending } = await usePostApi({
+    const { data, error, pending } = await usePostApi<Partial<FrameResource> & Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
       url: '/frames/',
       body: formData,
       token: login_user.value.token,
@@ -161,11 +161,11 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value as any
+      const { errors } = data.value
       if (errors) {
         setErrorMessages(errors)
       } else {
-        const frameAttrs = data.value as FrameResource
+        const frameAttrs = data.value
         if (frameAttrs) {
           frame.value.id = frameAttrs.id
         }
@@ -175,7 +175,7 @@ export const useFrame = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: any) => {
+  const setErrorMessages = (errors: ErrorMessages<'name' | 'tag_list' | 'file'>) => {
     if (errors.file) {
       error_messages.value.file = errors.file
     } else {
@@ -230,7 +230,7 @@ export const useFrame = () => {
 
     // console.log(login_user.value.token)
 
-    const { data, error, pending } = await usePutApi({
+    const { data, error, pending } = await usePutApi<Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
       url: `/frames/${frame.value.id}`,
       body: postData,
       token: login_user.value.token,
@@ -250,7 +250,7 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value as any
+      const { errors } = data.value
       if (errors) {
         setErrorMessages(errors)
       }
