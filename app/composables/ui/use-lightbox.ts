@@ -27,7 +27,7 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
   }
 
   const initBBLightbox = () => {
-    const { $glightbox} = useNuxtApp()
+    const { $glightbox} = useNuxtApp() as any
 
     lightbox = $glightbox({ selector: imageSelector })
   }
