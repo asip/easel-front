@@ -5,6 +5,7 @@
     "preinstall": "npx only-allow pnpm",
     "build": "nuxt build",
     "dev": "nuxt dev --port 3030",
+    "start": "node .output/server/index.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

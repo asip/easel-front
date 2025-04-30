@@ -7,27 +7,24 @@ WORKDIR /frontend
 
 RUN npm install -g pnpm@${PNPM_VERSION}
 
-# FROM base AS builder
-
-COPY --link .npmrc package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
-COPY --link . .
+# FROM base AS builder
 
-# RUN npx nuxi upgrade --force
+COPY . .
 
-# RUN pnpm build
+#RUN pnpm build
 
-# FROM base
+# FROM node:${NODE_VERSION}-slim AS production
+
+# COPY --from=builder /frontend/.output /frontend/.output
 
 ENV TZ=Asia/Tokyo
 ENV PORT=3030
 
-# COPY --from=builder /frontend/.output .
-# COPY --from=builder /frontend/node_modules ./node_modules
+# WORKDIR /frontend
 
 EXPOSE 3030
-# EXPOSE 24678
 
-# CMD ["pnpm", "dev"]
-CMD ["node", ".output/server/index.mjs"]
+CMD ["pnpm", "start"]
