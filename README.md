@@ -17,7 +17,7 @@ Make sure to install the dependencies:
 
 ```bash
 # pnpm
-pnpm install --shamefully-hoist
+pnpm install
 ```
 
 ## Setup environment variables
@@ -41,16 +41,16 @@ pnpm dev
 Build the application for production:
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Locally preview production build:
 
 ```bash
-npm run preview
+pnpm preview
 ```
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn 
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
