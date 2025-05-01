@@ -1,10 +1,10 @@
-import { useApiFetch } from './use-api-fetch'
-
 type PostAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }
 
 export const usePostApi = async <T>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
+  const { $api } = useNuxtApp()
+
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -19,12 +19,12 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useApiFetch<T>(url,
-    {
+  const { data, error, status } = await useAsyncData<T>(url, () =>
+    $api(url, {
       method: 'post',
       body,
       headers
-    }
+    })
   )
 
   pending.value = status.value === 'pending'
