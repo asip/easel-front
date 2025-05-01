@@ -1,7 +1,7 @@
 import { useApiFetch } from './use-api-fetch'
 
 type PostAPIOptions = {
-  url:string, body?: Record<string, any>, token?: string | null, locale?: string | null
+  url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }
 
 export const usePostApi = async <T>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
