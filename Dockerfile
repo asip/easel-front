@@ -14,7 +14,7 @@ RUN pnpm install
 
 COPY . .
 
-# RUN pnpm build
+RUN pnpm build
 
 # FROM base AS production
 
