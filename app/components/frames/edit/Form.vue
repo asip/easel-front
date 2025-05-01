@@ -116,7 +116,7 @@ const updateContent = (content: string) => {
                   >{{ $t('model.frame.comment') }}：</label>
                 </td>
                 <td>
-                  <div class="kadomaru" style="border: 1px solid lavender;height: 50px">
+                  <div class="kadomaru-5" style="border: 1px solid lavender;height: 50px">
                     <Editor
                       ref="editor"
                       v-model="frame.comment"
