@@ -14,16 +14,14 @@ RUN pnpm install
 
 COPY . .
 
-#RUN pnpm build
+# RUN pnpm build
 
-# FROM node:${NODE_VERSION}-slim AS production
+# FROM base AS production
 
-# COPY --from=builder /frontend/.output /frontend/.output
+# COPY --from=builder /frontend/.output ./.output
 
 ENV TZ=Asia/Tokyo
 ENV PORT=3030
-
-# WORKDIR /frontend
 
 EXPOSE 3030
 
