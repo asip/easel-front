@@ -1,5 +1,5 @@
 type PutAPIOptions = {
-  url:string, body?: Record<string, any>, token?: string | null, locale?: string | null
+  url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }
 
 export const usePutApi = async <T>({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
