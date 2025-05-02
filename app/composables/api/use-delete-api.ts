@@ -1,10 +1,10 @@
-import { useApiFetch } from './use-api-fetch'
-
 type DeleteAPIOptions = {
   url:string, token?: string | null, locale?: string | null
 }
 
 export const useDeleteApi = async <T>({ url, token = null, locale = null }: DeleteAPIOptions) => {
+  const { $api } = useNuxtApp()
+
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -19,11 +19,11 @@ export const useDeleteApi = async <T>({ url, token = null, locale = null }: Dele
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useApiFetch<T>(url,
-    {
+  const { data, error, status } = await useAsyncData<T>(url, () =>
+    $api(url, {
       method: 'delete',
       headers
-    }
+    })
   )
 
   pending.value = status.value === 'pending'
