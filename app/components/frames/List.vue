@@ -34,19 +34,20 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="row col-sm-12">
+  <div class="row mx-auto">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
-      class="card col-sm-2 kadomaru"
+      class="col-12 col-sm-3"
     >
-      <FramesListItem v-model="frames[i]" />
+      <div class="card kadomaru margin-bottom-10">
+        <FramesListItem v-model="frames[i]" />
+      </div>
     </div>
   </div>
-  <br>
   <div
     v-if="frame_query.pages > 1"
-    class="d-flex col-sm-12 justify-content-sm-center"
+    class="d-flex col-12 col-sm-12 mx-auto justify-content-sm-center justify-content-center"
   >
     <ClientOnly>
       <Paginate

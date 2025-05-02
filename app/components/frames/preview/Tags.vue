@@ -18,7 +18,7 @@ const onClick = async (tag: string) => {
 </script>
 
 <template>
-  <div v-if="list" class="float-end">
+  <div v-if="list" class="float-end right-5 top-5">
       <span
         v-for="(tag, idx) in modelValue?.tags"
         :key="idx"
