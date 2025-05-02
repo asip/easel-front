@@ -1,9 +1,20 @@
+import { format } from '@formkit/tempo'
+
 type PostAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }
 
 export const usePostApi = async <T>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
   const { $api } = useNuxtApp()
+
+  let key;
+
+  if (locale) {
+    const datetime = format(new Date(), 'YYYYMMDDHHmmss', locale)
+    key = `${url}-${datetime}`
+  } else {
+    key = url
+  }
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
@@ -19,7 +30,7 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData<T>(url, () =>
+  const { data, error, status } = await useAsyncData<T>(key, () =>
     $api(url, {
       method: 'post',
       body,

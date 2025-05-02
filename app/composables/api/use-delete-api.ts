@@ -1,9 +1,20 @@
+import { format } from '@formkit/tempo'
+
 type DeleteAPIOptions = {
   url:string, token?: string | null, locale?: string | null
 }
 
 export const useDeleteApi = async <T>({ url, token = null, locale = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
+
+  let key;
+
+  if (locale) {
+    const datetime = format(new Date(), 'YYYYMMDDHHmmss', locale)
+    key = `${url}-${datetime}`
+  } else {
+    key = url
+  }
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
@@ -19,7 +30,7 @@ export const useDeleteApi = async <T>({ url, token = null, locale = null }: Dele
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData<T>(url, () =>
+  const { data, error, status } = await useAsyncData<T>(key, () =>
     $api(url, {
       method: 'delete',
       headers
