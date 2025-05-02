@@ -33,10 +33,7 @@ export const useFrameSearch = () => {
   const searchFrame = async () => {
     const { data, error } = await useGetApi<FramesResource>({
       url: '/frames',
-      query: {
-        q: frame_query.value.word,
-        page: frame_query.value.page
-      }
+      query: queryString.value
     })
 
     clearFlash()
