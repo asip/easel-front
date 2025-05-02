@@ -27,7 +27,7 @@ onUnmounted(() => {
 <template>
   <div
     v-if="original"
-    class="d-flex justify-content-sm-center"
+    class="d-flex justify-content-sm-center bottom-5"
   >
     <NuxtLink
       id="image"
@@ -44,7 +44,7 @@ onUnmounted(() => {
   </div>
   <div
     v-else
-    class="d-flex justify-content-sm-center"
+    class="d-flex justify-content-sm-center bottom-5"
   >
     <img
       :src="`${modelValue?.image_three_url}`"
@@ -53,5 +53,4 @@ onUnmounted(() => {
       style="width:100px;height:100px;"
     >
   </div>
-  <br>
 </template>

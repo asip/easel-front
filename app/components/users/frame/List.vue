@@ -49,13 +49,15 @@ onUnmounted(() => {
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
-      class="card col-sm-2 kadomaru"
+      class="col-12 col-sm-3"
     >
-      <UsersFrameListItem
-        v-model="frames[i]"
-        :user-id="userId"
-        :page="page"
-      />
+      <div class="card kadomaru margin-bottom-10">
+        <UsersFrameListItem
+          v-model="frames[i]"
+          :user-id="userId"
+          :page="page"
+        />
+      </div>
     </div>
   </div>
   <br>
