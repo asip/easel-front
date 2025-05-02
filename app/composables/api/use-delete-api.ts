@@ -1,5 +1,3 @@
-import { format } from '@formkit/tempo'
-
 type DeleteAPIOptions = {
   url:string, token?: string | null, locale?: string | null
 }
@@ -7,14 +5,7 @@ type DeleteAPIOptions = {
 export const useDeleteApi = async <T>({ url, token = null, locale = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  let key;
-
-  if (locale) {
-    const datetime = format(new Date(), 'YYYYMMDDHHmmss', locale)
-    key = `${url}-${datetime}`
-  } else {
-    key = url
-  }
+  const key = `${url}-${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
