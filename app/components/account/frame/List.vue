@@ -41,7 +41,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="row col-sm-12">
+  <div class="row">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"

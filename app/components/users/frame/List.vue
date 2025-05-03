@@ -9,6 +9,8 @@ const { userId, page } = defineProps<{
 const { initGallery, closeGallery } = useImageGallery('.lb')
 const { frame_query, getFrames, frames } = useUserFrames()
 
+// console.log('userId', userId)
+
 if (userId) {
   if (frame_query.value.user_id !== userId) {
     frame_query.value.page = 1
@@ -45,7 +47,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="row col-sm-12">
+  <div class="row">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
