@@ -7,7 +7,7 @@ type PutAPIOptions = {
 export const usePutApi = async <T>({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
   const { $api } = useNuxtApp()
 
-   const key = `${url}-${new Date().getTime()}`
+  const key = `${url}-${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
