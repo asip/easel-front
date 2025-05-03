@@ -50,10 +50,9 @@ const onUnfollowClick = async () => {
             </div>
           </div>
         </div>
-        <div class="text-center">
+        <div class="text-center bottom-5">
           {{ user.name }}
         </div>
-        <br>
         <UsersPreviewImage
           v-model="user"
           :original="false"
