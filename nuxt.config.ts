@@ -4,6 +4,7 @@
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
+    granularCachedData: false
   },
 
   modules: [

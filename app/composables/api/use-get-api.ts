@@ -7,7 +7,7 @@ type GetAPIOptions = { url:string, query?: SearchParams, token?: string | null }
 export const useGetApi = async <T>({ url, query = {}, token = null }: GetAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  const key = `${url}-${new Date().getTime()}`
+  //const key = `${url}-${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
@@ -17,7 +17,7 @@ export const useGetApi = async <T>({ url, query = {}, token = null }: GetAPIOpti
     headers.Authorization = `Bearer ${token}`
   }
 
-  const { data, error } = await useAsyncData<T>(key, () =>
+  const { data, error } = await useAsyncData<T>(url, () =>
     $api(url, {
       method: 'get',
       query,
