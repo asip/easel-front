@@ -1,9 +1,10 @@
+ARG time_zone
 ARG NODE_VERSION=22.15.0
 ARG PNPM_VERSION=10.10.0
 
 FROM node:${NODE_VERSION}-slim
 
-ENV TZ=Asia/Tokyo
+ENV TZ=${time_zone}
 
 WORKDIR /frontend
 
