@@ -24,7 +24,7 @@ const onDeleteClick = async () => {
 </script>
 
 <template>
-  <div class="card col-sm-8 mx-auto bottom-5">
+  <div class="card col-sm-8 mx-auto bottom-5 margin-bottom-5">
     <div class="card-block">
       <div class="row d-flex">
         <div
@@ -75,7 +75,7 @@ const onDeleteClick = async () => {
       class="card-footer"
       style="background-color: white; border-color: white;"
     >
-      <div class="d-flex">
+      <div class="row d-flex">
         <div class="col-12 align-middle">
           <div class="float-start">
             <span v-html="sanitizedCommentBody" />

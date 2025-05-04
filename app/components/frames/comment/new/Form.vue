@@ -61,7 +61,6 @@ const updateContent = (content: string) => {
 </script>
 
 <template>
-  <br v-if="logged_in">
   <div
     v-if="logged_in"
     class="card col-sm-8 mx-auto kadomaru bottom-10"

@@ -12,6 +12,6 @@ await getComments()
     v-for="(comment, i) in comments"
     :key="comment.id"
   >
-    <FramesCommentItem v-model="comments[i]" />
+    <FramesCommentListItem v-model="comments[i]" />
   </div>
 </template>
