@@ -41,22 +41,26 @@ const onUnfollowClick = async () => {
 <template>
   <div class="col-sm-12">
     <br>
-    <div class="card kadomaru bottom-10">
+    <div class="card kadomaru bottom-5">
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12 clearfix">
-            <div class="float-start top-10 left-10">
+            <div class="float-start top-5 left-10">
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+            </div>
+            <div class="text-center top-5 bottom-5">
+              <img
+                :src="`${user?.image_three_url}`"
+                alt=""
+                class="rounded"
+                width="20"
+                height="20"
+                decoding="async"
+              >
+              {{ user.name }}
             </div>
           </div>
         </div>
-        <div class="text-center bottom-5">
-          {{ user.name }}
-        </div>
-        <UsersPreviewImage
-          v-model="user"
-          :original="false"
-        />
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-6 text-center">
             <div v-if="logged_in && user.id != login_user.id">

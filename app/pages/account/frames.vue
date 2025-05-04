@@ -9,18 +9,17 @@ const { logged_in, login_user } = useLoginUser()
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12">
-            <div class="float-start left-10 top-10">
-            <NuxtLink to="/">
-              <i class="bi bi-arrow-left-circle" />
-            </NuxtLink>&nbsp;
+            <div class="float-start left-10 top-5">
+              <NuxtLink to="/">
+                <i class="bi bi-arrow-left-circle" />
+              </NuxtLink>&nbsp;
+            </div>
+            <div class="text-center top-5 bottom-5">
+              {{ $t('action.user.frame_list') }}
             </div>
           </div>
         </div>
       </div>
-      <div class="text-center">
-        {{ $t('action.user.frame_list') }}
-      </div>
-      <br>
     </div>
     <br>
     <AccountFrameList
