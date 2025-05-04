@@ -35,7 +35,7 @@ const onPageBack = async () => {
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto kadomaru">
+    <div class="card col-sm-8 mx-auto kadomaru margin-bottom-10">
       <div class="card-block">
         <div class="row d-flex">
           <div class="clearfix">
@@ -116,7 +116,6 @@ const onPageBack = async () => {
       </div>
     </div>
     <FramesDeleteModal />
-    <br>
     <FramesComments v-model="frame" />
   </div>
 </template>
