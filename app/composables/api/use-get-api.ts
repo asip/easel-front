@@ -7,8 +7,6 @@ type GetAPIOptions = { key?: string | null, url: string, query?: SearchParams, t
 export const useGetApi = async <T>({ key = null, url, query = {}, token = null }: GetAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  //const key = `${url}-${new Date().getTime()}`
-
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
