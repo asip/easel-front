@@ -19,14 +19,20 @@ export function useAccountFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (user: User | undefined) => {
-    const { data, error } = await useGetApi<FramesResource>({
+  const getFrames = async (user: User | undefined, more?: boolean) => {
+    const options: any = {
       url: `/account/frames`,
       query: {
         page: frame_query.value.page
       },
       token: user?.token
-    })
+    }
+
+    if(more){
+      options.key = `${options.url}-${new Date().getTime()}`
+    }
+
+    const { data, error } = await useGetApi<FramesResource>(options)
 
     clearFlash()
 

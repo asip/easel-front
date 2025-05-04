@@ -2,9 +2,9 @@ interface SearchParams {
   [key: string]: any
 }
 
-type GetAPIOptions = { url:string, query?: SearchParams, token?: string | null }
+type GetAPIOptions = { key?: string | null, url: string, query?: SearchParams, token?: string | null }
 
-export const useGetApi = async <T>({ url, query = {}, token = null }: GetAPIOptions) => {
+export const useGetApi = async <T>({ key = null, url, query = {}, token = null }: GetAPIOptions) => {
   const { $api } = useNuxtApp()
 
   //const key = `${url}-${new Date().getTime()}`
@@ -17,12 +17,18 @@ export const useGetApi = async <T>({ url, query = {}, token = null }: GetAPIOpti
     headers.Authorization = `Bearer ${token}`
   }
 
-  const { data, error } = await useAsyncData<T>(url, () =>
-    $api(url, {
-      method: 'get',
-      query,
-      headers
-    })
+  const options: any = {
+    method: 'get',
+    query,
+    headers
+  }
+
+  if (key == null) {
+    key = url
+  }
+
+  const { data, error } = await useAsyncData<T>(key, () =>
+    $api(url, options)
   )
 
   return { data, error }

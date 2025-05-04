@@ -24,7 +24,7 @@ await getFrames(userId)
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
-  await getFrames(userId)
+  await getFrames(userId, true)
 }
 
 onMounted(() => {

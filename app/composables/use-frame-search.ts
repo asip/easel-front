@@ -28,13 +28,17 @@ export const useFrameSearch = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const router = useRouter()
-
-  const searchFrame = async () => {
-    const { data, error } = await useGetApi<FramesResource>({
+  const searchFrame = async (more?: boolean) => {
+    const options: any = {
       url: '/frames',
       query: queryString.value
-    })
+    }
+
+    if (more) {
+      options.key = `${options.url}-${new Date().getTime()}`
+    }
+
+    const { data, error } = await useGetApi<FramesResource>(options)
 
     clearFlash()
 
