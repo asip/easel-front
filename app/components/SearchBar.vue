@@ -21,8 +21,8 @@ const masks = {
 
 const onSearchClick = async () => {
   frame_query.value.page = 1
-  await searchFrame()
   await navigateTo({ path: '/', query: queryString.value })
+  await searchFrame({ more: true })
 }
 
 const onClearClick = () => {

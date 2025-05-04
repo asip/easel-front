@@ -12,8 +12,8 @@ const { frame_query, queryString, searchFrame } = useFrameSearch()
 const onClick = async (tag: string) => {
   frame_query.value.word = tag
   frame_query.value.page = 1
-  await searchFrame()
   await navigateTo({ path: '/', query: queryString.value })
+  await searchFrame({ more: true })
 }
 </script>
 
@@ -28,12 +28,12 @@ const onClick = async (tag: string) => {
     </div>
   <div v-else class="d-flex justify-content-sm-center">
     <div class="col-sm-10">
-      <span
+      <div
         v-for="(tag, idx) in modelValue?.tags"
         :key="idx"
       >
-        <NuxtLink :to="{ path: '/', query: {q: tag} }"><div class="badge rounded-pill bg-light text-info">{{ tag }}</div></NuxtLink>
-      </span>
+        <a @click="onClick(tag)"><div class="badge rounded-pill bg-light text-info">{{ tag }}</div></a>
+    </div>
     </div>
   </div>
 </template>

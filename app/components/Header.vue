@@ -21,8 +21,8 @@ const onTopPageClick = async () => {
   frame_query.value.word = ''
   frame_query.value.page = 1
   // frame_query.value.pages = 1
-  await searchFrame()
   await navigateTo({ path: '/', query: queryString.value })
+  await searchFrame({ more: true })
 }
 </script>
 
