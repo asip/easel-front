@@ -20,19 +20,19 @@ export function useUserFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (user_id: string | undefined, more?: boolean) => {
-    const options: any = {
+  const getFrames = async (user_id: string | undefined, options?: { more?: boolean }) => {
+    const getOptions: any = {
       url: `/users/${user_id}/frames`,
       query: {
         page: frame_query.value.page
       }
     }
 
-    if (more){
-      options.key = `${options.url}-${new Date().getTime()}`
+    if (options?.more){
+      getOptions.key = `${getOptions.url}-${new Date().getTime()}`
     }
 
-    const { data, error } = await useGetApi<FramesResource>(options)
+    const { data, error } = await useGetApi<FramesResource>(getOptions)
 
     clearFlash()
 

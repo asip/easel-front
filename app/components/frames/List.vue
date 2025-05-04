@@ -10,7 +10,7 @@ router.push({ path: '/', query: queryString.value })
 
 const clickCallback = async (pageNum: number) => {
   frame_query.value.page = pageNum
-  await searchFrame(true)
+  await searchFrame({ more: true })
   await navigateTo({ path: '/', query: queryString.value })
 }
 
