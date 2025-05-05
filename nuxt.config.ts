@@ -4,8 +4,11 @@
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
-    granularCachedData: false
   },
+
+  //experimental: {
+  //  granularCachedData: false
+  //},
 
   modules: [
     '@nuxtjs/i18n',
