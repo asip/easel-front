@@ -40,7 +40,7 @@ onUnmounted(() => {
       :key="frame.id"
       class="col-12 col-sm-3"
     >
-      <div class="card kadomaru margin-bottom-10">
+      <div class="card kadomaru m-bottom-10">
         <FramesListItem v-model="frames[i]" />
       </div>
     </div>

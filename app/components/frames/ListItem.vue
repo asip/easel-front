@@ -6,7 +6,7 @@ const frame = defineModel<Frame>()
 
 <template>
   <div
-    class="card-block top-10 bottom-10"
+    class="card-block p-top-10 p-bottom-10"
   >
     <div class="row d-flex">
       <div class="clearfix">

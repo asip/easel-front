@@ -63,7 +63,7 @@ const updateContent = (content: string) => {
 <template>
   <div
     v-if="logged_in"
-    class="card col-sm-8 mx-auto kadomaru bottom-10"
+    class="card col-sm-8 mx-auto kadomaru p-bottom-10"
   >
     <div class="card-block">
       <div class="row d-flex">
@@ -72,7 +72,7 @@ const updateContent = (content: string) => {
           style="line-height: 35px;"
         >
           <div
-            class="float-start left-5"
+            class="float-start p-left-5"
           >
             <img
               :src="`${login_user.image_thumb_url}`"
@@ -84,7 +84,7 @@ const updateContent = (content: string) => {
             >
           </div>
           <div
-            class="float-start small align-middle left-5"
+            class="float-start small align-middle p-left-5"
           >
             <div class="badge rounded-pill bg-light text-info">
               {{ login_user.name }}
@@ -129,7 +129,7 @@ const updateContent = (content: string) => {
         </div>
         <div class="d-flex justify-content-center">
           <div
-            class="form-group col-10 top-10"
+            class="form-group col-10 p-top-10"
           >
             <button
               type="button"

@@ -24,7 +24,7 @@ const onDeleteClick = async () => {
 </script>
 
 <template>
-  <div class="card col-sm-8 mx-auto bottom-5 margin-bottom-5">
+  <div class="card col-sm-8 mx-auto p-bottom-5 m-bottom-5">
     <div class="card-block">
       <div class="row d-flex">
         <div
@@ -32,7 +32,7 @@ const onDeleteClick = async () => {
           style="line-height: 35px;"
         >
           <div
-            class="float-start align-middle left-5"
+            class="float-start align-middle p-left-5"
           >
             <img
               :src="`${comment?.user_image_url}`"
@@ -44,14 +44,14 @@ const onDeleteClick = async () => {
             >
           </div>
           <div
-            class="float-start small align-middle left-5"
+            class="float-start small align-middle p-left-5"
           >
             <div class="badge rounded-pill bg-light text-info">
               {{ comment?.user_name }}
             </div>
           </div>
           <div
-            class="float-start small align-middle left-5"
+            class="float-start small align-middle p-left-5"
           >
             <div class="badge rounded-pill bg-light text-info">
               {{ comment?.updated_at }}

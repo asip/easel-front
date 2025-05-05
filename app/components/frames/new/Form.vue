@@ -162,7 +162,7 @@ const updateContent = (content: string) => {
       </div>
     </div>
     <div class="card-footer">
-      <div class="float-end bottom-10">
+      <div class="float-end p-bottom-10">
         <button
           type="button"
           class="btn btn-primary"

@@ -21,7 +21,7 @@ const onBackClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8 kadomaru bottom-10">
+      <div class="modal-content col-sm-8 kadomaru p-bottom-10">
         <div class="modal-header">
           <div class="float-start">
             <div class="float-start">

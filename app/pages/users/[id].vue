@@ -41,14 +41,14 @@ const onUnfollowClick = async () => {
 <template>
   <div class="col-sm-12">
     <br>
-    <div class="card kadomaru bottom-5">
+    <div class="card kadomaru p-bottom-5">
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12 clearfix">
-            <div class="float-start top-5 left-10">
+            <div class="float-start p-top-5 p-left-10">
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
             </div>
-            <div class="text-center top-5 bottom-5">
+            <div class="text-center p-top-5 p-bottom-5">
               <img
                 :src="`${user?.image_three_url}`"
                 alt=""
