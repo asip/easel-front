@@ -162,23 +162,15 @@ const updateContent = (content: string) => {
       </div>
     </div>
     <div class="card-footer">
-      <div class="d-flex justify-content-sm-center">
-        <div class="col-sm-10">
-          <button
-            type="button"
-            class="btn btn-primary"
-            :disabled="processing"
-            @click="onCreateClick"
-          >
-            {{ $t('action.model.create') }}
-          </button>&nbsp;
-          <NuxtLink
-            :to="`/`"
-            class="btn btn-outline-secondary"
-          >
-            {{ $t('action.model.return') }}
-          </NuxtLink>
-        </div>
+      <div class="float-end bottom-10">
+        <button
+          type="button"
+          class="btn btn-primary"
+          :disabled="processing"
+          @click="onCreateClick"
+        >
+          {{ $t('action.model.create') }}
+        </button>
       </div>
     </div>
   </form>

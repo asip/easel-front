@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { user, signup, clearProfile,error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
 const signup_rule = getSignupRules(user.value)
 
 const { r$ } = useI18nRegle(user, signup_rule)
@@ -28,14 +28,6 @@ const onSignupClick = async () => {
     }
   }
 }
-
-const onBackClick = () => {
-  clearProfile()
-  closeModal('#signup_modal')
-  openModal('#login_modal')
-}
-
-defineExpose({ onBackClick })
 </script>
 
 <template>
@@ -199,14 +191,7 @@ defineExpose({ onBackClick })
             @click="onSignupClick"
           >
             {{ $t('action.model.create') }}
-          </button>&nbsp;
-          <a
-            href="#"
-            class="btn btn-outline-secondary"
-            @click="onBackClick"
-          >
-            {{ $t('action.model.return') }}
-          </a>
+          </button>
         </div>
       </div>
     </form>

@@ -32,11 +32,6 @@ const onUpdateClick = async () => {
     }
   }
 }
-
-const onBackClick = () => {
-  closeModal('#edit_profile_modal')
-  openModal('#profile_modal')
-}
 </script>
 
 <template>
@@ -225,14 +220,7 @@ const onBackClick = () => {
           @click="onUpdateClick"
         >
           {{ $t('action.model.create') }}
-        </button>&nbsp;
-        <a
-          href="#"
-          class="btn btn-outline-secondary"
-          @click="onBackClick"
-        >
-          {{ $t('action.model.return') }}
-        </a>
+        </button>
       </div>
     </div>
   </div>

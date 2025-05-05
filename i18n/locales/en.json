@@ -32,8 +32,7 @@
     "model": {
       "create": "Regist",
       "update": "Edit",
-      "delete": "Delete",
-      "return": "Back"
+      "delete": "Delete"
     },
     "user": {
       "login": "Sign In",
