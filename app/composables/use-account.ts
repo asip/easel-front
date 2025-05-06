@@ -10,7 +10,7 @@ export const useAccount = () => {
     password: ''
   })
 
-  const loginUser = useState<User>('login-user', () => {
+  const loginUser = useState<User>('loginUser', () => {
     return {
       name: '',
       email: '',

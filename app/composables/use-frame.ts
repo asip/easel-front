@@ -3,6 +3,7 @@ import type { RefQuery } from '~/interfaces/ref-query'
 import type { Frame } from '~/interfaces/frame'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { ErrorsResource, FrameResource } from '~/interfaces'
+import { useAccount } from './use-account'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
@@ -24,7 +25,7 @@ export const useFrame = () => {
     updated_at: ''
   })
 
-  const refQuery = useState<RefQuery>('frame.ref_query', () => {
+  const refQuery = useState<RefQuery>('frame.refQuery', () => {
     return {
       page: null,
       id: null
