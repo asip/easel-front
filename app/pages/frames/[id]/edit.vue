@@ -28,18 +28,19 @@ provide('framer', framer)
           </div>
         </div>
       </div>
-      <br>
-      <FramesPreviewImage
-        v-model="frame"
-        :original="true"
-        :photoswipe="false"
-      />
-      <!-- unless @frame.confirming == 'true' -->
-      <FramesEditForm />
-      <!-- else -->
-      <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
-      <!-- end -->
+      <div class="card-block">
+        <br>
+        <FramesPreviewImage
+          v-model="frame"
+          :original="true"
+          :photoswipe="false"
+        />
+        <!-- unless @frame.confirming == 'true' -->
+        <FramesEditForm />
+        <!-- else -->
+        <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
+        <!-- end -->
+      </div>
     </div>
-    <br>
   </div>
 </template>

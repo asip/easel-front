@@ -10,9 +10,11 @@ body {
   padding-top: 50px;
   height: auto;
 }
-.c-bgcolor {
+
+.bg-color-white {
   background-color: white;
 }
+
 .label-bg-style {
   background-color: lavender;
   -moz-border-radius: 5px;        /* CSS3草案 */
@@ -70,6 +72,10 @@ body {
 
 .m-bottom-10 {
   margin-bottom: 10px;
+}
+
+.b-color-white {
+  background-color: white;
 }
 
 // bootstrap

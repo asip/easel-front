@@ -161,7 +161,7 @@ const updateContent = (content: string) => {
         </div>
       </div>
     </div>
-    <div class="card-footer">
+    <div class="card-footer bg-color-white">
       <div class="float-end p-bottom-10">
         <button
           type="button"

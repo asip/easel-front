@@ -35,7 +35,7 @@ const onTopPageClick = async () => {
       :duration="2000"
     />
   </ClientOnly>
-  <nav class="navbar navbar-expand-sm fixed-top navbar-light c-bgcolor">
+  <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-color-white">
     <div class="container-fluid">
       <div class="align-middle">
         <NuxtLink
