@@ -4,13 +4,18 @@ import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.es
 import { usePhotoSwipe } from './use-photo-swipe'
 // import 'photoswipe/style.css';
 
-export function useLightbox (galleryRefKey: string, imageSelector?: string) {
-  const galleryRef: Ref = useTemplateRef(galleryRefKey)
+export function useLightbox (galleryRefKey?: string) {
+
+  let galleryRef: Ref
 
   let lightbox: any
   let photoswipe: boolean
 
   const { assignSize } = usePhotoSwipe()
+
+  if (galleryRefKey) {
+    galleryRef = useTemplateRef(galleryRefKey)
+  }
 
   const initPSLightbox = async () => {
     const galleryEl: HTMLDivElement = galleryRef.value
@@ -29,10 +34,10 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
     photoswipe = true
   }
 
-  const initBBLightbox = () => {
+  const initGLightbox = (selector?: string) => {
     const { $glightbox} = useNuxtApp() as any
 
-    lightbox = $glightbox({ selector: imageSelector })
+    lightbox = $glightbox({ selector: selector })
   }
 
   const closeLightbox = () => {
@@ -46,5 +51,5 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
     }
   }
 
-  return { initPSLightbox, initBBLightbox, closeLightbox }
+  return { initPSLightbox, initGLightbox, closeLightbox }
 }
