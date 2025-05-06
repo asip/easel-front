@@ -115,7 +115,7 @@ const onPageBack = async () => {
         </div>
       </div>
     </div>
-    <FramesDeleteModal />
+    <FramesDeleteModal v-if="logged_in" />
     <FramesComments v-model="frame" />
   </div>
 </template>
