@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 
-const { initGallery, closeGallery } = useImageGallery('.lb')
+const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, queryString, searchFrame, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
@@ -16,13 +16,13 @@ const clickCallback = async (pageNum: number) => {
 
 onMounted(() => {
   if (import.meta.client) {
-    initGallery()
+    initGallery('.lb')
   }
 })
 
 onUpdated(() => {
   if (import.meta.client) {
-    initGallery()
+    initGallery('.lb')
   }
 })
 

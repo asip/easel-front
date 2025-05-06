@@ -8,7 +8,7 @@ const { page } = defineProps<{
   page?: string
 }>()
 
-const { initGallery, closeGallery } = useImageGallery('.lb')
+const { initGallery, closeGallery } = useImageGallery()
 const { frame_query, getFrames, frames } = useAccountFrames()
 
 // console.log('searchFrame: start')
@@ -23,13 +23,13 @@ const clickCallback = async (pageNum: number) => {
 
 onMounted(() => {
   if (import.meta.client) {
-    initGallery()
+    initGallery('.lb')
   }
 })
 
 onUpdated(() => {
   if (import.meta.client) {
-    initGallery()
+    initGallery('.lb')
   }
 })
 

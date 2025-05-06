@@ -1,9 +1,9 @@
-export function useImageGallery (selector: string) {
+export function useImageGallery () {
   let gallery: any = null
 
   const { $glightbox } = useNuxtApp() as any
 
-  const initGallery = () => {
+  const initGallery = (selector: string) => {
     gallery = $glightbox({ selector: selector })
   }
 
