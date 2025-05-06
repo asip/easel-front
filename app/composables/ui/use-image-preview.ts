@@ -26,6 +26,6 @@ export function useImagePreview (target: HTMLInputElement, model: Frame | User) 
       model.preview_url = image as string
     }
     // (DataURIScheme文字列を取得します)
-    reader.readAsDataURL(file.data)
+    if (file.data) reader.readAsDataURL(file.data)
   }
 }
