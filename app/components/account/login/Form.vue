@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { closeModal } = useModal()
+const { closeModal, removeBackdrop } = useModal()
 
 const { setMessages } = useToast()
 const { loggedIn, loginParams, login, loginMessages, resetLoginParams } = inject('accounter') as useAccountType
@@ -12,6 +12,7 @@ const onLoginClick = async () => {
     setMessages(loginMessages.value)
   }
   resetLoginParams()
+  removeBackdrop()
 }
 </script>
 
