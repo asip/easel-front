@@ -63,7 +63,7 @@ export const useAccount = () => {
 
   const { $i18n } = useNuxtApp()
 
-  const access_token = useCookie('access_token', { sameSite: 'lax' })
+  const accessToken = useCookie('access_token', { sameSite: 'lax' })
 
   const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
@@ -112,7 +112,7 @@ export const useAccount = () => {
   }
 
   const authenticate = async () => {
-    loginUser.value.token = access_token.value
+    loginUser.value.token = accessToken.value
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
@@ -183,7 +183,7 @@ export const useAccount = () => {
           loggedIn.value = true
           // console.log(loginUser.value)
 
-          access_token.value = loginUser.value.token
+          accessToken.value = loginUser.value.token
           loginMessages.value = []
         }
       }
@@ -217,7 +217,7 @@ export const useAccount = () => {
       loggedIn.value = true
       // console.log(loginUser.value)
 
-      access_token.value = loginUser.value.token
+      accessToken.value = loginUser.value.token
     }
 
     loginMessages.value = []
@@ -237,8 +237,8 @@ export const useAccount = () => {
   }
 
   const setToken2Cookie = () => {
-    if (loginUser.value.token !== access_token.value) {
-      access_token.value = loginUser.value.token
+    if (loginUser.value.token !== accessToken.value) {
+      accessToken.value = loginUser.value.token
     }
   }
 
@@ -413,7 +413,7 @@ export const useAccount = () => {
     loginUser.value.image_three_url = null
     loginUser.value.social_login = false
 
-    access_token.value = null
+    accessToken.value = null
   }
 
   const clearProfile = () => {
