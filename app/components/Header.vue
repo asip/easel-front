@@ -138,8 +138,8 @@ const onTopPageClick = async () => {
       </div>
     </div>
   </nav>
-  <AccountLoginModal />
-  <AccountSignupModal />
-  <AccountProfileModal />
-  <AccountEditModal />
+  <AccountLoginModal v-if="!logged_in" />
+  <AccountSignupModal v-if="!logged_in" />
+  <AccountProfileModal v-if="logged_in" />
+  <AccountEditModal v-if="logged_in" />
 </template>
