@@ -1,7 +1,6 @@
 import type { Ref } from 'vue'
 import { useAccount } from './use-account'
 import type { FollowingResource } from '~/interfaces'
-import type { F } from 'vitest/dist/chunks/reporters.d.79o4mouw.js'
 
 export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
