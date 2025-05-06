@@ -31,11 +31,8 @@ export const useFrameSearch = () => {
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: any = {
       url: '/frames',
-      query: queryString.value
-    }
-
-    if (options?.more) {
-      getOptions.key = `${getOptions.url}-${new Date().getTime()}`
+      query: queryString.value,
+      more: options?.more
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

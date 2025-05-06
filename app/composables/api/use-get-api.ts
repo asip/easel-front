@@ -2,9 +2,16 @@ interface SearchParams {
   [key: string]: any
 }
 
-type GetAPIOptions = { key?: string | null, url: string, query?: SearchParams, token?: string | null }
+type GetAPIOptions = {
+  url: string,
+  query?: SearchParams,
+  token?: string | null,
+  more?: boolean
+}
 
-export const useGetApi = async <T>({ key = null, url, query = {}, token = null }: GetAPIOptions) => {
+export const useGetApi = async <T>({ url, query = {}, token = null, more = false }: GetAPIOptions) => {
+  let key: string | null = null
+
   const { $api } = useNuxtApp()
 
   const headers: Record<string, string> = {
@@ -21,7 +28,9 @@ export const useGetApi = async <T>({ key = null, url, query = {}, token = null }
     headers
   }
 
-  if (key == null) {
+  if (more) {
+    key = `${url}-${new Date().getTime()}`
+  } else {
     key = url
   }
 

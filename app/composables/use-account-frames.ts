@@ -25,11 +25,8 @@ export function useAccountFrames () {
       query: {
         page: frameQuery.value.page
       },
-      token: user?.token
-    }
-
-    if(options?.more){
-      getOptions.key = `${getOptions.url}-${new Date().getTime()}`
+      token: user?.token,
+      more: options?.more
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

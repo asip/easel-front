@@ -25,11 +25,8 @@ export function useUserFrames () {
       url: `/users/${userId}/frames`,
       query: {
         page: frameQuery.value.page
-      }
-    }
-
-    if (options?.more){
-      getOptions.key = `${getOptions.url}-${new Date().getTime()}`
+      },
+      more: options?.more
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)
