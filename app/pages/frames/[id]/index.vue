@@ -105,7 +105,7 @@ const onPageBack = async () => {
             <!-- <div class="float-start"></div> -->
             <div class="float-end p-right-10">
               <NuxtLink
-                :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frame_id } }"
+                :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
                 class="text-decoration-none"
               >
                 {{ frame.user_name }}
