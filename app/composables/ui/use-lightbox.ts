@@ -34,7 +34,7 @@ export function useLightbox (galleryRefKey?: string) {
     photoswipe = true
   }
 
-  const initGLightbox = (selector?: string) => {
+  const initGLightbox = (selector: string) => {
     const { $glightbox} = useNuxtApp() as any
 
     lightbox = $glightbox({ selector: selector })
