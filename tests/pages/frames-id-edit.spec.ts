@@ -58,8 +58,7 @@ describe('frames/:id/edit', () => {
             "body": "test",
             "user_name": "Yasumasa Ashida",
             "user_image_url": "http://localhost:3000/no-profile-image.png",
-            "updated_at": "2024/10/09 (Wed) 12:28",
-            "error_messages": []
+            "updated_at": "2024/10/09 (Wed) 12:28"
           }
         ]
       }
