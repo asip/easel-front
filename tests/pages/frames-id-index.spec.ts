@@ -35,10 +35,10 @@ mockNuxtImport('useRoute', () => () => ({
 */
 
 describe('frames/:id/index', async () => {
-  const frame_endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49`
-  const comments_endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49/comments`
+  const frameEndpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49`
+  const commentsEndpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49/comments`
 
-  registerEndpoint(frame_endpoint, {
+  registerEndpoint(frameEndpoint, {
     method: 'GET',
     handler: () => (
       {
@@ -75,7 +75,7 @@ describe('frames/:id/index', async () => {
     )
   })
 
-  registerEndpoint(comments_endpoint, {
+  registerEndpoint(commentsEndpoint, {
     method: 'GET',
     handler: () => (
       {

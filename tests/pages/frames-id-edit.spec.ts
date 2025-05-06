@@ -26,9 +26,9 @@ vi.mock('#app', () => ({ // #app -> nuxt/app
 */
 
 describe('frames/:id/edit', () => {
-  const frame_endpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49`
+  const frameEndpoint = `${import.meta.env.BACKEND_ORIGIN_URL}/frames/49`
 
-  registerEndpoint(frame_endpoint, {
+  registerEndpoint(frameEndpoint, {
     method: 'GET',
     handler: () => (
       {
