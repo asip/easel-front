@@ -7,7 +7,7 @@ const comment = defineModel<Comment>()
 
 const { p2br } = useQuill()
 const { setFlash } = useToast()
-const { logged_in, login_user } = useLoginUser()
+const { loggedIn, loginUser } = useAccount()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 
 const sanitizedCommentBody = computed(() => {
@@ -58,7 +58,7 @@ const onDeleteClick = async () => {
             </div>
           </div>
           <div
-            v-show="logged_in && comment?.user_id == login_user.id"
+            v-show="loggedIn && comment?.user_id == loginUser.id"
             class="float-end"
           >
             <button

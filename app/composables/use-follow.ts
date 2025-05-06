@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { useLoginUser } from './use-login-user'
+import { useAccount } from './use-account'
 import type { FollowingResource } from '~/interfaces'
 import type { F } from 'vitest/dist/chunks/reporters.d.79o4mouw.js'
 
@@ -8,13 +8,13 @@ export function useFollow () {
 
   const { $i18n } = useNuxtApp()
 
-  const { login_user, clearLoginUser } = useLoginUser()
+  const { loginUser, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi<FollowingResource>({
       url: `/account/following/${userId}`,
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     // clearFlash()
@@ -40,7 +40,7 @@ export function useFollow () {
   const follow = async (userId: number | null) => {
     const { error } = await usePostApi({
       url: `/users/${userId}/follow_relationships`,
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     clearFlash()
@@ -62,7 +62,7 @@ export function useFollow () {
   const unfollow = async (userId: number | null) => {
     const { error } = await useDeleteApi({
       url: `/users/${userId}/follow_relationships`,
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     clearFlash()

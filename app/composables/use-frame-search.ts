@@ -3,7 +3,7 @@ import type { Frame } from '~/interfaces/frame'
 import type { FrameQuery } from '~/interfaces/frame-query'
 
 export const useFrameSearch = () => {
-  const frame_query = useState<FrameQuery>('frame_query', () => {
+  const frameQuery = useState<FrameQuery>('frameQuery', () => {
     return {
       word: '',
       page: 1,
@@ -12,7 +12,7 @@ export const useFrameSearch = () => {
   })
 
   const queryString = computed(() => {
-    const { word, page } = frame_query.value;
+    const { word, page } = frameQuery.value;
     const query: { q?: string, page?: number | null } = {};
 
     if (word) {
@@ -62,7 +62,7 @@ export const useFrameSearch = () => {
         // console.log(frames)
       }
       if (meta) {
-        frame_query.value.pages = meta.pagination.pages
+        frameQuery.value.pages = meta.pagination.pages
       }
     }
   }
@@ -76,6 +76,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frame_query, searchFrame, frames, queryString
+    frameQuery, searchFrame, frames, queryString
   }
 }

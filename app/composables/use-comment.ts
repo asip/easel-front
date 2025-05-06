@@ -1,4 +1,4 @@
-import { useLoginUser } from './use-login-user'
+import { useAccount } from './use-account'
 import { useFlash } from './use-flash'
 import { useLocale } from '~/composables/use-locale'
 import type { Comment } from '~/interfaces/comment'
@@ -18,7 +18,7 @@ export function useComment () {
 
   const comments: Ref<Comment[]> = ref<Comment[]>([])
 
-  const error_messages = ref<ErrorMessages<'body' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<'body' | 'base'>>({
     body: [],
     base: []
   })
@@ -28,7 +28,7 @@ export function useComment () {
   const { $i18n } = useNuxtApp()
 
   const { locale } = useLocale()
-  const { login_user, clearLoginUser } = useLoginUser()
+  const { loginUser, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
   const getComments = async () => {
@@ -81,7 +81,7 @@ export function useComment () {
     const { data, error, pending } = await usePostApi<Partial<CommentResource> & Partial<ErrorsResource<ErrorMessages<'body'>>>>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
-      token: login_user.value.token,
+      token: loginUser.value.token,
       locale: locale.value
     })
 
@@ -125,21 +125,21 @@ export function useComment () {
 
   const setErrorMessages = (errors: ErrorMessages<'body'>) => {
     if (errors.body) {
-      error_messages.value.body = errors.body
+      errorMessages.value.body = errors.body
     } else {
-      error_messages.value.body = []
+      errorMessages.value.body = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.value.body = []
-    error_messages.value.base = []
+    errorMessages.value.body = []
+    errorMessages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.value.body.length > 0 || error_messages.value.base.length > 0) {
+    if (errorMessages.value.body.length > 0 || errorMessages.value.base.length > 0) {
       result = false
     }
 
@@ -153,7 +153,7 @@ export function useComment () {
   const deleteComment = async (comment: Comment) => {
     const { error } = await useDeleteApi({
       url: `/comments/${comment.id}`,
-      token: login_user.value.token,
+      token: loginUser.value.token,
       locale: locale.value
     })
 
@@ -177,7 +177,7 @@ export function useComment () {
   return {
     comment,
     comments,
-    error_messages,
+    errorMessages,
     getComments,
     createComment,
     deleteComment,

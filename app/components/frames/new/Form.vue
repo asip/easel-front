@@ -2,8 +2,8 @@
 import type { UseFrameType } from '~/composables/use-frame'
 
 const { setFlash } = useToast()
-const { logged_in } = useLoginUser()
-const { frame, frameId, createFrame, error_messages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
+const { loggedIn } = useAccount()
+const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 
 const editor = useTemplateRef('editor')
 
@@ -36,7 +36,7 @@ const onCreateClick = async () => {
     setFlash(flash.value)
     if (isSuccess()) {
       await navigateTo(`/frames/${frameId.value}`)
-    } else if (!logged_in.value) {
+    } else if (!loggedIn.value) {
       await navigateTo('/')
     }
   }
@@ -73,7 +73,7 @@ const updateContent = (content: string) => {
                     @change="onSelectFile"
                   >
                   <div
-                    v-for="(message, idx) in error_messages.file"
+                    v-for="(message, idx) in errorMessages.file"
                     :key="idx"
                   >
                     <div>{{ message }}</div>

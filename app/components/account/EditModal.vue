@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
+const { loggedIn, loginUser, setUser } = inject('accounter') as useAccountType
 
 const onBackClick = () => {
   closeModal('#edit_profile_modal')
@@ -8,13 +8,13 @@ const onBackClick = () => {
 }
 
 onMounted(() => {
-  setUser(login_user)
+  setUser(loginUser)
 })
 </script>
 
 <template>
   <div
-    v-if="logged_in"
+    v-if="loggedIn"
     id="edit_profile_modal"
     class="modal fade"
     tabindex="-1"

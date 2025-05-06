@@ -2,14 +2,14 @@
 const { closeModal } = useModal()
 
 const { setMessages } = useToast()
-const { logged_in, login_params, login, login_messages, resetLoginParams } = inject('accounter') as UseLoginUserType
+const { loggedIn, loginParams, login, loginMessages, resetLoginParams } = inject('accounter') as useAccountType
 
 const onLoginClick = async () => {
   await login()
-  if (login_messages.value.length === 0) {
+  if (loginMessages.value.length === 0) {
     closeModal('#login_modal')
   } else {
-    setMessages(login_messages.value)
+    setMessages(loginMessages.value)
   }
   resetLoginParams()
 }
@@ -20,7 +20,7 @@ const onLoginClick = async () => {
     <div class="row d-flex justify-content-sm-center border border-white">
       <div class="col-sm-10">
         <br>
-        <AccountLoginGoogle v-if="!logged_in" />
+        <AccountLoginGoogle v-if="!loggedIn" />
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
@@ -32,7 +32,7 @@ const onLoginClick = async () => {
               </td>
               <td>
                 <input
-                  v-model="login_params.email"
+                  v-model="loginParams.email"
                   type="text"
                   :placeholder="$t('model.user.email')"
                   class="form-control"
@@ -48,7 +48,7 @@ const onLoginClick = async () => {
               </td>
               <td>
                 <input
-                  v-model="login_params.password"
+                  v-model="loginParams.password"
                   type="password"
                   :placeholder="$t('model.user.password')"
                   class="form-control"

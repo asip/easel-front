@@ -2,14 +2,14 @@
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { frame_query, queryString, searchFrame, frames } = useFrameSearch()
+const { frameQuery, queryString, searchFrame, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
 await searchFrame()
 router.push({ path: '/', query: queryString.value })
 
 const clickCallback = async (pageNum: number) => {
-  frame_query.value.page = pageNum
+  frameQuery.value.page = pageNum
   await navigateTo({ path: '/', query: queryString.value })
   await searchFrame({ more: true })
 }
@@ -46,13 +46,13 @@ onUnmounted(() => {
     </div>
   </div>
   <div
-    v-if="frame_query.pages > 1"
+    v-if="frameQuery.pages > 1"
     class="d-flex col-12 col-sm-12 mx-auto justify-content-sm-center justify-content-center"
   >
     <ClientOnly>
       <Paginate
-        v-model="frame_query.page"
-        :page-count="frame_query.pages"
+        v-model="frameQuery.page"
+        :page-count="frameQuery.pages"
         :page-range="3"
         :margin-pages="2"
         :click-handler="clickCallback"

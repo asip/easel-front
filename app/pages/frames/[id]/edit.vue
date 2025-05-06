@@ -3,12 +3,12 @@
 
 const route = useRoute()
 const { id } = route.params
-const frame_id = id as string
+const frameId = id as string
 
 const framer = useFrame()
 const { frame, getFrame } = framer
 
-await getFrame(frame_id)
+await getFrame(frameId)
 
 provide('framer', framer)
 </script>

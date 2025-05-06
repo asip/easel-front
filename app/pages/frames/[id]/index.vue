@@ -3,29 +3,29 @@ import sanitizeHtml from 'sanitize-html'
 
 const route = useRoute()
 const { id } = route.params
-const frame_id = id as string
-const ref_page = route.query.ref
-const ref_id = route.query.ref_id
+const frameId = id as string
+const refPage = route.query.ref
+const refId = route.query.ref_id
 
 const { p2br } = useQuill()
 const { queryString } = useFrameSearch()
-const { logged_in, login_user } = useLoginUser()
+const { loggedIn, loginUser } = useAccount()
 const framer = useFrame()
 const { frame, getFrame } = framer
 
 provide('framer', framer)
 
-await getFrame(frame_id)
+await getFrame(frameId)
 
 const sanitizedComment = computed(() => {
   return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')
 })
 
 const onPageBack = async () => {
-  if (ref_page === 'profile') {
+  if (refPage === 'profile') {
     await navigateTo({ path: '/account/frames' })
-  } else if (ref_page === 'user_profile') {
-    await navigateTo({ path: `/users/${ref_id}` })
+  } else if (refPage === 'user_profile') {
+    await navigateTo({ path: `/users/${refId}` })
   } else {
     await navigateTo({ path: '/', query: queryString.value })
   }
@@ -42,14 +42,14 @@ const onPageBack = async () => {
             <div class="float-start p-left-10 p-top-10">
               <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>&nbsp;
               <NuxtLink
-                v-if="logged_in && frame.user_id == login_user.id"
+                v-if="loggedIn && frame.user_id == loginUser.id"
                 :to="`/frames/${frame.id}/edit`"
               >
                 <i class="bi bi-pencil-square" />
               </NuxtLink>&nbsp;
               <!-- Button trigger modal -->
               <button
-                v-if="logged_in && frame.user_id == login_user.id"
+                v-if="loggedIn && frame.user_id == loginUser.id"
                 type="button"
                 class="btn-icon-local"
                 data-bs-toggle="modal"
@@ -115,7 +115,7 @@ const onPageBack = async () => {
         </div>
       </div>
     </div>
-    <FramesDeleteModal v-if="logged_in" />
+    <FramesDeleteModal v-if="loggedIn" />
     <FramesComments v-model="frame" />
   </div>
 </template>

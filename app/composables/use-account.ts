@@ -4,13 +4,13 @@ import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
 import type { ErrorsResource, MessagesResource, UserResource } from '~/interfaces'
 
-export const useLoginUser = () => {
-  const login_params = ref({
+export const useAccount = () => {
+  const loginParams = ref({
     email: '',
     password: ''
   })
 
-  const login_user = useState<User>('login-user', () => {
+  const loginUser = useState<User>('login-user', () => {
     return {
       name: '',
       email: '',
@@ -44,13 +44,13 @@ export const useLoginUser = () => {
     }
   )
 
-  const logged_in = useState<boolean>('logged_in', () => {
+  const loggedIn = useState<boolean>('loggedIn', () => {
     return false
   })
 
-  const login_messages = ref<string[]>([])
+  const loginMessages = ref<string[]>([])
 
-  const error_messages = ref<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation' | 'base'>>({
     image: [],
     name: [],
     email: [],
@@ -112,13 +112,13 @@ export const useLoginUser = () => {
   }
 
   const authenticate = async () => {
-    login_user.value.token = access_token.value
-    // console.log(login_user.value.token)
+    loginUser.value.token = access_token.value
+    // console.log(loginUser.value.token)
 
-    if (login_user.value.token) {
+    if (loginUser.value.token) {
       const { data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
-        token: login_user.value.token
+        token: loginUser.value.token
       })
 
       clearFlash()
@@ -139,7 +139,7 @@ export const useLoginUser = () => {
         if (userAttrs) {
           // console.log('test3')
           setJson2LoginUser(userAttrs)
-          logged_in.value = true
+          loggedIn.value = true
         }
       }
     }
@@ -148,8 +148,8 @@ export const useLoginUser = () => {
   const login = async () => {
     const postData = {
       user: {
-        email: login_params.value.email,
-        password: login_params.value.password
+        email: loginParams.value.email,
+        password: loginParams.value.password
       }
     }
 
@@ -173,24 +173,24 @@ export const useLoginUser = () => {
       const { messages } = data.value
 
       if (messages) {
-        login_messages.value = messages
+        loginMessages.value = messages
 
-        // console.log(login_messages.value)
+        // console.log(loginMessages.value)
       } else {
         const userAttrs = data.value as UserResource
         if (userAttrs) {
           setJson2LoginUser(userAttrs)
-          logged_in.value = true
-          // console.log(login_user.value)
+          loggedIn.value = true
+          // console.log(loginUser.value)
 
-          access_token.value = login_user.value.token
-          login_messages.value = []
+          access_token.value = loginUser.value.token
+          loginMessages.value = []
         }
       }
     }
   }
 
-  const login_with_google = async (response: CredentialResponse) => {
+  const loginWithGoogle = async (response: CredentialResponse) => {
     const postData = {
       provider: 'google',
       credential: response.credential
@@ -214,31 +214,31 @@ export const useLoginUser = () => {
     } else if (data.value) {
       const userAttrs  = data.value
       setJson2LoginUser(userAttrs)
-      logged_in.value = true
-      // console.log(login_user.value)
+      loggedIn.value = true
+      // console.log(loginUser.value)
 
-      access_token.value = login_user.value.token
+      access_token.value = loginUser.value.token
     }
 
-    login_messages.value = []
+    loginMessages.value = []
   }
 
   const resetLoginParams = () => {
-    login_params.value.email = ''
-    login_params.value.password = ''
+    loginParams.value.email = ''
+    loginParams.value.password = ''
   }
 
   const setJson2LoginUser = (resource: UserResource) => {
-    Object.assign(login_user.value, resource)
+    Object.assign(loginUser.value, resource)
   }
 
-  const setUser = (login_user: Ref<User>) => {
-    Object.assign(user.value, login_user.value)
+  const setUser = (loginUser: Ref<User>) => {
+    Object.assign(user.value, loginUser.value)
   }
 
   const setToken2Cookie = () => {
-    if (login_user.value.token !== access_token.value) {
-      access_token.value = login_user.value.token
+    if (loginUser.value.token !== access_token.value) {
+      access_token.value = loginUser.value.token
     }
   }
 
@@ -296,48 +296,48 @@ export const useLoginUser = () => {
 
   const setErrorMessages = (errors: ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>) => {
     if (errors.image) {
-      error_messages.value.image = errors.image
+      errorMessages.value.image = errors.image
     } else {
-      error_messages.value.image = []
+      errorMessages.value.image = []
     }
     if (errors.name) {
-      error_messages.value.name = errors.name
+      errorMessages.value.name = errors.name
     } else {
-      error_messages.value.name = []
+      errorMessages.value.name = []
     }
     if (errors.email) {
-      error_messages.value.email = errors.email
+      errorMessages.value.email = errors.email
     } else {
-      error_messages.value.email = []
+      errorMessages.value.email = []
     }
     if (errors.password) {
-      error_messages.value.password = errors.password
+      errorMessages.value.password = errors.password
     } else {
-      error_messages.value.password = []
+      errorMessages.value.password = []
     }
     if (errors.password_confirmation) {
-      error_messages.value.password_confirmation = errors.password_confirmation
+      errorMessages.value.password_confirmation = errors.password_confirmation
     } else {
-      error_messages.value.password_confirmation = []
+      errorMessages.value.password_confirmation = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.value.image = []
-    error_messages.value.name = []
-    error_messages.value.email = []
-    error_messages.value.password = []
-    error_messages.value.password_confirmation = []
-    error_messages.value.base = []
+    errorMessages.value.image = []
+    errorMessages.value.name = []
+    errorMessages.value.email = []
+    errorMessages.value.password = []
+    errorMessages.value.password_confirmation = []
+    errorMessages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.value.image.length > 0 || error_messages.value.name.length > 0 ||
-      error_messages.value.email.length > 0 || error_messages.value.password.length > 0 ||
-      error_messages.value.password_confirmation.length > 0 ||
-      error_messages.value.base.length > 0
+    if (errorMessages.value.image.length > 0 || errorMessages.value.name.length > 0 ||
+      errorMessages.value.email.length > 0 || errorMessages.value.password.length > 0 ||
+      errorMessages.value.password_confirmation.length > 0 ||
+      errorMessages.value.base.length > 0
     ) {
       result = false
     }
@@ -352,7 +352,7 @@ export const useLoginUser = () => {
   const logout = async () => {
     const { data, error } = await useDeleteApi<UserResource>({
       url: '/sessions/logout',
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     clearFlash()
@@ -377,7 +377,7 @@ export const useLoginUser = () => {
   const deleteAccount = async () => {
     const { data, error } = await useDeleteApi<UserResource>({
       url: '/account',
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     clearFlash()
@@ -403,15 +403,15 @@ export const useLoginUser = () => {
   }
 
   const clearLoginUser = () => {
-    logged_in.value = false
-    login_user.value.name = ''
-    login_user.value.email = ''
-    login_user.value.token = null
-    login_user.value.id = null
-    login_user.value.image_thumb_url = null
-    login_user.value.image_one_url = null
-    login_user.value.image_three_url = null
-    login_user.value.social_login = false
+    loggedIn.value = false
+    loginUser.value.name = ''
+    loginUser.value.email = ''
+    loginUser.value.token = null
+    loginUser.value.id = null
+    loginUser.value.image_thumb_url = null
+    loginUser.value.image_one_url = null
+    loginUser.value.image_three_url = null
+    loginUser.value.social_login = false
 
     access_token.value = null
   }
@@ -432,10 +432,10 @@ export const useLoginUser = () => {
   }
 
   return {
-    login_user,
+    loginUser,
     user,
-    logged_in,
-    login_params,
+    loggedIn,
+    loginParams,
     signup,
     authenticate,
     setUser,
@@ -445,15 +445,15 @@ export const useLoginUser = () => {
     flash,
     login,
     resetLoginParams,
-    login_with_google,
+    loginWithGoogle,
     logout,
     deleteAccount,
     clearLoginUser,
     clearProfile,
-    login_messages,
-    error_messages,
+    loginMessages,
+    errorMessages,
     locale
   }
 }
 
-export type UseLoginUserType = ReturnType<typeof useLoginUser>
+export type useAccountType = ReturnType<typeof useAccount>

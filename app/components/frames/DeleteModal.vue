@@ -3,7 +3,7 @@ import type { UseFrameType } from '~/composables/use-frame'
 
 const { removeBackdrop } = useModal()
 const { setFlash } = useToast()
-const { logged_in, login_user } = useLoginUser()
+const { loggedIn, loginUser } = useAccount()
 const { frame, deleteFrame, isSuccess, flash } = inject('framer') as UseFrameType
 
 const onDeleteClick = async () => {
@@ -18,7 +18,7 @@ const onDeleteClick = async () => {
 
 <template>
   <ConfirmModal
-    v-if="logged_in && frame?.user_id == login_user.id"
+    v-if="loggedIn && frame?.user_id == loginUser.id"
     id="delete_frame_modal"
     @click="onDeleteClick"
   >

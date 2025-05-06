@@ -1,23 +1,23 @@
-import { useLoginUser } from '@/composables/use-login-user'
+import { useAccount } from '@/composables/use-account'
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  const { logged_in, login_user, authenticate } = useLoginUser()
+  const { loggedIn, loginUser, authenticate } = useAccount()
   const { frame, getFrame } = useFrame()
 
-  if (!logged_in.value) {
+  if (!loggedIn.value) {
     await authenticate()
   }
 
-  if ((to.path === '/account/frames' || to.path === '/frames/new') && !logged_in.value) {
+  if ((to.path === '/account/frames' || to.path === '/frames/new') && !loggedIn.value) {
     return navigateTo('/')
   }
 
   if (to.path.match(/^\/frames\/\d+\/edit$/)) {
-    const frame_id = to.params.id as string
-    await getFrame(frame_id)
+    const frameId = to.params.id as string
+    await getFrame(frameId)
 
-    if (!logged_in.value || frame.value.user_id != login_user.value.id) {
-      return navigateTo(`/frames/${frame_id}`)
+    if (!loggedIn.value || frame.value.user_id != loginUser.value.id) {
+      return navigateTo(`/frames/${frameId}`)
     }
   }
 })

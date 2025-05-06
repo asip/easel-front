@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { clearProfile } = useLoginUser()
+const { clearProfile } = useAccount()
 
 const onBackClick = () => {
   clearProfile()

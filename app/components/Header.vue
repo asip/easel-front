@@ -2,9 +2,9 @@
 
 const route = useRoute()
 
-const accounter = useLoginUser()
-const { login_user, logged_in, logout } = accounter
-const { frame_query, queryString, searchFrame } = useFrameSearch()
+const accounter = useAccount()
+const { loginUser, loggedIn, logout } = accounter
+const { frameQuery, queryString, searchFrame } = useFrameSearch()
 
 provide('accounter', accounter)
 
@@ -18,9 +18,9 @@ const onLogoutClick = async () => {
 }
 
 const onTopPageClick = async () => {
-  frame_query.value.word = ''
-  frame_query.value.page = 1
-  // frame_query.value.pages = 1
+  frameQuery.value.word = ''
+  frameQuery.value.page = 1
+  // frameQuery.value.pages = 1
   await navigateTo({ path: '/', query: queryString.value })
   await searchFrame({ more: true })
 }
@@ -61,7 +61,7 @@ const onTopPageClick = async () => {
         class="collapse navbar-collapse"
       >
         <ul
-          v-if="!logged_in"
+          v-if="!loggedIn"
           class="navbar-nav me-auto"
         >
           <li class="nav-item">
@@ -87,7 +87,7 @@ const onTopPageClick = async () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {{ login_user.name }}
+              {{ loginUser.name }}
             </button>
             <ul
               class="dropdown-menu dropdown-menu-light"
@@ -138,8 +138,8 @@ const onTopPageClick = async () => {
       </div>
     </div>
   </nav>
-  <AccountLoginModal v-if="!logged_in" />
-  <AccountSignupModal v-if="!logged_in" />
-  <AccountProfileModal v-if="logged_in" />
-  <AccountEditModal v-if="logged_in" />
+  <AccountLoginModal v-if="!loggedIn" />
+  <AccountSignupModal v-if="!loggedIn" />
+  <AccountProfileModal v-if="loggedIn" />
+  <AccountEditModal v-if="loggedIn" />
 </template>

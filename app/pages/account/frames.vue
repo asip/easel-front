@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { logged_in, login_user } = useLoginUser()
+const { loggedIn, loginUser } = useAccount()
 </script>
 
 <template>
@@ -23,8 +23,8 @@ const { logged_in, login_user } = useLoginUser()
     </div>
     <br>
     <AccountFrameList
-      v-if="logged_in"
-      v-model="login_user"
+      v-if="loggedIn"
+      v-model="loginUser"
       page="profile"
     />
   </div>

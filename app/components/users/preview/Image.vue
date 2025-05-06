@@ -11,7 +11,7 @@ const { original } = defineProps<{
 
 const { initGLightbox, closeLightbox } = useLightbox()
 
-// console.log(login_user?.value.image_three_url)
+// console.log(loginUser?.value.image_three_url)
 
 onMounted(() => {
   if (original) {

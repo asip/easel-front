@@ -8,7 +8,7 @@ interface UserFrameQuery {
 }
 
 export function useUserFrames () {
-  const frame_query = useState<UserFrameQuery>('user.frame_query', () => {
+  const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
     return {
       user_id: null,
       page: 1,
@@ -20,11 +20,11 @@ export function useUserFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (user_id: string | undefined, options?: { more?: boolean }) => {
+  const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
     const getOptions: any = {
-      url: `/users/${user_id}/frames`,
+      url: `/users/${userId}/frames`,
       query: {
-        page: frame_query.value.page
+        page: frameQuery.value.page
       }
     }
 
@@ -64,7 +64,7 @@ export function useUserFrames () {
       // console.log(frames)
       }
       if (meta) {
-        frame_query.value.pages = meta.pagination.pages
+        frameQuery.value.pages = meta.pagination.pages
       }
     }
   }
@@ -78,6 +78,6 @@ export function useUserFrames () {
   }
 
   return {
-    frame_query, getFrames, frames
+    frameQuery, getFrames, frames
   }
 }

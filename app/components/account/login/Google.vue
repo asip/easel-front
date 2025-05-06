@@ -2,21 +2,21 @@
 import { GoogleSignInButton, type CredentialResponse } from 'vue3-google-signin'
 
 const { closeModal } = useModal()
-const { login_with_google } = useLoginUser()
+const { loginWithGoogle } = useAccount()
 
 // handle success event
 const handleLoginSuccess = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
   closeModal('#login_modal')
-  await login_with_google(response)
+  await loginWithGoogle(response)
 }
 
 /*
 const handleOneTapLoginSuccess = async (response: CredentialResponse) => {
   // call your backend API here
   // the token can be accessed as: response.credential
-  await login_with_google(response)
+  await loginWithGoogle(response)
 }
 */
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { user, signup, error_messages, processing, isSuccess, flash, locale } = useLoginUser()
+const { user, signup, errorMessages, processing, isSuccess, flash, locale } = useAccount()
 const signup_rule = getSignupRules(user.value)
 
 const { r$ } = useI18nRegle(user, signup_rule)
@@ -53,7 +53,7 @@ const onSignupClick = async () => {
                     @change="onSelectFile"
                   >
                   <div
-                    v-for="(message, idx) in error_messages.image"
+                    v-for="(message, idx) in errorMessages.image"
                     :key="idx"
                   >
                     <div>{{ message }}</div>
@@ -86,7 +86,7 @@ const onSignupClick = async () => {
                     <div>{{ error }}</div>
                   </div>
                   <div
-                    v-for="(message, idx) in error_messages.name"
+                    v-for="(message, idx) in errorMessages.name"
                     :key="idx"
                   >
                     <div>{{ message }}</div>
@@ -114,7 +114,7 @@ const onSignupClick = async () => {
                     <div>{{ error }}</div>
                   </div>
                   <div
-                    v-for="(message, idx) in error_messages.email"
+                    v-for="(message, idx) in errorMessages.email"
                     :key="idx"
                   >
                     <div>{{ message }}</div>
@@ -142,7 +142,7 @@ const onSignupClick = async () => {
                     <div>{{ error }}</div>
                   </div>
                   <div
-                    v-for="(message, idx) in error_messages.password"
+                    v-for="(message, idx) in errorMessages.password"
                     :key="idx"
                   >
                     <div>{{ message }}</div>
@@ -170,7 +170,7 @@ const onSignupClick = async () => {
                     <div>{{ error }}</div>
                   </div>
                   <div
-                    v-for="(message, idx) in error_messages.password_confirmation"
+                    v-for="(message, idx) in errorMessages.password_confirmation"
                     :key="idx"
                   >
                     <div>{{ message }}</div>

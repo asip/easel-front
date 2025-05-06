@@ -7,23 +7,23 @@ const { userId, page } = defineProps<{
 }>()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { frame_query, getFrames, frames } = useUserFrames()
+const { frameQuery, getFrames, frames } = useUserFrames()
 
 // console.log('userId', userId)
 
 if (userId) {
-  if (frame_query.value.user_id !== userId) {
-    frame_query.value.page = 1
-    frame_query.value.pages = 1
+  if (frameQuery.value.user_id !== userId) {
+    frameQuery.value.page = 1
+    frameQuery.value.pages = 1
   }
-  frame_query.value.user_id = userId
+  frameQuery.value.user_id = userId
 }
 
 // console.log('searchFrame: start')
 await getFrames(userId)
 
 const clickCallback = async (pageNum: number) => {
-  frame_query.value.page = pageNum
+  frameQuery.value.page = pageNum
   await getFrames(userId, { more: true })
 }
 
@@ -64,13 +64,13 @@ onUnmounted(() => {
   </div>
   <br>
   <div
-    v-if="frame_query.pages > 1"
+    v-if="frameQuery.pages > 1"
     class="d-flex col-sm-12 justify-content-sm-center"
   >
     <ClientOnly>
       <Paginate
-        v-model="frame_query.page"
-        :page-count="frame_query.pages"
+        v-model="frameQuery.page"
+        :page-count="frameQuery.pages"
         :page-range="3"
         :margin-pages="2"
         :click-handler="clickCallback"

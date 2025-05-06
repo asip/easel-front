@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { UseLoginUserType } from '~/composables/use-login-user'
+import type { useAccountType } from '~/composables/use-account'
 
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { logged_in, user, updateProfile, error_messages, processing, isSuccess, flash, locale } = inject('accounter') as UseLoginUserType
+const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
 const user_rule = getUserRules(user.value)
 
 const { r$ } = useI18nRegle(user, user_rule)
@@ -27,7 +27,7 @@ const onUpdateClick = async () => {
     if (isSuccess()) {
       closeModal('#edit_profile_modal')
       openModal('#profile_modal')
-    } else if (!logged_in.value) {
+    } else if (!loggedIn.value) {
       closeModal('#edit_profile_modal')
     }
   }
@@ -56,7 +56,7 @@ const onUpdateClick = async () => {
                   @change="onSelectFile"
                 >
                 <div
-                  v-for="(message, idx) in error_messages.image"
+                  v-for="(message, idx) in errorMessages.image"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
@@ -89,7 +89,7 @@ const onUpdateClick = async () => {
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in error_messages.name"
+                  v-for="(message, idx) in errorMessages.name"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
@@ -130,7 +130,7 @@ const onUpdateClick = async () => {
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in error_messages.email"
+                  v-for="(message, idx) in errorMessages.email"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
@@ -171,7 +171,7 @@ const onUpdateClick = async () => {
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in error_messages.password"
+                  v-for="(message, idx) in errorMessages.password"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
@@ -199,7 +199,7 @@ const onUpdateClick = async () => {
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in error_messages.password_confirmation"
+                  v-for="(message, idx) in errorMessages.password_confirmation"
                   :key="idx"
                 >
                   <div>{{ message }}</div>

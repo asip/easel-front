@@ -2,8 +2,8 @@
 import type { UseCommentType } from '~/composables/use-comment'
 
 const { setFlash } = useToast()
-const { logged_in, login_user } = useLoginUser()
-const { comment, error_messages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
+const { loggedIn, loginUser } = useAccount()
+const { comment, errorMessages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
 
 const options = ref({
   theme: 'bubble',
@@ -62,7 +62,7 @@ const updateContent = (content: string) => {
 
 <template>
   <div
-    v-if="logged_in"
+    v-if="loggedIn"
     class="card col-sm-8 mx-auto kadomaru p-bottom-10"
   >
     <div class="card-block">
@@ -75,7 +75,7 @@ const updateContent = (content: string) => {
             class="float-start p-left-5"
           >
             <img
-              :src="`${login_user.image_thumb_url}`"
+              :src="`${loginUser.image_thumb_url}`"
               alt=""
               class="rounded"
               width="20"
@@ -87,7 +87,7 @@ const updateContent = (content: string) => {
             class="float-start small align-middle p-left-5"
           >
             <div class="badge rounded-pill bg-light text-info">
-              {{ login_user.name }}
+              {{ loginUser.name }}
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ const updateContent = (content: string) => {
               </div>
             </div>
             <div
-              v-for="(message, idx) in error_messages.body"
+              v-for="(message, idx) in errorMessages.body"
               :key="idx"
             >
               <p class="text-danger">

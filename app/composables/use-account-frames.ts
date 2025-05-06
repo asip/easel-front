@@ -8,7 +8,7 @@ interface AccountFrameQuery {
 }
 
 export function useAccountFrames () {
-  const frame_query = useState<AccountFrameQuery>('account.frame_query', () => {
+  const frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
     return {
       page: 1,
       pages: 1
@@ -23,7 +23,7 @@ export function useAccountFrames () {
     const getOptions: any = {
       url: `/account/frames`,
       query: {
-        page: frame_query.value.page
+        page: frameQuery.value.page
       },
       token: user?.token
     }
@@ -64,7 +64,7 @@ export function useAccountFrames () {
       // console.log(frames)
       }
       if (meta) {
-        frame_query.value.pages = meta.pagination.pages
+        frameQuery.value.pages = meta.pagination.pages
       }
     }
   }
@@ -78,6 +78,6 @@ export function useAccountFrames () {
   }
 
   return {
-    frame_query, getFrames, frames
+    frameQuery, getFrames, frames
   }
 }

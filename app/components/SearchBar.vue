@@ -2,15 +2,15 @@
 import { format } from '@formkit/tempo'
 
 const { locale } = useLocale()
-const { frame_query, queryString, searchFrame } = useFrameSearch()
+const { frameQuery, queryString, searchFrame } = useFrameSearch()
 
 const dateWord = defineModel<Date | null>({
   default: new Date,
   set (value: Date | null) {
     if (value) {
-      frame_query.value.word = format(value, 'YYYY/MM/DD', locale.value)
+      frameQuery.value.word = format(value, 'YYYY/MM/DD', locale.value)
     } else {
-      frame_query.value.word = ''
+      frameQuery.value.word = ''
     }
   }
 })
@@ -20,13 +20,13 @@ const masks = {
 }
 
 const onSearchClick = async () => {
-  frame_query.value.page = 1
+  frameQuery.value.page = 1
   await navigateTo({ path: '/', query: queryString.value })
   await searchFrame({ more: true })
 }
 
 const onClearClick = () => {
-  frame_query.value.word = ''
+  frameQuery.value.word = ''
   dateWord.value= null
 }
 </script>
@@ -74,7 +74,7 @@ const onClearClick = () => {
           <div class="d-flex justify-content-sm-center">
             <form class="d-flex">
               <input
-                v-model="frame_query.word"
+                v-model="frameQuery.word"
                 type="text"
                 :placeholder="$t('component.tag_search.placeholder')"
                 class="form-control me-sm-2"

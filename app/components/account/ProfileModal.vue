@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { UseLoginUserType } from '~/composables/use-login-user'
+import type { useAccountType } from '~/composables/use-account'
 
 const { openModal, closeModal } = useModal()
-const { logged_in, login_user, setUser } = inject('accounter') as UseLoginUserType
+const { loggedIn, loginUser, setUser } = inject('accounter') as useAccountType
 
 const onCloseClick = () => {
   closeModal('#profile_modal')
@@ -10,14 +10,14 @@ const onCloseClick = () => {
 
 const onEditClick = () => {
   closeModal('#profile_modal')
-  setUser(login_user)
+  setUser(loginUser)
   openModal('#edit_profile_modal')
 }
 </script>
 
 <template>
   <div
-    v-if="logged_in"
+    v-if="loggedIn"
     id="profile_modal"
     class="modal fade"
     tabindex="-1"
@@ -63,7 +63,7 @@ const onEditClick = () => {
         <div class="modal-body">
           <div class="row d-flex justify-content-sm-center border border-white">
             <UsersPreviewImage
-              v-model="login_user"
+              v-model="loginUser"
               :original="false"
             />
 
@@ -81,7 +81,7 @@ const onEditClick = () => {
                       </td>
                       <td>
                         <div class="form-control-plaintext">
-                          {{ login_user.name }}
+                          {{ loginUser.name }}
                         </div>
                       </td>
                     </tr>
@@ -94,7 +94,7 @@ const onEditClick = () => {
                       </td>
                       <td>
                         <div class="form-control-plaintext">
-                          {{ login_user.email }}
+                          {{ loginUser.email }}
                         </div>
                       </td>
                     </tr>

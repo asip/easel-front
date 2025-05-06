@@ -35,7 +35,7 @@ export const useFrame = () => {
     return frame.value.id
   })
 
-  const error_messages = ref<ErrorMessages<'name' | 'tags' | 'file' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<'name' | 'tags' | 'file' | 'base'>>({
     name: [],
     tags: [],
     file: [],
@@ -47,11 +47,11 @@ export const useFrame = () => {
   const { $i18n } = useNuxtApp()
 
   const { locale } = useLocale()
-  const { logged_in, login_user, clearLoginUser } = useLoginUser()
+  const { loggedIn, loginUser, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
   const getFrame = async (id: string) => {
-    if(!logged_in.value){
+    if(!loggedIn.value){
       const { data, error } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
@@ -83,7 +83,7 @@ export const useFrame = () => {
     } else {
       const { data, error } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
-        token: login_user?.value.token
+        token: loginUser?.value.token
       })
 
       clearFlash()
@@ -139,12 +139,12 @@ export const useFrame = () => {
       formData.append('frame[shooted_at]', frame.value.shooted_at)
     }
 
-    // console.log(login_user.value.token)
+    // console.log(loginUser.value.token)
 
     const { data, error, pending } = await usePostApi<Partial<FrameResource> & Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
       url: '/frames/',
       body: formData,
-      token: login_user.value.token,
+      token: loginUser.value.token,
       locale: locale.value
     })
 
@@ -177,34 +177,34 @@ export const useFrame = () => {
 
   const setErrorMessages = (errors: ErrorMessages<'name' | 'tag_list' | 'file'>) => {
     if (errors.file) {
-      error_messages.value.file = errors.file
+      errorMessages.value.file = errors.file
     } else {
-      error_messages.value.file = []
+      errorMessages.value.file = []
     }
     if (errors.name) {
-      error_messages.value.name = errors.name
+      errorMessages.value.name = errors.name
     } else {
-      error_messages.value.name = []
+      errorMessages.value.name = []
     }
     if (errors.tag_list) {
-      error_messages.value.tags = errors.tag_list
+      errorMessages.value.tags = errors.tag_list
     } else {
-      error_messages.value.tags = []
+      errorMessages.value.tags = []
     }
   }
 
   const clearErrorMessages = () => {
-    error_messages.value.file = []
-    error_messages.value.name = []
-    error_messages.value.tags = []
-    error_messages.value.base = []
+    errorMessages.value.file = []
+    errorMessages.value.name = []
+    errorMessages.value.tags = []
+    errorMessages.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (error_messages.value.file.length > 0 || error_messages.value.name.length > 0 ||
-      error_messages.value.tags.length > 0 || error_messages.value.base.length > 0
+    if (errorMessages.value.file.length > 0 || errorMessages.value.name.length > 0 ||
+      errorMessages.value.tags.length > 0 || errorMessages.value.base.length > 0
     ) {
       result = false
     }
@@ -228,12 +228,12 @@ export const useFrame = () => {
       }
     }
 
-    // console.log(login_user.value.token)
+    // console.log(loginUser.value.token)
 
     const { data, error, pending } = await usePutApi<Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
       url: `/frames/${frame.value.id}`,
       body: postData,
-      token: login_user.value.token,
+      token: loginUser.value.token,
       locale: locale.value
     })
 
@@ -265,7 +265,7 @@ export const useFrame = () => {
 
     const { error, pending } = await useDeleteApi({
       url: `/frames/${frame.value.id}`,
-      token: login_user.value.token
+      token: loginUser.value.token
     })
 
     clearFlash()
@@ -294,7 +294,7 @@ export const useFrame = () => {
     updateFrame,
     createFrame,
     deleteFrame,
-    error_messages,
+    errorMessages,
     processing,
     isSuccess,
     flash,

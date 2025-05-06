@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { closeModal, removeBackdrop } = useModal()
 const { setFlash } = useToast()
-const { logged_in, deleteAccount, flash } = useLoginUser()
+const { loggedIn, deleteAccount, flash } = useAccount()
 
 const onDeleteClick = async () => {
   await deleteAccount()
@@ -13,7 +13,7 @@ const onDeleteClick = async () => {
 
 <template>
   <ConfirmModal
-    v-if="logged_in"
+    v-if="loggedIn"
     id="delete_account_modal"
     @click="onDeleteClick"
   >

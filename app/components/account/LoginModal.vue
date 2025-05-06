@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { closeModal, openModal } = useModal()
-const { resetLoginParams } = inject('accounter') as UseLoginUserType
+const { resetLoginParams } = inject('accounter') as useAccountType
 
 const onSignupClick = () => {
   closeModal('#login_modal')

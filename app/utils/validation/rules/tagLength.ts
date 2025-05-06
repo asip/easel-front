@@ -7,8 +7,8 @@ export const tagLength = createRule({
       let res = true
       if(value){
         value.forEach((tag) => {
-          const res_row = tag.length > size
-          if (res_row) { res = false }
+          const resRow = tag.length > size
+          if (resRow) { res = false }
         })
       }
       return !isFilled(value) || res

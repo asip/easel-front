@@ -3,11 +3,11 @@ import { useFollow } from '~/composables/use-follow'
 
 const route = useRoute()
 const { id } = route.params
-const ref_page = route.query.ref
-const ref_id = route.query.ref_id
+const refPage = route.query.ref
+const refId = route.query.ref_id
 
 const { user, getUser } = useUser()
-const { logged_in, login_user } = useLoginUser()
+const { loggedIn, loginUser } = useAccount()
 const { queryString } = useFrameSearch()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
@@ -15,15 +15,15 @@ const userId = id as string
 
 await getUser(userId)
 
-if (logged_in.value) {
+if (loggedIn.value) {
   await isFollowing(userId)
 }
 
 provide('user', user)
 
 const onPageBack = async () => {
-  if (ref_page === 'frame') {
-    await navigateTo({ path: `/frames/${ref_id}` })
+  if (refPage === 'frame') {
+    await navigateTo({ path: `/frames/${refId}` })
   } else {
     await navigateTo({ path: '/', query: queryString.value })
   }
@@ -63,7 +63,7 @@ const onUnfollowClick = async () => {
         </div>
         <div class="row d-flex justify-content-sm-center">
           <div class="col-sm-6 text-center">
-            <div v-if="logged_in && user.id != login_user.id">
+            <div v-if="loggedIn && user.id != loginUser.id">
               <button
                 v-if="following"
                 class="btn btn-primary btn-sm"
