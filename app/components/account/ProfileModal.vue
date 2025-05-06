@@ -41,7 +41,7 @@ const onEditClick = () => {
               href="#"
               @click="onEditClick"
             >
-               <i class="bi bi-pencil-square" />
+              <i class="bi bi-pencil-square" />
             </a>&nbsp;
             <a
               href="#"
