@@ -1,6 +1,7 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 // @ts-expect-error
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
+import { usePhotoSwipe } from './use-photo-swipe'
 // import 'photoswipe/style.css';
 
 export function useLightbox (galleryRefKey: string, imageSelector?: string) {
@@ -8,6 +9,8 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
 
   let lightbox: any
   let photoswipe: boolean
+
+  const { assignSize } = usePhotoSwipe()
 
   const initPSLightbox = async () => {
     const galleryEl: HTMLDivElement = galleryRef.value
@@ -30,23 +33,6 @@ export function useLightbox (galleryRefKey: string, imageSelector?: string) {
     const { $glightbox} = useNuxtApp() as any
 
     lightbox = $glightbox({ selector: imageSelector })
-  }
-
-  const assignSize = async (gallery: HTMLDivElement) => {
-    const galleryAnchors = gallery?.querySelectorAll('a')
-    for await (const el of galleryAnchors) {
-      const img: HTMLImageElement = await loadImage(el.href)
-      el.setAttribute('data-pswp-width', img.naturalWidth.toString())
-      el.setAttribute('data-pswp-height', img.naturalHeight.toString())
-      el.firstElementChild?.removeAttribute('style')
-    }
-  }
-
-  const loadImage = async (src: string) => {
-    const img: HTMLImageElement = new window.Image()
-    img.src = src
-    await img.decode()
-    return img
   }
 
   const closeLightbox = () => {
