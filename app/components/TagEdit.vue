@@ -6,7 +6,7 @@ const modelValue = defineModel<Frame>()
 
 const { initTagEditor, closeTagEditor } = useTagEditor()
 
-const tag_list = computed(() => modelValue.value?.tag_list)
+const tagList = computed(() => modelValue.value?.tag_list)
 
 onMounted(() => {
   // console.log(frame)
@@ -28,7 +28,7 @@ onUnmounted(() => {
   >
   <input
     id="tag_list"
-    v-model="tag_list"
+    v-model="tagList"
     type="hidden"
   >
 </template>

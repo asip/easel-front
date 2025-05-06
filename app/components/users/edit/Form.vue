@@ -4,9 +4,9 @@ import type { useAccountType } from '~/composables/use-account'
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
 const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
-const user_rule = getUserRules(user.value)
+const userRules = getUserRules(user.value)
 
-const { r$ } = useI18nRegle(user, user_rule)
+const { r$ } = useI18nRegle(user, userRules)
 
 onMounted(()=>{
   i18n.global.locale.value = locale.value

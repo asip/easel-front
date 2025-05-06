@@ -2,9 +2,9 @@
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
 const { user, signup, errorMessages, processing, isSuccess, flash, locale } = useAccount()
-const signup_rule = getSignupRules(user.value)
+const signupRules = getSignupRules(user.value)
 
-const { r$ } = useI18nRegle(user, signup_rule)
+const { r$ } = useI18nRegle(user, signupRules)
 
 onMounted(() => {
   i18n.global.locale.value = locale.value

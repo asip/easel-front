@@ -4,7 +4,7 @@ import type { User } from '~/interfaces/user'
 
 const modelValue = defineModel<Frame | User>()
 
-const preview_url = computed(() => {
+const previewUrl = computed(() => {
   if (modelValue.value && 'file' in modelValue.value) {
     if (!modelValue.value.file) {
       return `${modelValue.value.file_three_url}`
@@ -23,12 +23,12 @@ const preview_url = computed(() => {
 
 <template>
   <div
-    v-if="preview_url"
+    v-if="previewUrl"
     class="d-flex justify-content-sm-center"
     style="display: block;padding-bottom:5px;"
   >
     <img
-      :src="preview_url"
+      :src="previewUrl"
       alt=""
       class="mx-auto"
       style="max-width: 300px; max-height: 300px; display: block;"
