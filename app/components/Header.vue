@@ -81,7 +81,6 @@ const onTopPageClick = async () => {
         >
           <li class="nav-item dropdown small">
             <button
-              id="navbarDropdownMenuLink"
               class="nav-link dropdown-toggle btn btn-light"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -89,8 +88,7 @@ const onTopPageClick = async () => {
               {{ loginUser.name }}
             </button>
             <ul
-              class="dropdown-menu dropdown-menu-light"
-              aria-labelledby="navbarDropdownMenuLink"
+              class="dropdown-menu"
             >
               <li>
                 <a
