@@ -27,14 +27,14 @@ importers:
         specifier: ^1.1.4
         version: 1.1.4(vue@3.5.13(typescript@5.8.3))
       '@yaireo/tagify':
-        specifier: ^4.35.0
-        version: 4.35.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^4.35.1
+        version: 4.35.1(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       bootstrap:
         specifier: ^5.3.6
         version: 5.3.6(@popperjs/core@2.11.8)
       bootstrap-icons:
-        specifier: ^1.12.1
-        version: 1.12.1
+        specifier: ^1.13.1
+        version: 1.13.1
       glightbox:
         specifier: ^3.3.1
         version: 3.3.1
@@ -91,8 +91,8 @@ importers:
         specifier: ^5.2.10
         version: 5.2.10
       '@types/google.accounts':
-        specifier: ^0.0.15
-        version: 0.0.15
+        specifier: ^0.0.16
+        version: 0.0.16
       '@types/sanitize-html':
         specifier: ^2.16.0
         version: 2.16.0
@@ -1555,8 +1555,8 @@ packages:
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
 
-  '@types/google.accounts@0.0.15':
-    resolution: {integrity: sha512-NiydIuJzwdpnWNqTPOeDzGXhzz46Ll6T4rN3YWSm9Zfx/8ZfbwFbzyPSw1Tkz4uE3gQiU+fRj4KvBVUuHmk+KQ==}
+  '@types/google.accounts@0.0.16':
+    resolution: {integrity: sha512-llwLXm6qVFMrY31VNyGe87pyRU36J5/Z+NF1+hMraPjxYPdjjw953JozeG+/+tbjzlFkmd/gIzXAK7hyJ8ukqA==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1897,8 +1897,8 @@ packages:
     resolution: {integrity: sha512-ueFCcIPaMgtuYDS9u0qlUoEvj6GiSsKrwnOLPp9SshqjtcRaR1IEHRjoReq3sXNydsF5i0ZnmuYgXq9dV53t0g==}
     engines: {node: '>=18.0.0'}
 
-  '@yaireo/tagify@4.35.0':
-    resolution: {integrity: sha512-D+o/c2rAhNA/Cmiw1sV1YtuxPCqB0UpVOXdnR9DXPuMHvU0quIEkU3FA6JDXTYMQV6FL7YGwonq2yPMfkc83lQ==}
+  '@yaireo/tagify@4.35.1':
+    resolution: {integrity: sha512-PF6nwp1lHMVS2IVpqZTxx53fQyEBUDjdDQsi7gD9Vx/EQ398gRH8LByEL8lawws9iJHB90on74VWG3pvwznrEg==}
     engines: {node: '>=16.15.0', npm: '>=9.0.0'}
     peerDependencies:
       prop-types: '>15.5.7'
@@ -2080,8 +2080,8 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  bootstrap-icons@1.12.1:
-    resolution: {integrity: sha512-ekwupjsteHQmgGV+haQ0nNMoSyKCbJj5ou+06vFzb9uR2/bwN9isNEgXBaQzcT+fLzhKS3OaBNpwz8XdZlIgYQ==}
+  bootstrap-icons@1.13.1:
+    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
 
   bootstrap@5.3.6:
     resolution: {integrity: sha512-jX0GAcRzvdwISuvArXn3m7KZscWWFAf1MKBcnzaN02qWMb3jpMoUX4/qgeiGzqyIb4ojulRzs89UCUmGcFSzTA==}
@@ -7467,7 +7467,7 @@ snapshots:
 
   '@types/estree@1.0.7': {}
 
-  '@types/google.accounts@0.0.15': {}
+  '@types/google.accounts@0.0.16': {}
 
   '@types/json-schema@7.0.15': {}
 
@@ -7915,7 +7915,7 @@ snapshots:
       '@whatwg-node/promise-helpers': 1.3.1
       tslib: 2.8.1
 
-  '@yaireo/tagify@4.35.0(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@yaireo/tagify@4.35.1(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       prop-types: 15.8.1
       react: 19.0.0
@@ -8095,7 +8095,7 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bootstrap-icons@1.12.1: {}
+  bootstrap-icons@1.13.1: {}
 
   bootstrap@5.3.6(@popperjs/core@2.11.8):
     dependencies:
