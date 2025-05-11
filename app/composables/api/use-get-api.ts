@@ -14,18 +14,24 @@ export const useGetApi = async <T>({ url, query = {}, token = null, more = false
 
   const { $api } = useNuxtApp()
 
+  const tokenRef = ref<string>()
+
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
+    tokenRef.value = token
   }
 
   const options: any = {
     method: 'get',
     query,
-    headers
+    headers,
+    onResponse({ response  } : { response: any }) {
+      if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+    }
   }
 
   if (more) {
@@ -38,5 +44,5 @@ export const useGetApi = async <T>({ url, query = {}, token = null, more = false
     $api(url, options)
   )
 
-  return { data, error }
+  return { token: tokenRef, data, error }
 }

@@ -9,6 +9,8 @@ export const usePutApi = async <T>({ url, body = {}, token = null, locale = null
 
   const key = `${url}-${new Date().getTime()}`
 
+  const tokenRef = ref<string>()
+
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -17,6 +19,7 @@ export const usePutApi = async <T>({ url, body = {}, token = null, locale = null
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
+    tokenRef.value = token
   }
 
   if (locale) {
@@ -27,11 +30,14 @@ export const usePutApi = async <T>({ url, body = {}, token = null, locale = null
     $api(url, {
       method: 'put',
       body,
-      headers
+      headers,
+      onResponse({ response  } : { response: any }) {
+        tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      }
     })
   )
 
   pending.value = status.value === 'pending'
 
-  return { data, error, pending }
+  return { token: tokenRef, data, error, pending }
 }

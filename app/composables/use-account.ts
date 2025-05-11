@@ -116,7 +116,7 @@ export const useAccount = () => {
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
-      const { data, error } = await useGetApi<UserResource>({
+      const { token, data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
         token: loginUser.value.token
       })
@@ -138,7 +138,7 @@ export const useAccount = () => {
 
         if (userAttrs) {
           // console.log('test3')
-          setJson2LoginUser(userAttrs)
+          setJson2LoginUser(userAttrs, token.value)
           loggedIn.value = true
         }
       }
@@ -153,7 +153,7 @@ export const useAccount = () => {
       }
     }
 
-    const { data, error } = await usePostApi<Partial<UserResource> & Partial<MessagesResource>>({
+    const { token ,data, error } = await usePostApi<Partial<UserResource> & Partial<MessagesResource>>({
       url: '/sessions/',
       body: postData,
       locale: locale.value
@@ -179,7 +179,7 @@ export const useAccount = () => {
       } else {
         const userAttrs = data.value as UserResource
         if (userAttrs) {
-          setJson2LoginUser(userAttrs)
+          setJson2LoginUser(userAttrs, token.value)
           loggedIn.value = true
           // console.log(loginUser.value)
 
@@ -196,7 +196,7 @@ export const useAccount = () => {
       credential: response.credential
     }
 
-    const { data, error } = await usePostApi<UserResource>({
+    const { token, data, error } = await usePostApi<UserResource>({
       url: '/oauth/sessions/',
       body: postData
     })
@@ -213,7 +213,7 @@ export const useAccount = () => {
       }
     } else if (data.value) {
       const userAttrs  = data.value
-      setJson2LoginUser(userAttrs)
+      setJson2LoginUser(userAttrs, token.value)
       loggedIn.value = true
       // console.log(loginUser.value)
 
@@ -228,8 +228,9 @@ export const useAccount = () => {
     loginParams.value.password = ''
   }
 
-  const setJson2LoginUser = (resource: UserResource) => {
+  const setJson2LoginUser = (resource: UserResource, token: string | undefined) => {
     Object.assign(loginUser.value, resource)
+    loginUser.value.token = token
   }
 
   const setUser = (loginUser: Ref<User>) => {
@@ -256,7 +257,7 @@ export const useAccount = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
+    const { token ,data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
       url: '/account/profile/',
       body: formData,
       token: user.value.token,
@@ -285,7 +286,7 @@ export const useAccount = () => {
       } else {
         const userAttrs = data.value as UserResource
         if (userAttrs) {
-          setJson2LoginUser(userAttrs)
+          setJson2LoginUser(userAttrs, token.value)
           setToken2Cookie()
         }
       }

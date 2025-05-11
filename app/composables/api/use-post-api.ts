@@ -9,6 +9,8 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
 
   const key = `${url}-${new Date().getTime()}`
 
+  const tokenRef = ref<string>()
+
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'
   }
@@ -17,6 +19,7 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
+    tokenRef.value = token
   }
 
   if (locale) {
@@ -27,11 +30,14 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
     $api(url, {
       method: 'post',
       body,
-      headers
+      headers,
+      onResponse({ response  } : { response: any }) {
+        if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      }
     })
   )
 
   pending.value = status.value === 'pending'
 
-  return { data, error, pending }
+  return { token: tokenRef, data, error, pending }
 }
