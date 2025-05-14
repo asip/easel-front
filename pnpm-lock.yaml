@@ -18,14 +18,14 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       '@regle/core':
-        specifier: ^1.1.4
-        version: 1.1.4(vue@3.5.13(typescript@5.8.3))
+        specifier: ^1.2.1
+        version: 1.2.1(vue@3.5.13(typescript@5.8.3))
       '@regle/nuxt':
-        specifier: 1.1.4
-        version: 1.1.4(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)
+        specifier: 1.2.1
+        version: 1.2.1(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)
       '@regle/rules':
-        specifier: ^1.1.4
-        version: 1.1.4(vue@3.5.13(typescript@5.8.3))
+        specifier: ^1.2.1
+        version: 1.2.1(vue@3.5.13(typescript@5.8.3))
       '@yaireo/tagify':
         specifier: ^4.35.1
         version: 4.35.1(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -970,16 +970,16 @@ packages:
       vite-plugin-eslint2:
         optional: true
 
-  '@nuxt/kit@3.16.2':
-    resolution: {integrity: sha512-K1SAUo2vweTfudKZzjKsZ5YJoxPLTspR5qz5+G61xtZreLpsdpDYfBseqsIAl5VFLJuszeRpWQ01jP9LfQ6Ksw==}
+  '@nuxt/kit@3.17.1':
+    resolution: {integrity: sha512-VG3NlK51jzNNZ9+VIVMwN2YgDddkCkdZRJv0KMs63Z81UQo1FfEwzapqUiV23SWkyyfNSD/1XGarYPOl30J39g==}
     engines: {node: '>=18.12.0'}
 
   '@nuxt/kit@3.17.3':
     resolution: {integrity: sha512-aw6u6mT3TnM/MmcCRDMv3i9Sbm5/ZMSJgDl+N+WsrWNDIQ2sWmsqdDkjb/HyXF20SNwc2891hRBkaQr3hG2mhA==}
     engines: {node: '>=18.12.0'}
 
-  '@nuxt/schema@3.16.2':
-    resolution: {integrity: sha512-2HZPM372kuI/uw9VU/hOoYuzv803oZAtyoEKC5dQCQTKAQ293AjypF3WljMXUSReFS/hcbBSgGzYUPHr3Qo+pg==}
+  '@nuxt/schema@3.17.1':
+    resolution: {integrity: sha512-FmPMyfexkZ0bp7rDz+012/ee9rEHPAZ3P8alOZrCV9j/xPcjuKspcLWGZz4kAoJA7nnx49kpRUcS2rpYcBRV+A==}
     engines: {node: ^14.18.0 || >=16.10.0}
 
   '@nuxt/schema@3.17.3':
@@ -1298,8 +1298,8 @@ packages:
     resolution: {integrity: sha512-aQypoot0HPSJa6gDPEPTntc1GT6QINrSbgRlRhadGW2WaYqUK3tK4Bw9SBMZXhmxd3GeAlZjVcODHgiu+THY7A==}
     engines: {node: '>=18'}
 
-  '@regle/core@1.1.4':
-    resolution: {integrity: sha512-Q7/j+KCRckuUGP/0skis2/qG1Y/WZMFD9/BaPSr0UY4q3F7gKAwhhw2tbHLJb6VGjE3CvemjSJ0qzJzbL7RIqA==}
+  '@regle/core@1.2.1':
+    resolution: {integrity: sha512-qRK9MPBssaKsWk5+vbBQVkj6MGwl2D+k59Bwst8NYxiHmkE5eEhGV6v5exriSmluU8AqOM2zbe96XDS8KY1MrA==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: '>=3.3.0'
@@ -1307,14 +1307,14 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.1.4':
-    resolution: {integrity: sha512-k8In4rKPPyn4kphoBY+n47G8K2s/1kpZM4+aSNIgloKpd3x4TjsgA3Qfx0Lx4CBNZ4YJM/w0fE9IBph8UDdLpg==}
+  '@regle/nuxt@1.2.1':
+    resolution: {integrity: sha512-2/wCTAt/bGMj+B+BwRYo4ifutcftVsppG36Je7+e2BAA/92upVj1P2E7IscgVkY1WmAKRt7Y95ptjdP5YHTf5w==}
 
-  '@regle/rules@1.1.4':
-    resolution: {integrity: sha512-hfOuhud59sXsIhh6KGLCnsLKK3fOHI2cYZNT8sr3wLSIK/68e9jAbtxYLlpQnpmIK3BAEEehuNz6NXSteK1PRw==}
+  '@regle/rules@1.2.1':
+    resolution: {integrity: sha512-TMSoEWjsb5jvpWTt7D/JKrgP02mirBUJrtTM77XQb7/G/BWRd03MVlr/6isKU5O+Qyn01uzQW7OUrR9nzT3MMQ==}
 
-  '@regle/schemas@1.1.4':
-    resolution: {integrity: sha512-twiKexVTpt6NuiTa9qsZh8La2N2faYcK78lnUdQUX0zw2NBPUB8ioDIYc14hAI9ZiG5YvTvf4PYRzZGDc8iaqA==}
+  '@regle/schemas@1.2.1':
+    resolution: {integrity: sha512-ciS54iULWDL8T6RrQT8f72FFY/or/MaPPWV8qT8mWHoM+iOXEg2wOimm/ca/E6+XSH4wS4WcBgpHLV5UaT7Wlw==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -5269,10 +5269,6 @@ packages:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
 
-  unimport@4.1.3:
-    resolution: {integrity: sha512-H+IVJ7rAkE3b+oC8rSJ2FsPaVsweeMC8eKZc+C6Mz7+hxDF45AnrY/tVCNRBvzMwWNcJEV67WdAVcal27iMjOw==}
-    engines: {node: '>=18.12.0'}
-
   unimport@5.0.1:
     resolution: {integrity: sha512-1YWzPj6wYhtwHE+9LxRlyqP4DiRrhGfJxdtH475im8ktyZXO3jHj/3PZ97zDdvkYoovFdi0K4SKl3a7l92v3sQ==}
     engines: {node: '>=18.12.0'}
@@ -6882,7 +6878,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@nuxt/kit@3.16.2(magicast@0.3.5)':
+  '@nuxt/kit@3.17.1(magicast@0.3.5)':
     dependencies:
       c12: 3.0.3(magicast@0.3.5)
       consola: 3.4.2
@@ -6890,7 +6886,6 @@ snapshots:
       destr: 2.0.5
       errx: 0.1.0
       exsolve: 1.0.5
-      globby: 14.1.0
       ignore: 7.0.4
       jiti: 2.4.2
       klona: 2.0.6
@@ -6902,9 +6897,10 @@ snapshots:
       scule: 1.3.0
       semver: 7.7.1
       std-env: 3.9.0
+      tinyglobby: 0.2.13
       ufo: 1.6.1
       unctx: 2.4.1
-      unimport: 4.1.3
+      unimport: 5.0.1
       untyped: 2.0.0
     transitivePeerDependencies:
       - magicast
@@ -6936,8 +6932,9 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/schema@3.16.2':
+  '@nuxt/schema@3.17.1':
     dependencies:
+      '@vue/shared': 3.5.13
       consola: 3.4.2
       defu: 6.1.4
       pathe: 2.0.3
@@ -7283,18 +7280,18 @@ snapshots:
 
   '@poppinss/exception@1.2.1': {}
 
-  '@regle/core@1.1.4(vue@3.5.13(typescript@5.8.3))':
+  '@regle/core@1.2.1(vue@3.5.13(typescript@5.8.3))':
     dependencies:
       vue: 3.5.13(typescript@5.8.3)
 
-  '@regle/nuxt@1.1.4(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)':
+  '@regle/nuxt@1.2.1(magicast@0.3.5)(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)':
     dependencies:
-      '@nuxt/kit': 3.16.2(magicast@0.3.5)
-      '@nuxt/schema': 3.16.2
-      '@regle/core': 1.1.4(vue@3.5.13(typescript@5.8.3))
-      '@regle/rules': 1.1.4(vue@3.5.13(typescript@5.8.3))
+      '@nuxt/kit': 3.17.1(magicast@0.3.5)
+      '@nuxt/schema': 3.17.1
+      '@regle/core': 1.2.1(vue@3.5.13(typescript@5.8.3))
+      '@regle/rules': 1.2.1(vue@3.5.13(typescript@5.8.3))
     optionalDependencies:
-      '@regle/schemas': 1.1.4(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)
+      '@regle/schemas': 1.2.1(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)
     transitivePeerDependencies:
       - arktype
       - magicast
@@ -7303,17 +7300,17 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.1.4(vue@3.5.13(typescript@5.8.3))':
+  '@regle/rules@1.2.1(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      '@regle/core': 1.1.4(vue@3.5.13(typescript@5.8.3))
+      '@regle/core': 1.2.1(vue@3.5.13(typescript@5.8.3))
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.1.4(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)':
+  '@regle/schemas@1.2.1(vue@3.5.13(typescript@5.8.3))(zod@3.24.3)':
     dependencies:
-      '@regle/core': 1.1.4(vue@3.5.13(typescript@5.8.3))
-      '@regle/rules': 1.1.4(vue@3.5.13(typescript@5.8.3))
+      '@regle/core': 1.2.1(vue@3.5.13(typescript@5.8.3))
+      '@regle/rules': 1.2.1(vue@3.5.13(typescript@5.8.3))
       '@standard-schema/spec': 1.0.0
     optionalDependencies:
       zod: 3.24.3
@@ -11653,23 +11650,6 @@ snapshots:
   unicorn-magic@0.1.0: {}
 
   unicorn-magic@0.3.0: {}
-
-  unimport@4.1.3:
-    dependencies:
-      acorn: 8.14.1
-      escape-string-regexp: 5.0.0
-      estree-walker: 3.0.3
-      local-pkg: 1.1.1
-      magic-string: 0.30.17
-      mlly: 1.7.4
-      pathe: 2.0.3
-      picomatch: 4.0.2
-      pkg-types: 2.1.0
-      scule: 1.3.0
-      strip-literal: 3.0.0
-      tinyglobby: 0.2.13
-      unplugin: 2.3.3
-      unplugin-utils: 0.2.4
 
   unimport@5.0.1:
     dependencies:
