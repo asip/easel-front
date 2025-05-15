@@ -7,6 +7,6 @@ export const getUserRules = (user: User) =>
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
     email: { required, email },
-    password: {},
+    password: { minLength: minLength(6), maxLength: maxLength(128) },
     password_confirmation: { sameAs: sameAs(user.password) }
   })

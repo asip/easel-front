@@ -5,6 +5,7 @@
       "name": "User Name",
       "image": "Icon",
       "email": "E-mail",
+      "current_password": "Current Password",
       "password": "Password",
       "password_confirmation": "Password (confirmation)"
     },
@@ -40,6 +41,7 @@
       "delete": "Delete",
       "new": "User Registration",
       "edit": "Profile Editing",
+      "edit_password": "Password Editing",
       "follow": "Follow",
       "unfollow": "Now following",
       "frame_list": "My List"
@@ -64,6 +66,9 @@
     },
     "error": {
       "login": "Please login."
+    },
+    "login": {
+      "error": "Email or password is incorrect."
     }
   }
 }

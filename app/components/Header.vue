@@ -139,4 +139,5 @@ const onTopPageClick = async () => {
   <AccountSignupModal v-if="!loggedIn" />
   <AccountProfileModal v-if="loggedIn" />
   <AccountEditModal v-if="loggedIn" />
+  <AccountPasswordEditModal v-if="loggedIn && loginUser && !loginUser.social_login" />
 </template>

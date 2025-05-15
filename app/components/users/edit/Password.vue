@@ -1,34 +1,29 @@
 <script setup lang="ts">
 import type { useAccountType } from '~/composables/use-account'
-import { profileRules } from "~/composables/index"
 
 const { setFlash } = useToast()
 const { openModal, closeModal, removeBackdrop } = useModal()
-const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
+const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
+const passwordRules = getPasswordRules(user.value)
 
-const { r$ } = useI18nRegle(user, profileRules)
+const { r$ } = useI18nRegle(user, passwordRules)
 
 onMounted(()=>{
   i18n.global.locale.value = locale.value
 })
-
-const onSelectFile = (evt: Event) => {
-  const target = evt.target as HTMLInputElement
-  useImagePreview(target, user.value)
-}
 
 const onUpdateClick = async () => {
   i18n.global.locale.value = locale.value
   const { valid } = await r$.$validate()
 
   if (valid) {
-    await updateProfile()
+    await updatePassword()
     setFlash(flash.value)
     if (isSuccess()) {
-      closeModal('#edit_profile_modal')
+      closeModal('#edit_password_modal')
       openModal('#profile_modal')
     } else if (!loggedIn.value) {
-      closeModal('#edit_profile_modal')
+      closeModal('#edit_password_modal')
       removeBackdrop()
     }
   }
@@ -41,113 +36,87 @@ const onUpdateClick = async () => {
       <div class="col-sm-10">
         <table class="table table-bordered table_rounded">
           <tbody>
-            <tr>
-              <td style="width: 10em;">
-                <label
-                  for="image"
-                  class="col-form-label"
-                >{{ $t('model.user.image') }}：</label>
-              </td>
-              <td>
-                <input
-                  type="file"
-                  accept="image/jpg,image/jpeg,image/png"
-                  multiple="false"
-                  class="form-control"
-                  @change="onSelectFile"
-                >
-                <div
-                  v-for="(message, idx) in errorMessages.image"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <ImagePreview v-model="user" />
-              </td>
-            </tr>
-            <tr v-if="!user.social_login">
+            <tr v-if="!loginUser.social_login">
               <td>
                 <label
-                  for="name"
+                  for="current_password"
                   class="col-form-label"
-                >{{ $t('model.user.name') }}：</label>
+                >{{ $t('model.user.current_password') }}：</label>
               </td>
-              <td>
+              <td class="form-group">
                 <input
-                  v-model="user.name"
-                  type="text"
-                  :placeholder="$t('model.user.name')"
+                  v-model="user.current_password"
+                  type="password"
+                  :placeholder="$t('model.user.current_password')"
                   class="form-control"
                 >
                 <div
-                  v-for="error of r$.$errors.name"
+                  v-for="error of r$.$errors.current_password"
                   :key="error"
                 >
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in errorMessages.name"
+                  v-for="(message, idx) in errorMessages.current_password"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr v-else>
-              <td>
-                <label
-                  for="name"
-                  class="col-form-label"
-                >{{ $t('model.user.name') }}：</label>
-              </td>
-              <td>
-                <div class="form-control-plaintext">
-                  {{ user.name }}
                 </div>
               </td>
             </tr>
             <tr v-if="!user.social_login">
               <td>
                 <label
-                  for="email"
+                  for="password"
                   class="col-form-label"
-                >{{ $t('model.user.email') }}：</label>
+                >{{ $t('model.user.password') }}：</label>
               </td>
-              <td>
+              <td class="form-group">
                 <input
-                  v-model="user.email"
-                  type="text"
-                  :placeholder="$t('model.user.email')"
+                  v-model="user.password"
+                  type="password"
+                  :placeholder="$t('model.user.password')"
                   class="form-control"
                 >
                 <div
-                  v-for="error of r$.$errors.email"
+                  v-for="error of r$.$errors.password"
                   :key="error"
                 >
                   <div>{{ error }}</div>
                 </div>
                 <div
-                  v-for="(message, idx) in errorMessages.email"
+                  v-for="(message, idx) in errorMessages.password"
                   :key="idx"
                 >
                   <div>{{ message }}</div>
                 </div>
               </td>
             </tr>
-            <tr v-else>
+            <tr v-if="!user.social_login">
               <td>
                 <label
-                  for="email"
+                  for="password_confirmation"
                   class="col-form-label"
-                >{{ $t('model.user.email') }}：</label>
+                >{{ $t('model.user.password_confirmation') }}：</label>
               </td>
               <td>
-                <div class="form-control-plaintext">
-                  {{ user.email }}
+                <input
+                  v-model="user.password_confirmation"
+                  type="password"
+                  :placeholder="$t('model.user.password_confirmation')"
+                  class="form-control"
+                >
+                <div
+                  v-for="error of r$.$errors.password_confirmation"
+                  :key="error"
+                >
+                  <div>{{ error }}</div>
+                </div>
+                <div
+                  v-for="(message, idx) in errorMessages.password_confirmation"
+                  :key="idx"
+                >
+                  <div>{{ message }}</div>
                 </div>
               </td>
             </tr>

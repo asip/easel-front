@@ -5,6 +5,7 @@
       "name": "ユーザー名",
       "image": "アイコン",
       "email": "Eメール ",
+      "current_password": "現在のパスワード",
       "password": "パスワード",
       "password_confirmation": "パスワード(確認)"
     },
@@ -40,6 +41,7 @@
       "delete": "退会",
       "new": "ユーザー登録",
       "edit": "プロフィール編集",
+      "edit_password": "パスワード変更",
       "follow": "フォローする",
       "unfollow": "フォローを外す",
       "frame_list": "マイ リスト"
@@ -64,6 +66,9 @@
     },
     "error": {
       "login": "ログインしてください"
+    },
+    "login": {
+      "error": "Eメールかパスワードが間違っています"
     }
   }
 }

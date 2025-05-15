@@ -8,11 +8,11 @@ const onLoginClick = async () => {
   await login()
   if (loginMessages.value.length === 0) {
     closeModal('#login_modal')
+    removeBackdrop()
   } else {
     setMessages(loginMessages.value)
   }
   resetLoginParams()
-  removeBackdrop()
 }
 </script>
 

@@ -13,6 +13,12 @@ const onEditClick = () => {
   setUser(loginUser)
   openModal('#edit_profile_modal')
 }
+
+const onEditPasswordClick = () => {
+  closeModal('#profile_modal')
+  setUser(loginUser)
+  openModal('#edit_password_modal')
+}
 </script>
 
 <template>
@@ -43,6 +49,14 @@ const onEditClick = () => {
             >
               <i class="bi bi-pencil-square" />
             </a>&nbsp;
+            <span v-if="loginUser && !loginUser.social_login">
+            <a
+              href="#"
+              @click="onEditPasswordClick"
+            >
+              <i class="bi bi-lock" />
+            </a>&nbsp;
+          </span>
             <a
               href="#"
               data-bs-toggle="modal"

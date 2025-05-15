@@ -3,6 +3,7 @@ import type { User } from '~/interfaces/user'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
 import type { ErrorsResource, MessagesResource, UserResource } from '~/interfaces'
+import Password from '~/components/users/edit/Password.vue'
 
 export const useAccount = () => {
   const loginParams = ref({
@@ -50,10 +51,11 @@ export const useAccount = () => {
 
   const loginMessages = ref<string[]>([])
 
-  const errorMessages = ref<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'base'>>({
     image: [],
     name: [],
     email: [],
+    current_password: [],
     password: [],
     password_confirmation: [],
     base: []
@@ -82,7 +84,7 @@ export const useAccount = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending } = await usePostApi<Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
+    const { data, error, pending } = await usePostApi<Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
       url: '/users/',
       body: formData,
       locale: locale.value
@@ -159,10 +161,15 @@ export const useAccount = () => {
       locale: locale.value
     })
 
+    // console.log(token.value)
+
     clearFlash()
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 401:
+          loginMessages.value = [$i18n.t('action.login.error')]
+          break
         case 500:
           flash.value.alert = error.value.message
           break
@@ -170,22 +177,14 @@ export const useAccount = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { messages } = data.value
+      const userAttrs = data.value as UserResource
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs, token.value)
+        loggedIn.value = true
+        // console.log(loginUser.value)
 
-      if (messages) {
-        loginMessages.value = messages
-
-        // console.log(loginMessages.value)
-      } else {
-        const userAttrs = data.value as UserResource
-        if (userAttrs) {
-          setJson2LoginUser(userAttrs, token.value)
-          loggedIn.value = true
-          // console.log(loginUser.value)
-
-          accessToken.value = loginUser.value.token
-          loginMessages.value = []
-        }
+        accessToken.value = loginUser.value.token
+        loginMessages.value = []
       }
     }
   }
@@ -200,6 +199,8 @@ export const useAccount = () => {
       url: '/oauth/sessions/',
       body: postData
     })
+
+    // console.log(token.value)
 
     clearFlash()
 
@@ -228,9 +229,9 @@ export const useAccount = () => {
     loginParams.value.password = ''
   }
 
-  const setJson2LoginUser = (resource: UserResource, token: string | undefined) => {
+  const setJson2LoginUser = (resource: UserResource, token?: string | undefined) => {
     Object.assign(loginUser.value, resource)
-    loginUser.value.token = token
+    if(token) loginUser.value.token = token
   }
 
   const setUser = (loginUser: Ref<User>) => {
@@ -254,10 +255,10 @@ export const useAccount = () => {
     }
     formData.append('user[name]', user.value.name)
     formData.append('user[email]', user.value.email)
-    formData.append('user[password]', user.value.password)
-    formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { token ,data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>>>>({
+    // console.log(user.value.token)
+
+    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
       url: '/account/profile/',
       body: formData,
       token: user.value.token,
@@ -286,7 +287,7 @@ export const useAccount = () => {
       } else {
         const userAttrs = data.value as UserResource
         if (userAttrs) {
-          setJson2LoginUser(userAttrs, token.value)
+          setJson2LoginUser(userAttrs)
           setToken2Cookie()
         }
       }
@@ -295,7 +296,59 @@ export const useAccount = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: ErrorMessages<'image' | 'name' | 'email' | 'password' | 'password_confirmation'>) => {
+  const updatePassword = async () => {
+    processing.value = true
+    // console.log(user.image)
+
+    const formData = {
+      user: {
+        current_password: user.value.current_password,
+        password: user.value.password,
+        password_confirmation: user.value.password_confirmation
+      }
+    }
+
+    // console.log(user.value.token)
+
+    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
+      url: '/account/password/',
+      body: formData,
+      token: user.value.token,
+      locale: locale.value
+    })
+
+    // console.log(data)
+    // console.log(errors)
+
+    clearFlash()
+    clearErrorMessages()
+
+    if (error.value) {
+      switch (error.value.statusCode) {
+        case 401:
+          flash.value.alert = $i18n.t('action.error.login')
+          clearLoginUser()
+          break
+        default:
+          flash.value.alert = error.value.message
+      }
+    } else if (data.value) {
+      const { errors } = data.value
+      if (errors) {
+        setErrorMessages(errors)
+      } else {
+        const userAttrs = data.value as UserResource
+        if (userAttrs) {
+          setJson2LoginUser(userAttrs)
+          setToken2Cookie()
+        }
+      }
+    }
+
+    processing.value = pending.value
+  }
+
+  const setErrorMessages = (errors: ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>) => {
     if (errors.image) {
       errorMessages.value.image = errors.image
     } else {
@@ -310,6 +363,11 @@ export const useAccount = () => {
       errorMessages.value.email = errors.email
     } else {
       errorMessages.value.email = []
+    }
+    if (errors.current_password) {
+      errorMessages.value.current_password = errors.current_password
+    } else {
+      errorMessages.value.current_password = []
     }
     if (errors.password) {
       errorMessages.value.password = errors.password
@@ -327,6 +385,7 @@ export const useAccount = () => {
     errorMessages.value.image = []
     errorMessages.value.name = []
     errorMessages.value.email = []
+    errorMessages.value.current_password = []
     errorMessages.value.password = []
     errorMessages.value.password_confirmation = []
     errorMessages.value.base = []
@@ -336,8 +395,8 @@ export const useAccount = () => {
     let result = true
 
     if (errorMessages.value.image.length > 0 || errorMessages.value.name.length > 0 ||
-      errorMessages.value.email.length > 0 || errorMessages.value.password.length > 0 ||
-      errorMessages.value.password_confirmation.length > 0 ||
+      errorMessages.value.email.length > 0 || errorMessages.value.current_password.length > 0 ||
+      errorMessages.value.password.length > 0 || errorMessages.value.password_confirmation.length > 0 ||
       errorMessages.value.base.length > 0
     ) {
       result = false
@@ -367,11 +426,8 @@ export const useAccount = () => {
         default:
           flash.value.alert = error.value.message
       }
-    } else if (data.value) {
-      const userAttrs = data.value
-      if (userAttrs) {
-        clearLoginUser()
-      }
+    } else  {
+      clearLoginUser()
     }
   }
 
@@ -441,6 +497,7 @@ export const useAccount = () => {
     authenticate,
     setUser,
     updateProfile,
+    updatePassword,
     processing,
     isSuccess,
     flash,

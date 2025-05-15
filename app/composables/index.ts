@@ -13,5 +13,7 @@ export { useToast } from './ui/use-toast'
 
 export { commentRules } from './validation/forms/comment-rules'
 export { frameRules } from './validation/forms/frame-rules'
+export { profileRules } from './validation/forms/profile-rules'
 export { getSignupRules } from './validation/forms/get-signup-rules'
+export { getPasswordRules } from './validation/forms/get-password-rules'
 export { getUserRules } from './validation/forms/get-user-rules'
