@@ -48,6 +48,7 @@ const onUpdateClick = async () => {
                   v-model="user.current_password"
                   type="password"
                   :placeholder="$t('model.user.current_password')"
+                  autocomplete="current-password"
                   class="form-control"
                 >
                 <div
@@ -76,6 +77,7 @@ const onUpdateClick = async () => {
                   v-model="user.password"
                   type="password"
                   :placeholder="$t('model.user.password')"
+                  autocomplete="new-password"
                   class="form-control"
                 >
                 <div
@@ -104,6 +106,7 @@ const onUpdateClick = async () => {
                   v-model="user.password_confirmation"
                   type="password"
                   :placeholder="$t('model.user.password_confirmation')"
+                  autocomplete="new-password"
                   class="form-control"
                 >
                 <div

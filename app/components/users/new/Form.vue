@@ -105,6 +105,7 @@ const onSignupClick = async () => {
                     v-model="user.email"
                     type="text"
                     :placeholder="$t('model.user.email')"
+                    autocomplete="email"
                     class="form-control"
                   >
                   <div
@@ -133,6 +134,7 @@ const onSignupClick = async () => {
                     v-model="user.password"
                     type="password"
                     :placeholder="$t('model.user.password')"
+                    autocomplete="new-password"
                     class="form-control"
                   >
                   <div
@@ -161,6 +163,7 @@ const onSignupClick = async () => {
                     v-model="user.password_confirmation"
                     type="password"
                     :placeholder="$t('model.user.password_confirmation')"
+                    autocomplete="new-password"
                     class="form-control"
                   >
                   <div

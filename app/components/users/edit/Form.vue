@@ -122,6 +122,7 @@ const onUpdateClick = async () => {
                   v-model="user.email"
                   type="text"
                   :placeholder="$t('model.user.email')"
+                  autocomplete="email"
                   class="form-control"
                 >
                 <div
