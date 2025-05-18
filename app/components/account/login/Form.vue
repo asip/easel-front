@@ -34,7 +34,7 @@ const onLoginClick = async () => {
               <td>
                 <input
                   v-model="loginParams.email"
-                  type="text"
+                  type="email"
                   :placeholder="$t('model.user.email')"
                   autocomplete="email"
                   class="form-control"

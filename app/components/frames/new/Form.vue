@@ -127,7 +127,7 @@ const updateContent = (content: string) => {
               <tr>
                 <td>
                   <label
-                    for="comment"
+                    for="shooted_at"
                     class="col-form-label"
                   >{{ $t('model.frame.shooted_at') }}：</label>
                 </td>
