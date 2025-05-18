@@ -53,7 +53,7 @@ const onLoginClick = async () => {
                   v-model="loginParams.password"
                   type="password"
                   :placeholder="$t('model.user.password')"
-                  autocomplete="new-password"
+                  autocomplete="current-password"
                   class="form-control"
                 >
               </td>
