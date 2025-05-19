@@ -7,12 +7,12 @@ const { loggedIn, loginParams, login, loginMessages, resetLoginParams } = inject
 const onLoginClick = async () => {
   await login()
   if (loginMessages.value.length === 0) {
+    resetLoginParams()
     closeModal('#login_modal')
     removeBackdrop()
   } else {
     setMessages(loginMessages.value)
   }
-  resetLoginParams()
 }
 </script>
 

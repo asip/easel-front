@@ -177,14 +177,21 @@ export const useAccount = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const userAttrs = data.value as UserResource
-      if (userAttrs) {
-        setJson2LoginUser(userAttrs, token.value)
-        loggedIn.value = true
-        // console.log(loginUser.value)
+      const { messages } = data.value
 
-        accessToken.value = loginUser.value.token
-        loginMessages.value = []
+      if (messages) {
+        loginMessages.value = messages
+
+        // console.log(loginMessages.value)
+      } else {
+        const userAttrs = data.value as UserResource
+        if (userAttrs) {
+          setJson2LoginUser(userAttrs, token.value)
+          loggedIn.value = true
+          // console.log(loginUser.value)
+          accessToken.value = loginUser.value.token
+          loginMessages.value = []
+        }
       }
     }
   }
