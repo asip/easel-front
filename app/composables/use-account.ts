@@ -167,9 +167,6 @@ export const useAccount = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
-        case 401:
-          loginMessages.value = [$i18n.t('action.login.error')]
-          break
         case 500:
           flash.value.alert = error.value.message
           break

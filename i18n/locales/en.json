@@ -66,9 +66,6 @@
     },
     "error": {
       "login": "Please login."
-    },
-    "login": {
-      "error": "Email or password is incorrect."
     }
   }
 }
