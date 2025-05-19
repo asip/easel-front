@@ -37,138 +37,140 @@ const onUpdateClick = async () => {
 
 <template>
   <div class="card-block">
-    <div class="row d-flex justify-content-sm-center">
-      <div class="col-sm-10">
-        <table class="table table-bordered table_rounded">
-          <tbody>
-            <tr>
-              <td style="width: 10em;">
-                <label
-                  for="image"
-                  class="col-form-label"
-                >{{ $t('model.user.image') }}：</label>
-              </td>
-              <td>
-                <input
-                  type="file"
-                  accept="image/jpg,image/jpeg,image/png"
-                  multiple="false"
-                  class="form-control"
-                  @change="onSelectFile"
-                >
-                <div
-                  v-for="(message, idx) in errorMessages.image"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <ImagePreview v-model="user" />
-              </td>
-            </tr>
-            <tr v-if="!user.social_login">
-              <td>
-                <label
-                  for="name"
-                  class="col-form-label"
-                >{{ $t('model.user.name') }}：</label>
-              </td>
-              <td>
-                <input
-                  v-model="user.name"
-                  type="text"
-                  :placeholder="$t('model.user.name')"
-                  autocomplete="username"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.name"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.name"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr v-else>
-              <td>
-                <label
-                  for="name"
-                  class="col-form-label"
-                >{{ $t('model.user.name') }}：</label>
-              </td>
-              <td>
-                <div class="form-control-plaintext">
-                  {{ user.name }}
-                </div>
-              </td>
-            </tr>
-            <tr v-if="!user.social_login">
-              <td>
-                <label
-                  for="email"
-                  class="col-form-label"
-                >{{ $t('model.user.email') }}：</label>
-              </td>
-              <td>
-                <input
-                  v-model="user.email"
-                  type="email"
-                  :placeholder="$t('model.user.email')"
-                  autocomplete="email"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.email"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.email"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr v-else>
-              <td>
-                <label
-                  for="email"
-                  class="col-form-label"
-                >{{ $t('model.user.email') }}：</label>
-              </td>
-              <td>
-                <div class="form-control-plaintext">
-                  {{ user.email }}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <form>
+      <div class="row d-flex justify-content-sm-center">
+        <div class="col-sm-10">
+          <table class="table table-bordered table_rounded">
+            <tbody>
+              <tr>
+                <td style="width: 10em;">
+                  <label
+                    for="image"
+                    class="col-form-label"
+                  >{{ $t('model.user.image') }}：</label>
+                </td>
+                <td>
+                  <input
+                    type="file"
+                    accept="image/jpg,image/jpeg,image/png"
+                    multiple="false"
+                    class="form-control"
+                    @change="onSelectFile"
+                  >
+                  <div
+                    v-for="(message, idx) in errorMessages.image"
+                    :key="idx"
+                  >
+                    <div>{{ message }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <ImagePreview v-model="user" />
+                </td>
+              </tr>
+              <tr v-if="!user.social_login">
+                <td>
+                  <label
+                    for="name"
+                    class="col-form-label"
+                  >{{ $t('model.user.name') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="user.name"
+                    type="text"
+                    :placeholder="$t('model.user.name')"
+                    autocomplete="username"
+                    class="form-control"
+                  >
+                  <div
+                    v-for="error of r$.$errors.name"
+                    :key="error"
+                  >
+                    <div>{{ error }}</div>
+                  </div>
+                  <div
+                    v-for="(message, idx) in errorMessages.name"
+                    :key="idx"
+                  >
+                    <div>{{ message }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr v-else>
+                <td>
+                  <label
+                    for="name"
+                    class="col-form-label"
+                  >{{ $t('model.user.name') }}：</label>
+                </td>
+                <td>
+                  <div class="form-control-plaintext">
+                    {{ user.name }}
+                  </div>
+                </td>
+              </tr>
+              <tr v-if="!user.social_login">
+                <td>
+                  <label
+                    for="email"
+                    class="col-form-label"
+                  >{{ $t('model.user.email') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="user.email"
+                    type="email"
+                    :placeholder="$t('model.user.email')"
+                    autocomplete="email"
+                    class="form-control"
+                  >
+                  <div
+                    v-for="error of r$.$errors.email"
+                    :key="error"
+                  >
+                    <div>{{ error }}</div>
+                  </div>
+                  <div
+                    v-for="(message, idx) in errorMessages.email"
+                    :key="idx"
+                  >
+                    <div>{{ message }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr v-else>
+                <td>
+                  <label
+                    for="email"
+                    class="col-form-label"
+                  >{{ $t('model.user.email') }}：</label>
+                </td>
+                <td>
+                  <div class="form-control-plaintext">
+                    {{ user.email }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="d-flex justify-content-sm-center">
-      <div class="form-group">
-        &nbsp;
-        <button
-          type="button"
-          class="btn btn-primary"
-          :disabled="processing"
-          @click="onUpdateClick"
-        >
-          {{ $t('action.model.create') }}
-        </button>
+      <div class="d-flex justify-content-sm-center">
+        <div class="form-group">
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-primary"
+            :disabled="processing"
+            @click="onUpdateClick"
+          >
+            {{ $t('action.model.create') }}
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </template>
