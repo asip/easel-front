@@ -75,6 +75,7 @@ const onSignupClick = async () => {
                 <td>
                   <input
                     v-model="user.name"
+                    name="name"
                     type="text"
                     :placeholder="$t('model.user.name')"
                     autocomplete="username"
@@ -104,6 +105,7 @@ const onSignupClick = async () => {
                 <td>
                   <input
                     v-model="user.email"
+                    name="email"
                     type="email"
                     :placeholder="$t('model.user.email')"
                     autocomplete="email"
@@ -133,6 +135,7 @@ const onSignupClick = async () => {
                 <td>
                   <input
                     v-model="user.password"
+                    name="password"
                     type="password"
                     :placeholder="$t('model.user.password')"
                     autocomplete="new-password"
@@ -162,6 +165,7 @@ const onSignupClick = async () => {
                 <td>
                   <input
                     v-model="user.password_confirmation"
+                    name="password_confirmation"
                     type="password"
                     :placeholder="$t('model.user.password_confirmation')"
                     autocomplete="new-password"
