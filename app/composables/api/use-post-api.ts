@@ -4,7 +4,7 @@ type PostAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }
 
-export const usePostApi = async <T>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
+export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
   const { $api } = useNuxtApp()
 
   const key = `${url}-${new Date().getTime()}`
@@ -26,7 +26,7 @@ export const usePostApi = async <T>({ url, body = {}, token = null, locale = nul
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData<T>(key, () =>
+  const { data, error, status } = await useAsyncData<T,E>(key, () =>
     $api(url, {
       method: 'post',
       body,

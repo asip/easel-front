@@ -9,7 +9,7 @@ type GetAPIOptions = {
   more?: boolean
 }
 
-export const useGetApi = async <T>({ url, query = {}, token = null, more = false }: GetAPIOptions) => {
+export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, more = false }: GetAPIOptions) => {
   let key: string | null = null
 
   const { $api } = useNuxtApp()
@@ -40,7 +40,7 @@ export const useGetApi = async <T>({ url, query = {}, token = null, more = false
     key = url
   }
 
-  const { data, error } = await useAsyncData<T>(key, () =>
+  const { data, error } = await useAsyncData<T,E>(key, () =>
     $api(url, options)
   )
 

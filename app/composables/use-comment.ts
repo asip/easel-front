@@ -78,7 +78,7 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePostApi<Partial<CommentResource> & Partial<ErrorsResource<ErrorMessages<'body'>>>>({
+    const { data, error, pending } = await usePostApi<CommentResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: loginUser.value.token,
@@ -90,6 +90,14 @@ export function useComment () {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'body'>>
+            if (errors) {
+              setErrorMessages(errors)
+            }
+            break
+          }
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -98,14 +106,9 @@ export function useComment () {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value
-      if (errors) {
-        setErrorMessages(errors)
-      } else {
-        const commentAttrs = data.value
-        if (commentAttrs) {
-          comment.value.body = ''
-        }
+      const commentAttrs = data.value
+      if (commentAttrs) {
+        comment.value.body = ''
       }
     }
 

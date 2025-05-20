@@ -142,7 +142,7 @@ export const useFrame = () => {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await usePostApi<Partial<FrameResource> & Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
+    const { data, error, pending } = await usePostApi<FrameResource>({
       url: '/frames/',
       body: formData,
       token: loginUser.value.token,
@@ -154,6 +154,15 @@ export const useFrame = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>
+            if (errors) {
+              setErrorMessages(errors)
+            }
+            break
+          }
+
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -162,14 +171,9 @@ export const useFrame = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value
-      if (errors) {
-        setErrorMessages(errors)
-      } else {
-        const frameAttrs = data.value
-        if (frameAttrs) {
-          frame.value.id = frameAttrs.id
-        }
+      const frameAttrs = data.value
+      if (frameAttrs) {
+        frame.value.id = frameAttrs.id
       }
     }
 
@@ -231,7 +235,7 @@ export const useFrame = () => {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await usePutApi<Partial<ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>>>({
+    const { error, pending } = await usePutApi<FrameResource>({
       url: `/frames/${frame.value.id}`,
       body: postData,
       token: loginUser.value.token,
@@ -243,17 +247,20 @@ export const useFrame = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>
+            if (errors) {
+              setErrorMessages(errors)
+            }
+            break
+          }
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
           flash.value.alert = error.value.message
-      }
-    } else if (data.value) {
-      const { errors } = data.value
-      if (errors) {
-        setErrorMessages(errors)
       }
     }
 

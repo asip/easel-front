@@ -84,7 +84,7 @@ export const useAccount = () => {
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
 
-    const { data, error, pending } = await usePostApi<Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
+    const { error, pending } = await usePostApi<UserResource>({
       url: '/users/',
       body: formData,
       locale: locale.value
@@ -95,18 +95,19 @@ export const useAccount = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            if (errors) {
+              setErrorMessages(errors)
+            }
+            break
+          }
         case 500:
           flash.value.alert = error.value.message
           break
         default:
           flash.value.alert = error.value.message
-      }
-    } else if (data.value) {
-      const { errors } = data.value
-
-      // console.log(userAttrs)
-      if (errors) {
-          setErrorMessages(errors)
       }
     }
 
@@ -155,7 +156,7 @@ export const useAccount = () => {
       }
     }
 
-    const { token ,data, error } = await usePostApi<Partial<UserResource> & Partial<MessagesResource>>({
+    const { token ,data, error } = await usePostApi<UserResource>({
       url: '/sessions/',
       body: postData,
       locale: locale.value
@@ -167,28 +168,29 @@ export const useAccount = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { messages } = error.value.data as MessagesResource
+            if(messages){
+              loginMessages.value = messages
+            }
+            break
+          }
         case 500:
           flash.value.alert = error.value.message
           break
         default:
           flash.value.alert = error.value.message
       }
+
     } else if (data.value) {
-      const { messages } = data.value
-
-      if (messages) {
-        loginMessages.value = messages
-
-        // console.log(loginMessages.value)
-      } else {
-        const userAttrs = data.value as UserResource
-        if (userAttrs) {
-          setJson2LoginUser(userAttrs, token.value)
-          loggedIn.value = true
-          // console.log(loginUser.value)
-          accessToken.value = loginUser.value.token
-          loginMessages.value = []
-        }
+      const userAttrs = data.value
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs, token.value)
+        loggedIn.value = true
+        // console.log(loginUser.value)
+        accessToken.value = loginUser.value.token
+        loginMessages.value = []
       }
     }
   }
@@ -262,7 +264,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
+    const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/profile/',
       body: formData,
       token: user.value.token,
@@ -277,6 +279,14 @@ export const useAccount = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            if (errors) {
+              setErrorMessages(errors)
+            }
+            break
+          }
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -285,15 +295,10 @@ export const useAccount = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value
-      if (errors) {
-        setErrorMessages(errors)
-      } else {
-        const userAttrs = data.value as UserResource
-        if (userAttrs) {
-          setJson2LoginUser(userAttrs)
-          setToken2Cookie()
-        }
+      const userAttrs = data.value as UserResource
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs)
+        setToken2Cookie()
       }
     }
 
@@ -314,7 +319,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<Partial<UserResource> & Partial<ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>>>({
+    const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/password/',
       body: formData,
       token: user.value.token,
@@ -329,6 +334,15 @@ export const useAccount = () => {
 
     if (error.value) {
       switch (error.value.statusCode) {
+        case 422:
+          {
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            if (errors) {
+              setErrorMessages(errors)
+            } 
+            break
+          }
+
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
@@ -337,15 +351,10 @@ export const useAccount = () => {
           flash.value.alert = error.value.message
       }
     } else if (data.value) {
-      const { errors } = data.value
-      if (errors) {
-        setErrorMessages(errors)
-      } else {
-        const userAttrs = data.value as UserResource
-        if (userAttrs) {
-          setJson2LoginUser(userAttrs)
-          setToken2Cookie()
-        }
+      const userAttrs = data.value as UserResource
+      if (userAttrs) {
+        setJson2LoginUser(userAttrs)
+        setToken2Cookie()
       }
     }
 

@@ -2,7 +2,7 @@ type DeleteAPIOptions = {
   url:string, token?: string | null, locale?: string | null
 }
 
-export const useDeleteApi = async <T>({ url, token = null, locale = null }: DeleteAPIOptions) => {
+export const useDeleteApi = async <T,E=unknown>({ url, token = null, locale = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
 
   const key = `${url}-${new Date().getTime()}`
@@ -21,7 +21,7 @@ export const useDeleteApi = async <T>({ url, token = null, locale = null }: Dele
     headers['Accept-Language'] = locale
   }
 
-  const { data, error, status } = await useAsyncData<T>(key, () =>
+  const { data, error, status } = await useAsyncData<T,E>(key, () =>
     $api(url, {
       method: 'delete',
       headers
