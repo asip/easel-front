@@ -339,7 +339,7 @@ export const useAccount = () => {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
             if (errors) {
               setErrorMessages(errors)
-            } 
+            }
             break
           }
 

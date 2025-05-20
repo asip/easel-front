@@ -162,7 +162,6 @@ export const useFrame = () => {
             }
             break
           }
-
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
