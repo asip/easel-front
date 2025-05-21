@@ -3,7 +3,7 @@ import type { Frame } from '~/interfaces/frame'
 
 const frame = defineModel<Frame>()
 
-const { userId, page } = defineProps<{
+const { userId, page = undefined } = defineProps<{
   userId: string | undefined
   page?: string
 }>()

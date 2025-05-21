@@ -4,7 +4,7 @@ import { useAccountFrames } from '~/composables/use-account-frames'
 
 const user = defineModel<User>()
 
-const { page } = defineProps<{
+const { page = undefined } = defineProps<{
   page?: string
 }>()
 
