@@ -2,10 +2,16 @@
 const { closeModal, openModal } = useModal()
 const { resetLoginParams } = inject('accounter') as useAccountType
 
+const form = useTemplateRef('form')
+
 const onSignupClick = () => {
   closeModal('#login_modal')
   resetLoginParams()
   openModal('#signup_modal')
+}
+
+const onCloseClick = () => {
+  form?.value.onCloseClick()
 }
 </script>
 
@@ -29,8 +35,7 @@ const onSignupClick = () => {
           <button
             type="button"
             class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
+            @click="onCloseClick"
           />
         </div>
         <div class="modal-body">
@@ -44,7 +49,7 @@ const onSignupClick = () => {
               </button>
             </div>
           </div>
-          <AccountLoginForm />
+          <AccountLoginForm ref="form" />
         </div>
       </div>
     </div>

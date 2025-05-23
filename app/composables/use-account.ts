@@ -165,14 +165,15 @@ export const useAccount = () => {
     // console.log(token.value)
 
     clearFlash()
+    clearErrorMessages()
 
     if (error.value) {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { messages } = error.value.data as MessagesResource
-            if(messages){
-              loginMessages.value = messages
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            if (errors) {
+              setErrorMessages(errors)
             }
             break
           }
@@ -521,6 +522,7 @@ export const useAccount = () => {
     deleteAccount,
     clearLoginUser,
     clearProfile,
+    clearErrorMessages,
     loginMessages,
     errorMessages,
     locale

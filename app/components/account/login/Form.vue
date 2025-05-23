@@ -1,19 +1,35 @@
 <script setup lang="ts">
 const { closeModal, removeBackdrop } = useModal()
 
-const { setMessages } = useToast()
-const { loggedIn, loginParams, login, loginMessages, resetLoginParams } = inject('accounter') as useAccountType
+
+const { setFlash } = useToast()
+const { loggedIn, loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as useAccountType
+
+const { r$ } = useI18nRegle(loginParams, signinRules)
 
 const onLoginClick = async () => {
-  await login()
-  if (loginMessages.value.length === 0) {
-    resetLoginParams()
-    closeModal('#login_modal')
-    removeBackdrop()
-  } else {
-    setMessages(loginMessages.value)
+  const { valid } = await r$.$validate()
+
+  if (valid) {
+    await login()
+    setFlash(flash.value)
+    if (isSuccess()) {
+      resetLoginParams()
+      r$.$reset()
+      closeModal('#login_modal')
+      removeBackdrop()
+    }
   }
 }
+
+const onCloseClick = () => {
+  resetLoginParams()
+  clearErrorMessages()
+  r$.$reset()
+  closeModal('#login_modal')
+}
+
+defineExpose({ onCloseClick })
 </script>
 
 <template>
@@ -40,6 +56,18 @@ const onLoginClick = async () => {
                   autocomplete="email"
                   class="form-control"
                 >
+                <div
+                  v-for="error of r$.$errors.email"
+                  :key="error"
+                >
+                  <div>{{ error }}</div>
+                </div>
+                <div
+                  v-for="(message, idx) in errorMessages.email"
+                  :key="idx"
+                >
+                  <div>{{ message }}</div>
+                </div>
               </td>
             </tr>
             <tr>
@@ -58,6 +86,18 @@ const onLoginClick = async () => {
                   autocomplete="current-password"
                   class="form-control"
                 >
+                <div
+                  v-for="error of r$.$errors.password"
+                  :key="error"
+                >
+                  <div>{{ error }}</div>
+                </div>
+                <div
+                  v-for="(message, idx) in errorMessages.password"
+                  :key="idx"
+                >
+                  <div>{{ message }}</div>
+                </div>
               </td>
             </tr>
           </tbody>
