@@ -8,7 +8,7 @@ const { loggedIn, loginParams, login, isSuccess, flash, errorMessages, resetLogi
 const { r$ } = useI18nRegle(loginParams, signinRules)
 
 watch(
-  () => r$.$errors,
+  loginParams.value,
   () => {
     clearErrorMessages()
   }
