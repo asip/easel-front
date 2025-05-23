@@ -1,6 +1,6 @@
-import { required } from '@regle/rules'
+import { maxLength, required } from '@regle/rules'
 
 export const commentRules = {
-  body: { required }
+  body: { required, maxLength: maxLength(255) }
 }
 
