@@ -7,6 +7,13 @@ const { loggedIn, loginParams, login, isSuccess, flash, errorMessages, resetLogi
 
 const { r$ } = useI18nRegle(loginParams, signinRules)
 
+watch(
+  () => r$.$errors,
+  () => {
+    clearErrorMessages()
+  }
+)
+
 const onLoginClick = async () => {
   const { valid } = await r$.$validate()
 
