@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { setFlash } = useToast()
 const { openModal, closeModal } = useModal()
-const { user, signup, errorMessages, processing, isSuccess, flash, locale } = useAccount()
+const { user, signup, errorMessages, processing, isSuccess, clearProfile, clearErrorMessages, flash, locale } = useAccount()
 const signupRules = getSignupRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules)
@@ -23,11 +23,25 @@ const onSignupClick = async () => {
     await signup()
     setFlash(flash.value)
     if (isSuccess()) {
+      clearProfile()
       closeModal('#signup_modal')
       openModal('#login_modal')
     }
   }
 }
+
+const onBackClick = async() => {
+  clearProfile()
+  clearErrorMessages()
+  r$.$reset()
+  closeModal('#signup_modal')
+  openModal('#login_modal')
+}
+
+defineExpose({
+  onBackClick
+})
+
 </script>
 
 <template>

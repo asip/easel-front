@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const { openModal, closeModal } = useModal()
-const { clearProfile } = useAccount()
+const form = useTemplateRef('form')
 
 const onBackClick = () => {
-  clearProfile()
-  closeModal('#signup_modal')
-  openModal('#login_modal')
+  form?.value.onBackClick()
 }
 </script>
 
@@ -42,7 +39,7 @@ const onBackClick = () => {
           />-->
         </div>
         <div class="modal-body">
-          <UsersNewForm />
+          <UsersNewForm ref="form" />
         </div>
       </div>
     </div>
