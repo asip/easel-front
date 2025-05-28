@@ -3,7 +3,7 @@ const { closeModal, removeBackdrop } = useModal()
 
 
 const { setFlash } = useToast()
-const { loggedIn, loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as useAccountType
+const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as useAccountType
 
 const { r$ } = useI18nRegle(loginParams, signinRules)
 
@@ -43,8 +43,6 @@ defineExpose({ onCloseClick })
   <form>
     <div class="row d-flex justify-content-sm-center border border-white">
       <div class="col-sm-10">
-        <br>
-        <AccountLoginGoogle v-if="!loggedIn" />
         <table class="table table-bordered table_rounded">
           <tbody>
             <tr>
@@ -113,7 +111,6 @@ defineExpose({ onCloseClick })
     </div>
     <div class="row d-flex justify-content-sm-center">
       <div class="form-group col-sm-10">
-            &nbsp;
         <button
           type="button"
           class="btn btn-outline-primary"
