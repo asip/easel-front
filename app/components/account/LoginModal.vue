@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { loggedIn } = useAccount()
 const { closeModal, openModal } = useModal()
 const { resetLoginParams } = inject('accounter') as useAccountType
 
