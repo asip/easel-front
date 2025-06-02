@@ -11,7 +11,7 @@ if (q) {
 if (page) {
   frameQuery.value.page = Number.parseInt(page as string)
 } else {
-  frameQuery.value.page = null
+  frameQuery.value.page = 1
 }
 </script>
 

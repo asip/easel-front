@@ -5,6 +5,7 @@ interface UserFrameQuery {
   user_id: string | null
   page: number
   pages: number
+  items: number
 }
 
 export function useUserFrames () {
@@ -12,7 +13,8 @@ export function useUserFrames () {
     return {
       user_id: null,
       page: 1,
-      pages: 1
+      pages: 1,
+      items: 1,
     }
   })
 
@@ -62,6 +64,7 @@ export function useUserFrames () {
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
+        frameQuery.value.items = meta.pagination.count
       }
     }
   }

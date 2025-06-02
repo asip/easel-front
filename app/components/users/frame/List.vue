@@ -62,23 +62,16 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
-  <br>
   <div
     v-if="frameQuery.pages > 1"
     class="d-flex col-sm-12 justify-content-sm-center"
   >
-    <ClientOnly>
-      <Paginate
-        v-model="frameQuery.page"
-        :page-count="frameQuery.pages"
-        :page-range="3"
-        :margin-pages="2"
-        :click-handler="clickCallback"
-        :prev-text="'Prev'"
-        :next-text="'Next'"
-        :container-class="'pagination'"
-        :page-class="'page-item'"
-      />
-    </ClientOnly>
+    <vue-awesome-paginate
+      v-model="frameQuery.page"
+      :total-items="frameQuery.items"
+      :items-per-page="8"
+      :max-pages-shown="5"
+      @click="clickCallback"
+    />
   </div>
 </template>

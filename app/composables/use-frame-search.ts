@@ -7,7 +7,8 @@ export const useFrameSearch = () => {
     return {
       word: '',
       page: 1,
-      pages: 1
+      pages: 1,
+      items: 1
     }
   })
 
@@ -60,6 +61,7 @@ export const useFrameSearch = () => {
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
+        frameQuery.value.items = meta.pagination.count
       }
     }
   }

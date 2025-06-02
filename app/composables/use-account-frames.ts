@@ -5,13 +5,15 @@ import type { User } from '~/interfaces/user'
 interface AccountFrameQuery {
   page: number
   pages: number
+  items: number
 }
 
 export function useAccountFrames () {
   const frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
     return {
       page: 1,
-      pages: 1
+      pages: 1,
+      items: 1
     }
   })
 
@@ -62,6 +64,7 @@ export function useAccountFrames () {
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
+        frameQuery.value.items = meta.pagination.count
       }
     }
   }
