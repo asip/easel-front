@@ -41,7 +41,7 @@ const onUnfollowClick = async () => {
 <template>
   <div class="col-sm-12">
     <br>
-    <div class="card kadomaru p-bottom-5">
+    <div class="card kadomaru-20 p-bottom-5">
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12 clearfix">

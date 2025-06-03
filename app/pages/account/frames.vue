@@ -5,7 +5,7 @@ const { loggedIn, loginUser } = useAccount()
 <template>
   <div>
     <br>
-    <div class="card kadomaru">
+    <div class="card kadomaru-20">
       <div class="card-block">
         <div class="row">
           <div class="col-sm-12">

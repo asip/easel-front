@@ -34,7 +34,7 @@ const onEditPasswordClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content col-sm-8 kadomaru">
+      <div class="modal-content col-sm-8 kadomaru-20">
         <div class="modal-header">
           <div class="float-start">
             <a

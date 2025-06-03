@@ -27,7 +27,7 @@ const onClick = () => {
       class="modal-dialog"
       role="document"
     >
-      <div class="modal-content kadomaru">
+      <div class="modal-content kadomaru-20">
         <div class="modal-header">
           <button
             type="button"

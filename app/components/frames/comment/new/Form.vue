@@ -63,7 +63,7 @@ const updateContent = (content: string) => {
 <template>
   <div
     v-if="loggedIn"
-    class="card col-sm-8 mx-auto kadomaru p-bottom-10"
+    class="card col-sm-8 mx-auto kadomaru-20 p-bottom-10"
   >
     <div class="card-block">
       <div class="row d-flex">

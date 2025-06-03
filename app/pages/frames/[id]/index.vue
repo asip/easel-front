@@ -35,7 +35,7 @@ const onPageBack = async () => {
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto kadomaru m-bottom-10">
+    <div class="card col-sm-8 mx-auto kadomaru-20 m-bottom-10">
       <div class="card-block">
         <div class="row d-flex">
           <div class="clearfix">

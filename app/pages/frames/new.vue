@@ -7,7 +7,7 @@ provide('framer', framer)
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto kadomaru">
+    <div class="card col-sm-8 mx-auto kadomaru-20">
       <div class="card-header bg-color-white">
         <div class="float-start">
           <NuxtLink to="/">
