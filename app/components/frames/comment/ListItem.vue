@@ -73,7 +73,6 @@ const onDeleteClick = async () => {
     </div>
     <div
       class="card-footer bg-color-white b-color-white"
-      style="background-color: white; border-color: white;"
     >
       <div class="row d-flex">
         <div class="col-12 align-middle">

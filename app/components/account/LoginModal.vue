@@ -44,8 +44,7 @@ const onCloseClick = () => {
             <div class="col-sm-10">
               <AccountLoginGoogle v-if="!loggedIn" /><br>
               <button
-                class="btn btn-outline-secondary"
-                style="margin-bottom: 5px;"
+                class="btn btn-outline-secondary m-bottom-5"
                 @click="onSignupClick"
               >
                 <i class="bi bi-person-plus-fill" />&nbsp;{{ $t('action.user.new') }}

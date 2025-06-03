@@ -24,8 +24,8 @@ const previewUrl = computed(() => {
 <template>
   <div
     v-if="previewUrl"
-    class="d-flex justify-content-sm-center"
-    style="display: block;padding-bottom:5px;"
+    class="d-flex justify-content-sm-center p-bottom-5"
+    style="display: block;"
   >
     <img
       :src="previewUrl"

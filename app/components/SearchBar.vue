@@ -32,7 +32,7 @@ const onClearClick = () => {
 </script>
 
 <template>
-  <div style="padding-left:5px;">
+  <div class="p-left-5">
     <a
       class="btn btn-outline-success me-2 me-sm-0"
       data-bs-toggle="offcanvas"
