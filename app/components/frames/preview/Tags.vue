@@ -18,22 +18,20 @@ const onClick = async (tag: string) => {
 </script>
 
 <template>
-  <div v-if="list" class="float-end p-right-5 p-top-5">
-      <span
-        v-for="(tag, idx) in modelValue?.tags"
-        :key="idx"
-      >
-        <a @click="onClick(tag)"><span class="badge rounded-pill bg-light text-info">{{ tag }}</span></a>
-      </span>
-    </div>
-  <div v-else class="d-flex justify-content-sm-center">
-    <div class="col-sm-10">
-      <div
-        v-for="(tag, idx) in modelValue?.tags"
-        :key="idx"
-      >
-        <a @click="onClick(tag)"><div class="badge rounded-pill bg-light text-info">{{ tag }}</div></a>
-    </div>
+  <div v-if="list" class="flex justify-end mb-1 gap-1">
+    <span
+      v-for="(tag, idx) in modelValue?.tags"
+      :key="idx"
+    >
+      <a @click="onClick(tag)"><span class="badge badge-outline badge-accent rounded-full">{{ tag }}</span></a>
+    </span>
+  </div>
+  <div v-else class="flex justify-center mb-1 gap-1">
+    <div
+      v-for="(tag, idx) in modelValue?.tags"
+      :key="idx"
+    >
+      <a @click="onClick(tag)"><div class="badge badge-outline badge-accent rounded-full">{{ tag }}</div></a>
     </div>
   </div>
 </template>

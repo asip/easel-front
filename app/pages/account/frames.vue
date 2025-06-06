@@ -5,23 +5,19 @@ const { loggedIn, loginUser } = useAccount()
 <template>
   <div>
     <br>
-    <div class="card kadomaru-20">
-      <div class="card-block">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="float-start p-left-10 p-top-5">
-              <NuxtLink to="/">
-                <i class="bi bi-arrow-left-circle" />
-              </NuxtLink>&nbsp;
-            </div>
-            <div class="text-center p-top-5 p-bottom-5">
-              {{ $t('action.user.frame_list') }}
-            </div>
-          </div>
+    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] pt-2 pb-2 ml-2 mr-2 mb-2">
+      <div class="flex justify-between">
+        <div>
+          <NuxtLink to="/" class="ml-2">
+            <i class="bi bi-arrow-left-circle" />
+          </NuxtLink>
         </div>
+        <div>
+          {{ $t('action.user.frame_list') }}
+        </div>
+        <div />
       </div>
     </div>
-    <br>
     <AccountFrameList
       v-if="loggedIn"
       v-model="loginUser"

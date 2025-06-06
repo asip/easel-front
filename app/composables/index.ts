@@ -3,6 +3,7 @@ export { useGetApi } from './api/use-get-api'
 export { usePostApi } from './api/use-post-api'
 export { usePutApi } from './api/use-put-api'
 
+export { useDropdown } from './ui/use-dropdown'
 export { useImageGallery } from './ui/use-image-gallery'
 export { useImagePreview } from './ui/use-image-preview'
 export { useLightbox } from './ui/use-lightbox'

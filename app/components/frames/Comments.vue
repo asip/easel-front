@@ -13,5 +13,4 @@ provide('commenter', commenter)
 <template>
   <FramesCommentList />
   <FramesCommentNewForm />
-  <br>
 </template>

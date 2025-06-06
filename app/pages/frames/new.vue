@@ -7,20 +7,20 @@ provide('framer', framer)
 <template>
   <div>
     <br>
-    <div class="card col-sm-8 mx-auto kadomaru-20">
-      <div class="card-header bg-color-white">
-        <div class="float-start">
+    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mb-2">
+      <div class="card-body divide-y divide-gray-200">
+        <div class="flex justify-start gap-1">
           <NuxtLink to="/">
             <i class="bi bi-arrow-left-circle" />
           </NuxtLink>
           {{ $t('action.frame.upload') }}
         </div>
+        <!-- unless @frame.confirming == 'true' -->
+        <FramesNewForm />
+        <!-- else -->
+        <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
+        <!-- end -->
       </div>
-      <!-- unless @frame.confirming == 'true' -->
-      <FramesNewForm />
-      <!-- else -->
-      <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
-      <!-- end -->
     </div>
   </div>
 </template>

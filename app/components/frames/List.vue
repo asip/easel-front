@@ -34,20 +34,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="row mx-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-4 items-start">
     <div
       v-for="(frame, i) in frames"
       :key="frame.id"
-      class="col-12 col-sm-3"
+      class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mb-2"
     >
-      <div class="card kadomaru-20 m-bottom-10">
-        <FramesListItem v-model="frames[i]" />
-      </div>
+      <FramesListItem v-model="frames[i]" />
     </div>
   </div>
   <div
     v-if="frameQuery.pages > 1"
-    class="d-flex col-12 col-sm-12 mx-auto justify-content-sm-center justify-content-center"
+    class="flex justify-center pb-5"
   >
     <vue-awesome-paginate
       v-model="frameQuery.page"

@@ -32,70 +32,42 @@ const onClearClick = () => {
 </script>
 
 <template>
-  <div class="p-left-5">
-    <a
-      class="btn btn-outline-success me-2 me-sm-0"
-      data-bs-toggle="offcanvas"
-      href="#offcanvas-calendar"
-      role="button"
-      aria-expanded="false"
-      aria-controls="offcanvas-calendar"
-    >
-      <i class="bi bi-search" />
-    </a>
-  </div>
-  <client-only>
-    <teleport to="#sidebar">
-      <div
-        id="offcanvas-calendar"
-        class="offcanvas offcanvas-end"
-        data-bs-scroll="true"
-        tabindex="-1"
-      >
-        <div class="offcanvas-header">
-          <!-- <h5 id="offcanvasLabel" class="offcanvas-title" /> -->
-          <button
-            type="button"
-            class="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            :aria-label="$t('action.modal.close')"
+  <div class="card bg-base-100 min-h-full w-100 p-4">
+    <div class="card-block">
+      <div class="flex justify-center mb-2">
+        <client-only>
+          <v-date-picker
+            v-model="dateWord"
+            mode="date"
+            :masks="masks"
+            :locale="locale"
           />
-        </div>
-        <div class="offcanvas-body">
-          <div class="d-flex justify-content-sm-center">
-            <v-date-picker
-              v-model="dateWord"
-              mode="date"
-              :masks="masks"
-              :locale="locale"
-            />
-          </div>
-          <br>
-          <div class="d-flex justify-content-sm-center">
-            <form class="d-flex">
-              <input
-                v-model="frameQuery.word"
-                type="text"
-                :placeholder="$t('component.tag_search.placeholder')"
-                class="form-control me-sm-2"
-              >
-              <input
-                type="button"
-                :value="$t('component.tag_search.search')"
-                class="btn btn-outline-success me-2 me-sm-0"
-                @click="onSearchClick"
-              >
-              &nbsp;
-              <input
-                type="button"
-                :value="$t('component.tag_search.clear')"
-                class="btn btn-outline-success me-2 me-sm-0"
-                @click="onClearClick"
-              >
-            </form>
-          </div>
-        </div>
+        </client-only>
       </div>
-    </teleport>
-  </client-only>
+      <div class="flex justify-center">
+        <form>
+          <div class="flex gap-2">
+            <input
+              v-model="frameQuery.word"
+              type="text"
+              :placeholder="$t('component.tag_search.placeholder')"
+              class="input w-50"
+            >
+            <input
+              type="button"
+              :value="$t('component.tag_search.search')"
+              class="btn btn-outline btn-primary"
+              @click="onSearchClick"
+            >
+            <input
+              type="button"
+              :value="$t('component.tag_search.clear')"
+              class="btn btn-outline btn-warning"
+              @click="onClearClick"
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>

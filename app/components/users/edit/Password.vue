@@ -2,7 +2,7 @@
 import type { useAccountType } from '~/composables/use-account'
 
 const { setFlash } = useToast()
-const { openModal, closeModal, removeBackdrop } = useModal()
+const { openModal, closeModal } = useModal()
 const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
 const passwordRules = getPasswordRules(user.value)
 
@@ -24,118 +24,115 @@ const onUpdateClick = async () => {
       openModal('#profile_modal')
     } else if (!loggedIn.value) {
       closeModal('#edit_password_modal')
-      removeBackdrop()
+      
     }
   }
 }
 </script>
 
 <template>
-  <div class="card-block">
-    <div class="row d-flex justify-content-sm-center">
-      <div class="col-sm-10">
-        <table class="table table-bordered table_rounded">
-          <tbody>
-            <tr v-if="!loginUser.social_login">
-              <td>
-                <label
-                  for="current_password"
-                  class="col-form-label"
-                >{{ $t('model.user.current_password') }}：</label>
-              </td>
-              <td class="form-group">
-                <input
-                  v-model="user.current_password"
-                  name="current_password"
-                  type="password"
-                  :placeholder="$t('model.user.current_password')"
-                  autocomplete="current-password"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.current_password"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.current_password"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr v-if="!user.social_login">
-              <td>
-                <label
-                  for="password"
-                  class="col-form-label"
-                >{{ $t('model.user.password') }}：</label>
-              </td>
-              <td class="form-group">
-                <input
-                  v-model="user.password"
-                  name="password"
-                  type="password"
-                  :placeholder="$t('model.user.password')"
-                  autocomplete="new-password"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.password"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.password"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr v-if="!user.social_login">
-              <td>
-                <label
-                  for="password_confirmation"
-                  class="col-form-label"
-                >{{ $t('model.user.password_confirmation') }}：</label>
-              </td>
-              <td>
-                <input
-                  v-model="user.password_confirmation"
-                  name="password_confirmation"
-                  type="password"
-                  :placeholder="$t('model.user.password_confirmation')"
-                  autocomplete="new-password"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.password_confirmation"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.password_confirmation"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <form>
+    <div class="flex justify-center">
+      <table class="table table-bordered table_rounded">
+        <tbody>
+          <tr v-if="!loginUser.social_login">
+            <td>
+              <label
+                for="current_password"
+                class=""
+              >{{ $t('model.user.current_password') }}：</label>
+            </td>
+            <td class="">
+              <input
+                v-model="user.current_password"
+                name="current_password"
+                type="password"
+                :placeholder="$t('model.user.current_password')"
+                autocomplete="current-password"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.current_password"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+              <div
+                v-for="(message, idx) in errorMessages.current_password"
+                :key="idx"
+              >
+                <div class="text-red-500">{{ message }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr v-if="!user.social_login">
+            <td>
+              <label
+                for="password"
+                class=""
+              >{{ $t('model.user.password') }}：</label>
+            </td>
+            <td class="">
+              <input
+                v-model="user.password"
+                name="password"
+                type="password"
+                :placeholder="$t('model.user.password')"
+                autocomplete="new-password"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.password"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+              <div
+                v-for="(message, idx) in errorMessages.password"
+                :key="idx"
+              >
+                <div class="text-red-500">{{ message }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr v-if="!user.social_login">
+            <td>
+              <label
+                for="password_confirmation"
+                class=""
+              >{{ $t('model.user.password_confirmation') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="user.password_confirmation"
+                name="password_confirmation"
+                type="password"
+                :placeholder="$t('model.user.password_confirmation')"
+                autocomplete="new-password"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.password_confirmation"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+              <div
+                v-for="(message, idx) in errorMessages.password_confirmation"
+                :key="idx"
+              >
+                <div class="text-red-500">{{ message }}</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="d-flex justify-content-sm-center">
-      <div class="form-group">
-        &nbsp;
+    <div class="flex justify-center mt-2">
+      <div class="flex justify-end w-120">
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-outline btn-primary"
           :disabled="processing"
           @click="onUpdateClick"
         >
@@ -143,5 +140,5 @@ const onUpdateClick = async () => {
         </button>
       </div>
     </div>
-  </div>
+  </form>
 </template>

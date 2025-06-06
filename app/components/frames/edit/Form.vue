@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const onEditClick = async () => {
-  if (editor.value?.quill?.getText().replace(/\n/g, '') == ''){
+  if (frame.value.comment.replace(/<[^>]+>/g, '').replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
 
@@ -39,7 +39,7 @@ const onEditClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  if (editor.value?.quill?.getText().replace(/\n/g, '') != ''){
+  if (frame.value.comment.replace(/<[^>]+>/g, '').replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
     frame.value.comment = ''
@@ -49,98 +49,92 @@ const updateContent = (content: string) => {
 
 <template>
   <form>
-    <div class="card-body p-bottom-10">
-      <div class="row d-flex justify-content-sm-center">
-        <div class="col-sm-10">
-          <table class="table table-bordered table_rounded">
-            <tbody>
-              <tr>
-                <td style="width: 7em;">
-                  <label
-                    for="name"
-                    class="col-form-label"
-                  >{{ $t('model.frame.name') }}：</label>
-                </td>
-                <td>
-                  <input
-                    v-model="frame.name"
-                    type="text"
-                    :placeholder="$t('model.frame.name')"
-                    class="form-control"
-                  >
-                  <div
-                    v-for="error of r$.$errors.name"
-                    :key="error"
-                  >
-                    <div>{{ error }}</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label
-                    for="tag_list"
-                    class="col-form-label"
-                  >{{ $t('model.frame.tag_list') }}：</label>
-                </td>
-                <td>
-                  <TagEdit v-model="frame" />
-                  <div
-                    v-for="error of r$.$fields.tags.$errors"
-                    :key="error"
-                  >
-                    <div>{{ error }}</div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label
-                    for="shooted_at"
-                    class="col-form-label"
-                  >{{ $t('model.frame.shooted_at') }}：</label>
-                </td>
-                <td>
-                  <input
-                    v-model="frame.shooted_at"
-                    type="datetime-local"
-                    class="form-control"
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label
-                    for="comment"
-                    class="col-form-label"
-                  >{{ $t('model.frame.comment') }}：</label>
-                </td>
-                <td>
-                  <div class="kadomaru-5" style="border: 1px solid lavender;height: 50px">
-                    <Editor
-                      ref="editor"
-                      v-model="frame.comment"
-                      @update="updateContent"
-                    />
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="flex justify-center">
+      <table class="table table-bordered table_rounded">
+        <tbody>
+          <tr>
+            <td style="width: 7em;">
+              <label
+                for="name"
+                class=""
+              >{{ $t('model.frame.name') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="frame.name"
+                type="text"
+                :placeholder="$t('model.frame.name')"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.name"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="tag_list"
+                class=""
+              >{{ $t('model.frame.tag_list') }}：</label>
+            </td>
+            <td>
+              <TagEdit v-model="frame" />
+              <div
+                v-for="error of r$.$fields.tags.$errors"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="shooted_at"
+                class=""
+              >{{ $t('model.frame.shooted_at') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="frame.shooted_at"
+                type="datetime-local"
+                class="input"
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="comment"
+                class=""
+              >{{ $t('model.frame.comment') }}：</label>
+            </td>
+            <td>
+              <div class="rounded-[5px]" style="border: 1px solid lavender;height: 50px">
+                <Editor
+                  ref="editor"
+                  v-model="frame.comment"
+                  @update="updateContent"
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="card-footer bg-color-white">
-      <div class="float-end p-bottom-10">
-        <button
-          type="button"
-          class="btn btn-primary"
-          :disabled="processing"
-          @click="onEditClick"
-        >
-          {{ $t('action.model.update') }}
-        </button>
-      </div>
+    <div class="flex justify-end pt-2">
+      <button
+        type="button"
+        class="btn btn-outline btn-primary"
+        :disabled="processing"
+        @click="onEditClick"
+      >
+        {{ $t('action.model.update') }}
+      </button>
     </div>
   </form>
 </template>

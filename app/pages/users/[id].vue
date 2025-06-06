@@ -39,51 +39,41 @@ const onUnfollowClick = async () => {
 </script>
 
 <template>
-  <div class="col-sm-12">
+  <div>
     <br>
-    <div class="card kadomaru-20 p-bottom-5">
-      <div class="card-block">
-        <div class="row">
-          <div class="col-sm-12 clearfix">
-            <div class="float-start p-top-5 p-left-10">
-              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
-            </div>
-            <div class="text-center p-top-5 p-bottom-5">
+    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] pt-2 pb-2 ml-2 mr-2 mb-2">
+      <div class="flex justify-between">
+        <div class="ml-2" @click="onPageBack"><i class="bi bi-arrow-left-circle" /></div>
+        <div class="flex gap-1 items-center">
+          <div class="avatar">
+            <div class="w-5 h-5 rouded-full">
               <img
                 :src="`${user?.image_three_url}`"
                 alt=""
-                class="rounded"
-                width="20"
-                height="20"
-                decoding="async"
               >
-              {{ user.name }}
             </div>
           </div>
+          <div>{{ user.name }}</div>
         </div>
-        <div class="row d-flex justify-content-sm-center">
-          <div class="col-sm-6 text-center">
-            <div v-if="loggedIn && user.id != loginUser.id">
-              <button
-                v-if="following"
-                class="btn btn-primary btn-sm"
-                @click="onUnfollowClick"
-              >
-                {{ $t('action.user.unfollow') }}
-              </button>
-              <button
-                v-else
-                class="btn btn-outline-primary btn-sm"
-                @click="onFollowClick"
-              >
-                {{ $t('action.user.follow') }}
-              </button>
-            </div>
-          </div>
-        </div>
+        <div />
+      </div>
+      <div v-if="loggedIn && user.id != loginUser.id" class="flex justify-center pt-2">
+        <button
+          v-if="following"
+          class="btn btn-outline btn-primary btn-sm"
+          @click="onUnfollowClick"
+        >
+          {{ $t('action.user.unfollow') }}
+        </button>
+        <button
+          v-else
+          class="btn btn-outline btn-primary btn-sm"
+          @click="onFollowClick"
+        >
+          {{ $t('action.user.follow') }}
+        </button>
       </div>
     </div>
-    <br>
     <UsersFrameList
       :user-id="userId"
       page="user_profile"

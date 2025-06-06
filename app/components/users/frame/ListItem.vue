@@ -11,38 +11,39 @@ const { userId, page = undefined } = defineProps<{
 
 <template>
   <div
-    class="card-block kadomaru-20 p-top-10"
+    class="card-body"
   >
-    <NuxtLink
-      :to="`${frame?.file_url}`"
-      class="mx-auto lb"
-    >
-      <img
-        :src="frame?.file_two_url"
-        :alt="frame?.name"
-        class="card-img-top"
+    <div class="flex justify-center">
+      <NuxtLink
+        :to="`${frame?.file_url}`"
+        class="lb"
       >
-    </NuxtLink>
-    <br>
-    <div class="d-flex justify-content-sm-center">
+        <img
+          :src="frame?.file_two_url"
+          :alt="frame?.name"
+          class=""
+        >
+      </NuxtLink>
+    </div>
+    <div class="flex justify-center">
       <NuxtLink
         v-if="page == 'profile'"
         :to="{ path: `/frames/${frame?.id}`, query: { ref: page } }"
-        class="mx-auto"
+        class=""
       >
         {{ frame?.name }}
       </NuxtLink>
       <NuxtLink
         v-else-if="page == 'user_profile'"
         :to="{ path: `/frames/${frame?.id}`, query: { ref: page, ref_id: userId} }"
-        class="mx-auto"
+        class=""
       >
         {{ frame?.name }}
       </NuxtLink>
       <NuxtLink
         v-else
         :to="`/frames/${frame?.id}`"
-        class="mx-auto"
+        class=""
       >
         {{ frame?.name }}
       </NuxtLink>

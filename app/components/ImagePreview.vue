@@ -24,7 +24,7 @@ const previewUrl = computed(() => {
 <template>
   <div
     v-if="previewUrl"
-    class="d-flex justify-content-sm-center p-bottom-5"
+    class="flex justify-center"
     style="display: block;"
   >
     <img
@@ -33,6 +33,5 @@ const previewUrl = computed(() => {
       class="mx-auto"
       style="max-width: 300px; max-height: 300px; display: block;"
     >
-    <br>
   </div>
 </template>

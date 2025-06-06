@@ -24,7 +24,7 @@ onUnmounted(() => {
     type="text"
     name="tag_editor"
     value=""
-    class="form-control"
+    class="input"
   >
   <input
     id="tag_list"

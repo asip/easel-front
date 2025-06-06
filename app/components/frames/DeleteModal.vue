@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { UseFrameType } from '~/composables/use-frame'
 
-const { removeBackdrop } = useModal()
 const { setFlash } = useToast()
 const { loggedIn, loginUser } = useAccount()
 const { frame, deleteFrame, isSuccess, flash } = inject('framer') as UseFrameType
@@ -9,7 +8,7 @@ const { frame, deleteFrame, isSuccess, flash } = inject('framer') as UseFrameTyp
 const onDeleteClick = async () => {
   await deleteFrame()
   setFlash(flash.value)
-  removeBackdrop()
+
   if (isSuccess()) {
     await navigateTo('/')
   }

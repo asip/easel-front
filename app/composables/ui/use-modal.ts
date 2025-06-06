@@ -1,28 +1,17 @@
 export function useModal () {
-  const { $bootstrap } = useNuxtApp()
-
-  const removeBackdrop = () => {
-    const backdrop = document.querySelector('.modal-backdrop')
-    backdrop?.remove()
-  }
-
   const openModal = (selector :string) => {
-    const modalEl: HTMLDivElement | null = document.querySelector(selector)
+    const modalEl: HTMLDialogElement | null = document.querySelector(selector)
     if (modalEl) {
-      // @ts-expect-error
-      const modal = new $bootstrap.Modal(modalEl)
-      modal.show()
+      modalEl.showModal()
     }
   }
 
   const closeModal = (selector :string) => {
-    const modalEl: HTMLDivElement | null = document.querySelector(selector)
+    const modalEl: HTMLDialogElement | null = document.querySelector(selector)
     if (modalEl) {
-      // @ts-expect-error
-      const modal = $bootstrap.Modal.getInstance(modalEl)
-      modal?.hide()
+      modalEl.close()
     }
   }
 
-  return { removeBackdrop, openModal, closeModal }
+  return { openModal, closeModal }
 }

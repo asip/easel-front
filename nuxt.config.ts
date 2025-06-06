@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import tailwindcss from "@tailwindcss/vite";
+
 // @ts-ignore
 export default defineNuxtConfig({
   future: {
@@ -18,9 +20,7 @@ export default defineNuxtConfig({
     'vue-sonner/nuxt'
   ],
 
-  plugins: [
-    { src: '~/plugins/bootstrap.client.ts', mode: 'client' }
-  ],
+  plugins: [],
 
   i18n: {
     lazy: true,
@@ -55,7 +55,12 @@ export default defineNuxtConfig({
     backendOriginURL: 'http://localhost:3000'
   },
 
+  vite: {
+    plugins: [tailwindcss()]
+  },
+
   css: [
+    '@/assets/styles/tailwind.css',
     '@/assets/styles/main.scss',
     'bootstrap-icons/font/bootstrap-icons.css'
   ],

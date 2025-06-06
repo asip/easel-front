@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { closeModal, removeBackdrop } = useModal()
+const { closeModal } = useModal()
 
 
 const { setFlash } = useToast()
@@ -24,7 +24,7 @@ const onLoginClick = async () => {
       resetLoginParams()
       r$.$reset()
       closeModal('#login_modal')
-      removeBackdrop()
+      
     }
   }
 }
@@ -41,79 +41,77 @@ defineExpose({ onCloseClick })
 
 <template>
   <form>
-    <div class="row d-flex justify-content-sm-center border border-white">
-      <div class="col-sm-10">
-        <table class="table table-bordered table_rounded">
-          <tbody>
-            <tr>
-              <td style="width: 6em;">
-                <label
-                  for="email"
-                  class="col-form-label-sm"
-                >{{ $t('model.user.email') }}</label>
-              </td>
-              <td>
-                <input
-                  v-model="loginParams.email"
-                  name="email"
-                  type="email"
-                  :placeholder="$t('model.user.email')"
-                  autocomplete="email"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.email"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.email"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label
-                  for="password"
-                  class="col-form-label-sm"
-                >{{ $t('model.user.password') }}</label>
-              </td>
-              <td>
-                <input
-                  v-model="loginParams.password"
-                  name="password"
-                  type="password"
-                  :placeholder="$t('model.user.password')"
-                  autocomplete="current-password"
-                  class="form-control"
-                >
-                <div
-                  v-for="error of r$.$errors.password"
-                  :key="error"
-                >
-                  <div>{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.password"
-                  :key="idx"
-                >
-                  <div>{{ message }}</div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="flex justify-center border border-white">
+      <table class="table table-bordered table_rounded">
+        <tbody>
+          <tr>
+            <td style="width: 8em;">
+              <label
+                for="email"
+                class=""
+              >{{ $t('model.user.email') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="loginParams.email"
+                name="email"
+                type="email"
+                :placeholder="$t('model.user.email')"
+                autocomplete="email"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.email"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+              <div
+                v-for="(message, idx) in errorMessages.email"
+                :key="idx"
+              >
+                <div class="text-red-500">{{ message }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="password"
+                class=""
+              >{{ $t('model.user.password') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="loginParams.password"
+                name="password"
+                type="password"
+                :placeholder="$t('model.user.password')"
+                autocomplete="current-password"
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.password"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+              <div
+                v-for="(message, idx) in errorMessages.password"
+                :key="idx"
+              >
+                <div class="text-red-500">{{ message }}</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="row d-flex justify-content-sm-center">
-      <div class="form-group col-sm-10">
+    <div class="flex justify-center">
+      <div class="flex w-100 pt-2">
         <button
           type="button"
-          class="btn btn-outline-primary"
+          class="btn btn-outline btn-primary"
           @click="onLoginClick"
         >
           {{ $t('action.user.login') }}

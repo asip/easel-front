@@ -5,38 +5,32 @@ const frame = defineModel<Frame>()
 </script>
 
 <template>
-  <div
-    class="card-block p-top-10 p-bottom-10"
-  >
-    <div class="row d-flex">
-      <div class="clearfix">
-        <FramesPreviewTags v-model="frame" :list="true" />
-        <br>
-        <NuxtLink
-          :to="`${frame?.file_url}`"
-          class="mx-auto lb"
+  <div class="card-body">
+    <FramesPreviewTags v-model="frame" :list="true" />
+    <div class="flex justify-center">
+      <NuxtLink
+        :to="`${frame?.file_url}`"
+        class="lb"
+      >
+        <img
+          :src="`${frame?.file_two_url}`"
+          :alt="frame?.name"
+          class=""
         >
-          <img
-            :src="`${frame?.file_two_url}`"
-            :alt="frame?.name"
-            class="card-img-top"
-          >
-        </NuxtLink>
-        <br>
-        <div class="d-flex justify-content-sm-center">
-          <NuxtLink :to="`/users/${frame?.user_id}`">
-            <div class="badge rounded-pill bg-light text-info">{{ frame?.user_name }}</div>
-          </NuxtLink>
-        </div>
-        <div class="d-flex justify-content-sm-center">
-          <NuxtLink
-            :to="`/frames/${frame?.id}`"
-            class="mx-auto"
-          >
-            {{ frame?.name }}
-          </NuxtLink>
-        </div>
-      </div>
+      </NuxtLink>
+    </div>
+    <div class="flex justify-center">
+      <NuxtLink :to="`/users/${frame?.user_id}`">
+        <div class="badge badge-outline badge-accent rounded-full">{{ frame?.user_name }}</div>
+      </NuxtLink>
+    </div>
+    <div class="flex justify-center">
+      <NuxtLink
+        :to="`/frames/${frame?.id}`"
+        class="link link-hover"
+      >
+        {{ frame?.name }}
+      </NuxtLink>
     </div>
   </div>
 </template>

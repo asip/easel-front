@@ -16,45 +16,32 @@ const onClick = () => {
 </script>
 
 <template>
-  <div
+  <dialog
     :id="id"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="false"
+    class="modal"
   >
     <div
-      class="modal-dialog"
-      role="document"
+      class="modal-box"
     >
-      <div class="modal-content kadomaru-20">
-        <div class="modal-header">
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          />
-        </div>
-        <div class="modal-body">
-          <slot name="message" />
-        </div>
-        <div class="modal-footer">
-          <button
-            class="btn btn-outline-danger"
-            @click="onClick"
-          >
-            <slot name="label" />
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            data-bs-dismiss="modal"
-          >
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </form>
+      <p class="py-4">
+        <slot name="message" />
+      </p>
+      <div class="modal-action">
+        <button
+          class="btn btn-outline btn-secondary"
+          @click="onClick"
+        >
+          <slot name="label" />
+        </button>
+        <form method="dialog">
+          <button class="btn btn-outline btn-primary">
             {{ $t('action.modal.close') }}
           </button>
-        </div>
+        </form>
       </div>
     </div>
-  </div>
+  </dialog>
 </template>

@@ -30,7 +30,7 @@ onUnmounted(() => {
     v-if="original"
     id="gallery"
     ref="galleryRef"
-    class="d-flex justify-content-sm-center"
+    class="flex justify-center mb-1"
   >
     <NuxtLink
       v-if="photoswipe"
@@ -60,7 +60,7 @@ onUnmounted(() => {
   </div>
   <div
     v-else
-    class="d-flex justify-content-sm-center"
+    class="flex justify-center mb-1"
   >
     <img
       :src="`${modelValue?.file_three_url}`"
@@ -68,5 +68,4 @@ onUnmounted(() => {
       class="mx-auto"
     >
   </div>
-  <br>
 </template>

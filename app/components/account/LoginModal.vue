@@ -17,43 +17,31 @@ const onCloseClick = () => {
 </script>
 
 <template>
-  <div
+  <dialog
     id="login_modal"
-    class="modal fade"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="false"
+    class="modal"
   >
     <div
-      class="modal-dialog"
-      role="document"
+      class="modal-box rounded-[20px] divide-y divide-gray-200"
     >
-      <div class="modal-content col-sm-8 kadomaru-20 p-bottom-10">
-        <div class="modal-header">
-          <div class="float-start">
-            {{ $t('action.user.login') }}
-          </div>
-          <button
-            type="button"
-            class="btn-close"
-            @click="onCloseClick"
-          />
-        </div>
-        <div class="modal-body">
-          <div class="row d-flex justify-content-sm-center border border-white">
-            <div class="col-sm-10">
-              <AccountLoginGoogle v-if="!loggedIn" /><br>
-              <button
-                class="btn btn-outline-secondary m-bottom-5"
-                @click="onSignupClick"
-              >
-                <i class="bi bi-person-plus-fill" />&nbsp;{{ $t('action.user.new') }}
-              </button>
-            </div>
-          </div>
-          <AccountLoginForm ref="form" />
-        </div>
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="onCloseClick">✕</button>
+      <div class="flex justify-start mb-1">
+        {{ $t('action.user.login') }}
+      </div>
+      <div>
+      <div class="flex justify-center border border-white gap-1 mb-1">
+        <AccountLoginGoogle v-if="!loggedIn" />
+        <button
+          class="btn btn-outline btn-primary"
+          @click="onSignupClick"
+        >
+          <i class="bi bi-person-plus-fill" />{{ $t('action.user.new') }}
+        </button>
+      </div>
+      <div class="flex justify-center border border-white">
+        <AccountLoginForm ref="form" />
       </div>
     </div>
-  </div>
+    </div>
+  </dialog>
 </template>

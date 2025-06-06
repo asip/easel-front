@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { closeModal, removeBackdrop } = useModal()
+const { closeModal } = useModal()
 const { setFlash } = useToast()
 const { loggedIn, deleteAccount, flash } = useAccount()
 
@@ -7,7 +7,6 @@ const onDeleteClick = async () => {
   await deleteAccount()
   setFlash(flash.value)
   closeModal('#delete_account_modal')
-  removeBackdrop()
 }
 </script>
 
