@@ -30,7 +30,7 @@
     "nuxt": "^3.17.5",
     "playwright-core": "^1.52.0",
     "typescript": "5.8.3",
-    "vitest": "^3.2.0"
+    "vitest": "^3.2.2"
   },
   "dependencies": {
     "@formkit/tempo": "0.1.2",
