@@ -4,7 +4,7 @@ import '@yaireo/tagify/dist/tagify.css'
 
 const modelValue = defineModel<Frame>()
 
-const { initTagEditor, closeTagEditor } = useTagEditor()
+const { initTagEditor, closeTagEditor } = useTagEditor('tagEditorRef')
 
 const tagList = computed(() => modelValue.value?.tag_list)
 
