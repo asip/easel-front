@@ -30,8 +30,17 @@ const updateContent = (content: string) => {
   emit('update', content)
 }
 
+const clearContents = () => {
+  quill?.setContents([])
+}
+
+const getText = () => {
+  return quill?.getText()
+}
+
 defineExpose({
-  quill
+  clearContents,
+  getText
 })
 
 </script>

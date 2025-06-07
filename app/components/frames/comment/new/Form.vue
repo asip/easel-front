@@ -23,7 +23,7 @@ onMounted(async () => {
 })
 
 const onCreateCommentClick = async () => {
-  if (comment.value.body.replace(/<[^>]+>/g, '').replace(/\n/g, '') === ''){
+  if (editor.value?.getText().replace(/\n/g, '') === ''){
     comment.value.body = ''
   }
 
@@ -42,7 +42,7 @@ const onCreateCommentClick = async () => {
     await createComment()
     setFlash(flash.value)
     if (isSuccess()) {
-      editor.value?.quill?.setContents([])
+      editor.value?.clearContents()
       comment.value.body = ''
       r$.$touch()
       r$.$reset()
@@ -52,7 +52,7 @@ const onCreateCommentClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  if (comment.value.body.replace(/<[^>]+>/g, '').replace(/\n/g, '') != ''){
+  if (editor.value?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
     comment.value.body = ''

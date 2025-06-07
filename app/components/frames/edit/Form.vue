@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const onEditClick = async () => {
-  if (frame.value.comment.replace(/<[^>]+>/g, '').replace(/\n/g, '') == ''){
+  if (editor.value?.getText().replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
 
@@ -39,7 +39,7 @@ const onEditClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  if (frame.value.comment.replace(/<[^>]+>/g, '').replace(/\n/g, '') != ''){
+  if (editor.value?.getText().replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
     frame.value.comment = ''
