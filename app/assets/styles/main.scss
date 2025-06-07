@@ -1,15 +1,18 @@
 @use "glightbox/dist/css/glightbox.css";
 @use "photoswipe/dist/photoswipe.css";
-//@use "v-calendar/dist/style.css";
-//@use "quill/dist/quill.core.css";
-//@use "quill/dist/quill.bubble.css";
+
+/*
+@use "v-calendar/dist/style.css";
+@use "quill/dist/quill.core.css";
+@use "quill/dist/quill.bubble.css";
+*/
 
 body {
   background-color: aliceblue;
   height: auto;
 }
 
-// table
+/* table */
 
 .table_rounded {
   border: 1px solid lavender;
@@ -35,7 +38,7 @@ body {
   border-bottom: none;
 }
 
-// v-date-picker
+/* v-date-picker */
 .vc-header .vc-arrow {
   background-color: white;
 }
@@ -52,7 +55,7 @@ body {
   background-color: #f8fafc;
 }
 
-// vue-awesome-paginate
+/* vue-awesome-paginate */
 .pagination-container {
   column-gap: 10px;
 }
