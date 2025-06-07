@@ -61,7 +61,7 @@ export default defineNuxtConfig({
 
   css: [
     '@/assets/styles/tailwind.css',
-    '@/assets/styles/main.scss',
+    '@/assets/styles/app.scss',
     'bootstrap-icons/font/bootstrap-icons.css'
   ],
 
