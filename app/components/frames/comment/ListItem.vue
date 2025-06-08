@@ -24,40 +24,42 @@ const onDeleteClick = async () => {
 </script>
 
 <template>
-  <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mt-2">
-    <div class="card-body">
-      <div class="leading-[35px]">
-        <div class="flex justify-between">
-          <div class="flex items-center gap-1">
-            <div class="avatar">
-              <div class="w-5 h-5 rouded-full">
-                <img
-                  :src="`${comment?.user_image_url}`"
-                  alt=""
-                >
+  <div class="flex justify-center pt-2">
+    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
+      <div class="card-body">
+        <div class="leading-[35px]">
+          <div class="flex justify-between">
+            <div class="flex items-center gap-1">
+              <div class="avatar">
+                <div class="w-5 h-5 rouded-full">
+                  <img
+                    :src="`${comment?.user_image_url}`"
+                    alt=""
+                  >
+                </div>
+              </div>
+              <div class="badge badge-outline badge-accent rounded-full">
+                {{ comment?.user_name }}
+              </div>
+              <div class="badge badge-outline badge-accent rounded-full">
+                {{ comment?.updated_at }}
               </div>
             </div>
-            <div class="badge badge-outline badge-accent rounded-full">
-              {{ comment?.user_name }}
-            </div>
-            <div class="badge badge-outline badge-accent rounded-full">
-              {{ comment?.updated_at }}
-            </div>
-          </div>
-          <div
-            v-show="loggedIn && comment?.user_id == loginUser.id"
-          >
-            <button
-              class="btn btn-link btn-sm"
-              @click="onDeleteClick"
+            <div
+              v-show="loggedIn && comment?.user_id == loginUser.id"
             >
-              <i class="bi bi-x-circle" />
-            </button>
+              <button
+                class="link link-hover"
+                @click="onDeleteClick"
+              >
+                <i class="bi bi-x-circle" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex justify-start items-center">
-        <span v-html="sanitizedCommentBody" />
+        <div class="flex justify-start items-center">
+          <span v-html="sanitizedCommentBody" />
+        </div>
       </div>
     </div>
   </div>

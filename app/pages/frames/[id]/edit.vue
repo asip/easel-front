@@ -16,23 +16,25 @@ provide('framer', framer)
 <template>
   <div>
     <br>
-    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mb-2">
-      <div class="card-body">
-        <div class="flex justify-start">
-          <NuxtLink :to="`/frames/${frame.id}`">
-            <i class="bi bi-arrow-left-circle" />
-          </NuxtLink>
+    <div class="flex justify-center">
+      <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mb-2 w-full sm:w-3/4">
+        <div class="card-body">
+          <div class="flex justify-start">
+            <NuxtLink :to="`/frames/${frame.id}`">
+              <i class="bi bi-arrow-left-circle" />
+            </NuxtLink>
+          </div>
+          <FramesPreviewImage
+            v-model="frame"
+            :original="true"
+            :photoswipe="false"
+          />
+          <!-- unless @frame.confirming == 'true' -->
+          <FramesEditForm />
+          <!-- else -->
+          <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
+          <!-- end -->
         </div>
-        <FramesPreviewImage
-          v-model="frame"
-          :original="true"
-          :photoswipe="false"
-        />
-        <!-- unless @frame.confirming == 'true' -->
-        <FramesEditForm />
-        <!-- else -->
-        <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
-        <!-- end -->
       </div>
     </div>
   </div>

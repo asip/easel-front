@@ -39,77 +39,78 @@ const onDeleteClick = () => {
 
 <template>
   <div>
-  <br>
-    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2">
-      <div class="card-body">
-        <div class="flex justify-between">
-          <div class="flex gap-1">
-            <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+    <br>
+    <div class="flex justify-center">
+      <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
+        <div class="card-body">
+          <div class="flex justify-between">
+            <div class="flex gap-1">
+              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+              <NuxtLink
+                v-if="loggedIn && frame.user_id == loginUser.id"
+                :to="`/frames/${frame.id}/edit`"
+              >
+                <i class="bi bi-pencil-square" />
+              </NuxtLink>
+              <!-- Button trigger modal -->
+              <button
+                v-if="loggedIn && frame.user_id == loginUser.id"
+                type="button"
+                class="btn-icon-local"
+                @click="onDeleteClick"
+              >
+                <i class="bi bi-x-circle" />
+              </button>
+            </div>
+            <div>
+              {{ frame.updated_at }}
+            </div>
+          </div>
+          <FramesPreviewImage
+            v-model="frame"
+            :original="true"
+            :photoswipe="true"
+          />
+          <FramesPreviewTags v-model="frame" />
+          <div class="flex justify-center">
+            <table class="table table-bordered table_rounded ml-2 mr-2 ">
+              <tbody>
+                <tr>
+                  <td style="width: 7em;">
+                    {{ $t('model.frame.name') }}：
+                  </td>
+                  <td>
+                    {{ frame.name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('model.frame.shooted_at') }}：</td>
+                  <td>
+                    {{ frame.shooted_at }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('model.frame.comment') }}：</td>
+                  <td>
+                    <span v-html="sanitizedComment" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex justify-end">
             <NuxtLink
-              v-if="loggedIn && frame.user_id == loginUser.id"
-              :to="`/frames/${frame.id}/edit`"
+              :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
+              class="link link-hover"
             >
-              <i class="bi bi-pencil-square" />
+              {{ frame.user_name }}
             </NuxtLink>
-            <!-- Button trigger modal -->
-            <button
-              v-if="loggedIn && frame.user_id == loginUser.id"
-              type="button"
-              class="btn-icon-local"
-              @click="onDeleteClick"
-            >
-              <i class="bi bi-x-circle" />
-            </button>
           </div>
-          <div>
-            {{ frame.updated_at }}
-          </div>
-        </div>
-        <FramesPreviewImage
-          v-model="frame"
-          :original="true"
-          :photoswipe="true"
-        />
-        <FramesPreviewTags v-model="frame" />
-        <div class="flex justify-center">
-          <table class="table table-bordered table_rounded ml-2 mr-2 ">
-            <tbody>
-              <tr>
-                <td style="width: 7em;">
-                  {{ $t('model.frame.name') }}：
-                </td>
-                <td>
-                  {{ frame.name }}
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('model.frame.shooted_at') }}：</td>
-                <td>
-                  {{ frame.shooted_at }}
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('model.frame.comment') }}：</td>
-                <td>
-                  <span v-html="sanitizedComment" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="flex justify-end">
-          <NuxtLink
-            :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
-            class="link link-hover"
-          >
-            {{ frame.user_name }}
-          </NuxtLink>
         </div>
       </div>
     </div>
     <FramesDeleteModal v-if="loggedIn" />
     <FramesComments v-model="frame" />
-    <br>
   </div>
 </template>
 
