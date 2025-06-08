@@ -11,6 +11,8 @@ provide('commenter', commenter)
 </script>
 
 <template>
-  <FramesCommentList />
-  <FramesCommentNewForm />
+  <div class="pb-5">
+    <FramesCommentList />
+    <FramesCommentNewForm />
+  </div>
 </template>

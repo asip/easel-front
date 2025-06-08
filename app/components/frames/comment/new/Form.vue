@@ -61,12 +61,12 @@ const updateContent = (content: string) => {
 </script>
 
 <template>
-  <div v-if="loggedIn" class="flex justify-center pb-10">
+  <div v-if="loggedIn" class="flex justify-center">
     <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mt-2 w-full sm:w-3/4">
       <div class="card-body">
         <div class="leading-[35px]">
           <div
-            class="flex justify-start items-center"
+            class="flex justify-start items-center gap-1"
           >
             <div class="avatar">
               <div class="w-5 h-5 rouded-full">

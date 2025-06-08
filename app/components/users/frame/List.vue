@@ -62,7 +62,7 @@ onUnmounted(() => {
   </div>
   <div
     v-if="frameQuery.pages > 1"
-    class="flex justify-center pb-10"
+    class="flex justify-center pb-5"
   >
     <vue-awesome-paginate
       v-model="frameQuery.page"

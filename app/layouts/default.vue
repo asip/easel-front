@@ -28,9 +28,9 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div>
+  <div class="min-h-[100vh]">
     <Header />
-    <div class="container mx-auto bg-aliceblue-200 min-h-full">
+    <div class="container mx-auto bg-aliceblue-200">
       <slot />
     </div>
     <Footer />
