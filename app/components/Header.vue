@@ -51,12 +51,13 @@ const onTopPageClick = async () => {
     <div class="drawer-content flex flex-col">
       <div class="navbar bg-base-100 shadow shadow-sm">
         <div class="navbar-start">
-          <NuxtLink
+          <a
+            href="#"
             class=""
             @click="onTopPageClick"
           >
             <i class="bi bi-palette" /> Easel
-          </NuxtLink>
+          </a>
         </div>
         <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
