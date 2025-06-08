@@ -30,7 +30,7 @@ onUpdated(() => {
 <template>
   <div>
     <Header />
-    <div class="container mx-auto bg-aliceblue-200 min-h-[100vh]">
+    <div class="container mx-auto bg-aliceblue-200 min-h-full">
       <slot />
     </div>
     <Footer />
