@@ -7,18 +7,18 @@ const frame = defineModel<Frame>()
 <template>
   <div class="card-body">
     <FramesPreviewTags v-model="frame" :list="true" />
-    <div class="flex justify-center">
+    <figure class="flex justify-center">
       <NuxtLink
         :to="`${frame?.file_url}`"
-        class="lb"
+        class="lb w-full"
       >
         <img
           :src="`${frame?.file_two_url}`"
           :alt="frame?.name"
-          class=""
+          class="w-full h-auto"
         >
       </NuxtLink>
-    </div>
+    </figure>
     <div class="flex justify-center">
       <NuxtLink :to="`/users/${frame?.user_id}`">
         <div class="badge badge-outline badge-accent rounded-full">{{ frame?.user_name }}</div>

@@ -13,18 +13,18 @@ const { userId, page = undefined } = defineProps<{
   <div
     class="card-body"
   >
-    <div class="flex justify-center">
+    <figure class="flex justify-center">
       <NuxtLink
         :to="`${frame?.file_url}`"
-        class="lb"
+        class="lb w-full"
       >
         <img
           :src="frame?.file_two_url"
           :alt="frame?.name"
-          class=""
+          class="w-full h-auto"
         >
       </NuxtLink>
-    </div>
+    </figure>
     <div class="flex justify-center">
       <NuxtLink
         v-if="page == 'profile'"
