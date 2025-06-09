@@ -21,7 +21,7 @@ const frame = defineModel<Frame>()
     </figure>
     <div class="flex justify-center">
       <NuxtLink :to="`/users/${frame?.user_id}`">
-        <div class="badge badge-outline badge-accent rounded-full">{{ frame?.user_name }}</div>
+        <div class="badge badge-outline badge-accent truncate rounded-full">{{ frame?.user_name }}</div>
       </NuxtLink>
     </div>
     <div class="flex justify-center">
