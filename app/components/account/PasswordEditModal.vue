@@ -25,7 +25,7 @@ onMounted(() => {
         <a
           href="#"
           class="mr-1"
-          @click="onBackClick"
+          @click.prevent="onBackClick"
         >
           <i class="bi bi-arrow-left-circle" />
         </a>

@@ -23,7 +23,7 @@ const onClick = async (tag: string) => {
       v-for="(tag, idx) in modelValue?.tags"
       :key="idx"
     >
-      <a href="#" @click="onClick(tag)"><span class="badge badge-outline badge-accent rounded-full">{{ tag }}</span></a>
+      <a href="#" @click.prevent="onClick(tag)"><span class="badge badge-outline badge-accent rounded-full">{{ tag }}</span></a>
     </span>
   </div>
   <div v-else class="flex justify-center mb-1 gap-1">
@@ -31,7 +31,7 @@ const onClick = async (tag: string) => {
       v-for="(tag, idx) in modelValue?.tags"
       :key="idx"
     >
-      <a href="#" @click="onClick(tag)"><div class="badge badge-outline badge-accent rounded-full">{{ tag }}</div></a>
+      <a href="#" @click.prevent="onClick(tag)"><div class="badge badge-outline badge-accent rounded-full">{{ tag }}</div></a>
     </div>
   </div>
 </template>

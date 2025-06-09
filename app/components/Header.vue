@@ -54,7 +54,7 @@ const onTopPageClick = async () => {
           <a
             href="#"
             class=""
-            @click="onTopPageClick"
+            @click.prevent="onTopPageClick"
           >
             <i class="bi bi-palette" /> Easel
           </a>
@@ -72,7 +72,7 @@ const onTopPageClick = async () => {
                 <a
                   href="#"
                   class="flex gap-1"
-                  @click="onProfileClick"
+                  @click.prevent="onProfileClick"
                 >
                   <i class="bi bi-person-fill" />{{ $t('model.user.model_name') }}
                 </a>
@@ -110,7 +110,7 @@ const onTopPageClick = async () => {
             v-else
             href="#"
             class="flex gap-1"
-            @click="onLoginClick"
+            @click.prevent="onLoginClick"
           >
             <i class="bi bi-box-arrow-in-right" />{{ $t('action.user.login') }}
           </a>

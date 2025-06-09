@@ -38,27 +38,27 @@ const onDeleteAccountClick = () => {
       <div class="flex justify-start gap-1 pb-1 mb-1">
         <a
           href="#"
-          @click="onCloseClick"
+          @click.prevent="onCloseClick"
         >
           <i class="bi bi-arrow-left-circle" />
         </a>
         <a
           href="#"
-          @click="onEditClick"
+          @click.prevent="onEditClick"
         >
           <i class="bi bi-pencil-square" />
         </a>
         <span v-if="loginUser && !loginUser.social_login">
           <a
             href="#"
-            @click="onEditPasswordClick"
+            @click.prevent="onEditPasswordClick"
           >
             <i class="bi bi-lock" />
           </a>
         </span>
         <a
           href="#"
-          @click="onDeleteAccountClick"
+          @click.prevent="onDeleteAccountClick"
         >
           <i class="bi bi-x-circle" />
         </a>
