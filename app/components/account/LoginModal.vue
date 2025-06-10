@@ -24,9 +24,14 @@ const onCloseClick = () => {
     <div
       class="modal-box rounded-[20px] divide-y divide-gray-200"
     >
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="onCloseClick">✕</button>
-      <div class="flex justify-start mb-1">
+      <div class="flex justify-between mb-1">
+        <div>
         {{ $t('action.user.login') }}
+        </div>
+        <div/>
+        <a href="#" @click.prevent="onCloseClick">
+          <i class="bi bi-x-circle" />
+        </a>
       </div>
       <div>
       <div class="flex justify-center border border-white gap-1 mb-1">
