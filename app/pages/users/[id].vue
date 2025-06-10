@@ -44,7 +44,9 @@ const onUnfollowClick = async () => {
     <div class="flex justify-center">
       <div class="card bg-base-100 shadow shadow-sm rounded-[20px] pt-2 pb-2 ml-2 mr-2 mb-2 w-full sm:w-9/10">
         <div class="flex justify-between">
-          <div class="ml-3" @click="onPageBack"><i class="bi bi-arrow-left-circle" /></div>
+          <div class="ml-3" @click="onPageBack">
+            <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+          </div>
           <div class="flex gap-1 items-center">
             <div class="avatar">
               <div class="w-5 h-5 rouded-full">

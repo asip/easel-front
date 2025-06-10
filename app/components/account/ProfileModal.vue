@@ -40,27 +40,27 @@ const onDeleteAccountClick = () => {
           href="#"
           @click.prevent="onCloseClick"
         >
-          <i class="bi bi-arrow-left-circle" />
+          <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
         </a>
         <a
           href="#"
           @click.prevent="onEditClick"
         >
-          <i class="bi bi-pencil-square" />
+          <i class="bi bi-pencil-square text-accent hover:text-primary" />
         </a>
         <span v-if="loginUser && !loginUser.social_login">
           <a
             href="#"
             @click.prevent="onEditPasswordClick"
           >
-            <i class="bi bi-lock" />
+            <i class="bi bi-lock text-accent hover:text-primary" />
           </a>
         </span>
         <a
           href="#"
           @click.prevent="onDeleteAccountClick"
         >
-          <i class="bi bi-x-circle" />
+          <i class="bi bi-x-circle text-accent hover:text-primary" />
         </a>
         {{ $t('model.user.model_name') }}
       </div>

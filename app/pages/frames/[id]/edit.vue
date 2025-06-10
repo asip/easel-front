@@ -21,7 +21,7 @@ provide('framer', framer)
         <div class="card-body">
           <div class="flex justify-start">
             <NuxtLink :to="`/frames/${frame.id}`">
-              <i class="bi bi-arrow-left-circle" />
+              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
             </NuxtLink>
           </div>
           <FramesPreviewImage

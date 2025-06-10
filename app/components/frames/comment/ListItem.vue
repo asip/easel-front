@@ -52,7 +52,7 @@ const onDeleteClick = async () => {
                 class="link link-hover"
                 @click="onDeleteClick"
               >
-                <i class="bi bi-x-circle" />
+                <i class="bi bi-x-circle text-accent hover:text-primary" />
               </button>
             </div>
           </div>

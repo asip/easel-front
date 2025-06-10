@@ -10,7 +10,7 @@ const { loggedIn, loginUser } = useAccount()
         <div class="flex justify-between">
           <div>
             <NuxtLink to="/" class="ml-2">
-              <i class="bi bi-arrow-left-circle" />
+              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
             </NuxtLink>
           </div>
           <div>

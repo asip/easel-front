@@ -45,12 +45,14 @@ const onDeleteClick = () => {
         <div class="card-body">
           <div class="flex justify-between">
             <div class="flex gap-1">
-              <span @click="onPageBack"><i class="bi bi-arrow-left-circle" /></span>
+              <span @click="onPageBack">
+                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+              </span>
               <NuxtLink
                 v-if="loggedIn && frame.user_id == loginUser.id"
                 :to="`/frames/${frame.id}/edit`"
               >
-                <i class="bi bi-pencil-square" />
+                <i class="bi bi-pencil-square text-accent hover:text-primary" />
               </NuxtLink>
               <!-- Button trigger modal -->
               <button
@@ -59,7 +61,7 @@ const onDeleteClick = () => {
                 class="btn-icon-local"
                 @click="onDeleteClick"
               >
-                <i class="bi bi-x-circle" />
+                <i class="bi bi-x-circle text-accent hover:text-primary" />
               </button>
             </div>
             <div>

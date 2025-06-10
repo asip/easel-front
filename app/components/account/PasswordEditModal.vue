@@ -27,7 +27,7 @@ onMounted(() => {
           class="mr-1"
           @click.prevent="onBackClick"
         >
-          <i class="bi bi-arrow-left-circle" />
+          <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
         </a>
         {{ $t('action.user.edit_password') }}
       </div>

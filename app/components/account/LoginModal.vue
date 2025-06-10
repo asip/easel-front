@@ -30,7 +30,7 @@ const onCloseClick = () => {
         </div>
         <div/>
         <a href="#" @click.prevent="onCloseClick">
-          <i class="bi bi-x-circle" />
+          <i class="bi bi-x-circle text-accent hover:text-primary" />
         </a>
       </div>
       <div>

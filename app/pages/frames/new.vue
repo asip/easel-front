@@ -12,7 +12,7 @@ provide('framer', framer)
         <div class="card-body divide-y divide-gray-200">
           <div class="flex justify-start gap-1">
             <NuxtLink to="/">
-              <i class="bi bi-arrow-left-circle" />
+              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
             </NuxtLink>
             {{ $t('action.frame.upload') }}
           </div>
