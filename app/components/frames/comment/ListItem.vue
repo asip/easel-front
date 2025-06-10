@@ -30,17 +30,23 @@ const onDeleteClick = async () => {
         <div class="leading-[35px]">
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
-              <div class="avatar">
+              <NuxtLink
+                :to="{ path: `/users/${comment?.user_id}`, query: { ref: 'frame', ref_id: comment?.frame_id } }"
+                class="avatar"
+              >
                 <div class="w-5 h-5 rouded-full">
                   <img
                     :src="`${comment?.user_image_url}`"
                     alt=""
                   >
                 </div>
-              </div>
-              <div class="badge badge-outline badge-accent rounded-full">
+              </NuxtLink>
+              <NuxtLink
+                :to="{ path: `/users/${comment?.user_id}`, query: { ref: 'frame', ref_id: comment?.frame_id } }"
+                class="badge badge-outline badge-accent hover:badge-primary rounded-full"
+              >
                 {{ comment?.user_name }}
-              </div>
+              </NuxtLink>
               <div class="badge badge-outline badge-accent rounded-full">
                 {{ comment?.updated_at }}
               </div>
