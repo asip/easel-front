@@ -32,7 +32,7 @@ const onCreateCommentClick = async () => {
   r$.$reset()
   const { valid } =await r$.$validate()
 
-  // console.log(r$.$fields.body.$invalid)
+  // console.log(r$.body.$invalid)
   // console.log(r$..$invalid)
   // console.log(r$.$error)
   // console.log(r$.$errors)

@@ -115,7 +115,7 @@ const updateContent = (content: string) => {
             <td>
               <TagEdit v-model="frame" />
               <div
-                v-for="error of r$.$fields.tags.$errors"
+                v-for="error of r$.tags.$errors"
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
