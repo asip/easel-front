@@ -50,9 +50,6 @@ importers:
       sanitize-html:
         specifier: ^2.17.0
         version: 2.17.0
-      sass-embedded:
-        specifier: ^1.89.2
-        version: 1.89.2
       tailwindcss:
         specifier: 4.1.11
         version: 4.1.11
@@ -6231,7 +6228,8 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.27.1
 
-  '@bufbuild/protobuf@2.6.0': {}
+  '@bufbuild/protobuf@2.6.0':
+    optional: true
 
   '@clack/core@0.4.2':
     dependencies:
@@ -8541,7 +8539,8 @@ snapshots:
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.24.5)
 
-  buffer-builder@0.2.0: {}
+  buffer-builder@0.2.0:
+    optional: true
 
   buffer-crc32@0.2.13: {}
 
@@ -8698,7 +8697,8 @@ snapshots:
 
   colord@2.9.3: {}
 
-  colorjs.io@0.5.2: {}
+  colorjs.io@0.5.2:
+    optional: true
 
   colorspace@1.1.4:
     dependencies:
@@ -9886,7 +9886,8 @@ snapshots:
 
   image-meta@0.2.1: {}
 
-  immutable@5.0.3: {}
+  immutable@5.0.3:
+    optional: true
 
   import-fresh@3.3.0:
     dependencies:
@@ -11550,6 +11551,7 @@ snapshots:
   rxjs@7.8.2:
     dependencies:
       tslib: 2.8.1
+    optional: true
 
   safe-buffer@5.1.2: {}
 
@@ -11647,6 +11649,7 @@ snapshots:
       sass-embedded-linux-x64: 1.89.2
       sass-embedded-win32-arm64: 1.89.2
       sass-embedded-win32-x64: 1.89.2
+    optional: true
 
   sass@1.89.2:
     dependencies:
@@ -11914,6 +11917,7 @@ snapshots:
   supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
+    optional: true
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
@@ -11930,8 +11934,10 @@ snapshots:
   sync-child-process@1.0.2:
     dependencies:
       sync-message-port: 1.1.3
+    optional: true
 
-  sync-message-port@1.1.3: {}
+  sync-message-port@1.1.3:
+    optional: true
 
   system-architecture@0.1.0: {}
 
@@ -12233,7 +12239,8 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  varint@6.0.0: {}
+  varint@6.0.0:
+    optional: true
 
   vite-dev-rpc@1.0.7(vite@6.3.5(@types/node@22.10.10)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.7.0)):
     dependencies:
