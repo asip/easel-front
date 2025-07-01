@@ -43,7 +43,10 @@ export default defineNuxtConfig({
       cookieCrossOrigin: false,
       redirectOn: 'root'// recommended
     },
-    strategy: 'no_prefix'
+    strategy: 'no_prefix',
+    bundle: {
+      optimizeTranslationDirective: false,
+    }
   },
 
   // @ts-ignore
