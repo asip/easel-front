@@ -1,4 +1,5 @@
-import { type Maybe ,createRule } from '@regle/core'
+import {  createRule } from '@regle/core'
+import type { Maybe } from '@regle/core';
 import { isFilled } from '@regle/rules'
 
 export const tagLength = createRule({
