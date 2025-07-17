@@ -23,7 +23,6 @@ export default defineNuxtConfig({
   plugins: [],
 
   i18n: {
-    lazy: true,
     locales: [
       {
         code: 'en',
@@ -43,10 +42,7 @@ export default defineNuxtConfig({
       cookieCrossOrigin: false,
       redirectOn: 'root'// recommended
     },
-    strategy: 'no_prefix',
-    bundle: {
-      optimizeTranslationDirective: false,
-    }
+    strategy: 'no_prefix'
   },
 
   // @ts-ignore
