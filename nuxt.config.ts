@@ -4,9 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 // @ts-ignore
 export default defineNuxtConfig({
-  future: {
-    compatibilityVersion: 4,
-  },
+  // future: {
+  //  compatibilityVersion: 4,
+  // },
 
   //experimental: {
   //  granularCachedData: false
@@ -68,9 +68,9 @@ export default defineNuxtConfig({
     'bootstrap-icons/font/bootstrap-icons.css'
   ],
 
-  build: {
+  /* build: {
     transpile: ['vue-sonner']
-  },
+  }, */
 
   devtools: {
     enabled: true

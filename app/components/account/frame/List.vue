@@ -12,13 +12,13 @@ const { initGallery, closeGallery } = useImageGallery()
 const { frameQuery, getFrames, frames } = useAccountFrames()
 
 // console.log('searchFrame: start')
-await getFrames(user.value)
+await getFrames()
 
 const userId = user.value?.id?.toString()
 
 const clickCallback = async (pageNum: number) => {
   frameQuery.value.page = pageNum
-  await getFrames(user.value, { more: true })
+  await getFrames({ client: true })
 }
 
 onMounted(() => {

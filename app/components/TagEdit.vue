@@ -4,17 +4,13 @@ import '@yaireo/tagify/dist/tagify.css'
 
 const modelValue = defineModel<Frame>()
 
-const { initTagEditor, closeTagEditor } = useTagEditor('tagEditorRef')
+const { initTagEditor } = useTagEditor('tagEditorRef')
 
 const tagList = computed(() => modelValue.value?.tag_list)
 
 onMounted(() => {
   // console.log(frame)
   if(modelValue.value){ initTagEditor(modelValue.value) }
-})
-
-onUnmounted(() => {
-  closeTagEditor()
 })
 </script>
 

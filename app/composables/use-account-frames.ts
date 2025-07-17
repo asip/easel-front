@@ -9,6 +9,8 @@ interface AccountFrameQuery {
 }
 
 export function useAccountFrames () {
+  const { accessToken } = useAccount()
+
   const frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
     return {
       page: 1,
@@ -21,14 +23,14 @@ export function useAccountFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (user: User | undefined, options?: { more?: boolean }) => {
+  const getFrames = async (options?: { client?: boolean }) => {
     const getOptions: any = {
       url: `/account/frames`,
       query: {
         page: frameQuery.value.page
       },
-      token: user?.token,
-      more: options?.more
+      token: accessToken.value,
+      client: options?.client
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

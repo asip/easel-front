@@ -48,14 +48,18 @@ export const useFrame = () => {
   const { $i18n } = useNuxtApp()
 
   const { locale } = useLocale()
-  const { loggedIn, loginUser, clearLoginUser } = useAccount()
+  const { loggedIn, accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  const getFrame = async (id: string) => {
+  const getFrame = async (id: string, options?: { client?: boolean }) => {
     if(!loggedIn.value){
-      const { data, error } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
+
+      if(options?.client){
+        refresh()
+      }
 
       clearFlash()
 
@@ -82,10 +86,14 @@ export const useFrame = () => {
         }
       }
     } else {
-      const { data, error } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
-        token: loginUser?.value.token
+        token: accessToken.value
       })
+
+      if(options?.client){
+        refresh()
+      }
 
       clearFlash()
 
@@ -145,7 +153,7 @@ export const useFrame = () => {
     const { data, error, pending } = await usePostApi<FrameResource>({
       url: '/frames/',
       body: formData,
-      token: loginUser.value.token,
+      token: accessToken.value,
       locale: locale.value
     })
 
@@ -237,7 +245,7 @@ export const useFrame = () => {
     const { error, pending } = await usePutApi<FrameResource>({
       url: `/frames/${frame.value.id}`,
       body: postData,
-      token: loginUser.value.token,
+      token: accessToken.value,
       locale: locale.value
     })
 
@@ -272,7 +280,7 @@ export const useFrame = () => {
 
     const { error, pending } = await useDeleteApi({
       url: `/frames/${frame.value.id}`,
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     clearFlash()

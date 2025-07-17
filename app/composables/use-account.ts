@@ -121,7 +121,7 @@ export const useAccount = () => {
     if (loginUser.value.token) {
       const { token, data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
-        token: loginUser.value.token
+        token: accessToken.value
       })
 
       clearFlash()
@@ -268,7 +268,7 @@ export const useAccount = () => {
     const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/profile/',
       body: formData,
-      token: user.value.token,
+      token: accessToken.value,
       locale: locale.value
     })
 
@@ -323,7 +323,7 @@ export const useAccount = () => {
     const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/password/',
       body: formData,
-      token: user.value.token,
+      token: accessToken.value,
       locale: locale.value
     })
 
@@ -426,7 +426,7 @@ export const useAccount = () => {
   const logout = async () => {
     const { data, error } = await useDeleteApi<UserResource>({
       url: '/sessions/logout',
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     clearFlash()
@@ -448,7 +448,7 @@ export const useAccount = () => {
   const deleteAccount = async () => {
     const { data, error } = await useDeleteApi<UserResource>({
       url: '/account',
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     clearFlash()
@@ -504,6 +504,7 @@ export const useAccount = () => {
 
   return {
     loginUser,
+    accessToken,
     user,
     loggedIn,
     loginParams,

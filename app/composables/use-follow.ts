@@ -7,13 +7,13 @@ export function useFollow () {
 
   const { $i18n } = useNuxtApp()
 
-  const { loginUser, clearLoginUser } = useAccount()
+  const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi<FollowingResource>({
       url: `/account/following/${userId}`,
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     // clearFlash()
@@ -39,7 +39,7 @@ export function useFollow () {
   const follow = async (userId: number | null) => {
     const { error } = await usePostApi({
       url: `/users/${userId}/follow_relationships`,
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     clearFlash()
@@ -61,7 +61,7 @@ export function useFollow () {
   const unfollow = async (userId: number | null) => {
     const { error } = await useDeleteApi({
       url: `/users/${userId}/follow_relationships`,
-      token: loginUser.value.token
+      token: accessToken.value
     })
 
     clearFlash()

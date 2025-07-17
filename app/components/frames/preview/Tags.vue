@@ -13,7 +13,7 @@ const onClick = async (tag: string) => {
   frameQuery.value.word = tag
   frameQuery.value.page = 1
   await navigateTo({ path: '/', query: queryString.value })
-  await searchFrame({ more: true })
+  await searchFrame({ client: true })
 }
 </script>
 
