@@ -63,8 +63,8 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3(typescript@5.8.3)
       vue-sonner:
-        specifier: git+https://github.com/xiaoluoboding/vue-sonner
-        version: https://codeload.github.com/xiaoluoboding/vue-sonner/tar.gz/1603abf633e3af7ef12e547d2782e0835b905181
+        specifier: 2.0.2
+        version: 2.0.2
       vue3-google-signin:
         specifier: 2.1.1
         version: 2.1.1(vue@3.5.17(typescript@5.8.3))
@@ -5751,9 +5751,8 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  vue-sonner@https://codeload.github.com/xiaoluoboding/vue-sonner/tar.gz/1603abf633e3af7ef12e547d2782e0835b905181:
-    resolution: {tarball: https://codeload.github.com/xiaoluoboding/vue-sonner/tar.gz/1603abf633e3af7ef12e547d2782e0835b905181}
-    version: 2.0.1
+  vue-sonner@2.0.2:
+    resolution: {integrity: sha512-cN6onnN6aBOZ56YWN8CMj6t4zqbz/XlenE+jx5z+mgduMMelFo6B6G+e2Q6hhxU9YFiV16MXG2MBPluZabyElQ==}
 
   vue3-google-signin@2.1.1:
     resolution: {integrity: sha512-RwlwyeCv8+PZjK35C/UyJN4/9MH+Fsz4bJDO7IjtmRuOaTMrvmMmI6SP5qkJgD7w9MIKOCj5rYVFMAL7+NCM0A==}
@@ -12182,7 +12181,7 @@ snapshots:
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
 
-  vue-sonner@https://codeload.github.com/xiaoluoboding/vue-sonner/tar.gz/1603abf633e3af7ef12e547d2782e0835b905181: {}
+  vue-sonner@2.0.2: {}
 
   vue3-google-signin@2.1.1(vue@3.5.17(typescript@5.8.3)):
     dependencies:
