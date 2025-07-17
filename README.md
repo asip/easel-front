@@ -4,7 +4,7 @@
 
 This is SPA Frontend of [Easel](https://github.com/asip/easel).
 
-Nuxt3.17 + Tailwind CSS 4 + daisyUI 5
+Nuxt4.0 + Tailwind CSS 4 + daisyUI 5
 
 Look at the [backend](https://github.com/asip/easel-back)
 
