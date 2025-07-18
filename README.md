@@ -50,7 +50,7 @@ Locally preview production build:
 pnpm preview
 ```
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn
+Look at the [Nuxt 4 documentation](https://nuxt.com/docs/getting-started/introduction) to learn
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
