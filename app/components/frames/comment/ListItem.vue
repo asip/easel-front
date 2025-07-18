@@ -52,7 +52,7 @@ const onDeleteClick = async () => {
               </div>
             </div>
             <div
-              v-show="loggedIn && comment?.user_id == loginUser.id"
+              v-if="loggedIn && comment?.user_id == loginUser.id"
             >
               <button
                 class="link link-hover"
