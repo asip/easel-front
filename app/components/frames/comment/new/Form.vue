@@ -47,7 +47,6 @@ const onCreateCommentClick = async () => {
       r$.$touch()
       r$.$reset()
       await getComments({ client: true })
-      await getComments()
     }
   }
 }

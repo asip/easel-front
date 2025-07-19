@@ -19,7 +19,6 @@ const onDeleteClick = async () => {
   setFlash(flash.value)
   if (isSuccess()) {
     await getComments({ client: true })
-    await getComments()
   }
 }
 </script>

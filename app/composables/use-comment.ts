@@ -38,7 +38,7 @@ export function useComment () {
     })
 
     if(options?.client){
-      refresh()
+      await refresh()
     }
 
     clearFlash()

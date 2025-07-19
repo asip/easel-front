@@ -58,7 +58,7 @@ export const useFrame = () => {
       })
 
       if(options?.client){
-        refresh()
+        await refresh()
       }
 
       clearFlash()
@@ -92,7 +92,7 @@ export const useFrame = () => {
       })
 
       if(options?.client){
-        refresh()
+        await refresh()
       }
 
       clearFlash()
