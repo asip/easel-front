@@ -24,7 +24,7 @@ export function useAccountFrames () {
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (options?: { more?: boolean }) => {
-    const getOptions: any = {
+    const getOptions: GetAPIOptions = {
       url: `/account/frames`,
       query: {
         page: frameQuery.value.page

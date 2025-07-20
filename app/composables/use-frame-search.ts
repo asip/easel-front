@@ -30,7 +30,7 @@ export const useFrameSearch = () => {
   const { flash, clearFlash } = useFlash()
 
   const searchFrame = async (options?: { more?: boolean }) => {
-    const getOptions: any = {
+    const getOptions: GetAPIOptions = {
       url: '/frames',
       query: queryString.value,
       more: options?.more

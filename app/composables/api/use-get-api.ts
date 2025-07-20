@@ -2,14 +2,15 @@ interface SearchParams {
   [key: string]: any
 }
 
-type GetAPIOptions = {
+export type GetAPIOptions = {
   url: string,
   query?: SearchParams,
   token?: string | null,
+  fresh?: boolean
   more?: boolean
 }
 
-export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, more = false }: GetAPIOptions) => {
+export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fresh = false, more = false }: GetAPIOptions) => {
   let key: string | null = null
 
   const { $api } = useNuxtApp()
@@ -44,5 +45,9 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, mo
     $api(url, options)
   )
 
-  return { token: tokenRef, data, error, refresh }
+  if(fresh){
+    await refresh()
+  }
+
+  return { token: tokenRef, data, error }
 }

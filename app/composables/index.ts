@@ -1,3 +1,5 @@
+export type { GetAPIOptions } from './api/use-get-api'
+
 export { useDeleteApi } from './api/use-delete-api'
 export { useGetApi } from './api/use-get-api'
 export { usePostApi } from './api/use-post-api'

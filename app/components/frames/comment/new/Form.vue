@@ -46,7 +46,7 @@ const onCreateCommentClick = async () => {
       comment.value.body = ''
       r$.$touch()
       r$.$reset()
-      await getComments({ refresh: true })
+      await getComments({ fresh: true })
     }
   }
 }
