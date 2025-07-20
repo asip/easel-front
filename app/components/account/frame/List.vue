@@ -18,7 +18,7 @@ const userId = user.value?.id?.toString()
 
 const clickCallback = async (pageNum: number) => {
   frameQuery.value.page = pageNum
-  await getFrames({ client: true })
+  await getFrames({ more: true })
 }
 
 onMounted(() => {

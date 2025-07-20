@@ -31,13 +31,13 @@ export function useComment () {
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  const getComments = async (options?: { client?: boolean }) => {
+  const getComments = async (options?: { refresh?: boolean }) => {
     // console.log(comment.frame_id);
     const { data, error, refresh } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`
     })
 
-    if(options?.client){
+    if(options?.refresh){
       await refresh()
     }
 

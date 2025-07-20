@@ -29,11 +29,11 @@ export const useFrameSearch = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const searchFrame = async (options?: { client?: boolean }) => {
+  const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: any = {
       url: '/frames',
       query: queryString.value,
-      client: options?.client
+      more: options?.more
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

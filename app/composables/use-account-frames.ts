@@ -23,14 +23,14 @@ export function useAccountFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (options?: { client?: boolean }) => {
+  const getFrames = async (options?: { more?: boolean }) => {
     const getOptions: any = {
       url: `/account/frames`,
       query: {
         page: frameQuery.value.page
       },
       token: accessToken.value,
-      client: options?.client
+      more: options?.more
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

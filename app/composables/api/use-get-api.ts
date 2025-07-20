@@ -6,10 +6,10 @@ type GetAPIOptions = {
   url: string,
   query?: SearchParams,
   token?: string | null,
-  client?: boolean
+  more?: boolean
 }
 
-export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, client = false }: GetAPIOptions) => {
+export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, more = false }: GetAPIOptions) => {
   let key: string | null = null
 
   const { $api } = useNuxtApp()
@@ -34,7 +34,7 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, cl
     }
   }
 
-  if (client) {
+  if (more) {
     key = `${url}-${new Date().getTime()}`
   } else {
     key = url

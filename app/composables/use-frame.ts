@@ -51,13 +51,13 @@ export const useFrame = () => {
   const { loggedIn, accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  const getFrame = async (id: string, options?: { client?: boolean }) => {
+  const getFrame = async (id: string, options?: { refresh?: boolean }) => {
     if(!loggedIn.value){
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
 
-      if(options?.client){
+      if(options?.refresh){
         await refresh()
       }
 
@@ -91,7 +91,7 @@ export const useFrame = () => {
         token: accessToken.value
       })
 
-      if(options?.client){
+      if(options?.refresh){
         await refresh()
       }
 
