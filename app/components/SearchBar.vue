@@ -25,9 +25,12 @@ const onSearchClick = async () => {
   await searchFrame({ more: true })
 }
 
-const onClearClick = () => {
+const onClearClick = async () => {
   frameQuery.value.word = ''
   dateWord.value= null
+  frameQuery.value.page = 1
+  await navigateTo({ path: '/', query: queryString.value })
+  await searchFrame({ more: true })
 }
 </script>
 
