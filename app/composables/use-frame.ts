@@ -53,11 +53,10 @@ export const useFrame = () => {
 
   const refresh = async () => {}
 
-  const getFrame = async (id: string, options?: { fresh?: boolean }) => {
+  const getFrame = async (id: string) => {
     if(!loggedIn.value){
       const { data, error, refresh } = await useGetApi<FrameResource>({
-        url: `/frames/${id}`,
-        fresh: options?.fresh
+        url: `/frames/${id}`
       })
 
       clearFlash()
@@ -89,8 +88,7 @@ export const useFrame = () => {
     } else {
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
-        token: accessToken.value,
-        fresh: options?.fresh
+        token: accessToken.value
       })
 
       clearFlash()
