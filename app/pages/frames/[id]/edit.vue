@@ -8,7 +8,9 @@ const frameId = id as string
 const framer = useFrame()
 const { frame, getFrame } = framer
 
-await getFrame(frameId)
+const { refresh } = await getFrame(frameId)
+
+framer.refresh = refresh
 
 provide('framer', framer)
 </script>

@@ -3,7 +3,7 @@ import type { UseFrameType } from '~/composables/use-frame'
 
 const { setFlash } = useToast()
 const { loggedIn } = useAccount()
-const { frame, updateFrame, frameId, getFrame, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
+const { frame, updateFrame, refresh, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
 
 const editor: Ref = useTemplateRef('editor')
 
@@ -31,7 +31,7 @@ const onEditClick = async () => {
 
     setFlash(flash.value)
     if (isSuccess()) {
-      await getFrame(`${frameId.value}`, { fresh: true })
+      await refresh()
       await navigateTo(`/frames/${frame?.value.id}`)
     } else if (!loggedIn.value) {
       await navigateTo(`/frames/${frame?.value.id}`)
