@@ -10,7 +10,7 @@ const { frame, getFrame } = framer
 
 const { refresh } = await getFrame(frameId)
 
-framer.refresh = refresh
+framer.refresh = async () => { await refresh() }
 
 provide('framer', framer)
 </script>
