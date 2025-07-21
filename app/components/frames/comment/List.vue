@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { UseCommentType } from '~/composables/use-comment'
 
-const { comments, getComments } = inject('commenter') as UseCommentType
-
-// console.log(comment.frame_id);
-await getComments()
+const { comments } = inject('commenter') as UseCommentType
 </script>
 
 <template>

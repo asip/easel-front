@@ -4,9 +4,13 @@ import type { Frame } from '~/interfaces/frame'
 const frame = defineModel<Frame>()
 
 const commenter = useComment()
-const { comment } = commenter
+const { comment, getComments } = commenter
 
 comment.value.frame_id = frame.value?.id
+// console.log(comment.value.frame_id)
+
+await getComments()
+
 provide('commenter', commenter)
 </script>
 
