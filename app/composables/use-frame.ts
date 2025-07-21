@@ -51,7 +51,7 @@ export const useFrame = () => {
   const { loggedIn, accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  let refresh = async () => {}
+  const refresh = async () => {}
 
   const getFrame = async (id: string, options?: { fresh?: boolean }) => {
     if(!loggedIn.value){
