@@ -56,6 +56,9 @@ importers:
       v-calendar:
         specifier: ^3.1.2
         version: 3.1.2(@popperjs/core@2.11.8)(vue@3.5.17(typescript@5.8.3))
+      vue:
+        specifier: ^3.5.17
+        version: 3.5.17(typescript@5.8.3)
       vue-awesome-paginate:
         specifier: 1.2.0
         version: 1.2.0(typescript@5.8.3)
