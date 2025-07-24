@@ -12,7 +12,7 @@ export { useLightbox } from './ui/use-lightbox'
 export { useModal } from './ui/use-modal'
 export { useQuill } from './ui/use-quill'
 export { useTagEditor } from './ui/use-tag-editor'
-export { useToast } from './ui/use-toast'
+export { useSonner } from './ui/use-sonner'
 
 export { commentRules } from './validation/forms/comment-rules'
 export { frameRules } from './validation/forms/frame-rules'

@@ -2,7 +2,7 @@
 const { closeModal } = useModal()
 
 
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as useAccountType
 
 const { r$ } = useI18nRegle(loginParams, signinRules)

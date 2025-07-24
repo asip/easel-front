@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { useAccountType } from '~/composables/use-account'
 
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
 const passwordRules = getPasswordRules(user.value)

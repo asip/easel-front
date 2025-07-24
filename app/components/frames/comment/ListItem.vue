@@ -6,7 +6,7 @@ import type { Comment } from '~/interfaces/comment'
 const comment = defineModel<Comment>()
 
 const { p2br } = useQuill()
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 

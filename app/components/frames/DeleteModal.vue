@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { UseFrameType } from '~/composables/use-frame'
 
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { frame, deleteFrame, isSuccess, flash } = inject('framer') as UseFrameType
 

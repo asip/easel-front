@@ -2,7 +2,7 @@
 import type { useAccountType } from '~/composables/use-account'
 import { profileRules } from "~/composables/index"
 
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
 

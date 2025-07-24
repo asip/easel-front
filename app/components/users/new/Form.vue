@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { user, signup, errorMessages, processing, isSuccess, clearProfile, clearErrorMessages, flash, locale } = useAccount()
 const signupRules = getSignupRules(user.value)

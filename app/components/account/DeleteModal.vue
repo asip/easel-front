@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
-const { setFlash } = useToast()
+const { setFlash } = useSonner()
 const { loggedIn, deleteAccount, flash } = useAccount()
 
 const onDeleteClick = async () => {

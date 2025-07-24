@@ -1,6 +1,6 @@
 import type { Flash } from '~/interfaces/flash'
 
-export function useToast () {
+export function useSonner () {
   const { $toast } = useNuxtApp()
 
   const setFlash = (flash: Flash) => {
