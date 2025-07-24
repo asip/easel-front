@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@formkit/tempo": "0.1.2",
-    "@nuxtjs/i18n": "10.0.2",
+    "@nuxtjs/i18n": "10.0.3",
     "@regle/core": "^1.6.1",
     "@regle/nuxt": "1.6.1",
     "@regle/rules": "^1.6.1",
