@@ -5,6 +5,9 @@ import type { Comment } from '~/interfaces/comment'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 
+type ErrorProperty = 'body' | 'base'
+type ExternalErrorProperty = 'body'
+
 export function useComment () {
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
@@ -18,7 +21,7 @@ export function useComment () {
 
   const comments: Ref<Comment[]> = ref<Comment[]>([])
 
-  const errorMessages = ref<ErrorMessages<'body' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
     body: [],
     base: []
   })
@@ -93,7 +96,7 @@ export function useComment () {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'body'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -127,7 +130,7 @@ export function useComment () {
     }
   }
 
-  const setErrorMessages = (errors: ErrorMessages<'body'>) => {
+  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.body) {
       errorMessages.value.body = errors.body
     } else {

@@ -5,6 +5,9 @@ import type { ErrorMessages } from '~/types/error-messages'
 import type { ErrorsResource, FrameResource } from '~/interfaces'
 import { useAccount } from './use-account'
 
+type ErrorProperty = 'name' | 'tags' | 'file' | 'base'
+type ExternalErrorProperty = 'name' | 'tag_list' | 'file'
+
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
     id: 0,
@@ -36,7 +39,7 @@ export const useFrame = () => {
     return frame.value.id
   })
 
-  const errorMessages = ref<ErrorMessages<'name' | 'tags' | 'file' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
     name: [],
     tags: [],
     file: [],
@@ -162,7 +165,7 @@ export const useFrame = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -185,7 +188,7 @@ export const useFrame = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: ErrorMessages<'name' | 'tag_list' | 'file'>) => {
+  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.file) {
       errorMessages.value.file = errors.file
     } else {
@@ -254,7 +257,7 @@ export const useFrame = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'name' | 'tag_list' | 'file'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }

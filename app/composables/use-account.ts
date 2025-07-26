@@ -2,8 +2,10 @@ import { useLocale } from '~/composables/use-locale'
 import type { User } from '~/interfaces/user'
 import type { ErrorMessages } from '~/types/error-messages'
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { ErrorsResource, MessagesResource, UserResource } from '~/interfaces'
-import Password from '~/components/users/edit/Password.vue'
+import type { ErrorsResource, UserResource } from '~/interfaces'
+
+type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'base'
+type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'
 
 export const useAccount = () => {
   const loginParams = ref({
@@ -51,7 +53,7 @@ export const useAccount = () => {
 
   const loginMessages = ref<string[]>([])
 
-  const errorMessages = ref<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'base'>>({
+  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
     image: [],
     name: [],
     email: [],
@@ -97,7 +99,7 @@ export const useAccount = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -171,7 +173,7 @@ export const useAccount = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -282,7 +284,7 @@ export const useAccount = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -337,7 +339,7 @@ export const useAccount = () => {
       switch (error.value.statusCode) {
         case 422:
           {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>>
+            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
               setErrorMessages(errors)
             }
@@ -362,7 +364,7 @@ export const useAccount = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: ErrorMessages<'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'>) => {
+  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.image) {
       errorMessages.value.image = errors.image
     } else {
