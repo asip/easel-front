@@ -33,8 +33,8 @@ importers:
         specifier: ^1.13.1
         version: 1.13.1
       daisyui:
-        specifier: ^5.0.48
-        version: 5.0.48
+        specifier: ^5.0.49
+        version: 5.0.49
       glightbox:
         specifier: ^3.3.1
         version: 3.3.1
@@ -2737,8 +2737,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  daisyui@5.0.48:
-    resolution: {integrity: sha512-t2nvzKENuhbjkKmxhIoDgV/nzAnNLbswK9MBlOMnEO6hxfgNLlt7jVrHYWw6ts492JdQ0Mmf6iX3aO/u+1zXAw==}
+  daisyui@5.0.49:
+    resolution: {integrity: sha512-LcShkCUPsgmaZN0+VouY9oiTY2JCBiSz33kg99hl1XhGd0aGumXEo25IvGhK7CCN0CGhbmX2TLugiSap8YGzVQ==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -8936,7 +8936,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  daisyui@5.0.48: {}
+  daisyui@5.0.49: {}
 
   data-uri-to-buffer@4.0.1: {}
 
