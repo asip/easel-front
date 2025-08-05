@@ -51,8 +51,6 @@ export const useAccount = () => {
     return false
   })
 
-  const loginMessages = ref<string[]>([])
-
   const errorMessages = ref<ErrorMessages<ErrorProperty>>({
     image: [],
     name: [],
@@ -193,7 +191,6 @@ export const useAccount = () => {
         loggedIn.value = true
         // console.log(loginUser.value)
         accessToken.value = loginUser.value.token
-        loginMessages.value = []
       }
     }
   }
@@ -229,8 +226,6 @@ export const useAccount = () => {
 
       accessToken.value = loginUser.value.token
     }
-
-    loginMessages.value = []
   }
 
   const resetLoginParams = () => {
@@ -526,7 +521,6 @@ export const useAccount = () => {
     clearLoginUser,
     clearProfile,
     clearErrorMessages,
-    loginMessages,
     errorMessages,
     locale
   }
