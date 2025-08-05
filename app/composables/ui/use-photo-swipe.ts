@@ -4,6 +4,7 @@ import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.es
 
 export function usePhotoSwipe (galleryRefKey?: string) {
   let galleryRef: Ref
+  let lightbox: any
 
   if (galleryRefKey) {
     galleryRef = useTemplateRef(galleryRefKey)
@@ -14,7 +15,7 @@ export function usePhotoSwipe (galleryRefKey?: string) {
 
     await assignSize(galleryEl)
 
-    const lightbox: any = new PhotoSwipeLightbox({
+    lightbox = new PhotoSwipeLightbox({
       gallery: `#${galleryEl.id}`,
       children: 'a',
       initialZoomLevel: 'fit',
@@ -23,8 +24,6 @@ export function usePhotoSwipe (galleryRefKey?: string) {
 
     const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
     lightbox.init()
-
-    return lightbox
   }
 
   const assignSize = async (gallery: HTMLDivElement) => {
@@ -44,5 +43,11 @@ export function usePhotoSwipe (galleryRefKey?: string) {
     return img
   }
 
-  return { initPhotoSwipe }
+  const closePhotoSwipe = () => {
+    if (lightbox) {
+      lightbox.destroy()
+    }
+  }
+
+  return { initPhotoSwipe, closePhotoSwipe }
 }

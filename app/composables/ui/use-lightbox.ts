@@ -1,31 +1,22 @@
 import { usePhotoSwipe } from './use-photo-swipe'
-// import 'photoswipe/style.css';
+import { useGLightbox } from './use-g-lightbox'
 
 export function useLightbox (galleryRefKey?: string) {
-  let lightbox: any
   let photoswipe: boolean
 
-  const { initPhotoSwipe } = usePhotoSwipe(galleryRefKey)
+  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe(galleryRefKey)
+  const { initGLightbox, closeGLightbox } = useGLightbox()
 
   const initPSLightbox = async () => {
-    lightbox = await initPhotoSwipe()
+    await initPhotoSwipe()
     photoswipe = true
   }
 
-  const initGLightbox = (selector: string) => {
-    const { $glightbox } = useNuxtApp() as any
-
-    lightbox = $glightbox({ selector: selector })
-  }
-
   const closeLightbox = () => {
-    if (lightbox) {
-      if (photoswipe) {
-        lightbox.destroy()
-      } else {
-        lightbox.close()
-      }
-      lightbox = null
+    if (photoswipe) {
+      closePhotoSwipe()
+    } else {
+      closeGLightbox()
     }
   }
 
