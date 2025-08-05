@@ -1,4 +1,32 @@
-export function usePhotoSwipe () {
+import PhotoSwipeLightbox from 'photoswipe/lightbox'
+// @ts-expect-error
+import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
+
+export function usePhotoSwipe (galleryRefKey?: string) {
+  let galleryRef: Ref
+
+  if (galleryRefKey) {
+    galleryRef = useTemplateRef(galleryRefKey)
+  }
+
+  const initPhotoSwipe = async () => {
+    const galleryEl: HTMLDivElement = galleryRef.value
+
+    await assignSize(galleryEl)
+
+    const lightbox: any = new PhotoSwipeLightbox({
+      gallery: `#${galleryEl.id}`,
+      children: 'a',
+      initialZoomLevel: 'fit',
+      pswpModule: () => import('photoswipe')
+    })
+
+    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
+    lightbox.init()
+
+    return lightbox
+  }
+
   const assignSize = async (gallery: HTMLDivElement) => {
     const galleryAnchors = gallery?.querySelectorAll('a')
     for await (const el of galleryAnchors) {
@@ -16,5 +44,5 @@ export function usePhotoSwipe () {
     return img
   }
 
-  return { assignSize }
+  return { initPhotoSwipe }
 }
