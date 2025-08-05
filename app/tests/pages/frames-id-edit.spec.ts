@@ -10,7 +10,7 @@ vi.mock('nuxt/app', () => ({
     },
     path: '/frames/49'
   }))
- }))
+}))
  */
 
 /*
