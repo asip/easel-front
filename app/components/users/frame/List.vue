@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useUserFrames } from '~/composables/use-user-frames'
-
 const { userId, page = undefined } = defineProps<{
   userId: string | undefined
   page?: string

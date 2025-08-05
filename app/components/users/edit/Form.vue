@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { useAccountType } from '~/composables/use-account'
-import { profileRules } from "~/composables/index"
+import { profileRules } from "~/composables"
 
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as useAccountType
+const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as UseAccountType
 
 const { r$ } = useI18nRegle(user, profileRules)
 
@@ -29,7 +28,6 @@ const onUpdateClick = async () => {
       openModal('#profile_modal')
     } else if (!loggedIn.value) {
       closeModal('#edit_profile_modal')
-      
     }
   }
 }

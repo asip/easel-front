@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// import type { Frame } from '~/interfaces/frame';
-
 const route = useRoute()
 const { id } = route.params
 const frameId = id as string

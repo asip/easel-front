@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UseFrameType } from '~/composables/use-frame'
-
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
 const { frame, updateFrame, refresh, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType

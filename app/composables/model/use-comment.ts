@@ -1,9 +1,5 @@
-import { useAccount } from './use-account'
-import { useFlash } from './use-flash'
-import { useLocale } from '~/composables/use-locale'
-import type { Comment } from '~/interfaces/comment'
-import type { ErrorMessages } from '~/types/error-messages'
-import type { CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'

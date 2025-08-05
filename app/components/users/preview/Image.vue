@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-import { useLightbox } from '~/composables/ui/use-lightbox'
-import type { User } from '~/interfaces/user'
+import type { User } from '~/interfaces'
 
 const modelValue = defineModel<User>()
 

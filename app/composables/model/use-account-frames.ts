@@ -1,20 +1,19 @@
-import type { FrameResource, FramesResource } from '~/interfaces'
-import type { Frame } from '~/interfaces/frame'
+import type { Frame, FrameResource, FramesResource } from '~/interfaces'
 
-interface UserFrameQuery {
-  user_id: string | null
+interface AccountFrameQuery {
   page: number
   pages: number
   items: number
 }
 
-export function useUserFrames () {
-  const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
+export function useAccountFrames () {
+  const { accessToken } = useAccount()
+
+  const frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
     return {
-      user_id: null,
       page: 1,
       pages: 1,
-      items: 1,
+      items: 1
     }
   })
 
@@ -22,12 +21,13 @@ export function useUserFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
+  const getFrames = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
-      url: `/users/${userId}/frames`,
+      url: `/account/frames`,
       query: {
         page: frameQuery.value.page
       },
+      token: accessToken.value,
       more: options?.more
     }
 

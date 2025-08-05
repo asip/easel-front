@@ -1,8 +1,6 @@
-import { useLocale } from '~/composables/use-locale'
-import type { User } from '~/interfaces/user'
-import type { ErrorMessages } from '~/types/error-messages'
+import type { User, UserResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { ErrorsResource, UserResource } from '~/interfaces'
 
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'base'
 type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'
@@ -526,4 +524,4 @@ export const useAccount = () => {
   }
 }
 
-export type useAccountType = ReturnType<typeof useAccount>
+export type UseAccountType = ReturnType<typeof useAccount>

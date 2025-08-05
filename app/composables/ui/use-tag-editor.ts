@@ -1,5 +1,5 @@
 import Tagify from '@yaireo/tagify'
-import type { Frame } from '~/interfaces/frame'
+import type { Frame } from '~/interfaces'
 
 export function useTagEditor (refKey: string) {
   const tagEditorRef = useTemplateRef(refKey)

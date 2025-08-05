@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UseCommentType } from '~/composables/use-comment'
-
 const { comments } = inject('commenter') as UseCommentType
 </script>
 

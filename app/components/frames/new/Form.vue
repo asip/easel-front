@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UseFrameType } from '~/composables/use-frame'
-
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
 const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
@@ -23,7 +21,7 @@ const onSelectFile = (evt: Event) => {
 }
 
 const onCreateClick = async () => {
-  if (editor.value?.getText().replace(/\n/g, '') == ''){
+  if (editor.value?.getText()?.replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
 
@@ -43,7 +41,7 @@ const onCreateClick = async () => {
 }
 
 const updateContent = (content: string) => {
-  if (editor.value?.getText().replace(/\n/g, '') != ''){
+  if (editor.value?.getText()?.replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
     frame.value.comment = ''

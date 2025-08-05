@@ -2,7 +2,7 @@
 const form = useTemplateRef('form')
 
 const onBackClick = () => {
-  form?.value.onBackClick()
+  form.value?.onBackClick()
 }
 </script>
 

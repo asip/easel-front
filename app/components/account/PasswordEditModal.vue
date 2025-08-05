@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, setUser } = inject('accounter') as useAccountType
+const { loggedIn, loginUser, setUser } = inject('accounter') as UseAccountType
 
 const onBackClick = () => {
   closeModal('#edit_password_modal')

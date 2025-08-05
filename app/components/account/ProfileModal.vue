@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import type { useAccountType } from '~/composables/use-account'
-
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, setUser } = inject('accounter') as useAccountType
+const { loggedIn, loginUser, setUser } = inject('accounter') as UseAccountType
 
 const onCloseClick = () => {
   closeModal('#profile_modal')

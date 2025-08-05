@@ -3,7 +3,7 @@ const { closeModal } = useModal()
 
 
 const { setFlash } = useSonner()
-const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as useAccountType
+const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as UseAccountType
 
 const { r$ } = useI18nRegle(loginParams, signinRules)
 
@@ -24,7 +24,6 @@ const onLoginClick = async () => {
       resetLoginParams()
       r$.$reset()
       closeModal('#login_modal')
-      
     }
   }
 }

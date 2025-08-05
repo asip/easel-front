@@ -1,6 +1,4 @@
-import type { User } from '~/interfaces/user'
-import type { RefQuery } from '~/interfaces/ref-query'
-import type { UserResource } from '~/interfaces'
+import type { User, RefQuery, UserResource } from '~/interfaces'
 
 export const useUser = () => {
   const user = ref<User>(

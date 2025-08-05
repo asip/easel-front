@@ -1,4 +1,4 @@
-import type { Flash } from '~/interfaces/flash'
+import type { Flash } from '~/interfaces'
 
 export function useSonner () {
   const { $toast } = useNuxtApp()

@@ -1,5 +1,3 @@
-import { useAccount } from '@/composables/use-account'
-
 export default defineNuxtRouteMiddleware(async (to, _from) => {
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { frame, getFrame } = useFrame()

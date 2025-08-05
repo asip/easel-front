@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useLocale } from '~/composables/use-locale'
-
 useHead(
   {
     title: 'Easel',

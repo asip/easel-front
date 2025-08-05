@@ -1,6 +1,4 @@
-import type { FrameResource, FramesResource } from '~/interfaces'
-import type { Frame } from '~/interfaces/frame'
-import type { FrameQuery } from '~/interfaces/frame-query'
+import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfaces'
 
 export const useFrameSearch = () => {
   const frameQuery = useState<FrameQuery>('frameQuery', () => {

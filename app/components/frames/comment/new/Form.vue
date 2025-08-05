@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UseCommentType } from '~/composables/use-comment'
-
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { comment, errorMessages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType

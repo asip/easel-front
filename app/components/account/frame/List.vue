@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { User } from '~/interfaces/user'
-import { useAccountFrames } from '~/composables/use-account-frames'
+import type { User } from '~/interfaces'
+
 
 const user = defineModel<User>()
 

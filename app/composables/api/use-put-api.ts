@@ -1,5 +1,3 @@
-import { format } from '@formkit/tempo'
-
 type PutAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
 }

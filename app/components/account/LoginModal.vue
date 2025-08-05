@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { loggedIn } = useAccount()
 const { closeModal, openModal } = useModal()
-const { resetLoginParams } = inject('accounter') as useAccountType
+const { resetLoginParams } = inject('accounter') as UseAccountType
 
 const form = useTemplateRef('form')
 
@@ -12,7 +12,7 @@ const onSignupClick = () => {
 }
 
 const onCloseClick = () => {
-  form?.value.onCloseClick()
+  form.value?.onCloseClick()
 }
 </script>
 

@@ -1,8 +1,6 @@
-import { useLocale } from '~/composables/use-locale'
-import type { RefQuery } from '~/interfaces/ref-query'
-import type { Frame } from '~/interfaces/frame'
-import type { ErrorMessages } from '~/types/error-messages'
-import type { ErrorsResource, FrameResource } from '~/interfaces'
+import type { Frame, RefQuery, FrameResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
+
 import { useAccount } from './use-account'
 
 type ErrorProperty = 'name' | 'tags' | 'file' | 'base'

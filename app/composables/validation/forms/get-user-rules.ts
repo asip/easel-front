@@ -1,4 +1,4 @@
-import type { User } from '~/interfaces/user'
+import type { User } from '~/interfaces'
 import { required, minLength, maxLength, email, sameAs } from '@regle/rules'
 
 export const getUserRules = (user: User) =>

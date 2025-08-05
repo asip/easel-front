@@ -1,5 +1,4 @@
-import type { Frame } from '~/interfaces/frame'
-import type { User } from '~/interfaces/user'
+import type { Frame, User } from '~/interfaces'
 
 export function useImagePreview (target: HTMLInputElement, model: Frame | User) {
   const file: { name?: string, ext?: string, data?: Blob | null } = {}

@@ -1,4 +1,3 @@
-import type { Ref } from 'vue'
 import { useAccount } from './use-account'
 import type { FollowingResource } from '~/interfaces'
 
