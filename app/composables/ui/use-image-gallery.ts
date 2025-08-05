@@ -1,17 +1,15 @@
-export function useImageGallery () {
-  let gallery: any = null
+import { useGLightbox } from './use-g-lightbox'
 
-  const { $glightbox } = useNuxtApp() as any
+export function useImageGallery () {
+
+  const { initGLightbox, closeGLightbox } = useGLightbox()
 
   const initGallery = (selector: string) => {
-    gallery = $glightbox({ selector: selector })
+    initGLightbox(selector)
   }
 
   const closeGallery = () => {
-    if (gallery) {
-      gallery.close()
-      gallery = null
-    }
+    closeGLightbox()
   }
 
   return { initGallery, closeGallery }
