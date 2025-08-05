@@ -105,9 +105,9 @@ export const useAccount = () => {
             }
             break
           }
-        case 500:
-          flash.value.alert = error.value.message
-          break
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
         default:
           flash.value.alert = error.value.message
       }
@@ -179,9 +179,9 @@ export const useAccount = () => {
             }
             break
           }
-        case 500:
-          flash.value.alert = error.value.message
-          break
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
         default:
           flash.value.alert = error.value.message
       }

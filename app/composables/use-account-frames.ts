@@ -39,9 +39,9 @@ export function useAccountFrames () {
 
     if (error.value) {
       switch (error.value.statusCode) {
-        case 500:
-          flash.value.alert = error.value.message
-          break
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
         default:
           flash.value.alert = error.value.message
       }
