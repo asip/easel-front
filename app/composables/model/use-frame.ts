@@ -55,6 +55,8 @@ export const useFrame = () => {
   const refresh = async () => {}
 
   const getFrame = async (id: string) => {
+    loggedIn.value = !!accessToken.value
+
     if(!loggedIn.value){
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
