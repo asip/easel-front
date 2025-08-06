@@ -2,9 +2,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { frame, getFrame } = useFrame()
 
-  if (!loggedIn.value) {
-    await authenticate()
-  }
+  await authenticate()
 
   if ((to.path === '/account/frames' || to.path === '/frames/new') && !loggedIn.value) {
     return navigateTo('/')
