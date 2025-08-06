@@ -57,6 +57,38 @@ export const useFrame = () => {
   const getFrame = async (id: string) => {
     loggedIn.value = !!accessToken.value
 
+    if (loggedIn.value) {
+      const { data, error, refresh } = await useGetApi<FrameResource>({
+        url: `/account/frames/${id}`,
+        token: accessToken.value
+      })
+
+      clearFlash()
+
+      if (error.value) {
+        switch (error.value.statusCode) {
+          case 401:
+            flash.value.alert = $i18n.t('action.error.login')
+            clearLoginUser()
+            break
+          case 404:
+            flash.value.alert = error.value.message
+            break
+          default:
+            flash.value.alert = error.value.message
+        }
+      } else if (data.value) {
+        const frameAttrs = data.value
+        // console.log(frameAttrs)
+
+        if (frameAttrs) {
+          setJson2Frame(frameAttrs)
+        }
+
+        return { refresh }
+      }
+    }
+
     if(!loggedIn.value){
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
@@ -88,40 +120,7 @@ export const useFrame = () => {
       }
 
       return { refresh }
-    } else {
-      const { data, error, refresh } = await useGetApi<FrameResource>({
-        url: `/account/frames/${id}`,
-        token: accessToken.value
-      })
-
-      clearFlash()
-
-      if (error.value) {
-        switch (error.value.statusCode) {
-          case 404:
-            flash.value.alert = error.value.message
-            break
-          default:
-            flash.value.alert = error.value.message
-        }
-
-        throw createError({
-          statusCode: error.value.statusCode,
-          statusMessage: error.value.message,
-          message: flash.value.alert
-        })
-      } else if (data.value) {
-        const frameAttrs = data.value
-        // console.log(frameAttrs)
-
-        if (frameAttrs) {
-          setJson2Frame(frameAttrs)
-        }
-      }
-
-      return { refresh }
     }
-
   }
 
   const setJson2Frame = (resource: FrameResource) => {

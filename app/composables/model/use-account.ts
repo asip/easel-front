@@ -63,7 +63,7 @@ export const useAccount = () => {
 
   const { $i18n } = useNuxtApp()
 
-  const accessToken = useCookie('access_token', { sameSite: 'lax' })
+  const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
   const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
@@ -119,7 +119,8 @@ export const useAccount = () => {
     if (loginUser.value.token) {
       const { token, data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
-        token: accessToken.value
+        token: accessToken.value,
+        fresh: true
       })
 
       clearFlash()
