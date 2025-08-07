@@ -5,7 +5,7 @@ type PutAPIOptions = {
 export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  const key = `${url}-${new Date().getTime()}`
+  const key = `${url}:${new Date().getTime()}`
 
   const tokenRef = ref<string>()
 

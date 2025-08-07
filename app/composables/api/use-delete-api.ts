@@ -5,7 +5,7 @@ type DeleteAPIOptions = {
 export const useDeleteApi = async <T,E=unknown>({ url, token = null, locale = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  const key = `${url}-${new Date().getTime()}`
+  const key = `${url}:${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest'

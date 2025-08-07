@@ -5,7 +5,7 @@ type PostAPIOptions = {
 export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null, locale = null }: PostAPIOptions) => {
   const { $api } = useNuxtApp()
 
-  const key = `${url}-${new Date().getTime()}`
+  const key = `${url}:${new Date().getTime()}`
 
   const tokenRef = ref<string>()
 

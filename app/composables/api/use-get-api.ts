@@ -36,7 +36,7 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
   }
 
   if (more) {
-    key = `${url}-${new Date().getTime()}`
+    key = `${url}:${new Date().getTime()}`
   } else {
     key = url
   }
