@@ -55,7 +55,7 @@ export const useFrame = () => {
   const refresh = async () => {}
 
   const getFrame = async (id: string) => {
-    loggedIn.value = !!accessToken.value
+    // console.log(`token: ${loginUser.value.token}`)
 
     if (loggedIn.value) {
       const { data, error, refresh } = await useGetApi<FrameResource>({
@@ -77,6 +77,12 @@ export const useFrame = () => {
           default:
             flash.value.alert = error.value.message
         }
+
+        throw createError({
+          statusCode: error.value.statusCode,
+          statusMessage: error.value.message,
+          message: flash.value.alert
+        })
       } else if (data.value) {
         const frameAttrs = data.value
         // console.log(frameAttrs)
@@ -84,12 +90,10 @@ export const useFrame = () => {
         if (frameAttrs) {
           setJson2Frame(frameAttrs)
         }
-
-        return { refresh }
       }
-    }
 
-    if(!loggedIn.value){
+      return { refresh }
+    } else {
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })

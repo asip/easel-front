@@ -139,7 +139,6 @@ export const useAccount = () => {
         // console.log(userAttrs)
 
         if (userAttrs) {
-          // console.log('test3')
           setJson2LoginUser(userAttrs, token.value)
           loggedIn.value = true
         }
@@ -234,7 +233,11 @@ export const useAccount = () => {
 
   const setJson2LoginUser = (resource: UserResource, token?: string | undefined) => {
     Object.assign(loginUser.value, resource)
-    if(token) loginUser.value.token = token
+    if (token) {
+      loginUser.value.token = token
+    } else {
+      loginUser.value.token = null
+    }
   }
 
   const setUser = (loginUser: Ref<User>) => {
