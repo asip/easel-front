@@ -8,7 +8,8 @@ export const useDeleteApi = async <T,E=unknown>({ url, token = null, locale = nu
   const key = `${url}:${new Date().getTime()}`
 
   const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json'
   }
 
   const pending = ref<boolean>(false)

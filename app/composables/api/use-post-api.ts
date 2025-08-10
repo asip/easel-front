@@ -10,7 +10,8 @@ export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null, lo
   const tokenRef = ref<string>()
 
   const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json'
   }
 
   const pending = ref<boolean>(false)

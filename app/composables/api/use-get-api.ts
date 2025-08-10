@@ -18,7 +18,8 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
   const tokenRef = ref<string>()
 
   const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json'
   }
 
   if (token) {
