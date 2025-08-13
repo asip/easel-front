@@ -47,7 +47,6 @@ export const useUser = () => {
       // console.log(userAttrs)
 
       if (userAttrs) {
-      // console.log('test3')
         setJson2User(userAttrs)
       }
     }
