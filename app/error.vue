@@ -3,9 +3,9 @@ const error = useError()
 </script>
 
 <template>
-  <div>
+  <div class="min-h-[100vh]">
     <Header />
-    <div class="container">
+    <div class="container mx-auto bg-aliceblue-200">
       <ErrorBadRequest v-if="error?.statusCode == 400" />
       <ErrorForbidden v-if="error?.statusCode == 403" />
       <ErrorNotFound v-if="error?.statusCode == 404" />
