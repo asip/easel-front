@@ -49,7 +49,7 @@ const onTopPageClick = async () => {
   <div class="sticky top-0 drawer drawer-end z-[1000]">
     <input id="search-sidebar" type="checkbox" class="drawer-toggle">
     <div class="drawer-content flex flex-col">
-      <div class="navbar bg-base-100 shadow shadow-sm">
+      <div class="navbar bg-base-100 shadow">
         <div class="navbar-start">
           <a
             href="#"

@@ -41,7 +41,7 @@ const onDeleteClick = () => {
   <div>
     <br>
     <div class="flex justify-center">
-      <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
+      <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
         <div class="card-body">
           <div class="flex justify-between">
             <div class="flex gap-1">

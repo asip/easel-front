@@ -8,7 +8,7 @@ provide('framer', framer)
   <div>
     <br>
     <div class="flex justify-center">
-      <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 mb-2 w-full sm:w-3/4">
+      <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2 w-full sm:w-3/4">
         <div class="card-body divide-y divide-gray-200">
           <div class="flex justify-start gap-1">
             <NuxtLink to="/">

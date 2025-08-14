@@ -24,7 +24,7 @@ const onDeleteClick = async () => {
 
 <template>
   <div class="flex justify-center pt-2">
-    <div class="card bg-base-100 shadow shadow-sm rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
+    <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
       <div class="card-body">
         <div class="leading-[35px]">
           <div class="flex justify-between">
