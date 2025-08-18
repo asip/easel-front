@@ -17,7 +17,7 @@
     "@markuplint/vue-parser": "^4.6.20",
     "@markuplint/vue-spec": "^4.5.20",
     "@nuxt/devtools": "2.6.2",
-    "@nuxt/eslint": "^1.8.0",
+    "@nuxt/eslint": "^1.9.0",
     "@nuxt/test-utils": "^3.19.2",
     "@testing-library/vue": "8.1.0",
     "@types/google.accounts": "^0.0.17",
@@ -52,7 +52,7 @@
     "vue": "^3.5.18",
     "vue-awesome-paginate": "1.2.0",
     "vue-quilly": "^1.1.4",
-    "vue-sonner": "2.0.2",
+    "vue-sonner": "2.0.8",
     "vue3-google-signin": "2.1.1"
   }
 }
