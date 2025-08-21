@@ -2,7 +2,7 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { user, signup, errorMessages, processing, isSuccess, clearProfile, clearErrorMessages, flash, locale } = useAccount()
-const signupRules = getSignupRules(user.value)
+const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules)
 

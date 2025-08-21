@@ -2,6 +2,7 @@
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
 const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
+const { frameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')
 

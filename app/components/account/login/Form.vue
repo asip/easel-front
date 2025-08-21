@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
 
-
 const { setFlash } = useSonner()
 const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('accounter') as UseAccountType
+const { signinRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(loginParams, signinRules)
 
