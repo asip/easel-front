@@ -2,7 +2,7 @@
 
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('accounter') as UseAccountType
+const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash, locale } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules)

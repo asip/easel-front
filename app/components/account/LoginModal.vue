@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { loggedIn } = useAccount()
 const { closeModal, openModal } = useModal()
-const { resetLoginParams } = inject('accounter') as UseAccountType
+const { resetLoginParams } = inject('account') as UseAccountType
 
 const form = useTemplateRef('form')
 
