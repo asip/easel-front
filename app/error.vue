@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const error = useError()
+// if(error.value) error.value.statusCode = 500
 </script>
 
 <template>
   <div class="min-h-[100vh]">
     <Header />
-    <div class="container mx-auto bg-aliceblue-200">
+    <div class="container mx-auto bg-aliceblue-200 error-html">
       <ErrorBadRequest v-if="error?.statusCode == 400" />
       <ErrorForbidden v-if="error?.statusCode == 403" />
       <ErrorNotFound v-if="error?.statusCode == 404" />
@@ -17,46 +18,76 @@ const error = useError()
 </template>
 
 <style>
-  div.dialog {
-    color: #2E2F30;
+  .error-html {
+    font-size: 16px;
+    /* background: #FFF; */
+    color: #261B23;
+    display: grid;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Aptos, Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.0025em;
+    line-height: 1.4;
+    min-height: 100vh;
+    place-items: center;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  b, strong {
+    font-weight: 700;
+  }
+
+  i, em {
+    font-style: italic;
+  }
+
+  main {
+    font-size: 16px;
+    /* background: #FFF; */
+    color: #261B23;
+    display: grid;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Aptos, Roboto, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.0025em;
+    line-height: 1.4;
+    min-height: 100vh;
+    place-items: center;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    gap: 1em;
+    padding: 2em;
     text-align: center;
-    font-family: arial, sans-serif;
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto;
   }
 
-  div.dialog > div {
-    border: 1px solid #999;
-    border-top: 4px #B00100;
-    border-bottom-color: #BBB;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  main header {
+    width: min(100%, 12em);
   }
 
-  div.dialog h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-    margin: 10px 0;
+  main header svg {
+    height: auto;
+    max-width: 100%;
+    width: 100%;
   }
 
-  div.dialog p {
-    margin: 16px 0;
+  main article {
+    width: min(100%, 30em);
   }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border: 1px solid #999;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  main article p {
+    font-size: 75%;
+  }
+
+  main article br {
+    display: none;
+
+    @media(min-width: 48em) {
+      display: inline;
+    }
   }
 </style>
