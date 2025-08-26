@@ -33,10 +33,11 @@ const onDeleteClick = async () => {
                 :to="{ path: `/users/${comment?.user_id}`, query: { ref: 'frame', ref_id: comment?.frame_id } }"
                 class="avatar"
               >
-                <div class="w-5 h-5 rouded-full">
+                <div class="w-5 h-5">
                   <img
                     :src="`${comment?.user_image_url}`"
-                    alt=""
+                    :alt="comment?.user_name"
+                    class="rounded"
                   >
                 </div>
               </NuxtLink>
