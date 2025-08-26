@@ -65,7 +65,14 @@ const onTopPageClick = async () => {
         <div class="navbar-center">
           <details v-if="loggedIn" ref="dropdown" class="dropdown">
             <summary>
-              {{ loginUser.name }}
+              <span class="tooltip tooltip-bottom" :data-tip="loginUser.name">
+                <img
+                  :src="`${loginUser?.image_thumb_url}`"
+                  :alt="loginUser.name"
+                  class="rounded"
+                  style="width:40px;height:40px;display: inline"
+                >
+              </span>
             </summary>
             <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-[999]">
               <li>
