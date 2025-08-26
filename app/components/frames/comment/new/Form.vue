@@ -67,17 +67,14 @@ const updateContent = (content: string) => {
           <div
             class="flex justify-start items-center gap-1"
           >
-            <div class="avatar">
-              <div class="w-5 h-5 rouded-full">
-                <img
-                  :src="`${loginUser.image_thumb_url}`"
-                  alt=""
-                  class="rounded"
-                  width="20"
-                  height="20"
-                  decoding="async"
-                >
-              </div>
+            <div class="avatar w-5 h-5">
+              <img
+                :src="`${loginUser.image_thumb_url}`"
+                :alt="loginUser.name"
+                class="rounded"
+                style="width:20px;height:20px;"
+                decoding="async"
+              >
             </div>
             <div class="badge badge-outline badge-accent rounded-full">
               {{ loginUser.name }}
