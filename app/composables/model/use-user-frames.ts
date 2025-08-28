@@ -12,6 +12,7 @@ export function useUserFrames () {
 
   const frames = ref<Frame[]>([])
 
+  const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
 
   const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
@@ -20,7 +21,8 @@ export function useUserFrames () {
       query: {
         page: frameQuery.value.page
       },
-      more: options?.more
+      more: options?.more,
+      locale: locale.value
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

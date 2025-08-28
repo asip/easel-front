@@ -61,7 +61,8 @@ export const useFrame = () => {
     if (loggedIn.value) {
       const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
-        token: accessToken.value
+        token: accessToken.value,
+        locale: locale.value
       })
 
       clearFlash()
@@ -96,7 +97,8 @@ export const useFrame = () => {
       return { refresh }
     } else {
       const { data, error, refresh } = await useGetApi<FrameResource>({
-        url: `/frames/${id}`
+        url: `/frames/${id}`,
+        locale: locale.value
       })
 
       clearFlash()

@@ -8,9 +8,10 @@ export type GetAPIOptions = {
   token?: string | null,
   fresh?: boolean
   more?: boolean
+  locale?: string | null
 }
 
-export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fresh = false, more = false }: GetAPIOptions) => {
+export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fresh = false, more = false, locale = null }: GetAPIOptions) => {
   let key: string | null = null
 
   const { $api } = useNuxtApp()
@@ -40,6 +41,10 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
     key = `${url}:${new Date().getTime()}`
   } else {
     key = url
+  }
+
+  if (locale) {
+    headers['Accept-Language'] = locale
   }
 
   const { data, error, refresh } = await useAsyncData<T,E>(key, () =>

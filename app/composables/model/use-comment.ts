@@ -35,7 +35,8 @@ export function useComment () {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
-      fresh: options?.fresh
+      fresh: options?.fresh,
+      locale: locale.value
     })
 
     clearFlash()

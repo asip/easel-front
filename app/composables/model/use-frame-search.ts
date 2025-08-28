@@ -25,13 +25,15 @@ export const useFrameSearch = () => {
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
+  const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
 
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
       url: '/frames',
       query: queryString.value,
-      more: options?.more
+      more: options?.more,
+      locale: locale.value
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)

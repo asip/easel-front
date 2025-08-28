@@ -1,6 +1,7 @@
 import type { AccountFrameQuery, Frame, FrameResource, FramesResource } from '~/interfaces'
 
 export function useAccountFrames () {
+  const { locale } = useLocale()
   const { accessToken } = useAccount()
 
   const frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
@@ -22,7 +23,8 @@ export function useAccountFrames () {
         page: frameQuery.value.page
       },
       token: accessToken.value,
-      more: options?.more
+      more: options?.more,
+      locale: locale.value
     }
 
     const { data, error } = await useGetApi<FramesResource>(getOptions)
