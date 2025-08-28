@@ -1,7 +1,9 @@
 export default defineNuxtRouteMiddleware(async (to, _from) => {
+  const { autoDetect } = useLocale()
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { frame, getFrame } = useFrame()
 
+  autoDetect()
   await authenticate()
 
   if ((to.path === '/account/frames' || to.path === '/frames/new') && !loggedIn.value) {

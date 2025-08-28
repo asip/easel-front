@@ -13,16 +13,6 @@ useHead(
     script: []
   }
 )
-
-const { autoDetect } = useLocale()
-
-onMounted(() => {
-  autoDetect()
-})
-
-onUpdated(() => {
-  autoDetect()
-})
 </script>
 
 <template>
