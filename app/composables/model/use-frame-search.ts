@@ -1,7 +1,7 @@
 import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfaces'
 
 export const useFrameSearch = () => {
-  const frameQuery = useState<FrameQuery>('frameQuery', () => {
+  const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
       word: '',
       page: 1,
