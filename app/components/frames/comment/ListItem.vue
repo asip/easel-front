@@ -48,7 +48,7 @@ const onDeleteClick = async () => {
                 {{ comment?.user_name }}
               </NuxtLink>
               <div class="badge badge-outline badge-accent rounded-full">
-                {{ comment?.updated_at }}
+                {{ comment?.created_at }}
               </div>
             </div>
             <div
