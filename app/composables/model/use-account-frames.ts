@@ -1,10 +1,4 @@
-import type { Frame, FrameResource, FramesResource } from '~/interfaces'
-
-interface AccountFrameQuery {
-  page: number
-  pages: number
-  items: number
-}
+import type { AccountFrameQuery, Frame, FrameResource, FramesResource } from '~/interfaces'
 
 export function useAccountFrames () {
   const { accessToken } = useAccount()

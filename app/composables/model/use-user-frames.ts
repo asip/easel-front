@@ -1,11 +1,4 @@
-import type { Frame, FrameResource, FramesResource } from '~/interfaces'
-
-interface UserFrameQuery {
-  user_id: string | null
-  page: number
-  pages: number
-  items: number
-}
+import type { Frame, FrameResource, FramesResource, UserFrameQuery } from '~/interfaces'
 
 export function useUserFrames () {
   const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
