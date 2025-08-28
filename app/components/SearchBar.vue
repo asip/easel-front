@@ -50,12 +50,14 @@ const onClearClick = async () => {
       <div class="flex justify-center">
         <form>
           <div class="flex gap-2">
-            <input
-              v-model="frameQuery.word"
-              type="text"
-              :placeholder="$t('component.tag_search.placeholder')"
-              class="input w-50"
-            >
+            <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder')">
+              <input
+                v-model="frameQuery.word"
+                type="text"
+                placeholder=""
+                class="input w-50"
+              >
+            </div>
             <input
               type="button"
               :value="$t('component.tag_search.search')"

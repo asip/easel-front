@@ -24,7 +24,7 @@
   },
   "component": {
     "tag_search": {
-      "placeholder": "タグ or 名前 or 撮影/更新日",
+      "placeholder": "タグ or 名前 or 撮影/登録/更新日",
       "search": "検索",
       "clear": "クリア"
     }
