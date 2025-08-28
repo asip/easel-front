@@ -12,6 +12,7 @@ export function useComment () {
     user_id: null,
     user_name: '',
     user_image_url: '',
+    created_at: '',
     updated_at: null
   })
 

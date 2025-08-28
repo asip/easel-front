@@ -65,7 +65,12 @@ const onDeleteClick = () => {
               </button>
             </div>
             <div>
-              {{ frame.updated_at }}
+              <NuxtLink
+                :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
+                class="link link-hover"
+              >
+                {{ frame.user_name }}
+              </NuxtLink>
             </div>
           </div>
           <FramesPreviewImage
@@ -100,13 +105,13 @@ const onDeleteClick = () => {
               </tbody>
             </table>
           </div>
-          <div class="flex justify-end">
-            <NuxtLink
-              :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
-              class="link link-hover"
-            >
-              {{ frame.user_name }}
-            </NuxtLink>
+          <div class="flex justify-between">
+            <div>
+              {{ frame.created_at }}
+            </div>
+            <div>
+              {{ frame.updated_at }}
+            </div>
           </div>
         </div>
       </div>

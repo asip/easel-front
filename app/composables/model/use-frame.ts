@@ -23,7 +23,8 @@ export const useFrame = () => {
     file_three_url: '',
     preview_url: null,
     private: false,
-    updated_at: ''
+    created_at: '',
+    updated_at: null
   })
 
   const refQuery = useState<RefQuery>('frame.refQuery', () => {
