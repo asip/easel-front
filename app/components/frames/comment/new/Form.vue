@@ -15,7 +15,7 @@ const options = ref({
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(comment,commentRules)
+const { r$ } = useI18nRegle(comment, commentRules)
 
 onMounted(async () => {
   i18n.global.locale.value = locale.value
