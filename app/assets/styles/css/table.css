@@ -1,0 +1,25 @@
+/* table */
+
+.table_rounded {
+  border: 1px solid lavender;
+  border-radius: 10px;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+.table_rounded tr td {
+  border: none;
+  border-bottom: 1px solid lavender;
+  border-right: 1px solid lavender;
+}
+.table_rounded tr td:first-child {
+  border-left: none;
+}
+.table_rounded tr td:last-child {
+  border-right: none;
+}
+.table_rounded tr:first-child td {
+  border-top: none;
+}
+.table_rounded tr:last-child td {
+  border-bottom: none;
+}
