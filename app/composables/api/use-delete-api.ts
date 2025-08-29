@@ -1,25 +1,23 @@
 type DeleteAPIOptions = {
-  url:string, token?: string | null, locale?: string | null
+  url:string, token?: string | null
 }
 
-export const useDeleteApi = async <T,E=unknown>({ url, token = null, locale = null }: DeleteAPIOptions) => {
+export const useDeleteApi = async <T,E=unknown>({ url, token = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
+  const { locale } = useLocale()
 
   const key = `${url}:${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'Accept-Language': locale.value
   }
 
   const pending = ref<boolean>(false)
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
-  }
-
-  if (locale) {
-    headers['Accept-Language'] = locale
   }
 
   const { data, error, status } = await useAsyncData<T,E>(key, () =>

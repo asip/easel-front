@@ -1,9 +1,10 @@
 type PutAPIOptions = {
-  url:string, body?: Record<string, any> | FormData, token?: string | null, locale?: string | null
+  url:string, body?: Record<string, any> | FormData, token?: string | null
 }
 
-export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null, locale = null }: PutAPIOptions) => {
+export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null }: PutAPIOptions) => {
   const { $api } = useNuxtApp()
+  const { locale } = useLocale()
 
   const key = `${url}:${new Date().getTime()}`
 
@@ -11,7 +12,8 @@ export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null, loc
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'Accept-Language': locale.value
   }
 
   const pending = ref<boolean>(false)
@@ -19,10 +21,6 @@ export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null, loc
   if (token) {
     headers.Authorization = `Bearer ${token}`
     tokenRef.value = token
-  }
-
-  if (locale) {
-    headers['Accept-Language'] = locale
   }
 
   const { data, error, status } = await useAsyncData<T,E>(key, () =>

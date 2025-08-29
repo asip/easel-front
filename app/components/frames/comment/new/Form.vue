@@ -1,7 +1,8 @@
 <script setup lang="ts">
+const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, errorMessages, processing, isSuccess, flash, locale, getComments, createComment } = inject('commenter') as UseCommentType
+const { comment, errorMessages, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
 const { commentRules } = useCommentRules()
 
 const options = ref({

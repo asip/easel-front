@@ -27,7 +27,6 @@ export function useComment () {
 
   const { $i18n } = useNuxtApp()
 
-  const { locale } = useLocale()
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
@@ -35,8 +34,7 @@ export function useComment () {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
-      fresh: options?.fresh,
-      locale: locale.value
+      fresh: options?.fresh
     })
 
     clearFlash()
@@ -83,8 +81,7 @@ export function useComment () {
     const { data, error, pending } = await usePostApi<CommentResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
-      token: accessToken.value,
-      locale: locale.value
+      token: accessToken.value
     })
 
     clearFlash()
@@ -158,8 +155,7 @@ export function useComment () {
   const deleteComment = async (comment: Comment) => {
     const { error } = await useDeleteApi({
       url: `/comments/${comment.id}`,
-      token: accessToken.value,
-      locale: locale.value
+      token: accessToken.value
     })
 
     clearFlash()
@@ -188,8 +184,7 @@ export function useComment () {
     deleteComment,
     processing,
     isSuccess,
-    flash,
-    locale
+    flash
   }
 }
 

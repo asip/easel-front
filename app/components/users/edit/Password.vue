@@ -1,7 +1,8 @@
 <script setup lang="ts">
+const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash, locale } = inject('account') as UseAccountType
+const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { passwordRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, passwordRules)

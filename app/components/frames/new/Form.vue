@@ -1,7 +1,8 @@
 <script setup lang="ts">
+const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash, locale } = inject('framer') as UseFrameType
+const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { frameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')

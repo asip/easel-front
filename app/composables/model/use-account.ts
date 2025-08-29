@@ -65,7 +65,6 @@ export const useAccount = () => {
 
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
-  const { locale } = useLocale()
   const { flash, clearFlash } = useFlash()
 
   const signup = async () => {
@@ -84,8 +83,7 @@ export const useAccount = () => {
 
     const { error, pending } = await usePostApi<UserResource>({
       url: '/users/',
-      body: formData,
-      locale: locale.value
+      body: formData
     })
 
     clearFlash()
@@ -156,8 +154,7 @@ export const useAccount = () => {
 
     const { token ,data, error } = await usePostApi<UserResource>({
       url: '/sessions/',
-      body: postData,
-      locale: locale.value
+      body: postData
     })
 
     // console.log(token.value)
@@ -267,8 +264,7 @@ export const useAccount = () => {
     const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/profile/',
       body: formData,
-      token: accessToken.value,
-      locale: locale.value
+      token: accessToken.value
     })
 
     // console.log(data)
@@ -322,8 +318,7 @@ export const useAccount = () => {
     const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/password/',
       body: formData,
-      token: accessToken.value,
-      locale: locale.value
+      token: accessToken.value
     })
 
     // console.log(data)
@@ -523,8 +518,7 @@ export const useAccount = () => {
     clearLoginUser,
     clearProfile,
     clearErrorMessages,
-    errorMessages,
-    locale
+    errorMessages
   }
 }
 
