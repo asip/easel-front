@@ -5,7 +5,6 @@ const { locale } = useLocale()
 const { frameQuery, queryString, searchFrame } = useFrameSearch()
 
 const dateWord = defineModel<Date | null>({
-  default: new Date,
   set (value: Date | null) {
     if (value) {
       frameQuery.value.word = format(value, 'YYYY/MM/DD', locale.value)
@@ -20,17 +19,21 @@ const masks = {
 }
 
 const onSearchClick = async () => {
-  frameQuery.value.page = 1
-  await navigateTo({ path: '/', query: queryString.value })
-  await searchFrame({ more: true })
+  if (frameQuery.value.word?.length && frameQuery.value.word?.length > 1) {
+    frameQuery.value.page = 1
+    await navigateTo({ path: '/', query: queryString.value })
+    await searchFrame({ more: true })
+  }
 }
 
 const onClearClick = async () => {
-  frameQuery.value.word = ''
-  dateWord.value= null
-  frameQuery.value.page = 1
-  await navigateTo({ path: '/', query: queryString.value })
-  await searchFrame({ more: true })
+  if (frameQuery.value.word?.length && frameQuery.value.word?.length > 1) {
+    frameQuery.value.word = ''
+    dateWord.value= null
+    frameQuery.value.page = 1
+    await navigateTo({ path: '/', query: queryString.value })
+    await searchFrame({ more: true })
+  }
 }
 </script>
 
