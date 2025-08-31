@@ -91,7 +91,7 @@ defineExpose({
                   v-model="user.name"
                   name="name"
                   type="text"
-                  :placeholder="$t('model.user.name')"
+                  placeholder=""
                   autocomplete="username"
                   class="input"
                 >
@@ -121,7 +121,7 @@ defineExpose({
                   v-model="user.email"
                   name="email"
                   type="email"
-                  :placeholder="$t('model.user.email')"
+                  placeholder=""
                   autocomplete="email"
                   class="input"
                 >
@@ -151,7 +151,7 @@ defineExpose({
                   v-model="user.password"
                   name="password"
                   type="password"
-                  :placeholder="$t('model.user.password')"
+                  placeholder=""
                   autocomplete="new-password"
                   class="input"
                 >
@@ -181,7 +181,7 @@ defineExpose({
                   v-model="user.password_confirmation"
                   name="password_confirmation"
                   type="password"
-                  :placeholder="$t('model.user.password_confirmation')"
+                  placeholder=""
                   autocomplete="new-password"
                   class="input"
                 >

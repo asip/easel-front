@@ -55,7 +55,7 @@ defineExpose({ onCloseClick })
                 v-model="loginParams.email"
                 name="email"
                 type="email"
-                :placeholder="$t('model.user.email')"
+                placeholder=""
                 autocomplete="email"
                 class="input"
               >
@@ -85,7 +85,7 @@ defineExpose({ onCloseClick })
                 v-model="loginParams.password"
                 name="password"
                 type="password"
-                :placeholder="$t('model.user.password')"
+                placeholder=""
                 autocomplete="current-password"
                 class="input"
               >

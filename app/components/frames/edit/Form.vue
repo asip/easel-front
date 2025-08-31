@@ -64,7 +64,7 @@ const updateContent = (content: string) => {
               <input
                 v-model="frame.name"
                 type="text"
-                :placeholder="$t('model.frame.name')"
+                placeholder=""
                 class="input"
               >
               <div
