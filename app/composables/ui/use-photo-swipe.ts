@@ -37,7 +37,7 @@ export function usePhotoSwipe (galleryRefKey?: string) {
   }
 
   const loadImage = async (src: string) => {
-    const img: HTMLImageElement = new window.Image()
+    const img: HTMLImageElement = new globalThis.Image()
     img.src = src
     await img.decode()
     return img

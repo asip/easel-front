@@ -1,5 +1,4 @@
 export function useGLightbox () {
-  let galleryRef: Ref
   let lightbox: any
 
   const { $glightbox } = useNuxtApp() as any
