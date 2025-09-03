@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
 const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash } = inject('framer') as UseFrameType
@@ -13,10 +12,6 @@ const { r$ } = useI18nRegle(frame, frameRules)
 // console.log(frame.tags)
 // console.log(frame.tag_list)
 
-onMounted(() => {
-  i18n.global.locale.value = locale.value
-})
-
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
   useImagePreview(target, frame.value)
@@ -27,7 +22,6 @@ const onCreateClick = async () => {
     frame.value.comment = ''
   }
 
-  i18n.global.locale.value = locale.value
   const { valid } = await r$.$validate()
 
   // console.log(frame)

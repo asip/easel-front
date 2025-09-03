@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash } = inject('account') as UseAccountType
@@ -7,17 +6,12 @@ const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules)
 
-onMounted(()=>{
-  i18n.global.locale.value = locale.value
-})
-
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
   useImagePreview(target, user.value)
 }
 
 const onUpdateClick = async () => {
-  i18n.global.locale.value = locale.value
   const { valid } = await r$.$validate()
 
   if (valid) {

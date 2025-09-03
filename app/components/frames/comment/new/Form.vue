@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { locale } = useLocale()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { comment, errorMessages, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
@@ -18,16 +17,11 @@ const editor: Ref = useTemplateRef('editor')
 
 const { r$ } = useI18nRegle(comment, commentRules)
 
-onMounted(async () => {
-  i18n.global.locale.value = locale.value
-})
-
 const onCreateCommentClick = async () => {
   if (editor.value?.getText().replace(/\n/g, '') === ''){
     comment.value.body = ''
   }
 
-  i18n.global.locale.value = locale.value
   r$.$touch()
   r$.$reset()
   const { valid } =await r$.$validate()
