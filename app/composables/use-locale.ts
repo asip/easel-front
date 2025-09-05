@@ -9,7 +9,6 @@ export const useLocale = () => {
     // console.log(locales.value)
 
     locale.value = (($i18n.availableLocales as string[]).includes(browserLocale ?? '') ? browserLocale : 'en') as 'en' | 'ja'
-    i18n.global.locale.value = locale.value
   }
 
   return { locale, autoDetect }

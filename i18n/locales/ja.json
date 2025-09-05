@@ -67,5 +67,14 @@
     "error": {
       "login": "ログインしてください"
     }
+  },
+  "rules": {
+    "required": "必須です。",
+    "email": "正しいメールアドレスの形式で入力してください。",
+    "minLength": "{min}文字以上です。",
+    "maxLength": "{max}文字までです。",
+    "sameAs": "パスワードとパスワード(確認)の入力が一致しません。",
+    "tagArrayLength": "{size}つまでです。",
+    "tagLength": "{size}文字までです。"
   }
 }

@@ -67,5 +67,14 @@
     "error": {
       "login": "Please login."
     }
+  },
+  "rules": {
+    "required": "Required.",
+    "email": "is invalid format.",
+    "minLength": "More than {min} characters.",
+    "maxLength": "are limited to {max} characters.",
+    "sameAs": "Passwords don't match.",
+    "tagArrayLength": "are limited to {size}.",
+    "tagLength": "are limited to {size} characters."
   }
 }
