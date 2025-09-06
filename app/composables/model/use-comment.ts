@@ -18,7 +18,7 @@ export function useComment () {
 
   const comments: Ref<Comment[]> = ref<Comment[]>([])
 
-  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
+  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     body: [],
     base: []
   })
@@ -85,7 +85,7 @@ export function useComment () {
     })
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -93,7 +93,7 @@ export function useComment () {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -125,23 +125,23 @@ export function useComment () {
     }
   }
 
-  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.body) {
-      errorMessages.value.body = errors.body
+      externalErrors.value.body = errors.body
     } else {
-      errorMessages.value.body = []
+      externalErrors.value.body = []
     }
   }
 
-  const clearErrorMessages = () => {
-    errorMessages.value.body = []
-    errorMessages.value.base = []
+  const clearExternalErrors = () => {
+    externalErrors.value.body = []
+    externalErrors.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (errorMessages.value.body.length > 0 || errorMessages.value.base.length > 0) {
+    if (externalErrors.value.body.length > 0 || externalErrors.value.base.length > 0) {
       result = false
     }
 
@@ -178,7 +178,7 @@ export function useComment () {
   return {
     comment,
     comments,
-    errorMessages,
+    externalErrors,
     getComments,
     createComment,
     deleteComment,

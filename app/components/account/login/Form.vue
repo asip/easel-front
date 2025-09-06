@@ -2,15 +2,16 @@
 const { closeModal } = useModal()
 
 const { setFlash } = useSonner()
-const { loginParams, login, isSuccess, flash, errorMessages, resetLoginParams, clearErrorMessages } = inject('account') as UseAccountType
+const { loginParams, login, isSuccess, flash, externalErrors, resetLoginParams, clearExternalErrors } = inject('account') as UseAccountType
 const { signinRules } = useAccountRules()
 
-const { r$ } = useI18nRegle(loginParams, signinRules)
+const { r$ } = useI18nRegle(loginParams, signinRules, { externalErrors })
 
 watch(
   loginParams.value,
   () => {
-    clearErrorMessages()
+    clearExternalErrors()
+    r$.$clearExternalErrors()
   }
 )
 
@@ -28,14 +29,14 @@ const onLoginClick = async () => {
   }
 }
 
-const onCloseClick = () => {
+const clearForm = () => {
   resetLoginParams()
-  clearErrorMessages()
+  clearExternalErrors()
+  r$.$clearExternalErrors()
   r$.$reset()
-  closeModal('#login_modal')
 }
 
-defineExpose({ onCloseClick })
+defineExpose({ clearForm })
 </script>
 
 <template>
@@ -65,12 +66,6 @@ defineExpose({ onCloseClick })
               >
                 <div class="text-red-500">{{ error }}</div>
               </div>
-              <div
-                v-for="(message, idx) in errorMessages.email"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
-              </div>
             </td>
           </tr>
           <tr>
@@ -94,12 +89,6 @@ defineExpose({ onCloseClick })
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
-              </div>
-              <div
-                v-for="(message, idx) in errorMessages.password"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
               </div>
             </td>
           </tr>

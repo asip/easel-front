@@ -1,8 +1,12 @@
 <script setup lang="ts">
+const { openModal, closeModal } = useModal()
+
 const form = useTemplateRef('form')
 
-const onBackClick = () => {
-  form.value?.onBackClick()
+const onBackClick = async() => {
+  form.value?.clearForm()
+  closeModal('#signup_modal')
+  openModal('#login_modal')
 }
 </script>
 

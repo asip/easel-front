@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, user, updateProfile, errorMessages, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, user, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
-const { r$ } = useI18nRegle(user, profileRules)
+const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
@@ -25,6 +25,12 @@ const onUpdateClick = async () => {
     }
   }
 }
+
+const clearForm = () => {
+  r$.$reset()
+}
+
+defineExpose({ clearForm })
 </script>
 
 <template>
@@ -48,7 +54,7 @@ const onUpdateClick = async () => {
                 @change="onSelectFile"
               >
               <div
-                v-for="(message, idx) in errorMessages.image"
+                v-for="(message, idx) in externalErrors.image"
                 :key="idx"
               >
                 <div class="text-red-500">{{ message }}</div>
@@ -81,12 +87,6 @@ const onUpdateClick = async () => {
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
-              </div>
-              <div
-                v-for="(message, idx) in errorMessages.name"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
               </div>
             </td>
           </tr>
@@ -124,12 +124,6 @@ const onUpdateClick = async () => {
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
-              </div>
-              <div
-                v-for="(message, idx) in errorMessages.email"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
               </div>
             </td>
           </tr>

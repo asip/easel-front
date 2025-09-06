@@ -2,7 +2,10 @@
 const { openModal, closeModal } = useModal()
 const { loggedIn, loginUser, setUser } = inject('account') as UseAccountType
 
+const form = useTemplateRef('form')
+
 const onBackClick = () => {
+  form.value?.clearForm()
   closeModal('#edit_password_modal')
   openModal('#profile_modal')
 }
@@ -32,7 +35,7 @@ onMounted(() => {
         {{ $t('action.user.edit_password') }}
       </div>
       <div class="flex justify-center border border-white">
-        <UsersEditPassword />
+        <UsersEditPassword ref="form" />
       </div>
     </div>
   </dialog>

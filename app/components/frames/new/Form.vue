@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, frameId, createFrame, errorMessages, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { frameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(frame, frameRules)
+const { r$ } = useI18nRegle(frame, frameRules, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tags)
@@ -65,7 +65,7 @@ const updateContent = (content: string) => {
                 @change="onSelectFile"
               >
               <div
-                v-for="(message, idx) in errorMessages.file"
+                v-for="(message, idx) in externalErrors.file"
                 :key="idx"
               >
                 <div class="text-red-500">{{ message }}</div>

@@ -49,7 +49,7 @@ export const useAccount = () => {
     return false
   })
 
-  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
+  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     image: [],
     name: [],
     email: [],
@@ -87,7 +87,7 @@ export const useAccount = () => {
     })
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -95,7 +95,7 @@ export const useAccount = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -160,7 +160,7 @@ export const useAccount = () => {
     // console.log(token.value)
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -168,7 +168,7 @@ export const useAccount = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -271,7 +271,7 @@ export const useAccount = () => {
     // console.log(errors)
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -279,7 +279,7 @@ export const useAccount = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -325,7 +325,7 @@ export const useAccount = () => {
     // console.log(errors)
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -333,7 +333,7 @@ export const useAccount = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -356,56 +356,56 @@ export const useAccount = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.image) {
-      errorMessages.value.image = errors.image
+      externalErrors.value.image = errors.image
     } else {
-      errorMessages.value.image = []
+      externalErrors.value.image = []
     }
     if (errors.name) {
-      errorMessages.value.name = errors.name
+      externalErrors.value.name = errors.name
     } else {
-      errorMessages.value.name = []
+      externalErrors.value.name = []
     }
     if (errors.email) {
-      errorMessages.value.email = errors.email
+      externalErrors.value.email = errors.email
     } else {
-      errorMessages.value.email = []
+      externalErrors.value.email = []
     }
     if (errors.current_password) {
-      errorMessages.value.current_password = errors.current_password
+      externalErrors.value.current_password = errors.current_password
     } else {
-      errorMessages.value.current_password = []
+      externalErrors.value.current_password = []
     }
     if (errors.password) {
-      errorMessages.value.password = errors.password
+      externalErrors.value.password = errors.password
     } else {
-      errorMessages.value.password = []
+      externalErrors.value.password = []
     }
     if (errors.password_confirmation) {
-      errorMessages.value.password_confirmation = errors.password_confirmation
+      externalErrors.value.password_confirmation = errors.password_confirmation
     } else {
-      errorMessages.value.password_confirmation = []
+      externalErrors.value.password_confirmation = []
     }
   }
 
-  const clearErrorMessages = () => {
-    errorMessages.value.image = []
-    errorMessages.value.name = []
-    errorMessages.value.email = []
-    errorMessages.value.current_password = []
-    errorMessages.value.password = []
-    errorMessages.value.password_confirmation = []
-    errorMessages.value.base = []
+  const clearExternalErrors = () => {
+    externalErrors.value.image = []
+    externalErrors.value.name = []
+    externalErrors.value.email = []
+    externalErrors.value.current_password = []
+    externalErrors.value.password = []
+    externalErrors.value.password_confirmation = []
+    externalErrors.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (errorMessages.value.image.length > 0 || errorMessages.value.name.length > 0 ||
-      errorMessages.value.email.length > 0 || errorMessages.value.current_password.length > 0 ||
-      errorMessages.value.password.length > 0 || errorMessages.value.password_confirmation.length > 0 ||
-      errorMessages.value.base.length > 0
+    if (externalErrors.value.image.length > 0 || externalErrors.value.name.length > 0 ||
+      externalErrors.value.email.length > 0 || externalErrors.value.current_password.length > 0 ||
+      externalErrors.value.password.length > 0 || externalErrors.value.password_confirmation.length > 0 ||
+      externalErrors.value.base.length > 0
     ) {
       result = false
     }
@@ -517,8 +517,8 @@ export const useAccount = () => {
     deleteAccount,
     clearLoginUser,
     clearProfile,
-    clearErrorMessages,
-    errorMessages
+    clearExternalErrors,
+    externalErrors
   }
 }
 

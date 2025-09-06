@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { user, signup, errorMessages, processing, isSuccess, clearProfile, clearErrorMessages, flash } = useAccount()
+const { user, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
-const { r$ } = useI18nRegle(user, signupRules)
+const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
@@ -25,16 +25,15 @@ const onSignupClick = async () => {
   }
 }
 
-const onBackClick = async() => {
+const clearForm = async() => {
   clearProfile()
-  clearErrorMessages()
+  clearExternalErrors()
+  r$.$clearExternalErrors()
   r$.$reset()
-  closeModal('#signup_modal')
-  openModal('#login_modal')
 }
 
 defineExpose({
-  onBackClick
+  clearForm
 })
 
 </script>
@@ -61,7 +60,7 @@ defineExpose({
                   @change="onSelectFile"
                 >
                 <div
-                  v-for="(message, idx) in errorMessages.image"
+                  v-for="(message, idx) in externalErrors.image"
                   :key="idx"
                 >
                   <div class="text-red-500">{{ message }}</div>
@@ -95,12 +94,6 @@ defineExpose({
                 >
                   <div class="text-red-500">{{ error }}</div>
                 </div>
-                <div
-                  v-for="(message, idx) in errorMessages.name"
-                  :key="idx"
-                >
-                  <div class="text-red-500">{{ message }}</div>
-                </div>
               </td>
             </tr>
             <tr>
@@ -124,12 +117,6 @@ defineExpose({
                   :key="error"
                 >
                   <div class="text-red-500">{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.email"
-                  :key="idx"
-                >
-                  <div class="text-red-500">{{ message }}</div>
                 </div>
               </td>
             </tr>
@@ -155,12 +142,6 @@ defineExpose({
                 >
                   <div class="text-red-500">{{ error }}</div>
                 </div>
-                <div
-                  v-for="(message, idx) in errorMessages.password"
-                  :key="idx"
-                >
-                  <div class="text-red-500">{{ message }}</div>
-                </div>
               </td>
             </tr>
             <tr>
@@ -184,12 +165,6 @@ defineExpose({
                   :key="error"
                 >
                   <div class="text-red-500">{{ error }}</div>
-                </div>
-                <div
-                  v-for="(message, idx) in errorMessages.password_confirmation"
-                  :key="idx"
-                >
-                  <div class="text-red-500">{{ message }}</div>
                 </div>
               </td>
             </tr>

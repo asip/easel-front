@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser , user, updatePassword, errorMessages, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, loginUser , user, updatePassword, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { passwordRules } = useAccountRules(user.value)
 
-const { r$ } = useI18nRegle(user, passwordRules)
+const { r$ } = useI18nRegle(user, passwordRules, { externalErrors })
 
 const onUpdateClick = async () => {
   const { valid } = await r$.$validate()
@@ -13,13 +13,21 @@ const onUpdateClick = async () => {
     await updatePassword()
     setFlash(flash.value)
     if (isSuccess()) {
+      user.value.current_password = ''
       closeModal('#edit_password_modal')
       openModal('#profile_modal')
     } else if (!loggedIn.value) {
+      user.value.current_password = ''
       closeModal('#edit_password_modal')
     }
   }
 }
+
+const clearForm = () => {
+  r$.$reset()
+}
+
+defineExpose({ clearForm })
 </script>
 
 <template>
@@ -49,12 +57,6 @@ const onUpdateClick = async () => {
               >
                 <div class="text-red-500">{{ error }}</div>
               </div>
-              <div
-                v-for="(message, idx) in errorMessages.current_password"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
-              </div>
             </td>
           </tr>
           <tr v-if="!user.social_login">
@@ -79,12 +81,6 @@ const onUpdateClick = async () => {
               >
                 <div class="text-red-500">{{ error }}</div>
               </div>
-              <div
-                v-for="(message, idx) in errorMessages.password"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
-              </div>
             </td>
           </tr>
           <tr v-if="!user.social_login">
@@ -108,12 +104,6 @@ const onUpdateClick = async () => {
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
-              </div>
-              <div
-                v-for="(message, idx) in errorMessages.password_confirmation"
-                :key="idx"
-              >
-                <div class="text-red-500">{{ message }}</div>
               </div>
             </td>
           </tr>

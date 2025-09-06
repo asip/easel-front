@@ -36,7 +36,7 @@ export const useAccountRules = (user?: User) => {
 
   const passwordRules = () => ({
     current_password: { required },
-    password: { minLength: minLength(6), maxLength: maxLength(128) },
+    password: { required, minLength: minLength(6), maxLength: maxLength(128) },
     password_confirmation: { sameAs: sameAs(user?.password) }
   })
 

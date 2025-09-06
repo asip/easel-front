@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, errorMessages, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
+const { comment, externalErrors, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
 const { commentRules } = useCommentRules()
 
 const options = ref({
@@ -15,14 +15,14 @@ const options = ref({
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(comment, commentRules)
+const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
 const onCreateCommentClick = async () => {
   if (editor.value?.getText().replace(/\n/g, '') === ''){
     comment.value.body = ''
   }
-
   r$.$touch()
+  r$.$clearExternalErrors()
   r$.$reset()
   const { valid } =await r$.$validate()
 
@@ -93,12 +93,6 @@ const updateContent = (content: string) => {
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
-              </div>
-              <div
-                v-for="(message, idx) in errorMessages.body"
-                :key="idx"
-              >
-                <p class="text-red-500">{{ message }}</p>
               </div>
           </div>
           <div class="flex justify-end w-full mt-1">

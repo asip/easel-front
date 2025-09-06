@@ -38,7 +38,7 @@ export const useFrame = () => {
     return frame.value.id
   })
 
-  const errorMessages = ref<ErrorMessages<ErrorProperty>>({
+  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     name: [],
     tags: [],
     file: [],
@@ -161,7 +161,7 @@ export const useFrame = () => {
     })
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -169,7 +169,7 @@ export const useFrame = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -190,36 +190,36 @@ export const useFrame = () => {
     processing.value = pending.value
   }
 
-  const setErrorMessages = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     if (errors.file) {
-      errorMessages.value.file = errors.file
+      externalErrors.value.file = errors.file
     } else {
-      errorMessages.value.file = []
+      externalErrors.value.file = []
     }
     if (errors.name) {
-      errorMessages.value.name = errors.name
+      externalErrors.value.name = errors.name
     } else {
-      errorMessages.value.name = []
+      externalErrors.value.name = []
     }
     if (errors.tag_list) {
-      errorMessages.value.tags = errors.tag_list
+      externalErrors.value.tags = errors.tag_list
     } else {
-      errorMessages.value.tags = []
+      externalErrors.value.tags = []
     }
   }
 
-  const clearErrorMessages = () => {
-    errorMessages.value.file = []
-    errorMessages.value.name = []
-    errorMessages.value.tags = []
-    errorMessages.value.base = []
+  const clearExternalErrors = () => {
+    externalErrors.value.file = []
+    externalErrors.value.name = []
+    externalErrors.value.tags = []
+    externalErrors.value.base = []
   }
 
   const isSuccess = () => {
     let result = true
 
-    if (errorMessages.value.file.length > 0 || errorMessages.value.name.length > 0 ||
-      errorMessages.value.tags.length > 0 || errorMessages.value.base.length > 0
+    if (externalErrors.value.file.length > 0 || externalErrors.value.name.length > 0 ||
+      externalErrors.value.tags.length > 0 || externalErrors.value.base.length > 0
     ) {
       result = false
     }
@@ -252,7 +252,7 @@ export const useFrame = () => {
     })
 
     clearFlash()
-    clearErrorMessages()
+    clearExternalErrors()
 
     if (error.value) {
       switch (error.value.statusCode) {
@@ -260,7 +260,7 @@ export const useFrame = () => {
           {
             const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
             if (errors) {
-              setErrorMessages(errors)
+              setExternalErrors(errors)
             }
             break
           }
@@ -312,7 +312,7 @@ export const useFrame = () => {
     updateFrame,
     createFrame,
     deleteFrame,
-    errorMessages,
+    externalErrors,
     processing,
     isSuccess,
     flash

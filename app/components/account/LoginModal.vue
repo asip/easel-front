@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 const { loggedIn } = useAccount()
 const { closeModal, openModal } = useModal()
-const { resetLoginParams } = inject('account') as UseAccountType
 
 const form = useTemplateRef('form')
 
 const onSignupClick = () => {
+  form.value?.clearForm()
   closeModal('#login_modal')
-  resetLoginParams()
   openModal('#signup_modal')
 }
 
 const onCloseClick = () => {
-  form.value?.onCloseClick()
+  form.value?.clearForm()
+  closeModal('#login_modal')
 }
 </script>
 
