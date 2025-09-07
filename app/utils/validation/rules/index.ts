@@ -1,5 +1,5 @@
 import { maxBlobSize } from './maxBlobSize'
-import { tagArrayLength } from './tagArrayLength'
-import { tagLength } from './tagLength'
+import { maxTagArrayLength } from './maxTagArrayLength'
+import { maxTagLength } from './maxTagLength'
 
-export { maxBlobSize, tagArrayLength, tagLength }
+export { maxBlobSize, maxTagArrayLength, maxTagLength }

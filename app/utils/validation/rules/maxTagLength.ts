@@ -2,8 +2,8 @@ import {  createRule } from '@regle/core'
 import type { Maybe } from '@regle/core';
 import { isFilled } from '@regle/rules'
 
-export const tagLength = createRule({
-  type: 'tagLength',
+export const maxTagLength = createRule({
+  type: 'maxTagLength',
   validator: (value: Maybe<string[]>, size: number) =>{
     let res = true
     if(value){

@@ -7,7 +7,8 @@ export const useFrameRules = () => {
       required, minLength: minLength(1), maxLength: maxLength(30)
     },
     tags: {
-      tagArrayLength: tagArrayLength(5), tagLength: tagLength(10)
+      maxTagArrayLength: maxTagArrayLength(5),
+      maxTagLength: maxTagLength(10)
     }
   }
 
@@ -16,7 +17,8 @@ export const useFrameRules = () => {
       required, minLength: minLength(1), maxLength: maxLength(30)
     },
     tags: {
-      tagArrayLength: tagArrayLength(5), tagLength: tagLength(10)
+      maxTagArrayLength: maxTagArrayLength(5),
+      maxTagLength: maxTagLength(10)
     }
   }
 
