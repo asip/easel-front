@@ -19,6 +19,7 @@ export const useAccountRules = (user?: User) => {
   }
 
   const userRules = () => ({
+    image: {},
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
@@ -28,6 +29,7 @@ export const useAccountRules = (user?: User) => {
   })
 
   const profileRules = {
+    image: {},
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },

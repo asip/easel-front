@@ -2,11 +2,11 @@
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
 const { frame, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
-const { frameRules } = useFrameRules()
+const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(frame, frameRules)
+const { r$ } = useI18nRegle(frame, editFrameRules)
 
 // console.log(frame)
 // console.log(frame.tags)

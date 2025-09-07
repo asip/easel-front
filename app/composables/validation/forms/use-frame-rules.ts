@@ -1,7 +1,8 @@
 import { required, minLength, maxLength } from '@regle/rules'
 
 export const useFrameRules = () => {
-  const frameRules = {
+  const newFrameRules = {
+    file: { required },
     name: {
       required, minLength: minLength(1), maxLength: maxLength(30)
     },
@@ -10,5 +11,14 @@ export const useFrameRules = () => {
     }
   }
 
-  return { frameRules }
+  const editFrameRules = {
+    name: {
+      required, minLength: minLength(1), maxLength: maxLength(30)
+    },
+    tags: {
+      tagArrayLength: tagArrayLength(5), tagLength: tagLength(10)
+    }
+  }
+
+  return { newFrameRules, editFrameRules }
 }

@@ -54,10 +54,10 @@ defineExpose({ clearForm })
                 @change="onSelectFile"
               >
               <div
-                v-for="(message, idx) in externalErrors.image"
-                :key="idx"
+                v-for="error of r$.$errors.image"
+                :key="error.toString()"
               >
-                <div class="text-red-500">{{ message }}</div>
+                <div class="text-red-500">{{ error }}</div>
               </div>
             </td>
           </tr>
