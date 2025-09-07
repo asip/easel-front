@@ -4,6 +4,7 @@ const { openModal, closeModal } = useModal()
 const { loggedIn, user, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
+// @ts-ignore
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {

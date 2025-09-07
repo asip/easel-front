@@ -75,6 +75,7 @@
     "maxLength": "are limited to {max} characters.",
     "sameAs": "Passwords don't match.",
     "tagArrayLength": "are limited to {size}.",
-    "tagLength": "are limited to {size} characters."
+    "tagLength": "are limited to {size} characters.",
+    "maxBlobSize": "are limited to {max} MB."
   }
 }

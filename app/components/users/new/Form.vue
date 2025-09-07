@@ -4,6 +4,7 @@ const { openModal, closeModal } = useModal()
 const { user, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
+// @ts-ignore
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {

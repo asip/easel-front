@@ -2,7 +2,7 @@ import { required, minLength, maxLength } from '@regle/rules'
 
 export const useFrameRules = () => {
   const newFrameRules = {
-    file: { required },
+    file: { required, maxBlobSize: maxBlobSize(5) },
     name: {
       required, minLength: minLength(1), maxLength: maxLength(30)
     },

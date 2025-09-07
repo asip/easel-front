@@ -75,6 +75,7 @@
     "maxLength": "{max}文字までです。",
     "sameAs": "パスワードとパスワード(確認)の入力が一致しません。",
     "tagArrayLength": "{size}つまでです。",
-    "tagLength": "{size}文字までです。"
+    "tagLength": "{size}文字までです。",
+    "maxBlobSize": "{max}MBまでです。"
   }
 }
