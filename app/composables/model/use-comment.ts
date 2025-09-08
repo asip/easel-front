@@ -126,11 +126,7 @@ export function useComment () {
   }
 
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    if (errors.body) {
-      externalErrors.value.body = errors.body
-    } else {
-      externalErrors.value.body = []
-    }
+    externalErrors.value.body = errors.body ?? []
   }
 
   const clearExternalErrors = () => {

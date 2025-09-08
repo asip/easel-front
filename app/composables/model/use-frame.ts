@@ -191,21 +191,9 @@ export const useFrame = () => {
   }
 
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    if (errors.file) {
-      externalErrors.value.file = errors.file
-    } else {
-      externalErrors.value.file = []
-    }
-    if (errors.name) {
-      externalErrors.value.name = errors.name
-    } else {
-      externalErrors.value.name = []
-    }
-    if (errors.tag_list) {
-      externalErrors.value.tags = errors.tag_list
-    } else {
-      externalErrors.value.tags = []
-    }
+    externalErrors.value.file = errors.file ?? []
+    externalErrors.value.name = errors.name ?? []
+    externalErrors.value.tags = errors.tag_list ?? []
   }
 
   const clearExternalErrors = () => {

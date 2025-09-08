@@ -357,36 +357,12 @@ export const useAccount = () => {
   }
 
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    if (errors.image) {
-      externalErrors.value.image = errors.image
-    } else {
-      externalErrors.value.image = []
-    }
-    if (errors.name) {
-      externalErrors.value.name = errors.name
-    } else {
-      externalErrors.value.name = []
-    }
-    if (errors.email) {
-      externalErrors.value.email = errors.email
-    } else {
-      externalErrors.value.email = []
-    }
-    if (errors.current_password) {
-      externalErrors.value.current_password = errors.current_password
-    } else {
-      externalErrors.value.current_password = []
-    }
-    if (errors.password) {
-      externalErrors.value.password = errors.password
-    } else {
-      externalErrors.value.password = []
-    }
-    if (errors.password_confirmation) {
-      externalErrors.value.password_confirmation = errors.password_confirmation
-    } else {
-      externalErrors.value.password_confirmation = []
-    }
+    externalErrors.value.image = errors.image ?? []
+    externalErrors.value.name = errors.name ?? []
+    externalErrors.value.email = errors.email ?? []
+    externalErrors.value.current_password = errors.current_password ?? []
+    externalErrors.value.password = errors.password ?? []
+    externalErrors.value.password_confirmation = errors.password_confirmation ?? []
   }
 
   const clearExternalErrors = () => {
@@ -418,7 +394,7 @@ export const useAccount = () => {
   }
 
   const logout = async () => {
-    const { data, error } = await useDeleteApi<UserResource>({
+    const { error } = await useDeleteApi<UserResource>({
       url: '/sessions/logout',
       token: accessToken.value
     })
