@@ -20,7 +20,7 @@ onMounted(() => {
     type="text"
     name="tag_editor"
     value=""
-    class="input"
+    class="input h-auto"
   >
   <input
     id="tag_list"
