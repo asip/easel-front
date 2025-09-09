@@ -1,16 +1,19 @@
 <script lang="ts" setup>
-import { format } from '@formkit/tempo'
+import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
 const { frameQuery, queryString, searchFrame } = useFrameSearch()
 
-const dateWord = defineModel<Date | null>({
-  set (value: Date | null) {
-    if (value) {
-      frameQuery.value.word = format(value, 'YYYY/MM/DD', locale.value)
-    } else {
-      frameQuery.value.word = ''
+const dateWord = computed({
+  get () {
+    try{
+      return frameQuery.value.word ? parse(frameQuery.value.word, 'YYYY/MM/DD', locale.value) : null
+    } catch {
+      return null
     }
+  },
+  set (value: Date | null) {
+    frameQuery.value.word = value ? format(value, 'YYYY/MM/DD', locale.value): ''
   }
 })
 
@@ -28,7 +31,6 @@ const onSearchClick = async () => {
 
 const onClearClick = async () => {
   if (frameQuery.value.word?.length && frameQuery.value.word?.length > 1) {
-    frameQuery.value.word = ''
     dateWord.value= null
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryString.value })
