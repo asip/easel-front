@@ -6,7 +6,7 @@ export function useUserFrames () {
       user_id: null,
       page: 1,
       pages: 1,
-      items: 1,
+      total: 1,
     }
   })
 
@@ -56,7 +56,7 @@ export function useUserFrames () {
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
-        frameQuery.value.items = meta.pagination.count
+        frameQuery.value.total = meta.pagination.count
       }
     }
   }

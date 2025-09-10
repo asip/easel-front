@@ -3,19 +3,19 @@ import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfa
 export const useFrameSearch = () => {
   const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
-      word: '',
+      items: {},
       page: 1,
       pages: 1,
-      items: 1
+      total: 1
     }
   })
 
   const queryString = computed(() => {
-    const { word, page } = frameQuery.value;
+    const { items, page } = frameQuery.value;
     const query: { q?: string, page?: number | null } = {};
 
-    if (word) {
-      query.q = word;
+    if (items.word) {
+      query.q = JSON.stringify(items);
     }
     if (page !== undefined && page!= null && page !== 1) {
       query.page = page;
@@ -59,7 +59,7 @@ export const useFrameSearch = () => {
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
-        frameQuery.value.items = meta.pagination.count
+        frameQuery.value.total = meta.pagination.count
       }
     }
   }

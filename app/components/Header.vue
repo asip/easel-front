@@ -29,7 +29,7 @@ const onLogoutClick = async () => {
 }
 
 const onTopPageClick = async () => {
-  frameQuery.value.word = ''
+  frameQuery.value.items = {}
   frameQuery.value.page = 1
   // frameQuery.value.pages = 1
   await navigateTo({ path: '/', query: queryString.value })

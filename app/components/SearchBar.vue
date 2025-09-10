@@ -7,13 +7,13 @@ const { frameQuery, queryString, searchFrame } = useFrameSearch()
 const dateWord = computed({
   get () {
     try{
-      return frameQuery.value.word ? parse(frameQuery.value.word, 'YYYY/MM/DD', locale.value) : null
+      return frameQuery.value.items.word ? parse(frameQuery.value.items.word, 'YYYY/MM/DD', locale.value) : null
     } catch {
       return null
     }
   },
   set (value: Date | null) {
-    frameQuery.value.word = value ? format(value, 'YYYY/MM/DD', locale.value): ''
+    frameQuery.value.items.word = value ? format(value, 'YYYY/MM/DD', locale.value): ''
   }
 })
 
@@ -22,7 +22,7 @@ const masks = {
 }
 
 const onSearchClick = async () => {
-  if (frameQuery.value.word?.length && frameQuery.value.word?.length > 1) {
+  if (frameQuery.value.items.word?.length && frameQuery.value.items.word?.length > 1) {
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryString.value })
     await searchFrame({ more: true })
@@ -30,7 +30,7 @@ const onSearchClick = async () => {
 }
 
 const onClearClick = async () => {
-  if (frameQuery.value.word?.length && frameQuery.value.word?.length > 1) {
+  if (frameQuery.value.items.word?.length && frameQuery.value.items.word?.length > 1) {
     dateWord.value= null
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryString.value })
@@ -57,7 +57,7 @@ const onClearClick = async () => {
           <div class="flex gap-2">
             <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder')">
               <input
-                v-model="frameQuery.word"
+                v-model="frameQuery.items.word"
                 type="text"
                 placeholder=""
                 class="input w-50"

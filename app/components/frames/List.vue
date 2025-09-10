@@ -51,7 +51,7 @@ onUnmounted(() => {
   >
     <vue-awesome-paginate
       v-model="frameQuery.page"
-      :total-items="frameQuery.items"
+      :total-items="frameQuery.total"
       :items-per-page="8"
       :max-pages-shown="5"
       @click="clickCallback"
