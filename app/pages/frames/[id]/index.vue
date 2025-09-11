@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import type { RefQuery } from '~/interfaces'
+
 import sanitizeHtml from 'sanitize-html'
 
 const route = useRoute()
 const { id } = route.params
 const frameId = id as string
-const refPage = route.query.ref
-const refId = route.query.ref_id
+const ref = route.query.ref
+const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
 
 const { p2br } = useQuill()
 const { queryString } = useFrameSearch()
@@ -23,10 +25,10 @@ const sanitizedComment = computed(() => {
 })
 
 const onPageBack = async () => {
-  if (refPage === 'profile') {
+  if (refItems.from === 'profile') {
     await navigateTo({ path: '/account/frames' })
-  } else if (refPage === 'user_profile') {
-    await navigateTo({ path: `/users/${refId}` })
+  } else if (refItems.from === 'user_profile') {
+    await navigateTo({ path: `/users/${refItems.id}` })
   } else {
     await navigateTo({ path: '/', query: queryString.value })
   }
@@ -66,7 +68,7 @@ const onDeleteClick = () => {
             </div>
             <div>
               <NuxtLink
-                :to="{ path: `/users/${frame.user_id}`, query: { ref: 'frame', ref_id: frameId } }"
+                :to="{ path: `/users/${frame.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: frameId }) } }"
                 class="link link-hover"
               >
                 {{ frame.user_name }}

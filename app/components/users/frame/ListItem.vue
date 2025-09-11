@@ -28,14 +28,14 @@ const { userId, page = undefined } = defineProps<{
     <div class="flex justify-center">
       <NuxtLink
         v-if="page == 'profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: page } }"
+        :to="{ path: `/frames/${frame?.id}`, query: { ref: JSON.stringify({ from: page }) } }"
         class="link link-hover"
       >
         {{ frame?.name }}
       </NuxtLink>
       <NuxtLink
         v-else-if="page == 'user_profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: page, ref_id: userId} }"
+        :to="{ path: `/frames/${frame?.id}`, query: { ref: JSON.stringify({ from: page, id: userId }) } }"
         class="link link-hover"
       >
         {{ frame?.name }}

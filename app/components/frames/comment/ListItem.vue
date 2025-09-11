@@ -30,7 +30,7 @@ const onDeleteClick = async () => {
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: { ref: 'frame', ref_id: comment?.frame_id } }"
+                :to="{ path: `/users/${comment?.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: comment?.frame_id }) } }"
                 class="avatar"
               >
                 <div class="w-5 h-5">
@@ -42,7 +42,7 @@ const onDeleteClick = async () => {
                 </div>
               </NuxtLink>
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: { ref: 'frame', ref_id: comment?.frame_id } }"
+                :to="{ path: `/users/${comment?.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: comment?.frame_id }) } }"
                 class="badge badge-outline badge-accent hover:badge-primary rounded-full"
               >
                 {{ comment?.user_name }}

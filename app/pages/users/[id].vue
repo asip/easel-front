@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { RefQuery } from '~/interfaces'
+
 const route = useRoute()
 const { id } = route.params
-const refPage = route.query.ref
-const refId = route.query.ref_id
+const ref = route.query.ref
+const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
 
 const { user, getUser } = useUser()
 const { loggedIn, loginUser } = useAccount()
@@ -20,8 +22,8 @@ if (loggedIn.value) {
 provide('user', user)
 
 const onPageBack = async () => {
-  if (refPage === 'frame') {
-    await navigateTo({ path: `/frames/${refId}` })
+  if (refItems.from === 'frame') {
+    await navigateTo({ path: `/frames/${refItems.id}` })
   } else {
     await navigateTo({ path: '/', query: queryString.value })
   }

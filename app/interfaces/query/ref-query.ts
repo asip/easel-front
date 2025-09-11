@@ -1,4 +1,4 @@
 export interface RefQuery {
-  page: string | null
-  id: string | null
+  from: string | null
+  id?: string | null
 }

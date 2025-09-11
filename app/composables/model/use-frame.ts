@@ -29,7 +29,7 @@ export const useFrame = () => {
 
   const refQuery = useState<RefQuery>('frame.refQuery', () => {
     return {
-      page: null,
+      from: null,
       id: null
     }
   })
