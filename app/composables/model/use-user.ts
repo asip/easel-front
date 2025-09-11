@@ -20,7 +20,7 @@ export const useUser = () => {
 
   const refQuery = useState<RefQuery>('user.refQuery', () => {
     return {
-      page: null,
+      from: null,
       id: null
     }
   })

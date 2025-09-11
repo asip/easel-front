@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html'
 
 const route = useRoute()
 const { id } = route.params
-const frameId = id as string
+const frameId = id?.toString()
 const ref = route.query.ref
 const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
 
@@ -18,7 +18,7 @@ const { openModal } = useModal()
 
 provide('framer', framer)
 
-await getFrame(frameId)
+await getFrame(`${frameId}`)
 
 const sanitizedComment = computed(() => {
   return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')

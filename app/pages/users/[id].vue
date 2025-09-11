@@ -11,12 +11,12 @@ const { loggedIn, loginUser } = useAccount()
 const { queryString } = useFrameSearch()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
-const userId = id as string
+const userId = id?.toString()
 
-await getUser(userId)
+await getUser(`${userId}`)
 
 if (loggedIn.value) {
-  await isFollowing(userId)
+  await isFollowing(`${userId}`)
 }
 
 provide('user', user)

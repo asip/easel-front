@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const route = useRoute()
 const { id } = route.params
-const frameId = id as string
+const frameId = id?.toString()
 
 const framer = useFrame()
 const { frame, getFrame } = framer
 
-const { refresh } = await getFrame(frameId)
+const { refresh } = await getFrame(`${frameId}`)
 
 framer.refresh = async () => { await refresh() }
 
