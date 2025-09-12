@@ -9,9 +9,9 @@ const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 
-const sanitizedCommentBody = computed(() => {
-  return p2br(sanitizeHtml(comment.value?.body ?? '')).replace(/\n/g, '<br>')
-})
+const sanitizedCommentBody = computed(() =>
+  p2br(sanitizeHtml(comment.value?.body ?? '')).replace(/\n/g, '<br>')
+)
 
 const onDeleteClick = async () => {
   if(comment.value) { await deleteComment(comment.value) }
