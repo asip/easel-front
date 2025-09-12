@@ -22,5 +22,9 @@ export const useFrameRules = () => {
     }
   }
 
-  return { newFrameRules, editFrameRules }
+  const searchRules = {
+    word: { maxLength: maxLength(40) }
+  }
+
+  return { newFrameRules, editFrameRules, searchRules }
 }

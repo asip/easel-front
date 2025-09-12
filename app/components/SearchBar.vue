@@ -3,6 +3,9 @@ import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
 const { frameQuery, queryString, searchFrame } = useFrameSearch()
+const { searchRules } = useFrameRules()
+
+const { r$ } = useI18nRegle(frameQuery.value.items, searchRules)
 
 const dateWord = computed({
   get () {
@@ -22,7 +25,9 @@ const masks = {
 }
 
 const onSearchClick = async () => {
-  if (frameQuery.value.items.word?.length && frameQuery.value.items.word?.length > 1) {
+  const { valid } = await r$.$validate()
+
+  if (valid) {
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryString.value })
     await searchFrame({ more: true })
@@ -77,6 +82,13 @@ const onClearClick = async () => {
             >
           </div>
         </form>
+      </div>
+      <div
+        v-for="error of r$.$errors.word"
+        :key="error"
+        class="flex"
+      >
+        &nbsp;&nbsp;&nbsp;<div class="text-red-500">{{ error }}</div>
       </div>
     </div>
   </div>
