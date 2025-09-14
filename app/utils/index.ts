@@ -1,1 +1,1 @@
-export { requiredForBlob, maxBlobSize, maxTagArrayLength, maxTagLength } from './validation/rules'
+export { maxBlobSize, maxTagArrayLength, maxTagLength } from './validation/rules'
