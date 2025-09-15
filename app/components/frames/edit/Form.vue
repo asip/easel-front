@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
@@ -95,7 +95,7 @@ const updateContent = (content: string) => {
             </td>
             <td>
               <input
-                v-model="frame.shooted_at"
+                v-model="shootedAt"
                 type="datetime-local"
                 class="input"
               >

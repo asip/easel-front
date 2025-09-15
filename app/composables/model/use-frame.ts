@@ -1,3 +1,5 @@
+import { format, parse } from '@formkit/tempo'
+
 import type { Frame, RefQuery, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
@@ -25,6 +27,17 @@ export const useFrame = () => {
     private: false,
     created_at: '',
     updated_at: null
+  })
+
+  const { locale } = useLocale()
+
+  const shootedAt = computed({
+    get () {
+      return frame.value.shooted_at ? format(parse(frame.value.shooted_at, 'YYYY/MM/DD HH:mm:ss', locale.value), 'YYYY-MM-DDTHH:mm', locale.value) : null
+    },
+    set (value: string | null) {
+      frame.value.shooted_at = value ? format(parse(value, 'YYYY-MM-DDTHH:mm', locale.value), 'YYYY/MM/DD HH:mm:ss', locale.value): ''
+    }
   })
 
   const refQuery = useState<RefQuery>('frame.refQuery', () => {
@@ -295,6 +308,7 @@ export const useFrame = () => {
     getFrame,
     refresh,
     frame,
+    shootedAt,
     refQuery,
     frameId,
     updateFrame,
