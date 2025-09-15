@@ -1,4 +1,3 @@
-import Tagify from '@yaireo/tagify'
 import type { Frame } from '~/interfaces'
 
 export function useTagEditor (refKey: string) {
@@ -6,10 +5,12 @@ export function useTagEditor (refKey: string) {
 
   let tagEditor: Tagify | null = null
 
+  const { $tagify } = useNuxtApp() as any
+
   const initTagEditor = (model: Frame) => {
 
     if (tagEditorRef.value) {
-      tagEditor = new Tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
+      tagEditor = new $tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',
@@ -20,9 +21,9 @@ export function useTagEditor (refKey: string) {
         }
       })
 
-      tagEditor.removeAllTags()
+      tagEditor?.removeAllTags()
       if (model?.tags) {
-        tagEditor.addTags(model?.tags)
+        tagEditor?.addTags(model?.tags)
       }
 
       const saveTagList = () => {
@@ -32,8 +33,8 @@ export function useTagEditor (refKey: string) {
         }
       }
 
-      tagEditor.on('add', () => saveTagList())
-      tagEditor.on('remove', () => saveTagList())
+      tagEditor?.on('add', () => saveTagList())
+      tagEditor?.on('remove', () => saveTagList())
     }
   }
 
