@@ -1,10 +1,10 @@
 export function useGLightbox () {
   let lightbox: any
 
-  const { $glightbox } = useNuxtApp() as any
+  const { $gLightbox } = useNuxtApp() as any
 
   const initGLightbox = (selector: string) => {
-    lightbox = $glightbox({ selector: selector })
+    lightbox = $gLightbox({ selector: selector })
   }
 
   const closeGLightbox = () => {
