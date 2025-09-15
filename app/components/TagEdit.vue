@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
-import '@yaireo/tagify/dist/tagify.css'
 
 const modelValue = defineModel<Frame>()
 
