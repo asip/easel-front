@@ -1,4 +1,5 @@
 import { QuillyEditor } from 'vue-quilly'
+
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.bubble.css'
 

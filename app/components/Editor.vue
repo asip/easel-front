@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type Quill from "quill"
-import { QuillyEditor } from 'vue-quilly';
 
 const modelValue = defineModel<string>()
 const emit = defineEmits<{
