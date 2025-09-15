@@ -1,10 +1,8 @@
-import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-expect-error
-import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
-
 export function usePhotoSwipe (galleryRefKey?: string) {
   let galleryRef: Ref
   let lightbox: any
+
+  const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
   if (galleryRefKey) {
     galleryRef = useTemplateRef(galleryRefKey)
@@ -15,14 +13,14 @@ export function usePhotoSwipe (galleryRefKey?: string) {
 
     await assignSize(galleryEl)
 
-    lightbox = new PhotoSwipeLightbox({
+    lightbox = new $psLightbox({
       gallery: `#${galleryEl.id}`,
       children: 'a',
       initialZoomLevel: 'fit',
       pswpModule: () => import('photoswipe')
     })
 
-    const fullscreenPlugin = new PhotoSwipeFullscreen(lightbox)
+    const fullscreenPlugin = new $psFullscreen(lightbox)
     lightbox.init()
   }
 
