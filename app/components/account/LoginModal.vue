@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { googleClientID } = useConstants()
 const { loggedIn } = useAccount()
 const { closeModal, openModal } = useModal()
 
@@ -34,7 +35,7 @@ const onCloseClick = () => {
       </div>
       <div>
         <div class="flex justify-center border border-white gap-1 mb-1">
-          <AccountLoginGoogle v-if="!loggedIn" />
+          <AccountLoginGoogle v-if="googleClientID && !loggedIn" />
           <button
             class="btn btn-outline btn-primary"
             @click="onSignupClick"
