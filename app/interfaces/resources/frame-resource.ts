@@ -6,6 +6,7 @@ export interface FrameResource {
   tag_list: string
   tags: string[]
   comment: string
+  creator_name: string
   shooted_at: string
   shooted_at_html: string | null | undefined
   file: Blob | undefined | null,

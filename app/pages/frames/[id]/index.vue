@@ -85,11 +85,17 @@ const onDeleteClick = () => {
             <table class="table table-bordered table_rounded ml-2 mr-2 ">
               <tbody>
                 <tr>
-                  <td style="width: 7em;">
+                  <td style="width: 9em;">
                     {{ $t('model.frame.name') }}：
                   </td>
                   <td>
                     {{ frame.name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('model.frame.creator_name') }}：</td>
+                  <td>
+                    {{ frame.creator_name }}
                   </td>
                 </tr>
                 <tr>

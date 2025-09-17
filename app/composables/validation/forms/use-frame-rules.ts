@@ -10,6 +10,9 @@ export const useFrameRules = () => {
     tags: {
       maxTagArrayLength: maxTagArrayLength(5),
       maxTagLength: maxTagLength(10)
+    },
+    creator_name: {
+      maxLength: maxLength(40)
     }
   }
 
@@ -20,6 +23,9 @@ export const useFrameRules = () => {
     tags: {
       maxTagArrayLength: maxTagArrayLength(5),
       maxTagLength: maxTagLength(10)
+    },
+    creator_name: {
+      maxLength: maxLength(40)
     }
   }
 

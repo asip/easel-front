@@ -5,8 +5,8 @@ import type { ErrorMessages } from '~/types'
 
 import { useAccount } from './use-account'
 
-type ErrorProperty = 'name' | 'tags' | 'file' | 'base'
-type ExternalErrorProperty = 'name' | 'tag_list' | 'file'
+type ErrorProperty = 'name' | 'tags' | 'creator_name' | 'file' | 'base'
+type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
 
 export const useFrame = () => {
   const frame: Ref<Frame> = ref<Frame>({
@@ -17,6 +17,7 @@ export const useFrame = () => {
     tag_list: '',
     tags: [],
     comment: '',
+    creator_name: '',
     shooted_at: '',
     shooted_at_html: '',
     file: null,
@@ -54,6 +55,7 @@ export const useFrame = () => {
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     name: [],
     tags: [],
+    creator_name: [],
     file: [],
     base: []
   })
@@ -161,6 +163,9 @@ export const useFrame = () => {
     if (frame.value.comment) {
       formData.append('frame[comment]', frame.value.comment)
     }
+    if (frame.value.creator_name) {
+      formData.append('frame[creator_name]', frame.value.creator_name)
+    }
     if (frame.value.shooted_at) {
       formData.append('frame[shooted_at]', frame.value.shooted_at)
     }
@@ -206,6 +211,7 @@ export const useFrame = () => {
   const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
     externalErrors.value.file = errors.file ?? []
     externalErrors.value.name = errors.name ?? []
+    externalErrors.value.creator_name = errors.creator_name ?? []
     externalErrors.value.tags = errors.tag_list ?? []
   }
 
@@ -213,6 +219,7 @@ export const useFrame = () => {
     externalErrors.value.file = []
     externalErrors.value.name = []
     externalErrors.value.tags = []
+    externalErrors.value.creator_name = []
     externalErrors.value.base = []
   }
 
@@ -220,7 +227,8 @@ export const useFrame = () => {
     let result = true
 
     if (externalErrors.value.file.length > 0 || externalErrors.value.name.length > 0 ||
-      externalErrors.value.tags.length > 0 || externalErrors.value.base.length > 0
+      externalErrors.value.tags.length > 0 || externalErrors.value.creator_name.length > 0 ||
+      externalErrors.value.base.length > 0
     ) {
       result = false
     }
@@ -240,6 +248,7 @@ export const useFrame = () => {
         name: frame.value.name,
         tag_list: frame.value.tag_list,
         comment: frame.value.comment,
+        creator_name: frame.value.creator_name,
         shooted_at: frame.value.shooted_at
       }
     }

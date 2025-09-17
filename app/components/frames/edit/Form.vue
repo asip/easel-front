@@ -48,7 +48,7 @@ const updateContent = (content: string) => {
       <table class="table table-bordered table_rounded">
         <tbody>
           <tr>
-            <td style="width: 7em;">
+            <td style="width: 9em;">
               <label
                 for="name"
                 class=""
@@ -80,6 +80,28 @@ const updateContent = (content: string) => {
               <TagEdit v-model="frame" />
               <div
                 v-for="error of r$.tags.$errors"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="creator_name"
+                class=""
+              >{{ $t('model.frame.creator_name') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="frame.creator_name"
+                type="text"
+                placeholder=""
+                class="input"
+              >
+              <div
+                v-for="error of r$.$errors.creator_name"
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>
