@@ -36,7 +36,7 @@ defineExpose({ clearForm })
       <table class="table table-bordered table_rounded">
         <tbody>
           <tr v-if="!loginUser.social_login">
-            <td>
+            <td style="width: 12em;">
               <label
                 for="current_password"
                 class=""

@@ -45,7 +45,7 @@ defineExpose({ clearForm })
       <table class="table table-bordered table_rounded">
         <tbody>
           <tr>
-            <td style="width: 8em;">
+            <td style="width: 9em;">
               <label
                 for="email"
                 class=""
