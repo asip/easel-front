@@ -30,14 +30,14 @@ export const useFrame = () => {
     updated_at: null
   })
 
-  const { locale } = useLocale()
+  const { upDTL, downDTL } = useDatetimeLocalFormat()
 
   const shootedAt = computed({
     get () {
-      return frame.value.shooted_at ? format(parse(frame.value.shooted_at, 'YYYY/MM/DD HH:mm:ss', locale.value), 'YYYY-MM-DDTHH:mm', locale.value) : null
+      return frame.value.shooted_at ? upDTL(frame.value.shooted_at) : null
     },
     set (value: string | null) {
-      frame.value.shooted_at = value ? format(parse(value, 'YYYY-MM-DDTHH:mm', locale.value), 'YYYY/MM/DD HH:mm:ss', locale.value): ''
+      frame.value.shooted_at = value ? downDTL(value) : ''
     }
   })
 
