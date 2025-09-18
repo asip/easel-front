@@ -15,6 +15,7 @@ const { loggedIn, loginUser } = useAccount()
 const framer = useFrame()
 const { frame, getFrame } = framer
 const { openModal } = useModal()
+const { formatHTML } = useDatetimeLocalFormat()
 
 provide('framer', framer)
 
@@ -101,7 +102,7 @@ const onDeleteClick = () => {
                 <tr>
                   <td>{{ $t('model.frame.shooted_at') }}：</td>
                   <td>
-                    {{ frame.shooted_at }}
+                    {{ formatHTML(frame.shooted_at) }}
                   </td>
                 </tr>
                 <tr>

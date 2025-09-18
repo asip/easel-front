@@ -19,7 +19,6 @@ export const useFrame = () => {
     comment: '',
     creator_name: '',
     shooted_at: '',
-    shooted_at_html: '',
     file: null,
     file_url: '',
     file_two_url: '',
@@ -34,10 +33,10 @@ export const useFrame = () => {
 
   const shootedAt = computed({
     get () {
-      return frame.value.shooted_at ? upDTL(frame.value.shooted_at) : null
+      return upDTL(frame.value.shooted_at)
     },
     set (value: string | null) {
-      frame.value.shooted_at = value ? downDTL(value) : ''
+      frame.value.shooted_at = downDTL(value)
     }
   })
 
@@ -66,6 +65,7 @@ export const useFrame = () => {
 
   const { loggedIn, accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
+  const { upTZ, downTZ, formatTZ } = useTimeZone()
 
   const refresh = async () => {}
 
@@ -142,8 +142,15 @@ export const useFrame = () => {
     }
   }
 
+  const upFrameTZ = (frame: Frame) => {
+    frame.shooted_at = upTZ(frame.shooted_at)
+    frame.created_at = formatTZ(frame.created_at)
+    frame.updated_at = formatTZ(frame.updated_at)
+  }
+
   const setJson2Frame = (resource: FrameResource) => {
     Object.assign(frame.value, resource)
+    upFrameTZ(frame.value)
   }
 
   const createFrame = async () => {
@@ -167,7 +174,7 @@ export const useFrame = () => {
       formData.append('frame[creator_name]', frame.value.creator_name)
     }
     if (frame.value.shooted_at) {
-      formData.append('frame[shooted_at]', frame.value.shooted_at)
+      formData.append('frame[shooted_at]', downTZ(frame.value.shooted_at))
     }
 
     // console.log(loginUser.value.token)
@@ -249,7 +256,7 @@ export const useFrame = () => {
         tag_list: frame.value.tag_list,
         comment: frame.value.comment,
         creator_name: frame.value.creator_name,
-        shooted_at: frame.value.shooted_at
+        shooted_at: downTZ(frame.value.shooted_at)
       }
     }
 

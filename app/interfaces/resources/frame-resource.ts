@@ -8,7 +8,6 @@ export interface FrameResource {
   comment: string
   creator_name: string
   shooted_at: string
-  shooted_at_html: string | null | undefined
   file: Blob | undefined | null,
   file_url: string | null | undefined
   file_two_url: string | undefined

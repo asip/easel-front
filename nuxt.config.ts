@@ -48,6 +48,7 @@ export default defineNuxtConfig({
   // @ts-ignore
   runtimeConfig: {
     public: {
+      timeZone: 'Asia/Tokyo',
       backendOriginURL: 'http://localhost:3000',
       googleClientId: ''
     },

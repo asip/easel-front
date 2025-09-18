@@ -54,9 +54,8 @@ describe('frames/:id/index', async () => {
           "ts"
         ],
         "shooted_at": "",
-        "shooted_at_html": "",
-        "created_at": "2024/02/03 (Sat) 13:55",
-        "updated_at": "2024/10/30 (Wed) 16:55",
+        "created_at": "2024/02/03 13:55",
+        "updated_at": "2024/10/30 16:55",
         "file_url": "http://localhost:9000/easel-uploads/store/23c7f769af4b4b2aaa4ea32e283c85c2.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20250420%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250420T112501Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=a57490d35b3b94ee27e1c26e4506bcdb1a5c356c43217fa701f4fab1d799e82d",
         "file_two_url": "http://localhost:9000/easel-uploads/store/5953b1b6015f48fb4462afb8f1a1d971.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20250420%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250420T112501Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=22de174f3d3ab702c68604442a21b9ebc4a8c01f6b0cb535a323c0d06539e0d9",
         "file_three_url": "http://localhost:9000/easel-uploads/store/032c78949f29a3721b36786ce838ed57.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20250420%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250420T112501Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=b15dae8196905a8154df383d8bde440fd72e5e556a7f2ca2fbf7347f32470b97",
@@ -68,7 +67,7 @@ describe('frames/:id/index', async () => {
             "body": "test",
             "user_name": "Yasumasa Ashida",
             "user_image_url": "http://localhost:3000/no-profile-image.png",
-            "updated_at": "2024/10/09 (Wed) 12:28"
+            "updated_at": "2024/10/09 12:28"
           }
         ]
       }
@@ -87,7 +86,7 @@ describe('frames/:id/index', async () => {
             "body": "test",
             "user_name": "Yasumasa Ashida",
             "user_image_url": "http://localhost:3000/no-profile-image.png",
-            "updated_at": "2024/10/09 (Wed) 12:28"
+            "updated_at": "2024/10/09 12:28"
           }
         ]
       })

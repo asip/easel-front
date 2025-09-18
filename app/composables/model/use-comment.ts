@@ -29,6 +29,7 @@ export function useComment () {
 
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
+  const { formatTZ } = useTimeZone()
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
@@ -63,9 +64,15 @@ export function useComment () {
     }
   }
 
+  const upCommentTZ = (comment: Comment) => {
+    comment.created_at = formatTZ(comment.created_at)
+    comment.updated_at = formatTZ(comment.updated_at)
+  }
+
   const createCommentFromJson = (resource: CommentResource): Comment => {
     const comment: Partial<Comment> = {}
     Object.assign(comment, resource)
+    upCommentTZ(comment as Comment)
     return comment as Comment
   }
 
