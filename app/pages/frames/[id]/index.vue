@@ -107,7 +107,7 @@ const onDeleteClick = () => {
                 </tr>
                 <tr>
                   <td>{{ $t('model.frame.comment') }}：</td>
-                  <td>
+                  <td style="word-break: break-all;">
                     <span v-html="sanitizedComment" />
                   </td>
                 </tr>

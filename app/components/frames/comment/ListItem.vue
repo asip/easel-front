@@ -64,7 +64,15 @@ const onDeleteClick = async () => {
           </div>
         </div>
         <div class="flex justify-start items-center">
-          <span v-html="sanitizedCommentBody" />
+          <table class="table table-bordered table_rounded">
+            <tbody>
+              <tr>
+                <td style="word-break: break-all;">
+                  <span v-html="sanitizedCommentBody" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
