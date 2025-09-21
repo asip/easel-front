@@ -23,7 +23,7 @@ const onClick = async (tag: string) => {
       v-for="(tag, idx) in modelValue?.tags"
       :key="idx"
     >
-      <a href="#" @click.prevent="onClick(tag)"><span class="badge badge-outline badge-accent hover:badge-primary truncate rounded-full">{{ tag }}</span></a>
+      <a href="#" @click.prevent="onClick(tag)"><span class="badge badge-sm badge-outline badge-accent hover:badge-primary truncate rounded-full">{{ tag }}</span></a>
     </span>
   </div>
   <div v-else class="flex justify-center flex-wrap mb-1 gap-1">
