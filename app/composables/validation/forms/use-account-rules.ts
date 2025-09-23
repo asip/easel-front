@@ -11,7 +11,8 @@ export const useAccountRules = (user?: User) => {
     password: {
       required, minLength: minLength(6), maxLength: maxLength(128)
     },
-    password_confirmation: { required, sameAs: sameAs(user?.password) }
+    password_confirmation: { required, sameAs: sameAs(user?.password) },
+    time_zone: { required }
   })
 
   const signinRules = {
@@ -34,7 +35,8 @@ export const useAccountRules = (user?: User) => {
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
-    email: { required, email }
+    email: { required, email },
+    time_zone: { required }
   }
 
   const passwordRules = () => ({

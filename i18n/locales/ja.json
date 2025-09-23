@@ -7,7 +7,8 @@
       "email": "Eメール ",
       "current_password": "現在のパスワード",
       "password": "パスワード",
-      "password_confirmation": "パスワード(確認)"
+      "password_confirmation": "パスワード(確認)",
+      "time_zone": "タイムゾーン"
     },
     "frame": {
       "model_name": "",

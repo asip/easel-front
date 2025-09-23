@@ -14,6 +14,7 @@ export const useUser = () => {
       preview_url: null,
       password: '',
       password_confirmation: '',
+      time_zone: '',
       social_login: false
     }
   )

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, setUser } = inject('account') as UseAccountType
+const { loggedIn, loginUser, setUser, initTimeZone } = inject('account') as UseAccountType
 
 const onCloseClick = () => {
   closeModal('#profile_modal')
@@ -9,6 +9,7 @@ const onCloseClick = () => {
 const onEditClick = () => {
   closeModal('#profile_modal')
   setUser(loginUser)
+  initTimeZone()
   openModal('#edit_profile_modal')
 }
 
@@ -94,6 +95,19 @@ const onDeleteAccountClick = () => {
               <td>
                 <div class="">
                   {{ loginUser.email }}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label
+                  for="time_zone"
+                  class=""
+                >{{ $t('model.user.time_zone') }}：</label>
+              </td>
+              <td>
+                <div class="">
+                  {{ loginUser.time_zone }}
                 </div>
               </td>
             </tr>

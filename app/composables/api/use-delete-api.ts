@@ -5,13 +5,15 @@ type DeleteAPIOptions = {
 export const useDeleteApi = async <T,E=unknown>({ url, token = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
+  const { timeZone } = useTimeZone()
 
   const key = `${url}:${new Date().getTime()}`
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
-    'Accept-Language': locale.value
+    'Accept-Language': locale.value,
+    'Time-Zone': timeZone.value.client
   }
 
   const pending = ref<boolean>(false)

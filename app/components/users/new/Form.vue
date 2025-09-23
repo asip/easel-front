@@ -1,11 +1,18 @@
 <script lang="ts" setup>
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { user, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
+const { tzOptions } = useTimeZone()
+const { user, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
 // @ts-ignore
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
+
+onMounted(() => {
+  if (import.meta.client) {
+    initTimeZone()
+  }
+})
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
@@ -117,6 +124,24 @@ defineExpose({ clearForm })
                 >
                   <div class="text-red-500">{{ error }}</div>
                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label
+                  for="time_zone"
+                  class=""
+                >{{ $t('model.user.time_zone') }}：</label>
+              </td>
+              <td>
+                <select
+                  v-model="user.time_zone"
+                  class="select"
+                >
+                  <option v-for="option in tzOptions" :key="option.value" :value="option.value">
+                    {{ option.text }}
+                  </option>
+                </select>
               </td>
             </tr>
             <tr>

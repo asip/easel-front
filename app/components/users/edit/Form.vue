@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
+const { tzOptions } = useTimeZone()
 const { loggedIn, user, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
@@ -141,6 +142,32 @@ defineExpose({ clearForm })
               </div>
             </td>
           </tr>
+          <tr>
+              <td>
+                <label
+                  for="time_zone"
+                  class=""
+                >{{ $t('model.user.time_zone') }}：</label>
+              </td>
+              <td>
+                <ClientOnly>
+                  <select
+                    v-model="user.time_zone"
+                    class="select"
+                  >
+                    <option v-for="option in tzOptions" :key="option.value" :value="option.value">
+                      {{ option.text }}
+                    </option>
+                  </select>
+                  <div
+                    v-for="error of r$.$errors.time_zone"
+                    :key="error"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </ClientOnly>
+              </td>
+            </tr>
         </tbody>
       </table>
     </div>

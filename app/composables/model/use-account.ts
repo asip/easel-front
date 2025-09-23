@@ -2,8 +2,8 @@ import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 import type { CredentialResponse } from 'vue3-google-signin'
 
-type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'base'
-type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation'
+type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
+type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone'
 
 export const useAccount = () => {
   const loginParams = ref({
@@ -24,6 +24,7 @@ export const useAccount = () => {
       preview_url: null,
       password: '',
       password_confirmation: '',
+      time_zone: '',
       social_login: false
     }
   })
@@ -41,6 +42,7 @@ export const useAccount = () => {
       preview_url: null,
       password: '',
       password_confirmation: '',
+      time_zone: '',
       social_login: false
     }
   )
@@ -56,6 +58,7 @@ export const useAccount = () => {
     current_password: [],
     password: [],
     password_confirmation: [],
+    time_zone: [],
     base: []
   })
 
@@ -65,6 +68,7 @@ export const useAccount = () => {
 
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
+  const { timeZone } = useTimeZone()
   const { flash, clearFlash } = useFlash()
 
   const signup = async () => {
@@ -80,6 +84,7 @@ export const useAccount = () => {
     formData.append('user[email]', user.value.email)
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
+    formData.append('user[time_zone]', user.value.time_zone)
 
     const { error, pending } = await usePostApi<UserResource>({
       url: '/users/',
@@ -232,13 +237,17 @@ export const useAccount = () => {
     Object.assign(loginUser.value, resource)
     if (token) {
       loginUser.value.token = token
-    } else {
-      loginUser.value.token = null
     }
   }
 
   const setUser = (loginUser: Ref<User>) => {
     Object.assign(user.value, loginUser.value)
+  }
+
+  const initTimeZone = () => {
+    // console.log(user.value.time_zone)
+    user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
+    // console.log(user.value.time_zone)
   }
 
   const setToken2Cookie = () => {
@@ -258,6 +267,7 @@ export const useAccount = () => {
     }
     formData.append('user[name]', user.value.name)
     formData.append('user[email]', user.value.email)
+    formData.append('user[time_zone]', user.value.time_zone)
 
     // console.log(user.value.token)
 
@@ -363,6 +373,7 @@ export const useAccount = () => {
     externalErrors.value.current_password = errors.current_password ?? []
     externalErrors.value.password = errors.password ?? []
     externalErrors.value.password_confirmation = errors.password_confirmation ?? []
+    externalErrors.value.time_zone = errors.time_zone ?? []
   }
 
   const clearExternalErrors = () => {
@@ -372,6 +383,7 @@ export const useAccount = () => {
     externalErrors.value.current_password = []
     externalErrors.value.password = []
     externalErrors.value.password_confirmation = []
+    externalErrors.value.time_zone = []
     externalErrors.value.base = []
   }
 
@@ -381,7 +393,7 @@ export const useAccount = () => {
     if (externalErrors.value.image.length > 0 || externalErrors.value.name.length > 0 ||
       externalErrors.value.email.length > 0 || externalErrors.value.current_password.length > 0 ||
       externalErrors.value.password.length > 0 || externalErrors.value.password_confirmation.length > 0 ||
-      externalErrors.value.base.length > 0
+      externalErrors.value.time_zone.length > 0 || externalErrors.value.base.length > 0
     ) {
       result = false
     }
@@ -445,10 +457,11 @@ export const useAccount = () => {
 
   const clearLoginUser = () => {
     loggedIn.value = false
+    loginUser.value.id = null
     loginUser.value.name = ''
     loginUser.value.email = ''
     loginUser.value.token = null
-    loginUser.value.id = null
+    loginUser.value.time_zone = ''
     loginUser.value.image_thumb_url = null
     loginUser.value.image_one_url = null
     loginUser.value.image_three_url = null
@@ -458,11 +471,12 @@ export const useAccount = () => {
   }
 
   const clearProfile = () => {
+    user.value.id = null
     user.value.name = ''
     user.value.email= ''
     user.value.token = null
-    user.value.id = null
     user.value.image = null
+    user.value.time_zone = ''
     user.value.image_thumb_url= ''
     user.value.image_one_url = ''
     user.value.image_three_url= ''
@@ -481,6 +495,7 @@ export const useAccount = () => {
     signup,
     authenticate,
     setUser,
+    initTimeZone,
     updateProfile,
     updatePassword,
     processing,

@@ -15,13 +15,15 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
 
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
+  const { timeZone } = useTimeZone()
 
   const tokenRef = ref<string>()
 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
-    'Accept-Language': locale.value
+    'Accept-Language': locale.value,
+    'Time-Zone': timeZone.value.client
   }
 
   if (token) {

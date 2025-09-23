@@ -12,6 +12,10 @@ export const useTimeZone = () => {
     })
   )
 
+  const tzOptions = computed(() => Intl.supportedValuesOf('timeZone').map(
+    e => ({ text: e , value: e })
+  ))
+
   const upISO8601 = (datetime: string) => {
     return format(parse(datetime, 'YYYY/MM/DD HH:mm', locale.value), 'YYYY-MM-DDTHH:mm', locale.value)
   }
@@ -43,5 +47,5 @@ export const useTimeZone = () => {
     }) : '')
   }
 
-  return { upTZ, downTZ, formatTZ }
+  return { timeZone, tzOptions, upTZ, downTZ, formatTZ }
 }

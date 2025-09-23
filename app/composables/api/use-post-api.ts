@@ -5,6 +5,7 @@ type PostAPIOptions = {
 export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null }: PostAPIOptions) => {
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
+  const { timeZone } = useTimeZone()
 
   const key = `${url}:${new Date().getTime()}`
 
@@ -13,7 +14,8 @@ export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null }: 
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
-    'Accept-Language': locale.value
+    'Accept-Language': locale.value,
+    'Time-Zone': timeZone.value.client
   }
 
   const pending = ref<boolean>(false)
