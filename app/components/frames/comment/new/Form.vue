@@ -4,15 +4,6 @@ const { loggedIn, loginUser } = useAccount()
 const { comment, externalErrors, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
 const { commentRules } = useCommentRules()
 
-const options = ref({
-  theme: 'bubble',
-  modules: {
-    toolbar: true
-  },
-  placeholder: '',
-  readOnly: false
-})
-
 const editor: Ref = useTemplateRef('editor')
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
@@ -82,7 +73,6 @@ const updateContent = (content: string) => {
               <Editor
                 ref="editor"
                 v-model="comment.body"
-                :options="options"
                 @update="updateContent"
               />
             </div>
