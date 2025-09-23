@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, setUser } = inject('account') as UseAccountType
+const { loggedIn, loginUser } = inject('account') as UseAccountType
 
 const form = useTemplateRef('form')
 
@@ -9,10 +9,6 @@ const onBackClick = () => {
   closeModal('#edit_password_modal')
   openModal('#profile_modal')
 }
-
-onMounted(() => {
-  setUser(loginUser)
-})
 </script>
 
 <template>
