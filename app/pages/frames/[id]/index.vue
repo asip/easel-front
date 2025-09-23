@@ -83,7 +83,7 @@ const onDeleteClick = () => {
           />
           <FramesPreviewTags v-model="frame" />
           <div class="flex justify-center">
-            <table class="table table-bordered table_rounded table-fixed ml-2 mr-2 ">
+            <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
               <tbody>
                 <tr>
                   <td style="width: 9em;">

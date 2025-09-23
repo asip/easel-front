@@ -45,7 +45,7 @@ const updateContent = (content: string) => {
 <template>
   <form>
     <div class="flex justify-center">
-      <table class="table table-bordered table_rounded table-fixed">
+      <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
             <td style="width: 9em;">

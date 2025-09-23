@@ -33,7 +33,7 @@ defineExpose({ clearForm })
 <template>
   <form>
     <div class="flex justify-center">
-      <table class="table table-bordered table_rounded">
+      <table class="table table-bordered table-rounded">
         <tbody>
           <tr v-if="!loginUser.social_login">
             <td style="width: 12em;">

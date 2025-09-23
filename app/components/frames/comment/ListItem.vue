@@ -64,7 +64,7 @@ const onDeleteClick = async () => {
           </div>
         </div>
         <div class="flex justify-start items-center">
-          <table class="table table-bordered table_rounded table-fixed">
+          <table class="table table-bordered table-rounded table-fixed">
             <tbody>
               <tr>
                 <td class="break-words">

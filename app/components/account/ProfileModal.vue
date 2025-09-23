@@ -70,7 +70,7 @@ const onDeleteAccountClick = () => {
         />
       </div>
       <div class="flex justify-center">
-        <table class="table table-bordered table_rounded">
+        <table class="table table-bordered table-rounded">
           <tbody>
             <tr>
               <td style="width: 9em;">
