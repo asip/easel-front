@@ -64,10 +64,10 @@ const onDeleteClick = async () => {
           </div>
         </div>
         <div class="flex justify-start items-center">
-          <table class="table table-bordered table_rounded">
+          <table class="table table-bordered table_rounded table-fixed">
             <tbody>
               <tr>
-                <td style="word-break: break-all;">
+                <td class="break-words">
                   <span v-html="sanitizedCommentBody" />
                 </td>
               </tr>

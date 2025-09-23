@@ -45,7 +45,7 @@ const updateContent = (content: string) => {
 <template>
   <form>
     <div class="flex justify-center">
-      <table class="table table-bordered table_rounded">
+      <table class="table table-bordered table_rounded table-fixed">
         <tbody>
           <tr>
             <td style="width: 9em;">
@@ -130,7 +130,7 @@ const updateContent = (content: string) => {
                 class=""
               >{{ $t('model.frame.comment') }}：</label>
             </td>
-            <td style="word-break: break-all;">
+            <td class="break-words">
               <div class="rounded-[5px]" style="border: 1px solid lavender;height: 50px">
                 <Editor
                   ref="editor"
