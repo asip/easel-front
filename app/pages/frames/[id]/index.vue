@@ -21,6 +21,8 @@ provide('framer', framer)
 
 await getFrame(`${frameId}`)
 
+const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: frameId }) }))
+
 const sanitizedComment = computed(() => {
   return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')
 })
@@ -69,7 +71,7 @@ const onDeleteClick = () => {
             </div>
             <div>
               <NuxtLink
-                :to="{ path: `/users/${frame.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: frameId }) } }"
+                :to="{ path: `/users/${frame.user_id}`, query: queryMapWithRef }"
                 class="link link-hover"
               >
                 {{ frame.user_name }}

@@ -9,6 +9,8 @@ const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
 
+const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: comment.value?.frame_id }) }))
+
 const sanitizedCommentBody = computed(() =>
   p2br(sanitizeHtml(comment.value?.body ?? '')).replace(/\n/g, '<br>')
 )
@@ -30,7 +32,7 @@ const onDeleteClick = async () => {
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: comment?.frame_id }) } }"
+                :to="{ path: `/users/${comment?.user_id}`, query: queryMapWithRef }"
                 class="avatar"
               >
                 <div class="w-5 h-5">
@@ -42,7 +44,7 @@ const onDeleteClick = async () => {
                 </div>
               </NuxtLink>
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: { ref: JSON.stringify({ from: 'frame', id: comment?.frame_id }) } }"
+                :to="{ path: `/users/${comment?.user_id}`, query: queryMapWithRef }"
                 class="badge badge-outline badge-accent hover:badge-primary rounded-full"
               >
                 {{ comment?.user_name }}

@@ -40,13 +40,6 @@ export const useFrame = () => {
     }
   })
 
-  const refQuery = useState<RefQuery>('frame.refQuery', () => {
-    return {
-      from: null,
-      id: null
-    }
-  })
-
   const frameId = computed(() => {
     return frame.value.id
   })
@@ -325,7 +318,6 @@ export const useFrame = () => {
     refresh,
     frame,
     shootedAt,
-    refQuery,
     frameId,
     updateFrame,
     createFrame,

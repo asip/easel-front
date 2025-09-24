@@ -19,13 +19,6 @@ export const useUser = () => {
     }
   )
 
-  const refQuery = useState<RefQuery>('user.refQuery', () => {
-    return {
-      from: null,
-      id: null
-    }
-  })
-
   const { flash, clearFlash } = useFlash()
 
   const getUser = async (id: string) => {
@@ -57,5 +50,5 @@ export const useUser = () => {
     Object.assign(user.value, resource)
   }
 
-  return { user, refQuery, getUser }
+  return { user, getUser }
 }

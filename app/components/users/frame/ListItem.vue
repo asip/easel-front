@@ -7,6 +7,17 @@ const { userId, page = undefined } = defineProps<{
   userId: string | undefined
   page?: string
 }>()
+
+const queryMapWithRef = computed(() => {
+  if (page == 'profile') {
+    return { ref: JSON.stringify({ from: page }) }
+  } else if(page == 'user_profile') {
+    return { ref: JSON.stringify({ from: page, id: userId }) }
+  } else {
+    return {}
+  }
+})
+
 </script>
 
 <template>
@@ -27,15 +38,8 @@ const { userId, page = undefined } = defineProps<{
     </figure>
     <div class="flex justify-center">
       <NuxtLink
-        v-if="page == 'profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: JSON.stringify({ from: page }) } }"
-        class="link link-hover"
-      >
-        {{ frame?.name }}
-      </NuxtLink>
-      <NuxtLink
-        v-else-if="page == 'user_profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: { ref: JSON.stringify({ from: page, id: userId }) } }"
+        v-if="page == 'profile' || page == 'user_profile'"
+        :to="{ path: `/frames/${frame?.id}`, query: queryMapWithRef }"
         class="link link-hover"
       >
         {{ frame?.name }}
