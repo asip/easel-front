@@ -15,14 +15,14 @@ importers:
         specifier: 10.1.0
         version: 10.1.0(@netlify/blobs@9.1.2)(@vue/compiler-dom@3.5.21)(db0@0.3.2)(eslint@9.36.0(jiti@2.5.1))(ioredis@5.7.0)(magicast@0.3.5)(rollup@4.50.1)(vue@3.5.21(typescript@5.8.3))
       '@regle/core':
-        specifier: ^1.8.6
-        version: 1.8.6(vue@3.5.21(typescript@5.8.3))
+        specifier: ^1.9.1
+        version: 1.9.1(vue@3.5.21(typescript@5.8.3))
       '@regle/nuxt':
-        specifier: 1.8.6
-        version: 1.8.6(magicast@0.3.5)(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)
+        specifier: 1.9.1
+        version: 1.9.1(magicast@0.3.5)(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)
       '@regle/rules':
-        specifier: ^1.8.6
-        version: 1.8.6(vue@3.5.21(typescript@5.8.3))
+        specifier: ^1.9.1
+        version: 1.9.1(vue@3.5.21(typescript@5.8.3))
       '@tailwindcss/vite':
         specifier: 4.1.13
         version: 4.1.13(vite@7.1.5(@types/node@20.19.4)(jiti@2.5.1)(lightningcss@1.30.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.8.0))
@@ -1423,8 +1423,8 @@ packages:
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
 
-  '@regle/core@1.8.6':
-    resolution: {integrity: sha512-CqbE89RphAJEHhTYdEVHyv2BMbssFhEyG/b2hz0PAaj7pY05dI2CAPz1FiOJIB6JV0G6TKuMnN8Rf2zxTB8JBg==}
+  '@regle/core@1.9.1':
+    resolution: {integrity: sha512-fnoePh4YkPFL5XtSHvWdwSfyuICr2ptyT7gGRamcDPuxoXfvT/rueHDfSmIOhU/TET5+9kUZmeYmJzjQReIatw==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: '>=3.3.0'
@@ -1432,14 +1432,14 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.8.6':
-    resolution: {integrity: sha512-fDoPfj186E5EZDEKAfku/lffzh2zcaS69AxhYLUH65JqMaw2lyLtuBUHHe667rVA2zW8Sl407f5CDAOQSlzzRQ==}
+  '@regle/nuxt@1.9.1':
+    resolution: {integrity: sha512-uE/QD0px+/4yFBN+/+06S3WtHNKmAFYYHLgD8t+CmZWCnBtzj1/wyX2PZ87sIG5NceUw3C0mRX+nQdbt1fDqCw==}
 
-  '@regle/rules@1.8.6':
-    resolution: {integrity: sha512-HTGO2Z1mopv/pA2wmuu0XRTz6mVP4xIdzw5ZL/+NxpBWc1Km6lqfydiflAyB8BVjdtFvwXMjZjhD2N1Z3qk//A==}
+  '@regle/rules@1.9.1':
+    resolution: {integrity: sha512-DD4tt7nIfJmQ0R69sQf1zUVBcNgftO5MgooAKvMIw5PgvjQnYBu1EPoRTLlULCQEqYoxQx/Cms+Fedd81Z+DYA==}
 
-  '@regle/schemas@1.8.6':
-    resolution: {integrity: sha512-EQTLH1eRaxf6Nv9M7pVY7GwtcVo4K4XRhb8ZfscBQV5zwxt0xqoHP+xRiq1kNMS57mql7IkKRW1h6atlihYh/Q==}
+  '@regle/schemas@1.9.1':
+    resolution: {integrity: sha512-5aAXRHNbmkX7TrpPrDEgvvYXqjYlg0UQRtHCOVhA+7OzqjwfcxGRK9aBF1qAHUJaj+Nk8nSEKYezAwMNyNu1TA==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -7178,18 +7178,19 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
-  '@regle/core@1.8.6(vue@3.5.21(typescript@5.8.3))':
+  '@regle/core@1.9.1(vue@3.5.21(typescript@5.8.3))':
     dependencies:
+      '@standard-schema/spec': 1.0.0
       vue: 3.5.21(typescript@5.8.3)
 
-  '@regle/nuxt@1.8.6(magicast@0.3.5)(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)':
+  '@regle/nuxt@1.9.1(magicast@0.3.5)(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)':
     dependencies:
       '@nuxt/kit': 4.1.2(magicast@0.3.5)
       '@nuxt/schema': 4.1.2
-      '@regle/core': 1.8.6(vue@3.5.21(typescript@5.8.3))
-      '@regle/rules': 1.8.6(vue@3.5.21(typescript@5.8.3))
+      '@regle/core': 1.9.1(vue@3.5.21(typescript@5.8.3))
+      '@regle/rules': 1.9.1(vue@3.5.21(typescript@5.8.3))
     optionalDependencies:
-      '@regle/schemas': 1.8.6(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)
+      '@regle/schemas': 1.9.1(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)
     transitivePeerDependencies:
       - arktype
       - magicast
@@ -7198,17 +7199,17 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.8.6(vue@3.5.21(typescript@5.8.3))':
+  '@regle/rules@1.9.1(vue@3.5.21(typescript@5.8.3))':
     dependencies:
-      '@regle/core': 1.8.6(vue@3.5.21(typescript@5.8.3))
+      '@regle/core': 1.9.1(vue@3.5.21(typescript@5.8.3))
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.8.6(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)':
+  '@regle/schemas@1.9.1(vue@3.5.21(typescript@5.8.3))(zod@3.24.3)':
     dependencies:
-      '@regle/core': 1.8.6(vue@3.5.21(typescript@5.8.3))
-      '@regle/rules': 1.8.6(vue@3.5.21(typescript@5.8.3))
+      '@regle/core': 1.9.1(vue@3.5.21(typescript@5.8.3))
+      '@regle/rules': 1.9.1(vue@3.5.21(typescript@5.8.3))
       '@standard-schema/spec': 1.0.0
     optionalDependencies:
       zod: 3.24.3
@@ -7361,8 +7362,7 @@ snapshots:
 
   '@speed-highlight/core@1.2.7': {}
 
-  '@standard-schema/spec@1.0.0':
-    optional: true
+  '@standard-schema/spec@1.0.0': {}
 
   '@stylistic/eslint-plugin@5.2.3(eslint@9.36.0(jiti@2.5.1))':
     dependencies:

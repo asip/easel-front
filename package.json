@@ -35,9 +35,9 @@
   "dependencies": {
     "@formkit/tempo": "0.1.2",
     "@nuxtjs/i18n": "10.1.0",
-    "@regle/core": "^1.8.6",
-    "@regle/nuxt": "1.8.6",
-    "@regle/rules": "^1.8.6",
+    "@regle/core": "^1.9.1",
+    "@regle/nuxt": "1.9.1",
+    "@regle/rules": "^1.9.1",
     "@tailwindcss/vite": "4.1.13",
     "@yaireo/tagify": "^4.35.4",
     "bootstrap-icons": "^1.13.1",
