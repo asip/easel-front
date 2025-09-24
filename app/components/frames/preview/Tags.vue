@@ -7,12 +7,12 @@ const { list = false } = defineProps<{
 
 const modelValue = defineModel<Frame>()
 
-const { frameQuery, queryString, searchFrame } = useFrameSearch()
+const { frameQuery, queryMap, searchFrame } = useFrameSearch()
 
 const onClick = async (tag: string) => {
   frameQuery.value.items.word = tag
   frameQuery.value.page = 1
-  await navigateTo({ path: '/', query: queryString.value })
+  await navigateTo({ path: '/', query: queryMap.value })
   await searchFrame({ more: true })
 }
 </script>

@@ -8,7 +8,7 @@ const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
 
 const { user, getUser } = useUser()
 const { loggedIn, loginUser } = useAccount()
-const { queryString } = useFrameSearch()
+const { queryMap } = useFrameSearch()
 const { following, follow, unfollow, isFollowing } = useFollow()
 
 const userId = id?.toString()
@@ -25,7 +25,7 @@ const onPageBack = async () => {
   if (refItems.from === 'frame') {
     await navigateTo({ path: `/frames/${refItems.id}` })
   } else {
-    await navigateTo({ path: '/', query: queryString.value })
+    await navigateTo({ path: '/', query: queryMap.value })
   }
 }
 

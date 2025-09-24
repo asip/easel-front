@@ -10,7 +10,7 @@ export const useFrameSearch = () => {
     }
   })
 
-  const queryString = computed(() => {
+  const queryMap = computed(() => {
     const { items, page } = frameQuery.value;
     const query: { q?: string, page?: number | null } = {};
 
@@ -30,7 +30,7 @@ export const useFrameSearch = () => {
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
       url: '/frames',
-      query: queryString.value,
+      query: queryMap.value,
       more: options?.more
     }
 
@@ -73,6 +73,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frameQuery, searchFrame, frames, queryString
+    frameQuery, searchFrame, frames, queryMap
   }
 }
