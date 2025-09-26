@@ -1,4 +1,3 @@
-import type { NuxtError } from '#app'
 import type { AccountFrameQuery, Frame, FrameResource, FramesResource } from '~/interfaces'
 
 export function useAccountFrames () {
@@ -15,6 +14,10 @@ export function useAccountFrames () {
   const frames = ref<Frame[]>([])
 
   const { flash, clearFlash } = useFlash()
+
+  const { clearLoginUser } = useAccount()
+
+  const { setAlert } = useAlert(flash, clearLoginUser)
 
   const getFrames = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
@@ -66,16 +69,6 @@ export function useAccountFrames () {
     frame.file = null
     frame.preview_url = null
     return frame as Frame
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      // case 500:
-      //  flash.value.alert = error.value.message
-      //  break
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   return {

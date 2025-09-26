@@ -1,4 +1,3 @@
-import type { NuxtError } from '#app'
 import type { FollowingResource } from '~/interfaces'
 
 import { useAccount } from './use-account'
@@ -6,10 +5,10 @@ import { useAccount } from './use-account'
 export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
 
-  const { $i18n } = useNuxtApp()
-
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
+
+  const { setAlert } = useAlert(flash, clearLoginUser)
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi<FollowingResource>({
@@ -58,28 +57,6 @@ export function useFollow () {
     }
 
     following.value = false
-  }
-
-  const setAlert = (error: NuxtError, off?: boolean) => {
-    if (off) {
-      switch (error.statusCode) {
-        case 401:
-          // flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        // default:
-        //  flash.value.alert = error.value.message
-      }
-    } else {
-      switch (error.statusCode) {
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.message
-      }
-    }
   }
 
   return {

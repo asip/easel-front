@@ -1,9 +1,8 @@
-import type { NuxtError } from '#app'
-import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
+import type { Frame, FrameResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 import { useAccount } from './use-account'
-
+import { useAlert } from '../use-alert'
 
 type ErrorProperty = 'name' | 'tags' | 'creator_name' | 'file' | 'base'
 type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
@@ -54,13 +53,28 @@ export const useFrame = () => {
 
   const processing = ref<boolean>(false)
 
-  const { $i18n } = useNuxtApp()
-
   const { loggedIn, accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
   const { upTZ, downTZ, formatTZ } = useTimeZone()
 
   const refresh = async () => {}
+
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.file = errors.file ?? []
+    externalErrors.value.name = errors.name ?? []
+    externalErrors.value.creator_name = errors.creator_name ?? []
+    externalErrors.value.tags = errors.tag_list ?? []
+  }
+
+  const clearExternalErrors = () => {
+    externalErrors.value.file = []
+    externalErrors.value.name = []
+    externalErrors.value.tags = []
+    externalErrors.value.creator_name = []
+    externalErrors.value.base = []
+  }
+
+  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
 
   const getFrame = async (id: string) => {
     // console.log(`token: ${loginUser.value.token}`)
@@ -177,21 +191,6 @@ export const useFrame = () => {
     processing.value = pending.value
   }
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.file = errors.file ?? []
-    externalErrors.value.name = errors.name ?? []
-    externalErrors.value.creator_name = errors.creator_name ?? []
-    externalErrors.value.tags = errors.tag_list ?? []
-  }
-
-  const clearExternalErrors = () => {
-    externalErrors.value.file = []
-    externalErrors.value.name = []
-    externalErrors.value.tags = []
-    externalErrors.value.creator_name = []
-    externalErrors.value.base = []
-  }
-
   const isSuccess = () => {
     let result = true
 
@@ -207,28 +206,6 @@ export const useFrame = () => {
     }
 
     return result
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      case 401:
-        flash.value.alert = $i18n.t('action.error.login')
-        clearLoginUser()
-        break
-      case 404:
-        flash.value.alert = error.message
-        break
-      case 422:
-        {
-          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-          if (errors) {
-            setExternalErrors(errors)
-          }
-          break
-        }
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   const updateFrame = async () => {

@@ -1,5 +1,4 @@
-import type { NuxtError } from '#app'
-import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'body' | 'base'
@@ -26,11 +25,20 @@ export function useComment () {
 
   const processing = ref<boolean>(false)
 
-  const { $i18n } = useNuxtApp()
-
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
   const { formatTZ } = useTimeZone()
+
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.body = errors.body ?? []
+  }
+
+  const clearExternalErrors = () => {
+    externalErrors.value.body = []
+    externalErrors.value.base = []
+  }
+
+  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
@@ -112,15 +120,6 @@ export function useComment () {
     }
   }
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.body = errors.body ?? []
-  }
-
-  const clearExternalErrors = () => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
-  }
-
   const isSuccess = () => {
     let result = true
 
@@ -133,31 +132,6 @@ export function useComment () {
     }
 
     return result
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      case 401:
-        flash.value.alert = $i18n.t('action.error.login')
-        clearLoginUser()
-        break
-      case 404:
-        flash.value.alert = error.message
-        break
-      case 422:
-        {
-          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-          if (errors) {
-            setExternalErrors(errors)
-          }
-          break
-        }
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   const deleteComment = async (comment: Comment) => {

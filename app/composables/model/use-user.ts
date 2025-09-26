@@ -1,5 +1,4 @@
-import type { NuxtError } from '#app'
-import type { User, RefQuery, UserResource } from '~/interfaces'
+import type { User, UserResource } from '~/interfaces'
 
 export const useUser = () => {
   const user = ref<User>(
@@ -22,6 +21,8 @@ export const useUser = () => {
 
   const { flash, clearFlash } = useFlash()
 
+  const { setAlert } = useAlert(flash)
+
   const getUser = async (id: string) => {
     const { data, error } = await useGetApi<UserResource>({
       url: `/users/${id}`
@@ -43,16 +44,6 @@ export const useUser = () => {
 
   const setJson2User = (resource: UserResource) => {
     Object.assign(user.value, resource)
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      case 404:
-        flash.value.alert = error.message
-        break
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   return { user, getUser }

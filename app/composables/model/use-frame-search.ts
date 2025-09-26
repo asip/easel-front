@@ -1,4 +1,3 @@
-import type { NuxtError } from '#app';
 import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfaces'
 
 export const useFrameSearch = () => {
@@ -27,6 +26,8 @@ export const useFrameSearch = () => {
   const frames = useState<Frame[]>('frames', () => { return [] })
 
   const { flash, clearFlash } = useFlash()
+
+  const { setAlert } = useAlert(flash)
 
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
@@ -65,16 +66,6 @@ export const useFrameSearch = () => {
     frame.file = null
     frame.preview_url = null
     return frame as Frame
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      // case 500:
-      //  flash.value.alert = error.value.message
-      //  break
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   return {

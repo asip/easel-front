@@ -1,8 +1,6 @@
-import type { NuxtError } from '#app'
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { User, UserResource, ErrorsResource } from '~/interfaces'
+import type { User, UserResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
-
 
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
 type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone'
@@ -66,12 +64,64 @@ export const useAccount = () => {
 
   const processing = ref<boolean>(false)
 
-  const { $i18n } = useNuxtApp()
-
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
   const { timeZone } = useTimeZone()
   const { flash, clearFlash } = useFlash()
+
+  const clearLoginUser = () => {
+    loggedIn.value = false
+    loginUser.value.id = null
+    loginUser.value.name = ''
+    loginUser.value.email = ''
+    loginUser.value.token = null
+    loginUser.value.time_zone = ''
+    loginUser.value.image_thumb_url = null
+    loginUser.value.image_one_url = null
+    loginUser.value.image_three_url = null
+    loginUser.value.social_login = false
+
+    accessToken.value = null
+  }
+
+  const clearProfile = () => {
+    user.value.id = null
+    user.value.name = ''
+    user.value.email= ''
+    user.value.token = null
+    user.value.image = null
+    user.value.time_zone = ''
+    user.value.image_thumb_url= ''
+    user.value.image_one_url = ''
+    user.value.image_three_url= ''
+    user.value.preview_url = null
+    user.value.password = ''
+    user.value.password_confirmation= ''
+    user.value.social_login = false
+  }
+
+  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+    externalErrors.value.image = errors.image ?? []
+    externalErrors.value.name = errors.name ?? []
+    externalErrors.value.email = errors.email ?? []
+    externalErrors.value.current_password = errors.current_password ?? []
+    externalErrors.value.password = errors.password ?? []
+    externalErrors.value.password_confirmation = errors.password_confirmation ?? []
+    externalErrors.value.time_zone = errors.time_zone ?? []
+  }
+
+  const clearExternalErrors = () => {
+    externalErrors.value.image = []
+    externalErrors.value.name = []
+    externalErrors.value.email = []
+    externalErrors.value.current_password = []
+    externalErrors.value.password = []
+    externalErrors.value.password_confirmation = []
+    externalErrors.value.time_zone = []
+    externalErrors.value.base = []
+  }
+
+  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
 
   const signup = async () => {
     processing.value = true
@@ -295,27 +345,6 @@ export const useAccount = () => {
     processing.value = pending.value
   }
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.image = errors.image ?? []
-    externalErrors.value.name = errors.name ?? []
-    externalErrors.value.email = errors.email ?? []
-    externalErrors.value.current_password = errors.current_password ?? []
-    externalErrors.value.password = errors.password ?? []
-    externalErrors.value.password_confirmation = errors.password_confirmation ?? []
-    externalErrors.value.time_zone = errors.time_zone ?? []
-  }
-
-  const clearExternalErrors = () => {
-    externalErrors.value.image = []
-    externalErrors.value.name = []
-    externalErrors.value.email = []
-    externalErrors.value.current_password = []
-    externalErrors.value.password = []
-    externalErrors.value.password_confirmation = []
-    externalErrors.value.time_zone = []
-    externalErrors.value.base = []
-  }
-
   const isSuccess = () => {
     let result = true
 
@@ -332,31 +361,6 @@ export const useAccount = () => {
     }
 
     return result
-  }
-
-  const setAlert = (error: NuxtError) => {
-    switch (error.statusCode) {
-      case 401:
-        flash.value.alert = $i18n.t('action.error.login')
-        clearLoginUser()
-        break
-      case 404:
-        flash.value.alert = error.message
-        break
-      case 422:
-        {
-          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-          if (errors) {
-            setExternalErrors(errors)
-          }
-          break
-        }
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-      default:
-        flash.value.alert = error.message
-    }
   }
 
   const logout = async () => {
@@ -390,37 +394,6 @@ export const useAccount = () => {
         clearLoginUser()
       }
     }
-  }
-
-  const clearLoginUser = () => {
-    loggedIn.value = false
-    loginUser.value.id = null
-    loginUser.value.name = ''
-    loginUser.value.email = ''
-    loginUser.value.token = null
-    loginUser.value.time_zone = ''
-    loginUser.value.image_thumb_url = null
-    loginUser.value.image_one_url = null
-    loginUser.value.image_three_url = null
-    loginUser.value.social_login = false
-
-    accessToken.value = null
-  }
-
-  const clearProfile = () => {
-    user.value.id = null
-    user.value.name = ''
-    user.value.email= ''
-    user.value.token = null
-    user.value.image = null
-    user.value.time_zone = ''
-    user.value.image_thumb_url= ''
-    user.value.image_one_url = ''
-    user.value.image_three_url= ''
-    user.value.preview_url = null
-    user.value.password = ''
-    user.value.password_confirmation= ''
-    user.value.social_login = false
   }
 
   return {
