@@ -8,7 +8,7 @@ export function useFollow () {
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert(flash, clearLoginUser)
+  const { setAlert } = useAlert({ flash: flash.value, clear: clearLoginUser })
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi<FollowingResource>({
@@ -19,7 +19,7 @@ export function useFollow () {
     // clearFlash()
 
     if (error.value) {
-      setAlert(error.value, true)
+      setAlert({ error: error.value, off: true })
     } else if (data.value) {
       const { following: followingValue } = data.value
 
@@ -38,7 +38,7 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
 
     following.value = true
@@ -53,7 +53,7 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
 
     following.value = false

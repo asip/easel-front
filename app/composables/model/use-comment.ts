@@ -38,7 +38,7 @@ export function useComment () {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clear: clearLoginUser, set: setExternalErrors })
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
@@ -50,7 +50,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const { comments: commentList } = data.value
       // console.log(commentList)
@@ -98,7 +98,7 @@ export function useComment () {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const commentAttrs = data.value
       if (commentAttrs) {
@@ -143,7 +143,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
   }
 

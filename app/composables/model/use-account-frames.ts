@@ -17,7 +17,7 @@ export function useAccountFrames () {
 
   const { clearLoginUser } = useAccount()
 
-  const { setAlert } = useAlert(flash, clearLoginUser)
+  const { setAlert } = useAlert({ flash: flash.value, clear: clearLoginUser })
 
   const getFrames = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
@@ -36,7 +36,7 @@ export function useAccountFrames () {
     if (error.value) {
       const err = error.value
 
-      setAlert(err)
+      setAlert({ error: err })
 
       throw createError({
         statusCode: err.statusCode,

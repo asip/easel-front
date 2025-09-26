@@ -27,7 +27,7 @@ export const useFrameSearch = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert(flash)
+  const { setAlert } = useAlert({ flash: flash.value })
 
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
@@ -41,7 +41,7 @@ export const useFrameSearch = () => {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const { frames: frameList, meta } = data.value
       // console.log(frameList)

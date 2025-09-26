@@ -14,7 +14,7 @@ export function useUserFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert(flash)
+  const { setAlert } = useAlert({ flash: flash.value })
 
   const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
@@ -32,7 +32,7 @@ export function useUserFrames () {
     if (error.value) {
       const err = error.value
 
-      setAlert(err)
+      setAlert({ error: err })
 
       throw createError({
         statusCode: err.statusCode,

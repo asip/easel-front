@@ -121,7 +121,7 @@ export const useAccount = () => {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clear: clearLoginUser, set: setExternalErrors })
 
   const signup = async () => {
     processing.value = true
@@ -147,7 +147,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
 
     processing.value = pending.value
@@ -167,7 +167,7 @@ export const useAccount = () => {
       clearFlash()
 
       if (error.value) {
-        setAlert(error.value)
+        setAlert({ error: error.value })
       } else if (data.value) {
         const userAttrs = data.value
         // console.log(userAttrs)
@@ -199,7 +199,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const userAttrs = data.value
       if (userAttrs) {
@@ -227,7 +227,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const userAttrs  = data.value
       setJson2LoginUser(userAttrs, token.value)
@@ -294,7 +294,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const userAttrs = data.value as UserResource
       if (userAttrs) {
@@ -333,7 +333,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const userAttrs = data.value as UserResource
       if (userAttrs) {
@@ -372,7 +372,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else  {
       clearLoginUser()
     }
@@ -387,7 +387,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const userAttrs = data.value
       if (userAttrs) {

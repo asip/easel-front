@@ -74,7 +74,7 @@ export const useFrame = () => {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>(flash, clearLoginUser, setExternalErrors)
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clear: clearLoginUser, set: setExternalErrors })
 
   const getFrame = async (id: string) => {
     // console.log(`token: ${loginUser.value.token}`)
@@ -88,7 +88,7 @@ export const useFrame = () => {
       clearFlash()
 
       if (error.value) {
-        setAlert(error.value)
+        setAlert({ error: error.value })
 
         throw createError({
           statusCode: error.value.statusCode,
@@ -113,7 +113,7 @@ export const useFrame = () => {
       clearFlash()
 
       if (error.value) {
-        setAlert(error.value)
+        setAlert({ error: error.value })
 
         throw createError({
           statusCode: error.value.statusCode,
@@ -180,7 +180,7 @@ export const useFrame = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     } else if (data.value) {
       const frameAttrs = data.value
       if (frameAttrs) {
@@ -233,7 +233,7 @@ export const useFrame = () => {
     clearExternalErrors()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
 
     processing.value = pending.value
@@ -251,7 +251,7 @@ export const useFrame = () => {
     clearFlash()
 
     if (error.value) {
-      setAlert(error.value)
+      setAlert({ error: error.value })
     }
 
     // const frameAttrs = data.value

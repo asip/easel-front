@@ -2,10 +2,20 @@ import type { NuxtError } from "#app"
 import type { ErrorsResource, Flash } from "~/interfaces";
 import type { ErrorMessages } from "~/types";
 
-export function useAlert<T extends string>(flash: Ref<Flash>, clear?: () => void, func?: (errors: ErrorMessages<T>)=> void) {
+type UseAlertOptions<T extends string> = {
+  flash: Flash
+  clear?: () => void
+  set?: (errors: ErrorMessages<T>) => void
+}
+
+type AlertOptions = {
+  error: NuxtError, off?: boolean
+}
+
+export function useAlert<T extends string>({ flash, clear, set } : UseAlertOptions<T>) {
   const { $i18n } = useNuxtApp()
 
-  const setAlert = function(error: NuxtError, off?: boolean) {
+  const setAlert = function({ error, off = false } : AlertOptions) {
     if (off) {
       switch (error.statusCode) {
         case 401:
@@ -18,24 +28,24 @@ export function useAlert<T extends string>(flash: Ref<Flash>, clear?: () => void
     } else {
       switch (error.statusCode) {
         case 401:
-          flash.value.alert = $i18n.t('action.error.login')
+          flash.alert = $i18n.t('action.error.login')
           if (clear) clear()
           break
         case 404:
-          flash.value.alert = error.message
+          flash.alert = error.message
           break
         case 422:
           {
-            if (func) {
+            if (set) {
               const { errors } = error.data as ErrorsResource<ErrorMessages<T>>
               if (errors) {
-                func(errors)
+                set(errors)
               }
             }
             break
           }
         default:
-          flash.value.alert = error.message
+          flash.alert = error.message
       }
     }
   }
