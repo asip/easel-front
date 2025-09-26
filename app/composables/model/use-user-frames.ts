@@ -1,3 +1,4 @@
+import type { NuxtError } from '#app'
 import type { Frame, FrameResource, FramesResource, UserFrameQuery } from '~/interfaces'
 
 export function useUserFrames () {
@@ -28,17 +29,13 @@ export function useUserFrames () {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-        default:
-          flash.value.alert = error.value.message
-      }
+      const err = error.value
+
+      setAlert(err)
 
       throw createError({
-        statusCode: error.value.statusCode,
-        statusMessage: error.value.message,
+        statusCode: err.statusCode,
+        statusMessage: err.message,
         message: flash.value.alert
       })
     } else if (data.value) {
@@ -67,6 +64,16 @@ export function useUserFrames () {
     frame.file = null
     frame.preview_url = null
     return frame as Frame
+  }
+
+  const setAlert = (error: NuxtError) => {
+    switch (error.statusCode) {
+      // case 500:
+      //  flash.value.alert = error.value.message
+      //  break
+      default:
+        flash.value.alert = error.message
+    }
   }
 
   return {

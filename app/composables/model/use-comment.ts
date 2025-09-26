@@ -1,3 +1,4 @@
+import type { NuxtError } from '#app'
 import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
@@ -41,13 +42,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const { comments: commentList } = data.value
       // console.log(commentList)
@@ -95,22 +90,7 @@ export function useComment () {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const commentAttrs = data.value
       if (commentAttrs) {
@@ -155,6 +135,31 @@ export function useComment () {
     return result
   }
 
+  const setAlert = (error: NuxtError) => {
+    switch (error.statusCode) {
+      case 401:
+        flash.value.alert = $i18n.t('action.error.login')
+        clearLoginUser()
+        break
+      case 404:
+        flash.value.alert = error.message
+        break
+      case 422:
+        {
+          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
+          if (errors) {
+            setExternalErrors(errors)
+          }
+          break
+        }
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
+      default:
+        flash.value.alert = error.message
+    }
+  }
+
   const deleteComment = async (comment: Comment) => {
     const { error } = await useDeleteApi({
       url: `/comments/${comment.id}`,
@@ -164,17 +169,7 @@ export function useComment () {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 404:
-          flash.value.alert = error.value.message
-          break
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     }
   }
 

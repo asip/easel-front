@@ -1,5 +1,7 @@
-import { useAccount } from './use-account'
+import type { NuxtError } from '#app'
 import type { FollowingResource } from '~/interfaces'
+
+import { useAccount } from './use-account'
 
 export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
@@ -18,14 +20,7 @@ export function useFollow () {
     // clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 401:
-          // flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        // default:
-        //  flash.value.alert = error.value.message
-      }
+      setAlert(error.value, true)
     } else if (data.value) {
       const { following: followingValue } = data.value
 
@@ -44,14 +39,7 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     }
 
     following.value = true
@@ -66,17 +54,32 @@ export function useFollow () {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
+      setAlert(error.value)
+    }
+
+    following.value = false
+  }
+
+  const setAlert = (error: NuxtError, off?: boolean) => {
+    if (off) {
+      switch (error.statusCode) {
+        case 401:
+          // flash.value.alert = $i18n.t('action.error.login')
+          clearLoginUser()
+          break
+        // default:
+        //  flash.value.alert = error.value.message
+      }
+    } else {
+      switch (error.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           clearLoginUser()
           break
         default:
-          flash.value.alert = error.value.message
+          flash.value.alert = error.message
       }
     }
-
-    following.value = false
   }
 
   return {

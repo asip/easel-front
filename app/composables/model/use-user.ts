@@ -1,3 +1,4 @@
+import type { NuxtError } from '#app'
 import type { User, RefQuery, UserResource } from '~/interfaces'
 
 export const useUser = () => {
@@ -29,13 +30,7 @@ export const useUser = () => {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 404:
-          flash.value.alert = error.value.message
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs = data.value
       // console.log(userAttrs)
@@ -48,6 +43,16 @@ export const useUser = () => {
 
   const setJson2User = (resource: UserResource) => {
     Object.assign(user.value, resource)
+  }
+
+  const setAlert = (error: NuxtError) => {
+    switch (error.statusCode) {
+      case 404:
+        flash.value.alert = error.message
+        break
+      default:
+        flash.value.alert = error.message
+    }
   }
 
   return { user, getUser }

@@ -1,6 +1,8 @@
+import type { NuxtError } from '#app'
+import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
-import type { CredentialResponse } from 'vue3-google-signin'
+
 
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
 type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone'
@@ -95,21 +97,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     }
 
     processing.value = pending.value
@@ -129,14 +117,7 @@ export const useAccount = () => {
       clearFlash()
 
       if (error.value) {
-        switch (error.value.statusCode) {
-          case 401:
-            flash.value.alert = $i18n.t('action.error.login')
-            clearLoginUser()
-            break
-          default:
-            flash.value.alert = error.value.message
-        }
+        setAlert(error.value)
       } else if (data.value) {
         const userAttrs = data.value
         // console.log(userAttrs)
@@ -168,22 +149,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-        default:
-          flash.value.alert = error.value.message
-      }
-
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs = data.value
       if (userAttrs) {
@@ -211,13 +177,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        // case 500:
-        //  flash.value.alert = error.value.message
-        //  break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs  = data.value
       setJson2LoginUser(userAttrs, token.value)
@@ -284,22 +244,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs = data.value as UserResource
       if (userAttrs) {
@@ -338,23 +283,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs = data.value as UserResource
       if (userAttrs) {
@@ -405,6 +334,31 @@ export const useAccount = () => {
     return result
   }
 
+  const setAlert = (error: NuxtError) => {
+    switch (error.statusCode) {
+      case 401:
+        flash.value.alert = $i18n.t('action.error.login')
+        clearLoginUser()
+        break
+      case 404:
+        flash.value.alert = error.message
+        break
+      case 422:
+        {
+          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
+          if (errors) {
+            setExternalErrors(errors)
+          }
+          break
+        }
+        // case 500:
+        //  flash.value.alert = error.value.message
+        //  break
+      default:
+        flash.value.alert = error.message
+    }
+  }
+
   const logout = async () => {
     const { error } = await useDeleteApi<UserResource>({
       url: '/sessions/logout',
@@ -414,14 +368,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else  {
       clearLoginUser()
     }
@@ -436,17 +383,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        case 404:
-          flash.value.alert = error.value.message
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const userAttrs = data.value
       if (userAttrs) {

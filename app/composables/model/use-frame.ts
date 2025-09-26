@@ -1,9 +1,9 @@
-import { format, parse } from '@formkit/tempo'
-
-import type { Frame, RefQuery, FrameResource, ErrorsResource } from '~/interfaces'
+import type { NuxtError } from '#app'
+import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 import { useAccount } from './use-account'
+
 
 type ErrorProperty = 'name' | 'tags' | 'creator_name' | 'file' | 'base'
 type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
@@ -74,17 +74,7 @@ export const useFrame = () => {
       clearFlash()
 
       if (error.value) {
-        switch (error.value.statusCode) {
-          case 401:
-            flash.value.alert = $i18n.t('action.error.login')
-            clearLoginUser()
-            break
-          case 404:
-            flash.value.alert = error.value.message
-            break
-          default:
-            flash.value.alert = error.value.message
-        }
+        setAlert(error.value)
 
         throw createError({
           statusCode: error.value.statusCode,
@@ -109,13 +99,7 @@ export const useFrame = () => {
       clearFlash()
 
       if (error.value) {
-        switch (error.value.statusCode) {
-          case 404:
-            flash.value.alert = error.value.message
-            break
-          default:
-            flash.value.alert = error.value.message
-        }
+        setAlert(error.value)
 
         throw createError({
           statusCode: error.value.statusCode,
@@ -182,22 +166,7 @@ export const useFrame = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     } else if (data.value) {
       const frameAttrs = data.value
       if (frameAttrs) {
@@ -240,6 +209,28 @@ export const useFrame = () => {
     return result
   }
 
+  const setAlert = (error: NuxtError) => {
+    switch (error.statusCode) {
+      case 401:
+        flash.value.alert = $i18n.t('action.error.login')
+        clearLoginUser()
+        break
+      case 404:
+        flash.value.alert = error.message
+        break
+      case 422:
+        {
+          const { errors } = error.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
+          if (errors) {
+            setExternalErrors(errors)
+          }
+          break
+        }
+      default:
+        flash.value.alert = error.message
+    }
+  }
+
   const updateFrame = async () => {
     processing.value = true
 
@@ -265,22 +256,7 @@ export const useFrame = () => {
     clearExternalErrors()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 422:
-          {
-            const { errors } = error.value.data as ErrorsResource<ErrorMessages<ExternalErrorProperty>>
-            if (errors) {
-              setExternalErrors(errors)
-            }
-            break
-          }
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     }
 
     processing.value = pending.value
@@ -298,14 +274,7 @@ export const useFrame = () => {
     clearFlash()
 
     if (error.value) {
-      switch (error.value.statusCode) {
-        case 401:
-          flash.value.alert = $i18n.t('action.error.login')
-          clearLoginUser()
-          break
-        default:
-          flash.value.alert = error.value.message
-      }
+      setAlert(error.value)
     }
 
     // const frameAttrs = data.value

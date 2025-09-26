@@ -44,7 +44,7 @@
       "new": "ユーザー登録",
       "edit": "プロフィール編集",
       "edit_password": "パスワード変更",
-      "follow": "フォロー",
+      "follow": "未フォロー",
       "unfollow": "フォロー中",
       "frame_list": "マイ リスト"
     },
