@@ -25,22 +25,20 @@ export function useUserFrames () {
       more: options?.more
     }
 
-    const { data, error } = await useGetApi<FramesResource>(getOptions)
+    const { response, error } = await useGetApi<FramesResource>(getOptions)
 
     clearFlash()
 
-    if (error.value) {
-      const err = error.value
-
-      setAlert({ error: err })
+    if (error) {
+      setAlert({ error })
 
       throw createError({
-        statusCode: err.statusCode,
-        statusMessage: err.message,
+        statusCode: error.statusCode,
+        statusMessage: error.message,
         message: flash.value.alert
       })
-    } else if (data.value) {
-      const { frames: frameList, meta } = data.value
+    } else if (response) {
+      const { frames: frameList, meta } = response
       // console.log(frameList)
       // console.log(meta)
 

@@ -24,16 +24,16 @@ export const useUser = () => {
   const { setAlert } = useAlert({ flash: flash.value })
 
   const getUser = async (id: string) => {
-    const { data, error } = await useGetApi<UserResource>({
+    const { response, error } = await useGetApi<UserResource>({
       url: `/users/${id}`
     })
 
     clearFlash()
 
-    if (error.value) {
-      setAlert({ error: error.value })
-    } else if (data.value) {
-      const userAttrs = data.value
+    if (error) {
+      setAlert({ error })
+    } else if (response) {
+      const userAttrs = response
       // console.log(userAttrs)
 
       if (userAttrs) {

@@ -38,5 +38,5 @@ export const usePostApi = async <T,E=unknown>({ url, body = {}, token = null }: 
 
   pending.value = status.value === 'pending'
 
-  return { token: tokenRef, data, error, pending }
+  return { token: tokenRef.value, response: data.value, error: error.value, pending: pending.value }
 }

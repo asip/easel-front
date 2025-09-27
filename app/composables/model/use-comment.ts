@@ -42,17 +42,17 @@ export function useComment () {
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
-    const { data, error } = await useGetApi<CommentsResource>({
+    const { response, error } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       fresh: options?.fresh
     })
 
     clearFlash()
 
-    if (error.value) {
-      setAlert({ error: error.value })
-    } else if (data.value) {
-      const { comments: commentList } = data.value
+    if (error) {
+      setAlert({ error })
+    } else if (response) {
+      const { comments: commentList } = response
       // console.log(commentList)
 
       if (commentList) {
@@ -88,7 +88,7 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePostApi<CommentResource>({
+    const { response, error, pending } = await usePostApi<CommentResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: accessToken.value
@@ -97,16 +97,16 @@ export function useComment () {
     clearFlash()
     clearExternalErrors()
 
-    if (error.value) {
-      setAlert({ error: error.value })
-    } else if (data.value) {
-      const commentAttrs = data.value
+    if (error) {
+      setAlert({ error })
+    } else if (response) {
+      const commentAttrs = response
       if (commentAttrs) {
         comment.value.body = ''
       }
     }
 
-    processing.value = pending.value
+    processing.value = pending
   }
 
   const createComment = async () => {
@@ -142,8 +142,8 @@ export function useComment () {
 
     clearFlash()
 
-    if (error.value) {
-      setAlert({ error: error.value })
+    if (error) {
+      setAlert({ error })
     }
   }
 

@@ -80,23 +80,23 @@ export const useFrame = () => {
     // console.log(`token: ${loginUser.value.token}`)
 
     if (loggedIn.value) {
-      const { data, error, refresh } = await useGetApi<FrameResource>({
+      const { response, error, refresh } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
         token: accessToken.value
       })
 
       clearFlash()
 
-      if (error.value) {
-        setAlert({ error: error.value })
+      if (error) {
+        setAlert({ error })
 
         throw createError({
-          statusCode: error.value.statusCode,
-          statusMessage: error.value.message,
+          statusCode: error.statusCode,
+          statusMessage: error.message,
           message: flash.value.alert
         })
-      } else if (data.value) {
-        const frameAttrs = data.value
+      } else if (response) {
+        const frameAttrs = response
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -106,22 +106,22 @@ export const useFrame = () => {
 
       return { refresh }
     } else {
-      const { data, error, refresh } = await useGetApi<FrameResource>({
+      const { response, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
 
       clearFlash()
 
-      if (error.value) {
-        setAlert({ error: error.value })
+      if (error) {
+        setAlert({ error })
 
         throw createError({
-          statusCode: error.value.statusCode,
-          statusMessage: error.value.message,
+          statusCode: error.statusCode,
+          statusMessage: error.message,
           message: flash.value.alert
         })
-      } else if (data.value) {
-        const frameAttrs = data.value
+      } else if (response) {
+        const frameAttrs = response
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -170,7 +170,7 @@ export const useFrame = () => {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await usePostApi<FrameResource>({
+    const { response, error, pending } = await usePostApi<FrameResource>({
       url: '/frames/',
       body: formData,
       token: accessToken.value
@@ -179,16 +179,16 @@ export const useFrame = () => {
     clearFlash()
     clearExternalErrors()
 
-    if (error.value) {
-      setAlert({ error: error.value })
-    } else if (data.value) {
-      const frameAttrs = data.value
+    if (error) {
+      setAlert({ error })
+    } else if (response) {
+      const frameAttrs = response
       if (frameAttrs) {
         frame.value.id = frameAttrs.id
       }
     }
 
-    processing.value = pending.value
+    processing.value = pending
   }
 
   const isSuccess = () => {
@@ -232,11 +232,11 @@ export const useFrame = () => {
     clearFlash()
     clearExternalErrors()
 
-    if (error.value) {
-      setAlert({ error: error.value })
+    if (error) {
+      setAlert({ error })
     }
 
-    processing.value = pending.value
+    processing.value = pending
   }
 
   const deleteFrame = async () => {
@@ -250,13 +250,13 @@ export const useFrame = () => {
 
     clearFlash()
 
-    if (error.value) {
-      setAlert({ error: error.value })
+    if (error) {
+      setAlert({ error })
     }
 
     // const frameAttrs = data.value
 
-    processing.value = pending.value
+    processing.value = pending
   }
 
   return {
