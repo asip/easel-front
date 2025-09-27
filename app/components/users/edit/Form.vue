@@ -10,7 +10,7 @@ const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview(target, user.value)
+  useImagePreview({ target, model: user.value })
 }
 
 const onUpdateClick = async () => {

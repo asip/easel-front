@@ -1,9 +1,13 @@
+type initGLOptions = {
+  selector: string
+}
+
 export function useGLightbox () {
   let lightbox: any
 
   const { $gLightbox } = useNuxtApp() as any
 
-  const initGLightbox = (selector: string) => {
+  const initGLightbox = ({ selector }: initGLOptions) => {
     lightbox = $gLightbox({ selector: selector })
   }
 

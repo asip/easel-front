@@ -7,13 +7,13 @@ const { original } = defineProps<{
   original: boolean
 }>()
 
-const { initGLightbox, closeLightbox } = useLightbox()
+const { initGLightbox, closeLightbox } = useLightbox({})
 
 // console.log(loginUser?.value.image_three_url)
 
 onMounted(() => {
   if (original) {
-    initGLightbox('#image')
+    initGLightbox({ selector: '#image' })
   }
 })
 

@@ -1,7 +1,9 @@
 import type { Frame } from '~/interfaces'
 
-export function useTagEditor (refKey: string) {
-  const tagEditorRef = useTemplateRef(refKey)
+type useTagEditorOptions = { key: string }
+
+export function useTagEditor ({ key }: useTagEditorOptions) {
+  const tagEditorRef = useTemplateRef(key)
 
   let tagEditor: Tagify | null = null
 

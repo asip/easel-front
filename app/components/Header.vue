@@ -5,7 +5,7 @@ const account = useAccount()
 const { loginUser, loggedIn, logout } = account
 const { frameQuery, queryMap, searchFrame } = useFrameSearch()
 
-const { closeDropdown } = useDropdown('dropdown')
+const { closeDropdown } = useDropdown({ key: 'dropdown' })
 const { openModal } = useModal()
 
 provide('account', account)

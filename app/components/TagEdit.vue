@@ -3,7 +3,7 @@ import type { Frame } from '~/interfaces'
 
 const modelValue = defineModel<Frame>()
 
-const { initTagEditor } = useTagEditor('tagEditorRef')
+const { initTagEditor } = useTagEditor({ key: 'tagEditorRef' })
 
 const tagList = computed(() => modelValue.value?.tag_list)
 

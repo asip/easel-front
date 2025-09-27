@@ -15,7 +15,7 @@ const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview(target, frame.value)
+  useImagePreview({ target, model: frame.value })
 }
 
 const onCreateClick = async () => {

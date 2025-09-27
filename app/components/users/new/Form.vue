@@ -16,7 +16,7 @@ onMounted(() => {
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview(target, user.value)
+  useImagePreview({ target, model: user.value })
 }
 
 const onSignupClick = async () => {

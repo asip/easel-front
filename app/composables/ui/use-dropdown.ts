@@ -1,5 +1,7 @@
-export function useDropdown (refKey: string) {
-  const dropdownRef: Ref = useTemplateRef(refKey)
+type useDropdownOptions = { key: string }
+
+export function useDropdown ({ key } : useDropdownOptions) {
+  const dropdownRef: Ref = useTemplateRef(key)
 
   const closeDropdown = () => {
     const dropdown: HTMLDetailsElement = dropdownRef.value

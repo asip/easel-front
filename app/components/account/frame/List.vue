@@ -23,13 +23,13 @@ const clickCallback = async (pageNum: number) => {
 
 onMounted(() => {
   if (import.meta.client) {
-    initGallery('.lb')
+    initGallery({ selector: '.lb' })
   }
 })
 
 onUpdated(() => {
   if (import.meta.client) {
-    initGallery('.lb')
+    initGallery({ selector: '.lb' })
   }
 })
 

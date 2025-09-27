@@ -1,11 +1,13 @@
-export function usePhotoSwipe (galleryRefKey?: string) {
+type usePSOptions = { key?: string }
+
+export function usePhotoSwipe ({ key }: usePSOptions) {
   let galleryRef: Ref
   let lightbox: any
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
-  if (galleryRefKey) {
-    galleryRef = useTemplateRef(galleryRefKey)
+  if (key) {
+    galleryRef = useTemplateRef(key)
   }
 
   const initPhotoSwipe = async () => {

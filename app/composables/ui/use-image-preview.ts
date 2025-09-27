@@ -1,6 +1,10 @@
 import type { Frame, User } from '~/interfaces'
 
-export function useImagePreview (target: HTMLInputElement, model: Frame | User) {
+type useImagePreviewOptions = {
+  target: HTMLInputElement, model: Frame | User
+}
+
+export function useImagePreview ({ target, model } : useImagePreviewOptions) {
   const file: { name?: string, ext?: string, data?: Blob | null } = {}
   file.name = target.value
   file.ext = file.name?.replace(/^.*\./, '').toLowerCase()
