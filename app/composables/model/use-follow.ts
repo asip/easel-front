@@ -8,7 +8,7 @@ export function useFollow () {
   const { accessToken, clearLoginUser } = useAccount()
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash: flash.value, clear: clearLoginUser })
+  const { setAlert } = useAlert({ flash: flash.value, clearLU: clearLoginUser })
 
   const isFollowing = async (userId: string) => {
     const { data, error } = await useGetApi<FollowingResource>({

@@ -17,7 +17,7 @@ export function useAccountFrames () {
 
   const { clearLoginUser } = useAccount()
 
-  const { setAlert } = useAlert({ flash: flash.value, clear: clearLoginUser })
+  const { setAlert } = useAlert({ flash: flash.value, clearLU: clearLoginUser })
 
   const getFrames = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {

@@ -4,15 +4,15 @@ import type { ErrorMessages } from "~/types";
 
 type UseAlertOptions<T extends string> = {
   flash: Flash
-  clear?: () => void
-  set?: (errors: ErrorMessages<T>) => void
+  clearLU?: () => void
+  setEE?: (errors: ErrorMessages<T>) => void
 }
 
 type AlertOptions = {
   error: NuxtError, off?: boolean
 }
 
-export function useAlert<T extends string>({ flash, clear, set } : UseAlertOptions<T>) {
+export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertOptions<T>) {
   const { $i18n } = useNuxtApp()
 
   const setAlert = function({ error, off = false } : AlertOptions) {
@@ -20,7 +20,7 @@ export function useAlert<T extends string>({ flash, clear, set } : UseAlertOptio
       switch (error.statusCode) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
-          if (clear) clear()
+          if (clearLU) clearLU()
           break
         // default:
         //  flash.value.alert = error.value.message
@@ -29,17 +29,17 @@ export function useAlert<T extends string>({ flash, clear, set } : UseAlertOptio
       switch (error.statusCode) {
         case 401:
           flash.alert = $i18n.t('action.error.login')
-          if (clear) clear()
+          if (clearLU) clearLU()
           break
         case 404:
           flash.alert = error.message
           break
         case 422:
           {
-            if (set) {
+            if (setEE) {
               const { errors } = error.data as ErrorsResource<ErrorMessages<T>>
               if (errors) {
-                set(errors)
+                setEE(errors)
               }
             }
             break
