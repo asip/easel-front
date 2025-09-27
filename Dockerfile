@@ -1,4 +1,4 @@
-ARG time_zone
+ARG tz
 ARG NODE_VERSION=22.20.0
 ARG PNPM_VERSION=10.17.1
 
@@ -21,7 +21,7 @@ RUN pnpm build
 
 # COPY --from=builder /frontend/.output ./.output
 
-ENV TZ=${time_zone}
+ENV TZ=${tz}
 ENV PORT=3030
 
 EXPOSE 3030
