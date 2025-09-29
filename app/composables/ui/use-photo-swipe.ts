@@ -1,22 +1,15 @@
-type usePSOptions = { key?: string }
+type initPSOptions = { selector: string }
 
-export function usePhotoSwipe ({ key }: usePSOptions) {
-  let galleryRef: Ref
+export function usePhotoSwipe () {
   let lightbox: any
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
-  if (key) {
-    galleryRef = useTemplateRef(key)
-  }
-
-  const initPhotoSwipe = async () => {
-    const galleryEl: HTMLDivElement = galleryRef.value
-
-    await assignSize(galleryEl)
+  const initPhotoSwipe = async ({ selector}: initPSOptions) => {
+    await assignSize(selector)
 
     lightbox = new $psLightbox({
-      gallery: `#${galleryEl.id}`,
+      gallery: selector,
       children: 'a',
       initialZoomLevel: 'fit',
       pswpModule: () => import('photoswipe')
@@ -26,13 +19,16 @@ export function usePhotoSwipe ({ key }: usePSOptions) {
     lightbox.init()
   }
 
-  const assignSize = async (gallery: HTMLDivElement) => {
+  const assignSize = async (selector: string) => {
+    const gallery: HTMLDivElement | null = document.querySelector(selector)
     const galleryAnchors = gallery?.querySelectorAll('a')
-    for await (const el of galleryAnchors) {
-      const img: HTMLImageElement = await loadImage(el.href)
-      el.setAttribute('data-pswp-width', img.naturalWidth.toString())
-      el.setAttribute('data-pswp-height', img.naturalHeight.toString())
-      el.firstElementChild?.removeAttribute('style')
+    if (galleryAnchors) {
+      for await (const el of galleryAnchors) {
+        const img: HTMLImageElement = await loadImage(el.href)
+        el.setAttribute('data-pswp-width', img.naturalWidth.toString())
+        el.setAttribute('data-pswp-height', img.naturalHeight.toString())
+        el.firstElementChild?.removeAttribute('style')
+      }
     }
   }
 

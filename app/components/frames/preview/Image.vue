@@ -8,12 +8,12 @@ const { original, photoswipe } = defineProps<{
   photoswipe: boolean
 }>()
 
-const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox({ psKey: 'galleryRef' })
+const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox()
 
 onMounted(async () => {
   if (original) {
     if (photoswipe) {
-      await initPSLightbox()
+      await initPSLightbox({ selector: "#gallery" })
     } else {
       initGLightbox({ selector: '#image' })
     }
@@ -29,7 +29,6 @@ onUnmounted(() => {
   <div
     v-if="original"
     id="gallery"
-    ref="galleryRef"
     class="flex justify-center mb-1"
   >
     <NuxtLink
