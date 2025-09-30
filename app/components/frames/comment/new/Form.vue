@@ -69,7 +69,7 @@ const updateContent = (content: string) => {
         </div>
         <form>
           <div class="flex justify-center">
-            <div class="w-full rounded-[5px]" style="border: 1px solid lavender; height: 50px;">
+            <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
               <Editor
                 ref="editor"
                 v-model="comment.body"

@@ -131,7 +131,7 @@ const updateContent = (content: string) => {
               >{{ $t('model.frame.comment') }}：</label>
             </td>
             <td class="break-words">
-              <div class="rounded-[5px]" style="border: 1px solid lavender;height: 50px">
+              <div class="rounded-[5px]" style="border: 1px solid lavender;">
                 <Editor
                   ref="editor"
                   v-model="frame.comment"
