@@ -3,7 +3,7 @@ import type { ErrorsResource, Flash } from "~/interfaces";
 import type { ErrorMessages } from "~/types";
 
 type UseAlertOptions<T extends string> = {
-  flash: Flash
+  flash: Ref<Flash>
   clearLU?: () => void
   setEE?: (errors: ErrorMessages<T>) => void
 }
@@ -28,11 +28,11 @@ export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertO
     } else {
       switch (error.statusCode) {
         case 401:
-          flash.alert = $i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('action.error.login')
           if (clearLU) clearLU()
           break
         case 404:
-          flash.alert = error.message
+          flash.value.alert = error.message
           break
         case 422:
           {
@@ -45,7 +45,7 @@ export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertO
             break
           }
         default:
-          flash.alert = error.message
+          flash.value.alert = error.message
       }
     }
   }

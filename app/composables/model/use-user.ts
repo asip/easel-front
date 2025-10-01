@@ -21,7 +21,7 @@ export const useUser = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash: flash.value })
+  const { setAlert } = useAlert({ flash })
 
   const getUser = async (id: string) => {
     const { response, error } = await useGetApi<UserResource>({

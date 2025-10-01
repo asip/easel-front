@@ -27,7 +27,7 @@ export const useFrameSearch = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash: flash.value })
+  const { setAlert } = useAlert({ flash })
 
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {

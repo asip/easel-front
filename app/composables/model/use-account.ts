@@ -121,7 +121,7 @@ export const useAccount = () => {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clearLU: clearLoginUser, setEE: setExternalErrors })
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash, clearLU: clearLoginUser, setEE: setExternalErrors })
 
   const signup = async () => {
     processing.value = true

@@ -74,7 +74,7 @@ export const useFrame = () => {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clearLU: clearLoginUser, setEE: setExternalErrors })
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash, clearLU: clearLoginUser, setEE: setExternalErrors })
 
   const getFrame = async (id: string) => {
     // console.log(`token: ${loginUser.value.token}`)

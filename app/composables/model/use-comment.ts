@@ -38,7 +38,7 @@ export function useComment () {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert<ExternalErrorProperty>({ flash: flash.value, clearLU: clearLoginUser, setEE: setExternalErrors })
+  const { setAlert } = useAlert<ExternalErrorProperty>({ flash, clearLU: clearLoginUser, setEE: setExternalErrors })
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);

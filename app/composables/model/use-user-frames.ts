@@ -14,7 +14,7 @@ export function useUserFrames () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash: flash.value })
+  const { setAlert } = useAlert({ flash })
 
   const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
