@@ -134,14 +134,16 @@ defineExpose({ clearForm })
                 >{{ $t('model.user.time_zone') }}：</label>
               </td>
               <td>
-                <select
-                  v-model="user.time_zone"
-                  class="select"
-                >
-                  <option v-for="option in tzOptions" :key="option.value" :value="option.value">
-                    {{ option.text }}
-                  </option>
-                </select>
+                <ClientOnly>
+                  <select
+                    v-model="user.time_zone"
+                    class="select"
+                  >
+                    <option v-for="option in tzOptions" :key="option.value" :value="option.value">
+                      {{ option.text }}
+                    </option>
+                  </select>
+                </ClientOnly>
               </td>
             </tr>
             <tr>
