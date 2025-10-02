@@ -158,7 +158,7 @@ export const useAccount = () => {
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
-      const { token, response, error } = await useGetApi<UserResource>({
+      const { token, data, error } = await useGetApi<UserResource>({
         url: '/account/profile',
         token: accessToken.value,
         fresh: true
@@ -168,8 +168,8 @@ export const useAccount = () => {
 
       if (error) {
         setAlert({ error })
-      } else if (response) {
-        const userAttrs = response
+      } else if (data) {
+        const userAttrs = data
         // console.log(userAttrs)
 
         if (userAttrs) {
@@ -188,7 +188,7 @@ export const useAccount = () => {
       }
     }
 
-    const { token, response, error } = await usePostApi<UserResource>({
+    const { token, data, error } = await usePostApi<UserResource>({
       url: '/sessions/',
       body: postData
     })
@@ -200,8 +200,8 @@ export const useAccount = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const userAttrs = response
+    } else if (data) {
+      const userAttrs = data
       if (userAttrs) {
         setJson2LoginUser(userAttrs, token)
         loggedIn.value = true
@@ -211,13 +211,13 @@ export const useAccount = () => {
     }
   }
 
-  const loginWithGoogle = async (cresponse: CredentialResponse) => {
+  const loginWithGoogle = async (response: CredentialResponse) => {
     const postData = {
       provider: 'google',
-      credential: cresponse.credential
+      credential: response.credential
     }
 
-    const { token, response, error } = await usePostApi<UserResource>({
+    const { token, data, error } = await usePostApi<UserResource>({
       url: '/oauth/sessions/',
       body: postData
     })
@@ -228,8 +228,8 @@ export const useAccount = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const userAttrs  = response
+    } else if (data) {
+      const userAttrs  = data
       setJson2LoginUser(userAttrs, token)
       loggedIn.value = true
       // console.log(loginUser.value)
@@ -281,7 +281,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { response, error, pending } = await usePutApi<UserResource>({
+    const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/profile/',
       body: formData,
       token: accessToken.value
@@ -295,8 +295,8 @@ export const useAccount = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const userAttrs = response
+    } else if (data) {
+      const userAttrs = data
       if (userAttrs) {
         setJson2LoginUser(userAttrs)
         setToken2Cookie()
@@ -320,7 +320,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { response, error, pending } = await usePutApi<UserResource>({
+    const { data, error, pending } = await usePutApi<UserResource>({
       url: '/account/password/',
       body: formData,
       token: accessToken.value
@@ -334,8 +334,8 @@ export const useAccount = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const userAttrs = response
+    } else if (data) {
+      const userAttrs = data
       if (userAttrs) {
         setJson2LoginUser(userAttrs)
         setToken2Cookie()
@@ -379,7 +379,7 @@ export const useAccount = () => {
   }
 
   const deleteAccount = async () => {
-    const { response, error } = await useDeleteApi<UserResource>({
+    const { data, error } = await useDeleteApi<UserResource>({
       url: '/account',
       token: accessToken.value
     })
@@ -388,8 +388,8 @@ export const useAccount = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const userAttrs = response
+    } else if (data) {
+      const userAttrs = data
       if (userAttrs) {
         clearLoginUser()
       }

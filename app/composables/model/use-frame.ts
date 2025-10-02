@@ -80,7 +80,7 @@ export const useFrame = () => {
     // console.log(`token: ${loginUser.value.token}`)
 
     if (loggedIn.value) {
-      const { response, error, refresh } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/account/frames/${id}`,
         token: accessToken.value
       })
@@ -95,8 +95,8 @@ export const useFrame = () => {
           statusMessage: error.message,
           message: flash.value.alert
         })
-      } else if (response) {
-        const frameAttrs = response
+      } else if (data) {
+        const frameAttrs = data
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -106,7 +106,7 @@ export const useFrame = () => {
 
       return { refresh }
     } else {
-      const { response, error, refresh } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource>({
         url: `/frames/${id}`
       })
 
@@ -120,8 +120,8 @@ export const useFrame = () => {
           statusMessage: error.message,
           message: flash.value.alert
         })
-      } else if (response) {
-        const frameAttrs = response
+      } else if (data) {
+        const frameAttrs = data
         // console.log(frameAttrs)
 
         if (frameAttrs) {
@@ -170,7 +170,7 @@ export const useFrame = () => {
 
     // console.log(loginUser.value.token)
 
-    const { response, error, pending } = await usePostApi<FrameResource>({
+    const { data, error, pending } = await usePostApi<FrameResource>({
       url: '/frames/',
       body: formData,
       token: accessToken.value
@@ -181,8 +181,8 @@ export const useFrame = () => {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const frameAttrs = response
+    } else if (data) {
+      const frameAttrs = data
       if (frameAttrs) {
         frame.value.id = frameAttrs.id
       }

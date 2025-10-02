@@ -38,5 +38,5 @@ export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null }: P
 
   pending.value = status.value === 'pending'
 
-  return { token: tokenRef.value, response: data.value, error: error.value, pending: pending.value }
+  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
 }

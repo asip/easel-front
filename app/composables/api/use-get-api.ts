@@ -54,5 +54,5 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
     await refresh()
   }
 
-  return { token: tokenRef.value, response: data.value, error: error.value, refresh }
+  return { token: tokenRef.value, data: data.value, error: error.value, refresh }
 }

@@ -29,7 +29,7 @@ export function useAccountFrames () {
       more: options?.more
     }
 
-    const { response, error } = await useGetApi<FramesResource>(getOptions)
+    const { data, error } = await useGetApi<FramesResource>(getOptions)
 
     clearFlash()
 
@@ -41,8 +41,8 @@ export function useAccountFrames () {
         statusMessage: error.message,
         message: flash.value.alert
       })
-    } else if (response) {
-      const { frames: frameList, meta } = response
+    } else if (data) {
+      const { frames: frameList, meta } = data
       // console.log(frameList)
       // console.log(meta)
 

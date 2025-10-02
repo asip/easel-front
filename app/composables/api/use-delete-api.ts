@@ -31,5 +31,5 @@ export const useDeleteApi = async <T,E=unknown>({ url, token = null }: DeleteAPI
 
   pending.value = status.value === 'pending'
 
-  return { response: data.value, error: error.value, pending: pending.value }
+  return { data: data.value, error: error.value, pending: pending.value }
 }

@@ -36,14 +36,14 @@ export const useFrameSearch = () => {
       more: options?.more
     }
 
-    const { response, error } = await useGetApi<FramesResource>(getOptions)
+    const { data, error } = await useGetApi<FramesResource>(getOptions)
 
     clearFlash()
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const { frames: frameList, meta } = response
+    } else if (data) {
+      const { frames: frameList, meta } = data
       // console.log(frameList)
 
       if (frameList) {

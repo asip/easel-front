@@ -42,7 +42,7 @@ export function useComment () {
 
   const getComments = async (options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
-    const { response, error } = await useGetApi<CommentsResource>({
+    const { data, error } = await useGetApi<CommentsResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       fresh: options?.fresh
     })
@@ -51,8 +51,8 @@ export function useComment () {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const { comments: commentList } = response
+    } else if (data) {
+      const { comments: commentList } = data
       // console.log(commentList)
 
       if (commentList) {
@@ -88,7 +88,7 @@ export function useComment () {
       }
     }
 
-    const { response, error, pending } = await usePostApi<CommentResource>({
+    const { data, error, pending } = await usePostApi<CommentResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: accessToken.value
@@ -99,8 +99,8 @@ export function useComment () {
 
     if (error) {
       setAlert({ error })
-    } else if (response) {
-      const commentAttrs = response
+    } else if (data) {
+      const commentAttrs = data
       if (commentAttrs) {
         comment.value.body = ''
       }

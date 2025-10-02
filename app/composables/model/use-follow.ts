@@ -11,7 +11,7 @@ export function useFollow () {
   const { setAlert } = useAlert({ flash, clearLU: clearLoginUser })
 
   const isFollowing = async (userId: string) => {
-    const { response, error } = await useGetApi<FollowingResource>({
+    const { data, error } = await useGetApi<FollowingResource>({
       url: `/account/following/${userId}`,
       token: accessToken.value
     })
@@ -20,8 +20,8 @@ export function useFollow () {
 
     if (error) {
       setAlert({ error, off: true })
-    } else if (response) {
-      const { following: followingValue } = response
+    } else if (data) {
+      const { following: followingValue } = data
 
       if (followingValue != null && followingValue !== undefined) {
         following.value = followingValue
