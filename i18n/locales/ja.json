@@ -34,7 +34,7 @@
   "action": {
     "model": {
       "create": "登録",
-      "update": "編集",
+      "update": "更新",
       "delete": "削除"
     },
     "user": {

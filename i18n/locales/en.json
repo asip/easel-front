@@ -34,7 +34,7 @@
   "action": {
     "model": {
       "create": "Regist",
-      "update": "Edit",
+      "update": "Update",
       "delete": "Delete"
     },
     "user": {

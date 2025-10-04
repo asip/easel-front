@@ -1,12 +1,15 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, processing, isSuccess, flash, getComments, createComment } = inject('commenter') as UseCommentType
+const { comment, externalErrors, processing, isSuccess, flash, getComments, createComment } = useComment()
+const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
+
+const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
+comment.value.frame_id = frameId
 
 const onCreateCommentClick = async () => {
   if (editor.value?.getText().replace(/\n/g, '') === ''){
@@ -31,7 +34,7 @@ const onCreateCommentClick = async () => {
       comment.value.body = ''
       r$.$touch()
       r$.$reset()
-      await getComments({ fresh: true })
+      await getComments(frameId, { fresh: true })
     }
   }
 }

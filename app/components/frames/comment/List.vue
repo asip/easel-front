@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { comments } = inject('commenter') as UseCommentType
+const { comments } = useComment()
 </script>
 
 <template>

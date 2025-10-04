@@ -2,24 +2,73 @@
 import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '~/interfaces'
 
-const comment = defineModel<Comment>()
-
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { deleteComment, flash, getComments, isSuccess } = inject('commenter') as UseCommentType
+const { comment, externalErrors, updateComment, deleteComment, flash, getComments, isSuccess, processing, setComment } = useComment()
 
-const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: comment.value?.frame_id }) }))
+const { commentRules } = useCommentRules()
+
+const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
+
+const edit = ref(false)
+
+const commentModel = defineModel<Comment>()
+
+const editor: Ref = useTemplateRef('editor')
+
+const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: commentModel.value?.frame_id }) }))
 
 const sanitizedCommentBody = computed(() =>
-  p2br(sanitizeHtml(comment.value?.body ?? '')).replace(/\n/g, '<br>')
+  p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>')
 )
 
+comment.value.frame_id = commentModel.value?.frame_id
+
+const onEditClick = () => {
+  edit.value = true
+  setComment({ from: commentModel.value })
+}
+
+const onCancelClick = () => {
+  edit.value = false
+  setComment({ from: commentModel.value })
+}
+
+const onUpdateClick = async () => {
+  if (editor.value?.getText().replace(/\n/g, '') === ''){
+    comment.value.body = ''
+  }
+  r$.$touch()
+  r$.$clearExternalErrors()
+  r$.$reset()
+  const { valid } =await r$.$validate()
+
+  if (valid) {
+    await updateComment()
+    setFlash(flash.value)
+    if (isSuccess()) {
+      r$.$touch()
+      r$.$reset()
+      setComment({ to: commentModel.value })
+      edit.value = false
+    }
+  }
+}
+
+const updateContent = (content: string) => {
+  if (editor.value?.getText().replace(/\n/g, '') != ''){
+    comment.value.body = content
+  } else {
+    comment.value.body = ''
+  }
+}
+
 const onDeleteClick = async () => {
-  if(comment.value) { await deleteComment(comment.value) }
+  if(commentModel.value) { await deleteComment(commentModel.value) }
   setFlash(flash.value)
   if (isSuccess()) {
-    await getComments({ fresh: true })
+    await getComments(commentModel.value?.frame_id, { fresh: true })
   }
 }
 </script>
@@ -32,30 +81,36 @@ const onDeleteClick = async () => {
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: queryMapWithRef }"
+                :to="{ path: `/users/${commentModel?.user_id}`, query: queryMapWithRef }"
                 class="avatar"
               >
                 <div class="w-5 h-5">
                   <img
-                    :src="`${comment?.user_image_url}`"
-                    :alt="comment?.user_name"
+                    :src="`${commentModel?.user_image_url}`"
+                    :alt="commentModel?.user_name"
                     class="rounded"
                   >
                 </div>
               </NuxtLink>
               <NuxtLink
-                :to="{ path: `/users/${comment?.user_id}`, query: queryMapWithRef }"
+                :to="{ path: `/users/${commentModel?.user_id}`, query: queryMapWithRef }"
                 class="badge badge-outline badge-accent hover:badge-primary rounded-full"
               >
-                {{ comment?.user_name }}
+                {{ commentModel?.user_name }}
               </NuxtLink>
               <div class="badge badge-outline badge-accent rounded-full">
-                {{ comment?.created_at }}
+                {{ commentModel?.created_at }}
               </div>
             </div>
             <div
-              v-if="loggedIn && comment?.user_id == loginUser.id"
+              v-if="loggedIn && commentModel?.user_id == loginUser.id" class="flex gap-1"
             >
+              <button v-if="!edit" class="link link-hover" @click="onEditClick">
+                <i class="bi bi-pencil-square text-accent hover:text-primary" />
+              </button>
+              <button v-else class="link link-hover" @click="onCancelClick">
+                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+              </button>
               <button
                 class="link link-hover"
                 @click="onDeleteClick"
@@ -65,7 +120,7 @@ const onDeleteClick = async () => {
             </div>
           </div>
         </div>
-        <div class="flex justify-start items-center">
+        <div v-if="!edit" class="flex justify-start items-center">
           <table class="table table-bordered table-rounded table-fixed">
             <tbody>
               <tr>
@@ -76,6 +131,33 @@ const onDeleteClick = async () => {
             </tbody>
           </table>
         </div>
+        <form v-else>
+          <div class="flex justify-start w-full rounded-[5px]" style="border: 1px solid lavender;">
+            <Editor
+              ref="editor"
+              v-model="comment.body"
+              @update="updateContent"
+              />
+          </div>
+          <div class="flex justify-start w-full mt-1">
+            <div
+              v-for="error of r$.$errors.body"
+              :key="error"
+            >
+              <div class="text-red-500">{{ error }}</div>
+            </div>
+          </div>
+          <div class="flex justify-end w-full mt-1">
+            <button
+              type="button"
+              class="btn btn-outline btn-primary"
+              :disabled="processing"
+              @click="onUpdateClick"
+            >
+              {{ $t('action.model.update') }}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

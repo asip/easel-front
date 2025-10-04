@@ -5,6 +5,7 @@ type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment () {
+
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
     frame_id: null,
@@ -16,7 +17,7 @@ export function useComment () {
     updated_at: null
   })
 
-  const comments: Ref<Comment[]> = ref<Comment[]>([])
+  const comments: Ref<Comment[]> = useState<Comment[]>('comments', () => { return [] })
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     body: [],
@@ -40,10 +41,10 @@ export function useComment () {
 
   const { setAlert } = useAlert<ExternalErrorProperty>({ flash, clearLU: clearLoginUser, setEE: setExternalErrors })
 
-  const getComments = async (options?: { fresh?: boolean }) => {
+  const getComments = async (frameId: number | null |undefined, options?: { fresh?: boolean }) => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource>({
-      url: `/frames/${comment.value.frame_id}/comments`,
+      url: `/frames/${frameId}/comments`,
       fresh: options?.fresh
     })
 
@@ -79,7 +80,7 @@ export function useComment () {
     return comment as Comment
   }
 
-  const postComment = async () => {
+  const createComment = async () => {
     processing.value = true
 
     const postData = {
@@ -88,8 +89,50 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePostApi<CommentResource>({
+    const { error, pending } = await usePostApi<CommentResource>({
       url: `/frames/${comment.value.frame_id}/comments`,
+      body: postData,
+      token: accessToken.value
+    })
+
+    clearFlash()
+    clearExternalErrors()
+
+    if (error) {
+      setAlert({ error })
+    }
+    /* else if (data) {
+      const commentAttrs = data
+    } */
+
+    processing.value = pending
+  }
+
+  const setJson2Comment = (resource: CommentResource) => {
+    Object.assign(comment.value, resource)
+  }
+
+  const setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
+    if (from) {
+      Object.assign(comment.value, from)
+    } else if (to) {
+      Object.assign(to, comment.value)
+      // globalThis.console.log(comment.value)
+      // globalThis.console.log(to)
+    }
+  }
+
+  const updateComment = async () => {
+    processing.value = true
+
+    const postData = {
+      comment: {
+        body: comment.value.body
+      }
+    }
+
+    const { data, error, pending } = await usePutApi<CommentResource>({
+      url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
       body: postData,
       token: accessToken.value
     })
@@ -101,23 +144,11 @@ export function useComment () {
       setAlert({ error })
     } else if (data) {
       const commentAttrs = data
-      if (commentAttrs) {
-        comment.value.body = ''
-      }
+
+      setJson2Comment(commentAttrs)
     }
 
     processing.value = pending
-  }
-
-  const createComment = async () => {
-    // console.log(comment.userId);
-    // console.log(comment.frameId);
-    // console.log(comment.body);
-    await postComment()
-
-    if (isSuccess()) {
-      comments.value.splice(0)
-    }
   }
 
   const isSuccess = () => {
@@ -153,7 +184,9 @@ export function useComment () {
     externalErrors,
     getComments,
     createComment,
+    updateComment,
     deleteComment,
+    setComment,
     processing,
     isSuccess,
     flash
