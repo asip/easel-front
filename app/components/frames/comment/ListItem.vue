@@ -132,12 +132,14 @@ const onDeleteClick = async () => {
           </table>
         </div>
         <form v-else>
-          <div class="flex justify-start w-full rounded-[5px]" style="border: 1px solid lavender;">
-            <Editor
-              ref="editor"
-              v-model="comment.body"
-              @update="updateContent"
+          <div class="flex justify-start">
+            <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
+              <Editor
+                ref="editor"
+                v-model="comment.body"
+                @update="updateContent"
               />
+            </div>
           </div>
           <div class="flex justify-start w-full mt-1">
             <div
