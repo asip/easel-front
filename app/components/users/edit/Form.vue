@@ -5,7 +5,7 @@ const { tzOptions } = useTimeZone()
 const { loggedIn, user, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
-// @ts-ignore
+// @ts-expect-error
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {

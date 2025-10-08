@@ -2,7 +2,6 @@
 
 import tailwindcss from "@tailwindcss/vite";
 
-// @ts-ignore
 export default defineNuxtConfig({
   // future: {
   //  compatibilityVersion: 4,
@@ -45,7 +44,6 @@ export default defineNuxtConfig({
     strategy: 'no_prefix'
   },
 
-  // @ts-ignore
   runtimeConfig: {
     public: {
       timeZone: 'Asia/Tokyo',

@@ -5,7 +5,7 @@ const { tzOptions } = useTimeZone()
 const { user, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
-// @ts-ignore
+// @ts-expect-error
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 
 onMounted(() => {
