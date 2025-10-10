@@ -2,7 +2,7 @@
 import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
-const { frameQuery, queryMap, searchFrame } = useFrameSearch()
+const { frameQuery, queryMap, qItems, searchFrame, resetSearchCriteria } = useFrameSearch()
 const { searchRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frameQuery.value.items, searchRules)
@@ -28,6 +28,7 @@ const onSearchClick = async () => {
   const { valid } = await r$.$validate()
 
   if (valid) {
+    r$.$reset()
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryMap.value })
     await searchFrame({ more: true })
@@ -35,8 +36,10 @@ const onSearchClick = async () => {
 }
 
 const onClearClick = async () => {
-  if (frameQuery.value.items.word?.length && frameQuery.value.items.word?.length > 1) {
+  r$.$reset()
+  if (Object.keys(qItems.value).length) {
     dateWord.value= null
+    resetSearchCriteria()
     frameQuery.value.page = 1
     await navigateTo({ path: '/', query: queryMap.value })
     await searchFrame({ more: true })
@@ -57,39 +60,156 @@ const onClearClick = async () => {
           />
         </client-only>
       </div>
-      <div class="flex justify-center">
-        <form>
-          <div class="flex gap-2">
-            <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder')">
-              <input
-                v-model="frameQuery.items.word"
-                type="text"
-                placeholder=""
-                class="input w-50"
-              >
-            </div>
-            <input
-              type="button"
-              :value="$t('component.tag_search.search')"
-              class="btn btn-outline btn-primary"
-              @click="onSearchClick"
-            >
-            <input
-              type="button"
-              :value="$t('component.tag_search.clear')"
-              class="btn btn-outline btn-warning"
-              @click="onClearClick"
-            >
-          </div>
-        </form>
-      </div>
-      <div
-        v-for="error of r$.$errors.word"
-        :key="error"
-        class="flex"
-      >
-        &nbsp;&nbsp;&nbsp;<div class="text-red-500">{{ error }}</div>
-      </div>
+      <form>
+        <div class="flex justify-center">
+          <table class="table table-bordered table-rounded">
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder')">
+                    <input
+                      v-model="frameQuery.items.word"
+                      type="text"
+                      placeholder=""
+                      class="input w-80"
+                    >
+                  </div>
+                  <div
+                    v-for="error of r$.$errors.word"
+                    :key="error"
+                    class="flex"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 9em;">
+                  <label
+                    for="frame_name"
+                    class=""
+                  >{{ $t('model.frame.name') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="frameQuery.items.frame_name"
+                    type="text"
+                    placeholder=""
+                    class="input w-50"
+                  >
+                  <div
+                    v-for="error of r$.$errors.frame_name"
+                    :key="error"
+                    class="flex"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label
+                    for="tag_name"
+                    class=""
+                  >{{ $t('component.tag_search.tag_name') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="frameQuery.items.tag_name"
+                    type="text"
+                    placeholder=""
+                    class="input w-50"
+                  >
+                  <div
+                    v-for="error of r$.$errors.tag_name"
+                    :key="error"
+                    class="flex"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label
+                    for="user_name"
+                    class=""
+                    >{{ $t('component.tag_search.user_name') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="frameQuery.items.user_name"
+                    type="text"
+                    placeholder=""
+                    class="input w-50"
+                  >
+                  <div
+                    v-for="error of r$.$errors.user_name"
+                    :key="error"
+                    class="flex"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label
+                    for="creator_name"
+                    class=""
+                  >{{ $t('model.frame.creator_name') }}：</label>
+                </td>
+                <td>
+                  <input
+                    v-model="frameQuery.items.creator_name"
+                    type="text"
+                    placeholder=""
+                    class="input w-50"
+                  >
+                  <div
+                    v-for="error of r$.$errors.creator_name"
+                    :key="error"
+                    class="flex"
+                  >
+                    <div class="text-red-500">{{ error }}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label
+                    for="date"
+                    class=""
+                  >{{ $t('component.tag_search.date') }}：</label>
+                </td>
+                <td>
+                  <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder_date')">
+                      <input
+                        v-model="frameQuery.items.date"
+                        type="date"
+                        class="input w-50"
+                      >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex justify-center gap-2 mt-2">
+          <input
+            type="button"
+            :value="$t('component.tag_search.search')"
+            class="btn btn-outline btn-primary"
+            @click="onSearchClick"
+          >
+          <input
+            type="button"
+            :value="$t('component.tag_search.clear')"
+            class="btn btn-outline btn-warning"
+            @click="onClearClick"
+          >
+        </div>
+      </form>
     </div>
   </div>
 </template>

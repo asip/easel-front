@@ -10,11 +10,27 @@ export const useFrameSearch = () => {
     }
   })
 
+  const qItems = computed(() => {
+    const { items } = frameQuery.value;
+
+    const qItems: FrameQuery['items'] = {}
+
+    if (items.word) qItems.word = items.word
+    if (items.frame_name) qItems.frame_name = items.frame_name
+    if (items.tag_name) qItems.tag_name = items.tag_name
+    if (items.user_name) qItems.user_name = items.user_name
+    if (items.creator_name) qItems.creator_name = items.creator_name
+    if (items.date) qItems.date = items.date
+
+    return qItems
+  })
+
   const queryMap = computed(() => {
-    const { items, page } = frameQuery.value;
+    const items = qItems.value
+    const { page } = frameQuery.value;
     const query: { q?: string, page?: number | null } = {};
 
-    if (items.word) {
+    if (Object.keys(items).length) {
       query.q = JSON.stringify(items);
     }
     if (page !== undefined && page!= null && page !== 1) {
@@ -22,6 +38,16 @@ export const useFrameSearch = () => {
     }
     return query;
   });
+
+  const resetSearchCriteria = () => {
+    const { items } = frameQuery.value;
+    if (items.word) frameQuery.value.items.word = null
+    if (items.frame_name) frameQuery.value.items.frame_name = null
+    if (items.tag_name) frameQuery.value.items.tag_name = null
+    if (items.user_name) frameQuery.value.items.user_name = null
+    if (items.creator_name) frameQuery.value.items.creator_name = null
+    if (items.date) frameQuery.value.items.date = null
+  }
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
@@ -69,6 +95,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frameQuery, searchFrame, frames, queryMap
+    frameQuery, searchFrame, frames, queryMap, qItems, resetSearchCriteria
   }
 }

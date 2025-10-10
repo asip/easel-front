@@ -30,7 +30,11 @@ export const useFrameRules = () => {
   }
 
   const searchRules = {
-    word: { maxLength: maxLength(40) }
+    word: { maxLength: maxLength(40) },
+    frame_name: { maxLength: maxLength(30) },
+    tag_name: { maxLength: maxLength(10) },
+    user_name: { maxLength: maxLength(40) },
+    creator_name: { maxLength: maxLength(40) }
   }
 
   return { newFrameRules, editFrameRules, searchRules }
