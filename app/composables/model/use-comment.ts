@@ -177,7 +177,9 @@ export function useComment () {
   }
 
   const deleteComment = async (comment: Comment) => {
-    const { error } = await useDeleteApi({
+    processing.value = true
+
+    const { error, pending } = await useDeleteApi({
       url: `/comments/${comment.id}`,
       token: accessToken.value
     })
@@ -187,6 +189,8 @@ export function useComment () {
     if (error) {
       setAlert({ error })
     }
+
+    processing.value = pending
   }
 
   return {

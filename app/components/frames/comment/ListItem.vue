@@ -115,6 +115,7 @@ const onDeleteClick = async () => {
               </button>
               <button
                 class="link link-hover"
+                :disabled="processing"
                 @click="onDeleteClick"
               >
                 <i class="bi bi-x-circle text-accent hover:text-primary" />
