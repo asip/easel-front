@@ -30,16 +30,22 @@ const updateContent = (content: string) => {
 }
 
 const clearContents = () => {
-  quill?.setContents([])
+  // quill?.setContents([])
+  modelValue.value = '<p><br></p>'
 }
 
 const getText = () => {
   return quill?.getText()
 }
 
+const focus = () => {
+  quill?.focus()
+}
+
 defineExpose({
   clearContents,
-  getText
+  getText,
+  focus
 })
 
 </script>

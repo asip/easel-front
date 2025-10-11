@@ -5,7 +5,7 @@ import type { Comment } from '~/interfaces'
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, updateComment, deleteComment, flash, getComments, isSuccess, processing, setComment } = useComment()
+const { comment, body, externalErrors, updateComment, deleteComment, flash, getComments, isSuccess, processing, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -36,9 +36,11 @@ const onCancelClick = () => {
 }
 
 const onUpdateClick = async () => {
+  /*
   if (editor.value?.getText().replace(/\n/g, '') === ''){
-    comment.value.body = ''
+    editor.value?.clearContents()
   }
+  */
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()
@@ -60,7 +62,7 @@ const updateContent = (content: string) => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
-    comment.value.body = ''
+    editor.value?.clearContents()
   }
 }
 
@@ -136,7 +138,7 @@ const onDeleteClick = async () => {
             <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
               <Editor
                 ref="editor"
-                v-model="comment.body"
+                v-model="body"
                 @update="updateContent"
               />
             </div>

@@ -8,5 +8,15 @@ export function useQuill () {
     return content
   }
 
-  return { p2br }
+  const pbr2empty = (content: string | undefined | null) => {
+    if (!content || content == '<p><br></p>' || content == '<p></p>') content = '';
+    return content
+  }
+
+  const empty2pbr = (content: string | undefined) => {
+    if (!content || content == '') content = '<p><br></p>'
+    return content
+  }
+
+  return { p2br, pbr2empty, empty2pbr }
 }

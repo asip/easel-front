@@ -17,6 +17,17 @@ export function useComment () {
     updated_at: null
   })
 
+  const { empty2pbr, pbr2empty } = useQuill()
+
+  const body = computed({
+    get () {
+      return empty2pbr(comment.value.body)
+    },
+    set (value: string | undefined) {
+      comment.value.body = pbr2empty(value)
+    }
+  })
+
   const comments: Ref<Comment[]> = useState<Comment[]>('comments', () => { return [] })
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
@@ -180,6 +191,7 @@ export function useComment () {
 
   return {
     comment,
+    body,
     comments,
     externalErrors,
     getComments,

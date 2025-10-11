@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
@@ -37,7 +37,7 @@ const updateContent = (content: string) => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {
-    frame.value.comment = ''
+    editor.value?.clearContents()
   }
 }
 </script>
@@ -134,7 +134,7 @@ const updateContent = (content: string) => {
               <div class="rounded-[5px]" style="border: 1px solid lavender;">
                 <Editor
                   ref="editor"
-                  v-model="frame.comment"
+                  v-model="comment"
                   @update="updateContent"
                 />
               </div>

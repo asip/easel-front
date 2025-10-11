@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, processing, isSuccess, flash, getComments, createComment } = useComment()
+const { comment, body, externalErrors, processing, isSuccess, flash, getComments, createComment } = useComment()
 const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
 
@@ -12,9 +12,11 @@ const editor: Ref = useTemplateRef('editor')
 comment.value.frame_id = frameId
 
 const onCreateCommentClick = async () => {
+  /*
   if (editor.value?.getText().replace(/\n/g, '') === ''){
-    comment.value.body = ''
+    editor.value?.clearContents()
   }
+  */
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()
@@ -30,8 +32,8 @@ const onCreateCommentClick = async () => {
     await createComment()
     setFlash(flash.value)
     if (isSuccess()) {
-      editor.value?.clearContents()
       comment.value.body = ''
+      editor.value?.focus()
       r$.$touch()
       r$.$reset()
       await getComments(frameId, { fresh: true })
@@ -43,7 +45,7 @@ const updateContent = (content: string) => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
-    comment.value.body = ''
+    editor.value?.clearContents()
   }
 }
 </script>
@@ -75,7 +77,7 @@ const updateContent = (content: string) => {
             <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
               <Editor
                 ref="editor"
-                v-model="comment.body"
+                v-model="body"
                 @update="updateContent"
               />
             </div>

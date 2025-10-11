@@ -39,6 +39,17 @@ export const useFrame = () => {
     }
   })
 
+  const { empty2pbr, pbr2empty } = useQuill()
+
+  const comment = computed({
+    get () {
+      return empty2pbr(frame.value.comment)
+    },
+    set (value: string | undefined) {
+      frame.value.comment = pbr2empty(value)
+    }
+  })
+
   const frameId = computed(() => {
     return frame.value.id
   })
@@ -263,6 +274,7 @@ export const useFrame = () => {
     getFrame,
     refresh,
     frame,
+    comment,
     shootedAt,
     frameId,
     updateFrame,
