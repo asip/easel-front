@@ -1,4 +1,6 @@
+import type { FetchError } from 'ofetch'
 import type { NuxtError } from "#app"
+
 import type { ErrorsResource, Flash } from "~/interfaces";
 import type { ErrorMessages } from "~/types";
 
@@ -9,7 +11,7 @@ type UseAlertOptions<T extends string> = {
 }
 
 type AlertOptions = {
-  error: NuxtError, off?: boolean
+  error: NuxtError | FetchError, off?: boolean
 }
 
 export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertOptions<T>) {

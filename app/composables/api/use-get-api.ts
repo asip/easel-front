@@ -1,3 +1,5 @@
+import type { FetchError } from 'ofetch'
+
 interface SearchParams {
   [key: string]: any
 }
@@ -11,7 +13,7 @@ export type GetAPIOptions = {
 }
 
 export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fresh = false, more = false }: GetAPIOptions) => {
-  let key: string | null = null
+  // let key: string | null = null
 
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
@@ -40,6 +42,7 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
     }
   }
 
+  /*
   if (more) {
     key = `${url}:${new Date().getTime()}`
   } else {
@@ -53,6 +56,28 @@ export const useGetApi = async <T,E=unknown>({ url, query = {}, token = null, fr
   if(fresh){
     await refresh()
   }
+  */
 
-  return { token: tokenRef.value, data: data.value, error: error.value, refresh }
+  if (more) {
+    const data = ref<T>()
+    const error = ref<FetchError>();
+
+    try {
+      data.value = await $api(url, options)
+    } catch(err: any) {
+      error.value = err as FetchError
+    }
+
+    return { token: tokenRef.value, data: data.value, error: error.value }
+  } else {
+    const { data, error, refresh } = await useAsyncData<T,E>(url, () =>
+      $api(url, options)
+    )
+
+    if(fresh){
+      await refresh()
+    }
+
+    return { token: tokenRef.value, data: data.value, error: error.value, refresh }
+  }
 }

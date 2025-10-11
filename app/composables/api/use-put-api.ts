@@ -1,3 +1,5 @@
+import type { FetchError } from 'ofetch'
+
 type PutAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null
 }
@@ -18,13 +20,14 @@ export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null }: P
     'Time-Zone': timeZone.value.client
   }
 
-  const pending = ref<boolean>(false)
+  const pending = ref<boolean>(true)
 
   if (token) {
     headers.Authorization = `Bearer ${token}`
     tokenRef.value = token
   }
 
+  /*
   const { data, error, status } = await useAsyncData<T,E>(key, () =>
     $api(url, {
       method: 'put',
@@ -35,8 +38,26 @@ export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null }: P
       }
     })
   )
+  */
 
-  pending.value = status.value === 'pending'
+  const data = ref<T>()
+  const error = ref<FetchError>();
+
+  try {
+    data.value = await $api(url, {
+      method: 'put',
+      body,
+      headers,
+      onResponse({ response  } : { response: any }) {
+        tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      }
+    })
+  } catch(err: any) {
+    error.value = err as FetchError
+  }
+
+  //pending.value = status.value === 'pending'
+  pending.value = false
 
   return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
 }
