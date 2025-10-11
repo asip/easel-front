@@ -4,7 +4,7 @@ type DeleteAPIOptions = {
   url:string, token?: string | null
 }
 
-export const useDeleteApi = async <T,E=unknown>({ url, token = null }: DeleteAPIOptions) => {
+export const useDeleteApi = async <T>({ url, token = null }: DeleteAPIOptions) => {
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()

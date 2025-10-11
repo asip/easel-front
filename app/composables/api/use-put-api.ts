@@ -4,7 +4,7 @@ type PutAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null
 }
 
-export const usePutApi = async <T,E=unknown>({ url, body = {}, token = null }: PutAPIOptions) => {
+export const usePutApi = async <T>({ url, body = {}, token = null }: PutAPIOptions) => {
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()
