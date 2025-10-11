@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { id } = defineProps<{
+const { id, disabled } = defineProps<{
   id: string
+  disabled: boolean
 }>()
 
 defineSlots<{
@@ -32,6 +33,7 @@ const onClick = () => {
       <div class="modal-action">
         <button
           class="btn btn-outline btn-secondary"
+          :disabled="disabled"
           @click="onClick"
         >
           <slot name="label" />

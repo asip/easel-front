@@ -379,7 +379,9 @@ export const useAccount = () => {
   }
 
   const deleteAccount = async () => {
-    const { data, error } = await useDeleteApi<UserResource>({
+    processing.value = true
+
+    const { data, error, pending } = await useDeleteApi<UserResource>({
       url: '/account',
       token: accessToken.value
     })
@@ -394,6 +396,8 @@ export const useAccount = () => {
         clearLoginUser()
       }
     }
+
+    processing.value = pending
   }
 
   return {
