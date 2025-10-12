@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, tags, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
@@ -77,7 +77,7 @@ const updateContent = (content: string) => {
               >{{ $t('model.frame.tag_list') }}：</label>
             </td>
             <td>
-              <TagEdit v-model="frame" />
+              <TagEdit v-model="tags" />
               <div
                 v-for="error of r$.tags.$errors"
                 :key="error"

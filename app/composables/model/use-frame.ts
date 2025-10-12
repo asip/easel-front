@@ -28,6 +28,16 @@ export const useFrame = () => {
     updated_at: null
   })
 
+  const tags = computed<string[]>({
+    get () {
+      return frame.value.tags
+    },
+    set (value: string[]) {
+      frame.value.tags = value
+      frame.value.tag_list = value.join(',')
+    }
+  })
+
   const { upDTL, downDTL } = useDatetimeLocalFormat()
 
   const shootedAt = computed({
@@ -275,6 +285,7 @@ export const useFrame = () => {
     getFrame,
     refresh,
     frame,
+    tags,
     comment,
     shootedAt,
     frameId,

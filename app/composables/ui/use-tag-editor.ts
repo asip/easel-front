@@ -9,7 +9,7 @@ export function useTagEditor ({ key }: useTagEditorOptions) {
 
   const { $tagify } = useNuxtApp() as any
 
-  const initTagEditor = (model: Frame) => {
+  const initTagEditor = (tags: Ref<string[] | undefined>) => {
 
     if (tagEditorRef.value) {
       tagEditor = new $tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
@@ -24,14 +24,13 @@ export function useTagEditor ({ key }: useTagEditorOptions) {
       })
 
       tagEditor?.removeAllTags()
-      if (model?.tags) {
-        tagEditor?.addTags(model?.tags)
+      if (tags.value) {
+        tagEditor?.addTags(tags.value)
       }
 
       const saveTagList = () => {
-        if (model && tagEditor) {
-          model.tags = tagEditor.value.map(v => v.value)
-          model.tag_list = model.tags?.join(',')
+        if (tags.value && tagEditor) {
+          tags.value = tagEditor.value.map(v => v.value)
         }
       }
 
