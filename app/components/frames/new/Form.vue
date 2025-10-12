@@ -1,12 +1,11 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, tags, comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, tags, previewUrl, comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')
 
-// @ts-ignore
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
 // console.log(frame)
@@ -73,9 +72,9 @@ const updateContent = (content: string) => {
               </div>
             </td>
           </tr>
-          <tr v-if="frame.file !== null">
+          <tr v-if="frame.file || previewUrl">
             <td colspan="2">
-              <ImagePreview v-model="frame" />
+              <ImagePreview v-model="previewUrl" />
             </td>
           </tr>
           <tr>

@@ -8,7 +8,7 @@ const { frame, getFrame } = framer
 
 const { refresh } = await getFrame(`${frameId}`)
 
-framer.refresh = async () => { await refresh() }
+framer.refresh = async () => { if (refresh) await refresh() }
 
 provide('framer', framer)
 </script>

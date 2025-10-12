@@ -2,11 +2,12 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { loggedIn, user, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, user, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
-// @ts-expect-error
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
+
+const file = useTemplateRef('file')
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
@@ -30,6 +31,7 @@ const onUpdateClick = async () => {
 
 const clearForm = () => {
   r$.$reset()
+  if (file.value) file.value.value = ''
 }
 
 defineExpose({ clearForm })
@@ -49,6 +51,7 @@ defineExpose({ clearForm })
             </td>
             <td>
               <input
+                ref="file"
                 type="file"
                 accept="image/jpg,image/jpeg,image/png"
                 multiple="false"
@@ -63,9 +66,9 @@ defineExpose({ clearForm })
               </div>
             </td>
           </tr>
-          <tr>
+          <tr v-if="user.image || previewUrl">
             <td colspan="2">
-              <ImagePreview v-model="user" />
+              <ImagePreview v-model="previewUrl" />
             </td>
           </tr>
           <tr v-if="!user.social_login">

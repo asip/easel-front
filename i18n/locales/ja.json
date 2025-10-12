@@ -82,6 +82,6 @@
     "sameAs": "パスワードとパスワード(確認)の入力が一致しません。",
     "maTagArrayLength": "{size}つまでです。",
     "maxTagLength": "{size}文字までです。",
-    "maxBlobSize": "{max}MBまでです。"
+    "maxFileSize": "{max}MBまでです。"
   }
 }

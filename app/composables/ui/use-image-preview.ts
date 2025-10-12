@@ -4,12 +4,17 @@ type useImagePreviewOptions = {
   target: HTMLInputElement, model: Frame | User
 }
 
-export function useImagePreview ({ target, model } : useImagePreviewOptions) {
-  const file: { name?: string, ext?: string, data?: Blob | null } = {}
-  file.name = target.value
-  file.ext = file.name?.replace(/^.*\./, '').toLowerCase()
+export async function useImagePreview ({ target, model } : useImagePreviewOptions) {
+  const file: { data?: File | null, blob?: Blob | null } = {}
   // (アップロードされたデータを取得して変数file.dataに代入します)
-  file.data = target.files![0]
+  file.data = target.files?.item(0)
+  // console.log(file.data?.name)
+  // console.log(file.data?.type)
+  // file.ext = file.data?.name?.replace(/^.*\./, '').toLowerCase()
+  if (file.data) {
+    const buffer = await file.data.arrayBuffer()
+    file.blob = new Blob([buffer], { type: file.data.type })
+  }
   // console.log(file.data)
 
   if ('file' in model) {
@@ -19,7 +24,7 @@ export function useImagePreview ({ target, model } : useImagePreviewOptions) {
   }
 
   // console.log(file.name)
-  if (file.ext?.match(/^(jpeg|jpg|png|gif)$/)) {
+  if (file.data?.type?.match(/^image\/(jpeg|jpg|png|gif)$/)) {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
@@ -29,6 +34,8 @@ export function useImagePreview ({ target, model } : useImagePreviewOptions) {
       model.preview_url = image?.toString()
     }
     // (DataURIScheme文字列を取得します)
-    if (file.data) reader.readAsDataURL(file.data)
+    if (file.blob) reader.readAsDataURL(file.blob)
+  } else {
+    model.preview_url = null
   }
 }

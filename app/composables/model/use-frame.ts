@@ -28,6 +28,14 @@ export const useFrame = () => {
     updated_at: null
   })
 
+  const previewUrl = computed(() => {
+    if (!frame.value.file) {
+      return `${frame.value.file_three_url}`
+    } else {
+      return frame.value.preview_url
+    }
+  })
+
   const tags = computed<string[]>({
     get () {
       return frame.value.tags
@@ -286,6 +294,7 @@ export const useFrame = () => {
     refresh,
     frame,
     tags,
+    previewUrl,
     comment,
     shootedAt,
     frameId,

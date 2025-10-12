@@ -3,7 +3,7 @@ import { required, minLength, maxLength, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = (user?: User) => {
   const signupRules = () => ({
-    image: { maxBlobSize: maxBlobSize(5) },
+    image: { maxFileSize: maxFileSize(5) },
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
@@ -21,7 +21,7 @@ export const useAccountRules = (user?: User) => {
   }
 
   const userRules = () => ({
-    image: { maxBlobSize: maxBlobSize(5) },
+    image: { maxFileSize: maxFileSize(5) },
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
@@ -31,7 +31,7 @@ export const useAccountRules = (user?: User) => {
   })
 
   const profileRules = {
-    image: { maxBlobSize: maxBlobSize(5) },
+    image: { maxFileSize: maxFileSize(5) },
     name: {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },

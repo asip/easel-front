@@ -10,7 +10,7 @@ export const { useRegle: useI18nRegle } = defineRegleConfig({
       maxLength: withMessage(maxLength, ({ $params: [maxValue] }) =>  $i18n.t('rules.maxLength', { max: maxValue })),
       email: withMessage(email, () => $i18n.t('rules.email')),
       sameAs: withMessage(sameAs, () => $i18n.t('rules.sameAs')),
-      maxBlobSize: withMessage(maxBlobSize, ({ $params: [maxValue] }) =>  $i18n.t('rules.maxBlobSize', { max: maxValue })),
+      maxFileSize: withMessage(maxFileSize, ({ $params: [maxValue] }) =>  $i18n.t('rules.maxFileSize', { max: maxValue })),
       maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [sizeValue] }) => $i18n.t('rules.maxTagArrayLength', { size: sizeValue })),
       maxTagLength: withMessage(maxTagLength, ({ $params: [sizeValue] }) => $i18n.t('rules.maxTagLength', { size: sizeValue }))
     }

@@ -29,6 +29,10 @@ export const useAccount = () => {
     }
   })
 
+  const loggedIn = useState<boolean>('loggedIn', () => {
+    return false
+  })
+
   const user = ref<User>(
     {
       name: '',
@@ -47,8 +51,12 @@ export const useAccount = () => {
     }
   )
 
-  const loggedIn = useState<boolean>('loggedIn', () => {
-    return false
+  const previewUrl = computed(() => {
+    if (!user.value.image) {
+      return `${user.value.image_three_url}`
+    } else {
+      return user.value.preview_url
+    }
   })
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
@@ -404,6 +412,7 @@ export const useAccount = () => {
     loginUser,
     accessToken,
     user,
+    previewUrl,
     loggedIn,
     loginParams,
     signup,
