@@ -89,6 +89,7 @@ export const useFrameSearch = () => {
   const createFrameFromJson = (resource: FrameResource) : Frame => {
     const frame: Partial<Frame> = {}
     Object.assign(frame, resource)
+    frame.tags = frame.tag_list?.split(',') ?? []
     frame.file = null
     frame.preview_url = null
     return frame as Frame

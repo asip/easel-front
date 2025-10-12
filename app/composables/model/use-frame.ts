@@ -152,6 +152,7 @@ export const useFrame = () => {
 
   const setJson2Frame = (resource: FrameResource) => {
     Object.assign(frame.value, resource)
+    frame.value.tags = frame.value.tag_list?.split(',') ?? []
     upFrameTZ(frame.value)
   }
 
