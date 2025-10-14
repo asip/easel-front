@@ -1,41 +1,31 @@
-import type { Frame, User } from '~/interfaces'
-
 type useImagePreviewOptions = {
-  target: HTMLInputElement, model: Frame | User
+  target: HTMLInputElement, file: Ref<File | undefined| null>, previewUrl: Ref<string | null | undefined>
 }
 
-export async function useImagePreview ({ target, model } : useImagePreviewOptions) {
-  const file: { data?: File | null, blob?: Blob | null } = {}
-  // (アップロードされたデータを取得して変数file.dataに代入します)
-  file.data = target.files?.item(0)
-  // console.log(file.data?.name)
-  // console.log(file.data?.type)
-  // file.ext = file.data?.name?.replace(/^.*\./, '').toLowerCase()
-  if (file.data) {
-    const buffer = await file.data.arrayBuffer()
-    file.blob = new Blob([buffer], { type: file.data.type })
+export async function useImagePreview ({ target, file, previewUrl } : useImagePreviewOptions) {
+  let blob: Blob | null| undefined
+  // (アップロードされたデータを取得して変数file.valueに代入します)
+  file.value = target.files?.item(0)
+  // console.log(file.value?.name)
+  // console.log(file?.type)
+  // file.ext = file.?.name?.replace(/^.*\./, '').toLowerCase()
+  if (file.value) {
+    const buffer = await file.value.arrayBuffer()
+    blob = new Blob([buffer], { type: file.value.type })
   }
-  // console.log(file.data)
-
-  if ('file' in model) {
-    model.file = file.data
-  } else if ('image' in model) {
-    model.image = file.data
-  }
-
-  // console.log(file.name)
-  if (file.data?.type?.match(/^image\/(jpeg|jpg|png|gif)$/)) {
+  if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif)$/)) {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
     reader.onload = function () {
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = reader.result
-      model.preview_url = image?.toString()
+      // console.log(image?.toString())
+      previewUrl.value = image?.toString()
     }
     // (DataURIScheme文字列を取得します)
-    if (file.blob) reader.readAsDataURL(file.blob)
+    if (blob) reader.readAsDataURL(blob)
   } else {
-    model.preview_url = null
+    previewUrl.value = null
   }
 }

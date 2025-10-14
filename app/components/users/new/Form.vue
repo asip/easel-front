@@ -2,7 +2,7 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { user, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
+const { user, image, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
@@ -17,7 +17,7 @@ onMounted(() => {
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview({ target, model: user.value })
+  useImagePreview({ target, file: image, previewUrl: previewUrl })
 }
 
 const onSignupClick = async () => {

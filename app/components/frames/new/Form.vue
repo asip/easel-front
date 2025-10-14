@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, tags, previewUrl, comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, file, previewUrl, tags,  comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')
@@ -14,7 +14,7 @@ const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
 const onSelectFile = (evt: Event) => {
   const target = evt.target as HTMLInputElement
-  useImagePreview({ target, model: frame.value })
+  useImagePreview({ target, file: file, previewUrl: previewUrl })
 }
 
 const onCreateClick = async () => {
@@ -24,7 +24,6 @@ const onCreateClick = async () => {
 
   const { valid } = await r$.$validate()
 
-  // console.log(frame)
   if (valid) {
     await createFrame()
     setFlash(flash.value)

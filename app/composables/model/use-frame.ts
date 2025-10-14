@@ -28,11 +28,25 @@ export const useFrame = () => {
     updated_at: null
   })
 
-  const previewUrl = computed(() => {
-    if (!frame.value.file) {
-      return `${frame.value.file_three_url}`
-    } else {
-      return frame.value.preview_url
+  const file = computed({
+    get () {
+      return frame.value.file
+    },
+    set (value: File | null) {
+      frame.value.file = value
+    }
+  })
+
+  const previewUrl = computed({
+    get () {
+      if (!frame.value.file) {
+        return `${frame.value.file_three_url}`
+      } else {
+        return frame.value.preview_url
+      }
+    },
+    set (value: string | null){
+      frame.value.preview_url = value
     }
   })
 
@@ -293,6 +307,7 @@ export const useFrame = () => {
     getFrame,
     refresh,
     frame,
+    file,
     tags,
     previewUrl,
     comment,

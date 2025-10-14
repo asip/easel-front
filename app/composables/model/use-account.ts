@@ -51,11 +51,25 @@ export const useAccount = () => {
     }
   )
 
-  const previewUrl = computed(() => {
-    if (!user.value.image) {
-      return `${user.value.image_three_url}`
-    } else {
-      return user.value.preview_url
+  const image = computed({
+    get () {
+      return user.value.image
+    },
+    set (value: File | null) {
+      user.value.image = value
+    }
+  })
+
+  const previewUrl = computed({
+    get () {
+      if (!user.value.image) {
+        return `${user.value.image_three_url}`
+      } else {
+        return user.value.preview_url
+      }
+    },
+    set (value: string | null){
+      user.value.preview_url = value
     }
   })
 
@@ -412,6 +426,7 @@ export const useAccount = () => {
     loginUser,
     accessToken,
     user,
+    image,
     previewUrl,
     loggedIn,
     loginParams,
