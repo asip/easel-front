@@ -144,23 +144,25 @@ const onDeleteClick = async () => {
               />
             </div>
           </div>
-          <div class="flex justify-start w-full mt-1">
+          <div class="flex justify-between w-full mt-1">
+            <div>
             <div
               v-for="error of r$.$errors.body"
               :key="error"
             >
               <div class="text-red-500">{{ error }}</div>
             </div>
-          </div>
-          <div class="flex justify-end w-full mt-1">
-            <button
-              type="button"
-              class="btn btn-outline btn-primary"
-              :disabled="processing"
-              @click="onUpdateClick"
-            >
-              {{ $t('action.model.update') }}
-            </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-outline btn-primary"
+                :disabled="processing"
+                @click="onUpdateClick"
+              >
+                {{ $t('action.model.update') }}
+              </button>
+            </div>
           </div>
         </form>
       </div>
