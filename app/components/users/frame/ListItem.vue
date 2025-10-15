@@ -11,7 +11,7 @@ const { userId, page = undefined } = defineProps<{
 const queryMapWithRef = computed(() => {
   if (page == 'profile') {
     return { ref: JSON.stringify({ from: page }) }
-  } else if(page == 'user_profile') {
+  } else if (page == 'user_profile') {
     return { ref: JSON.stringify({ from: page, id: userId }) }
   } else {
     return {}

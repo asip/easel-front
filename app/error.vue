@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const error = useError()
-// if(error.value) error.value.statusCode = 500
+// if (error.value) error.value.statusCode = 500
 </script>
 
 <template>

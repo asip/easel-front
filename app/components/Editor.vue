@@ -19,7 +19,7 @@ const editorRef: Ref = useTemplateRef('editorRef')
 let quill: Quill | undefined
 
 onMounted(async () => {
-  if(import.meta.client){
+  if (import.meta.client){
     const QuillClass = (await import('quill')).default
     quill = editorRef.value?.initialize(QuillClass)
   }

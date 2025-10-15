@@ -53,7 +53,7 @@ export const useGetApi = async <T>({ url, query = {}, token = null, fresh = fals
     $api(url, options)
   )
 
-  if(fresh){
+  if (fresh){
     await refresh()
   }
   */
@@ -74,7 +74,7 @@ export const useGetApi = async <T>({ url, query = {}, token = null, fresh = fals
       $api(url, options)
     )
 
-    if(fresh){
+    if (fresh){
       await refresh()
     }
 

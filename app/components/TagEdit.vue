@@ -6,7 +6,7 @@ const { initTagEditor } = useTagEditor({ key: 'tagEditorRef' })
 
 onMounted(() => {
   // console.log(frame)
-  if(modelValue.value){ initTagEditor(modelValue) }
+  if (modelValue.value){ initTagEditor(modelValue) }
 })
 </script>
 

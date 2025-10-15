@@ -67,7 +67,7 @@ const updateContent = (content: string) => {
 }
 
 const onDeleteClick = async () => {
-  if(commentModel.value) { await deleteComment(commentModel.value) }
+  if (commentModel.value) { await deleteComment(commentModel.value) }
   setFlash(flash.value)
   if (isSuccess()) {
     await getComments(commentModel.value?.frame_id, { fresh: true })
