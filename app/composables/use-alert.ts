@@ -4,17 +4,21 @@ import type { NuxtError } from "#app"
 import type { ErrorsResource, Flash } from "~/interfaces";
 import type { ErrorMessages } from "~/types";
 
-type UseAlertOptions<T extends string> = {
+interface UseAlertOptions<T extends UseAlertCallerType> {
   flash: Ref<Flash>
-  clearLU?: () => void
-  setEE?: (errors: ErrorMessages<T>) => void
+  caller?: T
+}
+
+interface UseAlertCallerType {
+  setExternalErrors?: (errors: ErrorMessages<string>) => void
+  clearLoginUser?: () => void
 }
 
 type AlertOptions = {
   error: NuxtError | FetchError, off?: boolean
 }
 
-export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertOptions<T>) {
+export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAlertOptions<T>) {
   const { $i18n } = useNuxtApp()
 
   const setAlert = function({ error, off = false } : AlertOptions) {
@@ -22,7 +26,9 @@ export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertO
       switch (error.statusCode) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
-          if (clearLU) clearLU()
+          if (caller && 'clearLoginUser' in caller){
+            if (caller.clearLoginUser) caller.clearLoginUser()
+          }
           break
         // default:
         //  flash.value.alert = error.value.message
@@ -31,18 +37,19 @@ export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertO
       switch (error.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
-          if (clearLU) clearLU()
+          if (caller && 'clearLoginUser' in caller){
+            if (caller.clearLoginUser) caller.clearLoginUser()
+          }
           break
         case 404:
           flash.value.alert = error.message
           break
         case 422:
           {
-            if (setEE) {
-              const { errors } = error.data as ErrorsResource<ErrorMessages<T>>
-              if (errors) {
-                setEE(errors)
-              }
+            if (caller && 'setExternalErrors' in caller) {
+              const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
+              // globalThis.console.log(errors)
+              if (caller.setExternalErrors) caller.setExternalErrors(errors)
             }
             break
           }
@@ -54,3 +61,5 @@ export function useAlert<T extends string>({ flash, clearLU, setEE } : UseAlertO
 
   return { setAlert }
 }
+
+export type UseAlertType = ReturnType<typeof useAlert>

@@ -49,3 +49,5 @@ export const useTimeZone = () => {
 
   return { timeZone, tzOptions, upTZ, downTZ, formatTZ }
 }
+
+// export type UseTimeZoneType = ReturnType<typeof useTimeZone>

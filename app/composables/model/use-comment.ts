@@ -1,10 +1,12 @@
-import type { Comment, CommentResource, CommentsResource } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource, Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment () {
+  const { formatTZ } = useTimeZone()
+  const { empty2pbr, pbr2empty } = useQuill()
 
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
@@ -17,196 +19,199 @@ export function useComment () {
     updated_at: null
   })
 
-  const { empty2pbr, pbr2empty } = useQuill()
+  const UseComment = class {
+    flash: Ref<Flash>
+    #clearFlash: UseFlashType['clearFlash']
+    #accessToken: UseAccountType['accessToken']
+    clearLoginUser: UseAccountType['clearLoginUser']
+    #setAlert: UseAlertType['setAlert']
 
-  const body = computed({
-    get () {
-      return empty2pbr(comment.value.body)
-    },
-    set (value: string | undefined) {
-      comment.value.body = pbr2empty(value)
+    constructor() {
+      const { flash, clearFlash } = useFlash()
+      const { accessToken, clearLoginUser } = useAccount()
+      const { setAlert } = useAlert({ flash, caller: this })
+
+      this.flash = flash
+      this.#clearFlash = clearFlash
+      this.#accessToken = accessToken
+      this.clearLoginUser = clearLoginUser
+      this.#setAlert = setAlert
     }
-  })
 
-  const comments: Ref<Comment[]> = useState<Comment[]>('comments', () => { return [] })
+    comment = comment
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    body: [],
-    base: []
-  })
-
-  const processing = ref<boolean>(false)
-
-  const { accessToken, clearLoginUser } = useAccount()
-  const { flash, clearFlash } = useFlash()
-  const { formatTZ } = useTimeZone()
-
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
-    externalErrors.value.body = errors.body ?? []
-  }
-
-  const clearExternalErrors = () => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
-  }
-
-  const { setAlert } = useAlert<ExternalErrorProperty>({ flash, clearLU: clearLoginUser, setEE: setExternalErrors })
-
-  const getComments = async (frameId: number | null |undefined, options?: { fresh?: boolean }) => {
-    // console.log(comment.frame_id);
-    const { data, error } = await useGetApi<CommentsResource>({
-      url: `/frames/${frameId}/comments`,
-      fresh: options?.fresh
+    body = computed({
+      get () {
+        return empty2pbr(comment.value.body)
+      },
+      set (value: string | undefined) {
+        comment.value.body = pbr2empty(value)
+      }
     })
 
-    clearFlash()
+    comments: Ref<Comment[]> = useState<Comment[]>('comments', () => { return [] })
 
-    if (error) {
-      setAlert({ error })
-    } else if (data) {
-      const { comments: commentList } = data
-      // console.log(commentList)
+    externalErrors = ref<ErrorMessages<ErrorProperty>>({
+      body: [],
+      base: []
+    })
 
-      if (commentList) {
-        // console.log(comment_list);
-        comments.value.splice(0)
-        for (const commentAttrs of commentList) {
-          // console.log(comment);
-          comments.value.push(createCommentFromJson(commentAttrs))
+    processing = ref<boolean>(false)
+
+    setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+      this.externalErrors.value.body = errors.body ?? []
+    }
+
+    clearExternalErrors = () => {
+      this.externalErrors.value.body = []
+      this.externalErrors.value.base = []
+    }
+
+    getComments = async (frameId: number | null |undefined, options?: { fresh?: boolean }) => {
+      // console.log(comment.frame_id);
+      const { data, error } = await useGetApi<CommentsResource>({
+        url: `/frames/${frameId}/comments`,
+        fresh: options?.fresh
+      })
+
+      this.#clearFlash()
+
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const { comments: commentList } = data
+        // console.log(commentList)
+
+        if (commentList) {
+          // console.log(comment_list);
+          this.comments.value.splice(0)
+          for (const commentAttrs of commentList) {
+            // console.log(comment);
+            this.comments.value.push(this.#createCommentFromJson(commentAttrs))
+          }
+          // console.log(comments);
         }
-        // console.log(comments);
-      }
-    }
-  }
-
-  const upCommentTZ = (comment: Comment) => {
-    comment.created_at = formatTZ(comment.created_at)
-    comment.updated_at = formatTZ(comment.updated_at)
-  }
-
-  const createCommentFromJson = (resource: CommentResource): Comment => {
-    const comment: Partial<Comment> = {}
-    Object.assign(comment, resource)
-    upCommentTZ(comment as Comment)
-    return comment as Comment
-  }
-
-  const createComment = async () => {
-    processing.value = true
-
-    const postData = {
-      comment: {
-        body: comment.value.body
       }
     }
 
-    const { error, pending } = await usePostApi<CommentResource>({
-      url: `/frames/${comment.value.frame_id}/comments`,
-      body: postData,
-      token: accessToken.value
-    })
-
-    clearFlash()
-    clearExternalErrors()
-
-    if (error) {
-      setAlert({ error })
+    #upCommentTZ = (comment: Comment) => {
+      comment.created_at = formatTZ(comment.created_at)
+      comment.updated_at = formatTZ(comment.updated_at)
     }
-    /* else if (data) {
-      const commentAttrs = data
-    } */
 
-    processing.value = pending
-  }
-
-  const setJson2Comment = (resource: CommentResource) => {
-    Object.assign(comment.value, resource)
-  }
-
-  const setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
-    if (from) {
-      Object.assign(comment.value, from)
-    } else if (to) {
-      Object.assign(to, comment.value)
-      // globalThis.console.log(comment.value)
-      // globalThis.console.log(to)
+    #createCommentFromJson = (resource: CommentResource): Comment => {
+      const comment: Partial<Comment> = {}
+      Object.assign(comment, resource)
+      this.#upCommentTZ(comment as Comment)
+      return comment as Comment
     }
-  }
 
-  const updateComment = async () => {
-    processing.value = true
+    createComment = async () => {
+      this.processing.value = true
 
-    const postData = {
-      comment: {
-        body: comment.value.body
+      const postData = {
+        comment: {
+          body: comment.value.body
+        }
+      }
+
+      const { error, pending } = await usePostApi<CommentResource>({
+        url: `/frames/${comment.value.frame_id}/comments`,
+        body: postData,
+        token: this.#accessToken.value
+      })
+
+      this.#clearFlash()
+      this.clearExternalErrors()
+
+      if (error) {
+        this.#setAlert({ error })
+      }
+      /* else if (data) {
+        const commentAttrs = data
+      } */
+
+      this.processing.value = pending
+    }
+
+    #setJson2Comment = (resource: CommentResource) => {
+      Object.assign(comment.value, resource)
+    }
+
+    setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
+      if (from) {
+        Object.assign(comment.value, from)
+      } else if (to) {
+        Object.assign(to, comment.value)
+        // globalThis.console.log(comment.value)
+        // globalThis.console.log(to)
       }
     }
 
-    const { data, error, pending } = await usePutApi<CommentResource>({
-      url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
-      body: postData,
-      token: accessToken.value
-    })
+    updateComment = async () => {
+      this.processing.value = true
 
-    clearFlash()
-    clearExternalErrors()
+      const postData = {
+        comment: {
+          body: comment.value.body
+        }
+      }
 
-    if (error) {
-      setAlert({ error })
-    } else if (data) {
-      const commentAttrs = data
+      const { data, error, pending } = await usePutApi<CommentResource>({
+        url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
+        body: postData,
+        token: this.#accessToken.value
+      })
 
-      setJson2Comment(commentAttrs)
+      this.#clearFlash()
+      this.clearExternalErrors()
+
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const commentAttrs = data
+
+        this.#setJson2Comment(commentAttrs)
+      }
+
+      this.processing.value = pending
     }
 
-    processing.value = pending
-  }
+    isSuccess = () => {
+      let result = true
 
-  const isSuccess = () => {
-    let result = true
+      if (this.externalErrors.value.body.length > 0 || this.externalErrors.value.base.length > 0) {
+        result = false
+      }
 
-    if (externalErrors.value.body.length > 0 || externalErrors.value.base.length > 0) {
-      result = false
+      if (this.flash.value.alert) {
+        result = false
+      }
+
+      return result
     }
 
-    if (flash.value.alert) {
-      result = false
+    deleteComment = async (comment: Comment) => {
+      this.processing.value = true
+
+      const { error, pending } = await useDeleteApi({
+        url: `/comments/${comment.id}`,
+        token: this.#accessToken.value
+      })
+
+      this.#clearFlash()
+
+      if (error) {
+        this.#setAlert({ error })
+      }
+
+      this.processing.value = pending
     }
-
-    return result
   }
 
-  const deleteComment = async (comment: Comment) => {
-    processing.value = true
+  const self = new UseComment()
 
-    const { error, pending } = await useDeleteApi({
-      url: `/comments/${comment.id}`,
-      token: accessToken.value
-    })
-
-    clearFlash()
-
-    if (error) {
-      setAlert({ error })
-    }
-
-    processing.value = pending
-  }
-
-  return {
-    comment,
-    body,
-    comments,
-    externalErrors,
-    getComments,
-    createComment,
-    updateComment,
-    deleteComment,
-    setComment,
-    processing,
-    isSuccess,
-    flash
-  }
+  return self
 }
 
 export type UseCommentType = ReturnType<typeof useComment>
