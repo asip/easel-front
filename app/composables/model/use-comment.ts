@@ -8,6 +8,9 @@ export function useComment () {
   const { formatTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
 
+  const { flash, clearFlash } = useFlash()
+  const { accessToken, clearLoginUser } = useAccount()
+
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
     frame_id: null,
@@ -21,24 +24,22 @@ export function useComment () {
 
   const UseComment = class {
     flash: Ref<Flash>
-    #clearFlash: UseFlashType['clearFlash']
-    #accessToken: UseAccountType['accessToken']
+
     clearLoginUser: UseAccountType['clearLoginUser']
     #setAlert: UseAlertType['setAlert']
 
+    comment: Ref<Comment>
+
     constructor() {
-      const { flash, clearFlash } = useFlash()
-      const { accessToken, clearLoginUser } = useAccount()
       const { setAlert } = useAlert({ flash, caller: this })
 
       this.flash = flash
-      this.#clearFlash = clearFlash
-      this.#accessToken = accessToken
+
       this.clearLoginUser = clearLoginUser
       this.#setAlert = setAlert
-    }
 
-    comment = comment
+      this.comment = comment
+    }
 
     body = computed({
       get () {
@@ -74,7 +75,7 @@ export function useComment () {
         fresh: options?.fresh
       })
 
-      this.#clearFlash()
+      clearFlash()
 
       if (error) {
         this.#setAlert({ error })
@@ -118,10 +119,10 @@ export function useComment () {
       const { error, pending } = await usePostApi<CommentResource>({
         url: `/frames/${comment.value.frame_id}/comments`,
         body: postData,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
       this.clearExternalErrors()
 
       if (error) {
@@ -160,10 +161,10 @@ export function useComment () {
       const { data, error, pending } = await usePutApi<CommentResource>({
         url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
         body: postData,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
       this.clearExternalErrors()
 
       if (error) {
@@ -196,10 +197,10 @@ export function useComment () {
 
       const { error, pending } = await useDeleteApi({
         url: `/comments/${comment.id}`,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
 
       if (error) {
         this.#setAlert({ error })

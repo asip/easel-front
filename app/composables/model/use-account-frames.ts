@@ -1,50 +1,46 @@
 import type { AccountFrameQuery, Frame, FrameResource, FramesResource, Flash } from '~/interfaces'
 
 export function useAccountFrames () {
+  const { flash, clearFlash } = useFlash()
+  const { accessToken, clearLoginUser } = useAccount()
 
   const UseAccountFrames = class {
-      flash: Ref<Flash>
-      #clearFlash: UseFlashType['clearFlash']
-      #accessToken: UseAccountType['accessToken']
-      clearLoginUser: UseAccountType['clearLoginUser']
-      #setAlert: UseAlertType['setAlert']
+    flash: Ref<Flash>
+    clearLoginUser: UseAccountType['clearLoginUser']
+    #setAlert: UseAlertType['setAlert']
 
-      constructor() {
-        const { flash, clearFlash } = useFlash()
-        const { accessToken, clearLoginUser } = useAccount()
-        const { setAlert } = useAlert({ flash, caller: this })
+    constructor() {
+      const { setAlert } = useAlert({ flash, caller: this })
 
-        this.flash = flash
-        this.#clearFlash = clearFlash
-        this.#accessToken = accessToken
-        this.clearLoginUser = clearLoginUser
+      this.flash = flash
+      this.clearLoginUser = clearLoginUser
 
-        this.#setAlert = setAlert
+      this.#setAlert = setAlert
+    }
+
+    frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
+      return {
+        page: 1,
+        pages: 1,
+        total: 1
       }
+    })
 
-      frameQuery = useState<AccountFrameQuery>('account.frameQuery', () => {
-        return {
-          page: 1,
-          pages: 1,
-          total: 1
-        }
-      })
+    frames = ref<Frame[]>([])
 
-      frames = ref<Frame[]>([])
-
-      getFrames = async (options?: { more?: boolean }) => {
-        const getOptions: GetAPIOptions = {
+    getFrames = async (options?: { more?: boolean }) => {
+      const getOptions: GetAPIOptions = {
         url: `/account/frames`,
         query: {
           page: this.frameQuery.value.page
         },
-        token: this.#accessToken.value,
+        token: accessToken.value,
         more: options?.more
       }
 
       const { data, error } = await useGetApi<FramesResource>(getOptions)
 
-      this.#clearFlash()
+      clearFlash()
 
       if (error) {
         this.#setAlert({ error })
@@ -65,7 +61,7 @@ export function useAccountFrames () {
             // console.log(comment);
             this.frames.value.push(this.#createFrameFromJson(frame))
           }
-        // console.log(frames)
+          // console.log(frames)
         }
         if (meta) {
           this.frameQuery.value.pages = meta.pagination.pages

@@ -9,6 +9,9 @@ export function useFrame() {
   const { upTZ, downTZ, formatTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
 
+  const { flash, clearFlash } = useFlash()
+  const { loggedIn, accessToken, clearLoginUser } = useAccount()
+
   const frame: Ref<Frame> = ref<Frame>({
     id: 0,
     user_id: null,
@@ -32,26 +35,22 @@ export function useFrame() {
 
   const UseFrame = class {
     flash: Ref<Flash>
-    #clearFlash: UseFlashType['clearFlash']
-    #loggedIn: Ref<boolean>
-    #accessToken: UseAccountType['accessToken']
+
     clearLoginUser: UseAccountType['clearLoginUser']
     #setAlert: UseAlertType['setAlert']
 
+    frame: Ref<Frame>
+
     constructor() {
-      const { flash, clearFlash } = useFlash()
-      const { loggedIn, accessToken, clearLoginUser } = useAccount()
       const { setAlert } = useAlert({ flash, caller: this })
 
       this.flash = flash
-      this.#clearFlash = clearFlash
-      this.#loggedIn = loggedIn
-      this.#accessToken = accessToken
+
       this.clearLoginUser = clearLoginUser
       this.#setAlert = setAlert
-    }
 
-    frame = frame
+      this.frame = frame
+    }
 
     file = computed({
       get () {
@@ -137,13 +136,13 @@ export function useFrame() {
     getFrame = async (id: string) => {
       // console.log(`token: ${loginUser.value.token}`)
 
-      if (this.#loggedIn.value) {
+      if (loggedIn.value) {
         const { data, error, refresh } = await useGetApi<FrameResource>({
           url: `/account/frames/${id}`,
-          token: this.#accessToken.value
+          token: accessToken.value
         })
 
-        this.#clearFlash()
+        clearFlash()
 
         if (error) {
           this.#setAlert({ error })
@@ -168,7 +167,7 @@ export function useFrame() {
           url: `/frames/${id}`
         })
 
-        this.#clearFlash()
+        clearFlash()
 
         if (error) {
           this.#setAlert({ error })
@@ -232,10 +231,10 @@ export function useFrame() {
       const { data, error, pending } = await usePostApi<FrameResource>({
         url: '/frames/',
         body: formData,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
       this.clearExternalErrors()
 
       if (error) {
@@ -285,10 +284,10 @@ export function useFrame() {
       const { error, pending } = await usePutApi<FrameResource>({
         url: `/frames/${frame.value.id}`,
         body: postData,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
       this.clearExternalErrors()
 
       if (error) {
@@ -304,10 +303,10 @@ export function useFrame() {
 
       const { error, pending } = await useDeleteApi({
         url: `/frames/${frame.value.id}`,
-        token: this.#accessToken.value
+        token: accessToken.value
       })
 
-      this.#clearFlash()
+      clearFlash()
 
       if (error) {
         this.#setAlert({ error })

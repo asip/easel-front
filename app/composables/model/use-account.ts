@@ -7,37 +7,39 @@ type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | '
 
 export const useAccount = () => {
   const { timeZone } = useTimeZone()
+  const { flash, clearFlash } = useFlash()
 
   const user = ref<User>({
-      name: '',
-      email: '',
-      token: null,
-      id: null,
-      image: null,
-      image_thumb_url: '',
-      image_one_url: '',
-      image_three_url: '',
-      preview_url: null,
-      password: '',
-      password_confirmation: '',
-      time_zone: '',
-      social_login: false
-    })
+    name: '',
+    email: '',
+    token: null,
+    id: null,
+    image: null,
+    image_thumb_url: '',
+    image_one_url: '',
+    image_three_url: '',
+    preview_url: null,
+    password: '',
+    password_confirmation: '',
+    time_zone: '',
+    social_login: false
+  })
 
   const UseAccount = class {
     flash: Ref<Flash>
-    #clearFlash: UseFlashType['clearFlash']
 
     #setAlert: UseAlertType['setAlert']
 
+    user: Ref<User>
+
     constructor() {
-      const { flash, clearFlash } = useFlash()
       const { setAlert } = useAlert({ flash, caller: this })
 
       this.flash = flash
-      this.#clearFlash = clearFlash
 
       this.#setAlert = setAlert
+
+      this.user = user
     }
 
     loginParams = ref({
@@ -66,8 +68,6 @@ export const useAccount = () => {
     loggedIn = useState<boolean>('loggedIn', () => {
       return false
     })
-
-    user = user
 
     image = computed({
       get () {
@@ -147,293 +147,293 @@ export const useAccount = () => {
       this.externalErrors.value.time_zone = errors.time_zone ?? []
     }
 
-  clearExternalErrors = () => {
-    this.externalErrors.value.image = []
-    this.externalErrors.value.name = []
-    this.externalErrors.value.email = []
-    this.externalErrors.value.current_password = []
-    this.externalErrors.value.password = []
-    this.externalErrors.value.password_confirmation = []
-    this.externalErrors.value.time_zone = []
-    this.externalErrors.value.base = []
-  }
-
-  signup = async () => {
-    this.processing.value = true
-    // console.log(user.image)
-
-    const formData = new FormData()
-
-    if (user.value.image) {
-      formData.append('user[image]', user.value.image)
-    }
-    formData.append('user[name]', user.value.name)
-    formData.append('user[email]', user.value.email)
-    formData.append('user[password]', user.value.password)
-    formData.append('user[password_confirmation]', user.value.password_confirmation)
-    formData.append('user[time_zone]', user.value.time_zone)
-
-    const { error, pending } = await usePostApi<UserResource>({
-      url: '/users/',
-      body: formData
-    })
-
-    this.#clearFlash()
-    this.clearExternalErrors()
-
-    if (error) {
-      this.#setAlert({ error })
+    clearExternalErrors = () => {
+      this.externalErrors.value.image = []
+      this.externalErrors.value.name = []
+      this.externalErrors.value.email = []
+      this.externalErrors.value.current_password = []
+      this.externalErrors.value.password = []
+      this.externalErrors.value.password_confirmation = []
+      this.externalErrors.value.time_zone = []
+      this.externalErrors.value.base = []
     }
 
-    this.processing.value = pending
-  }
+    signup = async () => {
+      this.processing.value = true
+      // console.log(user.image)
 
-  authenticate = async () => {
-    this.loginUser.value.token = this.accessToken.value
-    // console.log(loginUser.value.token)
+      const formData = new FormData()
 
-    if (this.loginUser.value.token) {
-      const { token, data, error } = await useGetApi<UserResource>({
-        url: '/account/profile',
-        token: this.accessToken.value,
-        fresh: true
+      if (user.value.image) {
+        formData.append('user[image]', user.value.image)
+      }
+      formData.append('user[name]', user.value.name)
+      formData.append('user[email]', user.value.email)
+      formData.append('user[password]', user.value.password)
+      formData.append('user[password_confirmation]', user.value.password_confirmation)
+      formData.append('user[time_zone]', user.value.time_zone)
+
+      const { error, pending } = await usePostApi<UserResource>({
+        url: '/users/',
+        body: formData
       })
 
-      this.#clearFlash()
+      clearFlash()
+      this.clearExternalErrors()
+
+      if (error) {
+        this.#setAlert({ error })
+      }
+
+      this.processing.value = pending
+    }
+
+    authenticate = async () => {
+      this.loginUser.value.token = this.accessToken.value
+      // console.log(loginUser.value.token)
+
+      if (this.loginUser.value.token) {
+        const { token, data, error } = await useGetApi<UserResource>({
+          url: '/account/profile',
+          token: this.accessToken.value,
+          fresh: true
+        })
+
+        clearFlash()
+
+        if (error) {
+          this.#setAlert({ error })
+        } else if (data) {
+          const userAttrs = data
+          // console.log(userAttrs)
+
+          if (userAttrs) {
+            this.#setJson2LoginUser(userAttrs, token)
+            this.loggedIn.value = true
+          }
+        }
+      }
+    }
+
+    login = async () => {
+      const postData = {
+        user: {
+          email: this.loginParams.value.email,
+          password: this.loginParams.value.password
+        }
+      }
+
+      const { token, data, error } = await usePostApi<UserResource>({
+       url: '/sessions/',
+        body: postData
+      })
+
+      // console.log(token.value)
+
+      clearFlash()
+      this.clearExternalErrors()
 
       if (error) {
         this.#setAlert({ error })
       } else if (data) {
         const userAttrs = data
-        // console.log(userAttrs)
-
         if (userAttrs) {
           this.#setJson2LoginUser(userAttrs, token)
           this.loggedIn.value = true
+          // console.log(loginUser.value)
+          this.accessToken.value = this.loginUser.value.token
         }
       }
     }
-  }
 
-  login = async () => {
-    const postData = {
-      user: {
-        email: this.loginParams.value.email,
-        password: this.loginParams.value.password
+    loginWithGoogle = async (response: CredentialResponse) => {
+      const postData = {
+        provider: 'google',
+        credential: response.credential
       }
-    }
 
-    const { token, data, error } = await usePostApi<UserResource>({
-      url: '/sessions/',
-      body: postData
-    })
+      const { token, data, error } = await usePostApi<UserResource>({
+        url: '/oauth/sessions/',
+        body: postData
+      })
 
-    // console.log(token.value)
+      // console.log(token.value)
 
-    this.#clearFlash()
-    this.clearExternalErrors()
+      clearFlash()
 
-    if (error) {
-      this.#setAlert({ error })
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const userAttrs  = data
         this.#setJson2LoginUser(userAttrs, token)
         this.loggedIn.value = true
         // console.log(loginUser.value)
+
         this.accessToken.value = this.loginUser.value.token
       }
     }
-  }
 
-  loginWithGoogle = async (response: CredentialResponse) => {
-    const postData = {
-      provider: 'google',
-      credential: response.credential
+    resetLoginParams = () => {
+      this.loginParams.value.email = ''
+      this.loginParams.value.password = ''
     }
 
-    const { token, data, error } = await usePostApi<UserResource>({
-      url: '/oauth/sessions/',
-      body: postData
-    })
-
-    // console.log(token.value)
-
-    this.#clearFlash()
-
-    if (error) {
-      this.#setAlert({ error })
-    } else if (data) {
-      const userAttrs  = data
-      this.#setJson2LoginUser(userAttrs, token)
-      this.loggedIn.value = true
-      // console.log(loginUser.value)
-
-      this.accessToken.value = this.loginUser.value.token
-    }
-  }
-
-  resetLoginParams = () => {
-    this.loginParams.value.email = ''
-    this.loginParams.value.password = ''
-  }
-
-  #setJson2LoginUser = (resource: UserResource, token?: string | undefined) => {
-    Object.assign(this.loginUser.value, resource)
-    if (token) {
-      this.loginUser.value.token = token
-    }
-  }
-
-  setUser = (loginUser: Ref<User>) => {
-    Object.assign(user.value, loginUser.value)
-  }
-
-  initTimeZone = () => {
-    // console.log(user.value.time_zone)
-    user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
-    // console.log(user.value.time_zone)
-  }
-
-  #setToken2Cookie = () => {
-    if (this.loginUser.value.token !== this.accessToken.value) {
-      this.accessToken.value = this.loginUser.value.token
-    }
-  }
-
-  updateProfile = async () => {
-    this.processing.value = true
-    // console.log(user.image)
-
-    const formData = new FormData()
-
-    if (user.value.image) {
-      formData.append('user[image]', user.value.image)
-    }
-    formData.append('user[name]', user.value.name)
-    formData.append('user[email]', user.value.email)
-    formData.append('user[time_zone]', user.value.time_zone)
-
-    // console.log(user.value.token)
-
-    const { data, error, pending } = await usePutApi<UserResource>({
-      url: '/account/profile/',
-      body: formData,
-      token: this.accessToken.value
-    })
-
-    // console.log(data)
-    // console.log(errors)
-
-    this.#clearFlash()
-    this.clearExternalErrors()
-
-    if (error) {
-      this.#setAlert({ error })
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        this.#setJson2LoginUser(userAttrs)
-        this.#setToken2Cookie()
+    #setJson2LoginUser = (resource: UserResource, token?: string | undefined) => {
+      Object.assign(this.loginUser.value, resource)
+      if (token) {
+        this.loginUser.value.token = token
       }
     }
 
-    this.processing.value = pending
-  }
+    setUser = (loginUser: Ref<User>) => {
+      Object.assign(user.value, loginUser.value)
+    }
 
-  updatePassword = async () => {
-    this.processing.value = true
-    // console.log(user.image)
+    initTimeZone = () => {
+      // console.log(user.value.time_zone)
+      user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
+      // console.log(user.value.time_zone)
+    }
 
-    const formData = {
-      user: {
-        current_password: user.value.current_password,
-        password: user.value.password,
-        password_confirmation: user.value.password_confirmation
+    #setToken2Cookie = () => {
+      if (this.loginUser.value.token !== this.accessToken.value) {
+        this.accessToken.value = this.loginUser.value.token
       }
     }
 
-    // console.log(user.value.token)
+    updateProfile = async () => {
+      this.processing.value = true
+      // console.log(user.image)
 
-    const { data, error, pending } = await usePutApi<UserResource>({
-      url: '/account/password/',
-      body: formData,
-      token: this.accessToken.value
-    })
+      const formData = new FormData()
 
-    // console.log(data)
-    // console.log(errors)
-
-    this.#clearFlash()
-    this.clearExternalErrors()
-
-    if (error) {
-      this.#setAlert({ error })
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        this.#setJson2LoginUser(userAttrs)
-        this.#setToken2Cookie()
+      if (user.value.image) {
+        formData.append('user[image]', user.value.image)
       }
+      formData.append('user[name]', user.value.name)
+      formData.append('user[email]', user.value.email)
+      formData.append('user[time_zone]', user.value.time_zone)
+
+      // console.log(user.value.token)
+
+      const { data, error, pending } = await usePutApi<UserResource>({
+        url: '/account/profile/',
+        body: formData,
+        token: this.accessToken.value
+      })
+
+      // console.log(data)
+      // console.log(errors)
+
+      clearFlash()
+      this.clearExternalErrors()
+
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const userAttrs = data
+        if (userAttrs) {
+          this.#setJson2LoginUser(userAttrs)
+          this.#setToken2Cookie()
+        }
+      }
+
+      this.processing.value = pending
     }
 
-    this.processing.value = pending
-  }
+    updatePassword = async () => {
+      this.processing.value = true
+      // console.log(user.image)
 
-  isSuccess = () => {
-    let result = true
+      const formData = {
+        user: {
+          current_password: user.value.current_password,
+          password: user.value.password,
+          password_confirmation: user.value.password_confirmation
+        }
+      }
 
-    if (this.externalErrors.value.image.length > 0 || this.externalErrors.value.name.length > 0 ||
-      this.externalErrors.value.email.length > 0 || this.externalErrors.value.current_password.length > 0 ||
-      this.externalErrors.value.password.length > 0 || this.externalErrors.value.password_confirmation.length > 0 ||
-      this.externalErrors.value.time_zone.length > 0 || this.externalErrors.value.base.length > 0
-    ) {
-      result = false
+      // console.log(user.value.token)
+
+      const { data, error, pending } = await usePutApi<UserResource>({
+        url: '/account/password/',
+        body: formData,
+        token: this.accessToken.value
+      })
+
+      // console.log(data)
+      // console.log(errors)
+
+      clearFlash()
+      this.clearExternalErrors()
+
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const userAttrs = data
+        if (userAttrs) {
+          this.#setJson2LoginUser(userAttrs)
+          this.#setToken2Cookie()
+        }
+      }
+
+      this.processing.value = pending
     }
 
-    if (this.flash.value.alert) {
-      result = false
+    isSuccess = () => {
+      let result = true
+
+      if (this.externalErrors.value.image.length > 0 || this.externalErrors.value.name.length > 0 ||
+        this.externalErrors.value.email.length > 0 || this.externalErrors.value.current_password.length > 0 ||
+        this.externalErrors.value.password.length > 0 || this.externalErrors.value.password_confirmation.length > 0 ||
+        this.externalErrors.value.time_zone.length > 0 || this.externalErrors.value.base.length > 0
+      ) {
+        result = false
+      }
+
+      if (this.flash.value.alert) {
+        result = false
+      }
+
+      return result
     }
 
-    return result
-  }
+    logout = async () => {
+      const { error } = await useDeleteApi<UserResource>({
+        url: '/sessions/logout',
+        token: this.accessToken.value
+      })
 
-  logout = async () => {
-    const { error } = await useDeleteApi<UserResource>({
-      url: '/sessions/logout',
-      token: this.accessToken.value
-    })
+      clearFlash()
 
-    this.#clearFlash()
-
-    if (error) {
-      this.#setAlert({ error })
-    } else  {
-      this.clearLoginUser()
-    }
-  }
-
-  deleteAccount = async () => {
-    this.processing.value = true
-
-    const { data, error, pending } = await useDeleteApi<UserResource>({
-      url: '/account',
-      token: this.accessToken.value
-    })
-
-    this.#clearFlash()
-
-    if (error) {
-      this.#setAlert({ error })
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
+      if (error) {
+        this.#setAlert({ error })
+      } else  {
         this.clearLoginUser()
       }
     }
 
-    this.processing.value = pending
-  }
+    deleteAccount = async () => {
+      this.processing.value = true
+
+      const { data, error, pending } = await useDeleteApi<UserResource>({
+        url: '/account',
+        token: this.accessToken.value
+      })
+
+      clearFlash()
+
+      if (error) {
+        this.#setAlert({ error })
+      } else if (data) {
+        const userAttrs = data
+        if (userAttrs) {
+          this.clearLoginUser()
+        }
+      }
+
+      this.processing.value = pending
+    }
   }
 
   const self = new UseAccount()
