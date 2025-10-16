@@ -32,7 +32,6 @@ export function useFrame() {
     updated_at: null
   })
 
-
   const UseFrame = class {
     flash: Ref<Flash>
 

@@ -3,7 +3,6 @@ const modelValue = defineModel<string[]>()
 
 const { initTagEditor } = useTagEditor({ key: 'tagEditorRef' })
 
-
 onMounted(() => {
   // console.log(frame)
   if (modelValue.value){ initTagEditor(modelValue) }

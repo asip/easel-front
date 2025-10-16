@@ -1,6 +1,5 @@
 import { required, minLength, maxLength } from '@regle/rules'
 
-
 export const useFrameRules = () => {
   const newFrameRules = {
     file: { required, maxFileSize: maxFileSize(5) },
