@@ -9,8 +9,6 @@ export const useDeleteApi = async <T>({ url, token = null }: DeleteAPIOptions) =
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()
 
-  const key = `${url}:${new Date().getTime()}`
-
   const headers: Record<string, string> = {
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
@@ -25,6 +23,8 @@ export const useDeleteApi = async <T>({ url, token = null }: DeleteAPIOptions) =
   }
 
   /*
+  const key = `${url}:${new Date().getTime()}`
+
   const { data, error, status } = await useAsyncData<T,E>(key, () =>
     $api(url, {
       method: 'delete',

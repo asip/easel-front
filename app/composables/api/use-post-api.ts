@@ -9,8 +9,6 @@ export const usePostApi = async <T>({ url, body = {}, token = null }: PostAPIOpt
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()
 
-  const key = `${url}:${new Date().getTime()}`
-
   const tokenRef = ref<string>()
 
   const headers: Record<string, string> = {
@@ -28,6 +26,8 @@ export const usePostApi = async <T>({ url, body = {}, token = null }: PostAPIOpt
   }
 
   /*
+  const key = `${url}:${new Date().getTime()}`
+
   const { data, error, status } = await useAsyncData<T,E>(key, () =>
     $api(url, {
       method: 'post',
