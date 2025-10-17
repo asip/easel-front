@@ -30,7 +30,7 @@ export function useAccountFrames () {
 
     getFrames = async (options?: { more?: boolean }) => {
       const getOptions: GetAPIOptions = {
-        url: `/account/frames`,
+        url: '/account/frames',
         query: {
           page: this.frameQuery.value.page
         },
