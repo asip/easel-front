@@ -8,6 +8,7 @@ export function useFrame() {
   const { upDTL, downDTL } = useDatetimeLocalFormat()
   const { upTZ, downTZ, formatTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
+  const { copy } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
   const { loggedIn, accessToken, clearLoginUser } = useAccount()
@@ -31,6 +32,18 @@ export function useFrame() {
     created_at: '',
     updated_at: null
   })
+
+  const upFrameTZ = (frame: Frame) => {
+    frame.shooted_at = upTZ(frame.shooted_at)
+    frame.created_at = formatTZ(frame.created_at)
+    frame.updated_at = formatTZ(frame.updated_at)
+  }
+
+  const setFrame = ({ from }: { from: FrameResource }) => {
+    copy({ from, to: frame.value })
+    frame.value.tags = frame.value.tag_list?.split(',') ?? []
+    upFrameTZ(frame.value)
+  }
 
   const UseFrame = class {
     flash: Ref<Flash>
@@ -156,7 +169,7 @@ export function useFrame() {
           // console.log(frameAttrs)
 
           if (frameAttrs) {
-            this.#setJson2Frame(frameAttrs)
+            setFrame({ from: frameAttrs })
           }
         }
 
@@ -181,24 +194,12 @@ export function useFrame() {
           // console.log(frameAttrs)
 
           if (frameAttrs) {
-            this.#setJson2Frame(frameAttrs)
+            setFrame({ from: frameAttrs })
           }
         }
 
         return { refresh }
       }
-    }
-
-    #upFrameTZ = (frame: Frame) => {
-      frame.shooted_at = upTZ(frame.shooted_at)
-      frame.created_at = formatTZ(frame.created_at)
-      frame.updated_at = formatTZ(frame.updated_at)
-    }
-
-    #setJson2Frame = (resource: FrameResource) => {
-      Object.assign(frame.value, resource)
-      frame.value.tags = frame.value.tag_list?.split(',') ?? []
-      this.#upFrameTZ(frame.value)
     }
 
     createFrame = async () => {

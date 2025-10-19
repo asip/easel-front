@@ -1,6 +1,8 @@
 import type { Frame, FrameResource, FramesResource, UserFrameQuery } from '~/interfaces'
 
 export function useUserFrames () {
+  const { create } = useEntity<Frame, FrameResource>()
+
   const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
     return {
       user_id: null,
@@ -46,7 +48,7 @@ export function useUserFrames () {
         frames.value.splice(0)
         for (const frame of frameList) {
         // console.log(comment);
-          frames.value.push(createFrameFromJson(frame))
+          frames.value.push(createFrame({ from: frame }))
         }
       // console.log(frames)
       }
@@ -57,12 +59,11 @@ export function useUserFrames () {
     }
   }
 
-  const createFrameFromJson = (resource: FrameResource) : Frame => {
-    const frame: Partial<Frame> = {}
-    Object.assign(frame, resource)
+  const createFrame = ({ from }: { from: FrameResource }) : Frame => {
+    const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
-    return frame as Frame
+    return frame
   }
 
   return {

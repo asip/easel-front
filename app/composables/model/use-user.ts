@@ -1,6 +1,8 @@
 import type { User, UserResource } from '~/interfaces'
 
 export const useUser = () => {
+  const { copy } = useEntity<User, UserResource>()
+
   const user = ref<User>(
     {
       name: '',
@@ -37,13 +39,13 @@ export const useUser = () => {
       // console.log(userAttrs)
 
       if (userAttrs) {
-        setJson2User(userAttrs)
+        setUser({ from: userAttrs })
       }
     }
   }
 
-  const setJson2User = (resource: UserResource) => {
-    Object.assign(user.value, resource)
+  const setUser = ({ from }: { from: UserResource }) => {
+    copy({ from, to: user.value })
   }
 
   return { user, getUser }

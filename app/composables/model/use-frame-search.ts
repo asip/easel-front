@@ -1,6 +1,8 @@
 import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfaces'
 
 export const useFrameSearch = () => {
+  const { create } = useEntity<Frame, FrameResource>()
+
   const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
       items: {},
@@ -75,7 +77,7 @@ export const useFrameSearch = () => {
       if (frameList) {
         frames.value.splice(0)
         for (const frameAttrs of frameList) {
-          frames.value.push(createFrameFromJson(frameAttrs))
+          frames.value.push(createFrame({ from: frameAttrs }))
         }
         // console.log(frames)
       }
@@ -86,13 +88,12 @@ export const useFrameSearch = () => {
     }
   }
 
-  const createFrameFromJson = (resource: FrameResource) : Frame => {
-    const frame: Partial<Frame> = {}
-    Object.assign(frame, resource)
+  const createFrame = ( { from }: { from: FrameResource }) : Frame => {
+    const frame: Frame = create({ from })
     frame.tags = frame.tag_list?.split(',') ?? []
     frame.file = null
     frame.preview_url = null
-    return frame as Frame
+    return frame
   }
 
   return {

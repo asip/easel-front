@@ -2,7 +2,15 @@ import type { AccountFrameQuery, Frame, FrameResource, FramesResource, Flash } f
 
 export function useAccountFrames () {
   const { flash, clearFlash } = useFlash()
+  const { create } = useEntity<Frame, FrameResource>()
   const { accessToken, clearLoginUser } = useAccount()
+
+  const createFrame = ({ from }: { from: FrameResource }) : Frame => {
+    const frame: Frame = create({ from })
+    frame.file = null
+    frame.preview_url = null
+    return frame
+  }
 
   const UseAccountFrames = class {
     flash: Ref<Flash>
@@ -59,7 +67,7 @@ export function useAccountFrames () {
           this.frames.value.splice(0)
           for (const frame of frameList) {
             // console.log(comment);
-            this.frames.value.push(this.#createFrameFromJson(frame))
+            this.frames.value.push(createFrame({ from: frame }))
           }
           // console.log(frames)
         }
@@ -68,14 +76,6 @@ export function useAccountFrames () {
           this.frameQuery.value.total = meta.pagination.count
         }
       }
-    }
-
-    #createFrameFromJson = (resource: FrameResource) : Frame => {
-      const frame: Partial<Frame> = {}
-      Object.assign(frame, resource)
-      frame.file = null
-      frame.preview_url = null
-      return frame as Frame
     }
   }
 

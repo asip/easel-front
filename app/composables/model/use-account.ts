@@ -8,6 +8,7 @@ type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | '
 export const useAccount = () => {
   const { timeZone } = useTimeZone()
   const { flash, clearFlash } = useFlash()
+  const { copy } = useEntity<User, UserResource>()
 
   const user = ref<User>({
     name: '',
@@ -25,11 +26,46 @@ export const useAccount = () => {
     social_login: false
   })
 
+  const loginUser = useState<User>('loginUser', () => {
+    return {
+      name: '',
+      email: '',
+      token: null,
+      id: null,
+      image: null,
+      image_thumb_url: '',
+      image_one_url: '',
+      image_three_url: '',
+      preview_url: null,
+      password: '',
+      password_confirmation: '',
+      time_zone: '',
+      social_login: false
+    }
+  })
+
+  const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
+
+  const setLoginUser = ({ from, token }: { from: UserResource, token?: string | undefined }) => {
+    copy({ from, to: loginUser.value })
+    if (token) {
+      loginUser.value.token = token
+    }
+  }
+
+  const setTokenToCookie = () => {
+    if (loginUser.value.token !== accessToken.value) {
+      accessToken.value = loginUser.value.token
+    }
+  }
+
   const UseAccount = class {
     flash: Ref<Flash>
 
     #setAlert: UseAlertType['setAlert']
 
+    loginUser: Ref<User>
+    accessToken: Ref<string | null | undefined>
     user: Ref<User>
 
     constructor() {
@@ -39,30 +75,14 @@ export const useAccount = () => {
 
       this.#setAlert = setAlert
 
+      this.loginUser = loginUser
+      this.accessToken = accessToken
       this.user = user
     }
 
     loginParams = ref({
       email: '',
       password: ''
-    })
-
-    loginUser = useState<User>('loginUser', () => {
-      return {
-        name: '',
-        email: '',
-        token: null,
-        id: null,
-        image: null,
-        image_thumb_url: '',
-        image_one_url: '',
-        image_three_url: '',
-        preview_url: null,
-        password: '',
-        password_confirmation: '',
-        time_zone: '',
-        social_login: false
-      }
     })
 
     loggedIn = useState<boolean>('loggedIn', () => {
@@ -104,8 +124,6 @@ export const useAccount = () => {
 
     processing = ref<boolean>(false)
 
-    accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
-
     clearLoginUser = () => {
       this.loggedIn.value = false
       this.loginUser.value.id = null
@@ -118,7 +136,7 @@ export const useAccount = () => {
       this.loginUser.value.image_three_url = null
       this.loginUser.value.social_login = false
 
-      this.accessToken.value = null
+      accessToken.value = null
     }
 
     clearProfile = () => {
@@ -208,7 +226,7 @@ export const useAccount = () => {
           // console.log(userAttrs)
 
           if (userAttrs) {
-            this.#setJson2LoginUser(userAttrs, token)
+            setLoginUser({ from: userAttrs, token })
             this.loggedIn.value = true
           }
         }
@@ -238,7 +256,7 @@ export const useAccount = () => {
       } else if (data) {
         const userAttrs = data
         if (userAttrs) {
-          this.#setJson2LoginUser(userAttrs, token)
+          setLoginUser({ from: userAttrs, token })
           this.loggedIn.value = true
           // console.log(loginUser.value)
           this.accessToken.value = this.loginUser.value.token
@@ -265,7 +283,7 @@ export const useAccount = () => {
         this.#setAlert({ error })
       } else if (data) {
         const userAttrs  = data
-        this.#setJson2LoginUser(userAttrs, token)
+        setLoginUser({ from: userAttrs, token })
         this.loggedIn.value = true
         // console.log(loginUser.value)
 
@@ -278,27 +296,14 @@ export const useAccount = () => {
       this.loginParams.value.password = ''
     }
 
-    #setJson2LoginUser = (resource: UserResource, token?: string | undefined) => {
-      Object.assign(this.loginUser.value, resource)
-      if (token) {
-        this.loginUser.value.token = token
-      }
-    }
-
     setUser = (loginUser: Ref<User>) => {
-      Object.assign(user.value, loginUser.value)
+      copy({ from: loginUser.value, to: user.value })
     }
 
     initTimeZone = () => {
       // console.log(user.value.time_zone)
       user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
       // console.log(user.value.time_zone)
-    }
-
-    #setToken2Cookie = () => {
-      if (this.loginUser.value.token !== this.accessToken.value) {
-        this.accessToken.value = this.loginUser.value.token
-      }
     }
 
     updateProfile = async () => {
@@ -333,8 +338,8 @@ export const useAccount = () => {
       } else if (data) {
         const userAttrs = data
         if (userAttrs) {
-          this.#setJson2LoginUser(userAttrs)
-          this.#setToken2Cookie()
+          setLoginUser({ from: userAttrs })
+          setTokenToCookie()
         }
       }
 
@@ -372,8 +377,8 @@ export const useAccount = () => {
       } else if (data) {
         const userAttrs = data
         if (userAttrs) {
-          this.#setJson2LoginUser(userAttrs)
-          this.#setToken2Cookie()
+          setLoginUser({ from: userAttrs })
+          setTokenToCookie()
         }
       }
 

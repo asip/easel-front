@@ -7,6 +7,7 @@ type ExternalErrorProperty = 'body'
 export function useComment () {
   const { formatTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
+  const { copy, create } = useEntity<Comment, CommentResource>()
 
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearLoginUser } = useAccount()
@@ -21,6 +22,21 @@ export function useComment () {
     created_at: '',
     updated_at: null
   })
+
+  const upCommentTZ = (comment: Comment) => {
+    comment.created_at = formatTZ(comment.created_at)
+    comment.updated_at = formatTZ(comment.updated_at)
+  }
+
+  const createComment = ({ from }: { from: CommentResource }): Comment => {
+    const comment: Comment = create({ from})
+    upCommentTZ(comment)
+    return comment
+  }
+
+  const setComment = ({ from }: { from: CommentResource }) => {
+    copy({ from, to: comment.value})
+  }
 
   const UseComment = class {
     flash: Ref<Flash>
@@ -88,23 +104,11 @@ export function useComment () {
           this.comments.value.splice(0)
           for (const commentAttrs of commentList) {
             // console.log(comment);
-            this.comments.value.push(this.#createCommentFromJson(commentAttrs))
+            this.comments.value.push(createComment({ from: commentAttrs }))
           }
           // console.log(comments);
         }
       }
-    }
-
-    #upCommentTZ = (comment: Comment) => {
-      comment.created_at = formatTZ(comment.created_at)
-      comment.updated_at = formatTZ(comment.updated_at)
-    }
-
-    #createCommentFromJson = (resource: CommentResource): Comment => {
-      const comment: Partial<Comment> = {}
-      Object.assign(comment, resource)
-      this.#upCommentTZ(comment as Comment)
-      return comment as Comment
     }
 
     createComment = async () => {
@@ -135,15 +139,11 @@ export function useComment () {
       this.processing.value = pending
     }
 
-    #setJson2Comment = (resource: CommentResource) => {
-      Object.assign(comment.value, resource)
-    }
-
     setComment = ({ from, to } : { from?: Comment | undefined, to?: Comment}) => {
       if (from) {
-        Object.assign(comment.value, from)
+        copy({ from, to: comment.value })
       } else if (to) {
-        Object.assign(to, comment.value)
+        copy({ from: comment.value, to })
         // globalThis.console.log(comment.value)
         // globalThis.console.log(to)
       }
@@ -172,7 +172,7 @@ export function useComment () {
       } else if (data) {
         const commentAttrs = data
 
-        this.#setJson2Comment(commentAttrs)
+        setComment({ from: commentAttrs })
       }
 
       this.processing.value = pending
