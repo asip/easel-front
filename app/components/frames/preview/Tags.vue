@@ -10,7 +10,7 @@ const modelValue = defineModel<Frame>()
 const { frameQuery, queryMap, searchFrame } = useFrameSearch()
 
 const onClick = async (tag: string) => {
-  frameQuery.value.items.word = tag
+  frameQuery.value.items.tag_name = tag
   frameQuery.value.page = 1
   await navigateTo({ path: '/', query: queryMap.value })
   await searchFrame({ more: true })
