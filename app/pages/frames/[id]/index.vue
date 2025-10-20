@@ -15,7 +15,7 @@ const { loggedIn, loginUser } = useAccount()
 const framer = useFrame()
 const { frame, getFrame } = framer
 const { openModal } = useModal()
-const { formatHTML } = useDatetimeLocalFormat()
+const { formatHTML } = useDatetimeLocal()
 
 provide('framer', framer)
 

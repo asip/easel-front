@@ -5,7 +5,7 @@ type ErrorProperty = 'body' | 'base'
 type ExternalErrorProperty = 'body'
 
 export function useComment () {
-  const { formatTZ } = useTimeZone()
+  const { formatHtmlTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy, create } = useEntity<Comment, CommentResource>()
 
@@ -24,8 +24,8 @@ export function useComment () {
   })
 
   const upCommentTZ = (comment: Comment) => {
-    comment.created_at = formatTZ(comment.created_at)
-    comment.updated_at = formatTZ(comment.updated_at)
+    comment.created_at = formatHtmlTZ(comment.created_at)
+    comment.updated_at = formatHtmlTZ(comment.updated_at)
   }
 
   const createComment = ({ from }: { from: CommentResource }): Comment => {

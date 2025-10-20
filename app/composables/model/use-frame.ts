@@ -5,8 +5,8 @@ type ErrorProperty = 'name' | 'tags' | 'creator_name' | 'file' | 'base'
 type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
 
 export function useFrame() {
-  const { upDTL, downDTL } = useDatetimeLocalFormat()
-  const { upTZ, downTZ, formatTZ } = useTimeZone()
+  const { upDTL, downDTL } = useDatetimeLocal()
+  const { upTZ, downTZ, formatHtmlTZ } = useTimeZone()
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<Frame, FrameResource>()
 
@@ -35,8 +35,8 @@ export function useFrame() {
 
   const upFrameTZ = (frame: Frame) => {
     frame.shooted_at = upTZ(frame.shooted_at)
-    frame.created_at = formatTZ(frame.created_at)
-    frame.updated_at = formatTZ(frame.updated_at)
+    frame.created_at = formatHtmlTZ(frame.created_at)
+    frame.updated_at = formatHtmlTZ(frame.updated_at)
   }
 
   const setFrame = ({ from }: { from: FrameResource }) => {

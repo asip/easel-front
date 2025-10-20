@@ -3,7 +3,7 @@ import { parse, format, tzDate } from '@formkit/tempo'
 export const useTimeZone = () => {
   const runtimeConfig = useRuntimeConfig()
   const { locale } = useLocale()
-  const { formatHTML } = useDatetimeLocalFormat()
+  const { toISO8601, formatHTML } = useDatetimeLocal()
 
   const timeZone = computed(
     () => ({
@@ -16,13 +16,17 @@ export const useTimeZone = () => {
     e => ({ text: e , value: e })
   ))
 
-  const upISO8601 = (datetime: string) => {
-    return format(parse(datetime, 'YYYY/MM/DD HH:mm', locale.value), 'YYYY-MM-DDTHH:mm', locale.value)
+  const tzServerDate = (datetime: string) => {
+    return tzDate(toISO8601(datetime), timeZone.value.server)
+  }
+
+  const tzClientDate = (datetime: string) => {
+    return tzDate(toISO8601(datetime), timeZone.value.client)
   }
 
   const upTZ = (datetime: string | null) => {
     return (timeZone.value.client === timeZone.value.server) ? (datetime ?? '') : (datetime ? format({
-      date: tzDate(upISO8601(datetime), timeZone.value.server),
+      date: tzServerDate(datetime),
       format: 'YYYY/MM/DD HH:mm',
       locale: locale.value,
       tz: timeZone.value.client
@@ -31,23 +35,23 @@ export const useTimeZone = () => {
 
   const downTZ = (datetime: string | null) => {
     return (timeZone.value.client === timeZone.value.server) ? (datetime ?? '') : (datetime ? format({
-      date: tzDate(upISO8601(datetime), timeZone.value.client),
+      date: tzClientDate(datetime),
       format: 'YYYY/MM/DD HH:mm',
       locale: locale.value,
       tz: timeZone.value.server
     }) : '')
   }
 
-  const formatTZ = (datetime: string | null) => {
+  const formatHtmlTZ = (datetime: string | null) => {
     return (timeZone.value.client === timeZone.value.server) ?  formatHTML(datetime) : (datetime ? format({
-      date: tzDate(upISO8601(datetime), timeZone.value.server),
+      date: tzServerDate(datetime),
       format: 'YYYY/MM/DD (ddd) HH:mm',
       locale: locale.value,
       tz: timeZone.value.client
     }) : '')
   }
 
-  return { timeZone, tzOptions, upTZ, downTZ, formatTZ }
+  return { timeZone, tzOptions, upTZ, downTZ, formatHtmlTZ }
 }
 
 // export type UseTimeZoneType = ReturnType<typeof useTimeZone>
