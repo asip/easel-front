@@ -8,7 +8,7 @@ export function useSonner () {
     // console.log(flash.info)
     for (const [messageType, message] of Object.entries(flash)) {
       if (message !== '') {
-        switch (messageType.toString()) {
+        switch (messageType) {
           case 'info':
             // console.log('info')
             setTimeout(
