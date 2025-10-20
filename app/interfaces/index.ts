@@ -1,6 +1,6 @@
-export type { Comment } from './model/comment';
-export type { Frame } from './model/frame'
-export type { User } from './model/user'
+export type { Comment } from './entity/comment';
+export type { Frame } from './entity/frame'
+export type { User } from './entity/user'
 
 export type { FrameQuery } from './query/frame-query'
 export type { AccountFrameQuery } from './query/account-frame-query'
