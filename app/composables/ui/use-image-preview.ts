@@ -2,17 +2,17 @@ type useImagePreviewOptions = {
   target: HTMLInputElement, file: Ref<File | undefined| null>, previewUrl: Ref<string | null | undefined>
 }
 
-export async function useImagePreview ({ target, file, previewUrl } : useImagePreviewOptions) {
-  let blob: Blob | null| undefined
+export function useImagePreview ({ target, file, previewUrl } : useImagePreviewOptions) {
+  // let blob: Blob | null| undefined
   // (アップロードされたデータを取得して変数file.valueに代入します)
   file.value = target.files?.item(0)
   // console.log(file.value?.name)
   // console.log(file?.type)
   // file.ext = file.?.name?.replace(/^.*\./, '').toLowerCase()
-  if (file.value) {
+  /* if (file.value) {
     const buffer = await file.value.arrayBuffer()
     blob = new Blob([buffer], { type: file.value.type })
-  }
+  } */
   if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif)$/)) {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
@@ -24,7 +24,8 @@ export async function useImagePreview ({ target, file, previewUrl } : useImagePr
       previewUrl.value = image?.toString()
     }
     // (DataURIScheme文字列を取得します)
-    if (blob) reader.readAsDataURL(blob)
+    // if (blob) reader.readAsDataURL(blob)
+    reader.readAsDataURL(file.value)
   } else {
     previewUrl.value = null
   }
