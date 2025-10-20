@@ -8,7 +8,7 @@ export function useGLightbox () {
   const { $gLightbox } = useNuxtApp() as any
 
   const initGLightbox = ({ selector }: initGLOptions) => {
-    lightbox = $gLightbox({ selector: selector })
+    lightbox = $gLightbox({ selector })
   }
 
   const closeGLightbox = () => {

@@ -79,7 +79,7 @@ export function useAccountFrames () {
     }
   }
 
-  const self =new  UseAccountFrames()
+  const self = new UseAccountFrames()
 
   return self
 }
