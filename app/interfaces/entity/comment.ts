@@ -1,3 +1,3 @@
-import type { CommentResource } from ".."
+import type { CommentResource } from '..'
 
 export type Comment = CommentResource

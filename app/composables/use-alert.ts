@@ -1,8 +1,8 @@
 import type { FetchError } from 'ofetch'
-import type { NuxtError } from "#app"
+import type { NuxtError } from '#app'
 
-import type { ErrorsResource, Flash } from "~/interfaces";
-import type { ErrorMessages } from "~/types";
+import type { ErrorsResource, Flash } from '~/interfaces';
+import type { ErrorMessages } from '~/types';
 
 interface UseAlertOptions<T extends UseAlertCallerType> {
   flash: Ref<Flash>

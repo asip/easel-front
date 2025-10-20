@@ -1,4 +1,4 @@
-import type { FrameResource } from "./frame-resource"
+import type { FrameResource } from './frame-resource'
 
 export interface FramesResource {
   frames: [FrameResource]

@@ -26,7 +26,7 @@ export const useTimeZone = () => {
       format: 'YYYY/MM/DD HH:mm',
       locale: locale.value,
       tz: timeZone.value.client
-    }) : "")
+    }) : '')
   }
 
   const downTZ = (datetime: string | null) => {
