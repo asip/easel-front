@@ -13,8 +13,6 @@ export type GetAPIOptions = {
 }
 
 export const useGetApi = async <T>({ url, query = {}, token = null, fresh = false, more = false }: GetAPIOptions) => {
-  // let key: string | null = null
-
   const { $api } = useNuxtApp()
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()
@@ -41,22 +39,6 @@ export const useGetApi = async <T>({ url, query = {}, token = null, fresh = fals
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }
-
-  /*
-  if (more) {
-    key = `${url}:${new Date().getTime()}`
-  } else {
-    key = url
-  }
-
-  const { data, error, refresh } = await useAsyncData<T,E>(key, () =>
-    $api(url, options)
-  )
-
-  if (fresh){
-    await refresh()
-  }
-  */
 
   if (more) {
     const data = ref<T>()

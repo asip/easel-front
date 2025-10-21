@@ -25,21 +25,6 @@ export const usePutApi = async <T>({ url, body = {}, token = null }: PutAPIOptio
     tokenRef.value = token
   }
 
-  /*
-  const key = `${url}:${new Date().getTime()}`
-
-  const { data, error, status } = await useAsyncData<T,E>(key, () =>
-    $api(url, {
-      method: 'put',
-      body,
-      headers,
-      onResponse({ response  } : { response: any }) {
-        tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      }
-    })
-  )
-  */
-
   const data = ref<T>()
   const error = ref<FetchError>();
 
@@ -56,7 +41,6 @@ export const usePutApi = async <T>({ url, body = {}, token = null }: PutAPIOptio
     error.value = err as FetchError
   }
 
-  //pending.value = status.value === 'pending'
   pending.value = false
 
   return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }

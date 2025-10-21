@@ -25,21 +25,6 @@ export const usePostApi = async <T>({ url, body = {}, token = null }: PostAPIOpt
     tokenRef.value = token
   }
 
-  /*
-  const key = `${url}:${new Date().getTime()}`
-
-  const { data, error, status } = await useAsyncData<T,E>(key, () =>
-    $api(url, {
-      method: 'post',
-      body,
-      headers,
-      onResponse({ response  } : { response: any }) {
-        if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      }
-    })
-  )
-  */
-
   const data = ref<T>()
   const error = ref<FetchError>();
 
@@ -56,7 +41,6 @@ export const usePostApi = async <T>({ url, body = {}, token = null }: PostAPIOpt
     error.value = err as FetchError
   }
 
-  // pending.value = status.value === 'pending'
   pending.value = false
 
   return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }

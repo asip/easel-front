@@ -22,17 +22,6 @@ export const useDeleteApi = async <T>({ url, token = null }: DeleteAPIOptions) =
     headers.Authorization = `Bearer ${token}`
   }
 
-  /*
-  const key = `${url}:${new Date().getTime()}`
-
-  const { data, error, status } = await useAsyncData<T,E>(key, () =>
-    $api(url, {
-      method: 'delete',
-      headers
-    })
-  )
-  */
-
   const data = ref<T>()
   const error = ref<FetchError>();
 
@@ -45,7 +34,6 @@ export const useDeleteApi = async <T>({ url, token = null }: DeleteAPIOptions) =
     error.value = err as FetchError
   }
 
-  // pending.value = status.value === 'pending'
   pending.value = false
 
   return { data: data.value, error: error.value, pending: pending.value }
