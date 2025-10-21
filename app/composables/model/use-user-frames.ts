@@ -3,6 +3,10 @@ import type { Frame, FrameResource, FramesResource, UserFrameQuery } from '~/int
 export function useUserFrames () {
   const { create } = useEntity<Frame, FrameResource>()
 
+  const { flash, clearFlash } = useFlash()
+
+  const { setAlert } = useAlert({ flash })
+
   const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
     return {
       user_id: null,
@@ -13,10 +17,6 @@ export function useUserFrames () {
   })
 
   const frames = ref<Frame[]>([])
-
-  const { flash, clearFlash } = useFlash()
-
-  const { setAlert } = useAlert({ flash })
 
   const getFrames = async (userId: string | undefined, options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {

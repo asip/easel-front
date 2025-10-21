@@ -4,9 +4,9 @@ import type { NuxtError } from '#app'
 import type { ErrorsResource, Flash } from '~/interfaces';
 import type { ErrorMessages } from '~/types';
 
-interface UseAlertOptions<T extends UseAlertCallerType> {
+interface UseAlertOptions {
   flash: Ref<Flash>
-  caller?: T
+  caller?: UseAlertCallerType
 }
 
 interface UseAlertCallerType {
@@ -18,7 +18,7 @@ type AlertOptions = {
   error: NuxtError | FetchError, off?: boolean
 }
 
-export function useAlert<T extends UseAlertCallerType>({ flash, caller } : UseAlertOptions<T>) {
+export function useAlert({ flash, caller } : UseAlertOptions) {
   const { $i18n } = useNuxtApp()
 
   const setAlert = function({ error, off = false } : AlertOptions) {

@@ -3,6 +3,10 @@ import type { User, UserResource } from '~/interfaces'
 export const useUser = () => {
   const { copy } = useEntity<User, UserResource>()
 
+  const { flash, clearFlash } = useFlash()
+
+  const { setAlert } = useAlert({ flash })
+
   const user = ref<User>(
     {
       name: '',
@@ -20,10 +24,6 @@ export const useUser = () => {
       social_login: false
     }
   )
-
-  const { flash, clearFlash } = useFlash()
-
-  const { setAlert } = useAlert({ flash })
 
   const getUser = async (id: string) => {
     const { data, error } = await useGetApi<UserResource>({

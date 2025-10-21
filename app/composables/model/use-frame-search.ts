@@ -3,6 +3,9 @@ import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfa
 export const useFrameSearch = () => {
   const { create } = useEntity<Frame, FrameResource>()
 
+  const { flash, clearFlash } = useFlash()
+  const { setAlert } = useAlert({ flash })
+
   const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
       items: {},
@@ -52,10 +55,6 @@ export const useFrameSearch = () => {
   }
 
   const frames = useState<Frame[]>('frames', () => { return [] })
-
-  const { flash, clearFlash } = useFlash()
-
-  const { setAlert } = useAlert({ flash })
 
   const searchFrame = async (options?: { more?: boolean }) => {
     const getOptions: GetAPIOptions = {
