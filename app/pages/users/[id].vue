@@ -6,10 +6,11 @@ const { id } = route.params
 const ref = route.query.ref
 const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
 
+const { setFlash } = useSonner()
 const { user, getUser } = useUser()
 const { loggedIn, loginUser } = useAccount()
 const { queryMap } = useFrameSearch()
-const { following, follow, unfollow, isFollowing } = useFollow()
+const { flash, following, follow, unfollow, isFollowing } = useFollow()
 
 const userId = id?.toString()
 
@@ -31,10 +32,12 @@ const onPageBack = async () => {
 
 const onFollowClick = async () => {
   await follow(user.value.id)
+  setFlash(flash.value)
 }
 
 const onUnfollowClick = async () => {
   await unfollow(user.value.id)
+  setFlash(flash.value)
 }
 </script>
 
