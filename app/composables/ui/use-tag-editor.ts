@@ -10,7 +10,6 @@ export function useTagEditor ({ key }: useTagEditorOptions) {
   const { $tagify } = useNuxtApp() as any
 
   const initTagEditor = (tags: Ref<string[] | undefined>) => {
-
     if (tagEditorRef.value) {
       tagEditor = new $tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
         maxTags: 5,
