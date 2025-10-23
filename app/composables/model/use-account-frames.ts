@@ -8,7 +8,7 @@ export function useAccountFrames () {
 
   const { setAlert } = useAlert({ flash, caller: { clearLoginUser } })
 
-  const createFrame = ({ from }: { from: FrameResource }) : Frame => {
+  const makeFrame = ({ from }: { from: FrameResource }) : Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
@@ -56,7 +56,7 @@ export function useAccountFrames () {
         frames.value.splice(0)
         for (const frame of frameList) {
           // console.log(comment);
-          frames.value.push(createFrame({ from: frame }))
+          frames.value.push(makeFrame({ from: frame }))
         }
         // console.log(frames)
       }

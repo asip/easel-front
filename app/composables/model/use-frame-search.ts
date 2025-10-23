@@ -6,6 +6,14 @@ export const useFrameSearch = () => {
   const { flash, clearFlash } = useFlash()
   const { setAlert } = useAlert({ flash })
 
+  const makeFrame = ( { from }: { from: FrameResource }) : Frame => {
+    const frame: Frame = create({ from })
+    frame.tags = frame.tag_list?.split(',') ?? []
+    frame.file = null
+    frame.preview_url = null
+    return frame
+  }
+
   const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
       items: {},
@@ -76,7 +84,7 @@ export const useFrameSearch = () => {
       if (frameList) {
         frames.value.splice(0)
         for (const frameAttrs of frameList) {
-          frames.value.push(createFrame({ from: frameAttrs }))
+          frames.value.push(makeFrame({ from: frameAttrs }))
         }
         // console.log(frames)
       }
@@ -85,14 +93,6 @@ export const useFrameSearch = () => {
         frameQuery.value.total = meta.pagination.count
       }
     }
-  }
-
-  const createFrame = ( { from }: { from: FrameResource }) : Frame => {
-    const frame: Frame = create({ from })
-    frame.tags = frame.tag_list?.split(',') ?? []
-    frame.file = null
-    frame.preview_url = null
-    return frame
   }
 
   return {

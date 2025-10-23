@@ -7,6 +7,13 @@ export function useUserFrames () {
 
   const { setAlert } = useAlert({ flash })
 
+  const makeFrame = ({ from }: { from: FrameResource }) : Frame => {
+    const frame: Frame = create({ from })
+    frame.file = null
+    frame.preview_url = null
+    return frame
+  }
+
   const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
     return {
       user_id: null,
@@ -48,7 +55,7 @@ export function useUserFrames () {
         frames.value.splice(0)
         for (const frame of frameList) {
         // console.log(comment);
-          frames.value.push(createFrame({ from: frame }))
+          frames.value.push(makeFrame({ from: frame }))
         }
       // console.log(frames)
       }
@@ -57,13 +64,6 @@ export function useUserFrames () {
         frameQuery.value.total = meta.pagination.count
       }
     }
-  }
-
-  const createFrame = ({ from }: { from: FrameResource }) : Frame => {
-    const frame: Frame = create({ from })
-    frame.file = null
-    frame.preview_url = null
-    return frame
   }
 
   return {
