@@ -119,7 +119,7 @@ export const useAccount = () => {
     accessToken.value = null
   }
 
-  const setUser = (loginUser: Ref<User>) => {
+  const setUser = () => {
     copy({ from: loginUser.value, to: user.value })
   }
 

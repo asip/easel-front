@@ -8,14 +8,14 @@ const onCloseClick = () => {
 
 const onEditClick = () => {
   closeModal('#profile_modal')
-  setUser(loginUser)
+  setUser()
   initTimeZone()
   openModal('#edit_profile_modal')
 }
 
 const onEditPasswordClick = () => {
   closeModal('#profile_modal')
-  setUser(loginUser)
+  setUser()
   openModal('#edit_password_modal')
 }
 
