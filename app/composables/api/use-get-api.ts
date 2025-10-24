@@ -1,4 +1,4 @@
-import type { FetchError } from 'ofetch'
+import type { FetchError, FetchResponse } from 'ofetch'
 
 interface SearchParams {
   [key: string]: any
@@ -35,7 +35,7 @@ export const useGetApi = async <T>({ url, query = {}, token = null, fresh = fals
     method: 'get',
     query,
     headers,
-    onResponse({ response  } : { response: any }) {
+    onResponse({ response  } : { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }
