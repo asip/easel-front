@@ -70,7 +70,7 @@ const onDeleteClick = async () => {
   if (commentModel.value) { await deleteComment(commentModel.value) }
   setFlash(flash.value)
   if (isSuccess()) {
-    await getComments(commentModel.value?.frame_id, { fresh: true })
+    await getComments(commentModel.value?.frame_id, { more: true })
   }
 }
 </script>

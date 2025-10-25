@@ -73,11 +73,11 @@ export function useComment () {
 
   const processing = ref<boolean>(false)
 
-  const getComments = async (frameId: number | null |undefined, options?: { fresh?: boolean }) => {
+  const getComments = async (frameId: number | null |undefined, options?: { more?: boolean,  }) => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource>({
       url: `/frames/${frameId}/comments`,
-      fresh: options?.fresh
+      more: options?.more
     })
 
     clearFlash()

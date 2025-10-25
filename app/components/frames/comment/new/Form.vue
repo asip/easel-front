@@ -36,7 +36,7 @@ const onCreateCommentClick = async () => {
       editor.value?.focus()
       r$.$touch()
       r$.$reset()
-      await getComments(frameId, { fresh: true })
+      await getComments(frameId, { more: true })
     }
   }
 }
