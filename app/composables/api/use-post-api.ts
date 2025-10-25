@@ -1,47 +1,7 @@
-import type { FetchError, FetchResponse } from 'ofetch'
-
 type PostAPIOptions = {
   url:string, body?: Record<string, any> | FormData, token?: string | null
 }
 
 export const usePostApi = async <T>({ url, body = {}, token = null }: PostAPIOptions) => {
-  const { $api } = useNuxtApp()
-  const { locale } = useLocale()
-  const { timeZone } = useTimeZone()
-
-  const tokenRef = ref<string>()
-
-  const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'Accept-Language': locale.value,
-    'Time-Zone': timeZone.value.client
-  }
-
-  const pending = ref<boolean>(true)
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`
-    tokenRef.value = token
-  }
-
-  const data = ref<T>()
-  const error = ref<FetchError>();
-
-  try {
-    data.value = await $api(url, {
-      method: 'post',
-      body,
-      headers,
-      onResponse({ response  } : { response: FetchResponse<T> }) {
-        if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      }
-    })
-  } catch(err: any) {
-    error.value = err as FetchError
-  }
-
-  pending.value = false
-
-  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
+  return useMutationApi<T>({ url, method: 'post', body, token })
 }

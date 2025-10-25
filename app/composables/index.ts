@@ -1,8 +1,11 @@
 export type { GetAPIOptions } from './api/use-get-api'
+export type { QueryAPIOptions } from './api/use-query-api'
 
 export { useDeleteApi } from './api/use-delete-api'
 export { useGetApi } from './api/use-get-api'
+export { useMutationApi } from './api/use-mutation-api'
 export { usePostApi } from './api/use-post-api'
+export { useQueryApi} from './api/use-query-api'
 export { usePutApi } from './api/use-put-api'
 
 export { useDropdown } from './ui/use-dropdown'
