@@ -1,5 +1,8 @@
 <script setup lang="ts">
+const route = useRoute()
+
 const { setFlash } = useSonner()
+const { referers } = useReferer()
 const { loggedIn } = useAccount()
 const { frame, file, previewUrl, tags,  comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
@@ -30,7 +33,7 @@ const onCreateClick = async () => {
     if (isSuccess()) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {
-      await navigateTo('/')
+      await navigateTo(referers.value[route.path])
     }
   }
 }

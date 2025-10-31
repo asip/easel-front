@@ -1,6 +1,7 @@
-export default defineNuxtRouteMiddleware(async (to, _from) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
   const { autoDetect } = useLocale()
   const { loggedIn, loginUser, authenticate } = useAccount()
+  const { referers } = useReferer()
   const { frame, getFrame } = useFrame()
 
   autoDetect()
@@ -8,6 +9,15 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
 
   if ((to.path === '/account/frames' || to.path === '/frames/new') && !loggedIn.value) {
     return navigateTo('/')
+  }
+
+  if ((to.path === '/frames/new' || to.path === '/account/frames') && loggedIn.value) {
+    if (to.path !== from.path){
+      referers.value[to.path] = from.path
+    } else {
+      referers.value[to.path] = '/'
+    }
+    // console.log(referers)
   }
 
   if (to.path.match(/^\/frames\/\d+\/edit$/)) {
