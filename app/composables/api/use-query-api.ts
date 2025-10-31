@@ -14,17 +14,11 @@ export type QueryAPIOptions = {
 
 export const useQueryApi = async <T>({ url, query = {}, token = null, fresh = false, more = false }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
-  const { locale } = useLocale()
-  const { timeZone } = useTimeZone()
+  const { commonHeaders } = useConstants()
 
   const tokenRef = ref<string>()
 
-  const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'Accept-Language': locale.value,
-    'Time-Zone': timeZone.value.client
-  }
+  const headers: Record<string, string> = commonHeaders.value
 
   if (token) {
     headers.Authorization = `Bearer ${token}`

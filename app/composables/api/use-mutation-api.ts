@@ -9,15 +9,9 @@ type MutationAPIOptions = {
 
 export const useMutationApi = async <T>({ method, url, body = {}, token = null }: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
-  const { locale } = useLocale()
-  const { timeZone } = useTimeZone()
+  const { commonHeaders } = useConstants()
 
-  const headers: Record<string, string> = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'Accept-Language': locale.value,
-    'Time-Zone': timeZone.value.client
-  }
+  const headers: Record<string, string> = commonHeaders.value
 
   const pending = ref<boolean>(true)
 
