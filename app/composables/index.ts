@@ -17,9 +17,9 @@ export { useQuill } from './ui/use-quill'
 export { useTagEditor } from './ui/use-tag-editor'
 export { useSonner } from './ui/use-sonner'
 
-export { useCommentRules } from './validation/forms/use-comment-rules'
-export { useFrameRules } from './validation/forms/use-frame-rules'
-export { useAccountRules } from './validation/forms/use-account-rules'
+export { useCommentRules } from './model/validation/use-comment-rules'
+export { useFrameRules } from './model/validation/use-frame-rules'
+export { useAccountRules } from './model/validation/use-account-rules'
 
 export { useAccount } from './model/use-account'
 export { useAccountFrames } from './model/use-account-frames'
