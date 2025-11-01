@@ -73,7 +73,7 @@ const updateContent = (content: string) => {
           </div>
         </div>
         <form>
-          <div class="flex justify-center">
+          <div class="flex justify-center wrap-break-word">
             <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
               <Editor
                 ref="editor"

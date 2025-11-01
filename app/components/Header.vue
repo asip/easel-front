@@ -45,7 +45,7 @@ const onTopPageClick = async () => {
       :duration="2000"
     />
   </ClientOnly>
-  <div class="sticky top-0 drawer drawer-end z-[1000]">
+  <div class="sticky top-0 drawer drawer-end z-1000">
     <input id="search-sidebar" type="checkbox" class="drawer-toggle">
     <div class="drawer-content flex flex-col">
       <div class="navbar bg-base-100 shadow">
@@ -73,7 +73,7 @@ const onTopPageClick = async () => {
                 >
               </span>
             </summary>
-            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-[999]">
+            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-999">
               <li>
                 <a
                   href="#"

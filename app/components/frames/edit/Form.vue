@@ -130,7 +130,7 @@ const updateContent = (content: string) => {
                 class=""
               >{{ $t('model.frame.comment') }}：</label>
             </td>
-            <td class="break-words">
+            <td class="wrap-break-word">
               <div class="rounded-[5px]" style="border: 1px solid lavender;">
                 <Editor
                   ref="editor"
