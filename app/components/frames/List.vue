@@ -11,7 +11,6 @@ router.push({ path: '/', query: queryMap.value })
 const clickCallback = async (pageNum: number) => {
   frameQuery.value.page = pageNum
   await navigateTo({ path: '/', query: queryMap.value })
-  await searchFrame({ more: true })
 }
 
 onMounted(() => {

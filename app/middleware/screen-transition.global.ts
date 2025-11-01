@@ -1,8 +1,10 @@
+import { useFrameSearch } from './../composables/model/use-frame-search';
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const { autoDetect } = useLocale()
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { referers } = useReferer()
   const { frame, getFrame } = useFrame()
+  const { searchFrame } = useFrameSearch()
 
   autoDetect()
   await authenticate()
@@ -13,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if ((to.path === '/frames/new' || to.path === '/account/frames') && loggedIn.value) {
     if (to.path !== from.path){
-      referers.value[to.path] = from.path
+      referers.value[to.path] = from.fullPath
     } else {
       referers.value[to.path] = '/'
     }
@@ -26,6 +28,12 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
     if (!loggedIn.value || frame.value.user_id != loginUser.value.id) {
       return navigateTo(`/frames/${frameId}`)
+    }
+  }
+
+  if (to.path === '/') {
+    if (import.meta.client) {
+      await searchFrame({ more: true })
     }
   }
 })

@@ -3,7 +3,7 @@ const route = useRoute()
 
 const account = useAccount()
 const { loginUser, loggedIn, logout } = account
-const { frameQuery, queryMap, searchFrame } = useFrameSearch()
+const { frameQuery, queryMap } = useFrameSearch()
 
 const { closeDropdown } = useDropdown({ key: 'dropdown' })
 const { openModal } = useModal()
@@ -33,7 +33,6 @@ const onTopPageClick = async () => {
   frameQuery.value.page = 1
   // frameQuery.value.pages = 1
   await navigateTo({ path: '/', query: queryMap.value })
-  await searchFrame({ more: true })
 }
 </script>
 
