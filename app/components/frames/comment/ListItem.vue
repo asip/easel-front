@@ -136,7 +136,7 @@ const onDeleteClick = async () => {
         </div>
         <form v-else>
           <div class="flex justify-start">
-            <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
+            <div class="w-full rounded-[5px] editor-border">
               <Editor
                 ref="editor"
                 v-model="body"

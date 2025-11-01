@@ -68,8 +68,7 @@ const onTopPageClick = async () => {
                 <img
                   :src="`${loginUser?.image_thumb_url}`"
                   :alt="loginUser.name"
-                  class="rounded"
-                  style="width:40px;height:40px;display: inline"
+                  class="rounded w-10 h-10 inline"
                 >
               </span>
             </summary>

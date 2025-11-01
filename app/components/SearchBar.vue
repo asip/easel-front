@@ -82,7 +82,7 @@ const onClearClick = async () => {
                 </td>
               </tr>
               <tr>
-                <td style="width: 9em;">
+                <td class="w-[9em]">
                   <label
                     for="frame_name"
                     class=""

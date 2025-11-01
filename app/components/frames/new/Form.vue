@@ -53,7 +53,7 @@ const updateContent = (content: string) => {
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td style="width: 9em;">
+            <td class="w-[9em]">
               <label
                 for="file"
                 class=""
@@ -163,7 +163,7 @@ const updateContent = (content: string) => {
               >{{ $t('model.frame.comment') }}：</label>
             </td>
             <td class="wrap-break-word">
-              <div class="rounded-[5px]" style="border: 1px solid lavender;">
+              <div class="rounded-[5px] editor-border">
                   <Editor
                     ref="editor"
                     v-model="comment"

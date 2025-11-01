@@ -35,8 +35,7 @@ onUnmounted(() => {
       <img
         :src="`${modelValue?.image_three_url}`"
         alt=""
-        class="mx-auto"
-        style="width:100px;height:100px;"
+        class="mx-auto w-[100px] h-[100px]"
       >
     </NuxtLink>
   </div>
@@ -47,8 +46,7 @@ onUnmounted(() => {
     <img
       :src="`${modelValue?.image_three_url}`"
       alt=""
-      class="mx-auto"
-      style="width:100px;height:100px;"
+      class="mx-auto w-[100px] h-[100px]"
     >
   </div>
 </template>

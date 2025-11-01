@@ -43,7 +43,7 @@ defineExpose({ clearForm })
       <table class="table table-bordered table-rounded">
         <tbody>
           <tr>
-            <td style="width: 9em;">
+            <td class="w-[9em]">
               <label
                 for="image"
                 class=""

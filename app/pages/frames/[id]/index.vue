@@ -88,7 +88,7 @@ const onDeleteClick = () => {
             <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
               <tbody>
                 <tr>
-                  <td style="width: 9em;">
+                  <td class="w-[9em]">
                     {{ $t('model.frame.name') }}：
                   </td>
                   <td>

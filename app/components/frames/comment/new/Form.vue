@@ -62,8 +62,7 @@ const updateContent = (content: string) => {
               <img
                 :src="`${loginUser.image_thumb_url}`"
                 :alt="loginUser.name"
-                class="rounded"
-                style="width:20px;height:20px;"
+                class="rounded w-5 h-5"
                 decoding="async"
               >
             </div>
@@ -74,7 +73,7 @@ const updateContent = (content: string) => {
         </div>
         <form>
           <div class="flex justify-center wrap-break-word">
-            <div class="w-full rounded-[5px]" style="border: 1px solid lavender;">
+            <div class="w-full rounded-[5px] editor-border">
               <Editor
                 ref="editor"
                 v-model="body"
