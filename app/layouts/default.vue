@@ -16,7 +16,7 @@ useHead(
 </script>
 
 <template>
-  <div class="min-h-[100vh]">
+  <div class="min-h-screen">
     <Header />
     <div class="container mx-auto bg-aliceblue-200">
       <slot />
