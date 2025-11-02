@@ -11,7 +11,7 @@ const onFlipClick = () => {
 
 <template>
   <div class="card-body">
-    <div v-if="front">
+    <div v-show="front">
       <figure class="flex justify-center">
         <NuxtLink
           :to="`${frame?.file_url}`"
@@ -25,7 +25,7 @@ const onFlipClick = () => {
         </NuxtLink>
       </figure>
     </div>
-    <div v-else>
+    <div v-show="!front">
       <div class="flex justify-center flex-wrap mb-1">
         <FramesPreviewTags v-model="frame" :list="true" />
       </div>
