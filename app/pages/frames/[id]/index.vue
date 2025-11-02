@@ -83,7 +83,9 @@ const onDeleteClick = () => {
             :original="true"
             :photoswipe="true"
           />
-          <FramesPreviewTags v-model="frame" />
+          <div class="flex justify-center flex-wrap mb-1">
+            <FramesPreviewTags v-model="frame" />
+          </div>
           <div class="flex justify-center">
             <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
               <tbody>

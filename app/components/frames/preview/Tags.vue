@@ -17,15 +17,15 @@ const onClick = async (tag: string) => {
 </script>
 
 <template>
-  <div v-if="list" class="flex justify-end flex-wrap mb-1 gap-1">
-    <span
+  <div v-if="list" class="flex justify-center flex-wrap gap-1">
+    <div
       v-for="(tag, idx) in modelValue?.tags"
       :key="idx"
     >
       <a href="#" @click.prevent="onClick(tag)"><span class="badge badge-sm badge-outline badge-accent hover:badge-primary truncate rounded-full">{{ tag }}</span></a>
-    </span>
+    </div>
   </div>
-  <div v-else class="flex justify-center flex-wrap mb-1 gap-1">
+  <div v-else class="flex flex-wrap gap-1">
     <div
       v-for="(tag, idx) in modelValue?.tags"
       :key="idx"
