@@ -27,6 +27,7 @@ export function useFrame() {
     file_url: '',
     file_two_url: '',
     file_three_url: '',
+    file_six_url: '',
     preview_url: null,
     private: false,
     created_at: '',

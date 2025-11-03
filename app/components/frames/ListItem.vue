@@ -18,7 +18,7 @@ const onFlipClick = () => {
           class="lb w-full"
         >
           <img
-            :src="`${frame?.file_two_url}`"
+            :src="`${frame?.file_six_url}`"
             :alt="frame?.name"
             class="w-full h-auto"
           >

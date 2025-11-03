@@ -10,6 +10,7 @@ export interface FrameResource {
   file_url: string | null | undefined
   file_two_url: string | undefined
   file_three_url: string | undefined
+  file_six_url: string | undefined
   private: boolean
   created_at: string
   updated_at: string | null
