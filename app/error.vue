@@ -30,10 +30,33 @@ const error = useError()
     font-weight: 400;
     letter-spacing: -0.0025em;
     line-height: 1.4;
-    min-height: 100vh;
+    min-height: 100dvh;
     place-items: center;
     text-rendering: optimizeLegibility;
     -webkit-text-size-adjust: 100%;
+  }
+
+  #error-description {
+    fill: #d30001;
+  }
+
+  #error-id {
+    fill: #f0eff0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #101010;
+      color: #e0e0e0;
+    }
+
+    #error-description {
+      fill: #FF6161;
+    }
+
+    #error-id {
+      fill: #2c2c2c;
+    }
   }
 
   b, strong {
