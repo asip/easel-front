@@ -12,17 +12,19 @@
   color: black;
 }
 .paginate-buttons:hover {
-  background-color: #d8d8d8;
-}
-.active-page {
-  background-color: #3498db;
-  border: 1px solid #3498db;
+  background-color: lightcyan;
   color: white;
 }
+.active-page {
+  background-color: white;
+  border: 1px solid lightblue;
+  color: lightblue;
+}
 .active-page:hover {
-  background-color: #2988c8;
+  background-color: lightcyan;
+  color: white;
 }
 .back-button:active,
 .next-button:active {
-  background-color: #c4c4c4;
+  background-color: lightcyan;
 }
