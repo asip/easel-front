@@ -64,9 +64,9 @@ const onDeleteAccountClick = () => {
         {{ $t('model.user.model_name') }}
       </div>
       <div class="flex justify-center border border-white">
-        <UsersPreviewImage
+        <PreviewImage
           v-model="loginUser"
-          :original="false"
+          :small="true"
         />
       </div>
       <div class="flex justify-center">

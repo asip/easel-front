@@ -78,7 +78,7 @@ const onDeleteClick = () => {
               </NuxtLink>
             </div>
           </div>
-          <FramesPreviewImage
+          <PreviewImage
             v-model="frame"
             :original="true"
             :photoswipe="true"
