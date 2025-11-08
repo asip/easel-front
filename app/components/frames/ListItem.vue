@@ -27,7 +27,7 @@ const onFlipClick = () => {
     </div>
     <div v-show="!front">
       <div class="flex justify-center flex-wrap mb-1">
-        <FramesPreviewTags v-model="frame" :list="true" />
+        <PreviewTags v-model="frame" :list="true" />
       </div>
       <div class="flex justify-center">
         <NuxtLink :to="`/users/${frame?.user_id}`">
