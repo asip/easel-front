@@ -42,7 +42,7 @@ const onFlipClick = () => {
         class=""
         @click="onFlipClick"
       >
-        <i class="bi bi-arrow-right-circle" />
+        <i class="bi bi-arrow-right-circle text-accent hover:text-primary" />
       </button>
       <button
         v-else
@@ -50,7 +50,7 @@ const onFlipClick = () => {
         class=""
         @click="onFlipClick"
       >
-        <i class="bi bi-arrow-left-circle" />
+        <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
       </button>
       <NuxtLink
         :to="`/frames/${frame?.id}`"
