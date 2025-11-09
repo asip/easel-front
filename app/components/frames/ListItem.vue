@@ -4,6 +4,15 @@ import type { Frame } from '~/interfaces'
 const front = ref(true)
 const frame = defineModel<Frame>()
 
+const image = useTemplateRef('image')
+const imageHeight = ref<number | undefined>(0)
+
+onMounted(() => {
+  if (import.meta.client && image.value) {
+    imageHeight.value = image.value?.height
+  }
+})
+
 const onFlipClick = () => {
   front.value = !front.value
 }
@@ -18,6 +27,7 @@ const onFlipClick = () => {
           class="lb w-full"
         >
           <img
+            ref="image"
             :src="`${frame?.file_six_url}`"
             :alt="frame?.name"
             class="w-full h-auto"
@@ -25,16 +35,20 @@ const onFlipClick = () => {
         </NuxtLink>
       </figure>
     </div>
-    <div v-show="!front">
-      <div class="flex justify-center flex-wrap mb-1">
-        <PreviewTags v-model="frame" :list="true" />
+    <ClientOnly>
+      <div v-show="!front" class="flex items-center" :style="`height: ${imageHeight}px`">
+        <div class="flex flex-col mx-auto">
+          <div class="flex justify-center flex-wrap mb-1">
+            <PreviewTags v-model="frame" :list="true" />
+          </div>
+          <div class="flex justify-center">
+            <NuxtLink :to="`/users/${frame?.user_id}`">
+              <div class="badge badge-outline badge-accent hover:badge-primary truncate rounded-full">{{ frame?.user_name }}</div>
+            </NuxtLink>
+          </div>
+        </div>
       </div>
-      <div class="flex justify-center">
-        <NuxtLink :to="`/users/${frame?.user_id}`">
-          <div class="badge badge-outline badge-accent hover:badge-primary truncate rounded-full">{{ frame?.user_name }}</div>
-        </NuxtLink>
-      </div>
-    </div>
+    </ClientOnly>
     <div class="flex justify-center gap-1">
       <button
         v-if="front"
