@@ -38,8 +38,7 @@ describe('frames/:id/edit', () => {
         "name": "Vue.js + TS",
         "comment": "",
         "private": false,
-        "tag_list": "vue.js,ts",
-        "tags": [
+        "tag_list": [
           "vue.js",
           "ts"
         ],

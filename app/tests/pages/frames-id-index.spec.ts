@@ -48,8 +48,7 @@ describe('frames/:id/index', async () => {
         "name": "Vue.js + TS",
         "comment": "",
         "private": false,
-        "tag_list": "vue.js,ts",
-        "tags": [
+        "tag_list": [
           "vue.js",
           "ts"
         ],

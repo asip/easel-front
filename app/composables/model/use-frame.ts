@@ -1,7 +1,7 @@
 import type { Frame, FrameResource, Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-type ErrorProperty = 'name' | 'tags' | 'creator_name' | 'file' | 'base'
+type ErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file' | 'base'
 type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
 
 export function useFrame() {
@@ -18,8 +18,7 @@ export function useFrame() {
     user_id: null,
     user_name: '',
     name: '',
-    tag_list: '',
-    tags: [],
+    tag_list: [],
     comment: '',
     creator_name: '',
     shooted_at: '',
@@ -56,13 +55,12 @@ export function useFrame() {
     }
   })
 
-  const tags = computed<string[]>({
+  const tagList = computed<string[]>({
     get () {
-      return frame.value.tags
+      return frame.value.tag_list
     },
     set (value: string[]) {
-      frame.value.tags = value
-      frame.value.tag_list = value.join(',')
+      frame.value.tag_list = value
     }
   })
 
@@ -96,13 +94,12 @@ export function useFrame() {
 
   const setFrame = ({ from }: { from: FrameResource }) => {
     copy({ from, to: frame.value })
-    frame.value.tags = frame.value.tag_list?.split(',') ?? []
     upFrameTZ(frame.value)
   }
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     name: [],
-    tags: [],
+    tag_list: [],
     creator_name: [],
     file: [],
     base: []
@@ -112,13 +109,13 @@ export function useFrame() {
     externalErrors.value.file = errors.file ?? []
     externalErrors.value.name = errors.name ?? []
     externalErrors.value.creator_name = errors.creator_name ?? []
-    externalErrors.value.tags = errors.tag_list ?? []
+    externalErrors.value.tag_list = errors.tag_list ?? []
   }
 
   const clearExternalErrors = () => {
     externalErrors.value.file = []
     externalErrors.value.name = []
-    externalErrors.value.tags = []
+    externalErrors.value.tag_list = []
     externalErrors.value.creator_name = []
     externalErrors.value.base = []
   }
@@ -198,7 +195,7 @@ export function useFrame() {
       formData.append('frame[name]', frame.value.name)
     }
     if (frame.value.tag_list) {
-      formData.append('frame[tag_list]', frame.value.tag_list)
+      formData.append('frame[tag_list]', frame.value.tag_list.join(','))
     }
     if (frame.value.comment) {
       formData.append('frame[comment]', frame.value.comment)
@@ -237,7 +234,7 @@ export function useFrame() {
     let result = true
 
     if (externalErrors.value.file.length > 0 || externalErrors.value.name.length > 0 ||
-      externalErrors.value.tags.length > 0 || externalErrors.value.creator_name.length > 0 ||
+      externalErrors.value.tag_list.length > 0 || externalErrors.value.creator_name.length > 0 ||
       externalErrors.value.base.length > 0
     ) {
       result = false
@@ -256,7 +253,7 @@ export function useFrame() {
     const postData = {
       frame: {
         name: frame.value.name,
-        tag_list: frame.value.tag_list,
+        tag_list: frame.value.tag_list.join(','),
         comment: frame.value.comment,
         creator_name: frame.value.creator_name,
         shooted_at: downTZ(frame.value.shooted_at)
@@ -304,7 +301,7 @@ export function useFrame() {
   return {
     frame,
     file,
-    tags,
+    tagList,
     previewUrl,
     comment,
     shootedAt,

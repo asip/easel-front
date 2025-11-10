@@ -4,7 +4,7 @@ const route = useRoute()
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
-const { frame, file, previewUrl, tags,  comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, file, previewUrl, tagList,  comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
 
 const editor = useTemplateRef('editor')
@@ -12,7 +12,6 @@ const editor = useTemplateRef('editor')
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
 // console.log(frame)
-// console.log(frame.tags)
 // console.log(frame.tag_list)
 
 const onSelectFile = (evt: Event) => {
@@ -109,9 +108,9 @@ const updateContent = (content: string) => {
               >{{ $t('model.frame.tag_list') }}：</label>
             </td>
             <td>
-              <TagEdit v-model="tags" />
+              <TagEdit v-model="tagList" />
               <div
-                v-for="error of r$.tags.$errors"
+                v-for="error of r$.tag_list.$errors"
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>

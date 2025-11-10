@@ -17,8 +17,7 @@ describe('index', () => {
             "name": "hanabi",
             "comment": "<p>testtest</p>",
             "private": false,
-            "tag_list": "fireworks",
-            "tags": [
+            "tag_list": [
               "fireworks"
             ],
             "shooted_at": "",
@@ -35,8 +34,7 @@ describe('index', () => {
             "name": "Vue.js + TS",
             "comment": "",
             "private": false,
-            "tag_list": "vue.js,ts",
-            "tags": [
+            "tag_list": [
               "vue.js",
               "ts"
             ],
@@ -54,8 +52,7 @@ describe('index', () => {
             "name": "nuxt studio",
             "comment": "",
             "private": false,
-            "tag_list": "nuxt",
-            "tags": [
+            "tag_list": [
               "nuxt"
             ],
             "shooted_at": "",
@@ -72,8 +69,7 @@ describe('index', () => {
             "name": "nuxt cheat sheet",
             "comment": "",
             "private": false,
-            "tag_list": "nuxt",
-            "tags": [
+            "tag_list": [
               "nuxt"
             ],
             "shooted_at": "",
@@ -90,8 +86,7 @@ describe('index', () => {
             "name": "vue3.4-4",
             "comment": "",
             "private": false,
-            "tag_list": "vue.js",
-            "tags": [
+            "tag_list": [
               "vue.js"
             ],
             "shooted_at": "",
@@ -108,8 +103,7 @@ describe('index', () => {
             "name": "vue3.4-3",
             "comment": "",
             "private": false,
-            "tag_list": "vue.js",
-            "tags": [
+            "tag_list": [
               "vue.js"
             ],
             "shooted_at": "",
@@ -126,8 +120,7 @@ describe('index', () => {
             "name": "vue3.4-2",
             "comment": "",
             "private": false,
-            "tag_list": "vue.js",
-            "tags": [
+            "tag_list": [
               "vue.js"
             ],
             "shooted_at": "",
@@ -144,8 +137,7 @@ describe('index', () => {
             "name": "vue3.4-1",
             "comment": "",
             "private": false,
-            "tag_list": "vue.js",
-            "tags": [
+            "tag_list": [
               "vue.js"
             ],
             "shooted_at": "",
@@ -162,8 +154,7 @@ describe('index', () => {
             "name": "pinia cheatseat",
             "comment": "",
             "private": false,
-            "tag_list": "pinia",
-            "tags": [
+            "tag_list": [
               "pinia"
             ],
             "shooted_at": "",
@@ -180,8 +171,7 @@ describe('index', () => {
             "name": "solidjs signal",
             "comment": "",
             "private": false,
-            "tag_list": "js,solid",
-            "tags": [
+            "tag_list": [
               "js",
               "solid"
             ],

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn } = useAccount()
-const { frame, tags, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, tagList, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
@@ -9,7 +9,6 @@ const editor: Ref = useTemplateRef('editor')
 const { r$ } = useI18nRegle(frame, editFrameRules)
 
 // console.log(frame)
-// console.log(frame.tags)
 // console.log(frame.tag_list)
 
 const onEditClick = async () => {
@@ -77,9 +76,9 @@ const updateContent = (content: string) => {
               >{{ $t('model.frame.tag_list') }}：</label>
             </td>
             <td>
-              <TagEdit v-model="tags" />
+              <TagEdit v-model="tagList" />
               <div
-                v-for="error of r$.tags.$errors"
+                v-for="error of r$.tag_list.$errors"
                 :key="error"
               >
                 <div class="text-red-500">{{ error }}</div>

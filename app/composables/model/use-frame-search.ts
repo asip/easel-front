@@ -8,7 +8,6 @@ export const useFrameSearch = () => {
 
   const makeFrame = ( { from }: { from: FrameResource }) : Frame => {
     const frame: Frame = create({ from })
-    frame.tags = frame.tag_list?.split(',') ?? []
     frame.file = null
     frame.preview_url = null
     return frame

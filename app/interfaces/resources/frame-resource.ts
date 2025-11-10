@@ -3,7 +3,7 @@ export interface FrameResource {
   user_id: number | null | undefined
   user_name: string
   name: string
-  tag_list: string
+  tag_list: string[]
   comment: string
   creator_name: string
   shooted_at: string
