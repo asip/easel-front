@@ -22,6 +22,7 @@ export const useConstants = () => {
   const commonHeaders: Ref = computed(() => (
     {
     'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Accept-Language': locale.value,
     'Time-Zone': timeZone.value.client
