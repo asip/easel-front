@@ -7,13 +7,8 @@ const frame = defineModel<Frame>()
 const image = useTemplateRef('image')
 const imageHeight = ref<number | undefined>(0)
 
-onMounted(() => {
-  if (import.meta.client && image.value) {
-    imageHeight.value = image.value?.height
-  }
-})
-
 const onFlipClick = () => {
+  imageHeight.value = image.value?.height
   front.value = !front.value
 }
 </script>
