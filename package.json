@@ -41,7 +41,7 @@
     "@tailwindcss/vite": "4.1.17",
     "@yaireo/tagify": "^4.35.5",
     "bootstrap-icons": "^1.13.1",
-    "daisyui": "^5.4.7",
+    "daisyui": "^5.5.0",
     "glightbox": "^3.3.1",
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
