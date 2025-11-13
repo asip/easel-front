@@ -3,7 +3,7 @@ const { openModal, closeModal } = useModal()
 
 const form = useTemplateRef('form')
 
-const onBackClick = async() => {
+const onBackClick = (): void => {
   form.value?.clearForm()
   closeModal('#signup_modal')
   openModal('#login_modal')

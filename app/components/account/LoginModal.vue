@@ -5,13 +5,13 @@ const { closeModal, openModal } = useModal()
 
 const form = useTemplateRef('form')
 
-const onSignupClick = () => {
+const onSignupClick = (): void => {
   form.value?.clearForm()
   closeModal('#login_modal')
   openModal('#signup_modal')
 }
 
-const onCloseClick = () => {
+const onCloseClick = (): void => {
   form.value?.clearForm()
   closeModal('#login_modal')
 }

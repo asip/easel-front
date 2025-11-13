@@ -2,7 +2,7 @@ type useImagePreviewOptions = {
   target: HTMLInputElement, file: Ref<File | undefined| null>, previewUrl: Ref<string | null | undefined>
 }
 
-export function useImagePreview ({ target, file, previewUrl } : useImagePreviewOptions) {
+export function useImagePreview ({ target, file, previewUrl }: useImagePreviewOptions): void {
   // let blob: Blob | null| undefined
   // (アップロードされたデータを取得して変数file.valueに代入します)
   file.value = target.files?.item(0)

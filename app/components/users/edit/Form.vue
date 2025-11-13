@@ -9,12 +9,12 @@ const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const file = useTemplateRef('file')
 
-const onSelectFile = (evt: Event) => {
+const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
   useImagePreview({ target, file: image, previewUrl: previewUrl })
 }
 
-const onUpdateClick = async () => {
+const onUpdateClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -29,7 +29,7 @@ const onUpdateClick = async () => {
   }
 }
 
-const clearForm = () => {
+const clearForm = (): void => {
   r$.$reset()
   if (file.value) file.value.value = ''
 }

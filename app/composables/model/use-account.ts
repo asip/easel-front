@@ -2,6 +2,11 @@ import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
+interface LoginParams {
+  email: string
+  password: string
+}
+
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
 
 export const useAccount = () => {
@@ -26,7 +31,7 @@ export const useAccount = () => {
     social_login: false
   })
 
-  const image = computed({
+  const image: Ref<File | null | undefined> = computed({
     get () {
       return user.value.image
     },
@@ -35,7 +40,7 @@ export const useAccount = () => {
     }
   })
 
-  const previewUrl = computed({
+  const previewUrl: Ref<string | null | undefined> = computed({
     get () {
       if (!user.value.image) {
         return `${user.value.image_three_url}`
@@ -48,13 +53,13 @@ export const useAccount = () => {
     }
   })
 
-  const initTimeZone = () => {
+  const initTimeZone = (): void => {
     // console.log(user.value.time_zone)
     user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
     // console.log(user.value.time_zone)
   }
 
-  const clearProfile = () => {
+  const clearProfile = (): void => {
     user.value.id = null
     user.value.name = ''
     user.value.email= ''
@@ -90,20 +95,20 @@ export const useAccount = () => {
 
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
-  const setTokenToCookie = () => {
+  const setTokenToCookie = (): void => {
     if (loginUser.value.token !== accessToken.value) {
       accessToken.value = loginUser.value.token
     }
   }
 
-  const setLoginUser = ({ from, token }: { from: UserResource, token?: string | undefined }) => {
+  const setLoginUser = ({ from, token }: { from: UserResource, token?: string | undefined }): void => {
     copy({ from, to: loginUser.value })
     if (token) {
       loginUser.value.token = token
     }
   }
 
-  const clearLoginUser = () => {
+  const clearLoginUser = (): void => {
     loggedIn.value = false
     loginUser.value.id = null
     loginUser.value.name = ''
@@ -118,7 +123,7 @@ export const useAccount = () => {
     accessToken.value = null
   }
 
-  const setUser = () => {
+  const setUser = (): void => {
     copy({ from: loginUser.value, to: user.value })
   }
 
@@ -133,7 +138,7 @@ export const useAccount = () => {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
     externalErrors.value.image = errors.image ?? []
     externalErrors.value.name = errors.name ?? []
     externalErrors.value.email = errors.email ?? []
@@ -143,7 +148,7 @@ export const useAccount = () => {
     externalErrors.value.time_zone = errors.time_zone ?? []
   }
 
-  const clearExternalErrors = () => {
+  const clearExternalErrors = (): void => {
     externalErrors.value.image = []
     externalErrors.value.name = []
     externalErrors.value.email = []
@@ -156,12 +161,12 @@ export const useAccount = () => {
 
   const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser } })
 
-  const loginParams = ref({
+  const loginParams = ref<LoginParams>({
     email: '',
     password: ''
   })
 
-  const resetLoginParams = () => {
+  const resetLoginParams = (): void => {
     loginParams.value.email = ''
     loginParams.value.password = ''
   }
@@ -172,7 +177,7 @@ export const useAccount = () => {
 
   const processing = ref<boolean>(false)
 
-  const signup = async () => {
+  const signup = async (): Promise<void> => {
     processing.value = true
     // console.log(user.image)
 
@@ -202,7 +207,7 @@ export const useAccount = () => {
     processing.value = pending
   }
 
-  const authenticate = async () => {
+  const authenticate = async (): Promise<void> => {
     loginUser.value.token = accessToken.value
     // console.log(loginUser.value.token)
 
@@ -229,7 +234,7 @@ export const useAccount = () => {
     }
   }
 
-  const login = async () => {
+  const login = async (): Promise<void> => {
     const postData = {
       user: {
         email: loginParams.value.email,
@@ -260,7 +265,7 @@ export const useAccount = () => {
     }
   }
 
-  const loginWithGoogle = async (response: CredentialResponse) => {
+  const loginWithGoogle = async (response: CredentialResponse): Promise<void> => {
     const postData = {
       provider: 'google',
       credential: response.credential
@@ -287,7 +292,7 @@ export const useAccount = () => {
     }
   }
 
-  const updateProfile = async () => {
+  const updateProfile = async (): Promise<void> => {
     processing.value = true
     // console.log(user.image)
 
@@ -327,7 +332,7 @@ export const useAccount = () => {
     processing.value = pending
   }
 
-  const updatePassword = async () => {
+  const updatePassword = async (): Promise<void> => {
     processing.value = true
     // console.log(user.image)
 
@@ -366,7 +371,7 @@ export const useAccount = () => {
     processing.value = pending
   }
 
-  const isSuccess = () => {
+  const isSuccess = (): boolean => {
     let result = true
 
     if (externalErrors.value.image.length > 0 || externalErrors.value.name.length > 0 ||
@@ -384,7 +389,7 @@ export const useAccount = () => {
     return result
   }
 
-  const logout = async () => {
+  const logout = async (): Promise<void> => {
     const { error } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/sessions/logout',
       token: accessToken.value
@@ -399,7 +404,7 @@ export const useAccount = () => {
     }
   }
 
-  const deleteAccount = async () => {
+  const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
     const { data, error, pending } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({

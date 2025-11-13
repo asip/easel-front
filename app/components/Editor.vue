@@ -15,7 +15,7 @@ const options = ref({
   readOnly: false
 })
 
-const editorRef: Ref = useTemplateRef('editorRef')
+const editorRef = useTemplateRef('editorRef')
 let quill: Quill | undefined
 
 onMounted(async () => {
@@ -25,20 +25,20 @@ onMounted(async () => {
   }
 })
 
-const updateContent = (content: string) => {
+const updateContent = (content: string): void => {
   emit('update', content)
 }
 
-const clearContents = () => {
+const clearContents = (): void => {
   // quill?.setContents([])
   modelValue.value = '<p><br></p>'
 }
 
-const getText = () => {
+const getText = (): string | undefined => {
   return quill?.getText()
 }
 
-const focus = () => {
+const focus = (): void => {
   quill?.focus()
 }
 

@@ -3,7 +3,7 @@ export const useConstants = () => {
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()
 
-  const backendOriginURL: Ref = computed(
+  const backendOriginURL = computed<string | undefined>(
     () => {
       if (import.meta.client) {
         return runtimeConfig.public.backendOriginURL
@@ -13,14 +13,13 @@ export const useConstants = () => {
     }
   )
 
-  const backendApiURL: Ref = computed(
+  const backendApiURL = computed<string>(
     () => `${backendOriginURL.value}/api/v1`
   )
 
   const googleClientID: string = runtimeConfig.public.googleClientId
 
-  const commonHeaders: Ref = computed(() => (
-    {
+  const commonHeaders: Ref<Record<string, string>> = computed(() => ({
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/json',
     'Accept': 'application/json',

@@ -6,11 +6,11 @@ export function useImageGallery () {
 
   const { initGLightbox, closeGLightbox } = useGLightbox()
 
-  const initGallery = ({ selector }: initGalleryOptions) => {
+  const initGallery = ({ selector }: initGalleryOptions): void => {
     initGLightbox({ selector })
   }
 
-  const closeGallery = () => {
+  const closeGallery = (): void => {
     closeGLightbox()
   }
 

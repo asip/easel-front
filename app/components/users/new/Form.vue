@@ -15,12 +15,12 @@ onMounted(() => {
   }
 })
 
-const onSelectFile = (evt: Event) => {
+const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
   useImagePreview({ target, file: image, previewUrl: previewUrl })
 }
 
-const onSignupClick = async () => {
+const onSignupClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -34,7 +34,7 @@ const onSignupClick = async () => {
   }
 }
 
-const clearForm = async() => {
+const clearForm = (): void => {
   if (file.value) file.value.value = ''
   clearProfile()
   clearExternalErrors()
@@ -43,7 +43,6 @@ const clearForm = async() => {
 }
 
 defineExpose({ clearForm })
-
 </script>
 
 <template>

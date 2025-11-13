@@ -11,7 +11,7 @@ const { r$ } = useI18nRegle(frame, editFrameRules)
 // console.log(frame)
 // console.log(frame.tag_list)
 
-const onEditClick = async () => {
+const onEditClick = async (): Promise<void> => {
   if (editor.value?.getText().replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
@@ -32,7 +32,7 @@ const onEditClick = async () => {
   }
 }
 
-const updateContent = (content: string) => {
+const updateContent = (content: string): void => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {

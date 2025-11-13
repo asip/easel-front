@@ -11,7 +11,7 @@ defineSlots<{
 
 const emit = defineEmits<{click: []}>()
 
-const onClick = () => {
+const onClick = (): void => {
   emit('click')
 }
 </script>

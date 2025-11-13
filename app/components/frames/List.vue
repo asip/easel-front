@@ -8,7 +8,7 @@ const { frameQuery, queryMap, searchFrame, frames } = useFrameSearch()
 await searchFrame()
 router.push({ path: '/', query: queryMap.value })
 
-const clickCallback = async (pageNum: number) => {
+const clickCallback = async (pageNum: number): Promise<void> => {
   frameQuery.value.page = pageNum
   await navigateTo({ path: '/', query: queryMap.value })
 }

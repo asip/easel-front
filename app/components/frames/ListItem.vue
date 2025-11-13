@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
 
-const front = ref(true)
+const front = ref<boolean>(true)
 const frame = defineModel<Frame>()
 
 const image = useTemplateRef('image')
 const imageHeight = ref<number | undefined>(0)
 
-const onFlipClick = () => {
+const onFlipClick = (): void => {
   imageHeight.value = image.value?.height
   front.value = !front.value
 }

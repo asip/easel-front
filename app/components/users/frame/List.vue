@@ -20,7 +20,7 @@ if (userId) {
 // console.log('searchFrame: start')
 await getFrames(userId)
 
-const clickCallback = async (pageNum: number) => {
+const clickCallback = async (pageNum: number): Promise<void> => {
   frameQuery.value.page = pageNum
   await getFrames(userId, { more: true })
 }

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '~/interfaces'
+import type { RefQuery } from '~/types'
+
 
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
@@ -11,31 +13,31 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const edit = ref(false)
+const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
 const editor: Ref = useTemplateRef('editor')
 
-const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: commentModel.value?.frame_id }) }))
+const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame', id: commentModel.value?.frame_id }) }))
 
-const sanitizedCommentBody = computed(() =>
+const sanitizedCommentBody = computed<string>(() =>
   p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>')
 )
 
 comment.value.frame_id = commentModel.value?.frame_id
 
-const onEditClick = () => {
+const onEditClick = (): void => {
   edit.value = true
   setComment({ from: commentModel.value })
 }
 
-const onCancelClick = () => {
+const onCancelClick = (): void => {
   edit.value = false
   setComment({ from: commentModel.value })
 }
 
-const onUpdateClick = async () => {
+const onUpdateClick = async (): Promise<void> => {
   /*
   if (editor.value?.getText().replace(/\n/g, '') === ''){
     editor.value?.clearContents()
@@ -44,7 +46,7 @@ const onUpdateClick = async () => {
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()
-  const { valid } =await r$.$validate()
+  const { valid } = await r$.$validate()
 
   if (valid) {
     await updateComment()
@@ -58,7 +60,7 @@ const onUpdateClick = async () => {
   }
 }
 
-const updateContent = (content: string) => {
+const updateContent = (content: string): void => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {
@@ -66,9 +68,9 @@ const updateContent = (content: string) => {
   }
 }
 
-const onDeleteClick = async () => {
+const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) { await deleteComment(commentModel.value) }
-  setFlash(flash.value)
+    setFlash(flash.value)
   if (isSuccess()) {
     await getComments(commentModel.value?.frame_id, { more: true })
   }

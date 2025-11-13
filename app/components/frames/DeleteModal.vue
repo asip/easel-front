@@ -3,7 +3,7 @@ const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
 const { frame, deleteFrame, isSuccess, flash, processing } = inject('framer') as UseFrameType
 
-const onDeleteClick = async () => {
+const onDeleteClick = async (): Promise<void> => {
   await deleteFrame()
   setFlash(flash.value)
 

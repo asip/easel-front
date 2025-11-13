@@ -4,7 +4,7 @@ const { loggedIn } = inject('account') as UseAccountType
 
 const form = useTemplateRef('form')
 
-const onBackClick = () => {
+const onBackClick = (): void => {
   form.value?.clearForm()
   closeModal('#edit_profile_modal')
   openModal('#profile_modal')

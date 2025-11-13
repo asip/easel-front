@@ -32,7 +32,7 @@ export function useFrame() {
     updated_at: null
   })
 
-  const file = computed({
+  const file: Ref<File | null | undefined> = computed({
     get () {
       return frame.value.file
     },
@@ -41,7 +41,7 @@ export function useFrame() {
     }
   })
 
-  const previewUrl = computed({
+  const previewUrl: Ref<string | null | undefined> = computed({
     get () {
       if (!frame.value.file) {
         return `${frame.value.file_three_url}`
@@ -63,7 +63,7 @@ export function useFrame() {
     }
   })
 
-  const shootedAt = computed({
+  const shootedAt = computed<string | null>({
     get () {
       return upDTL(frame.value.shooted_at)
     },
@@ -72,7 +72,7 @@ export function useFrame() {
     }
   })
 
-  const comment = computed({
+  const comment = computed<string>({
     get () {
       return empty2pbr(frame.value.comment)
     },
@@ -81,17 +81,17 @@ export function useFrame() {
     }
   })
 
-  const frameId = computed(() => {
+  const frameId = computed<number | undefined>(() => {
     return frame.value.id
   })
 
-  const upFrameTZ = (frame: Frame) => {
+  const upFrameTZ = (frame: Frame): void => {
     frame.shooted_at = upTZ(frame.shooted_at)
     frame.created_at = formatHtmlTZ(frame.created_at)
     frame.updated_at = formatHtmlTZ(frame.updated_at)
   }
 
-  const setFrame = ({ from }: { from: FrameResource }) => {
+  const setFrame = ({ from }: { from: FrameResource }): void => {
     copy({ from, to: frame.value })
     upFrameTZ(frame.value)
   }
@@ -104,14 +104,14 @@ export function useFrame() {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
     externalErrors.value.file = errors.file ?? []
     externalErrors.value.name = errors.name ?? []
     externalErrors.value.creator_name = errors.creator_name ?? []
     externalErrors.value.tag_list = errors.tag_list ?? []
   }
 
-  const clearExternalErrors = () => {
+  const clearExternalErrors = (): void => {
     externalErrors.value.file = []
     externalErrors.value.name = []
     externalErrors.value.tag_list = []
@@ -123,9 +123,9 @@ export function useFrame() {
 
   const processing = ref<boolean>(false)
 
-  const refresh = async () => {}
+  const refresh = async (): Promise<void> => {}
 
-  const getFrame = async (id: string) => {
+  const getFrame = async (id: string): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     // console.log(`token: ${loginUser.value.token}`)
 
     if (loggedIn.value) {
@@ -182,7 +182,7 @@ export function useFrame() {
     }
   }
 
-  const createFrame = async () => {
+  const createFrame = async (): Promise<void> => {
     processing.value = true
 
     const formData = new FormData()
@@ -229,7 +229,7 @@ export function useFrame() {
     processing.value = pending
   }
 
-  const isSuccess = () => {
+  const isSuccess = (): boolean => {
     let result = true
 
     if (externalErrors.value.file.length > 0 || externalErrors.value.name.length > 0 ||
@@ -246,7 +246,7 @@ export function useFrame() {
     return result
   }
 
-  const updateFrame = async () => {
+  const updateFrame = async (): Promise<void> => {
     processing.value = true
 
     const postData = {
@@ -277,7 +277,7 @@ export function useFrame() {
     processing.value = pending
   }
 
-  const deleteFrame = async () => {
+  const deleteFrame = async (): Promise<void> => {
     processing.value = true
     // console.log(frame.id)
 

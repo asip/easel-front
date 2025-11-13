@@ -6,7 +6,7 @@ const { passwordRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, passwordRules, { externalErrors })
 
-const onUpdateClick = async () => {
+const onUpdateClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -23,7 +23,7 @@ const onUpdateClick = async () => {
   }
 }
 
-const clearForm = () => {
+const clearForm = (): void => {
   r$.$reset()
 }
 

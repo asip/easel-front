@@ -26,7 +26,7 @@ export const useUser = () => {
     }
   )
 
-  const getUser = async (id: string) => {
+  const getUser = async (id: string): Promise<void> => {
     const { data, error } = await useGetApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/users/${id}`
     })
@@ -45,7 +45,7 @@ export const useUser = () => {
     }
   }
 
-  const setUser = ({ from }: { from: UserResource }) => {
+  const setUser = ({ from }: { from: UserResource }): void => {
     copy({ from, to: user.value })
   }
 

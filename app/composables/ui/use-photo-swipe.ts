@@ -5,7 +5,7 @@ export function usePhotoSwipe () {
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
-  const initPhotoSwipe = async ({ selector}: initPSOptions) => {
+  const initPhotoSwipe = async ({ selector}: initPSOptions): Promise<void> => {
     await assignSize(selector)
 
     lightbox = new $psLightbox({
@@ -19,7 +19,7 @@ export function usePhotoSwipe () {
     lightbox.init()
   }
 
-  const assignSize = async (selector: string) => {
+  const assignSize = async (selector: string): Promise<void> => {
     const gallery: HTMLDivElement | null = document.querySelector(selector)
     const galleryAnchors = gallery?.querySelectorAll('a')
     if (galleryAnchors) {
@@ -32,14 +32,14 @@ export function usePhotoSwipe () {
     }
   }
 
-  const loadImage = async (src: string) => {
+  const loadImage = async (src: string): Promise<HTMLImageElement> => {
     const img: HTMLImageElement = new globalThis.Image()
     img.src = src
     await img.decode()
     return img
   }
 
-  const closePhotoSwipe = () => {
+  const closePhotoSwipe = (): void => {
     if (lightbox) {
       lightbox.destroy()
     }

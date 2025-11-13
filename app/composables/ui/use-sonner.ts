@@ -3,7 +3,7 @@ import type { Flash } from '~/interfaces'
 export function useSonner () {
   const { $toast } = useNuxtApp()
 
-  const setFlash = (flash: Flash) => {
+  const setFlash = (flash: Flash): void => {
     // console.log(flash.alert)
     // console.log(flash.info)
     for (const [messageType, message] of Object.entries(flash)) {
@@ -28,7 +28,7 @@ export function useSonner () {
     }
   }
 
-  const setMessages = (messages: string[]) => {
+  const setMessages = (messages: string[]): void => {
     for (const message of messages.reverse()) {
       setTimeout(
         () => {

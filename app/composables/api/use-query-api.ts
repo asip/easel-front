@@ -29,7 +29,7 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     method: 'get',
     query,
     headers,
-    onResponse({ response  } : { response: FetchResponse<T> }) {
+    onResponse({ response  }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }

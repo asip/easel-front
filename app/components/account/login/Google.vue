@@ -6,7 +6,7 @@ const { closeModal } = useModal()
 const { loginWithGoogle } = useAccount()
 
 // handle success event
-const handleLoginSuccess = async (response: CredentialResponse) => {
+const handleLoginSuccess = async (response: CredentialResponse): Promise<void> => {
   // call your backend API here
   // the token can be accessed as: response.credential
   closeModal('#login_modal')
@@ -14,7 +14,7 @@ const handleLoginSuccess = async (response: CredentialResponse) => {
 }
 
 /*
-const handleOneTapLoginSuccess = async (response: CredentialResponse) => {
+const handleOneTapLoginSuccess = async (response: CredentialResponse): Promise<void> => {
   // call your backend API here
   // the token can be accessed as: response.credential
   await loginWithGoogle(response)
@@ -22,7 +22,7 @@ const handleOneTapLoginSuccess = async (response: CredentialResponse) => {
 */
 
 // handle an error event
-const handleLoginError = () => {
+const handleLoginError = (): void => {
   // console.error("Login failed");
 }
 

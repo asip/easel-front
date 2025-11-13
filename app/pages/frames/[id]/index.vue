@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { RefQuery } from '~/interfaces'
-
 import sanitizeHtml from 'sanitize-html'
+
+import type { RefItems } from '~/interfaces'
+import type { RefQuery } from '~/types'
 
 const route = useRoute()
 const { id } = route.params
 const frameId = id?.toString()
 const ref = route.query.ref
-const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
+const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { p2br } = useQuill()
 const { queryMap } = useFrameSearch()
@@ -21,13 +22,13 @@ provide('framer', framer)
 
 await getFrame(`${frameId}`)
 
-const queryMapWithRef = computed(() => ({ ref: JSON.stringify({ from: 'frame', id: frameId }) }))
+const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame', id: frameId }) }))
 
-const sanitizedComment = computed(() => {
+const sanitizedComment = computed<string>(() => {
   return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')
 })
 
-const onPageBack = async () => {
+const onPageBack = async (): Promise<void> => {
   if (refItems.from === 'profile') {
     await navigateTo({ path: '/account/frames' })
   } else if (refItems.from === 'user_profile') {
@@ -37,7 +38,7 @@ const onPageBack = async () => {
   }
 }
 
-const onDeleteClick = () => {
+const onDeleteClick = (): void => {
   openModal('#delete_frame_modal')
 }
 </script>

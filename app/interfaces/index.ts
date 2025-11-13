@@ -5,7 +5,7 @@ export type { User } from './entity/user'
 export type { FrameQuery } from './query/frame-query'
 export type { AccountFrameQuery } from './query/account-frame-query'
 export type { UserFrameQuery } from './query/user-frame-query'
-export type { RefQuery } from './query/ref-query'
+export type { RefItems } from './query/ref-items'
 
 export type { CommentResource } from './resource/comment-resource'
 export type { CommentsResource } from './resource/comments-resource'

@@ -11,7 +11,7 @@ const editor: Ref = useTemplateRef('editor')
 
 comment.value.frame_id = frameId
 
-const onCreateCommentClick = async () => {
+const onCreateCommentClick = async (): Promise<void> => {
   /*
   if (editor.value?.getText().replace(/\n/g, '') === ''){
     editor.value?.clearContents()
@@ -20,7 +20,7 @@ const onCreateCommentClick = async () => {
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()
-  const { valid } =await r$.$validate()
+  const { valid } = await r$.$validate()
 
   // console.log(r$.body.$invalid)
   // console.log(r$..$invalid)
@@ -41,7 +41,7 @@ const onCreateCommentClick = async () => {
   }
 }
 
-const updateContent = (content: string) => {
+const updateContent = (content: string): void => {
   if (editor.value?.getText().replace(/\n/g, '') != ''){
     comment.value.body = content
   } else {

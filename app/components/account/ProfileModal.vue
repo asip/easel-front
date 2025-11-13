@@ -2,24 +2,24 @@
 const { openModal, closeModal } = useModal()
 const { loggedIn, loginUser, setUser, initTimeZone } = inject('account') as UseAccountType
 
-const onCloseClick = () => {
+const onCloseClick = (): void => {
   closeModal('#profile_modal')
 }
 
-const onEditClick = () => {
+const onEditClick = (): void => {
   closeModal('#profile_modal')
   setUser()
   initTimeZone()
   openModal('#edit_profile_modal')
 }
 
-const onEditPasswordClick = () => {
+const onEditPasswordClick = (): void => {
   closeModal('#profile_modal')
   setUser()
   openModal('#edit_password_modal')
 }
 
-const onDeleteAccountClick = () => {
+const onDeleteAccountClick = (): void => {
   openModal('#delete_account_modal')
   closeModal('#profile_modal')
 }

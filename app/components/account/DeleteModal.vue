@@ -3,7 +3,7 @@ const { closeModal } = useModal()
 const { setFlash } = useSonner()
 const { loggedIn, deleteAccount, flash, processing } = useAccount()
 
-const onDeleteClick = async () => {
+const onDeleteClick = async (): Promise<void> => {
   await deleteAccount()
   setFlash(flash.value)
   closeModal('#delete_account_modal')

@@ -4,7 +4,7 @@ import { isFilled } from '@regle/rules'
 
 export const maxTagLength = createRule({
   type: 'maxTagLength',
-  validator: (value: Maybe<string[]>, size: number) =>{
+  validator: (value: Maybe<string[]>, size: number) => {
     let res = true
     if (value){
       value.forEach((tag) => {

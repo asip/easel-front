@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
+import type { RefQuery } from '~/types';
 
 const frame = defineModel<Frame>()
 
@@ -8,7 +9,7 @@ const { userId, page = undefined } = defineProps<{
   page?: string
 }>()
 
-const queryMapWithRef = computed(() => {
+const queryMapWithRef = computed<RefQuery>(() => {
   if (page == 'profile') {
     return { ref: JSON.stringify({ from: page }) }
   } else if (page == 'user_profile') {

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { RefQuery } from '~/interfaces'
+import type { RefItems } from '~/interfaces'
 
 const route = useRoute()
 const { id } = route.params
 const ref = route.query.ref
-const refItems: RefQuery = ref ? JSON.parse(ref.toString()) : {}
+const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { setFlash } = useSonner()
 const { user, getUser } = useUser()
@@ -22,7 +22,7 @@ if (loggedIn.value) {
 
 provide('user', user)
 
-const onPageBack = async () => {
+const onPageBack = async (): Promise<void> => {
   if (refItems.from === 'frame') {
     await navigateTo({ path: `/frames/${refItems.id}` })
   } else {
@@ -30,12 +30,12 @@ const onPageBack = async () => {
   }
 }
 
-const onFollowClick = async () => {
+const onFollowClick = async (): Promise<void> => {
   await follow(user.value.id)
   setFlash(flash.value)
 }
 
-const onUnfollowClick = async () => {
+const onUnfollowClick = async (): Promise<void> => {
   await unfollow(user.value.id)
   setFlash(flash.value)
 }

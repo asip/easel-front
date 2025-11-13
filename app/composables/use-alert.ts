@@ -18,10 +18,10 @@ type AlertOptions = {
   error: NuxtError<ErrorsResource<ErrorMessages<string>>> | FetchError<ErrorsResource<ErrorMessages<string>>>, off?: boolean
 }
 
-export function useAlert({ flash, caller } : UseAlertOptions) {
+export function useAlert({ flash, caller }: UseAlertOptions) {
   const { $i18n } = useNuxtApp()
 
-  const setAlert = function({ error, off = false } : AlertOptions) {
+  const setAlert = function({ error, off = false }: AlertOptions): void {
     if (off) {
       switch (error.statusCode) {
         case 401:

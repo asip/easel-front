@@ -9,12 +9,12 @@ export function useLightbox () {
   const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe()
   const { initGLightbox, closeGLightbox } = useGLightbox()
 
-  const initPSLightbox = async ({ selector }: initPSOptions) => {
+  const initPSLightbox = async ({ selector }: initPSOptions): Promise<void> => {
     await initPhotoSwipe({ selector })
     photoswipe = true
   }
 
-  const closeLightbox = () => {
+  const closeLightbox = (): void => {
     if (photoswipe) {
       closePhotoSwipe()
     } else {

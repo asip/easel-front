@@ -15,7 +15,7 @@ watch(
   }
 )
 
-const onLoginClick = async () => {
+const onLoginClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -29,7 +29,7 @@ const onLoginClick = async () => {
   }
 }
 
-const clearForm = () => {
+const clearForm = (): void => {
   resetLoginParams()
   clearExternalErrors()
   r$.$clearExternalErrors()

@@ -31,7 +31,7 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
         method,
         body,
         headers,
-        onResponse({ response  } : { response: FetchResponse<T> }) {
+        onResponse({ response  }: { response: FetchResponse<T> }) {
           if (method == 'post' && !tokenRef.value || method == 'put') tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
         }
       })

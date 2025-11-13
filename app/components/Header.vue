@@ -10,16 +10,16 @@ const { openModal } = useModal()
 
 provide('account', account)
 
-const onLoginClick = () => {
+const onLoginClick = (): void => {
   openModal("#login_modal")
 }
 
-const onProfileClick = () => {
+const onProfileClick = (): void => {
   closeDropdown()
   openModal("#profile_modal")
 }
 
-const onLogoutClick = async () => {
+const onLogoutClick = async (): Promise<void> => {
   await logout()
   if (route.path === '/frames/new' || route.path === '/account/frames') {
     await navigateTo('/')
@@ -28,7 +28,7 @@ const onLogoutClick = async () => {
   }
 }
 
-const onTopPageClick = async () => {
+const onTopPageClick = async (): Promise<void> => {
   frameQuery.value.items = {}
   frameQuery.value.page = 1
   // frameQuery.value.pages = 1

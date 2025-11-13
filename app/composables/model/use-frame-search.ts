@@ -1,6 +1,8 @@
 import type { Frame, FrameQuery ,FrameResource, FramesResource , ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
+type SearchQuery = Partial<Record<'q' | 'page', string>>
+
 export const useFrameSearch = () => {
   const { create } = useEntity<Frame, FrameResource>()
 
@@ -23,7 +25,7 @@ export const useFrameSearch = () => {
     }
   })
 
-  const qItems = computed(() => {
+  const qItems = computed<FrameQuery['items']>(() => {
     const { items } = frameQuery.value;
 
     const qItems: FrameQuery['items'] = {}
@@ -38,21 +40,21 @@ export const useFrameSearch = () => {
     return qItems
   })
 
-  const queryMap = computed(() => {
+  const queryMap = computed<SearchQuery>(() => {
     const items = qItems.value
     const { page } = frameQuery.value;
-    const query: { q?: string, page?: number | null } = {};
+    const query: { q?: string, page?: string } = {};
 
     if (Object.keys(items).length) {
       query.q = JSON.stringify(items);
     }
     if (page !== undefined && page!= null && page !== 1) {
-      query.page = page;
+      query.page = page.toString();
     }
     return query;
   });
 
-  const resetSearchCriteria = () => {
+  const resetSearchCriteria = (): void => {
     const { items } = frameQuery.value;
     if (items.word) frameQuery.value.items.word = null
     if (items.frame_name) frameQuery.value.items.frame_name = null
@@ -64,7 +66,7 @@ export const useFrameSearch = () => {
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
-  const searchFrame = async (options?: { more?: boolean }) => {
+  const searchFrame = async (options?: { more?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
       url: '/frames',
       query: queryMap.value,

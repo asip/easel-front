@@ -22,7 +22,7 @@ export function useComment () {
     updated_at: null
   })
 
-  const body = computed({
+  const body = computed<string>({
     get () {
       return empty2pbr(comment.value.body)
     },
@@ -31,7 +31,7 @@ export function useComment () {
     }
   })
 
-  const upCommentTZ = (comment: Comment) => {
+  const upCommentTZ = (comment: Comment): void => {
     comment.created_at = formatHtmlTZ(comment.created_at)
     comment.updated_at = formatHtmlTZ(comment.updated_at)
   }
@@ -42,7 +42,7 @@ export function useComment () {
     return comment
   }
 
-  const setComment = ({ from, to } : { from?: Comment | CommentResource | undefined, to?: Comment}) => {
+  const setComment = ({ from, to }: { from?: Comment | CommentResource | undefined, to?: Comment}): void => {
     if (from) {
       copy({ from, to: comment.value })
     } else if (to) {
@@ -52,18 +52,18 @@ export function useComment () {
     }
   }
 
-  const comments: Ref<Comment[]> = useState<Comment[]>('comments', () => { return [] })
+  const comments = useState<Comment[]>('comments', () => { return [] })
 
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({
     body: [],
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
     externalErrors.value.body = errors.body ?? []
   }
 
-  const clearExternalErrors = () => {
+  const clearExternalErrors = (): void => {
     externalErrors.value.body = []
     externalErrors.value.base = []
   }
@@ -72,7 +72,7 @@ export function useComment () {
 
   const processing = ref<boolean>(false)
 
-  const getComments = async (frameId: number | null |undefined, options?: { more?: boolean,  }) => {
+  const getComments = async (frameId: number | null |undefined, options?: { more?: boolean,  }): Promise<void> => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frameId}/comments`,
@@ -99,7 +99,7 @@ export function useComment () {
     }
   }
 
-  const createComment = async () => {
+  const createComment = async (): Promise<void> => {
     processing.value = true
 
     const postData = {
@@ -127,7 +127,7 @@ export function useComment () {
     processing.value = pending
   }
 
-  const updateComment = async () => {
+  const updateComment = async (): Promise<void> => {
     processing.value = true
 
     const postData = {
@@ -156,7 +156,7 @@ export function useComment () {
     processing.value = pending
   }
 
-  const isSuccess = () => {
+  const isSuccess = (): boolean => {
     let result = true
 
     if (externalErrors.value.body.length > 0 || externalErrors.value.base.length > 0) {
@@ -170,7 +170,7 @@ export function useComment () {
     return result
   }
 
-  const deleteComment = async (comment: Comment) => {
+  const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
     const { error, pending } = await useDeleteApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({

@@ -14,12 +14,12 @@ const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 // console.log(frame)
 // console.log(frame.tag_list)
 
-const onSelectFile = (evt: Event) => {
+const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
   useImagePreview({ target, file: file, previewUrl: previewUrl })
 }
 
-const onCreateClick = async () => {
+const onCreateClick = async (): Promise<void> => {
   if (editor.value?.getText()?.replace(/\n/g, '') == ''){
     frame.value.comment = ''
   }
@@ -37,7 +37,7 @@ const onCreateClick = async () => {
   }
 }
 
-const updateContent = (content: string) => {
+const updateContent = (content: string): void => {
   if (editor.value?.getText()?.replace(/\n/g, '') != ''){
     frame.value.comment = content
   } else {

@@ -7,7 +7,7 @@ const { searchRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frameQuery.value.items, searchRules)
 
-const dateWord = computed({
+const dateWord = computed<Date | null>({
   get () {
     try{
       return frameQuery.value.items.word ? parse(frameQuery.value.items.word, 'YYYY/MM/DD', locale.value) : null
@@ -24,7 +24,7 @@ const masks = {
   input: 'YYYY/MM/DD'
 }
 
-const onSearchClick = async () => {
+const onSearchClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -34,7 +34,7 @@ const onSearchClick = async () => {
   }
 }
 
-const onClearClick = async () => {
+const onClearClick = async (): Promise<void> => {
   r$.$reset()
   if (Object.keys(qItems.value).length) {
     dateWord.value= null
