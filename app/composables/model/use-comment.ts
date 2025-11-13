@@ -1,8 +1,7 @@
-import type { Comment, CommentResource, CommentsResource, Flash } from '~/interfaces'
+import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'body' | 'base'
-type ExternalErrorProperty = 'body'
 
 export function useComment () {
   const { empty2pbr, pbr2empty } = useQuill()
@@ -60,7 +59,7 @@ export function useComment () {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
     externalErrors.value.body = errors.body ?? []
   }
 
@@ -75,7 +74,7 @@ export function useComment () {
 
   const getComments = async (frameId: number | null |undefined, options?: { more?: boolean,  }) => {
     // console.log(comment.frame_id);
-    const { data, error } = await useGetApi<CommentsResource>({
+    const { data, error } = await useGetApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frameId}/comments`,
       more: options?.more
     })
@@ -109,7 +108,7 @@ export function useComment () {
       }
     }
 
-    const { error, pending } = await usePostApi<CommentResource>({
+    const { error, pending } = await usePostApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: accessToken.value
@@ -137,7 +136,7 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePutApi<CommentResource>({
+    const { data, error, pending } = await usePutApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
       body: postData,
       token: accessToken.value
@@ -174,7 +173,7 @@ export function useComment () {
   const deleteComment = async (comment: Comment) => {
     processing.value = true
 
-    const { error, pending } = await useDeleteApi({
+    const { error, pending } = await useDeleteApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/comments/${comment.id}`,
       token: accessToken.value
     })

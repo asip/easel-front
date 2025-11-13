@@ -12,7 +12,7 @@ export type QueryAPIOptions = {
   more?: boolean
 }
 
-export const useQueryApi = async <T>({ url, query = {}, token = null, fresh = false, more = false }: QueryAPIOptions) => {
+export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, more = false }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useConstants()
 
@@ -38,19 +38,19 @@ export const useQueryApi = async <T>({ url, query = {}, token = null, fresh = fa
     const pending = ref<boolean>(true)
 
     const data = ref<T>()
-    const error = ref<FetchError>();
+    const error = ref<FetchError<E>>();
 
     try {
       data.value = await $api<T>(url, options)
     } catch(err: any) {
-      error.value = err as FetchError
+      error.value = err as FetchError<E>
     }
 
     pending.value = false
 
     return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
   } else {
-    const { data, error, refresh, pending } = await useAsyncData<T>(url, () =>
+    const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
       $api(url, options)
     )
 

@@ -1,9 +1,8 @@
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { User, UserResource, Flash } from '~/interfaces'
+import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
-type ExternalErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone'
 
 export const useAccount = () => {
   const { copy } = useEntity<User, UserResource>()
@@ -134,7 +133,7 @@ export const useAccount = () => {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
     externalErrors.value.image = errors.image ?? []
     externalErrors.value.name = errors.name ?? []
     externalErrors.value.email = errors.email ?? []
@@ -188,7 +187,7 @@ export const useAccount = () => {
     formData.append('user[password_confirmation]', user.value.password_confirmation)
     formData.append('user[time_zone]', user.value.time_zone)
 
-    const { error, pending } = await usePostApi<UserResource>({
+    const { error, pending } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/users/',
       body: formData
     })
@@ -208,7 +207,7 @@ export const useAccount = () => {
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
-      const { token, data, error } = await useGetApi<UserResource>({
+      const { token, data, error } = await useGetApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/account/profile',
       token: accessToken.value,
       fresh: true
@@ -238,7 +237,7 @@ export const useAccount = () => {
       }
     }
 
-    const { token, data, error } = await usePostApi<UserResource>({
+    const { token, data, error } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/sessions/',
       body: postData
     })
@@ -267,7 +266,7 @@ export const useAccount = () => {
       credential: response.credential
     }
 
-    const { token, data, error } = await usePostApi<UserResource>({
+    const { token, data, error } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/oauth/sessions/',
       body: postData
     })
@@ -303,7 +302,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<UserResource>({
+    const { data, error, pending } = await usePutApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/account/profile/',
       body: formData,
       token: accessToken.value
@@ -342,7 +341,7 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<UserResource>({
+    const { data, error, pending } = await usePutApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/account/password/',
       body: formData,
       token: accessToken.value
@@ -386,7 +385,7 @@ export const useAccount = () => {
   }
 
   const logout = async () => {
-    const { error } = await useDeleteApi<UserResource>({
+    const { error } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/sessions/logout',
       token: accessToken.value
     })
@@ -403,7 +402,7 @@ export const useAccount = () => {
   const deleteAccount = async () => {
     processing.value = true
 
-    const { data, error, pending } = await useDeleteApi<UserResource>({
+    const { data, error, pending } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/account',
       token: accessToken.value
     })

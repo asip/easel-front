@@ -1,4 +1,5 @@
-import type { FollowingResource, Flash } from '~/interfaces'
+import type { FollowingResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
 export function useFollow () {
   const { flash, clearFlash } = useFlash()
@@ -9,7 +10,7 @@ export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
 
   const isFollowing = async (userId: string) => {
-    const { data, error } = await useGetApi<FollowingResource>({
+    const { data, error } = await useGetApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/account/following/${userId}`,
       token: accessToken.value
     })
@@ -28,7 +29,7 @@ export function useFollow () {
   }
 
   const follow = async (userId: number | null) => {
-    const { error } = await usePostApi({
+    const { error } = await usePostApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/users/${userId}/follow_relationships`,
       token: accessToken.value
     })
@@ -43,7 +44,7 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null) => {
-    const { error } = await useDeleteApi({
+    const { error } = await useDeleteApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/users/${userId}/follow_relationships`,
       token: accessToken.value
     })

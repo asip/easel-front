@@ -1,8 +1,7 @@
-import type { Frame, FrameResource, Flash } from '~/interfaces'
+import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type ErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file' | 'base'
-type ExternalErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file'
 
 export function useFrame() {
   const { upDTL, downDTL } = useDatetimeLocal()
@@ -105,7 +104,7 @@ export function useFrame() {
     base: []
   })
 
-  const setExternalErrors = (errors: ErrorMessages<ExternalErrorProperty>) => {
+  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>) => {
     externalErrors.value.file = errors.file ?? []
     externalErrors.value.name = errors.name ?? []
     externalErrors.value.creator_name = errors.creator_name ?? []
@@ -130,7 +129,7 @@ export function useFrame() {
     // console.log(`token: ${loginUser.value.token}`)
 
     if (loggedIn.value) {
-      const { data, error, refresh } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
         url: `/account/frames/${id}`,
         token: accessToken.value
       })
@@ -156,7 +155,7 @@ export function useFrame() {
 
       return { refresh }
     } else {
-      const { data, error, refresh } = await useGetApi<FrameResource>({
+      const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
         url: `/frames/${id}`
       })
 
@@ -209,7 +208,7 @@ export function useFrame() {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await usePostApi<FrameResource>({
+    const { data, error, pending } = await usePostApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/frames/',
       body: formData,
       token: accessToken.value
@@ -262,7 +261,7 @@ export function useFrame() {
 
     // console.log(loginUser.value.token)
 
-    const { error, pending } = await usePutApi<FrameResource>({
+    const { error, pending } = await usePutApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frame.value.id}`,
       body: postData,
       token: accessToken.value
@@ -282,7 +281,7 @@ export function useFrame() {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending } = await useDeleteApi({
+    const { error, pending } = await useDeleteApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frame.value.id}`,
       token: accessToken.value
     })

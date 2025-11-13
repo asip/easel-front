@@ -1,4 +1,5 @@
-import type { Frame, FrameQuery ,FrameResource, FramesResource } from '~/interfaces'
+import type { Frame, FrameQuery ,FrameResource, FramesResource , ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
 export const useFrameSearch = () => {
   const { create } = useEntity<Frame, FrameResource>()
@@ -70,7 +71,7 @@ export const useFrameSearch = () => {
       more: options?.more
     }
 
-    const { data, error } = await useGetApi<FramesResource>(getOptions)
+    const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
 
     clearFlash()
 

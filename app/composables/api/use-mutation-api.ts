@@ -7,7 +7,7 @@ type MutationAPIOptions = {
   token?: string | null
 }
 
-export const useMutationApi = async <T>({ method, url, body = {}, token = null }: MutationAPIOptions) => {
+export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {}, token = null }: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useConstants()
 
@@ -23,7 +23,7 @@ export const useMutationApi = async <T>({ method, url, body = {}, token = null }
   }
 
   const data = ref<T>()
-  const error = ref<FetchError>();
+  const error = ref<FetchError<E>>();
 
   if (method == 'post' || method == 'put'){
     try {
@@ -36,7 +36,7 @@ export const useMutationApi = async <T>({ method, url, body = {}, token = null }
         }
       })
     } catch(err: any) {
-      error.value = err as FetchError
+      error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
     try {
@@ -45,7 +45,7 @@ export const useMutationApi = async <T>({ method, url, body = {}, token = null }
         headers
       })
     } catch(err: any) {
-      error.value = err as FetchError
+      error.value = err as FetchError<E>
     }
   }
 

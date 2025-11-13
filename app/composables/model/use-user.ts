@@ -1,4 +1,5 @@
-import type { User, UserResource } from '~/interfaces'
+import type { User, UserResource, ErrorsResource } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
 export const useUser = () => {
   const { copy } = useEntity<User, UserResource>()
@@ -26,7 +27,7 @@ export const useUser = () => {
   )
 
   const getUser = async (id: string) => {
-    const { data, error } = await useGetApi<UserResource>({
+    const { data, error } = await useGetApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/users/${id}`
     })
 

@@ -15,7 +15,7 @@ interface UseAlertCallerType {
 }
 
 type AlertOptions = {
-  error: NuxtError | FetchError, off?: boolean
+  error: NuxtError<ErrorsResource<ErrorMessages<string>>> | FetchError<ErrorsResource<ErrorMessages<string>>>, off?: boolean
 }
 
 export function useAlert({ flash, caller } : UseAlertOptions) {
@@ -46,8 +46,8 @@ export function useAlert({ flash, caller } : UseAlertOptions) {
           break
         case 422:
           {
-            if (caller && 'setExternalErrors' in caller) {
-              const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
+            if (caller && 'setExternalErrors' in caller && error.data) {
+              const { errors } = error.data
               // globalThis.console.log(errors)
               if (caller.setExternalErrors) caller.setExternalErrors(errors)
             }
