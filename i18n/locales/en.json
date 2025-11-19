@@ -17,11 +17,18 @@
       "tag_list": "Tags",
       "creator_name": "Cameraman/Creator",
       "shooted_at": "Shooting Date",
-      "comment": "Comment"
+      "comment": "Comment",
+      "private": "Private"
     },
     "comment": {
       "model_name": "Comment",
       "body": "Comment"
+    }
+  },
+  "enums": {
+    "private": {
+      "true": "private",
+      "false": "public"
     }
   },
   "component": {

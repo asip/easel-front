@@ -7,6 +7,8 @@ const frame = defineModel<Frame>()
 const image = useTemplateRef('image')
 const imageHeight = ref<number | undefined>(0)
 
+const { loggedIn, loginUser } = useAccount()
+
 const onFlipClick = (): void => {
   imageHeight.value = image.value?.height
   front.value = !front.value
@@ -15,6 +17,9 @@ const onFlipClick = (): void => {
 
 <template>
   <div class="card-body">
+    <div v-if="loggedIn && frame?.user_id == loginUser.id"  class="flex justify-start">
+      <div class="badge badge-xs badge-outline badge-accent rounded-full">{{ $t(`enums.private.${frame?.private}`) }} </div>
+    </div>
     <div v-show="front">
       <figure class="flex justify-center">
         <NuxtLink

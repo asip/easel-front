@@ -9,6 +9,8 @@ const { userId, page = undefined } = defineProps<{
   page?: string
 }>()
 
+const { loggedIn, loginUser } = useAccount()
+
 const queryMapWithRef = computed<RefQuery>(() => {
   if (page == 'profile') {
     return { ref: JSON.stringify({ from: page }) }
@@ -25,6 +27,9 @@ const queryMapWithRef = computed<RefQuery>(() => {
   <div
     class="card-body"
   >
+    <div v-if="loggedIn && frame?.user_id == loginUser.id"  class="flex justify-start">
+      <div class="badge badge-xs badge-outline badge-accent rounded-full">{{ $t(`enums.private.${frame?.private}`) }} </div>
+    </div>
     <figure class="flex justify-center">
       <NuxtLink
         :to="`${frame?.file_url}`"

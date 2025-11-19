@@ -139,6 +139,21 @@ const updateContent = (content: string): void => {
               </div>
             </td>
           </tr>
+          <tr>
+            <td>
+              <label
+                for="private"
+                class=""
+              >{{ $t('model.frame.private') }}：</label>
+            </td>
+            <td>
+              <input
+                v-model="frame.private"
+                type="checkbox"
+                class="checkbox"
+              >
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

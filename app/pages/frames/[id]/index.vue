@@ -85,6 +85,7 @@ const onDeleteClick = (): void => {
             :photoswipe="true"
           />
           <div class="flex justify-center flex-wrap mb-1">
+            <div v-if="loggedIn && frame.user_id == loginUser.id" class="badge badge-outline badge-accent truncate rounded-full">{{ $t(`enums.private.${frame.private}`) }}</div>
             <PreviewTags v-model="frame" />
           </div>
           <div class="flex justify-center">

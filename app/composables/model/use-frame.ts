@@ -205,6 +205,9 @@ export function useFrame() {
     if (frame.value.shooted_at) {
       formData.append('frame[shooted_at]', downTZ(frame.value.shooted_at))
     }
+    if (frame.value.private) {
+      formData.append('frame[private]', frame.value.private.toString())
+    }
 
     // console.log(loginUser.value.token)
 
@@ -255,7 +258,8 @@ export function useFrame() {
         tag_list: frame.value.tag_list.join(','),
         comment: frame.value.comment,
         creator_name: frame.value.creator_name,
-        shooted_at: downTZ(frame.value.shooted_at)
+        shooted_at: downTZ(frame.value.shooted_at),
+        private: frame.value.private
       }
     }
 
