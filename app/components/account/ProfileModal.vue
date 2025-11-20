@@ -81,10 +81,7 @@ const onDeleteAccountClick = (): void => {
           <tbody>
             <tr>
               <td class="w-[9em]">
-                <label
-                  for="name"
-                  class=""
-                >{{ $t('model.user.name') }}：</label>
+                <label for="name" class="">{{ $t('model.user.name') }}：</label>
               </td>
               <td>
                 <div class="">
@@ -94,10 +91,7 @@ const onDeleteAccountClick = (): void => {
             </tr>
             <tr>
               <td>
-                <label
-                  for="email"
-                  class=""
-                >{{ $t('model.user.email') }}：</label>
+                <label for="email" class="">{{ $t('model.user.email') }}：</label>
               </td>
               <td>
                 <div class="">
@@ -106,17 +100,16 @@ const onDeleteAccountClick = (): void => {
               </td>
             </tr>
             <tr>
-              <td>{{ $t('model.user.profile') }}：</td>
-                <td class="wrap-break-word">
-                  <span v-html="sanitizedProfile" />
-                </td>
-              </tr>
+              <td>
+                <label for="profile" class="">{{ $t('model.user.profile') }}：</label>
+              </td>
+              <td class="wrap-break-word">
+                <span v-html="sanitizedProfile" />
+              </td>
+            </tr>
             <tr>
               <td>
-                <label
-                  for="time_zone"
-                  class=""
-                >{{ $t('model.user.time_zone') }}：</label>
+                <label for="time_zone" class="">{{ $t('model.user.time_zone') }}：</label>
               </td>
               <td>
                 <div class="">

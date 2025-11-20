@@ -83,10 +83,7 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td class="w-[9em]">
-                  <label
-                    for="frame_name"
-                    class=""
-                  >{{ $t('model.frame.name') }}：</label>
+                  <label for="frame_name" class="">{{ $t('model.frame.name') }}：</label>
                 </td>
                 <td>
                   <input
@@ -106,10 +103,7 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label
-                    for="tag_name"
-                    class=""
-                  >{{ $t('component.tag_search.tag_name') }}：</label>
+                  <label for="tag_name" class="">{{ $t('component.tag_search.tag_name') }}：</label>
                 </td>
                 <td>
                   <input
@@ -129,10 +123,7 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label
-                    for="user_name"
-                    class=""
-                    >{{ $t('component.tag_search.user_name') }}：</label>
+                  <label for="user_name" class="">{{ $t('component.tag_search.user_name') }}：</label>
                 </td>
                 <td>
                   <input
@@ -152,10 +143,7 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label
-                    for="creator_name"
-                    class=""
-                  >{{ $t('model.frame.creator_name') }}：</label>
+                  <label for="creator_name" class="">{{ $t('model.frame.creator_name') }}：</label>
                 </td>
                 <td>
                   <input
@@ -175,10 +163,7 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label
-                    for="date"
-                    class=""
-                  >{{ $t('component.tag_search.date') }}：</label>
+                  <label for="date" class="">{{ $t('component.tag_search.date') }}：</label>
                 </td>
                 <td>
                   <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder_date')">

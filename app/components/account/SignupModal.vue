@@ -15,9 +15,7 @@ const onBackClick = (): void => {
     id="signup_modal"
     class="modal"
   >
-    <div
-      class="modal-box rounded-[20px] divide-y divide-gray-200"
-    >
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-start mb-2">
         <a
           href="#"

@@ -55,9 +55,7 @@ const updateContent = (content: string): void => {
     <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 w-full sm:w-3/4">
       <div class="card-body">
         <div class="leading-[35px]">
-          <div
-            class="flex justify-start items-center gap-1"
-          >
+          <div class="flex justify-start items-center gap-1">
             <div class="avatar w-5 h-5">
               <img
                 :src="`${loginUser.image_thumb_url}`"

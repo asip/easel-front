@@ -24,9 +24,7 @@ const queryMapWithRef = computed<RefQuery>(() => {
 </script>
 
 <template>
-  <div
-    class="card-body"
-  >
+  <div class="card-body">
     <div v-if="loggedIn && frame?.user_id == loginUser.id"  class="flex justify-start">
       <div class="badge badge-xs badge-outline badge-accent rounded-full">{{ $t(`enums.private.${frame?.private}`) }} </div>
     </div>

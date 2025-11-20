@@ -22,9 +22,7 @@ const onCloseClick = (): void => {
     id="login_modal"
     class="modal"
   >
-    <div
-      class="modal-box rounded-[20px] divide-y divide-gray-200"
-    >
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-between mb-1">
         <div>
         {{ $t('action.user.login') }}

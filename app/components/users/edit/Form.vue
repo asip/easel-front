@@ -53,10 +53,7 @@ defineExpose({ clearForm })
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label
-                for="image"
-                class=""
-              >{{ $t('model.user.image') }}：</label>
+              <label for="image" class="">{{ $t('model.user.image') }}：</label>
             </td>
             <td>
               <input
@@ -82,10 +79,7 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label
-                for="name"
-                class=""
-              >{{ $t('model.user.name') }}：</label>
+              <label for="name" class="">{{ $t('model.user.name') }}：</label>
             </td>
             <td>
               <input
@@ -106,10 +100,7 @@ defineExpose({ clearForm })
           </tr>
           <tr v-else>
             <td>
-              <label
-                for="name"
-                class=""
-              >{{ $t('model.user.name') }}：</label>
+              <label for="name" class="">{{ $t('model.user.name') }}：</label>
             </td>
             <td>
               <div class="">
@@ -119,10 +110,7 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label
-                for="email"
-                class=""
-              >{{ $t('model.user.email') }}：</label>
+              <label for="email" class="">{{ $t('model.user.email') }}：</label>
             </td>
             <td>
               <input
@@ -142,12 +130,7 @@ defineExpose({ clearForm })
             </td>
           </tr>
           <tr v-else>
-            <td>
-              <label
-                for="email"
-                class=""
-              >{{ $t('model.user.email') }}：</label>
-            </td>
+            <td><label for="email" class="">{{ $t('model.user.email') }}：</label></td>
             <td>
               <div class="">
                 {{ user.email }}
@@ -156,10 +139,7 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label
-                for="profile"
-                class=""
-              >{{ $t('model.user.profile') }}：</label>
+              <label for="profile" class="">{{ $t('model.user.profile') }}：</label>
             </td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
@@ -173,10 +153,7 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label
-                for="time_zone"
-                class=""
-              >{{ $t('model.user.time_zone') }}：</label>
+              <label for="time_zone" class="">{{ $t('model.user.time_zone') }}：</label>
             </td>
             <td>
               <ClientOnly>

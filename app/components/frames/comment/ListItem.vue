@@ -107,7 +107,8 @@ const onDeleteClick = async (): Promise<void> => {
               </div>
             </div>
             <div
-              v-if="loggedIn && commentModel?.user_id == loginUser.id" class="flex gap-1"
+              v-if="loggedIn && commentModel?.user_id == loginUser.id"
+              class="flex gap-1"
             >
               <button v-if="!edit" class="link link-hover" @click="onEditClick">
                 <i class="bi bi-pencil-square text-accent hover:text-primary" />
