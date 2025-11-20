@@ -3,6 +3,7 @@ export interface UserResource {
   name: string
   email: string
   token: string | null | undefined
+  profile: string
   time_zone: string
   image_thumb_url: string | null
   image_one_url: string | null

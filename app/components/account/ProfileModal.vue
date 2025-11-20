@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import sanitizeHtml from 'sanitize-html'
+
+const { p2br } = useQuill()
+
 const { openModal, closeModal } = useModal()
 const { loggedIn, loginUser, setUser, initTimeZone } = inject('account') as UseAccountType
+
+const sanitizedProfile = computed<string>(() => {
+  return p2br(sanitizeHtml(loginUser.value.profile)).replace(/\n/g, '<br>')
+})
 
 const onCloseClick = (): void => {
   closeModal('#profile_modal')
@@ -64,10 +72,9 @@ const onDeleteAccountClick = (): void => {
         {{ $t('model.user.model_name') }}
       </div>
       <div class="flex justify-center border border-white">
-        <PreviewImage
-          v-model="loginUser"
-          :small="true"
-        />
+        <div class="flex justify-center mb-1">
+          <PreviewImage v-model="loginUser" :small="true" />
+        </div>
       </div>
       <div class="flex justify-center">
         <table class="table table-bordered table-rounded">
@@ -98,6 +105,12 @@ const onDeleteAccountClick = (): void => {
                 </div>
               </td>
             </tr>
+            <tr>
+              <td>{{ $t('model.user.profile') }}：</td>
+                <td class="wrap-break-word">
+                  <span v-html="sanitizedProfile" />
+                </td>
+              </tr>
             <tr>
               <td>
                 <label

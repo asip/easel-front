@@ -7,6 +7,7 @@ const ref = route.query.ref
 const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { setFlash } = useSonner()
+const { openModal } = useModal()
 const { user, getUser } = useUser()
 const { loggedIn, loginUser } = useAccount()
 const { queryMap } = useFrameSearch()
@@ -30,6 +31,10 @@ const onPageBack = async (): Promise<void> => {
   }
 }
 
+const onNameClick = (): void => {
+  openModal('#user_profile_modal')
+}
+
 const onFollowClick = async (): Promise<void> => {
   await follow(user.value.id)
   setFlash(flash.value)
@@ -45,9 +50,9 @@ const onUnfollowClick = async (): Promise<void> => {
   <div>
     <br>
     <div class="flex justify-center">
-      <div class="card bg-base-100 shadow rounded-[20px] pt-2 pb-2 ml-2 mr-2 mb-2 w-full sm:w-9/10">
+      <div class="card bg-base-100 shadow rounded-[20px] pt-1 pb-1 pl-4 pr-4 mb-2 w-full sm:w-9/10">
         <div class="flex justify-between">
-          <div class="ml-3" @click="onPageBack">
+          <div @click="onPageBack">
             <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
           </div>
           <div class="flex gap-1 items-center">
@@ -59,9 +64,9 @@ const onUnfollowClick = async (): Promise<void> => {
                 >
               </div>
             </div>
-            <div>{{ user.name }}</div>
+            <div class="link" @click="onNameClick">{{ user.name }}</div>
           </div>
-          <div v-if="loggedIn && user.id != loginUser.id" class="mr-5">
+          <div v-if="loggedIn && user.id != loginUser.id">
             <button
               v-if="following"
               class="btn btn-xs btn-outline btn-primary"
@@ -81,6 +86,7 @@ const onUnfollowClick = async (): Promise<void> => {
         </div>
       </div>
     </div>
+    <UsersProfileModal v-model="user" />
     <UsersFrameList
       :user-id="userId"
       page="user_profile"

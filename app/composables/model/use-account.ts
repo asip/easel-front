@@ -10,6 +10,7 @@ interface LoginParams {
 type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
 
 export const useAccount = () => {
+  const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<User, UserResource>()
 
   const { timeZone } = useTimeZone()
@@ -27,6 +28,7 @@ export const useAccount = () => {
     preview_url: null,
     password: '',
     password_confirmation: '',
+    profile: '',
     time_zone: '',
     social_login: false
   })
@@ -37,6 +39,15 @@ export const useAccount = () => {
     },
     set (value: File | null) {
       user.value.image = value
+    }
+  })
+
+  const profile = computed<string>({
+    get () {
+      return empty2pbr(user.value.profile)
+    },
+    set (value: string | undefined) {
+      user.value.profile = pbr2empty(value)
     }
   })
 
@@ -65,6 +76,7 @@ export const useAccount = () => {
     user.value.email= ''
     user.value.token = null
     user.value.image = null
+    user.value.profile = ''
     user.value.time_zone = ''
     user.value.image_thumb_url= ''
     user.value.image_one_url = ''
@@ -88,6 +100,7 @@ export const useAccount = () => {
       preview_url: null,
       password: '',
       password_confirmation: '',
+      profile: '',
       time_zone: '',
       social_login: false
     }
@@ -190,6 +203,7 @@ export const useAccount = () => {
     formData.append('user[email]', user.value.email)
     formData.append('user[password]', user.value.password)
     formData.append('user[password_confirmation]', user.value.password_confirmation)
+    formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
     const { error, pending } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
@@ -303,6 +317,7 @@ export const useAccount = () => {
     }
     formData.append('user[name]', user.value.name)
     formData.append('user[email]', user.value.email)
+    formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
     // console.log(user.value.token)
@@ -432,6 +447,7 @@ export const useAccount = () => {
     clearLoginUser,
     user,
     image,
+    profile,
     previewUrl,
     initTimeZone,
     clearProfile,

@@ -2,12 +2,13 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { user, image, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
+const { user, image, profile, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 
 const file = useTemplateRef('file')
+const editor = useTemplateRef('editor')
 
 onMounted(() => {
   if (import.meta.client) {
@@ -31,6 +32,14 @@ const onSignupClick = async (): Promise<void> => {
       closeModal('#signup_modal')
       openModal('#login_modal')
     }
+  }
+}
+
+const updateContent = (content: string): void => {
+  if (editor.value?.getText()?.replace(/\n/g, '') != ''){
+    user.value.profile = content
+  } else {
+    editor.value?.clearContents()
   }
 }
 
@@ -125,6 +134,23 @@ defineExpose({ clearForm })
                   :key="error"
                 >
                   <div class="text-red-500">{{ error }}</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label
+                  for="profile"
+                  class=""
+                >{{ $t('model.user.profile') }}：</label>
+              </td>
+              <td class="wrap-break-word">
+                <div class="rounded-[5px] editor-border">
+                  <Editor
+                    ref="editor"
+                    v-model="profile"
+                    @update="updateContent"
+                  />
                 </div>
               </td>
             </tr>

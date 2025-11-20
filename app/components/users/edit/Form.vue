@@ -2,12 +2,13 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { loggedIn, user, image, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, user, image, profile, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const file = useTemplateRef('file')
+const editor = useTemplateRef('editor')
 
 const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
@@ -26,6 +27,14 @@ const onUpdateClick = async (): Promise<void> => {
     } else if (!loggedIn.value) {
       closeModal('#edit_profile_modal')
     }
+  }
+}
+
+const updateContent = (content: string): void => {
+  if (editor.value?.getText()?.replace(/\n/g, '') != ''){
+    user.value.profile = content
+  } else {
+    editor.value?.clearContents()
   }
 }
 
@@ -146,31 +155,48 @@ defineExpose({ clearForm })
             </td>
           </tr>
           <tr>
-              <td>
-                <label
-                  for="time_zone"
-                  class=""
-                >{{ $t('model.user.time_zone') }}：</label>
-              </td>
-              <td>
-                <ClientOnly>
-                  <select
-                    v-model="user.time_zone"
-                    class="select"
-                  >
-                    <option v-for="option in tzOptions" :key="option.value" :value="option.value">
-                      {{ option.text }}
-                    </option>
-                  </select>
-                  <div
-                    v-for="error of r$.$errors.time_zone"
-                    :key="error"
-                  >
-                    <div class="text-red-500">{{ error }}</div>
-                  </div>
-                </ClientOnly>
-              </td>
-            </tr>
+            <td>
+              <label
+                for="profile"
+                class=""
+              >{{ $t('model.user.profile') }}：</label>
+            </td>
+            <td class="wrap-break-word">
+              <div class="rounded-[5px] editor-border">
+                <Editor
+                  ref="editor"
+                  v-model="profile"
+                  @update="updateContent"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label
+                for="time_zone"
+                class=""
+              >{{ $t('model.user.time_zone') }}：</label>
+            </td>
+            <td>
+              <ClientOnly>
+                <select
+                  v-model="user.time_zone"
+                  class="select"
+                >
+                  <option v-for="option in tzOptions" :key="option.value" :value="option.value">
+                    {{ option.text }}
+                  </option>
+                </select>
+                <div
+                  v-for="error of r$.$errors.time_zone"
+                  :key="error"
+                >
+                  <div class="text-red-500">{{ error }}</div>
+                </div>
+              </ClientOnly>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

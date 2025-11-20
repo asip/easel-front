@@ -8,6 +8,7 @@
       "current_password": "現在のパスワード",
       "password": "パスワード",
       "password_confirmation": "パスワード(確認)",
+      "profile": "プロフィール",
       "time_zone": "タイムゾーン"
     },
     "frame": {

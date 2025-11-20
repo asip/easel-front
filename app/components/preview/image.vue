@@ -41,7 +41,6 @@ onUnmounted(() => {
   <div
     v-if="original"
     id="gallery"
-    class="flex justify-center mb-1"
   >
     <NuxtLink
       v-if="photoswipe"
@@ -83,21 +82,16 @@ onUnmounted(() => {
       >
     </NuxtLink>
   </div>
-  <div
-    v-else
-    class="flex justify-center mb-1"
+  <img
+    v-else-if="small"
+    :src="imgURL"
+    alt=""
+    class="mx-auto w-[100px] h-[100px]"
   >
-    <img
-      v-if="small"
-      :src="imgURL"
-      alt=""
-      class="mx-auto w-[100px] h-[100px]"
-    >
-    <img
-      v-else
-      :src="imgURL"
-      alt=""
-      class="mx-auto"
-    >
-  </div>
+  <img
+    v-else
+    :src="imgURL"
+    alt=""
+    class="mx-auto"
+  >
 </template>

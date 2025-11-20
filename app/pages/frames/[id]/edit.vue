@@ -24,10 +24,9 @@ provide('framer', framer)
               <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
             </NuxtLink>
           </div>
-          <PreviewImage
-            v-model="frame"
-            :original="true"
-          />
+          <div class="flex justify-center mb-1">
+            <PreviewImage v-model="frame" :original="true" />
+          </div>
           <!-- unless @frame.confirming == 'true' -->
           <FramesEditForm />
           <!-- else -->
