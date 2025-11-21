@@ -11,6 +11,7 @@ const ref = route.query.ref
 const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { p2br } = useQuill()
+const { referers } = useReferer()
 const { queryMap } = useFrameSearch()
 const { loggedIn, loginUser } = useAccount()
 const framer = useFrame()
@@ -34,7 +35,11 @@ const onPageBack = async (): Promise<void> => {
   } else if (refItems.from === 'user_profile') {
     await navigateTo({ path: `/users/${refItems.id}` })
   } else {
-    await navigateTo({ path: '/', query: queryMap.value })
+    if (referers.value[route.path] == '/') {
+      await navigateTo({ path: '/', query: queryMap.value })
+    } else {
+      await navigateTo(referers.value[route.path])
+    }
   }
 }
 

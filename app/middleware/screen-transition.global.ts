@@ -13,13 +13,26 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return navigateTo('/')
   }
 
-  if ((to.path === '/frames/new' || to.path === '/account/frames') && loggedIn.value) {
-    if (to.path !== from.path){
+  if (to.path === '/frames/new' && loggedIn.value) {
+    if (to.path !== from.path) {
       referers.value[to.path] = from.fullPath
     } else {
       referers.value[to.path] = '/'
     }
-    // console.log(referers)
+  }
+
+  if (to.path === '/account/frames' && loggedIn.value) {
+    if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('profile'))) {
+      referers.value[to.path] = from.fullPath
+    } else {
+      referers.value[to.path] = '/'
+    }
+  }
+
+  if (to.path.match(/^\/frames\/\d+$/)) {
+    if (!from.path.startsWith('/frames/')) {
+      referers.value[to.path] = from.fullPath
+    }
   }
 
   if (to.path.match(/^\/frames\/\d+\/edit$/)) {
