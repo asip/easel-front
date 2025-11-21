@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
+const { referers } = useReferer()
 const { loggedIn } = useAccount()
 const { frame, tagList, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
@@ -23,11 +24,20 @@ const onEditClick = async (): Promise<void> => {
     await updateFrame()
 
     setFlash(flash.value)
+    const path = `/frames/${frame?.value.id}/edit`
     if (isSuccess()) {
       await refresh()
-      await navigateTo(`/frames/${frame?.value.id}`)
+      if (referers.value[path]) {
+        await navigateTo(referers.value[path])
+      } else {
+        await navigateTo(path)
+      }
     } else if (!loggedIn.value) {
-      await navigateTo(`/frames/${frame?.value.id}`)
+      if (referers.value[path]) {
+        await navigateTo(referers.value[path])
+      } else {
+        await navigateTo(path)
+      }
     }
   }
 }

@@ -30,11 +30,16 @@ const sanitizedComment = computed<string>(() => {
 })
 
 const onPageBack = async (): Promise<void> => {
-  if (refItems.from === 'profile') {
+  if (!refItems.from) {
+    await navigateTo({ path: '/', query: queryMap.value })
+  }
+  /* else if (refItems.from === 'profile') {
     await navigateTo({ path: '/account/frames' })
   } else if (refItems.from === 'user_profile') {
     await navigateTo({ path: `/users/${refItems.id}` })
-  } else {
+    // await navigateTo(referers.value[route.path])
+  } */
+  else {
     if (referers.value[route.path] == '/') {
       await navigateTo({ path: '/', query: queryMap.value })
     } else {

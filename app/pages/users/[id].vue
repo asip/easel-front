@@ -8,6 +8,7 @@ const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { setFlash } = useSonner()
 const { openModal } = useModal()
+const { referers } = useReferer()
 const { user, getUser } = useUser()
 const { loggedIn, loginUser } = useAccount()
 const { queryMap } = useFrameSearch()
@@ -27,7 +28,11 @@ const onPageBack = async (): Promise<void> => {
   if (refItems.from === 'frame') {
     await navigateTo({ path: `/frames/${refItems.id}` })
   } else {
-    await navigateTo({ path: '/', query: queryMap.value })
+    if (referers.value[route.path] == '/') {
+      await navigateTo({ path: '/', query: queryMap.value })
+    } else {
+      await navigateTo(referers.value[route.path])
+    }
   }
 }
 
