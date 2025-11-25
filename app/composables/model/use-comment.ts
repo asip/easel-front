@@ -1,7 +1,7 @@
 import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
-type ErrorProperty = 'body' | 'base'
+type ErrorProperty = CommentErrorProperty
 
 export function useComment () {
   const { empty2pbr, pbr2empty } = useQuill()

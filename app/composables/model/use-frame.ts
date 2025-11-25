@@ -1,7 +1,7 @@
 import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { ErrorMessages, FrameErrorProperty } from '~/types'
 
-type ErrorProperty = 'name' | 'tag_list' | 'creator_name' | 'file' | 'base'
+type ErrorProperty = FrameErrorProperty
 
 export function useFrame() {
   const { upDTL, downDTL } = useDatetimeLocal()

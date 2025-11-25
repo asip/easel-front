@@ -1,13 +1,13 @@
 import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { ErrorMessages, UserErrorProperty } from '~/types'
 
 interface LoginParams {
   email: string
   password: string
 }
 
-type ErrorProperty = 'image' | 'name' | 'email' | 'current_password' | 'password' | 'password_confirmation' | 'time_zone' | 'base'
+type ErrorProperty = UserErrorProperty
 
 export const useAccount = () => {
   const { empty2pbr, pbr2empty } = useQuill()
