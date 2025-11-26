@@ -9,10 +9,10 @@ export type QueryAPIOptions = {
   query?: SearchParams,
   token?: string | null,
   fresh?: boolean
-  more?: boolean
+  client?: boolean
 }
 
-export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, more = false }: QueryAPIOptions) => {
+export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useConstants()
 
@@ -34,7 +34,7 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     }
   }
 
-  if (more) {
+  if (client) {
     const pending = ref<boolean>(true)
 
     const data = ref<T>()

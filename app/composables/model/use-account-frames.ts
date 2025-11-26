@@ -26,14 +26,14 @@ export function useAccountFrames () {
 
   const frames = ref<Frame[]>([])
 
-  const getFrames = async (options?: { more?: boolean }): Promise<void> => {
+  const getFrames = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
       url: '/account/frames',
       query: {
         page: frameQuery.value.page
       },
       token: accessToken.value,
-      more: options?.more
+      client: options?.client
     }
 
     const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)

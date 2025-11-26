@@ -26,13 +26,13 @@ export function useUserFrames () {
 
   const frames = ref<Frame[]>([])
 
-  const getFrames = async (userId: string | undefined, options?: { more?: boolean }): Promise<void> => {
+  const getFrames = async (userId: string | undefined, options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
       url: `/users/${userId}/frames`,
       query: {
         page: frameQuery.value.page
       },
-      more: options?.more
+      client: options?.client
     }
 
     const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)

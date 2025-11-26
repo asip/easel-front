@@ -60,7 +60,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if (to.path === '/') {
     if (import.meta.client) {
-      await searchFrame({ more: true })
+      await searchFrame({ client: true })
     }
   }
 })

@@ -66,11 +66,11 @@ export const useFrameSearch = () => {
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
-  const searchFrame = async (options?: { more?: boolean }): Promise<void> => {
+  const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
       url: '/frames',
       query: queryMap.value,
-      more: options?.more
+      client: options?.client
     }
 
     const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
