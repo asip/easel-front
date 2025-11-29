@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const { referers } = useReferer()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn } = useAccount()
 
 const from = referers.value[route.path]
 </script>
@@ -27,7 +27,6 @@ const from = referers.value[route.path]
     </div>
     <AccountFrameList
       v-if="loggedIn"
-      v-model="loginUser"
       page="profile"
     />
   </div>

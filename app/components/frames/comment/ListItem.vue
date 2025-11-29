@@ -19,7 +19,7 @@ const commentModel = defineModel<Comment>()
 
 const editor: Ref = useTemplateRef('editor')
 
-const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame', id: commentModel.value?.frame_id }) }))
+const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const sanitizedCommentBody = computed<string>(() =>
   p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>')

@@ -23,7 +23,7 @@ provide('framer', framer)
 
 await getFrame(`${frameId}`)
 
-const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame', id: frameId }) }))
+const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const sanitizedComment = computed<string>(() => {
   return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')

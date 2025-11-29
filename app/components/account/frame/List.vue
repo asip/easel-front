@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import type { User } from '~/interfaces'
-
-const user = defineModel<User>()
-
 const { page = undefined } = defineProps<{
   page?: string
 }>()
@@ -12,8 +8,6 @@ const { frameQuery, getFrames, frames } = useAccountFrames()
 
 // console.log('searchFrame: start')
 await getFrames()
-
-const userId = user.value?.id?.toString()
 
 const clickCallback = async (pageNum: number): Promise<void> => {
   frameQuery.value.page = pageNum
@@ -49,7 +43,6 @@ onUnmounted(() => {
       >
         <UsersFrameListItem
           v-model="frames[i]"
-          :user-id="userId"
           :page="page"
         />
       </div>

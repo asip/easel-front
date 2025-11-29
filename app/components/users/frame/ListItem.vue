@@ -4,18 +4,15 @@ import type { RefQuery } from '~/types';
 
 const frame = defineModel<Frame>()
 
-const { userId, page = undefined } = defineProps<{
-  userId: string | undefined
+const { page = undefined } = defineProps<{
   page?: string
 }>()
 
 const { loggedIn, loginUser } = useAccount()
 
 const queryMapWithRef = computed<RefQuery>(() => {
-  if (page == 'profile') {
+  if (page == 'profile' || page == 'user_profile') {
     return { ref: JSON.stringify({ from: page }) }
-  } else if (page == 'user_profile') {
-    return { ref: JSON.stringify({ from: page, id: userId }) }
   } else {
     return {}
   }

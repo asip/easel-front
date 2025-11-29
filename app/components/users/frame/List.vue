@@ -54,7 +54,6 @@ onUnmounted(() => {
       >
         <UsersFrameListItem
           v-model="frames[i]"
-          :user-id="userId"
           :page="page"
         />
       </div>
