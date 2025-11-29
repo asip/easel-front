@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { RefItems } from '~/interfaces'
+// import type { RefItems } from '~/interfaces'
 
 const route = useRoute()
 const { id } = route.params
-const ref = route.query.ref
-const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
+// const ref = route.query.ref
+// const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { setFlash } = useSonner()
 const { openModal } = useModal()
@@ -25,14 +25,10 @@ if (loggedIn.value) {
 provide('user', user)
 
 const onPageBack = async (): Promise<void> => {
-  if (refItems.from === 'frame') {
-    await navigateTo({ path: `/frames/${refItems.id}` })
+  if (referers.value[route.path] == '/') {
+    await navigateTo({ path: '/', query: queryMap.value })
   } else {
-    if (referers.value[route.path] == '/') {
-      await navigateTo({ path: '/', query: queryMap.value })
-    } else {
-      await navigateTo(referers.value[route.path])
-    }
+    await navigateTo(referers.value[route.path])
   }
 }
 

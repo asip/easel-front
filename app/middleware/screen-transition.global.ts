@@ -30,8 +30,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (to.path.match(/^\/users\/\d+$/)) {
     if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('user_profile'))) {
       referers.value[to.path] = from.fullPath
-    } else if (from.path.startsWith('/frames/') && from.fullPath.includes('user_profile')) {
-      referers.value[to.path] = '/'
     }
   }
 
