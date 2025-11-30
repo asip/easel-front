@@ -1,19 +1,7 @@
-export type { Comment } from './entity/comment';
-export type { Frame } from './entity/frame'
-export type { User } from './entity/user'
+export type { Comment, Frame, User } from './entity'
 
-export type { FrameQuery } from './query/frame-query'
-export type { AccountFrameQuery } from './query/account-frame-query'
-export type { UserFrameQuery } from './query/user-frame-query'
-export type { RefItems } from './query/ref-items'
+export type { FrameQuery, AccountFrameQuery, UserFrameQuery, RefItems } from './query'
 
-export type { CommentResource } from './resource/comment-resource'
-export type { CommentsResource } from './resource/comments-resource'
-export type { FollowingResource } from './resource/following-resource'
-export type { FrameResource } from './resource/frame-resource'
-export type { ErrorsResource } from './resource/errors-resource'
-export type { FramesResource } from './resource/frames-resource'
-export type { MessagesResource } from './resource/messages-resource'
-export type { UserResource } from './resource/user-resource'
+export type { CommentResource, CommentsResource ,FollowingResource, FrameResource, FramesResource, UserResource, ErrorsResource, MessagesResource } from './resource'
 
 export type { Flash } from './flash'
