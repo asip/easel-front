@@ -3,7 +3,6 @@ import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '~/interfaces'
 import type { RefQuery } from '~/types'
 
-
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
