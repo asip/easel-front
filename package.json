@@ -56,6 +56,6 @@
     "vue3-google-signin": "2.1.1"
   },
   "peerDependencies": {
-    "vitest": "4.0.8"
+    "vitest": "4.0.14"
   }
 }
