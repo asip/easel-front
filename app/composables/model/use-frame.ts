@@ -132,7 +132,7 @@ export function useFrame() {
     }
 
     if (loggedIn.value) {
-      getOptions.url = `/account/frames/${id}`
+      getOptions.url = `/frames/${id}/authenticated`
       getOptions.token = accessToken.value
     } else {
       getOptions.url = `/frames/${id}`
