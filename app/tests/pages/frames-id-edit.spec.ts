@@ -27,7 +27,7 @@ vi.mock('#app', () => ({ // #app -> nuxt/app
 */
 
 describe('frames/:id/edit', () => {
-  const frameEndpointAuthenticated = '/frames/49/authenticated'
+  // const frameEndpointAuthenticated = '/frames/49/authenticated'
   const frameEndpoint = '/frames/49'
 
   const frameEndpointResponse = {
@@ -60,12 +60,13 @@ describe('frames/:id/edit', () => {
     ]
   }
 
-  registerEndpoint(frameEndpointAuthenticated, {
+  /* registerEndpoint(frameEndpointAuthenticated, {
     method: 'GET',
     handler: () => (
       frameEndpointResponse
     )
   })
+  */
 
   registerEndpoint(frameEndpoint, {
     method: 'GET',
