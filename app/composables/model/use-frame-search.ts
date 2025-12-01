@@ -9,6 +9,8 @@ export const useFrameSearch = () => {
   const { flash, clearFlash } = useFlash()
   const { setAlert } = useAlert({ flash })
 
+  const { loggedIn, accessToken } = useAccount()
+
   const makeFrame = ( { from }: { from: FrameResource }) : Frame => {
     const frame: Frame = create({ from })
     frame.file = null
@@ -68,9 +70,17 @@ export const useFrameSearch = () => {
 
   const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
-      url: '/frames',
+      url: '',
       query: queryMap.value,
-      client: options?.client
+      client: options?.client,
+    }
+
+    if ( loggedIn.value) {
+      getOptions.url = '/frames/authenticated'
+      getOptions.token = accessToken.value
+
+    } else {
+      getOptions.url = '/frames'
     }
 
     const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)

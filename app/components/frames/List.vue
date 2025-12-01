@@ -2,6 +2,7 @@
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()
+const { loginUser } = useAccount()
 const { frameQuery, queryMap, searchFrame, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
@@ -30,6 +31,13 @@ onUnmounted(() => {
     closeGallery()
   }
 })
+
+watch(
+  loginUser.value,
+  async () => {
+    await searchFrame()
+  }
+)
 </script>
 
 <template>
