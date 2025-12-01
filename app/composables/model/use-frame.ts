@@ -150,7 +150,7 @@ export function useFrame() {
         statusMessage: error.message,
         message: flash.value.alert
       })
-      } else if (data) {
+    } else if (data) {
       const frameAttrs = data
       // console.log(frameAttrs)
 
