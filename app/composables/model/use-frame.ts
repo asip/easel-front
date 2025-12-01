@@ -127,59 +127,39 @@ export function useFrame() {
 
   const getFrame = async (id: string): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     // console.log(`token: ${loginUser.value.token}`)
+    const getOptions: GetAPIOptions = {
+      url: ''
+    }
 
     if (loggedIn.value) {
-      const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
-        url: `/account/frames/${id}`,
-        token: accessToken.value
-      })
-
-      clearFlash()
-
-      if (error) {
-        setAlert({ error })
-
-        throw createError({
-          statusCode: error.statusCode,
-          statusMessage: error.message,
-          message: flash.value.alert
-        })
-      } else if (data) {
-        const frameAttrs = data
-        // console.log(frameAttrs)
-
-        if (frameAttrs) {
-          setFrame({ from: frameAttrs })
-        }
-      }
-
-      return { refresh }
+      getOptions.url = `/account/frames/${id}`
+      getOptions.token = accessToken.value
     } else {
-      const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
-        url: `/frames/${id}`
-      })
-
-      clearFlash()
-
-      if (error) {
-        setAlert({ error })
-
-        throw createError({
-          statusCode: error.statusCode,
-          statusMessage: error.message,
-          message: flash.value.alert
-        })
-      } else if (data) {
-        const frameAttrs = data
-        // console.log(frameAttrs)
-
-        if (frameAttrs) {
-          setFrame({ from: frameAttrs })
-        }
-      }
-
-      return { refresh }
+      getOptions.url = `/frames/${id}`
     }
+
+    const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+
+    clearFlash()
+
+    if (error) {
+      setAlert({ error })
+
+      throw createError({
+        statusCode: error.statusCode,
+        statusMessage: error.message,
+        message: flash.value.alert
+      })
+      } else if (data) {
+      const frameAttrs = data
+      // console.log(frameAttrs)
+
+      if (frameAttrs) {
+        setFrame({ from: frameAttrs })
+      }
+    }
+
+    return { refresh }
   }
 
   const createFrame = async (): Promise<void> => {
