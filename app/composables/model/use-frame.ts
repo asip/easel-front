@@ -119,7 +119,7 @@ export function useFrame() {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
 
   const processing = ref<boolean>(false)
 

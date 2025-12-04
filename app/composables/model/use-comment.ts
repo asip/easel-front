@@ -68,11 +68,11 @@ export function useComment () {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
 
   const processing = ref<boolean>(false)
 
-  const getComments = async (frameId: number | null |undefined, options?: { client?: boolean,  }): Promise<void> => {
+  const getComments = async (frameId: number | null |undefined, options?: { client?: boolean }): Promise<void> => {
     // console.log(comment.frame_id);
     const { data, error } = await useGetApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frameId}/comments`,

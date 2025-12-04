@@ -172,7 +172,7 @@ export const useAccount = () => {
     externalErrors.value.base = []
   }
 
-  const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser } })
+  const { setAlert } = useAlert({ flash, caller: { externalErrors, clearLoginUser } })
 
   const loginParams = ref<LoginParams>({
     email: '',
