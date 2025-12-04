@@ -65,4 +65,13 @@ defineExpose({
 .ql-container {
   height: 100%;
 }
+
+/* (Quill bubble テーマのツールバーのセレクタ) */
+.ql-bubble.ql-toolbar {
+  z-index: 10000;
+}
+/* (Quill のツールチップのセレクタ) */
+.ql-tooltip {
+  z-index: 10000;
+}
 </style>
