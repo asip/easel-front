@@ -30,18 +30,18 @@
     "nuxt": "^4.2.1",
     "playwright-core": "^1.57.0",
     "typescript": "5.9.3",
-    "vitest": "^4.0.14"
+    "vitest": "^4.0.15"
   },
   "dependencies": {
     "@formkit/tempo": "0.1.2",
     "@nuxtjs/i18n": "10.2.1",
-    "@regle/core": "^1.11.0",
-    "@regle/nuxt": "1.11.0",
-    "@regle/rules": "^1.11.0",
+    "@regle/core": "^1.12.1",
+    "@regle/nuxt": "1.12.1",
+    "@regle/rules": "^1.12.1",
     "@tailwindcss/vite": "4.1.17",
     "@yaireo/tagify": "^4.35.6",
     "bootstrap-icons": "^1.13.1",
-    "daisyui": "^5.5.5",
+    "daisyui": "^5.5.8",
     "glightbox": "^3.3.1",
     "photoswipe": "5.4.4",
     "photoswipe-fullscreen": "git+https://github.com/arnowelzel/photoswipe-fullscreen",
@@ -55,7 +55,10 @@
     "vue-sonner": "2.0.9",
     "vue3-google-signin": "2.1.1"
   },
-  "peerDependencies": {
-    "vitest": "4.0.14"
+  "pnpm": {
+    "overrides": {
+      "vitest": "4.0.15",
+      "magicast": "0.5.1"
+    }
   }
 }
