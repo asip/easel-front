@@ -3,14 +3,6 @@
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-  // future: {
-  //  compatibilityVersion: 4,
-  // },
-
-  //experimental: {
-  //  granularCachedData: false
-  //},
-
   modules: [
     '@nuxtjs/i18n',
     '@nuxt/test-utils',
