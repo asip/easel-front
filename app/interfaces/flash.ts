@@ -1,4 +1,4 @@
 export interface Flash {
-  info?: string
+  notice?: string
   alert?: string
 }
