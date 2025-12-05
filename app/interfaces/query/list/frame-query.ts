@@ -1,4 +1,6 @@
-export interface FrameQuery {
+import type { PaginationQuery } from "./pagination-query"
+
+export interface FrameQuery extends PaginationQuery {
   items: {
     word?: string | null
     frame_name?: string | null
@@ -6,8 +8,5 @@ export interface FrameQuery {
     user_name?: string | null
     creator_name?: string | null
     date?: string | null
-  },
-  page: number | null
-  pages: number
-  total: number
+  }
 }

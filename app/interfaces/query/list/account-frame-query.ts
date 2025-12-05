@@ -1,5 +1,3 @@
-export interface AccountFrameQuery {
-  page: number
-  pages: number
-  total: number
-}
+import type { PaginationQuery } from "./pagination-query";
+
+export type AccountFrameQuery = PaginationQuery
