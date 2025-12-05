@@ -68,14 +68,14 @@ describe('frames/:id/index', async () => {
     ]
   }
 
-  registerEndpoint(frameEndpoint, {
+  registerEndpoint(`${import.meta.env.BASE_URL}${frameEndpoint}`, {
     method: 'GET',
     handler: () => (
       frameEndpointResponse
     )
   })
 
-  registerEndpoint(commentsEndpoint, {
+  registerEndpoint(`${import.meta.env.BASE_URL}${commentsEndpoint}`, {
     method: 'GET',
     handler: () => (
       {

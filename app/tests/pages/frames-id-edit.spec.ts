@@ -60,7 +60,7 @@ describe('frames/:id/edit', () => {
     ]
   }
 
-  /* registerEndpoint(frameEndpointAuthenticated, {
+  /* registerEndpoint(`${import.meta.env.BASE_URL}${frameEndpointAuthenticated}`, {
     method: 'GET',
     handler: () => (
       frameEndpointResponse
@@ -68,7 +68,7 @@ describe('frames/:id/edit', () => {
   })
   */
 
-  registerEndpoint(frameEndpoint, {
+  registerEndpoint(`${import.meta.env.BASE_URL}${frameEndpoint}`, {
     method: 'GET',
     handler: () => (
       frameEndpointResponse

@@ -190,7 +190,7 @@ describe('index', () => {
     }
   }
 
-  registerEndpoint(endpoint, {
+  registerEndpoint(`${import.meta.env.BASE_URL}${endpoint}`, {
     method: 'GET',
     handler: () => (
       endpointResponse
