@@ -1,10 +1,6 @@
 <script setup lang="ts">
-// import type { RefItems } from '~/interfaces'
-
 const route = useRoute()
 const { id } = route.params
-// const ref = route.query.ref
-// const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
 const { setFlash } = useSonner()
 const { openModal } = useModal()
