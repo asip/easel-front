@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-
 import type { Flash } from '../interfaces'
 import type { ErrorMessages } from '~/types'
 
