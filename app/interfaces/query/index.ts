@@ -1,4 +1,3 @@
-export type { FrameQuery } from './frame-query'
-export type { AccountFrameQuery } from './account-frame-query'
-export type { UserFrameQuery } from './user-frame-query'
+export type { FrameQuery, AccountFrameQuery, UserFrameQuery } from './list'
+
 export type { RefItems } from './ref-items'
