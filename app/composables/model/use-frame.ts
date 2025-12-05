@@ -1,8 +1,6 @@
 import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, FrameErrorProperty } from '~/types'
 
-type ErrorProperty = FrameErrorProperty
-
 export function useFrame() {
   const { upDTL, downDTL } = useDatetimeLocal()
   const { empty2pbr, pbr2empty } = useQuill()
@@ -96,28 +94,7 @@ export function useFrame() {
     upFrameTZ(frame.value)
   }
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    name: [],
-    tag_list: [],
-    creator_name: [],
-    file: [],
-    base: []
-  })
-
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
-    externalErrors.value.file = errors.file ?? []
-    externalErrors.value.name = errors.name ?? []
-    externalErrors.value.creator_name = errors.creator_name ?? []
-    externalErrors.value.tag_list = errors.tag_list ?? []
-  }
-
-  const clearExternalErrors = (): void => {
-    externalErrors.value.file = []
-    externalErrors.value.name = []
-    externalErrors.value.tag_list = []
-    externalErrors.value.creator_name = []
-    externalErrors.value.base = []
-  }
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({ flash })
 
   const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
 
@@ -210,23 +187,6 @@ export function useFrame() {
     }
 
     processing.value = pending
-  }
-
-  const isSuccess = (): boolean => {
-    let result = true
-
-    if (externalErrors.value.file.length > 0 || externalErrors.value.name.length > 0 ||
-      externalErrors.value.tag_list.length > 0 || externalErrors.value.creator_name.length > 0 ||
-      externalErrors.value.base.length > 0
-    ) {
-      result = false
-    }
-
-    if (flash.value.alert) {
-      result = false
-    }
-
-    return result
   }
 
   const updateFrame = async (): Promise<void> => {

@@ -1,1 +1,1 @@
-export type ErrorMessages<T extends string> = Record<T, string[]>
+export type ErrorMessages<T extends string> = Partial<Record<T, string[]>>

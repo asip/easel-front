@@ -1,8 +1,6 @@
 import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
-type ErrorProperty = CommentErrorProperty
-
 export function useComment () {
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy, create } = useEntity<Comment, CommentResource>()
@@ -54,19 +52,7 @@ export function useComment () {
 
   const comments = useState<Comment[]>('comments', () => { return [] })
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    body: [],
-    base: []
-  })
-
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
-    externalErrors.value.body = errors.body ?? []
-  }
-
-  const clearExternalErrors = (): void => {
-    externalErrors.value.body = []
-    externalErrors.value.base = []
-  }
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
   const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
 
@@ -154,20 +140,6 @@ export function useComment () {
     }
 
     processing.value = pending
-  }
-
-  const isSuccess = (): boolean => {
-    let result = true
-
-    if (externalErrors.value.body.length > 0 || externalErrors.value.base.length > 0) {
-      result = false
-    }
-
-    if (flash.value.alert) {
-      result = false
-    }
-
-    return result
   }
 
   const deleteComment = async (comment: Comment): Promise<void> => {

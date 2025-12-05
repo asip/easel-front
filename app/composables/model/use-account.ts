@@ -7,8 +7,6 @@ interface LoginParams {
   password: string
 }
 
-type ErrorProperty = UserErrorProperty
-
 export const useAccount = () => {
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<User, UserResource>()
@@ -77,7 +75,6 @@ export const useAccount = () => {
     user.value.token = null
     user.value.image = null
     user.value.profile = ''
-    user.value.time_zone = ''
     user.value.image_thumb_url= ''
     user.value.image_one_url = ''
     user.value.image_three_url= ''
@@ -140,37 +137,7 @@ export const useAccount = () => {
     copy({ from: loginUser.value, to: user.value })
   }
 
-  const externalErrors = ref<ErrorMessages<ErrorProperty>>({
-    image: [],
-    name: [],
-    email: [],
-    current_password: [],
-    password: [],
-    password_confirmation: [],
-    time_zone: [],
-    base: []
-  })
-
-  const setExternalErrors = (errors: ErrorMessages<ErrorProperty>): void => {
-    externalErrors.value.image = errors.image ?? []
-    externalErrors.value.name = errors.name ?? []
-    externalErrors.value.email = errors.email ?? []
-    externalErrors.value.current_password = errors.current_password ?? []
-    externalErrors.value.password = errors.password ?? []
-    externalErrors.value.password_confirmation = errors.password_confirmation ?? []
-    externalErrors.value.time_zone = errors.time_zone ?? []
-  }
-
-  const clearExternalErrors = (): void => {
-    externalErrors.value.image = []
-    externalErrors.value.name = []
-    externalErrors.value.email = []
-    externalErrors.value.current_password = []
-    externalErrors.value.password = []
-    externalErrors.value.password_confirmation = []
-    externalErrors.value.time_zone = []
-    externalErrors.value.base = []
-  }
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<UserErrorProperty>({ flash })
 
   const { setAlert } = useAlert({ flash, caller: { externalErrors, clearLoginUser } })
 
@@ -384,24 +351,6 @@ export const useAccount = () => {
     }
 
     processing.value = pending
-  }
-
-  const isSuccess = (): boolean => {
-    let result = true
-
-    if (externalErrors.value.image.length > 0 || externalErrors.value.name.length > 0 ||
-      externalErrors.value.email.length > 0 || externalErrors.value.current_password.length > 0 ||
-      externalErrors.value.password.length > 0 || externalErrors.value.password_confirmation.length > 0 ||
-      externalErrors.value.time_zone.length > 0 || externalErrors.value.base.length > 0
-    ) {
-      result = false
-    }
-
-    if (flash.value.alert) {
-      result = false
-    }
-
-    return result
   }
 
   const logout = async (): Promise<void> => {
