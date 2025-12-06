@@ -31,7 +31,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           }
           break
         // default:
-        //  flash.value.alert = error.value.message
+        //  flash.value.alert = $i18n.t('action.error.api', { message: error.message })
       }
     } else {
       switch (error.statusCode) {
@@ -42,7 +42,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           }
           break
         case 404:
-          flash.value.alert = error.message
+          flash.value.alert = $i18n.t('action.error.api', { message: error.message })
           break
         case 422:
           {
@@ -54,7 +54,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
             break
           }
         default:
-          flash.value.alert = error.message
+          flash.value.alert = $i18n.t('action.error.api', { message: error.message })
       }
     }
   }
