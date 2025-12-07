@@ -1,7 +1,5 @@
 export const useConstants = () => {
   const runtimeConfig = useRuntimeConfig()
-  const { locale } = useLocale()
-  const { timeZone } = useTimeZone()
 
   const backendOriginURL = computed<string | undefined>(
     () => {
@@ -19,12 +17,5 @@ export const useConstants = () => {
 
   const googleClientID: string = runtimeConfig.public.googleClientId
 
-  const commonHeaders: Ref<Record<string, string>> = computed(() => ({
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-    'Accept-Language': locale.value,
-    'Time-Zone': timeZone.value.client
-  }))
-
-  return { backendApiURL, googleClientID, commonHeaders }
+  return { backendApiURL, googleClientID }
 }

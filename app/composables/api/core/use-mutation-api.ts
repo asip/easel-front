@@ -1,4 +1,5 @@
 import type { FetchError, FetchResponse } from 'ofetch'
+import { useHttpHeaders } from './use-http-headers'
 
 type MutationAPIOptions = {
   method: 'post' | 'put' | 'delete',
@@ -9,7 +10,7 @@ type MutationAPIOptions = {
 
 export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {}, token = null }: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
-  const { commonHeaders } = useConstants()
+  const { commonHeaders } = useHttpHeaders()
 
   const headers: Record<string, string> = commonHeaders.value
 

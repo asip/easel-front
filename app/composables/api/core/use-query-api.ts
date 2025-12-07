@@ -1,4 +1,5 @@
 import type { FetchError, FetchResponse } from 'ofetch'
+import { useHttpHeaders } from './use-http-headers'
 
 interface SearchParams {
   [key: string]: any
@@ -14,7 +15,7 @@ export type QueryAPIOptions = {
 
 export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
-  const { commonHeaders } = useConstants()
+  const { commonHeaders } = useHttpHeaders()
 
   const tokenRef = ref<string>()
 
