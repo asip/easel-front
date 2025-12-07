@@ -52,9 +52,9 @@ export function useComment () {
 
   const comments = useState<Comment[]>('comments', () => { return [] })
 
-  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
+  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
 
   const processing = ref<boolean>(false)
 

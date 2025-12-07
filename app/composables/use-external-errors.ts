@@ -10,6 +10,12 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
     }
   }
 
+  const setExternalErrors = (from: ErrorMessages<string>): void => {
+    for(const key in from) {
+      externalErrors.value[key] = from[key] ?? []
+    }
+  }
+
   const isSuccess = (): boolean => {
     let result = true
 
@@ -23,6 +29,6 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   }
 
   return {
-    externalErrors, clearExternalErrors, isSuccess
+    externalErrors, setExternalErrors, clearExternalErrors, isSuccess
   }
 }

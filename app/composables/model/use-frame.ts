@@ -94,9 +94,9 @@ export function useFrame() {
     upFrameTZ(frame.value)
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({ flash })
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, externalErrors } })
+  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
 
   const processing = ref<boolean>(false)
 

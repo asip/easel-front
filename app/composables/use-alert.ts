@@ -10,7 +10,7 @@ interface UseAlertOptions {
 }
 
 interface UseAlertCallerType {
-  externalErrors?: Ref<ErrorMessages<string>>
+  setExternalErrors?: (from: ErrorMessages<string>) => void
   clearLoginUser?: () => void
 }
 
@@ -46,10 +46,10 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           break
         case 422:
           {
-            if (caller && 'externalErrors' in caller && error.data) {
+            if (caller && 'setExternalErrors' in caller && error.data) {
               const { errors } = error.data
               // globalThis.console.log(errors)
-              if (caller.externalErrors) copyErrors(errors, caller.externalErrors)
+              if (caller.setExternalErrors) caller.setExternalErrors(errors)
             }
             break
           }
