@@ -20,10 +20,6 @@ const dateWord = computed<Date | null>({
   }
 })
 
-const masks = {
-  input: 'YYYY/MM/DD'
-}
-
 const onSearchClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
 
@@ -48,13 +44,15 @@ const onClearClick = async (): Promise<void> => {
 <template>
   <div class="card bg-base-100 min-h-full w-100 p-4">
     <div class="card-block">
-      <div class="flex justify-center mb-2">
+      <div class="flex justify-center mb-2 mx-auto">
         <client-only>
-          <v-date-picker
+          <vue-date-picker
             v-model="dateWord"
-            mode="date"
-            :masks="masks"
-            :locale="locale"
+            :time-config="{ enableTimePicker: false }"
+            class="centered-datepicker"
+            inline
+            position="center"
+            auto-apply
           />
         </client-only>
       </div>
@@ -196,3 +194,12 @@ const onClearClick = async (): Promise<void> => {
     </div>
   </div>
 </template>
+
+<style scoped>
+  .centered-datepicker {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    --dp-border-radius: 10px;
+  }
+</style>
