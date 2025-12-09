@@ -6,7 +6,7 @@ const error = useError()
 <template>
   <div class="min-h-screen">
     <Header />
-    <div class="container mx-auto bg-aliceblue-200 error-html">
+    <div class="container mx-auto error-html">
       <ErrorBadRequest v-if="error?.statusCode == 400" />
       <ErrorForbidden v-if="error?.statusCode == 403" />
       <ErrorNotFound v-if="error?.statusCode == 404" />

@@ -18,7 +18,7 @@ useHead(
 <template>
   <div class="min-h-screen">
     <Header />
-    <div class="container mx-auto bg-aliceblue-200">
+    <div class="container mx-auto">
       <slot />
     </div>
     <Footer />
