@@ -8,6 +8,7 @@ export const useAccountRules = (user?: User) => {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
     email: { required, email },
+    profile: { maxLength: maxLength(160) },
     password: {
       required, minLength: minLength(6), maxLength: maxLength(128)
     },
@@ -26,6 +27,7 @@ export const useAccountRules = (user?: User) => {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
     email: { required, email },
+    profile: { maxLength: maxLength(160) },
     password: { minLength: minLength(6), maxLength: maxLength(128) },
     password_confirmation: { sameAs: sameAs(user?.password) }
   })
@@ -36,6 +38,7 @@ export const useAccountRules = (user?: User) => {
       required, minLength: minLength(3), maxLength: maxLength(40)
     },
     email: { required, email },
+    profile: { maxLength: maxLength(160) },
     time_zone: { required }
   }
 

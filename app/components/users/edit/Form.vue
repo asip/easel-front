@@ -149,6 +149,12 @@ defineExpose({ clearForm })
                   @update="updateContent"
                 />
               </div>
+              <div
+                v-for="error of r$.$errors.profile"
+                :key="error"
+              >
+                <div class="text-red-500">{{ error }}</div>
+              </div>
             </td>
           </tr>
           <tr>
