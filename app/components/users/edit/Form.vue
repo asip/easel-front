@@ -49,7 +49,7 @@ defineExpose({ clearForm })
 <template>
   <form>
     <div class="flex justify-center">
-      <table class="table table-bordered table-rounded">
+      <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
             <td class="w-[9em]">

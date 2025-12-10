@@ -145,11 +145,11 @@ const updateContent = (content: string): void => {
             </td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
-                  <Editor
-                    ref="editor"
-                    v-model="comment"
-                    @update="updateContent"
-                  />
+                <Editor
+                  ref="editor"
+                  v-model="comment"
+                  @update="updateContent"
+                />
               </div>
             </td>
           </tr>

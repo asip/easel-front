@@ -58,7 +58,7 @@ defineExpose({ clearForm })
   <div class="card-block">
     <form>
       <div class="flex justify-center">
-        <table class="table table-bordered table-rounded">
+        <table class="table table-bordered table-rounded table-fixed">
           <tbody>
             <tr>
               <td class="w-[12em]">
