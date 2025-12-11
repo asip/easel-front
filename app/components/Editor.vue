@@ -61,7 +61,7 @@ defineExpose({
   </ClientOnly>
 </template>
 
-<style scoped>
+<style>
 .ql-container {
   height: 100%;
 }
