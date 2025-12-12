@@ -2,7 +2,7 @@
 const { closeModal } = useModal()
 
 const { setFlash } = useSonner()
-const { loginParams, login, isSuccess, flash, externalErrors, resetLoginParams, clearExternalErrors } = inject('account') as UseAccountType
+const { loginParams, login, isSuccess, flash, externalErrors, clearLoginParams, clearExternalErrors } = inject('account') as UseAccountType
 const { signinRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(loginParams, signinRules, { externalErrors })
@@ -22,7 +22,7 @@ const onLoginClick = async (): Promise<void> => {
     await login()
     setFlash(flash.value)
     if (isSuccess()) {
-      resetLoginParams()
+      clearLoginParams()
       r$.$reset()
       closeModal('#login_modal')
     }
@@ -30,7 +30,7 @@ const onLoginClick = async (): Promise<void> => {
 }
 
 const clearForm = (): void => {
-  resetLoginParams()
+  clearLoginParams()
   clearExternalErrors()
   r$.$clearExternalErrors()
   r$.$reset()

@@ -56,7 +56,7 @@ export const useFrameSearch = () => {
     return query;
   });
 
-  const resetSearchCriteria = (): void => {
+  const clearSearchCriteria = (): void => {
     const { items } = frameQuery.value;
     if (items.word) frameQuery.value.items.word = null
     if (items.frame_name) frameQuery.value.items.frame_name = null
@@ -108,6 +108,6 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frameQuery, searchFrame, frames, queryMap, qItems, resetSearchCriteria
+    frameQuery, searchFrame, frames, queryMap, qItems, clearSearchCriteria
   }
 }

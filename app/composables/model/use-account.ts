@@ -146,7 +146,7 @@ export const useAccount = () => {
     password: ''
   })
 
-  const resetLoginParams = (): void => {
+  const clearLoginParams = (): void => {
     loginParams.value.email = ''
     loginParams.value.password = ''
   }
@@ -403,7 +403,7 @@ export const useAccount = () => {
     setUser,
     loggedIn,
     loginParams,
-    resetLoginParams,
+    clearLoginParams,
     externalErrors,
     clearExternalErrors,
     signup,
