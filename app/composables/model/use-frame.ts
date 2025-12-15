@@ -2,6 +2,8 @@ import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, FrameErrorProperty } from '~/types'
 
 export function useFrame() {
+  const { $i18n } = useNuxtApp()
+
   const { upDTL, downDTL } = useDatetimeLocal()
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<Frame, FrameResource>()
@@ -96,7 +98,13 @@ export function useFrame() {
 
   const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({ flash })
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { backendErrorInfo, setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+
+  const set404Alert = (): void => {
+    if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
+      flash.value.alert = $i18n.t('action.error.not_found', { source: $i18n.t('misc.page') })
+    }
+  }
 
   const processing = ref<boolean>(false)
 
@@ -250,6 +258,7 @@ export function useFrame() {
     shootedAt,
     frameId,
     externalErrors,
+    backendErrorInfo,
     refresh,
     getFrame,
     updateFrame,
@@ -257,6 +266,7 @@ export function useFrame() {
     deleteFrame,
     processing,
     isSuccess,
+    set404Alert,
     flash
   }
 }

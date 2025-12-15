@@ -1,4 +1,10 @@
 {
+  "misc": {
+    "page": "page"
+  },
+  "models": {
+    "comment": "comment"
+  },
   "model": {
     "user": {
       "model_name": "Profile",
@@ -80,7 +86,8 @@
     },
     "error": {
       "api": "An error has occurred.({message})",
-      "login": "Please login."
+      "login": "Please login.",
+      "not_found": "This {source} has been deleted."
     }
   },
   "rules": {

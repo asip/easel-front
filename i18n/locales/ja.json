@@ -1,4 +1,10 @@
 {
+  "misc": {
+    "page": "ページ"
+  },
+  "models": {
+    "comment": "コメント"
+  },
   "model": {
     "user": {
       "model_name": "プロフィール",
@@ -80,7 +86,8 @@
     },
     "error": {
       "api": "不具合が発生しました。({message})",
-      "login": "ログインしてください"
+      "login": "ログインしてください",
+      "not_found": "この{source}は削除されています。"
     }
   },
   "rules": {

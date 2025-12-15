@@ -2,6 +2,8 @@ import type { Comment, CommentResource, CommentsResource, ErrorsResource } from 
 import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
 export function useComment () {
+  const { $i18n } = useNuxtApp()
+
   const { empty2pbr, pbr2empty } = useQuill()
   const { copy, create } = useEntity<Comment, CommentResource>()
 
@@ -54,7 +56,17 @@ export function useComment () {
 
   const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { backendErrorInfo, setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+
+  const set404Alert = (): void => {
+    if (backendErrorInfo.value.status == 404) {
+      if (backendErrorInfo.value.source == 'Frame') {
+        flash.value.alert = $i18n.t('action.error.not_found', { source: $i18n.t('misc.page') })
+      } else if (backendErrorInfo.value.source == 'Comment') {
+        flash.value.alert = $i18n.t('action.error.not_found', { source: $i18n.t('models.comment') })
+      }
+    }
+  }
 
   const processing = ref<boolean>(false)
 
@@ -146,7 +158,7 @@ export function useComment () {
     processing.value = true
 
     const { error, pending } = await useDeleteApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
-      url: `/comments/${comment.id}`,
+      url: `/frames/${comment.frame_id}/comments/${comment.id}`,
       token: accessToken.value
     })
 
@@ -165,12 +177,14 @@ export function useComment () {
     setComment,
     comments,
     externalErrors,
+    backendErrorInfo,
     getComments,
     createComment,
     updateComment,
     deleteComment,
     processing,
     isSuccess,
+    set404Alert,
     flash
   }
 

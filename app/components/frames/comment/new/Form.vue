@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, body, externalErrors, processing, isSuccess, flash, getComments, createComment } = useComment()
+const { comment, body, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, getComments, createComment } = useComment()
 const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
 
@@ -30,6 +30,7 @@ const onCreateCommentClick = async (): Promise<void> => {
 
   if (valid) {
     await createComment()
+    set404Alert()
     setFlash(flash.value)
     if (isSuccess()) {
       comment.value.body = ''
@@ -37,7 +38,18 @@ const onCreateCommentClick = async (): Promise<void> => {
       r$.$touch()
       r$.$reset()
       await getComments(frameId, { client: true })
+    } else {
+      redirect404()
     }
+  }
+}
+
+const redirect404 = async (): Promise<void> => {
+  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
+    await navigateTo(`/frames/${frameId}`)
+    globalThis.setTimeout(() => {
+      location.reload()
+    }, 2000)
   }
 }
 

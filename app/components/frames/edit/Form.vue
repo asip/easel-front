@@ -2,12 +2,12 @@
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
-const { frame, tagList, comment, shootedAt, updateFrame, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, tagList, comment, shootedAt, updateFrame, externalErrors, backendErrorInfo, set404Alert, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
 
 const editor: Ref = useTemplateRef('editor')
 
-const { r$ } = useI18nRegle(frame, editFrameRules)
+const { r$ } = useI18nRegle(frame, editFrameRules, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tag_list)
@@ -22,23 +22,35 @@ const onEditClick = async (): Promise<void> => {
   // console.log(frame)
   if (valid) {
     await updateFrame()
-
+    set404Alert()
     setFlash(flash.value)
     const path = `/frames/${frame?.value.id}/edit`
+    const framePath = `/frames/${frame?.value.id}`
     if (isSuccess()) {
       await refresh()
       if (referers.value[path]) {
         await navigateTo(referers.value[path])
       } else {
-        await navigateTo(path)
+        await navigateTo(framePath)
       }
     } else if (!loggedIn.value) {
       if (referers.value[path]) {
         await navigateTo(referers.value[path])
       } else {
-        await navigateTo(path)
+        await navigateTo(framePath)
       }
+    } else {
+      await redirect404()
     }
+  }
+}
+
+const redirect404 = async (): Promise<void> => {
+  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
+    await navigateTo(`/frames/${frame?.value.id}`)
+    globalThis.setTimeout(() => {
+      location.reload()
+    }, 2000)
   }
 }
 

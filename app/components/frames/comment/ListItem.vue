@@ -6,7 +6,7 @@ import type { RefQuery } from '~/types'
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, body, externalErrors, updateComment, deleteComment, flash, getComments, isSuccess, processing, setComment } = useComment()
+const { comment, body, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, getComments, isSuccess, set404Alert, processing, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -49,12 +49,15 @@ const onUpdateClick = async (): Promise<void> => {
 
   if (valid) {
     await updateComment()
+    set404Alert()
     setFlash(flash.value)
     if (isSuccess()) {
       r$.$touch()
       r$.$reset()
       setComment({ to: commentModel.value })
       edit.value = false
+    } else {
+      redirectOrReload404()
     }
   }
 }
@@ -69,9 +72,25 @@ const updateContent = (content: string): void => {
 
 const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) { await deleteComment(commentModel.value) }
-    setFlash(flash.value)
+  set404Alert()
+  setFlash(flash.value)
   if (isSuccess()) {
     await getComments(commentModel.value?.frame_id, { client: true })
+  } else {
+    redirectOrReload404()
+  }
+}
+
+const redirectOrReload404 = async (): Promise<void> => {
+  if (backendErrorInfo.value.status == 404) {
+    if (backendErrorInfo.value.source == 'Frame') {
+      await navigateTo(`/frames/${comment.value.frame_id}`)
+      globalThis.setTimeout(() => {
+        location.reload()
+      }, 2000)
+    } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
+      await getComments(comment.value.frame_id, { client: true })
+    }
   }
 }
 </script>
