@@ -58,7 +58,7 @@ const updateContent = (content: string): void => {
             <td>
               <input
                 type="file"
-                accept="image/jpg,image/jpeg,image/png"
+                accept="image/jpg,image/jpeg,image/png,image/webp,image/avif"
                 class="file-input"
                 @change="onSelectFile"
               >

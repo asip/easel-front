@@ -59,7 +59,7 @@ defineExpose({ clearForm })
               <input
                 ref="file"
                 type="file"
-                accept="image/jpg,image/jpeg,image/png"
+                accept="image/jpg,image/jpeg,image/png,image/webp,image/avif"
                 multiple="false"
                 class="file-input"
                 @change="onSelectFile"
