@@ -26,6 +26,7 @@ const onLogoutClick = async (): Promise<void> => {
   } else if (route.path.match(/^\/frames\/\d+\/edit$/)) {
     await navigateTo(`/frames/${route.params.id}`)
   }
+  location.reload()
 }
 
 const onTopPageClick = async (): Promise<void> => {
