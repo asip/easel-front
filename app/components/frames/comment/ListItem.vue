@@ -86,7 +86,7 @@ const redirectOrReload404 = async (): Promise<void> => {
     if (backendErrorInfo.value.source == 'Frame') {
       await navigateTo(`/frames/${comment.value.frame_id}`)
       globalThis.setTimeout(() => {
-        location.reload()
+        reloadNuxtApp()
       }, 2000)
     } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
       await getComments(comment.value.frame_id, { client: true })

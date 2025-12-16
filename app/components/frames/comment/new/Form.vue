@@ -48,7 +48,7 @@ const redirect404 = async (): Promise<void> => {
   if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
     await navigateTo(`/frames/${frameId}`)
     globalThis.setTimeout(() => {
-      location.reload()
+      reloadNuxtApp()
     }, 2000)
   }
 }

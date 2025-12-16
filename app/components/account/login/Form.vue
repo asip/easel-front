@@ -25,7 +25,7 @@ const onLoginClick = async (): Promise<void> => {
       clearLoginParams()
       r$.$reset()
       closeModal('#login_modal')
-      location.reload()
+      reloadNuxtApp()
     }
   }
 }
