@@ -37,11 +37,6 @@ const onCancelClick = (): void => {
 }
 
 const onUpdateClick = async (): Promise<void> => {
-  /*
-  if (editor.value?.getText().replace(/\n/g, '') === ''){
-    editor.value?.clearContents()
-  }
-  */
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()

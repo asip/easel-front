@@ -11,12 +11,7 @@ const editor: Ref = useTemplateRef('editor')
 
 comment.value.frame_id = frameId
 
-const onCreateCommentClick = async (): Promise<void> => {
-  /*
-  if (editor.value?.getText().replace(/\n/g, '') === ''){
-    editor.value?.clearContents()
-  }
-  */
+const onCreateClick = async (): Promise<void> => {
   r$.$touch()
   r$.$clearExternalErrors()
   r$.$reset()
@@ -105,7 +100,7 @@ const updateContent = (content: string): void => {
                 type="button"
                 class="btn btn-outline btn-primary"
                 :disabled="processing"
-                @click="onCreateCommentClick"
+                @click="onCreateClick"
               >
                 {{ $t('action.comment.post') }}
               </button>

@@ -13,10 +13,6 @@ const { r$ } = useI18nRegle(frame, editFrameRules, { externalErrors })
 // console.log(frame.tag_list)
 
 const onEditClick = async (): Promise<void> => {
-  if (editor.value?.getText().replace(/\n/g, '') == ''){
-    frame.value.comment = ''
-  }
-
   const { valid } = await r$.$validate()
 
   // console.log(frame)
