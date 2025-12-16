@@ -49,14 +49,6 @@ const redirect404 = async (): Promise<void> => {
     }, 2000)
   }
 }
-
-const updateContent = (content: string): void => {
-  if (editor.value?.getText().replace(/\n/g, '') != ''){
-    frame.value.comment = content
-  } else {
-    editor.value?.clearContents()
-  }
-}
 </script>
 
 <template>
@@ -137,7 +129,6 @@ const updateContent = (content: string): void => {
                 <Editor
                   ref="editor"
                   v-model="comment"
-                  @update="updateContent"
                 />
               </div>
             </td>

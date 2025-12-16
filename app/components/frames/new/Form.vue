@@ -20,10 +20,6 @@ const onSelectFile = (evt: Event): void => {
 }
 
 const onCreateClick = async (): Promise<void> => {
-  if (editor.value?.getText()?.replace(/\n/g, '') == ''){
-    frame.value.comment = ''
-  }
-
   const { valid } = await r$.$validate()
 
   if (valid) {
@@ -34,14 +30,6 @@ const onCreateClick = async (): Promise<void> => {
     } else if (!loggedIn.value) {
       await navigateTo(referers.value[route.path])
     }
-  }
-}
-
-const updateContent = (content: string): void => {
-  if (editor.value?.getText()?.replace(/\n/g, '') != ''){
-    frame.value.comment = content
-  } else {
-    editor.value?.clearContents()
   }
 }
 </script>
@@ -148,7 +136,6 @@ const updateContent = (content: string): void => {
                 <Editor
                   ref="editor"
                   v-model="comment"
-                  @update="updateContent"
                 />
               </div>
             </td>

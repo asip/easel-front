@@ -2,9 +2,6 @@
 import type Quill from "quill"
 
 const modelValue = defineModel<string>()
-const emit = defineEmits<{
-  update: [content: string]
-}>()
 
 const options = ref({
   theme: 'bubble',
@@ -26,7 +23,11 @@ onMounted(async () => {
 })
 
 const updateContent = (content: string): void => {
-  emit('update', content)
+  if (getText()?.replace(/\n/g, '') != ''){
+    modelValue.value = content
+  } else {
+    clearContents()
+  }
 }
 
 const clearContents = (): void => {
@@ -43,8 +44,6 @@ const focus = (): void => {
 }
 
 defineExpose({
-  clearContents,
-  getText,
   focus
 })
 

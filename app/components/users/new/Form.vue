@@ -35,14 +35,6 @@ const onSignupClick = async (): Promise<void> => {
   }
 }
 
-const updateContent = (content: string): void => {
-  if (editor.value?.getText()?.replace(/\n/g, '') != ''){
-    user.value.profile = content
-  } else {
-    editor.value?.clearContents()
-  }
-}
-
 const clearForm = (): void => {
   if (file.value) file.value.value = ''
   clearProfile()
@@ -137,7 +129,6 @@ defineExpose({ clearForm })
                   <Editor
                     ref="editor"
                     v-model="profile"
-                    @update="updateContent"
                   />
                 </div>
                 <div

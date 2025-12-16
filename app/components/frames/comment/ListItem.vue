@@ -57,14 +57,6 @@ const onUpdateClick = async (): Promise<void> => {
   }
 }
 
-const updateContent = (content: string): void => {
-  if (editor.value?.getText().replace(/\n/g, '') != ''){
-    comment.value.body = content
-  } else {
-    editor.value?.clearContents()
-  }
-}
-
 const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) { await deleteComment(commentModel.value) }
   set404Alert()
@@ -156,7 +148,6 @@ const redirectOrReload404 = async (): Promise<void> => {
               <Editor
                 ref="editor"
                 v-model="body"
-                @update="updateContent"
               />
             </div>
           </div>
