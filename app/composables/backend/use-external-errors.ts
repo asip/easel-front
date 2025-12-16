@@ -1,4 +1,4 @@
-import type { Flash } from '../interfaces'
+import type { Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 export function useExternalErrors<ErrorProperty extends string>({ flash } : { flash: Ref<Flash> }) {

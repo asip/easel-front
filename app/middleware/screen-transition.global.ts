@@ -1,4 +1,5 @@
-import { useFrameSearch } from './../composables/model/use-frame-search';
+import { useFrameSearch } from '~/composables';
+
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const { autoDetect } = useLocale()
   const { loggedIn, loginUser, authenticate } = useAccount()

@@ -1,4 +1,4 @@
-import type { BackendErrorInfo, BackendErrorResource } from '../interfaces'
+import type { BackendErrorInfo, BackendErrorResource } from '~/interfaces'
 
 export function useBackendErrorInfo() {
   const backendErrorInfo = ref<BackendErrorInfo>({})
