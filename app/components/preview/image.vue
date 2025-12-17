@@ -22,7 +22,7 @@ const imgURL = computed<string | undefined>(() => {
 })
 
 onMounted(async () => {
-  if (original) {
+  if (import.meta.client && original) {
     if (photoswipe) {
       await initPSLightbox({ selector: '#gallery' })
     } else {
@@ -32,7 +32,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
-  closeLightbox()
+  if (import.meta.client) closeLightbox()
 })
 </script>
 

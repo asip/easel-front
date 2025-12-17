@@ -11,9 +11,7 @@ const file = useTemplateRef('file')
 const editor = useTemplateRef('editor')
 
 onMounted(() => {
-  if (import.meta.client) {
-    initTimeZone()
-  }
+  if (import.meta.client) initTimeZone()
 })
 
 const onSelectFile = (evt: Event): void => {

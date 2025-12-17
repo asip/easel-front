@@ -5,11 +5,11 @@ const { initTagEditor, closeTagEditor } = useTagEditor({ key: 'tagEditorRef' })
 
 onMounted(() => {
   // console.log(frame)
-  if (modelValue.value){ initTagEditor(modelValue) }
+  if (import.meta.client && modelValue.value){ initTagEditor(modelValue) }
 })
 
 onUnmounted(() => {
-  closeTagEditor()
+  if (import.meta.client) closeTagEditor()
 })
 </script>
 

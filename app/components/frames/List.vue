@@ -15,21 +15,15 @@ const clickCallback = async (pageNum: number): Promise<void> => {
 }
 
 onMounted(() => {
-  if (import.meta.client) {
-    initGallery({ selector: '.lb' })
-  }
+  if (import.meta.client) initGallery({ selector: '.lb' })
 })
 
 onUpdated(() => {
-  if (import.meta.client) {
-    initGallery({ selector: '.lb' })
-  }
+  if (import.meta.client) initGallery({ selector: '.lb' })
 })
 
 onUnmounted(() => {
-  if (import.meta.client) {
-    closeGallery()
-  }
+  if (import.meta.client) closeGallery()
 })
 
 watch(
