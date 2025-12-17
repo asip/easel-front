@@ -13,7 +13,7 @@ export function useImagePreview ({ target, file, previewUrl }: useImagePreviewOp
     const buffer = await file.value.arrayBuffer()
     blob = new Blob([buffer], { type: file.value.type })
   } */
-  if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif)$/)) {
+  if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)
