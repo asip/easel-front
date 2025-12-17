@@ -4,7 +4,7 @@ import type { NuxtError } from '#app'
 import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces';
 import type { ErrorMessages } from '~/types';
 
-import { useBackendErrorInfo } from './use-backend-error-info';
+import { useBackendErrorInfo } from './error';
 
 interface UseAlertOptions {
   flash: Ref<Flash>
