@@ -42,9 +42,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller) {
-            if (caller.clearLoginUser) caller.clearLoginUser()
-          }
+          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
           break
         case 404:
           {
@@ -54,22 +52,16 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           break
         case 422:
           {
-            if (caller && 'setExternalErrors' in caller && error.data) {
+            if (caller && 'setExternalErrors' in caller && caller.setExternalErrors && error.data) {
               const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
               // globalThis.console.log(errors)
-              if (caller.setExternalErrors) caller.setExternalErrors(errors)
+              caller.setExternalErrors(errors)
             }
             break
           }
         default:
           flash.value.alert = $i18n.t('action.error.api', { message: error.message })
       }
-    }
-  }
-
-  const copyErrors = (errors: ErrorMessages<string>, externalErrors: Ref<ErrorMessages<string>>): void => {
-    for (const key in errors) {
-      externalErrors.value[key] = errors[key] ?? []
     }
   }
 
