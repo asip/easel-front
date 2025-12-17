@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, body, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, getComments, createComment } = useComment()
+const { comment, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, getComments, createComment } = useComment()
 const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
 
@@ -73,7 +73,7 @@ const redirect404 = async (): Promise<void> => {
             <div class="w-full rounded-[5px] editor-border">
               <Editor
                 ref="editor"
-                v-model="body"
+                v-model="comment.body"
               />
             </div>
           </div>

@@ -6,7 +6,7 @@ import type { RefQuery } from '~/types'
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, body, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, getComments, isSuccess, set404Alert, processing, setComment } = useComment()
+const { comment, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, getComments, isSuccess, set404Alert, processing, setComment } = useComment()
 
 const { commentRules } = useCommentRules()
 
@@ -15,8 +15,6 @@ const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
-
-const editor: Ref = useTemplateRef('editor')
 
 const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
@@ -146,8 +144,7 @@ const redirectOrReload404 = async (): Promise<void> => {
           <div class="flex justify-start">
             <div class="w-full rounded-[5px] editor-border">
               <Editor
-                ref="editor"
-                v-model="body"
+                v-model="comment.body"
               />
             </div>
           </div>

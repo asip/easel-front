@@ -1,7 +1,18 @@
 <script lang="ts" setup>
 import type Quill from "quill"
 
-const modelValue = defineModel<string>()
+const { empty2pbr, pbr2empty } = useQuill()
+
+const model = defineModel<string>()
+
+const modelValue = computed<string>({
+  get () {
+    return empty2pbr(model.value)
+  },
+  set (value: string | undefined) {
+    model.value = pbr2empty(value)
+  }
+})
 
 const options = ref({
   theme: 'bubble',

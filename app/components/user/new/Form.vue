@@ -2,13 +2,12 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { user, image, profile, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
+const { user, image, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 
 const file = useTemplateRef('file')
-const editor = useTemplateRef('editor')
 
 onMounted(() => {
   if (import.meta.client) initTimeZone()
@@ -126,7 +125,7 @@ defineExpose({ clearForm })
                 <div class="rounded-[5px] editor-border">
                   <Editor
                     ref="editor"
-                    v-model="profile"
+                    v-model="user.profile"
                   />
                 </div>
                 <div

@@ -4,7 +4,6 @@ import type { ErrorMessages, CommentErrorProperty } from '~/types'
 export function useComment () {
   const { $i18n } = useNuxtApp()
 
-  const { empty2pbr, pbr2empty } = useQuill()
   const { copy, create } = useEntity<Comment, CommentResource>()
 
   const { formatHtmlTZ } = useTimeZone()
@@ -20,15 +19,6 @@ export function useComment () {
     user_image_url: '',
     created_at: '',
     updated_at: null
-  })
-
-  const body = computed<string>({
-    get () {
-      return empty2pbr(comment.value.body)
-    },
-    set (value: string | undefined) {
-      comment.value.body = pbr2empty(value)
-    }
   })
 
   const upCommentTZ = (comment: Comment): void => {
@@ -173,7 +163,6 @@ export function useComment () {
 
   return {
     comment,
-    body,
     setComment,
     comments,
     externalErrors,

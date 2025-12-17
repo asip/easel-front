@@ -5,7 +5,6 @@ export function useFrame() {
   const { $i18n } = useNuxtApp()
 
   const { upDTL, downDTL } = useDatetimeLocal()
-  const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<Frame, FrameResource>()
 
   const { upTZ, downTZ, formatHtmlTZ } = useTimeZone()
@@ -69,15 +68,6 @@ export function useFrame() {
     },
     set (value: string | null) {
       frame.value.shooted_at = downDTL(value)
-    }
-  })
-
-  const comment = computed<string>({
-    get () {
-      return empty2pbr(frame.value.comment)
-    },
-    set (value: string | undefined) {
-      frame.value.comment = pbr2empty(value)
     }
   })
 
@@ -240,7 +230,6 @@ export function useFrame() {
     file,
     tagList,
     previewUrl,
-    comment,
     shootedAt,
     frameId,
     externalErrors,

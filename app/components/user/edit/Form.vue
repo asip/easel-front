@@ -2,13 +2,12 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { loggedIn, user, image, profile, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, user, image, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
 
 const file = useTemplateRef('file')
-const editor = useTemplateRef('editor')
 
 const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
@@ -136,8 +135,7 @@ defineExpose({ clearForm })
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
                 <Editor
-                  ref="editor"
-                  v-model="profile"
+                  v-model="user.profile"
                 />
               </div>
               <div

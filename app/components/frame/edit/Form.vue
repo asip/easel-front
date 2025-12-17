@@ -2,10 +2,8 @@
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
-const { frame, tagList, comment, shootedAt, updateFrame, externalErrors, backendErrorInfo, set404Alert, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, tagList, shootedAt, updateFrame, externalErrors, backendErrorInfo, set404Alert, refresh, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { editFrameRules } = useFrameRules()
-
-const editor: Ref = useTemplateRef('editor')
 
 const { r$ } = useI18nRegle(frame, editFrameRules, { externalErrors })
 
@@ -127,8 +125,7 @@ const redirect404 = async (): Promise<void> => {
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
                 <Editor
-                  ref="editor"
-                  v-model="comment"
+                  v-model="frame.comment"
                 />
               </div>
             </td>

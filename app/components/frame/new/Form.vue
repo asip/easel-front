@@ -4,10 +4,8 @@ const route = useRoute()
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
-const { frame, file, previewUrl, tagList,  comment, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const { frame, file, previewUrl, tagList, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
-
-const editor = useTemplateRef('editor')
 
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
@@ -134,8 +132,7 @@ const onCreateClick = async (): Promise<void> => {
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
                 <Editor
-                  ref="editor"
-                  v-model="comment"
+                  v-model="frame.comment"
                 />
               </div>
             </td>

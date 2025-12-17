@@ -8,7 +8,6 @@ interface LoginParams {
 }
 
 export const useAccount = () => {
-  const { empty2pbr, pbr2empty } = useQuill()
   const { copy } = useEntity<User, UserResource>()
 
   const { timeZone } = useTimeZone()
@@ -37,15 +36,6 @@ export const useAccount = () => {
     },
     set (value: File | null) {
       user.value.image = value
-    }
-  })
-
-  const profile = computed<string>({
-    get () {
-      return empty2pbr(user.value.profile)
-    },
-    set (value: string | undefined) {
-      user.value.profile = pbr2empty(value)
     }
   })
 
@@ -392,7 +382,6 @@ export const useAccount = () => {
     clearLoginUser,
     user,
     image,
-    profile,
     previewUrl,
     initTimeZone,
     clearProfile,
