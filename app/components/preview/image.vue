@@ -37,7 +37,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-
   <div
     v-if="original"
     id="gallery"
