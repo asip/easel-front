@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-const modelValue = defineModel<string[]>()
+const model = defineModel<string[]>()
 
 const { initTagEditor, closeTagEditor } = useTagEditor({ key: 'tagEditorRef' })
 
 onMounted(() => {
   // console.log(frame)
-  if (import.meta.client && modelValue.value){ initTagEditor(modelValue) }
+  if (import.meta.client && model.value){ initTagEditor(model) }
 })
 
 onUnmounted(() => {

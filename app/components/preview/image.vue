@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Frame, User } from '~/interfaces'
 
-const modelValue = defineModel<Frame | User>()
+const model = defineModel<Frame | User>()
 
 const { original = false, photoswipe = false, small = false } = defineProps<{
   original?: boolean,
@@ -12,13 +12,13 @@ const { original = false, photoswipe = false, small = false } = defineProps<{
 const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox()
 
 const linkURL = computed<string | undefined>(() => {
-  if (modelValue.value && 'file_url' in modelValue.value) return `${modelValue?.value.file_url}`
-  if (modelValue.value && 'image_url' in modelValue.value) return `${modelValue?.value.image_url}`
+  if (model.value && 'file_url' in model.value) return `${model?.value.file_url}`
+  if (model.value && 'image_url' in model.value) return `${model?.value.image_url}`
 })
 
 const imgURL = computed<string | undefined>(() => {
-  if (modelValue.value && 'file_three_url' in modelValue.value) return `${modelValue?.value.file_three_url}`
-  if (modelValue.value && 'image_one_url' in modelValue.value) return `${modelValue?.value.image_one_url}`
+  if (model.value && 'file_three_url' in model.value) return `${model?.value.file_three_url}`
+  if (model.value && 'image_one_url' in model.value) return `${model?.value.image_one_url}`
 })
 
 onMounted(async () => {
