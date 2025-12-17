@@ -31,7 +31,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.statusCode) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller){
+          if (caller && 'clearLoginUser' in caller) {
             if (caller.clearLoginUser) caller.clearLoginUser()
           }
           break
@@ -42,7 +42,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.statusCode) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller){
+          if (caller && 'clearLoginUser' in caller) {
             if (caller.clearLoginUser) caller.clearLoginUser()
           }
           break
@@ -68,7 +68,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
   }
 
   const copyErrors = (errors: ErrorMessages<string>, externalErrors: Ref<ErrorMessages<string>>): void => {
-    for(const key in errors) {
+    for (const key in errors) {
       externalErrors.value[key] = errors[key] ?? []
     }
   }

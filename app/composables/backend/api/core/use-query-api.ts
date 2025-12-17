@@ -55,7 +55,7 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
       $api(url, options)
     )
 
-    if (fresh){
+    if (fresh) {
       await refresh()
     }
 

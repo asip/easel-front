@@ -26,7 +26,7 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
   const data = ref<T>()
   const error = ref<FetchError<E>>();
 
-  if (method == 'post' || method == 'put'){
+  if (method == 'post' || method == 'put') {
     try {
       data.value = await $api<T>(url, {
         method,

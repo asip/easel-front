@@ -6,7 +6,7 @@ export const maxTagLength = createRule({
   type: 'maxTagLength',
   validator: (value: Maybe<string[]>, size: number) => {
     let res = true
-    if (value){
+    if (value) {
       value.forEach((tag) => {
         if (tag.length > size) { res = false }
       })

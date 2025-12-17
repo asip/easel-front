@@ -49,7 +49,7 @@ export function useFrame() {
         return frame.value.preview_url
       }
     },
-    set (value: string | null){
+    set (value: string | null) {
       frame.value.preview_url = value
     }
   })

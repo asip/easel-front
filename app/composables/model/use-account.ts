@@ -57,7 +57,7 @@ export const useAccount = () => {
         return user.value.preview_url
       }
     },
-    set (value: string | null){
+    set (value: string | null) {
       user.value.preview_url = value
     }
   })
