@@ -35,7 +35,7 @@ onUnmounted(() => {
         :key="frame.id"
         class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
       >
-        <UsersFrameListItem
+        <UserFrameListItem
           v-model="frames[i]"
           :page="page"
         />

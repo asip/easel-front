@@ -7,6 +7,6 @@ const { comments } = useComment()
     v-for="(comment, i) in comments"
     :key="comment.id"
   >
-    <FramesCommentListItem v-model="comments[i]" />
+    <FrameCommentListItem v-model="comments[i]" />
   </div>
 </template>

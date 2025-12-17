@@ -28,7 +28,7 @@ provide('framer', framer)
             <PreviewImage v-model="frame" :original="true" />
           </div>
           <!-- unless @frame.confirming == 'true' -->
-          <FramesEditForm />
+          <FrameEditForm />
           <!-- else -->
           <!-- render(partial: 'frames/edit/confirm', locals: {form: form, frame: @frame}) -->
           <!-- end -->

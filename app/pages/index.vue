@@ -24,6 +24,6 @@ if (page) {
 <template>
   <div>
     <br>
-    <FramesList />
+    <FrameList />
   </div>
 </template>

@@ -133,8 +133,8 @@ const onDeleteClick = (): void => {
         </div>
       </div>
     </div>
-    <FramesDeleteModal v-if="loggedIn" />
-    <FramesComments v-model="frame" />
+    <FrameDeleteModal v-if="loggedIn" />
+    <FrameComments v-model="frame" />
   </div>
 </template>
 

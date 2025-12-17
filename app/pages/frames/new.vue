@@ -22,7 +22,7 @@ provide('framer', framer)
             {{ $t('action.frame.upload') }}
           </div>
           <!-- unless @frame.confirming == 'true' -->
-          <FramesNewForm />
+          <FrameNewForm />
           <!-- else -->
           <!-- render(partial: 'frames/new/confirm', locals: {form: form, frame: @frame}) -->
           <!-- end -->

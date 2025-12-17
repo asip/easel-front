@@ -27,7 +27,7 @@ const onBackClick = (): void => {
         {{ $t('action.user.new') }}
       </div>
       <div>
-        <UsersNewForm ref="form" />
+        <UserNewForm ref="form" />
       </div>
     </div>
   </dialog>

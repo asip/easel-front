@@ -29,7 +29,7 @@ const onBackClick = (): void => {
         {{ $t('action.user.edit') }}
       </div>
       <div class="flex justify-center border border-white">
-        <UsersEditForm ref="form" />
+        <UserEditForm ref="form" />
       </div>
     </div>
   </dialog>

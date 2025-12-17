@@ -29,7 +29,7 @@ const onBackClick = (): void => {
         {{ $t('action.user.edit_password') }}
       </div>
       <div class="flex justify-center border border-white">
-        <UsersEditPassword ref="form" />
+        <UserEditPassword ref="form" />
       </div>
     </div>
   </dialog>

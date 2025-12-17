@@ -42,7 +42,7 @@ watch(
         :key="frame.id"
         class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
       >
-        <FramesListItem v-model="frames[i]" />
+        <FrameListItem v-model="frames[i]" />
       </div>
     </div>
   </div>
