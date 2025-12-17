@@ -23,9 +23,7 @@ export function useTagEditor ({ key }: useTagEditorOptions) {
       })
 
       tagEditor?.removeAllTags()
-      if (tagList.value) {
-        tagEditor?.addTags(tagList.value)
-      }
+      if (tagList.value) tagEditor?.addTags(tagList.value)
 
       const saveTagList = (): void => {
         if (tagList.value && tagEditor) {

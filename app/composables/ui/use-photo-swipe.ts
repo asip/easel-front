@@ -40,9 +40,7 @@ export function usePhotoSwipe () {
   }
 
   const closePhotoSwipe = (): void => {
-    if (lightbox) {
-      lightbox.destroy()
-    }
+    if (lightbox) lightbox.destroy()
   }
 
   return { initPhotoSwipe, closePhotoSwipe }
