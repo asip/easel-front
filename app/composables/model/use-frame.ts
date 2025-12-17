@@ -152,27 +152,13 @@ export function useFrame() {
 
     const formData = new FormData()
 
-    if (frame.value.file) {
-      formData.append('frame[file]', frame.value.file)
-    }
-    if (frame.value.name) {
-      formData.append('frame[name]', frame.value.name)
-    }
-    if (frame.value.tag_list) {
-      formData.append('frame[tag_list]', frame.value.tag_list.join(','))
-    }
-    if (frame.value.comment) {
-      formData.append('frame[comment]', frame.value.comment)
-    }
-    if (frame.value.creator_name) {
-      formData.append('frame[creator_name]', frame.value.creator_name)
-    }
-    if (frame.value.shooted_at) {
-      formData.append('frame[shooted_at]', downTZ(frame.value.shooted_at))
-    }
-    if (frame.value.private) {
-      formData.append('frame[private]', frame.value.private.toString())
-    }
+    if (frame.value.file) formData.append('frame[file]', frame.value.file)
+    if (frame.value.name) formData.append('frame[name]', frame.value.name)
+    if (frame.value.tag_list) formData.append('frame[tag_list]', frame.value.tag_list.join(','))
+    if (frame.value.comment) formData.append('frame[comment]', frame.value.comment)
+    if (frame.value.creator_name) formData.append('frame[creator_name]', frame.value.creator_name)
+    if (frame.value.shooted_at) formData.append('frame[shooted_at]', downTZ(frame.value.shooted_at))
+    if (frame.value.private) formData.append('frame[private]', frame.value.private.toString())
 
     // console.log(loginUser.value.token)
 

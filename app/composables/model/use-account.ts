@@ -163,9 +163,7 @@ export const useAccount = () => {
 
     const formData = new FormData()
 
-    if (user.value.image) {
-      formData.append('user[image]', user.value.image)
-    }
+    if (user.value.image) formData.append('user[image]', user.value.image)
     formData.append('user[name]', user.value.name)
     formData.append('user[email]', user.value.email)
     formData.append('user[password]', user.value.password)
@@ -279,9 +277,7 @@ export const useAccount = () => {
 
     const formData = new FormData()
 
-    if (user.value.image) {
-      formData.append('user[image]', user.value.image)
-    }
+    if (user.value.image) formData.append('user[image]', user.value.image)
     formData.append('user[name]', user.value.name)
     formData.append('user[email]', user.value.email)
     formData.append('user[profile]', user.value.profile)
