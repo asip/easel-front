@@ -25,7 +25,7 @@ provide('framer', framer)
             </NuxtLink>
           </div>
           <div class="flex justify-center mb-1">
-            <PreviewImage v-model="frame" :original="true" />
+            <DisplayImage v-model="frame" :original="true" />
           </div>
           <!-- unless @frame.confirming == 'true' -->
           <FrameEditForm />

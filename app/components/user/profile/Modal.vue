@@ -21,7 +21,7 @@ const sanitizedProfile = computed<string>(() => {
   <dialog id="user_profile_modal" class="modal">
     <div class="modal-box">
       <div class="flex gap-1">
-        <PreviewImage v-model="user" :small="true" />
+        <DisplayImage v-model="user" :small="true" />
         <table class="table table-bordered table-rounded flex-auto">
           <tbody>
             <tr>

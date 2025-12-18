@@ -58,7 +58,7 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr v-if="frame.file || previewUrl">
             <td colspan="2">
-              <ImagePreview v-model="previewUrl" />
+              <PreviewImage v-model="previewUrl" />
             </td>
           </tr>
           <tr>

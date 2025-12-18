@@ -84,11 +84,11 @@ const onDeleteClick = (): void => {
             </div>
           </div>
           <div class="flex justify-center mb-1">
-            <PreviewImage v-model="frame" :original="true" :photoswipe="true" />
+            <DisplayImage v-model="frame" :original="true" :photoswipe="true" />
           </div>
           <div class="flex justify-center flex-wrap mb-1">
             <div v-if="loggedIn && frame.user_id == loginUser.id" class="badge badge-outline badge-accent truncate rounded-full">{{ $t(`enums.private.${frame.private}`) }}</div>
-            <PreviewTags v-model="frame" />
+            <DisplayTags v-model="frame" />
           </div>
           <div class="flex justify-center">
             <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">

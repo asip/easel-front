@@ -39,7 +39,7 @@ const onFlipClick = (): void => {
       <div v-show="!front" class="flex items-center" :style="`height: ${imageHeight}px`">
         <div class="flex flex-col mx-auto">
           <div class="flex justify-center flex-wrap mb-1">
-            <PreviewTags v-model="frame" :list="true" />
+            <DisplayTags v-model="frame" :list="true" />
           </div>
           <div class="flex justify-center">
             <NuxtLink :to="`/users/${frame?.user_id}`">

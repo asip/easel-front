@@ -73,7 +73,7 @@ const onDeleteAccountClick = (): void => {
       </div>
       <div class="flex justify-center border border-white">
         <div class="flex justify-center mb-1">
-          <PreviewImage v-model="loginUser" :small="true" />
+          <DisplayImage v-model="loginUser" :small="true" />
         </div>
       </div>
       <div class="flex justify-center">
