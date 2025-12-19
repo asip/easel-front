@@ -1,17 +1,14 @@
-import type { Frame } from '~/interfaces'
+type useTagEditorOptions = { el: Ref<HTMLInputElement | HTMLTextAreaElement | null> }
 
-type useTagEditorOptions = { key: string }
-
-export function useTagEditor ({ key }: useTagEditorOptions) {
-  const tagEditorRef = useTemplateRef(key)
+export function useTagEditor ({ el }: useTagEditorOptions) {
 
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp() as any
 
   const initTagEditor = (tagList: Ref<string[] | undefined>): void => {
-    if (tagEditorRef.value) {
-      tagEditor = new $tagify(tagEditorRef.value as HTMLInputElement | HTMLTextAreaElement, {
+    if (el.value) {
+      tagEditor = new $tagify(el.value, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',

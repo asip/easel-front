@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const model = defineModel<string[]>()
 
-const { initTagEditor, closeTagEditor } = useTagEditor({ key: 'tagEditorRef' })
+const tagEditor = useTemplateRef('tagEditorRef')
+const { initTagEditor, closeTagEditor } = useTagEditor({ el: tagEditor })
 
 onMounted(() => {
   // console.log(frame)
