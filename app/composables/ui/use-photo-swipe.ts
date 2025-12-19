@@ -5,7 +5,7 @@ export function usePhotoSwipe () {
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
-  const initPhotoSwipe = async ({ selector}: initPSOptions): Promise<void> => {
+  const initPhotoSwipe = async ({ selector }: initPSOptions): Promise<void> => {
     await assignSize(selector)
 
     lightbox = new $psLightbox({
