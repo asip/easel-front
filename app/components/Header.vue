@@ -4,9 +4,10 @@ const route = useRoute()
 const account = useAccount()
 const { loginUser, loggedIn, logout } = account
 const { frameQuery, queryMap } = useFrameSearch()
-
-const { closeDropdown } = useDropdown({ key: 'dropdown' })
 const { openModal } = useModal()
+
+const dropdown = useTemplateRef('dropdown')
+const { closeDropdown } = useDropdown({ el: dropdown })
 
 provide('account', account)
 

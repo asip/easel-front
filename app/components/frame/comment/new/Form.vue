@@ -7,7 +7,7 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const editor: Ref = useTemplateRef('editor')
+const editor = useTemplateRef('editor')
 
 comment.value.frame_id = frameId
 
