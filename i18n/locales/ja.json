@@ -70,8 +70,10 @@
       "upload": "アップロード"
     },
     "comment": {
-      "post": "投稿",
-      "required": "コメントを入力してください"
+      "post": "投稿"
+    },
+    "search": {
+      "more": "もっとみる"
     },
     "modal": {
       "close": "閉じる",

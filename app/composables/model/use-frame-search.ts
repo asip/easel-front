@@ -11,10 +11,11 @@ export const useFrameSearch = () => {
 
   const { loggedIn, accessToken } = useAccount()
 
-  const makeFrame = ( { from }: { from: FrameResource }) : Frame => {
+  const makeFrame = ( { from, page }: { from: FrameResource, page: number }) : Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
+    frame.page = page
     return frame
   }
 
@@ -44,7 +45,7 @@ export const useFrameSearch = () => {
 
   const queryMap = computed<SearchQuery>(() => {
     const items = qItems.value
-    const { page } = frameQuery.value;
+    const page = currentPage.value;
     const query: { q?: string, page?: string } = {};
 
     if (Object.keys(items).length) {
@@ -68,6 +69,16 @@ export const useFrameSearch = () => {
 
   const frames = useState<Frame[]>('frames', () => { return [] })
 
+  const currentPage = useState<number>('currentPage', () => { return 1 } )
+
+  const pagePrev = useState<boolean>('pagePrev', () => { return true } )
+  const pageNext = useState<boolean>('pageNext', () => { return true } )
+
+  const maxPage = ref<number>(1)
+  const minPage = ref<number>(1)
+
+  const frameList = useState<Frame[]>('frameList', () => { return [] })
+
   const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
       url: '',
@@ -90,13 +101,13 @@ export const useFrameSearch = () => {
     if (error) {
       setAlert({ error })
     } else if (data) {
-      const { frames: frameList, meta } = data
+      const { frames: frameRsList, meta } = data
       // console.log(frameList)
 
-      if (frameList) {
+      if (frameRsList) {
         frames.value.splice(0)
-        for (const frameAttrs of frameList) {
-          frames.value.push(makeFrame({ from: frameAttrs }))
+        for (const frameAttrs of frameRsList) {
+          frames.value.push(makeFrame({ from: frameAttrs, page: currentPage.value }))
         }
         // console.log(frames)
       }
@@ -107,7 +118,54 @@ export const useFrameSearch = () => {
     }
   }
 
+  const clearFrameList = (): void => {
+    frameList.value.splice(0)
+  }
+
+  const minMaxPage = () => {
+    maxPage.value = currentPage.value > frameQuery.value.page ? currentPage.value : frameQuery.value.page
+    minPage.value = currentPage.value < frameQuery.value.page ? currentPage.value : frameQuery.value.page
+  }
+
+  const check = () => {
+    if(currentPage.value == 1 ) pagePrev.value = false
+    if(currentPage.value == frameQuery.value.pages ) pageNext.value = false
+    // console.log(`page prev: ${pagePrev.value}`)
+    // console.log(`page next: ${pageNext.value}`)
+  }
+
+  const current = async (options?: { client?: boolean }): Promise<void> => {
+    pagePrev.value = true
+    pageNext.value = true
+    clearFrameList()
+    minMaxPage()
+    currentPage.value = frameQuery.value.page
+    // console.log(`current page: ${currentPage.value}`)
+    await searchFrame({ client: options?.client })
+    check()
+    frameList.value = frameList.value.concat(frames.value)
+  }
+
+  const more = async (): Promise<void> => {
+    await searchFrame({ client: true })
+    check()
+  }
+
+  const prev = async (): Promise<void> => {
+    minMaxPage()
+    currentPage.value = minPage.value - 1
+    await more()
+    frameList.value = frames.value.concat(frameList.value)
+  }
+
+  const next = async (): Promise<void> => { 
+    minMaxPage()
+    currentPage.value = maxPage.value + 1
+    await more()
+    frameList.value = frameList.value.concat(frames.value)
+  }
+
   return {
-    frameQuery, searchFrame, frames, queryMap, qItems, clearSearchCriteria
+    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frameList, queryMap, qItems, clearSearchCriteria
   }
 }

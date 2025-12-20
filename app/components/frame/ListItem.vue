@@ -1,13 +1,19 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
 
-const front = ref<boolean>(true)
 const frame = defineModel<Frame>()
 
 const image = useTemplateRef('image')
 const imageHeight = ref<number | undefined>(0)
 
 const { loggedIn, loginUser } = useAccount()
+const { currentPage } = useFrameSearch()
+
+const front = ref<boolean>(true)
+
+const onLinkClick = () => {
+  if(frame.value?.page) currentPage.value = frame.value?.page
+}
 
 const onFlipClick = (): void => {
   imageHeight.value = image.value?.height
@@ -69,6 +75,7 @@ const onFlipClick = (): void => {
       <NuxtLink
         :to="`/frames/${frame?.id}`"
         class="flex link link-hover"
+        @click="onLinkClick"
       >
         {{ frame?.name }}
       </NuxtLink>

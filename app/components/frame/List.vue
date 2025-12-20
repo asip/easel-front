@@ -1,17 +1,21 @@
 <script setup lang="ts">
+const { $i18n } = useNuxtApp()
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { loginUser } = useAccount()
-const { frameQuery, queryMap, searchFrame, frames } = useFrameSearch()
+// const { loginUser } = useAccount()
+const { queryMap, current, prev, next, pagePrev, pageNext, frameList } = useFrameSearch()
 
 // console.log('searchFrame: start')
-await searchFrame()
+await current()
 router.push({ path: '/', query: queryMap.value })
 
-const clickCallback = async (pageNum: number): Promise<void> => {
-  frameQuery.value.page = pageNum
-  await navigateTo({ path: '/', query: queryMap.value })
+const onPrevClick = async (): Promise<void> => {
+  await prev()
+}
+
+const onNextClick = async (): Promise<void> => {
+  await next()
 }
 
 onMounted(() => {
@@ -25,37 +29,30 @@ onUpdated(() => {
 onUnmounted(() => {
   if (import.meta.client) closeGallery()
 })
-
-watch(
-  loginUser.value,
-  async () => {
-    await searchFrame()
-  }
-)
 </script>
 
 <template>
+  <ClientOnly>
+    <div v-if="pagePrev" class="flex justify-center">
+      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $i18n.t('action.search.more') }}</a>
+    </div>
+  </ClientOnly>
+
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10">
       <div
-        v-for="(frame, i) in frames"
+        v-for="(frame, i) in frameList"
         :key="frame.id"
         class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
       >
-        <FrameListItem v-model="frames[i]" />
+        <FrameListItem v-model="frameList[i]" />
       </div>
     </div>
   </div>
-  <div
-    v-if="frameQuery.pages > 1"
-    class="flex justify-center pb-5"
-  >
-    <vue-awesome-paginate
-      v-model="frameQuery.page"
-      :total-items="frameQuery.total"
-      :items-per-page="8"
-      :max-pages-shown="5"
-      @click="clickCallback"
-    />
-  </div>
+
+  <ClientOnly>
+    <div v-if="pageNext" class="flex justify-center">
+      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $i18n.t('action.search.more') }}</a>
+    </div>
+  </ClientOnly>
 </template>

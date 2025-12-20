@@ -35,6 +35,7 @@ const onTopPageClick = async (): Promise<void> => {
   frameQuery.value.page = 1
   // frameQuery.value.pages = 1
   await navigateTo({ path: '/', query: queryMap.value })
+  // reloadNuxtApp()
 }
 </script>
 

@@ -70,8 +70,10 @@
       "upload": "Upload"
     },
     "comment": {
-      "post": "Post",
-      "required": "Required."
+      "post": "Post"
+    },
+    "search": {
+      "more": "More"
     },
     "modal": {
       "close": "Close",

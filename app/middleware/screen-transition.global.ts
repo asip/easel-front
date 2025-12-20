@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { referers } = useReferer()
   const { frame, getFrame } = useFrame()
-  const { searchFrame } = useFrameSearch()
+  const { current } = useFrameSearch()
 
   autoDetect()
   await authenticate()
@@ -59,7 +59,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if (to.path === '/') {
     if (import.meta.client) {
-      await searchFrame({ client: true })
+      await current({ client: true })
     }
   }
 })
