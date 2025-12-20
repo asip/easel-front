@@ -6,7 +6,7 @@ const { page = undefined } = defineProps<{
 const { initGallery, closeGallery } = useImageGallery()
 const { frameQuery, getFrames, frames } = useAccountFrames()
 
-// console.log('searchFrame: start')
+// console.log('getFrames: start')
 await getFrames()
 
 const clickCallback = async (pageNum: number): Promise<void> => {

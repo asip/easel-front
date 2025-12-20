@@ -4,7 +4,7 @@ const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()
 // const { loginUser } = useAccount()
-const { queryMap, current, prev, next, pagePrev, pageNext, frameList } = useFrameSearch()
+const { queryMap, current, prev, next, pagePrev, pageNext, frames } = useFrameSearch()
 
 // console.log('searchFrame: start')
 await current()
@@ -41,11 +41,11 @@ onUnmounted(() => {
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10">
       <div
-        v-for="(frame, i) in frameList"
+        v-for="(frame, i) in frames"
         :key="frame.id"
         class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
       >
-        <FrameListItem v-model="frameList[i]" />
+        <FrameListItem v-model="frames[i]" />
       </div>
     </div>
   </div>
