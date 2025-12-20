@@ -67,17 +67,17 @@ export const useFrameSearch = () => {
     if (items.date) frameQuery.value.items.date = null
   }
 
-  const frames = useState<Frame[]>('frames', () => { return [] })
+  const frameList = ref<Frame[]>([])
 
   const currentPage = useState<number>('currentPage', () => { return 1 } )
 
-  const pagePrev = useState<boolean>('pagePrev', () => { return true } )
-  const pageNext = useState<boolean>('pageNext', () => { return true } )
+  const pagePrev = useState<boolean>('pagePrev', () => { return false } )
+  const pageNext = useState<boolean>('pageNext', () => { return false } )
 
   const maxPage = ref<number>(1)
   const minPage = ref<number>(1)
 
-  const frameList = useState<Frame[]>('frameList', () => { return [] })
+  const frames = useState<Frame[]>('frames', () => { return [] })
 
   const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: GetAPIOptions = {
@@ -105,9 +105,9 @@ export const useFrameSearch = () => {
       // console.log(frameList)
 
       if (frameRsList) {
-        frames.value.splice(0)
+        frameList.value.splice(0)
         for (const frameAttrs of frameRsList) {
-          frames.value.push(makeFrame({ from: frameAttrs, page: currentPage.value }))
+          frameList.value.push(makeFrame({ from: frameAttrs, page: currentPage.value }))
         }
         // console.log(frames)
       }
@@ -119,7 +119,7 @@ export const useFrameSearch = () => {
   }
 
   const clearFrameList = (): void => {
-    frameList.value.splice(0)
+    frames.value.splice(0)
   }
 
   const minMaxPage = () => {
@@ -143,7 +143,7 @@ export const useFrameSearch = () => {
     // console.log(`current page: ${currentPage.value}`)
     await searchFrame({ client: options?.client })
     check()
-    frameList.value = frameList.value.concat(frames.value)
+    frames.value = frames.value.concat(frameList.value)
   }
 
   const more = async (): Promise<void> => {
@@ -155,17 +155,17 @@ export const useFrameSearch = () => {
     minMaxPage()
     currentPage.value = minPage.value - 1
     await more()
-    frameList.value = frames.value.concat(frameList.value)
+    frames.value = frameList.value.concat(frames.value)
   }
 
   const next = async (): Promise<void> => { 
     minMaxPage()
     currentPage.value = maxPage.value + 1
     await more()
-    frameList.value = frameList.value.concat(frames.value)
+    frames.value = frames.value.concat(frameList.value)
   }
 
   return {
-    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frameList, queryMap, qItems, clearSearchCriteria
+    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frames, queryMap, qItems, clearSearchCriteria
   }
 }
