@@ -1,5 +1,4 @@
-import { usePhotoSwipe } from './use-photo-swipe'
-import { useGLightbox } from './use-g-lightbox'
+import { useGLightbox, usePhotoSwipe } from './lightbox'
 
 type initPSOptions = { selector: string }
 

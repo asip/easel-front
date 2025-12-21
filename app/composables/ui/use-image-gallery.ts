@@ -1,4 +1,4 @@
-import { useGLightbox } from './use-g-lightbox'
+import { useGLightbox } from './lightbox'
 
 type initGalleryOptions = { selector: string }
 
