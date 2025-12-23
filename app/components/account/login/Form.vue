@@ -47,7 +47,7 @@ defineExpose({ clearForm })
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label for="email" class="">{{ $t('model.user.email') }}：</label>
+              <label for="email">{{ $t('model.user.email') }}：</label>
             </td>
             <td>
               <input
@@ -68,7 +68,7 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label for="password" class="">{{ $t('model.user.password') }}：</label>
+              <label for="password">{{ $t('model.user.password') }}：</label>
             </td>
             <td>
               <input

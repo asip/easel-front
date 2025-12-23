@@ -56,7 +56,7 @@ const redirect404 = async (): Promise<void> => {
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label for="name" class="">{{ $t('model.frame.name') }}：</label>
+              <label for="name">{{ $t('model.frame.name') }}：</label>
             </td>
             <td>
               <input
@@ -75,7 +75,7 @@ const redirect404 = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="tag_list" class="">{{ $t('model.frame.tag_list') }}：</label>
+              <label for="tag_list">{{ $t('model.frame.tag_list') }}：</label>
             </td>
             <td>
               <TagEdit v-model="tagList" />
@@ -89,7 +89,7 @@ const redirect404 = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="creator_name" class="">{{ $t('model.frame.creator_name') }}：</label>
+              <label for="creator_name">{{ $t('model.frame.creator_name') }}：</label>
             </td>
             <td>
               <input
@@ -108,7 +108,7 @@ const redirect404 = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="shooted_at" class="">{{ $t('model.frame.shooted_at') }}：</label>
+              <label for="shooted_at">{{ $t('model.frame.shooted_at') }}：</label>
             </td>
             <td>
               <input
@@ -120,7 +120,7 @@ const redirect404 = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="comment" class="">{{ $t('model.frame.comment') }}：</label>
+              <label for="comment">{{ $t('model.frame.comment') }}：</label>
             </td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
@@ -132,7 +132,7 @@ const redirect404 = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="private" class="">{{ $t('model.frame.private') }}：</label>
+              <label for="private">{{ $t('model.frame.private') }}：</label>
             </td>
             <td>
               <input

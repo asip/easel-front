@@ -37,9 +37,9 @@ defineExpose({ clearForm })
         <tbody>
           <tr v-if="!loginUser.social_login">
             <td class="w-[12em]">
-              <label for="current_password" class="">{{ $t('model.user.current_password') }}：</label>
+              <label for="current_password">{{ $t('model.user.current_password') }}：</label>
             </td>
-            <td class="">
+            <td>
               <input
                 v-model="user.current_password"
                 name="current_password"
@@ -58,9 +58,9 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="password" class="">{{ $t('model.user.password') }}：</label>
+              <label for="password">{{ $t('model.user.password') }}：</label>
             </td>
-            <td class="">
+            <td>
               <input
                 v-model="user.password"
                 name="password"
@@ -79,7 +79,7 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="password_confirmation" class="">{{ $t('model.user.password_confirmation') }}：</label>
+              <label for="password_confirmation">{{ $t('model.user.password_confirmation') }}：</label>
             </td>
             <td>
               <input

@@ -94,24 +94,16 @@ const onDeleteClick = (): void => {
             <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
               <tbody>
                 <tr>
-                  <td class="w-[9em]">
-                    {{ $t('model.frame.name') }}：
-                  </td>
-                  <td>
-                    {{ frame.name }}
-                  </td>
+                  <td class="w-[9em]">{{ $t('model.frame.name') }}：</td>
+                  <td>{{ frame.name }}</td>
                 </tr>
                 <tr>
                   <td>{{ $t('model.frame.creator_name') }}：</td>
-                  <td>
-                    {{ frame.creator_name }}
-                  </td>
+                  <td>{{ frame.creator_name }}</td>
                 </tr>
                 <tr>
                   <td>{{ $t('model.frame.shooted_at') }}：</td>
-                  <td>
-                    {{ formatHTML(frame.shooted_at) }}
-                  </td>
+                  <td>{{ formatHTML(frame.shooted_at) }}</td>
                 </tr>
                 <tr>
                   <td>{{ $t('model.frame.comment') }}：</td>
@@ -123,12 +115,8 @@ const onDeleteClick = (): void => {
             </table>
           </div>
           <div class="flex justify-between">
-            <div>
-              {{ frame.created_at }}
-            </div>
-            <div>
-              {{ frame.updated_at }}
-            </div>
+            <div>{{ frame.created_at }}</div>
+            <div>{{ frame.updated_at }}</div>
           </div>
         </div>
       </div>

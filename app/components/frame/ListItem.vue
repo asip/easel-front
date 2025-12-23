@@ -59,7 +59,6 @@ const onFlipClick = (): void => {
       <button
         v-if="front"
         type="button"
-        class=""
         @click="onFlipClick"
       >
         <i class="bi bi-arrow-right-circle text-accent hover:text-primary" />
@@ -67,7 +66,6 @@ const onFlipClick = (): void => {
       <button
         v-else
         type="button"
-        class=""
         @click="onFlipClick"
       >
         <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />

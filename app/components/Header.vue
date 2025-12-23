@@ -55,7 +55,6 @@ const onTopPageClick = async (): Promise<void> => {
         <div class="navbar-start">
           <a
             href="#"
-            class=""
             @click.prevent="onTopPageClick"
           >
             <i class="bi bi-palette" /> Easel
