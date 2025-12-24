@@ -81,10 +81,11 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td class="w-[9em]">
-                  <label for="frame_name">{{ $t('model.frame.name') }}：</label>
+                  <label for="search_frame_name">{{ $t('model.frame.name') }}：</label>
                 </td>
                 <td>
                   <input
+                    id="search_frame_name"
                     v-model="frameQuery.items.frame_name"
                     type="text"
                     placeholder=""
@@ -101,10 +102,11 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label for="tag_name">{{ $t('component.tag_search.tag_name') }}：</label>
+                  <label for="search_tag_name">{{ $t('component.tag_search.tag_name') }}：</label>
                 </td>
                 <td>
                   <input
+                    id="search_tag_name"
                     v-model="frameQuery.items.tag_name"
                     type="text"
                     placeholder=""
@@ -121,10 +123,11 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label for="user_name">{{ $t('component.tag_search.user_name') }}：</label>
+                  <label for="search_user_name">{{ $t('component.tag_search.user_name') }}：</label>
                 </td>
                 <td>
                   <input
+                    id="search_user_name"
                     v-model="frameQuery.items.user_name"
                     type="text"
                     placeholder=""
@@ -141,10 +144,11 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label for="creator_name">{{ $t('model.frame.creator_name') }}：</label>
+                  <label for="search_creator_name">{{ $t('model.frame.creator_name') }}：</label>
                 </td>
                 <td>
                   <input
+                    id="search_creator_name"
                     v-model="frameQuery.items.creator_name"
                     type="text"
                     placeholder=""
@@ -161,11 +165,12 @@ const onClearClick = async (): Promise<void> => {
               </tr>
               <tr>
                 <td>
-                  <label for="date">{{ $t('component.tag_search.date') }}：</label>
+                  <label for="search_date">{{ $t('component.tag_search.date') }}：</label>
                 </td>
                 <td>
                   <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder_date')">
                       <input
+                        id="search_date"
                         v-model="frameQuery.items.date"
                         type="date"
                         class="input w-50"

@@ -37,12 +37,12 @@ defineExpose({ clearForm })
         <tbody>
           <tr v-if="!loginUser.social_login">
             <td class="w-[12em]">
-              <label for="current_password">{{ $t('model.user.current_password') }}：</label>
+              <label for="user_current_password">{{ $t('model.user.current_password') }}：</label>
             </td>
             <td>
               <input
+                id="user_current_password"
                 v-model="user.current_password"
-                name="current_password"
                 type="password"
                 placeholder=""
                 autocomplete="current-password"
@@ -58,12 +58,12 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="password">{{ $t('model.user.password') }}：</label>
+              <label for="user_password">{{ $t('model.user.password') }}：</label>
             </td>
             <td>
               <input
+                id="user_password"
                 v-model="user.password"
-                name="password"
                 type="password"
                 placeholder=""
                 autocomplete="new-password"
@@ -79,12 +79,12 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="password_confirmation">{{ $t('model.user.password_confirmation') }}：</label>
+              <label for="user_password_confirmation">{{ $t('model.user.password_confirmation') }}：</label>
             </td>
             <td>
               <input
+                id="user_password_confirmation"
                 v-model="user.password_confirmation"
-                name="password_confirmation"
                 type="password"
                 placeholder=""
                 autocomplete="new-password"

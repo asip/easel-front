@@ -39,7 +39,7 @@ const onCreateClick = async (): Promise<void> => {
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label for="file">{{ $t('model.frame.file') }}：</label>
+              {{ $t('model.frame.file') }}：
             </td>
             <td>
               <input
@@ -63,10 +63,11 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="name">{{ $t('model.frame.name') }}：</label>
+              <label for="frame_name">{{ $t('model.frame.name') }}：</label>
             </td>
             <td>
               <input
+                id="frame_name"
                 v-model="frame.name"
                 type="text"
                 placeholder=""
@@ -96,10 +97,11 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="creator_name">{{ $t('model.frame.creator_name') }}：</label>
+              <label for="frame_creator_name">{{ $t('model.frame.creator_name') }}：</label>
             </td>
             <td>
               <input
+                id="frame_creator_name"
                 v-model="frame.creator_name"
                 type="text"
                 placeholder=""
@@ -115,10 +117,11 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="shooted_at">{{ $t('model.frame.shooted_at') }}：</label>
+              <label for="frame_shooted_at">{{ $t('model.frame.shooted_at') }}：</label>
             </td>
             <td>
               <input
+                id="frame_shooted_at"
                 v-model="shootedAt"
                 type="datetime-local"
                 class="input"
@@ -127,7 +130,7 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="comment">{{ $t('model.frame.comment') }}：</label>
+              {{ $t('model.frame.comment') }}：
             </td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
@@ -139,10 +142,11 @@ const onCreateClick = async (): Promise<void> => {
           </tr>
           <tr>
             <td>
-              <label for="private">{{ $t('model.frame.private') }}：</label>
+              <label for="frame_private">{{ $t('model.frame.private') }}：</label>
             </td>
             <td>
               <input
+                id="frame_private"
                 v-model="frame.private"
                 type="checkbox"
                 class="checkbox"

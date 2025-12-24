@@ -47,12 +47,12 @@ defineExpose({ clearForm })
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label for="email">{{ $t('model.user.email') }}：</label>
+              <label for="login_email">{{ $t('model.user.email') }}：</label>
             </td>
             <td>
               <input
+                id="login_email"
                 v-model="loginParams.email"
-                name="email"
                 type="email"
                 placeholder=""
                 autocomplete="email"
@@ -68,12 +68,12 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label for="password">{{ $t('model.user.password') }}：</label>
+              <label for="login_password">{{ $t('model.user.password') }}：</label>
             </td>
             <td>
               <input
+                id="login_password"
                 v-model="loginParams.password"
-                name="password"
                 type="password"
                 placeholder=""
                 autocomplete="current-password"

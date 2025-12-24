@@ -44,7 +44,7 @@ defineExpose({ clearForm })
         <tbody>
           <tr>
             <td class="w-[9em]">
-              <label for="image">{{ $t('model.user.image') }}：</label>
+              {{ $t('model.user.image') }}：
             </td>
             <td>
               <input
@@ -70,12 +70,12 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="name">{{ $t('model.user.name') }}：</label>
+              <label for="user_name">{{ $t('model.user.name') }}：</label>
             </td>
             <td>
               <input
+                id="user_name"
                 v-model="user.name"
-                name="name"
                 type="text"
                 placeholder=""
                 autocomplete="username"
@@ -95,12 +95,12 @@ defineExpose({ clearForm })
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="email">{{ $t('model.user.email') }}：</label>
+              <label for="user_email">{{ $t('model.user.email') }}：</label>
             </td>
             <td>
               <input
+                id="user_email"
                 v-model="user.email"
-                name="email"
                 type="email"
                 placeholder=""
                 autocomplete="email"
@@ -120,7 +120,7 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label for="profile">{{ $t('model.user.profile') }}：</label>
+              {{ $t('model.user.profile') }}：
             </td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
@@ -138,11 +138,12 @@ defineExpose({ clearForm })
           </tr>
           <tr>
             <td>
-              <label for="time_zone">{{ $t('model.user.time_zone') }}：</label>
+              <label for="user_time_zone">{{ $t('model.user.time_zone') }}：</label>
             </td>
             <td>
               <ClientOnly>
                 <select
+                  id="user_time_zone"
                   v-model="user.time_zone"
                   class="select"
                 >

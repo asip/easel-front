@@ -18,7 +18,6 @@ onUnmounted(() => {
   <input
     ref="tagEditorRef"
     type="text"
-    name="tag_editor"
     value=""
     class="input h-auto"
   >
