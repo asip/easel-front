@@ -1,4 +1,4 @@
-export type { ErrorMessages } from './error-messages'
+export type { ErrorMessages } from './foundation'
 
 export type { RefQuery } from './query'
 
