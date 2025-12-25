@@ -2,6 +2,8 @@ import type { User } from '~/interfaces'
 import { required, minLength, maxLength, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = (user?: User) => {
+  const { $i18n } = useNuxtApp()
+
   const signupRules = () => ({
     image: { maxFileSize: maxFileSize(5) },
     name: {
@@ -12,7 +14,7 @@ export const useAccountRules = (user?: User) => {
     password: {
       required, minLength: minLength(6), maxLength: maxLength(128)
     },
-    password_confirmation: { required, sameAs: sameAs(user?.password) },
+    password_confirmation: { required, sameAs: sameAs(user?.password, $i18n.t('model.user.password')) },
     time_zone: { required }
   })
 
@@ -29,7 +31,7 @@ export const useAccountRules = (user?: User) => {
     email: { required, email },
     profile: { maxLength: maxLength(160) },
     password: { minLength: minLength(6), maxLength: maxLength(128) },
-    password_confirmation: { sameAs: sameAs(user?.password) }
+    password_confirmation: { sameAs: sameAs(user?.password, $i18n.t('model.user.password')) }
   })
 
   const profileRules = {
@@ -45,7 +47,7 @@ export const useAccountRules = (user?: User) => {
   const passwordRules = () => ({
     current_password: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(128) },
-    password_confirmation: { sameAs: sameAs(user?.password) }
+    password_confirmation: { sameAs: sameAs(user?.password, $i18n.t('model.user.password')) }
   })
 
   return { signupRules, signinRules, userRules, profileRules, passwordRules }

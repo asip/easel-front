@@ -6,13 +6,13 @@ export const { useRegle: useI18nRegle } = defineRegleConfig({
     const { $i18n } = useNuxtApp()
     return {
       required: withMessage(required, () => $i18n.t('rules.required')),
-      minLength: withMessage(minLength, ({ $params: [minValue] }) => $i18n.t('rules.minLength',{ min: minValue })),
-      maxLength: withMessage(maxLength, ({ $params: [maxValue] }) =>  $i18n.t('rules.maxLength', { max: maxValue })),
+      minLength: withMessage(minLength, ({ $params: [min] }) => $i18n.t('rules.minLength',{ min })),
+      maxLength: withMessage(maxLength, ({ $params: [max] }) =>  $i18n.t('rules.maxLength', { max })),
       email: withMessage(email, () => $i18n.t('rules.email')),
-      sameAs: withMessage(sameAs, () => $i18n.t('rules.sameAs')),
-      maxFileSize: withMessage(maxFileSize, ({ $params: [maxValue] }) =>  $i18n.t('rules.maxFileSize', { max: maxValue })),
-      maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [sizeValue] }) => $i18n.t('rules.maxTagArrayLength', { size: sizeValue })),
-      maxTagLength: withMessage(maxTagLength, ({ $params: [sizeValue] }) => $i18n.t('rules.maxTagLength', { size: sizeValue }))
+      sameAs: withMessage(sameAs, ({ $params: [_, otherName = 'other'] }) => $i18n.t('rules.sameAs', { otherName })),
+      maxFileSize: withMessage(maxFileSize, ({ $params: [max] }) =>  $i18n.t('rules.maxFileSize', { max })),
+      maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [size] }) => $i18n.t('rules.maxTagArrayLength', { size: size })),
+      maxTagLength: withMessage(maxTagLength, ({ $params: [size] }) => $i18n.t('rules.maxTagLength', { size }))
     }
   }
 })

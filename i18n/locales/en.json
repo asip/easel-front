@@ -97,7 +97,7 @@
     "email": "is invalid format.",
     "minLength": "More than {min} characters.",
     "maxLength": "are limited to {max} characters.",
-    "sameAs": "Passwords don't match.",
+    "sameAs": "must be equal to the {otherName} value",
     "maxTagArrayLength": "are limited to {size}.",
     "maxTagLength": "are limited to {size} characters.",
     "maxFileSize": "are limited to {max} MB."
