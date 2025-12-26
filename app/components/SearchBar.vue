@@ -62,7 +62,7 @@ const onClearClick = async (): Promise<void> => {
             <tbody>
               <tr>
                 <td colspan="2">
-                  <div class="tooltip tooltip-bottom" :data-tip="$t('component.tag_search.placeholder')">
+                  <div class="tooltip tooltip-top" :data-tip="$t('component.tag_search.placeholder')">
                     <input
                       v-model="frameQuery.items.word"
                       type="text"
