@@ -64,7 +64,7 @@ defineExpose({ clearForm })
             </td>
           </tr>
           <tr v-if="user.image || previewUrl">
-            <td colspan="2">
+            <td colspan="2" class="justify-canter">
               <PreviewImage v-model="previewUrl" />
             </td>
           </tr>
