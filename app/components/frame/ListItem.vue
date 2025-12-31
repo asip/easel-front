@@ -30,7 +30,9 @@ const onFlipClick = (): void => {
       <figure class="flex justify-center">
         <NuxtLink
           :to="`${frame?.file_url}`"
-          class="lb w-full"
+          class="w-full ps"
+          data-pswp-width=""
+          data-pswp-height=""
         >
           <img
             ref="image"

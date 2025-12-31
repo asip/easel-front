@@ -1,17 +1,17 @@
-import { useGLightbox } from './lightbox'
+import { usePhotoSwipe } from './lightbox'
 
-type initGalleryOptions = { selector: string }
+type initGalleryOptions = { selector: string, anchor?: string }
 
 export function useImageGallery () {
 
-  const { initGLightbox, closeGLightbox } = useGLightbox()
+  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe()
 
-  const initGallery = ({ selector }: initGalleryOptions): void => {
-    initGLightbox({ selector })
+  const initGallery = ({ selector, anchor }: initGalleryOptions): void => {
+    initPhotoSwipe({ selector, anchor })
   }
 
   const closeGallery = (): void => {
-    closeGLightbox()
+    closePhotoSwipe()
   }
 
   return { initGallery, closeGallery }

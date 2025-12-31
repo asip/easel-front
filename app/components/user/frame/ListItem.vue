@@ -28,7 +28,9 @@ const queryMapWithRef = computed<RefQuery>(() => {
     <figure class="flex justify-center">
       <NuxtLink
         :to="`${frame?.file_url}`"
-        class="lb w-full"
+        class="w-full ps"
+        data-pswp-width=""
+        data-pswp-height=""
       >
         <img
           :src="frame?.file_six_url"

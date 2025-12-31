@@ -19,11 +19,11 @@ const onNextClick = async (): Promise<void> => {
 }
 
 onMounted(() => {
-  if (import.meta.client) initGallery({ selector: '.lb' })
+  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
 })
 
 onUpdated(() => {
-  if (import.meta.client) initGallery({ selector: '.lb' })
+  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
 })
 
 onUnmounted(() => {
@@ -39,7 +39,7 @@ onUnmounted(() => {
   </ClientOnly>
 
   <div class="flex justify-center">
-    <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10">
+    <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10 lb">
       <div
         v-for="(frame, i) in frames"
         :key="frame.id"
