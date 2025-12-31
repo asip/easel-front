@@ -2,7 +2,7 @@
 import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
-const { frameQuery, queryMap, qItems, clearSearchCriteria } = useFrameSearch()
+const { frameQuery, queryMap, qItems, currentPage, clearSearchCriteria } = useFrameSearch()
 const { searchRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frameQuery.value.items, searchRules)
@@ -26,6 +26,7 @@ const onSearchClick = async (): Promise<void> => {
   if (valid) {
     r$.$reset()
     frameQuery.value.page = 1
+    currentPage.value = 1
     await navigateTo({ path: '/', query: queryMap.value })
   }
 }
@@ -36,6 +37,7 @@ const onClearClick = async (): Promise<void> => {
     dateWord.value= null
     clearSearchCriteria()
     frameQuery.value.page = 1
+    currentPage.value = 1
     await navigateTo({ path: '/', query: queryMap.value })
   }
 }

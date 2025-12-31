@@ -3,7 +3,7 @@ const route = useRoute()
 
 const account = useAccount()
 const { loginUser, loggedIn, logout } = account
-const { frameQuery, queryMap } = useFrameSearch()
+const { frameQuery, queryMap, currentPage, clearSearchCriteria } = useFrameSearch()
 const { openModal } = useModal()
 
 const dropdown = useTemplateRef('dropdown')
@@ -31,9 +31,9 @@ const onLogoutClick = async (): Promise<void> => {
 }
 
 const onTopPageClick = async (): Promise<void> => {
-  frameQuery.value.items = {}
+  clearSearchCriteria()
   frameQuery.value.page = 1
-  // frameQuery.value.pages = 1
+  currentPage.value = 1
   await navigateTo({ path: '/', query: queryMap.value })
   // reloadNuxtApp()
 }
