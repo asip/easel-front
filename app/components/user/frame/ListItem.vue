@@ -29,8 +29,6 @@ const queryMapWithRef = computed<RefQuery>(() => {
       <NuxtLink
         :to="`${frame?.file_url}`"
         class="w-full ps"
-        data-pswp-width=""
-        data-pswp-height=""
       >
         <img
           :src="frame?.file_six_url"

@@ -31,8 +31,6 @@ const onFlipClick = (): void => {
         <NuxtLink
           :to="`${frame?.file_url}`"
           class="w-full ps"
-          data-pswp-width=""
-          data-pswp-height=""
         >
           <img
             ref="image"

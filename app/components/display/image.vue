@@ -45,8 +45,6 @@ onUnmounted(() => {
       v-if="photoswipe"
       class="mx-auto"
       :to="linkURL"
-      data-pswp-width=""
-      data-pswp-height=""
     >
       <img
         v-if="small"
