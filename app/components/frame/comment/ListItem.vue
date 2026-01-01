@@ -84,7 +84,7 @@ const redirectOrReload404 = async (): Promise<void> => {
   <div class="flex justify-center pt-2">
     <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
       <div class="card-body">
-        <div class="leading-[35px]">
+        <div class="leading-8.75">
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
               <NuxtLink

@@ -50,7 +50,7 @@ onUnmounted(() => {
         v-if="small"
         :src="imgURL"
         alt=""
-        class="mx-auto w-[100px] h-[100px]"
+        class="mx-auto w-25 h-25"
       >
       <img
         v-else
@@ -69,7 +69,7 @@ onUnmounted(() => {
         v-if="small"
         :src="imgURL"
         alt=""
-        class="mx-auto w-[100px] h-[100px]"
+        class="mx-auto w-25 h-25"
       >
       <img
         v-else
@@ -83,7 +83,7 @@ onUnmounted(() => {
     v-else-if="small"
     :src="imgURL"
     alt=""
-    class="mx-auto w-[100px] h-[100px]"
+    class="mx-auto w-25 h-25"
   >
   <img
     v-else

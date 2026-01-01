@@ -131,7 +131,7 @@ const onTopPageClick = async (): Promise<void> => {
     </div>
     <div class="drawer-side">
       <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay"/>
-      <div class="mt-[70px]">
+      <div class="mt-17.5">
         <SearchBar />
       </div>
     </div>
