@@ -14,7 +14,7 @@ provide('frameId', frameId)
 </script>
 
 <template>
-  <div class="pb-5">
+  <div>
     <FrameCommentList />
     <FrameCommentNewForm />
   </div>
