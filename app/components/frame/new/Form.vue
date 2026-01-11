@@ -52,7 +52,7 @@ const onCreateClick = async (): Promise<void> => {
                 v-for="error of r$.$errors.file"
                 :key="error.toString()"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -77,7 +77,7 @@ const onCreateClick = async (): Promise<void> => {
                 v-for="error of r$.$errors.name"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -91,7 +91,7 @@ const onCreateClick = async (): Promise<void> => {
                 v-for="error of r$.tag_list.$errors"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -111,7 +111,7 @@ const onCreateClick = async (): Promise<void> => {
                 v-for="error of r$.$errors.creator_name"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>

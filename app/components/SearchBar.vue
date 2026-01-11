@@ -77,7 +77,7 @@ const onClearClick = async (): Promise<void> => {
                     :key="error"
                     class="flex"
                   >
-                    <div class="text-red-500">{{ error }}</div>
+                    <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
               </tr>
@@ -98,7 +98,7 @@ const onClearClick = async (): Promise<void> => {
                     :key="error"
                     class="flex"
                   >
-                    <div class="text-red-500">{{ error }}</div>
+                    <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
               </tr>
@@ -119,7 +119,7 @@ const onClearClick = async (): Promise<void> => {
                     :key="error"
                     class="flex"
                   >
-                    <div class="text-red-500">{{ error }}</div>
+                    <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
               </tr>
@@ -140,7 +140,7 @@ const onClearClick = async (): Promise<void> => {
                     :key="error"
                     class="flex"
                   >
-                    <div class="text-red-500">{{ error }}</div>
+                    <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
               </tr>
@@ -161,7 +161,7 @@ const onClearClick = async (): Promise<void> => {
                     :key="error"
                     class="flex"
                   >
-                    <div class="text-red-500">{{ error }}</div>
+                    <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
               </tr>

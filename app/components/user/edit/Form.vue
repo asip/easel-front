@@ -59,7 +59,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.image"
                 :key="error.toString()"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -85,7 +85,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.name"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -110,7 +110,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.email"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -132,7 +132,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.profile"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -155,7 +155,7 @@ defineExpose({ clearForm })
                   v-for="error of r$.$errors.time_zone"
                   :key="error"
                 >
-                  <div class="text-red-500">{{ error }}</div>
+                  <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </ClientOnly>
             </td>

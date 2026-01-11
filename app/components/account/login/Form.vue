@@ -62,7 +62,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.email"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
@@ -83,7 +83,7 @@ defineExpose({ clearForm })
                 v-for="error of r$.$errors.password"
                 :key="error"
               >
-                <div class="text-red-500">{{ error }}</div>
+                <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
