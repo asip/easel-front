@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
 
+interface ImageInfo {
+  width: number | undefined
+  height: number | undefined
+}
+
 const frame = defineModel<Frame>()
 
 const image = useTemplateRef('image')
-const imageHeight = ref<number | undefined>(0)
+const imageInfo = ref<ImageInfo>({ width: 0, height: 0 })
 
 const { loggedIn, loginUser } = useAccount()
 const { currentPage } = useFrameSearch()
@@ -16,7 +21,8 @@ const onLinkClick = () => {
 }
 
 const onFlipClick = (): void => {
-  imageHeight.value = image.value?.height
+  imageInfo.value.width = image.value?.width
+  imageInfo.value.height = image.value?.height
   front.value = !front.value
 }
 </script>
@@ -42,7 +48,7 @@ const onFlipClick = (): void => {
       </figure>
     </div>
     <ClientOnly>
-      <div v-show="!front" class="flex items-center" :style="`height: ${imageHeight}px`">
+      <div v-show="!front" class="flex items-center bg-blue-100" :style="`height: ${imageInfo.height}px;width: ${imageInfo.width}px;`">
         <div class="flex flex-col mx-auto">
           <div class="flex justify-center flex-wrap mb-1">
             <DisplayTags v-model="frame" :list="true" />
