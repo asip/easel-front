@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
-const { loggedIn, loginUser } = useAccount()
+const { loginUser } = useAccount()
 const { comment, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, getComments, createComment } = useComment()
 const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
@@ -50,7 +50,7 @@ const redirect404 = async (): Promise<void> => {
 </script>
 
 <template>
-  <div v-if="loggedIn" class="flex justify-center">
+  <div class="flex justify-center">
     <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 w-full sm:w-3/4">
       <div class="card-body">
         <div class="leading-8.75">

@@ -3,6 +3,7 @@ import type { Frame } from '~/interfaces'
 
 const frame = defineModel<Frame>()
 
+const { loggedIn } = useAccount()
 const { getComments } = useComment()
 
 const frameId = frame.value?.id
@@ -16,6 +17,6 @@ provide('frameId', frameId)
 <template>
   <div>
     <FrameCommentList />
-    <FrameCommentNewForm />
+    <FrameCommentNewForm v-if="loggedIn" />
   </div>
 </template>
