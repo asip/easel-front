@@ -31,9 +31,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.statusCode) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller) {
-            if (caller.clearLoginUser) caller.clearLoginUser()
-          }
+          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
           break
         // default:
         //  flash.value.alert = $i18n.t('action.error.api', { message: error.message })
