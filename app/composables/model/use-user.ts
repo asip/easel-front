@@ -28,7 +28,7 @@ export const useUser = () => {
   )
 
   const getUser = async (id: string): Promise<void> => {
-    const { data, error } = await useGetApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/users/${id}`
     })
 

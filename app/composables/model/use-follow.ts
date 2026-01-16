@@ -10,7 +10,7 @@ export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
 
   const isFollowing = async (userId: string): Promise<void> => {
-    const { data, error } = await useGetApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error } = await useQueryApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/account/following/${userId}`,
       token: accessToken.value
     })
@@ -29,7 +29,8 @@ export function useFollow () {
   }
 
   const follow = async (userId: number | null): Promise<void> => {
-    const { error } = await usePostApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error } = await useMutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: `/users/${userId}/follow_relationships`,
       token: accessToken.value
     })
@@ -44,7 +45,8 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null): Promise<void> => {
-    const { error } = await useDeleteApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error } = await useMutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'delete',
       url: `/users/${userId}/follow_relationships`,
       token: accessToken.value
     })

@@ -35,7 +35,7 @@ export function useUserFrames () {
       client: options?.client
     }
 
-    const { data, error } = await useGetApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
 
     clearFlash()
 

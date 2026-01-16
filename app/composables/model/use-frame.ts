@@ -113,7 +113,7 @@ export function useFrame() {
       getOptions.url = `/frames/${id}`
     }
 
-    const { data, error, refresh } = await useGetApi<FrameResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error, refresh } = await useQueryApi<FrameResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
 
     clearFlash()
 
@@ -152,7 +152,8 @@ export function useFrame() {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await usePostApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: '/frames/',
       body: formData,
       token: accessToken.value
@@ -189,7 +190,8 @@ export function useFrame() {
 
     // console.log(loginUser.value.token)
 
-    const { error, pending } = await usePutApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'put',
       url: `/frames/${frame.value.id}`,
       body: postData,
       token: accessToken.value
@@ -209,7 +211,8 @@ export function useFrame() {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending } = await useDeleteApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'delete',
       url: `/frames/${frame.value.id}`,
       token: accessToken.value
     })

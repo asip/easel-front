@@ -1,7 +1,6 @@
-export type { QueryAPIOptions, GetAPIOptions } from './backend'
+export type { QueryAPIOptions } from './backend'
 
 export { useMutationApi, useQueryApi } from './backend'
-export { useGetApi, usePostApi, usePutApi, useDeleteApi } from './backend'
 
 export { useExternalErrors, useAlert } from './backend'
 

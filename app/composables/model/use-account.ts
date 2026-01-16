@@ -161,7 +161,8 @@ export const useAccount = () => {
     formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
-    const { error, pending } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: '/users/',
       body: formData
     })
@@ -181,7 +182,7 @@ export const useAccount = () => {
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
-      const { token, data, error } = await useGetApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      const { token, data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       url: '/account/profile',
       token: accessToken.value,
       fresh: true
@@ -211,7 +212,8 @@ export const useAccount = () => {
       }
     }
 
-    const { token, data, error } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { token, data, error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: '/sessions/',
       body: postData
     })
@@ -240,7 +242,8 @@ export const useAccount = () => {
       credential: response.credential
     }
 
-    const { token, data, error } = await usePostApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { token, data, error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: '/oauth/sessions/',
       body: postData
     })
@@ -275,7 +278,8 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'put',
       url: '/account/profile/',
       body: formData,
       token: accessToken.value
@@ -314,7 +318,8 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await usePutApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'put',
       url: '/account/password/',
       body: formData,
       token: accessToken.value
@@ -340,7 +345,8 @@ export const useAccount = () => {
   }
 
   const logout = async (): Promise<void> => {
-    const { error } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'delete',
       url: '/sessions/logout',
       token: accessToken.value
     })
@@ -357,7 +363,8 @@ export const useAccount = () => {
   const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
-    const { data, error, pending } = await useDeleteApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'delete',
       url: '/account',
       token: accessToken.value
     })

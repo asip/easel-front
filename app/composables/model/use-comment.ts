@@ -62,7 +62,7 @@ export function useComment () {
 
   const getComments = async (frameId: number | null |undefined, options?: { client?: boolean }): Promise<void> => {
     // console.log(comment.frame_id);
-    const { data, error } = await useGetApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error } = await useQueryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frameId}/comments`,
       client: options?.client
     })
@@ -96,7 +96,8 @@ export function useComment () {
       }
     }
 
-    const { error, pending } = await usePostApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'post',
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: accessToken.value
@@ -124,7 +125,8 @@ export function useComment () {
       }
     }
 
-    const { data, error, pending } = await usePutApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'put',
       url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
       body: postData,
       token: accessToken.value
@@ -147,7 +149,8 @@ export function useComment () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
-    const { error, pending } = await useDeleteApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+      method: 'delete',
       url: `/frames/${comment.frame_id}/comments/${comment.id}`,
       token: accessToken.value
     })
