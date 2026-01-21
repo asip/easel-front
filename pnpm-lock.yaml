@@ -66,9 +66,6 @@ importers:
       vue:
         specifier: ^3.6.0-beta.3
         version: 3.6.0-beta.3(typescript@5.9.3)
-      vue-awesome-paginate:
-        specifier: 1.2.0
-        version: 1.2.0(typescript@5.9.3)
       vue-quilly:
         specifier: ^1.1.6
         version: 1.1.6(typescript@5.9.3)
@@ -5875,9 +5872,6 @@ packages:
 
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
-
-  vue-awesome-paginate@1.2.0:
-    resolution: {integrity: sha512-+eYXo666E2n8NhpEPIdJcQEoJBDLo7wMGv45D2+i/VDntz2o422jRNcMQ7VESMgAcKyReWMwb9m99esCjsO/hw==}
 
   vue-bundle-renderer@2.2.0:
     resolution: {integrity: sha512-sz/0WEdYH1KfaOm0XaBmRZOWgYTEvUDt6yPYaUzl4E52qzgWLlknaPPTTZmp6benaPTlQAI/hN1x3tAzZygycg==}
@@ -12457,12 +12451,6 @@ snapshots:
       - yaml
 
   vscode-uri@3.1.0: {}
-
-  vue-awesome-paginate@1.2.0(typescript@5.9.3):
-    dependencies:
-      vue: 3.6.0-beta.3(typescript@5.9.3)
-    transitivePeerDependencies:
-      - typescript
 
   vue-bundle-renderer@2.2.0:
     dependencies:

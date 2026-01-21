@@ -52,7 +52,6 @@
     "sanitize-html": "^2.17.0",
     "tailwindcss": "4.1.18",
     "vue": "^3.6.0-beta.3",
-    "vue-awesome-paginate": "1.2.0",
     "vue-quilly": "^1.1.6",
     "vue-sonner": "2.0.9",
     "vue3-google-signin": "2.1.1"
