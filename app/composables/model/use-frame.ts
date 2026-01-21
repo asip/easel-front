@@ -102,7 +102,7 @@ export function useFrame() {
 
   const getFrame = async (id: string): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     // console.log(`token: ${loginUser.value.token}`)
-    const getOptions: GetAPIOptions = {
+    const getOptions: QueryAPIOptions = {
       url: ''
     }
 

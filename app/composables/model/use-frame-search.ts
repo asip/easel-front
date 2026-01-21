@@ -80,7 +80,7 @@ export const useFrameSearch = () => {
   const frames = useState<Frame[]>('frames', () => { return [] })
 
   const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
-    const getOptions: GetAPIOptions = {
+    const getOptions: QueryAPIOptions = {
       url: '',
       query: queryMap.value,
       client: options?.client,
@@ -118,7 +118,7 @@ export const useFrameSearch = () => {
     }
   }
 
-  const clearFrameList = (): void => {
+  const clearFrames = (): void => {
     frames.value.splice(0)
   }
 
@@ -137,7 +137,7 @@ export const useFrameSearch = () => {
   const current = async (options?: { client?: boolean }): Promise<void> => {
     pagePrev.value = true
     pageNext.value = true
-    clearFrameList()
+    clearFrames()
     minMaxPage()
     currentPage.value = frameQuery.value.page
     // console.log(`current page: ${currentPage.value}`)
