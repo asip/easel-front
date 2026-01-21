@@ -4,20 +4,27 @@ import type { RefQuery } from '~/types';
 
 const frame = defineModel<Frame>()
 
-const { page = undefined } = defineProps<{
-  page?: string
+const { from = undefined } = defineProps<{
+  from?: string
 }>()
 
 const { loggedIn, loginUser } = useAccount()
+const { currentPage, frameQuery } = (from == 'profile' ? useAccountFrames() : useUserFrames())
 
 const queryMapWithRef = computed<RefQuery>(() => {
-  if (page == 'profile' || page == 'user_profile') {
-    return { ref: JSON.stringify({ from: page }) }
+  if (from == 'profile' || from == 'user_profile') {
+    return { ref: JSON.stringify({ from }) }
   } else {
     return {}
   }
 })
 
+const onLinkClick = () => {
+  if(frame.value?.page) {
+    currentPage.value = frame.value?.page
+    frameQuery.value.page = frame.value?.page
+  }
+}
 </script>
 
 <template>
@@ -39,9 +46,10 @@ const queryMapWithRef = computed<RefQuery>(() => {
     </figure>
     <div class="flex justify-center">
       <NuxtLink
-        v-if="page == 'profile' || page == 'user_profile'"
+        v-if="from == 'profile' || from == 'user_profile'"
         :to="{ path: `/frames/${frame?.id}`, query: queryMapWithRef }"
         class="link link-hover"
+        @click="onLinkClick"
       >
         {{ frame?.name }}
       </NuxtLink>
@@ -49,6 +57,7 @@ const queryMapWithRef = computed<RefQuery>(() => {
         v-else
         :to="`/frames/${frame?.id}`"
         class="link link-hover"
+        @click="onLinkClick"
       >
         {{ frame?.name }}
       </NuxtLink>

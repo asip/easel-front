@@ -86,7 +86,7 @@ const onUnfollowClick = async (): Promise<void> => {
     <UserProfileModal v-model="user" />
     <UserFrameList
       :user-id="userId"
-      page="user_profile"
+      from="user_profile"
     />
   </div>
 </template>

@@ -27,7 +27,7 @@ const from = referers.value[route.path]
     </div>
     <AccountFrameList
       v-if="loggedIn"
-      page="profile"
+      from="profile"
     />
   </div>
 </template>

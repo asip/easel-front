@@ -1,17 +1,20 @@
 <script lang="ts" setup>
-const { page = undefined } = defineProps<{
-  page?: string
+const { from = undefined } = defineProps<{
+  from?: string
 }>()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { frameQuery, getFrames, frames } = useAccountFrames()
+const { frames, current, prev, next, pagePrev, pageNext } = useAccountFrames()
 
 // console.log('getFrames: start')
-await getFrames()
+await current()
 
-const clickCallback = async (pageNum: number): Promise<void> => {
-  frameQuery.value.page = pageNum
-  await getFrames({ client: true })
+const onPrevClick = async (): Promise<void> => {
+  await prev()
+}
+
+const onNextClick = async (): Promise<void> => {
+  await next()
 }
 
 onMounted(() => {
@@ -28,6 +31,12 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <ClientOnly>
+    <div v-if="pagePrev" class="flex justify-center">
+      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $t('action.search.more') }}</a>
+    </div>
+  </ClientOnly>
+
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10 lb">
       <div
@@ -37,21 +46,15 @@ onUnmounted(() => {
       >
         <UserFrameListItem
           v-model="frames[i]"
-          :page="page"
+          :from="from"
         />
       </div>
     </div>
   </div>
-  <div
-    v-if="frameQuery.pages > 1"
-    class="flex justify-center"
-  >
-    <vue-awesome-paginate
-      v-model="frameQuery.page"
-      :total-items="frameQuery.total"
-      :items-per-page="8"
-      :max-pages-shown="5"
-      @click="clickCallback"
-    />
-  </div>
+
+  <ClientOnly>
+    <div v-if="pageNext" class="flex justify-center">
+      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $t('action.search.more') }}</a>
+    </div>
+  </ClientOnly>
 </template>

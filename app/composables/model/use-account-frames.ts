@@ -9,10 +9,11 @@ export function useAccountFrames () {
 
   const { setAlert } = useAlert({ flash, caller: { clearLoginUser } })
 
-  const makeFrame = ({ from }: { from: FrameResource }) : Frame => {
+  const makeFrame = ({ from, page }: { from: FrameResource, page: number }) : Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
+    frame.page = page
     return frame
   }
 
@@ -26,11 +27,21 @@ export function useAccountFrames () {
 
   const frames = ref<Frame[]>([])
 
+  const currentPage = useState<number>('currentPageForProfile', () => { return 1 } )
+
+  const pagePrev = useState<boolean>('pagePrevForProfile', () => { return false } )
+  const pageNext = useState<boolean>('pageNextForProfile', () => { return false } )
+
+  const maxPage = ref<number>(1)
+  const minPage = ref<number>(1)
+
+  const frameList = ref<Frame[]>([])
+
   const getFrames = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: '/account/frames',
       query: {
-        page: frameQuery.value.page
+        page: currentPage.value
       },
       token: accessToken.value,
       client: options?.client
@@ -49,15 +60,15 @@ export function useAccountFrames () {
         message: flash.value.alert
       })
     } else if (data) {
-      const { frames: frameList, meta } = data
+      const { frames: frameRsList, meta } = data
       // console.log(frameList)
       // console.log(meta)
 
-      if (frameList) {
-        frames.value.splice(0)
-        for (const frame of frameList) {
+      if (frameRsList) {
+        frameList.value.splice(0)
+        for (const frame of frameRsList) {
           // console.log(comment);
-          frames.value.push(makeFrame({ from: frame }))
+          frameList.value.push(makeFrame({ from: frame, page: currentPage.value }))
         }
         // console.log(frames)
       }
@@ -68,7 +79,54 @@ export function useAccountFrames () {
     }
   }
 
+  const clearFrames = (): void => {
+    frames.value.splice(0)
+  }
+
+  const minMaxPage = () => {
+    maxPage.value = currentPage.value > frameQuery.value.page ? currentPage.value : frameQuery.value.page
+    minPage.value = currentPage.value < frameQuery.value.page ? currentPage.value : frameQuery.value.page
+  }
+
+  const check = () => {
+    if(currentPage.value == 1 ) pagePrev.value = false
+    if(currentPage.value == frameQuery.value.pages ) pageNext.value = false
+    // console.log(`page prev: ${pagePrev.value}`)
+    // console.log(`page next: ${pageNext.value}`)
+  }
+
+  const current = async (options?: { client?: boolean }): Promise<void> => {
+    pagePrev.value = true
+    pageNext.value = true
+    clearFrames()
+    minMaxPage()
+    currentPage.value = frameQuery.value.page
+    // console.log(`current page: ${currentPage.value}`)
+    await getFrames({ client: options?.client })
+    check()
+    frames.value = frames.value.concat(frameList.value)
+  }
+
+  const more = async (): Promise<void> => {
+    await getFrames({ client: true })
+    check()
+  }
+
+  const prev = async (): Promise<void> => {
+    minMaxPage()
+    currentPage.value = minPage.value - 1
+    await more()
+    frames.value = frameList.value.concat(frames.value)
+  }
+
+  const next = async (): Promise<void> => { 
+    minMaxPage()
+    currentPage.value = maxPage.value + 1
+    await more()
+    frames.value = frames.value.concat(frameList.value)
+  }
+
   return {
-    frameQuery, frames, getFrames
+    frameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames
   }
 }
