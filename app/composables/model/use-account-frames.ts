@@ -25,17 +25,16 @@ export function useAccountFrames () {
     }
   })
 
+  const frameList = ref<Frame[]>([])
   const frames = ref<Frame[]>([])
 
-  const currentPage = useState<number>('currentPageForProfile', () => { return 1 } )
+  const clearFrames = (): void => {
+    frames.value.splice(0)
+  }
 
-  const pagePrev = useState<boolean>('pagePrevForProfile', () => { return false } )
-  const pageNext = useState<boolean>('pageNextForProfile', () => { return false } )
-
-  const maxPage = ref<number>(1)
-  const minPage = ref<number>(1)
-
-  const frameList = ref<Frame[]>([])
+  const { currentPage, pagePrev, pageNext, minMaxPage, minPage, maxPage, check } = useMoreScroll({
+    key: 'Profile', page: frameQuery.value.page, pages: frameQuery.value.pages
+  })
 
   const getFrames = async (options?: { client?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
@@ -77,22 +76,6 @@ export function useAccountFrames () {
         frameQuery.value.total = meta.pagination.count
       }
     }
-  }
-
-  const clearFrames = (): void => {
-    frames.value.splice(0)
-  }
-
-  const minMaxPage = () => {
-    maxPage.value = currentPage.value > frameQuery.value.page ? currentPage.value : frameQuery.value.page
-    minPage.value = currentPage.value < frameQuery.value.page ? currentPage.value : frameQuery.value.page
-  }
-
-  const check = () => {
-    if(currentPage.value == 1 ) pagePrev.value = false
-    if(currentPage.value == frameQuery.value.pages ) pageNext.value = false
-    // console.log(`page prev: ${pagePrev.value}`)
-    // console.log(`page next: ${pageNext.value}`)
   }
 
   const current = async (options?: { client?: boolean }): Promise<void> => {

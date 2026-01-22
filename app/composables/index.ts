@@ -4,7 +4,7 @@ export { useExternalErrors, useAlert } from './foundation'
 
 export type { UseAlertType } from './foundation'
 
-export { useDatetimeLocal, useEntity, useFlash, useLocale, useReferer, useTimeZone } from './foundation'
+export { useDatetimeLocal, useEntity, useFlash, useLocale, useReferer, useTimeZone, useMoreScroll } from './foundation'
 
 export { useDropdown, useImageGallery, useImagePreview , useLightbox, useModal, useQuill, useTagEditor, useSonner } from './ui'
 
