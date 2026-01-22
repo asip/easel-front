@@ -26,11 +26,24 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('profile'))) {
       referers.value[to.path] = from.fullPath
     }
+
+    const { current } = useAccountFrames()
+
+    if (import.meta.client) {
+      await current({ client: true })
+    }
   }
 
   if (to.path.match(/^\/users\/\d+$/)) {
     if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('user_profile'))) {
       referers.value[to.path] = from.fullPath
+    }
+
+    const { current } = useUserFrames()
+    const userId = to.params.id?.toString()
+
+    if (import.meta.client) {
+      await current(userId, { client: true })
     }
   }
 

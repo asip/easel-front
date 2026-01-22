@@ -121,8 +121,8 @@ export const useFrameSearch = () => {
     pagePrev.value = true
     pageNext.value = true
     clearFrames()
-    minMaxPage()
     currentPage.value = frameQuery.value.page
+    minMaxPage()
     // console.log(`current page: ${currentPage.value}`)
     await searchFrame({ client: options?.client })
     check()
@@ -135,20 +135,21 @@ export const useFrameSearch = () => {
   }
 
   const prev = async (): Promise<void> => {
-    minMaxPage()
     currentPage.value = minPage.value - 1
+    minMaxPage()
     await more()
     frames.value = frameList.value.concat(frames.value)
   }
 
   const next = async (): Promise<void> => { 
-    minMaxPage()
     currentPage.value = maxPage.value + 1
+    minMaxPage()
     await more()
     frames.value = frames.value.concat(frameList.value)
   }
 
   return {
-    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frames, queryMap, qItems, clearSearchCriteria
+    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frames, queryMap, qItems, clearSearchCriteria,
+    minPage, maxPage
   }
 }

@@ -4,7 +4,7 @@ const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery()
 // const { loginUser } = useAccount()
-const { queryMap, current, prev, next, pagePrev, pageNext, frames } = useFrameSearch()
+const { frameQuery, queryMap, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useFrameSearch()
 
 // console.log('searchFrame: start')
 await current()
@@ -34,7 +34,7 @@ onUnmounted(() => {
 <template>
   <ClientOnly>
     <div v-if="pagePrev" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $i18n.t('action.search.more') }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $i18n.t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a>
     </div>
   </ClientOnly>
 
@@ -52,7 +52,7 @@ onUnmounted(() => {
 
   <ClientOnly>
     <div v-if="pageNext" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $i18n.t('action.search.more') }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $i18n.t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a>
     </div>
   </ClientOnly>
 </template>

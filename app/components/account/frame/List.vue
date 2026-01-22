@@ -4,7 +4,7 @@ const { from = undefined } = defineProps<{
 }>()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { frames, current, prev, next, pagePrev, pageNext } = useAccountFrames()
+const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useAccountFrames()
 
 // console.log('getFrames: start')
 await current()
@@ -33,7 +33,7 @@ onUnmounted(() => {
 <template>
   <ClientOnly>
     <div v-if="pagePrev" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $t('action.search.more') }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a>
     </div>
   </ClientOnly>
 
@@ -54,7 +54,7 @@ onUnmounted(() => {
 
   <ClientOnly>
     <div v-if="pageNext" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $t('action.search.more') }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a>
     </div>
   </ClientOnly>
 </template>

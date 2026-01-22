@@ -33,7 +33,7 @@ export function useAccountFrames () {
   }
 
   const { currentPage, pagePrev, pageNext, minMaxPage, minPage, maxPage, check } = useMoreScroll({
-    key: 'Profile', page: frameQuery.value.page, pages: frameQuery.value.pages
+    key: 'profile', page: frameQuery.value.page, pages: frameQuery.value.pages
   })
 
   const getFrames = async (options?: { client?: boolean }): Promise<void> => {
@@ -82,8 +82,8 @@ export function useAccountFrames () {
     pagePrev.value = true
     pageNext.value = true
     clearFrames()
-    minMaxPage()
     currentPage.value = frameQuery.value.page
+    minMaxPage()
     // console.log(`current page: ${currentPage.value}`)
     await getFrames({ client: options?.client })
     check()
@@ -96,20 +96,21 @@ export function useAccountFrames () {
   }
 
   const prev = async (): Promise<void> => {
-    minMaxPage()
     currentPage.value = minPage.value - 1
+    minMaxPage()
     await more()
     frames.value = frameList.value.concat(frames.value)
   }
 
   const next = async (): Promise<void> => { 
-    minMaxPage()
     currentPage.value = maxPage.value + 1
+    minMaxPage()
     await more()
     frames.value = frames.value.concat(frameList.value)
   }
 
   return {
-    frameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames
+    frameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames,
+    minPage, maxPage
   }
 }
