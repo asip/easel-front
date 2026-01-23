@@ -1,17 +1,17 @@
 <script setup lang="ts">
 const error = useError()
-// if (error.value) error.value.statusCode = 500
+// if (error.value) error.value.status = 500
 </script>
 
 <template>
   <div class="min-h-screen">
     <Header />
     <div class="container mx-auto error-html">
-      <ErrorBadRequest v-if="error?.statusCode == 400" />
-      <ErrorForbidden v-if="error?.statusCode == 403" />
-      <ErrorNotFound v-if="error?.statusCode == 404" />
-      <ErrorUnprocessableEntity v-if="error?.statusCode == 422" />
-      <ErrorInternalServerError v-if="error?.statusCode == 500" />
+      <ErrorBadRequest v-if="error?.status == 400" />
+      <ErrorForbidden v-if="error?.status == 403" />
+      <ErrorNotFound v-if="error?.status == 404" />
+      <ErrorUnprocessableEntity v-if="error?.status == 422" />
+      <ErrorInternalServerError v-if="error?.status == 500" />
     </div>
     <Footer />
   </div>

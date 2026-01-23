@@ -63,8 +63,8 @@ export function useUserFrames () {
       setAlert({ error })
 
       throw createError({
-        statusCode: error.statusCode,
-        statusMessage: error.message,
+        status: error.status,
+        statusText: error.message,
         message: flash.value.alert
       })
     } else if (data) {

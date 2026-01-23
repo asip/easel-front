@@ -26,9 +26,9 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
 
   const setAlert = function({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
-    backendErrorInfo.value.status = error.statusCode
+    backendErrorInfo.value.status = error.status
     if (off) {
-      switch (error.statusCode) {
+      switch (error.status) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
           if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
@@ -37,7 +37,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
         //  flash.value.alert = $i18n.t('action.error.api', { message: error.message })
       }
     } else {
-      switch (error.statusCode) {
+      switch (error.status) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
           if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
