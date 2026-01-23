@@ -8,20 +8,40 @@ export function useMoreScroll ({ key = null, page, pages }: { key?: string | nul
   const pagePrev = useState<boolean>(key ? `pagePrevFor${toFirstUpper(key)}` : 'pagePrev', () => { return false } )
   const pageNext = useState<boolean>(key ? `pageNextFor${toFirstUpper(key)}` : 'pageNext', () => { return false } )
 
-  const maxPage = ref<number>(1)
   const minPage = ref<number>(1)
+  const maxPage = ref<number>(1)
 
   const minMaxPage = () => {
     minPage.value = currentPage.value < page ? currentPage.value : page
     maxPage.value = currentPage.value > page ? currentPage.value : page
   }
 
-  const check = () => {
+  const pagePrevNext = () => {
     if(currentPage.value == 1 ) pagePrev.value = false
     if(currentPage.value == pages ) pageNext.value = false
     // console.log(`page prev: ${pagePrev.value}`)
     // console.log(`page next: ${pageNext.value}`)
   }
 
-  return { currentPage, pagePrev, pageNext, minPage, maxPage ,minMaxPage, check }
+  const init = () => {
+    currentPage.value = page
+    pagePrev.value = true
+    pageNext.value = true
+    minMaxPage()
+    pagePrevNext()
+  }
+
+  const decrement = () => {
+    currentPage.value = minPage.value - 1
+    minMaxPage()
+    pagePrevNext()
+  }
+
+  const increment = () => {
+    currentPage.value = maxPage.value + 1
+    minMaxPage()
+    pagePrevNext()
+  }
+
+  return { currentPage, pagePrev, pageNext, minPage, maxPage , init, decrement, increment }
 }

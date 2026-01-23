@@ -74,7 +74,7 @@ export const useFrameSearch = () => {
     frames.value.splice(0)
   }
 
-  const { currentPage, pagePrev, pageNext, minMaxPage, minPage, maxPage, check } = useMoreScroll({
+  const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } = useMoreScroll({
     page: frameQuery.value.page, pages: frameQuery.value.pages
   })
 
@@ -118,32 +118,25 @@ export const useFrameSearch = () => {
   }
 
   const current = async (options?: { client?: boolean }): Promise<void> => {
-    pagePrev.value = true
-    pageNext.value = true
     clearFrames()
-    currentPage.value = frameQuery.value.page
-    minMaxPage()
+    init()
     // console.log(`current page: ${currentPage.value}`)
     await searchFrame({ client: options?.client })
-    check()
     frames.value = frames.value.concat(frameList.value)
   }
 
   const more = async (): Promise<void> => {
     await searchFrame({ client: true })
-    check()
   }
 
   const prev = async (): Promise<void> => {
-    currentPage.value = minPage.value - 1
-    minMaxPage()
+    decrement()
     await more()
     frames.value = frameList.value.concat(frames.value)
   }
 
   const next = async (): Promise<void> => { 
-    currentPage.value = maxPage.value + 1
-    minMaxPage()
+    increment()
     await more()
     frames.value = frames.value.concat(frameList.value)
   }
