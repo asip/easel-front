@@ -8,8 +8,8 @@ export function useMoreScroll ({ key = null, page, pages }: { key?: string | nul
   const pagePrev = useState<boolean>(key ? `pagePrevFor${toFirstUpper(key)}` : 'pagePrev', () => { return false } )
   const pageNext = useState<boolean>(key ? `pageNextFor${toFirstUpper(key)}` : 'pageNext', () => { return false } )
 
-  const minPage = ref<number>(1)
-  const maxPage = ref<number>(1)
+  const minPage = useState<number>(key ? `minPageFor${toFirstUpper(key)}` : 'minPage', () => { return 1 } )
+  const maxPage = useState<number>(key ? `maxPageFor${toFirstUpper(key)}` : 'maxPage', () => { return 1 } )
 
   const minMaxPage = () => {
     minPage.value = currentPage.value < page ? currentPage.value : page
