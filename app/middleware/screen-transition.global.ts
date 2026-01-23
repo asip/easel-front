@@ -27,7 +27,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       referers.value[to.path] = from.fullPath
     }
 
-    const { current } = useAccountFrames()
+    const { frameQuery, current } = useAccountFrames()
+
+    if (from.path !== to.path && !from.path.match(/^\/frames\/\d+$/)) {
+      frameQuery.value.page = 1
+    }
 
     if (import.meta.client) {
       await current({ client: true })
@@ -39,8 +43,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       referers.value[to.path] = from.fullPath
     }
 
-    const { current } = useUserFrames()
+    const { frameQuery, initFrameQuery, current } = useUserFrames()
     const userId = to.params.id?.toString()
+
+    initFrameQuery({ userId })
+
+    if (from.path !== to.path && !from.path.match(/^\/frames\/\d+$/)) {
+      frameQuery.value.page = 1
+    }
 
     if (import.meta.client) {
       await current(userId, { client: true })

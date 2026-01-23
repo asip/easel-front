@@ -5,17 +5,11 @@ const { userId, from = undefined } = defineProps<{
 }>()
 
 const { initGallery, closeGallery } = useImageGallery()
-const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useUserFrames()
+const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage, initFrameQuery } = useUserFrames()
 
 // console.log('userId', userId)
 
-if (userId) {
-  if (frameQuery.value.user_id !== userId) {
-    frameQuery.value.page = 1
-    frameQuery.value.pages = 1
-  }
-  frameQuery.value.user_id = userId
-}
+initFrameQuery({ userId })
 
 // console.log('getFrames: start')
 await current(userId)

@@ -8,6 +8,16 @@ export function useUserFrames () {
 
   const { setAlert } = useAlert({ flash })
 
+  const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
+    if (userId) {
+      if (frameQuery.value.user_id !== userId) {
+        frameQuery.value.page = 1
+        frameQuery.value.pages = 1
+      }
+      frameQuery.value.user_id = userId
+    }
+  }
+
   const makeFrame = ({ from, page }: { from: FrameResource, page: number }) : Frame => {
     const frame: Frame = create({ from })
     frame.file = null
@@ -102,7 +112,7 @@ export function useUserFrames () {
   }
 
   return {
-    frameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames,
+    frameQuery, initFrameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames,
     minPage, maxPage
   }
 }
