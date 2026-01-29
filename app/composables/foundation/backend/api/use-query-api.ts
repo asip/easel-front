@@ -9,11 +9,12 @@ export type QueryAPIOptions = {
   url: string,
   query?: SearchParams,
   token?: string | null,
+  abort?: AbortController
   fresh?: boolean
   client?: boolean
 }
 
-export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false }: QueryAPIOptions) => {
+export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false, abort }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
 
@@ -33,6 +34,10 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     onResponse({ response  }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
+  }
+
+  if (abort) {
+    options.signal = abort.signal
   }
 
   if (client) {

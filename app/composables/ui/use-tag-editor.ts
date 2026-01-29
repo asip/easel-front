@@ -1,10 +1,17 @@
-type useTagEditorOptions = { el: Ref<HTMLInputElement | HTMLTextAreaElement | null> }
+interface TagSearchType {
+  searchTag: (name: string, { abort }: { abort: AbortController }) => Promise<void>
+  tags: Ref<string[]>
+}
 
-export function useTagEditor ({ el }: useTagEditorOptions) {
+type useTagEditorOptions = { el: Ref<HTMLInputElement | HTMLTextAreaElement | null>, tagSearch?: TagSearchType }
+
+export function useTagEditor ({ el, tagSearch }: useTagEditorOptions) {
 
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp() as any
+
+  let controller: AbortController
 
   const initTagEditor = (tagList: Ref<string[] | undefined>): void => {
     if (el.value) {
@@ -22,14 +29,28 @@ export function useTagEditor ({ el }: useTagEditorOptions) {
       tagEditor?.removeAllTags()
       if (tagList.value) tagEditor?.addTags(tagList.value)
 
-      const saveTagList = (): void => {
-        if (tagList.value && tagEditor) {
-          tagList.value = tagEditor.value.map(v => v.value)
-        }
-      }
+      tagEditor?.on('input', (ev) => onInput(ev))
 
-      tagEditor?.on('add', () => saveTagList())
-      tagEditor?.on('remove', () => saveTagList())
+      tagEditor?.on('add', () => saveTagList(tagList))
+      tagEditor?.on('remove', () => saveTagList(tagList))
+    }
+  }
+
+  const onInput = async (ev: CustomEvent): Promise<void> => {
+    const value = ev.detail.value as string
+    if(tagEditor) tagEditor.whitelist = []
+
+    controller?.abort()
+    controller = new AbortController()
+
+    await tagSearch?.searchTag(value, { abort: controller })
+    if(tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+    tagEditor?.loading(false).dropdown.show(value)
+  }
+
+  const saveTagList = (tagList: Ref<string[] | undefined>): void => {
+    if (tagList.value && tagEditor) {
+      tagList.value = tagEditor.value.map(v => v.value)
     }
   }
 
