@@ -6,6 +6,7 @@ export { useFrame } from './use-frame'
 export { useFrameSearch } from './use-frame-search'
 export { useUser } from './use-user'
 export { useUserFrames } from './use-user-frames'
+export { useTagSearch } from './use-tag-search'
 
 export type { UseAccountType } from './use-account'
 export type { UseCommentType } from './use-comment'

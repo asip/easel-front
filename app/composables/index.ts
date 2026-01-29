@@ -10,6 +10,6 @@ export { useDropdown, useImageGallery, useImagePreview , useLightbox, useModal, 
 
 export { useCommentRules, useFrameRules, useAccountRules } from './model/validation'
 
-export { useAccount, useAccountFrames, useComment, useFollow, useFrame, useFrameSearch, useUser, useUserFrames } from './model'
+export { useAccount, useAccountFrames, useComment, useFollow, useFrame, useFrameSearch, useUser, useUserFrames, useTagSearch } from './model'
 
 export type { UseAccountType, UseCommentType, UseFrameType } from './model'

@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+
 const model = defineModel<string[]>()
 
+const { searchTag, tags } = useTagSearch()
+
 const tagEditor = useTemplateRef('tagEditorRef')
-const { initTagEditor, closeTagEditor } = useTagEditor({ el: tagEditor })
+const { initTagEditor, closeTagEditor } = useTagEditor({ el: tagEditor, tagSearch: { tags, searchTag } })
 
 onMounted(() => {
   // console.log(frame)
