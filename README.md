@@ -2,9 +2,11 @@
 
 ![alt text](https://github.com/asip/easel-front/blob/main/public/palette.svg)
 
+[I converted a my own Rails app to MPA (SPA) with Nuxt3.(japanese)](https://qiita.com/asip2k25/items/8fd4a4d0f3ee515e0012)
+
 This is SPA Frontend of [Easel](https://github.com/asip/easel).
 
-Nuxt4.2 + Tailwind CSS 4 + daisyUI 5
+Nuxt4.3 + Tailwind CSS 4 + daisyUI 5
 
 Look at the [backend](https://github.com/asip/easel-back)
 
