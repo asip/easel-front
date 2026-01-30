@@ -55,7 +55,7 @@ const redirect404 = async (): Promise<void> => {
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td class="w-[9em]">
+            <td class="w-[10em]">
               <label for="frame_name">{{ $t('model.frame.name') }}：</label>
             </td>
             <td>

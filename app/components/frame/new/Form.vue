@@ -38,7 +38,7 @@ const onCreateClick = async (): Promise<void> => {
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td class="w-[9em]">
+            <td class="w-[10em]">
               {{ $t('model.frame.file') }}：
             </td>
             <td>

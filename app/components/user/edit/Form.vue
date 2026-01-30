@@ -43,7 +43,7 @@ defineExpose({ clearForm })
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td class="w-[9em]">
+            <td class="w-[10em]">
               {{ $t('model.user.image') }}：
             </td>
             <td>

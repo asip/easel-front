@@ -80,7 +80,7 @@ const onDeleteAccountClick = (): void => {
         <table class="table table-bordered table-rounded">
           <tbody>
             <tr>
-              <td class="w-[9em]">{{ $t('model.user.name') }}：</td>
+              <td class="w-[10em]">{{ $t('model.user.name') }}：</td>
               <td>{{ loginUser.name }}</td>
             </tr>
             <tr>
