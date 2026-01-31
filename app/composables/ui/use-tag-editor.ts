@@ -3,9 +3,12 @@ interface TagSearchType {
   tags: Ref<string[]>
 }
 
-type useTagEditorOptions = { el: Ref<HTMLInputElement | HTMLTextAreaElement | null>, tagSearch?: TagSearchType }
+type useTagEditorOptions = {
+  tagList: Ref<string[] | undefined>,
+  tagSearch?: TagSearchType
+}
 
-export function useTagEditor ({ el, tagSearch }: useTagEditorOptions) {
+export function useTagEditor ({ tagList, tagSearch }: useTagEditorOptions) {
 
   let tagEditor: Tagify | null = null
 
@@ -13,7 +16,7 @@ export function useTagEditor ({ el, tagSearch }: useTagEditorOptions) {
 
   let controller: AbortController
 
-  const initTagEditor = (tagList: Ref<string[] | undefined>): void => {
+  const initTagEditor = (el: Ref<HTMLInputElement | HTMLTextAreaElement | null>): void => {
     if (el.value) {
       tagEditor = new $tagify(el.value, {
         maxTags: 5,
@@ -29,11 +32,15 @@ export function useTagEditor ({ el, tagSearch }: useTagEditorOptions) {
       tagEditor?.removeAllTags()
       if (tagList.value) tagEditor?.addTags(tagList.value)
 
-      tagEditor?.on('input', (ev) => onInput(ev))
-
-      tagEditor?.on('add', () => saveTagList(tagList))
-      tagEditor?.on('remove', () => saveTagList(tagList))
+      setEventCallbacks()
     }
+  }
+
+  const setEventCallbacks = (): void => {
+    tagEditor?.on('input', (ev) => onInput(ev))
+
+    tagEditor?.on('add', () => saveTagList())
+    tagEditor?.on('remove', () => saveTagList())
   }
 
   const onInput = async (ev: CustomEvent): Promise<void> => {
@@ -44,11 +51,15 @@ export function useTagEditor ({ el, tagSearch }: useTagEditorOptions) {
     controller = new AbortController()
 
     await tagSearch?.searchTag(value, { abort: controller })
+    setAutocomplete(value)
+  }
+
+  const setAutocomplete = (value: string): void => {
     if(tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
     tagEditor?.loading(false).dropdown.show(value)
   }
 
-  const saveTagList = (tagList: Ref<string[] | undefined>): void => {
+  const saveTagList = (): void => {
     if (tagList.value && tagEditor) {
       tagList.value = tagEditor.value.map(v => v.value)
     }

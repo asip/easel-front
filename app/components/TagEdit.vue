@@ -5,11 +5,11 @@ const model = defineModel<string[]>()
 const { searchTag, tags } = useTagSearch()
 
 const tagEditor = useTemplateRef('tagEditorRef')
-const { initTagEditor, closeTagEditor } = useTagEditor({ el: tagEditor, tagSearch: { tags, searchTag } })
+const { initTagEditor, closeTagEditor } = useTagEditor({ tagList: model , tagSearch: { tags, searchTag } })
 
 onMounted(() => {
   // console.log(frame)
-  if (import.meta.client && model.value){ initTagEditor(model) }
+  if (import.meta.client && model.value){ initTagEditor(tagEditor) }
 })
 
 onUnmounted(() => {
