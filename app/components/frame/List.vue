@@ -2,7 +2,7 @@
 const { $i18n } = useNuxtApp()
 const router = useRouter()
 
-const { initGallery, closeGallery } = useImageGallery()
+const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
 // const { loginUser } = useAccount()
 const { frameQuery, queryMap, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useFrameSearch()
 
@@ -19,11 +19,11 @@ const onNextClick = async (): Promise<void> => {
 }
 
 onMounted(() => {
-  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
+  if (import.meta.client) initGallery()
 })
 
 onUpdated(() => {
-  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
+  if (import.meta.client) initGallery()
 })
 
 onUnmounted(() => {

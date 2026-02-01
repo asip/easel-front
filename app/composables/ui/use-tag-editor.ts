@@ -3,20 +3,20 @@ interface TagSearchType {
   tags: Ref<string[]>
 }
 
-type useTagEditorOptions = {
-  tagList: Ref<string[] | undefined>,
+type TagEditorOptions = {
+  el: Ref<HTMLInputElement | HTMLTextAreaElement | null>
+  tagList: Ref<string[] | undefined>
   tagSearch?: TagSearchType
 }
 
-export function useTagEditor ({ tagList, tagSearch }: useTagEditorOptions) {
-
+export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp() as any
 
   let controller: AbortController
 
-  const initTagEditor = (el: Ref<HTMLInputElement | HTMLTextAreaElement | null>): void => {
+  const initTagEditor = (): void => {
     if (el.value) {
       tagEditor = new $tagify(el.value, {
         maxTags: 5,

@@ -3,7 +3,7 @@ const { from = undefined } = defineProps<{
   from?: string
 }>()
 
-const { initGallery, closeGallery } = useImageGallery()
+const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
 const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useAccountFrames()
 
 // console.log('getFrames: start')
@@ -18,11 +18,11 @@ const onNextClick = async (): Promise<void> => {
 }
 
 onMounted(() => {
-  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
+  if (import.meta.client) initGallery()
 })
 
 onUpdated(() => {
-  if (import.meta.client) initGallery({ selector: '.lb', anchor: 'a.ps' })
+  if (import.meta.client) initGallery()
 })
 
 onUnmounted(() => {

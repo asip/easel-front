@@ -1,15 +1,15 @@
 import { useGLightbox, usePhotoSwipe } from './lightbox'
 
-type initPSOptions = { selector: string }
+type lightboxOptions = { ps?: { selector:string }, gl?: { selector:string } }
 
-export function useLightbox () {
+export function useLightbox ({ ps, gl }: lightboxOptions) {
   let photoswipe: boolean
 
-  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe()
-  const { initGLightbox, closeGLightbox } = useGLightbox()
+  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe({ selector: ps?.selector })
+  const { initGLightbox, closeGLightbox } = useGLightbox({ selector: gl?.selector })
 
-  const initPSLightbox = async ({ selector }: initPSOptions): Promise<void> => {
-    await initPhotoSwipe({ selector })
+  const initPSLightbox = async (): Promise<void> => {
+    await initPhotoSwipe()
     photoswipe = true
   }
 

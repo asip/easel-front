@@ -1,12 +1,12 @@
-type initPSOptions = { selector: string, anchor?: string }
+type psOptions = { selector: string | undefined, anchor?: string }
 
-export function usePhotoSwipe () {
+export function usePhotoSwipe ({ selector, anchor = 'a' }: psOptions) {
   let lightbox: any
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
-  const initPhotoSwipe = async ({ selector, anchor = 'a' }: initPSOptions): Promise<void> => {
-    await assignSize(selector, anchor)
+  const initPhotoSwipe = async (): Promise<void> => {
+    if (selector) await assignSize(selector, anchor)
 
     lightbox = new $psLightbox({
       gallery: selector,
