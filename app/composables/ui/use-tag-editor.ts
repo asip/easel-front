@@ -29,11 +29,14 @@ export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
         }
       })
 
-      tagEditor?.removeAllTags()
-      if (tagList.value) tagEditor?.addTags(tagList.value)
-
+      initTags()
       setEventCallbacks()
     }
+  }
+
+  const initTags = (): void => {
+    tagEditor?.removeAllTags()
+    if (tagList.value) tagEditor?.addTags(tagList.value)
   }
 
   const setEventCallbacks = (): void => {
