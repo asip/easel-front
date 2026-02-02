@@ -1,50 +1,15 @@
 <script setup lang="ts">
-import sanitizeHtml from 'sanitize-html'
-
-import type { RefItems } from '~/interfaces'
-import type { RefQuery } from '~/types'
-
 const route = useRoute()
 const { id } = route.params
 const frameId = id?.toString()
-const ref = route.query.ref
-const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
 
-const { p2br } = useQuill()
-const { referers } = useReferer()
-const { queryMap } = useFrameSearch()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn } = useAccount()
 const framer = useFrame()
 const { frame, getFrame } = framer
-const { openModal } = useModal()
-const { formatHTML } = useDatetimeLocal()
 
 provide('framer', framer)
 
 await getFrame(`${frameId}`)
-
-const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
-
-const sanitizedComment = computed<string>(() => {
-  return p2br(sanitizeHtml(frame.value.comment)).replace(/\n/g, '<br>')
-})
-
-const onPageBack = async (): Promise<void> => {
-  if (!refItems.from) {
-    await navigateTo({ path: '/', query: queryMap.value })
-  }
-  else {
-    if (referers.value[route.path] == '/') {
-      await navigateTo({ path: '/', query: queryMap.value })
-    } else {
-      await navigateTo(referers.value[route.path])
-    }
-  }
-}
-
-const onDeleteClick = (): void => {
-  openModal('#delete_frame_modal')
-}
 </script>
 
 <template>
@@ -53,71 +18,7 @@ const onDeleteClick = (): void => {
     <div class="flex justify-center">
       <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
         <div class="card-body">
-          <div class="flex justify-between">
-            <div class="flex gap-1">
-              <span @click="onPageBack">
-                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
-              </span>
-              <NuxtLink
-                v-if="loggedIn && frame.user_id == loginUser.id"
-                :to="`/frames/${frame.id}/edit`"
-              >
-                <i class="bi bi-pencil-square text-accent hover:text-primary" />
-              </NuxtLink>
-              <!-- Button trigger modal -->
-              <button
-                v-if="loggedIn && frame.user_id == loginUser.id"
-                type="button"
-                class="btn-icon-local"
-                @click="onDeleteClick"
-              >
-                <i class="bi bi-x-circle text-accent hover:text-primary" />
-              </button>
-            </div>
-            <div>
-              <NuxtLink
-                :to="{ path: `/users/${frame.user_id}`, query: queryMapWithRef }"
-                class="link link-hover"
-              >
-                {{ frame.user_name }}
-              </NuxtLink>
-            </div>
-          </div>
-          <div class="flex justify-center mb-1">
-            <DisplayImage v-model="frame" :original="true" :photoswipe="true" />
-          </div>
-          <div class="flex justify-center flex-wrap mb-1">
-            <div v-if="loggedIn && frame.user_id == loginUser.id" class="badge badge-outline badge-accent truncate rounded-full">{{ $t(`enums.private.${frame.private}`) }}</div>
-            <DisplayTags v-model="frame" />
-          </div>
-          <div class="flex justify-center">
-            <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
-              <tbody>
-                <tr>
-                  <td class="w-[9em]">{{ $t('model.frame.name') }}：</td>
-                  <td>{{ frame.name }}</td>
-                </tr>
-                <tr>
-                  <td>{{ $t('model.frame.creator_name') }}：</td>
-                  <td>{{ frame.creator_name }}</td>
-                </tr>
-                <tr>
-                  <td>{{ $t('model.frame.shooted_at') }}：</td>
-                  <td>{{ formatHTML(frame.shooted_at) }}</td>
-                </tr>
-                <tr>
-                  <td>{{ $t('model.frame.comment') }}：</td>
-                  <td class="wrap-break-word">
-                    <span v-html="sanitizedComment" />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="flex justify-between">
-            <div>{{ frame.created_at }}</div>
-            <div>{{ frame.updated_at }}</div>
-          </div>
+          <FrameDetail v-model="frame" />
         </div>
       </div>
     </div>
