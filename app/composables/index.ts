@@ -1,5 +1,5 @@
 export type { QueryAPIOptions } from './foundation'
-export { useMutationApi, useQueryApi } from './foundation'
+export { createFetch, useMutationApi, useQueryApi } from './foundation'
 export { useExternalErrors, useAlert } from './foundation'
 
 export type { UseAlertType } from './foundation'

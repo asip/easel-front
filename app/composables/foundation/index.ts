@@ -1,6 +1,7 @@
+import { createFetch } from './backend/api/create-fetch';
 export type { QueryAPIOptions } from './backend'
 
-export { useMutationApi, useQueryApi } from './backend'
+export { createFetch ,useMutationApi, useQueryApi } from './backend'
 
 export { useExternalErrors, useAlert } from './backend'
 
