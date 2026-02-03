@@ -1,5 +1,6 @@
 import type { FetchError, FetchResponse } from 'ofetch'
 import { useHttpHeaders } from './use-http-headers'
+import { useApiConstants } from "./use-api-constants"
 
 interface SearchParams {
   [key: string]: any
@@ -17,6 +18,7 @@ export type QueryAPIOptions = {
 export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false, abort }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
+  const { backendApiURL } = useApiConstants()
 
   const tokenRef = ref<string>()
 
@@ -28,6 +30,7 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
   }
 
   const options: any = {
+    baseURL: backendApiURL.value,
     method: 'get',
     query,
     headers,
