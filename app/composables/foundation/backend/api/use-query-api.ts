@@ -1,4 +1,6 @@
 import type { FetchError, FetchResponse } from 'ofetch'
+import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
+
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from "./use-api-constants"
 
@@ -9,13 +11,15 @@ interface SearchParams {
 export type QueryAPIOptions = {
   url: string,
   query?: SearchParams,
-  token?: string | null,
+  token?: string | null
   abort?: AbortController
+  onRequestError?: ({ error }: { error: Error }) => void
+  onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
   fresh?: boolean
   client?: boolean
 }
 
-export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false, abort }: QueryAPIOptions) => {
+export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false, abort, onRequestError, onResponseError }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { backendApiURL } = useApiConstants()
@@ -29,18 +33,26 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     tokenRef.value = token
   }
 
-  const options: any = {
+  const options: NitroFetchOptions<NitroFetchRequest, 'get'> = {
     baseURL: backendApiURL.value,
     method: 'get',
     query,
     headers,
-    onResponse({ response  }: { response: FetchResponse<T> }) {
+    onResponse({ response }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }
 
   if (abort) {
     options.signal = abort.signal
+  }
+
+  if (onRequestError) {
+    options.onRequestError = onRequestError
+  }
+
+  if (onResponseError) {
+    options.onResponseError = onResponseError
   }
 
   if (client) {

@@ -1,15 +1,19 @@
 import type { FetchError, FetchResponse } from 'ofetch'
+import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
+
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
 type MutationAPIOptions = {
-  method: 'post' | 'put' | 'delete',
-  url:string,
-  body?: Record<string, any> | FormData,
+  method: 'post' | 'put' | 'delete'
+  url:string
+  body?: Record<string, any> | FormData
   token?: string | null
+  onRequestError?: ({ error }: { error: Error }) => void
+  onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
 }
 
-export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {}, token = null }: MutationAPIOptions) => {
+export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { backendApiURL } = useApiConstants()
@@ -29,26 +33,46 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
   const error = ref<FetchError<E>>();
 
   if (method == 'post' || method == 'put') {
+    const options: NitroFetchOptions<NitroFetchRequest, 'post' | 'put'> = {
+      baseURL: backendApiURL.value,
+      method,
+      body,
+      headers,
+      onResponse({ response }: { response: FetchResponse<T> }) {
+        if (method == 'post' && !tokenRef.value || method == 'put') tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      }
+    }
+
+    if (onRequestError) {
+      options.onRequestError = onRequestError
+    }
+
+    if (onResponseError) {
+      options.onResponseError = onResponseError
+    }
+
     try {
-      data.value = await $api<T>(url, {
-        baseURL: backendApiURL.value,
-        method,
-        body,
-        headers,
-        onResponse({ response  }: { response: FetchResponse<T> }) {
-          if (method == 'post' && !tokenRef.value || method == 'put') tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-        }
-      })
+      data.value = await $api<T>(url, options)
     } catch(err: any) {
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
+    const options: NitroFetchOptions<NitroFetchRequest, 'delete'> = {
+      baseURL: backendApiURL.value,
+      method: 'delete',
+      headers
+    }
+
+    if (onRequestError) {
+      options.onRequestError = onRequestError
+    }
+
+    if (onResponseError) {
+      options.onResponseError = onResponseError
+    }
+
     try {
-      data.value = await $api<T>(url, {
-        baseURL: backendApiURL.value,
-        method: 'delete',
-        headers
-      })
+      data.value = await $api<T>(url, options)
     } catch(err: any) {
       error.value = err as FetchError<E>
     }
