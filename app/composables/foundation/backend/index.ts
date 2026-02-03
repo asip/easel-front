@@ -1,6 +1,6 @@
 export type { QueryAPIOptions } from './api'
 
-export { createFetch, useMutationApi, useQueryApi } from './api'
+export { createFetch, createRequestFetch, useMutationApi, useQueryApi } from './api'
 
 export { useAlert } from './use-alert'
 export { useExternalErrors } from './error'
