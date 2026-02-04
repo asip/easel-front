@@ -42,8 +42,6 @@ export function useComment () {
     }
   }
 
-  const comments = useState<Comment[]>('comments', () => { return [] })
-
   const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
 
   const { backendErrorInfo, setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
@@ -59,33 +57,6 @@ export function useComment () {
   }
 
   const processing = ref<boolean>(false)
-
-  const getComments = async (frameId: number | null |undefined, options?: { client?: boolean }): Promise<void> => {
-    // console.log(comment.frame_id);
-    const { data, error } = await useQueryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
-      url: `/frames/${frameId}/comments`,
-      client: options?.client
-    })
-
-    clearFlash()
-
-    if (error) {
-      setAlert({ error })
-    } else if (data) {
-      const { comments: commentList } = data
-      // console.log(commentList)
-
-      if (commentList) {
-        // console.log(comment_list);
-        comments.value.splice(0)
-        for (const commentAttrs of commentList) {
-          // console.log(comment);
-          comments.value.push(makeComment({ from: commentAttrs }))
-        }
-        // console.log(comments);
-      }
-    }
-  }
 
   const createComment = async (): Promise<void> => {
     processing.value = true
@@ -167,10 +138,8 @@ export function useComment () {
   return {
     comment,
     setComment,
-    comments,
     externalErrors,
     backendErrorInfo,
-    getComments,
     createComment,
     updateComment,
     deleteComment,
@@ -179,7 +148,6 @@ export function useComment () {
     set404Alert,
     flash
   }
-
 }
 
 export type UseCommentType = ReturnType<typeof useComment>

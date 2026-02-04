@@ -3,7 +3,7 @@ import type { Frame } from '~/interfaces'
 
 const frame = defineModel<Frame>()
 
-const { getComments } = useComment()
+const { getComments } = useComments()
 
 const frameId = frame.value?.id
 // console.log(frameId)

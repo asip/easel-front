@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { comments } = useComment()
+const { comments } = useComments()
 </script>
 
 <template>

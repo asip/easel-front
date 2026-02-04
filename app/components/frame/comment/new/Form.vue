@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, getComments, createComment } = useComment()
+const { comment, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, createComment } = useComment()
+const { getComments } = useComments()
+
 const frameId = inject('frameId') as number
 const { commentRules } = useCommentRules()
 

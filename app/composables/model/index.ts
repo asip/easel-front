@@ -1,6 +1,7 @@
 export { useAccount } from './use-account'
 export { useAccountFrames } from './use-account-frames'
 export { useComment } from './use-comment'
+export { useComments } from './use-comments'
 export { useFollow } from './use-follow'
 export { useFrame } from './use-frame'
 export { useFrameSearch } from './use-frame-search'

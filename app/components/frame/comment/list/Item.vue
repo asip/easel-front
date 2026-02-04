@@ -6,7 +6,8 @@ import type { RefQuery } from '~/types'
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, getComments, isSuccess, set404Alert, processing, setComment } = useComment()
+const { comment, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, isSuccess, set404Alert, processing, setComment } = useComment()
+const { getComments } = useComments()
 
 const { commentRules } = useCommentRules()
 
