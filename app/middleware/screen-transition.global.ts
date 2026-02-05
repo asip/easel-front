@@ -2,8 +2,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const { autoDetect } = useLocale()
   const { loggedIn, loginUser, authenticate } = useAccount()
   const { referers } = useReferer()
-  const { frame, getFrame } = useFrame()
-  const { current } = useFrameSearch()
 
   autoDetect()
   await authenticate()
@@ -66,7 +64,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       referers.value[to.path] = from.fullPath
     }
 
+    const { frame, getFrame } = useFrame()
     const frameId = to.params.id?.toString()
+
     await getFrame(`${frameId}`)
 
     if (!loggedIn.value || frame.value.user_id != loginUser.value.id) {
@@ -79,6 +79,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   if (to.path === '/') {
+    const { current } = useFrameSearch()
+
     if (import.meta.client) {
       await current({ client: true })
     }
