@@ -100,10 +100,11 @@ export function useFrame() {
 
   const refresh = async (): Promise<void> => {}
 
-  const getFrame = async (id: string): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
+  const getFrame = async (id: string, options?: { cache?: boolean }): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     // console.log(`token: ${loginUser.value.token}`)
     const getOptions: QueryAPIOptions = {
-      url: ''
+      url: '',
+      cache: options?.cache ?? true
     }
 
     if (loggedIn.value) {
