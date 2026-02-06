@@ -46,13 +46,13 @@ export function useUserFrames () {
     key: 'userProfile', page: frameQuery.value.page, pages: frameQuery.value.pages
   })
 
-  const getFrames = async (userId: string | undefined, options?: { client?: boolean }): Promise<void> => {
+  const getFrames = async (userId: string | undefined, options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: `/users/${userId}/frames`,
       query: {
         page: currentPage.value
       },
-      client: options?.client
+      cache: options?.cache ?? true
     }
 
     const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
@@ -87,16 +87,16 @@ export function useUserFrames () {
     }
   }
 
-  const current = async (userId: string | undefined, options?: { client?: boolean }): Promise<void> => {
+  const current = async (userId: string | undefined, options?: { cache?: boolean }): Promise<void> => {
     clearFrames()
     init()
     // console.log(`current page: ${currentPage.value}`)
-    await getFrames(userId, { client: options?.client })
+    await getFrames(userId, { cache: options?.cache ?? true })
     frames.value = frames.value.concat(frameList.value)
   }
 
   const more = async (userId: string | undefined): Promise<void> => {
-    await getFrames(userId, { client: true })
+    await getFrames(userId, { cache: false })
   }
 
   const prev = async (userId: string | undefined): Promise<void> => {

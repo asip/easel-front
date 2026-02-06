@@ -61,7 +61,7 @@ const onDeleteClick = async (): Promise<void> => {
   set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {
-    await getComments(commentModel.value?.frame_id, { client: true })
+    await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
     redirectOrReload404()
   }
@@ -75,7 +75,7 @@ const redirectOrReload404 = async (): Promise<void> => {
         reloadNuxtApp()
       }, 2000)
     } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
-      await getComments(comment.value.frame_id, { client: true })
+      await getComments(comment.value.frame_id, { cache: false })
     }
   }
 }

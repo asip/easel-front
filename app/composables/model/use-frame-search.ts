@@ -78,11 +78,11 @@ export const useFrameSearch = () => {
     page: frameQuery.value.page, pages: frameQuery.value.pages
   })
 
-  const searchFrame = async (options?: { client?: boolean }): Promise<void> => {
+  const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: '',
       query: queryMap.value,
-      client: options?.client,
+      cache: options?.cache ?? true,
     }
 
     if ( loggedIn.value) {
@@ -117,16 +117,16 @@ export const useFrameSearch = () => {
     }
   }
 
-  const current = async (options?: { client?: boolean }): Promise<void> => {
+  const current = async (options?: { cache?: boolean }): Promise<void> => {
     clearFrames()
     init()
     // console.log(`current page: ${currentPage.value}`)
-    await searchFrame({ client: options?.client })
+    await searchFrame({ cache: options?.cache ?? true })
     frames.value = frames.value.concat(frameList.value)
   }
 
   const more = async (): Promise<void> => {
-    await searchFrame({ client: true })
+    await searchFrame({ cache: false })
   }
 
   const prev = async (): Promise<void> => {

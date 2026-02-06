@@ -16,10 +16,10 @@ export type QueryAPIOptions = {
   onRequestError?: ({ error }: { error: Error }) => void
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
   fresh?: boolean
-  client?: boolean
+  cache?: boolean
 }
 
-export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, client = false, abort, onRequestError, onResponseError }: QueryAPIOptions) => {
+export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, cache = true, abort, onRequestError, onResponseError }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { backendApiURL } = useApiConstants()
@@ -55,7 +55,18 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     options.onResponseError = onResponseError
   }
 
-  if (client) {
+  if (cache) {
+    const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
+      $api(url, options)
+    )
+
+    if (fresh) {
+      await refresh()
+    }
+
+    return { token: tokenRef.value, data: data.value, error: error.value, refresh, pending: pending.value }
+
+  } else {
     const pending = ref<boolean>(true)
 
     const data = ref<T>()
@@ -70,15 +81,5 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     pending.value = false
 
     return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
-  } else {
-    const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
-      $api(url, options)
-    )
-
-    if (fresh) {
-      await refresh()
-    }
-
-    return { token: tokenRef.value, data: data.value, error: error.value, refresh, pending: pending.value }
   }
 }

@@ -12,7 +12,7 @@ export const useTagSearch = () => {
       url: '/tags/search',
       query: { q: name },
       abort,
-      client: true,
+      cache: false,
     }
 
     const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(getOptions)

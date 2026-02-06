@@ -22,11 +22,11 @@ export function useComments() {
 
   const { setAlert } = useAlert({ flash })
 
-  const getComments = async (frameId: number | null |undefined, options?: { client?: boolean }): Promise<void> => {
+  const getComments = async (frameId: number | null |undefined, options?: { cache?: boolean }): Promise<void> => {
     // console.log(comment.frame_id);
     const { data, error } = await useQueryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
       url: `/frames/${frameId}/comments`,
-      client: options?.client
+      cache: options?.cache ?? true
     })
 
     clearFlash()

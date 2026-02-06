@@ -30,7 +30,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     if (import.meta.client) {
-      await current({ client: true })
+      await current({ cache: false })
     }
   }
 
@@ -49,7 +49,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     if (import.meta.client) {
-      await current(userId, { client: true })
+      await current(userId, { cache: false })
     }
   }
 
@@ -82,7 +82,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const { current } = useFrameSearch()
 
     if (import.meta.client) {
-      await current({ client: true })
+      await current({ cache: false })
     }
   }
 })

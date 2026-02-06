@@ -36,14 +36,14 @@ export function useAccountFrames () {
     key: 'profile', page: frameQuery.value.page, pages: frameQuery.value.pages
   })
 
-  const getFrames = async (options?: { client?: boolean }): Promise<void> => {
+  const getFrames = async (options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: '/account/frames',
       query: {
         page: currentPage.value
       },
       token: accessToken.value,
-      client: options?.client
+      cache: options?.cache ?? true
     }
 
     const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
@@ -78,16 +78,16 @@ export function useAccountFrames () {
     }
   }
 
-  const current = async (options?: { client?: boolean }): Promise<void> => {
+  const current = async (options?: { cache?: boolean }): Promise<void> => {
     clearFrames()
     init()
     // console.log(`current page: ${currentPage.value}`)
-    await getFrames({ client: options?.client })
+    await getFrames({ cache: options?.cache ?? true })
     frames.value = frames.value.concat(frameList.value)
   }
 
   const more = async (): Promise<void> => {
-    await getFrames({ client: true })
+    await getFrames({ cache: false })
   }
 
   const prev = async (): Promise<void> => {
@@ -96,7 +96,7 @@ export function useAccountFrames () {
     frames.value = frameList.value.concat(frames.value)
   }
 
-  const next = async (): Promise<void> => { 
+  const next = async (): Promise<void> => {
     increment()
     await more()
     frames.value = frames.value.concat(frameList.value)

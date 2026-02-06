@@ -34,7 +34,7 @@ const onCreateClick = async (): Promise<void> => {
       editor.value?.focus()
       r$.$touch()
       r$.$reset()
-      await getComments(frameId, { client: true })
+      await getComments(frameId, { cache: false })
     } else {
       redirect404()
     }
