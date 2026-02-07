@@ -7,7 +7,7 @@ export const useTagSearch = () => {
 
   const tags = ref<string[]>([])
 
-  const searchTag = async (name: string, { abort }: { abort: AbortController }): Promise<void> => { 
+  const searchTag = async (name: string, { abort }: { abort: AbortController }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: '/tags/search',
       query: { q: name },

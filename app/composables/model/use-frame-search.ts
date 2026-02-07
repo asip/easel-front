@@ -135,7 +135,7 @@ export const useFrameSearch = () => {
     frames.value = frameList.value.concat(frames.value)
   }
 
-  const next = async (): Promise<void> => { 
+  const next = async (): Promise<void> => {
     increment()
     await more()
     frames.value = frames.value.concat(frameList.value)

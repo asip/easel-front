@@ -105,7 +105,7 @@ export function useUserFrames () {
     frames.value = frameList.value.concat(frames.value)
   }
 
-  const next = async (userId: string | undefined): Promise<void> => { 
+  const next = async (userId: string | undefined): Promise<void> => {
     increment()
     await more(userId)
     frames.value = frames.value.concat(frameList.value)
