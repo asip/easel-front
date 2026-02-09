@@ -81,7 +81,7 @@ const redirect404 = async (): Promise<void> => {
             <td>
               <TagEdit v-model="tagList" />
               <div
-                v-for="error of r$.tag_list.$errors"
+                v-for="error of r$.tag_list.$self.$errors"
                 :key="error"
               >
                 <div class="text-red-500 text-xs">{{ error }}</div>
