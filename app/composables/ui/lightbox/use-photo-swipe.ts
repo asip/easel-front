@@ -6,20 +6,22 @@ export function usePhotoSwipe ({ selector, anchor = 'a' }: psOptions) {
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
 
   const initPhotoSwipe = async (): Promise<void> => {
-    if (selector) await assignSize(selector, anchor)
+    if (selector) {
+      await assignSize()
 
-    lightbox = new $psLightbox({
-      gallery: selector,
-      children: anchor,
-      initialZoomLevel: 'fit',
-      pswpModule: () => import('photoswipe')
-    })
+      lightbox = new $psLightbox({
+        gallery: selector,
+        children: anchor,
+        initialZoomLevel: 'fit',
+        pswpModule: () => import('photoswipe')
+      })
 
-    const fullscreenPlugin = new $psFullscreen(lightbox)
-    lightbox.init()
+      const fullscreenPlugin = new $psFullscreen(lightbox)
+      lightbox.init()
+    }
   }
 
-  const assignSize = async (selector: string, anchor: string): Promise<void> => {
+  const assignSize = async (): Promise<void> => {
     const galleryAnchors = document.querySelectorAll(`${selector} ${anchor}`)
     // console.log(galleryAnchors)
     if (galleryAnchors) {
