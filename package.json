@@ -14,10 +14,10 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^4.6.22",
-    "@markuplint/vue-spec": "^4.5.22",
-    "@nuxt/devtools": "3.1.1",
-    "@nuxt/eslint": "^1.14.0",
+    "@markuplint/vue-parser": "^4.6.23",
+    "@markuplint/vue-spec": "^4.5.23",
+    "@nuxt/devtools": "3.2.1",
+    "@nuxt/eslint": "^1.15.1",
     "@nuxt/test-utils": "^4.0.0",
     "@testing-library/vue": "8.1.0",
     "@types/google.accounts": "^0.0.18",
@@ -26,8 +26,8 @@
     "@vue/test-utils": "^2.4.6",
     "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9.39.2",
-    "happy-dom": "^20.5.0",
-    "markuplint": "^4.14.0",
+    "happy-dom": "^20.6.1",
+    "markuplint": "^4.14.1",
     "nuxt": "^4.3.1",
     "playwright-core": "^1.58.2",
     "typescript": "5.9.3",
@@ -37,9 +37,9 @@
   "dependencies": {
     "@formkit/tempo": "1.0.0",
     "@nuxtjs/i18n": "10.2.3",
-    "@regle/core": "^1.18.3",
-    "@regle/nuxt": "^1.18.3",
-    "@regle/rules": "^1.18.3",
+    "@regle/core": "^1.19.0",
+    "@regle/nuxt": "^1.19.0",
+    "@regle/rules": "^1.19.0",
     "@tailwindcss/vite": "4.1.18",
     "@vuepic/vue-datepicker": "12.1.0",
     "@yaireo/tagify": "^4.36.0",
@@ -58,7 +58,7 @@
   },
   "pnpm": {
     "overrides": {
-      "citty": "0.2.0",
+      "citty": "0.2.1",
       "esbuild": "0.27.3",
       "magicast": "0.5.2",
       "vite": "^8.0.0-beta.14",
