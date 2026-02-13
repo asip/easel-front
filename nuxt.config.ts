@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     public: {
       timeZone: 'Asia/Tokyo',
       backendOriginURL: 'http://localhost:3000',
+      backendApiPath: '/api/v1',
       googleClientId: ''
     },
     backendOriginURL: 'http://localhost:3000'
