@@ -1,5 +1,5 @@
 import type { User } from '~/interfaces'
-import { required, minLength, maxLength, email, sameAs } from '@regle/rules'
+import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = (user?: User) => {
   const { $i18n } = useNuxtApp()

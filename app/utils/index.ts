@@ -1,1 +1,1 @@
-export { maxFileSize, maxTagArrayLength, maxTagLength } from './validation/rules'
+export { maxTagArrayLength, maxTagLength } from './validation/rules'
