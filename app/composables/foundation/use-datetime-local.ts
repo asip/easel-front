@@ -24,7 +24,13 @@ export const useDatetimeLocal = () => {
   }
 
   const formatHTML = (datetime: string | null): string => {
-    return datetime ? format(parse(datetime, 'YYYY/MM/DD HH:mm', locale.value), 'YYYY/MM/DD (ddd) HH:mm', locale.value) : ''
+    return datetime
+      ? format(
+          parse(datetime, 'YYYY/MM/DD HH:mm', locale.value),
+          'YYYY/MM/DD (ddd) HH:mm',
+          locale.value,
+        )
+      : ''
   }
 
   return { upDTL, downDTL, toISO8601, formatHTML }

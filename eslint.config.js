@@ -4,11 +4,11 @@ export default withNuxt(
   {
     rules: {
       camelcase: 0,
-        'import/default': 0,
-        'import/namespace': 0,
-        'import/no-named-as-default': 0,
-        'import/no-named-as-default-member': 0,
-    }
+      'import/default': 0,
+      'import/namespace': 0,
+      'import/no-named-as-default': 0,
+      'import/no-named-as-default-member': 0,
+    },
   },
   {
     files: ['**/*.ts'],
@@ -16,8 +16,8 @@ export default withNuxt(
       '@typescript-eslint/ban-ts-comment': 0,
       '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-non-null-assertion': 0,
-      '@typescript-eslint/no-unused-vars': 0
-    }
+      '@typescript-eslint/no-unused-vars': 0,
+    },
   },
   {
     files: ['**/*.vue'],
@@ -27,7 +27,7 @@ export default withNuxt(
       '@typescript-eslint/no-non-null-assertion': 0,
       'vue/no-v-html': 0,
       'vue/multi-word-component-names': 0,
-      'vue/return-in-computed-property': 0
-    }
-  }
+      'vue/return-in-computed-property': 0,
+    },
+  },
 )

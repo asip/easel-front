@@ -1,7 +1,7 @@
 import type { Flash } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useExternalErrors<ErrorProperty extends string>({ flash } : { flash: Ref<Flash> }) {
+export function useExternalErrors<ErrorProperty extends string>({ flash }: { flash: Ref<Flash> }) {
   const externalErrors = ref<ErrorMessages<ErrorProperty>>({})
 
   const clearExternalErrors = (): void => {
@@ -29,6 +29,9 @@ export function useExternalErrors<ErrorProperty extends string>({ flash } : { fl
   }
 
   return {
-    externalErrors, setExternalErrors, clearExternalErrors, isSuccess
+    externalErrors,
+    setExternalErrors,
+    clearExternalErrors,
+    isSuccess,
   }
 }

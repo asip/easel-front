@@ -1,4 +1,4 @@
-import type { Frame, FrameQuery ,FrameResource, FramesResource , ErrorsResource } from '~/interfaces'
+import type { Frame, FrameQuery, FrameResource, FramesResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
 type SearchQuery = Partial<Record<'q' | 'page', string>>
@@ -11,7 +11,7 @@ export const useFrameSearch = () => {
 
   const { loggedIn, accessToken } = useAccount()
 
-  const makeFrame = ( { from, page }: { from: FrameResource, page: number }) : Frame => {
+  const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
@@ -24,12 +24,12 @@ export const useFrameSearch = () => {
       items: {},
       page: 1,
       pages: 1,
-      total: 1
+      total: 1,
     }
   })
 
   const qItems = computed<FrameQuery['items']>(() => {
-    const { items } = frameQuery.value;
+    const { items } = frameQuery.value
 
     const qItems: FrameQuery['items'] = {}
 
@@ -45,20 +45,20 @@ export const useFrameSearch = () => {
 
   const queryMap = computed<SearchQuery>(() => {
     const items = qItems.value
-    const page = currentPage.value;
-    const query: { q?: string, page?: string } = {};
+    const page = currentPage.value
+    const query: { q?: string; page?: string } = {}
 
     if (Object.keys(items).length) {
-      query.q = JSON.stringify(items);
+      query.q = JSON.stringify(items)
     }
-    if (page !== undefined && page!= null && page !== 1) {
-      query.page = page.toString();
+    if (page !== undefined && page != null && page !== 1) {
+      query.page = page.toString()
     }
-    return query;
-  });
+    return query
+  })
 
   const clearSearchCriteria = (): void => {
-    const { items } = frameQuery.value;
+    const { items } = frameQuery.value
     if (items.word) frameQuery.value.items.word = null
     if (items.frame_name) frameQuery.value.items.frame_name = null
     if (items.tag_name) frameQuery.value.items.tag_name = null
@@ -68,15 +68,19 @@ export const useFrameSearch = () => {
   }
 
   const frameList = ref<Frame[]>([])
-  const frames = useState<Frame[]>('frames', () => { return [] })
+  const frames = useState<Frame[]>('frames', () => {
+    return []
+  })
 
   const clearFrames = (): void => {
     frames.value.splice(0)
   }
 
-  const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } = useMoreScroll({
-    page: frameQuery.value.page, pages: frameQuery.value.pages
-  })
+  const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } =
+    useMoreScroll({
+      page: frameQuery.value.page,
+      pages: frameQuery.value.pages,
+    })
 
   const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
@@ -85,15 +89,17 @@ export const useFrameSearch = () => {
       cache: options?.cache ?? true,
     }
 
-    if ( loggedIn.value) {
+    if (loggedIn.value) {
       getOptions.url = '/frames/authenticated'
       getOptions.token = accessToken.value
-
     } else {
       getOptions.url = '/frames'
     }
 
-    const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error } = await useQueryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(getOptions)
 
     clearFlash()
 
@@ -142,7 +148,19 @@ export const useFrameSearch = () => {
   }
 
   return {
-    frameQuery, searchFrame, current, prev, next, currentPage, pagePrev, pageNext, frames, queryMap, qItems, clearSearchCriteria,
-    minPage, maxPage
+    frameQuery,
+    searchFrame,
+    current,
+    prev,
+    next,
+    currentPage,
+    pagePrev,
+    pageNext,
+    frames,
+    queryMap,
+    qItems,
+    clearSearchCriteria,
+    minPage,
+    maxPage,
   }
 }

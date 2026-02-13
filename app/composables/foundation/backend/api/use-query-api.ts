@@ -2,15 +2,15 @@ import type { FetchError, FetchResponse } from 'ofetch'
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 
 import { useHttpHeaders } from './use-http-headers'
-import { useApiConstants } from "./use-api-constants"
+import { useApiConstants } from './use-api-constants'
 
 interface SearchParams {
   [key: string]: any
 }
 
 export type QueryAPIOptions = {
-  url: string,
-  query?: SearchParams,
+  url: string
+  query?: SearchParams
   token?: string | null
   abort?: AbortController
   onRequestError?: ({ error }: { error: Error }) => void
@@ -19,7 +19,16 @@ export type QueryAPIOptions = {
   cache?: boolean
 }
 
-export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = null, fresh = false, cache = true, abort, onRequestError, onResponseError }: QueryAPIOptions) => {
+export const useQueryApi = async <T = unknown, E = any>({
+  url,
+  query = {},
+  token = null,
+  fresh = false,
+  cache = true,
+  abort,
+  onRequestError,
+  onResponseError,
+}: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { backendApiURL } = useApiConstants()
@@ -40,7 +49,7 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
     headers,
     onResponse({ response }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-    }
+    },
   }
 
   if (abort) {
@@ -57,24 +66,29 @@ export const useQueryApi = async <T=unknown, E=any>({ url, query = {}, token = n
 
   if (cache) {
     const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
-      $api(url, options)
+      $api(url, options),
     )
 
     if (fresh) {
       await refresh()
     }
 
-    return { token: tokenRef.value, data: data.value, error: error.value, refresh, pending: pending.value }
-
+    return {
+      token: tokenRef.value,
+      data: data.value,
+      error: error.value,
+      refresh,
+      pending: pending.value,
+    }
   } else {
     const pending = ref<boolean>(true)
 
     const data = ref<T>()
-    const error = ref<FetchError<E>>();
+    const error = ref<FetchError<E>>()
 
     try {
       data.value = await $api<T>(url, options)
-    } catch(err: any) {
+    } catch (err: any) {
       error.value = err as FetchError<E>
     }
 

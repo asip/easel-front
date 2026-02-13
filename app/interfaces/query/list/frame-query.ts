@@ -1,4 +1,4 @@
-import type { PaginationQuery } from "./pagination-query"
+import type { PaginationQuery } from './pagination-query'
 
 export interface FrameQuery extends PaginationQuery {
   items: {

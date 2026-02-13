@@ -12,18 +12,10 @@ const onBackClick = (): void => {
 </script>
 
 <template>
-  <dialog
-    v-if="loggedIn"
-    id="edit_profile_modal"
-    class="modal"
-  >
+  <dialog v-if="loggedIn" id="edit_profile_modal" class="modal">
     <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-start pb-1 mb-2">
-        <a
-          href="#"
-          class="mr-1"
-          @click.prevent="onBackClick"
-        >
+        <a href="#" class="mr-1" @click.prevent="onBackClick">
           <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
         </a>
         {{ $t('action.user.edit') }}

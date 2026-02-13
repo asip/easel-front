@@ -2,7 +2,19 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { user, image, previewUrl, initTimeZone, signup, externalErrors, processing, isSuccess, clearProfile, clearExternalErrors, flash } = useAccount()
+const {
+  user,
+  image,
+  previewUrl,
+  initTimeZone,
+  signup,
+  externalErrors,
+  processing,
+  isSuccess,
+  clearProfile,
+  clearExternalErrors,
+  flash,
+} = useAccount()
 const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
@@ -50,9 +62,7 @@ defineExpose({ clearForm })
         <table class="table table-bordered table-rounded table-fixed">
           <tbody>
             <tr>
-              <td class="w-[12em]">
-                {{ $t('model.user.image') }}：
-              </td>
+              <td class="w-[12em]">{{ $t('model.user.image') }}：</td>
               <td>
                 <input
                   ref="file"
@@ -61,11 +71,8 @@ defineExpose({ clearForm })
                   multiple="false"
                   class="file-input"
                   @change="onSelectFile"
-                >
-                <div
-                  v-for="error of r$.$errors.image"
-                  :key="error.toString()"
-                >
+                />
+                <div v-for="error of r$.$errors.image" :key="error.toString()">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>
@@ -87,11 +94,8 @@ defineExpose({ clearForm })
                   placeholder=""
                   autocomplete="username"
                   class="input"
-                >
-                <div
-                  v-for="error of r$.$errors.name"
-                  :key="error"
-                >
+                />
+                <div v-for="error of r$.$errors.name" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>
@@ -108,30 +112,19 @@ defineExpose({ clearForm })
                   placeholder=""
                   autocomplete="email"
                   class="input"
-                >
-                <div
-                  v-for="error of r$.$errors.email"
-                  :key="error"
-                >
+                />
+                <div v-for="error of r$.$errors.email" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>
             </tr>
             <tr>
-              <td>
-                {{ $t('model.user.profile') }}：
-              </td>
+              <td>{{ $t('model.user.profile') }}：</td>
               <td class="wrap-break-word">
                 <div class="rounded-[5px] editor-border">
-                  <Editor
-                    ref="editor"
-                    v-model="user.profile"
-                  />
+                  <Editor ref="editor" v-model="user.profile" />
                 </div>
-                <div
-                  v-for="error of r$.$errors.profile"
-                  :key="error"
-                >
+                <div v-for="error of r$.$errors.profile" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>
@@ -142,11 +135,7 @@ defineExpose({ clearForm })
               </td>
               <td>
                 <ClientOnly>
-                  <select
-                    id="user_time_zone"
-                    v-model="user.time_zone"
-                    class="select"
-                  >
+                  <select id="user_time_zone" v-model="user.time_zone" class="select">
                     <option v-for="option in tzOptions" :key="option.value" :value="option.value">
                       {{ option.text }}
                     </option>
@@ -166,18 +155,17 @@ defineExpose({ clearForm })
                   placeholder=""
                   autocomplete="new-password"
                   class="input"
-                >
-                <div
-                  v-for="error of r$.$errors.password"
-                  :key="error"
-                >
+                />
+                <div v-for="error of r$.$errors.password" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>
             </tr>
             <tr>
               <td>
-                <label for="user_password_confirmation">{{ $t('model.user.password_confirmation') }}：</label>
+                <label for="user_password_confirmation"
+                  >{{ $t('model.user.password_confirmation') }}：</label
+                >
               </td>
               <td>
                 <input
@@ -187,11 +175,8 @@ defineExpose({ clearForm })
                   placeholder=""
                   autocomplete="new-password"
                   class="input"
-                >
-                <div
-                  v-for="error of r$.$errors.password_confirmation"
-                  :key="error"
-                >
+                />
+                <div v-for="error of r$.$errors.password_confirmation" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </td>

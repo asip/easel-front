@@ -4,7 +4,19 @@ const route = useRoute()
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
-const { frame, file, previewUrl, tagList, shootedAt, frameId, createFrame, externalErrors, processing, isSuccess, flash } = inject('framer') as UseFrameType
+const {
+  frame,
+  file,
+  previewUrl,
+  tagList,
+  shootedAt,
+  frameId,
+  createFrame,
+  externalErrors,
+  processing,
+  isSuccess,
+  flash,
+} = inject('framer') as UseFrameType
 const { newFrameRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
@@ -38,20 +50,15 @@ const onCreateClick = async (): Promise<void> => {
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td class="w-[10em]">
-              {{ $t('model.frame.file') }}：
-            </td>
+            <td class="w-[10em]">{{ $t('model.frame.file') }}：</td>
             <td>
               <input
                 type="file"
                 accept="image/jpg,image/jpeg,image/png,image/webp,image/avif"
                 class="file-input"
                 @change="onSelectFile"
-              >
-              <div
-                v-for="error of r$.$errors.file"
-                :key="error.toString()"
-              >
+              />
+              <div v-for="error of r$.$errors.file" :key="error.toString()">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -72,11 +79,8 @@ const onCreateClick = async (): Promise<void> => {
                 type="text"
                 placeholder=""
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.name"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -87,10 +91,7 @@ const onCreateClick = async (): Promise<void> => {
             </td>
             <td>
               <TagEdit v-model="tagList" />
-              <div
-                v-for="error of r$.tag_list.$self.$errors"
-                :key="error"
-              >
+              <div v-for="error of r$.tag_list.$self.$errors" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -106,11 +107,8 @@ const onCreateClick = async (): Promise<void> => {
                 type="text"
                 placeholder=""
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.creator_name"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.creator_name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -125,18 +123,14 @@ const onCreateClick = async (): Promise<void> => {
                 v-model="shootedAt"
                 type="datetime-local"
                 class="input"
-              >
+              />
             </td>
           </tr>
           <tr>
-            <td>
-              {{ $t('model.frame.comment') }}：
-            </td>
+            <td>{{ $t('model.frame.comment') }}：</td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
-                <Editor
-                  v-model="frame.comment"
-                />
+                <Editor v-model="frame.comment" />
               </div>
             </td>
           </tr>
@@ -145,12 +139,7 @@ const onCreateClick = async (): Promise<void> => {
               <label for="frame_private">{{ $t('model.frame.private') }}：</label>
             </td>
             <td>
-              <input
-                id="frame_private"
-                v-model="frame.private"
-                type="checkbox"
-                class="checkbox"
-              >
+              <input id="frame_private" v-model="frame.private" type="checkbox" class="checkbox" />
             </td>
           </tr>
         </tbody>

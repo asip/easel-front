@@ -19,11 +19,7 @@ const onBackClick = (): void => {
   >
     <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-start mb-2">
-        <a
-          href="#"
-          class="mr-1"
-          @click.prevent="onBackClick"
-        >
+        <a href="#" class="mr-1" @click.prevent="onBackClick">
           <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
         </a>
         {{ $t('action.user.edit_password') }}

@@ -45,7 +45,7 @@ const onUnfollowClick = async (): Promise<void> => {
 
 <template>
   <div>
-    <br>
+    <br />
     <div class="flex justify-center">
       <div class="card bg-base-100 shadow rounded-[20px] pt-1 pb-1 pl-4 pr-4 mb-2 w-full sm:w-9/10">
         <div class="flex justify-between">
@@ -55,10 +55,7 @@ const onUnfollowClick = async (): Promise<void> => {
           <div class="flex gap-1 items-center">
             <div class="avatar">
               <div class="w-5 h-5 rouded-full">
-                <img
-                  :src="`${user?.image_three_url}`"
-                  alt=""
-                >
+                <img :src="`${user?.image_three_url}`" alt="" />
               </div>
             </div>
             <div class="link" @click="onNameClick">{{ user.name }}</div>
@@ -71,11 +68,7 @@ const onUnfollowClick = async (): Promise<void> => {
             >
               {{ $t('action.user.unfollow') }}
             </button>
-            <button
-              v-else
-              class="btn btn-xs btn-outline btn-primary"
-              @click="onFollowClick"
-            >
+            <button v-else class="btn btn-xs btn-outline btn-primary" @click="onFollowClick">
               {{ $t('action.user.follow') }}
             </button>
           </div>
@@ -84,9 +77,6 @@ const onUnfollowClick = async (): Promise<void> => {
       </div>
     </div>
     <UserProfileModal v-model="user" />
-    <UserFrameList
-      :user-id="userId"
-      from="user_profile"
-    />
+    <UserFrameList :user-id="userId" from="user_profile" />
   </div>
 </template>

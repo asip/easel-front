@@ -1,15 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  modules: [
-    '@nuxtjs/i18n',
-    '@nuxt/test-utils',
-    '@nuxt/eslint',
-    '@regle/nuxt',
-    'vue-sonner/nuxt'
-  ],
+  modules: ['@nuxtjs/i18n', '@nuxt/test-utils', '@nuxt/eslint', '@regle/nuxt', 'vue-sonner/nuxt'],
 
   plugins: [],
 
@@ -17,12 +11,12 @@ export default defineNuxtConfig({
     locales: [
       {
         code: 'en',
-        file: 'en.json'
+        file: 'en.json',
       },
       {
         code: 'ja',
-        file: 'ja.json'
-      }
+        file: 'ja.json',
+      },
     ],
     defaultLocale: 'en',
     langDir: 'locales',
@@ -31,9 +25,9 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
       cookieCrossOrigin: false,
-      redirectOn: 'root'// recommended
+      redirectOn: 'root', // recommended
     },
-    strategy: 'no_prefix'
+    strategy: 'no_prefix',
   },
 
   runtimeConfig: {
@@ -41,19 +35,19 @@ export default defineNuxtConfig({
       timeZone: 'Asia/Tokyo',
       backendOriginURL: 'http://localhost:3000',
       backendApiPath: '/api/v1',
-      googleClientId: ''
+      googleClientId: '',
     },
-    backendOriginURL: 'http://localhost:3000'
+    backendOriginURL: 'http://localhost:3000',
   },
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
   css: [
     '@/assets/styles/tailwind.css',
     '@/assets/styles/app.css',
-    'bootstrap-icons/font/bootstrap-icons.css'
+    'bootstrap-icons/font/bootstrap-icons.css',
   ],
 
   /* build: {
@@ -61,9 +55,9 @@ export default defineNuxtConfig({
   }, */
 
   devtools: {
-    enabled: true
+    enabled: true,
   },
 
   pages: true,
-  compatibilityDate: '2025-04-18'
+  compatibilityDate: '2025-04-18',
 })

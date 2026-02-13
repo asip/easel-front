@@ -2,7 +2,7 @@ import { required } from '@regle/rules'
 
 export const useCommentRules = () => {
   const commentRules = {
-    body: { required }
+    body: { required },
   }
 
   return { commentRules }

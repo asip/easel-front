@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser , user, updatePassword, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
+const { loggedIn, loginUser, user, updatePassword, externalErrors, processing, isSuccess, flash } =
+  inject('account') as UseAccountType
 const { passwordRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, passwordRules, { externalErrors })
@@ -47,11 +48,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="current-password"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.current_password"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.current_password" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -68,18 +66,17 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="new-password"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.password"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.password" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
           </tr>
           <tr v-if="!user.social_login">
             <td>
-              <label for="user_password_confirmation">{{ $t('model.user.password_confirmation') }}：</label>
+              <label for="user_password_confirmation"
+                >{{ $t('model.user.password_confirmation') }}：</label
+              >
             </td>
             <td>
               <input
@@ -89,11 +86,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="new-password"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.password_confirmation"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.password_confirmation" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>

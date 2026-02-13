@@ -1,7 +1,13 @@
-import type { Frame, FrameResource, FramesResource, UserFrameQuery, ErrorsResource } from '~/interfaces'
+import type {
+  Frame,
+  FrameResource,
+  FramesResource,
+  UserFrameQuery,
+  ErrorsResource,
+} from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useUserFrames () {
+export function useUserFrames() {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -18,7 +24,7 @@ export function useUserFrames () {
     }
   }
 
-  const makeFrame = ({ from, page }: { from: FrameResource, page: number }) : Frame => {
+  const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
@@ -42,20 +48,29 @@ export function useUserFrames () {
     frames.value.splice(0)
   }
 
-  const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } = useMoreScroll({
-    key: 'userProfile', page: frameQuery.value.page, pages: frameQuery.value.pages
-  })
+  const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } =
+    useMoreScroll({
+      key: 'userProfile',
+      page: frameQuery.value.page,
+      pages: frameQuery.value.pages,
+    })
 
-  const getFrames = async (userId: string | undefined, options?: { cache?: boolean }): Promise<void> => {
+  const getFrames = async (
+    userId: string | undefined,
+    options?: { cache?: boolean },
+  ): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: `/users/${userId}/frames`,
       query: {
-        page: currentPage.value
+        page: currentPage.value,
       },
-      cache: options?.cache ?? true
+      cache: options?.cache ?? true,
     }
 
-    const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error } = await useQueryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(getOptions)
 
     clearFlash()
 
@@ -65,7 +80,7 @@ export function useUserFrames () {
       throw createError({
         status: error.status,
         statusText: error.message,
-        message: flash.value.alert
+        message: flash.value.alert,
       })
     } else if (data) {
       const { frames: frameRsList, meta } = data
@@ -75,10 +90,10 @@ export function useUserFrames () {
       if (frameRsList) {
         frameList.value.splice(0)
         for (const frame of frameRsList) {
-        // console.log(comment);
+          // console.log(comment);
           frameList.value.push(makeFrame({ from: frame, page: currentPage.value }))
         }
-      // console.log(frames)
+        // console.log(frames)
       }
       if (meta) {
         frameQuery.value.pages = meta.pagination.pages
@@ -87,7 +102,10 @@ export function useUserFrames () {
     }
   }
 
-  const current = async (userId: string | undefined, options?: { cache?: boolean }): Promise<void> => {
+  const current = async (
+    userId: string | undefined,
+    options?: { cache?: boolean },
+  ): Promise<void> => {
     clearFrames()
     init()
     // console.log(`current page: ${currentPage.value}`)
@@ -112,7 +130,17 @@ export function useUserFrames () {
   }
 
   return {
-    frameQuery, initFrameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames,
-    minPage, maxPage
+    frameQuery,
+    initFrameQuery,
+    getFrames,
+    current,
+    prev,
+    next,
+    currentPage,
+    pagePrev,
+    pageNext,
+    frames,
+    minPage,
+    maxPage,
   }
 }

@@ -18,14 +18,11 @@ const onCloseClick = (): void => {
 </script>
 
 <template>
-  <dialog
-    id="login_modal"
-    class="modal"
-  >
+  <dialog id="login_modal" class="modal">
     <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-between mb-1">
         <div>
-        {{ $t('action.user.login') }}
+          {{ $t('action.user.login') }}
         </div>
         <a href="#" @click.prevent="onCloseClick">
           <i class="bi bi-x-circle text-accent hover:text-primary" />
@@ -34,10 +31,7 @@ const onCloseClick = (): void => {
       <div>
         <div class="flex justify-center border border-white gap-1 mb-1">
           <AccountLoginGoogle v-if="googleClientID && !loggedIn" />
-          <button
-            class="btn btn-outline btn-primary"
-            @click="onSignupClick"
-          >
+          <button class="btn btn-outline btn-primary" @click="onSignupClick">
             <i class="bi bi-person-plus-fill" />{{ $t('action.user.new') }}
           </button>
         </div>

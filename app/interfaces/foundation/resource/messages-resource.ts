@@ -1,3 +1,3 @@
-export interface MessagesResource{
+export interface MessagesResource {
   messages: string[]
 }

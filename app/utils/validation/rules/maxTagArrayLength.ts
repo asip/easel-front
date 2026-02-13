@@ -1,5 +1,5 @@
-import {  createRule } from '@regle/core'
-import type { Maybe } from '@regle/core';
+import { createRule } from '@regle/core'
+import type { Maybe } from '@regle/core'
 import { isFilled } from '@regle/rules'
 
 export const maxTagArrayLength = createRule({
@@ -7,5 +7,5 @@ export const maxTagArrayLength = createRule({
   validator: (value: Maybe<string[]>, size: number) => {
     return !isFilled(value) || value.length <= size
   },
-  message: ({ $params: [size] }) => `are limited to ${size}.`
+  message: ({ $params: [size] }) => `are limited to ${size}.`,
 })

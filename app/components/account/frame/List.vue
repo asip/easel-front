@@ -4,7 +4,8 @@ const { from = undefined } = defineProps<{
 }>()
 
 const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
-const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } = useAccountFrames()
+const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } =
+  useAccountFrames()
 
 // console.log('getFrames: start')
 await current()
@@ -33,7 +34,9 @@ onUnmounted(() => {
 <template>
   <ClientOnly>
     <div v-if="pagePrev" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick">{{ $t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick"
+        >{{ $t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a
+      >
     </div>
   </ClientOnly>
 
@@ -44,17 +47,16 @@ onUnmounted(() => {
         :key="frame.id"
         class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2"
       >
-        <UserFrameListItem
-          v-model="frames[i]"
-          :from="from"
-        />
+        <UserFrameListItem v-model="frames[i]" :from="from" />
       </div>
     </div>
   </div>
 
   <ClientOnly>
     <div v-if="pageNext" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick">{{ $t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a>
+      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick"
+        >{{ $t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a
+      >
     </div>
   </ClientOnly>
 </template>

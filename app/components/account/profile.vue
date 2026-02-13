@@ -28,9 +28,7 @@ const sanitizedProfile = computed<string>(() => {
           <td>{{ loginUser.email }}</td>
         </tr>
         <tr>
-          <td>
-            {{ $t('model.user.profile') }}：
-          </td>
+          <td>{{ $t('model.user.profile') }}：</td>
           <td class="wrap-break-word">
             <span v-html="sanitizedProfile" />
           </td>

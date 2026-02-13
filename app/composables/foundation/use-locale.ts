@@ -8,7 +8,9 @@ export const useLocale = () => {
     // console.log(browserLocale)
     // console.log(locales.value)
 
-    locale.value = (($i18n.availableLocales as string[]).includes(browserLocale ?? '') ? browserLocale : 'en') as 'en' | 'ja'
+    locale.value = (
+      ($i18n.availableLocales as string[]).includes(browserLocale ?? '') ? browserLocale : 'en'
+    ) as 'en' | 'ja'
   }
 
   return { locale, autoDetect }

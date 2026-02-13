@@ -13,20 +13,28 @@ export function useComments() {
   }
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {
-    const comment: Comment = create({ from})
+    const comment: Comment = create({ from })
     upCommentTZ(comment)
     return comment
   }
 
-  const comments = useState<Comment[]>('comments', () => { return [] })
+  const comments = useState<Comment[]>('comments', () => {
+    return []
+  })
 
   const { setAlert } = useAlert({ flash })
 
-  const getComments = async (frameId: number | null |undefined, options?: { cache?: boolean }): Promise<void> => {
+  const getComments = async (
+    frameId: number | null | undefined,
+    options?: { cache?: boolean },
+  ): Promise<void> => {
     // console.log(comment.frame_id);
-    const { data, error } = await useQueryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error } = await useQueryApi<
+      CommentsResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       url: `/frames/${frameId}/comments`,
-      cache: options?.cache ?? true
+      cache: options?.cache ?? true,
     })
 
     clearFlash()

@@ -1,7 +1,16 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, backendErrorInfo, processing, isSuccess, set404Alert, flash, createComment } = useComment()
+const {
+  comment,
+  externalErrors,
+  backendErrorInfo,
+  processing,
+  isSuccess,
+  set404Alert,
+  flash,
+  createComment,
+} = useComment()
 const { getComments } = useComments()
 
 const frameId = inject('frameId') as number
@@ -63,7 +72,7 @@ const redirect404 = async (): Promise<void> => {
                 :alt="loginUser.name"
                 class="rounded w-5 h-5"
                 decoding="async"
-              >
+              />
             </div>
             <div class="badge badge-outline badge-accent rounded-full">
               {{ loginUser.name }}
@@ -73,18 +82,12 @@ const redirect404 = async (): Promise<void> => {
         <form>
           <div class="flex justify-center wrap-break-word">
             <div class="w-full rounded-[5px] editor-border">
-              <Editor
-                ref="editor"
-                v-model="comment.body"
-              />
+              <Editor ref="editor" v-model="comment.body" />
             </div>
           </div>
           <div class="flex justify-between w-full mt-1">
             <div>
-              <div
-                v-for="error of r$.$errors.body"
-                :key="error"
-              >
+              <div v-for="error of r$.$errors.body" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </div>

@@ -12,12 +12,12 @@ const { closeDropdown } = useDropdown({ el: dropdown })
 provide('account', account)
 
 const onLoginClick = (): void => {
-  openModal("#login_modal")
+  openModal('#login_modal')
 }
 
 const onProfileClick = (): void => {
   closeDropdown()
-  openModal("#profile_modal")
+  openModal('#profile_modal')
 }
 
 const onLogoutClick = async (): Promise<void> => {
@@ -41,24 +41,14 @@ const onTopPageClick = async (): Promise<void> => {
 
 <template>
   <ClientOnly>
-    <Toaster
-      position="top-right"
-      expand
-      :visible-toasts="9"
-      :duration="2000"
-    />
+    <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
   </ClientOnly>
   <div class="sticky top-0 drawer drawer-end z-1000">
-    <input id="search-sidebar" type="checkbox" class="drawer-toggle">
+    <input id="search-sidebar" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
       <div class="navbar bg-base-100 shadow">
         <div class="navbar-start">
-          <a
-            href="#"
-            @click.prevent="onTopPageClick"
-          >
-            <i class="bi bi-palette" /> Easel
-          </a>
+          <a href="#" @click.prevent="onTopPageClick"> <i class="bi bi-palette" /> Easel </a>
         </div>
         <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -71,66 +61,45 @@ const onTopPageClick = async (): Promise<void> => {
                   :src="`${loginUser?.image_thumb_url}`"
                   :alt="loginUser.name"
                   class="rounded w-10 h-10 inline"
-                >
+                />
               </span>
             </summary>
             <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-999">
               <li>
-                <a
-                  href="#"
-                  class="flex gap-1"
-                  @click.prevent="onProfileClick"
-                >
+                <a href="#" class="flex gap-1" @click.prevent="onProfileClick">
                   <i class="bi bi-person-fill" />{{ $t('model.user.model_name') }}
                 </a>
               </li>
               <li>
-                <NuxtLink
-                  to="/account/frames"
-                  class="flex gap-1"
-                  @click="closeDropdown"
-                >
+                <NuxtLink to="/account/frames" class="flex gap-1" @click="closeDropdown">
                   <i class="bi bi-list" />{{ $t('action.user.frame_list') }}
                 </NuxtLink>
               </li>
               <li>
-                <NuxtLink
-                  to="/frames/new"
-                  class="flex gap-1"
-                  @click="closeDropdown"
-                >
+                <NuxtLink to="/frames/new" class="flex gap-1" @click="closeDropdown">
                   <i class="bi bi-box-arrow-up" />{{ $t('action.frame.upload') }}
                 </NuxtLink>
               </li>
               <li>
-                <button
-                  type="button"
-                  class="flex gap-1"
-                  @click="onLogoutClick"
-                >
+                <button type="button" class="flex gap-1" @click="onLogoutClick">
                   <i class="bi bi-box-arrow-right" />{{ $t('action.user.logout') }}
                 </button>
               </li>
             </ul>
           </details>
-          <a
-            v-else
-            href="#"
-            class="flex gap-1"
-            @click.prevent="onLoginClick"
-          >
+          <a v-else href="#" class="flex gap-1" @click.prevent="onLoginClick">
             <i class="bi bi-box-arrow-in-right" />{{ $t('action.user.login') }}
           </a>
         </div>
         <div class="navbar-end flex gap-2">
           <label for="search-sidebar" aria-label="open sidebar" class="btn btn-ghost">
-            <i class="bi bi-search"/>
+            <i class="bi bi-search" />
           </label>
         </div>
       </div>
     </div>
     <div class="drawer-side">
-      <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay"/>
+      <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay" />
       <div class="mt-17.5">
         <SearchBar />
       </div>

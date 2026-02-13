@@ -1,6 +1,6 @@
-type psOptions = { selector: string | undefined, anchor?: string }
+type psOptions = { selector: string | undefined; anchor?: string }
 
-export function usePhotoSwipe ({ selector, anchor = 'a' }: psOptions) {
+export function usePhotoSwipe({ selector, anchor = 'a' }: psOptions) {
   let lightbox: any
 
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
@@ -13,7 +13,7 @@ export function usePhotoSwipe ({ selector, anchor = 'a' }: psOptions) {
         gallery: selector,
         children: anchor,
         initialZoomLevel: 'fit',
-        pswpModule: () => import('photoswipe')
+        pswpModule: () => import('photoswipe'),
       })
 
       const fullscreenPlugin = new $psFullscreen(lightbox)

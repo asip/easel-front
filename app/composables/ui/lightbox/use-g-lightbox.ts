@@ -2,7 +2,7 @@ type glOptions = {
   selector: string | undefined
 }
 
-export function useGLightbox ({ selector }: glOptions) {
+export function useGLightbox({ selector }: glOptions) {
   let lightbox: any
 
   const { $gLightbox } = useNuxtApp() as any

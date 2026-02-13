@@ -2,7 +2,17 @@
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
-const { loggedIn, user, image, previewUrl, updateProfile, externalErrors, processing, isSuccess, flash } = inject('account') as UseAccountType
+const {
+  loggedIn,
+  user,
+  image,
+  previewUrl,
+  updateProfile,
+  externalErrors,
+  processing,
+  isSuccess,
+  flash,
+} = inject('account') as UseAccountType
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
@@ -43,9 +53,7 @@ defineExpose({ clearForm })
       <table class="table table-bordered table-rounded table-fixed">
         <tbody>
           <tr>
-            <td class="w-[10em]">
-              {{ $t('model.user.image') }}：
-            </td>
+            <td class="w-[10em]">{{ $t('model.user.image') }}：</td>
             <td>
               <input
                 ref="file"
@@ -54,11 +62,8 @@ defineExpose({ clearForm })
                 multiple="false"
                 class="file-input"
                 @change="onSelectFile"
-              >
-              <div
-                v-for="error of r$.$errors.image"
-                :key="error.toString()"
-              >
+              />
+              <div v-for="error of r$.$errors.image" :key="error.toString()">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -80,11 +85,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="username"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.name"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -105,11 +107,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="email"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.email"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.email" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -119,19 +118,12 @@ defineExpose({ clearForm })
             <td>{{ user.email }}</td>
           </tr>
           <tr>
-            <td>
-              {{ $t('model.user.profile') }}：
-            </td>
+            <td>{{ $t('model.user.profile') }}：</td>
             <td class="wrap-break-word">
               <div class="rounded-[5px] editor-border">
-                <Editor
-                  v-model="user.profile"
-                />
+                <Editor v-model="user.profile" />
               </div>
-              <div
-                v-for="error of r$.$errors.profile"
-                :key="error"
-              >
+              <div v-for="error of r$.$errors.profile" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -142,19 +134,12 @@ defineExpose({ clearForm })
             </td>
             <td>
               <ClientOnly>
-                <select
-                  id="user_time_zone"
-                  v-model="user.time_zone"
-                  class="select"
-                >
+                <select id="user_time_zone" v-model="user.time_zone" class="select">
                   <option v-for="option in tzOptions" :key="option.value" :value="option.value">
                     {{ option.text }}
                   </option>
                 </select>
-                <div
-                  v-for="error of r$.$errors.time_zone"
-                  :key="error"
-                >
+                <div v-for="error of r$.$errors.time_zone" :key="error">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </ClientOnly>

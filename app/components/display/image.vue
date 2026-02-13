@@ -3,13 +3,20 @@ import type { Frame, User } from '~/interfaces'
 
 const model = defineModel<Frame | User>()
 
-const { original = false, photoswipe = false, small = false } = defineProps<{
-  original?: boolean,
-  photoswipe?: boolean,
+const {
+  original = false,
+  photoswipe = false,
+  small = false,
+} = defineProps<{
+  original?: boolean
+  photoswipe?: boolean
   small?: boolean
 }>()
 
-const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox({ ps: { selector: '#gallery' }, gl: { selector: '#image' } })
+const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox({
+  ps: { selector: '#gallery' },
+  gl: { selector: '#image' },
+})
 
 const linkURL = computed<string | undefined>(() => {
   if (model.value && 'file_url' in model.value) return `${model?.value.file_url}`
@@ -37,58 +44,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    v-if="original"
-    id="gallery"
-  >
-    <NuxtLink
-      v-if="photoswipe"
-      class="mx-auto"
-      :to="linkURL"
-    >
-      <img
-        v-if="small"
-        :src="imgURL"
-        alt=""
-        class="mx-auto w-25 h-25"
-      >
-      <img
-        v-else
-        :src="imgURL"
-        alt=""
-        class="mx-auto"
-      >
+  <div v-if="original" id="gallery">
+    <NuxtLink v-if="photoswipe" class="mx-auto" :to="linkURL">
+      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
+      <img v-else :src="imgURL" alt="" class="mx-auto" />
     </NuxtLink>
-    <NuxtLink
-      v-else
-      id="image"
-      class="mx-auto"
-      :to="linkURL"
-    >
-      <img
-        v-if="small"
-        :src="imgURL"
-        alt=""
-        class="mx-auto w-25 h-25"
-      >
-      <img
-        v-else
-        :src="imgURL"
-        alt=""
-        class="mx-auto"
-      >
+    <NuxtLink v-else id="image" class="mx-auto" :to="linkURL">
+      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
+      <img v-else :src="imgURL" alt="" class="mx-auto" />
     </NuxtLink>
   </div>
-  <img
-    v-else-if="small"
-    :src="imgURL"
-    alt=""
-    class="mx-auto w-25 h-25"
-  >
-  <img
-    v-else
-    :src="imgURL"
-    alt=""
-    class="mx-auto"
-  >
+  <img v-else-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
+  <img v-else :src="imgURL" alt="" class="mx-auto" />
 </template>

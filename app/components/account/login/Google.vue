@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { GoogleSignInButton  } from 'vue3-google-signin'
-import type { CredentialResponse } from 'vue3-google-signin';
+import { GoogleSignInButton } from 'vue3-google-signin'
+import type { CredentialResponse } from 'vue3-google-signin'
 
 const { closeModal } = useModal()
 const { loginWithGoogle } = useAccount()
@@ -35,8 +35,5 @@ useOneTap({
 </script>
 
 <template>
-  <GoogleSignInButton
-    @success="handleLoginSuccess"
-    @error="handleLoginError"
-  />
+  <GoogleSignInButton @success="handleLoginSuccess" @error="handleLoginError" />
 </template>

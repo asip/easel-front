@@ -1,15 +1,36 @@
-export function useMoreScroll ({ key = null, page, pages }: { key?: string | null, page: number, pages: number }) {
+export function useMoreScroll({
+  key = null,
+  page,
+  pages,
+}: {
+  key?: string | null
+  page: number
+  pages: number
+}) {
   const toFirstUpper = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
-  const currentPage = useState<number>(key ? `currentPageFor${toFirstUpper(key)}` : 'currentPage', () => { return 1 } )
+  const currentPage = useState<number>(
+    key ? `currentPageFor${toFirstUpper(key)}` : 'currentPage',
+    () => {
+      return 1
+    },
+  )
 
-  const pagePrev = useState<boolean>(key ? `pagePrevFor${toFirstUpper(key)}` : 'pagePrev', () => { return false } )
-  const pageNext = useState<boolean>(key ? `pageNextFor${toFirstUpper(key)}` : 'pageNext', () => { return false } )
+  const pagePrev = useState<boolean>(key ? `pagePrevFor${toFirstUpper(key)}` : 'pagePrev', () => {
+    return false
+  })
+  const pageNext = useState<boolean>(key ? `pageNextFor${toFirstUpper(key)}` : 'pageNext', () => {
+    return false
+  })
 
-  const minPage = useState<number>(key ? `minPageFor${toFirstUpper(key)}` : 'minPage', () => { return 1 } )
-  const maxPage = useState<number>(key ? `maxPageFor${toFirstUpper(key)}` : 'maxPage', () => { return 1 } )
+  const minPage = useState<number>(key ? `minPageFor${toFirstUpper(key)}` : 'minPage', () => {
+    return 1
+  })
+  const maxPage = useState<number>(key ? `maxPageFor${toFirstUpper(key)}` : 'maxPage', () => {
+    return 1
+  })
 
   const minMaxPage = () => {
     minPage.value = currentPage.value < page ? currentPage.value : page
@@ -17,8 +38,8 @@ export function useMoreScroll ({ key = null, page, pages }: { key?: string | nul
   }
 
   const pagePrevNext = () => {
-    if(currentPage.value == 1 ) pagePrev.value = false
-    if(currentPage.value == pages ) pageNext.value = false
+    if (currentPage.value == 1) pagePrev.value = false
+    if (currentPage.value == pages) pageNext.value = false
     // console.log(`page prev: ${pagePrev.value}`)
     // console.log(`page next: ${pageNext.value}`)
   }
@@ -43,5 +64,5 @@ export function useMoreScroll ({ key = null, page, pages }: { key?: string | nul
     pagePrevNext()
   }
 
-  return { currentPage, pagePrev, pageNext, minPage, maxPage , init, decrement, increment }
+  return { currentPage, pagePrev, pageNext, minPage, maxPage, init, decrement, increment }
 }

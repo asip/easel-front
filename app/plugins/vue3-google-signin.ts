@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   if (config.public.googleClientId) {
     const options = {
-      clientId: config.public.googleClientId
+      clientId: config.public.googleClientId,
     }
 
     nuxtApp.vueApp.use(GoogleSignInPlugin, options)

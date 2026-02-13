@@ -1,7 +1,13 @@
-import type { AccountFrameQuery, Frame, FrameResource, FramesResource, ErrorsResource } from '~/interfaces'
+import type {
+  AccountFrameQuery,
+  Frame,
+  FrameResource,
+  FramesResource,
+  ErrorsResource,
+} from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useAccountFrames () {
+export function useAccountFrames() {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -9,7 +15,7 @@ export function useAccountFrames () {
 
   const { setAlert } = useAlert({ flash, caller: { clearLoginUser } })
 
-  const makeFrame = ({ from, page }: { from: FrameResource, page: number }) : Frame => {
+  const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
     frame.file = null
     frame.preview_url = null
@@ -21,7 +27,7 @@ export function useAccountFrames () {
     return {
       page: 1,
       pages: 1,
-      total: 1
+      total: 1,
     }
   })
 
@@ -32,21 +38,27 @@ export function useAccountFrames () {
     frames.value.splice(0)
   }
 
-  const { currentPage, pagePrev, pageNext, init, decrement, increment, minPage, maxPage } = useMoreScroll({
-    key: 'profile', page: frameQuery.value.page, pages: frameQuery.value.pages
-  })
+  const { currentPage, pagePrev, pageNext, init, decrement, increment, minPage, maxPage } =
+    useMoreScroll({
+      key: 'profile',
+      page: frameQuery.value.page,
+      pages: frameQuery.value.pages,
+    })
 
   const getFrames = async (options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
       url: '/account/frames',
       query: {
-        page: currentPage.value
+        page: currentPage.value,
       },
       token: accessToken.value,
-      cache: options?.cache ?? true
+      cache: options?.cache ?? true,
     }
 
-    const { data, error } = await useQueryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error } = await useQueryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(getOptions)
 
     clearFlash()
 
@@ -56,7 +68,7 @@ export function useAccountFrames () {
       throw createError({
         status: error.status,
         statusText: error.message,
-        message: flash.value.alert
+        message: flash.value.alert,
       })
     } else if (data) {
       const { frames: frameRsList, meta } = data
@@ -103,7 +115,16 @@ export function useAccountFrames () {
   }
 
   return {
-    frameQuery, getFrames, current, prev, next, currentPage, pagePrev, pageNext, frames,
-    minPage, maxPage
+    frameQuery,
+    getFrames,
+    current,
+    prev,
+    next,
+    currentPage,
+    pagePrev,
+    pageNext,
+    frames,
+    minPage,
+    maxPage,
   }
 }

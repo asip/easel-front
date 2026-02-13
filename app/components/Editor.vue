@@ -1,40 +1,40 @@
 <script lang="ts" setup>
-import type Quill from "quill"
+import type Quill from 'quill'
 
 const { empty2pbr, pbr2empty } = useQuill()
 
 const model = defineModel<string>()
 
 const modelValue = computed<string>({
-  get () {
+  get() {
     return empty2pbr(model.value)
   },
-  set (value: string | undefined) {
+  set(value: string | undefined) {
     model.value = pbr2empty(value)
-  }
+  },
 })
 
 const options = ref({
   theme: 'bubble',
   modules: {
-    toolbar: true
+    toolbar: true,
   },
   placeholder: '',
-  readOnly: false
+  readOnly: false,
 })
 
 const editorRef = useTemplateRef('editorRef')
 let quill: Quill | undefined
 
 onMounted(async () => {
-  if (import.meta.client){
+  if (import.meta.client) {
     const QuillClass = (await import('quill')).default
     quill = editorRef.value?.initialize(QuillClass)
   }
 })
 
 const updateContent = (content: string): void => {
-  if (getText()?.replace(/\n/g, '') != ''){
+  if (getText()?.replace(/\n/g, '') != '') {
     modelValue.value = content
   } else {
     clearContents()
@@ -55,9 +55,8 @@ const focus = (): void => {
 }
 
 defineExpose({
-  focus
+  focus,
 })
-
 </script>
 
 <template>

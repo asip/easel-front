@@ -5,11 +5,11 @@ const { id, disabled } = defineProps<{
 }>()
 
 defineSlots<{
-  message?:() => any
+  message?: () => any
   label?: () => any
 }>()
 
-const emit = defineEmits<{click: []}>()
+const emit = defineEmits<{ click: [] }>()
 
 const onClick = (): void => {
   emit('click')
@@ -17,10 +17,7 @@ const onClick = (): void => {
 </script>
 
 <template>
-  <dialog
-    :id="id"
-    class="modal"
-  >
+  <dialog :id="id" class="modal">
     <div class="modal-box">
       <form method="dialog">
         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -29,11 +26,7 @@ const onClick = (): void => {
         <slot name="message" />
       </p>
       <div class="modal-action">
-        <button
-          class="btn btn-outline btn-secondary"
-          :disabled="disabled"
-          @click="onClick"
-        >
+        <button class="btn btn-outline btn-secondary" :disabled="disabled" @click="onClick">
           <slot name="label" />
         </button>
         <form method="dialog">

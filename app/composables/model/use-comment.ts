@@ -1,7 +1,7 @@
 import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
-export function useComment () {
+export function useComment() {
   const { $i18n } = useNuxtApp()
 
   const { copy, create } = useEntity<Comment, CommentResource>()
@@ -18,7 +18,7 @@ export function useComment () {
     user_name: '',
     user_image_url: '',
     created_at: '',
-    updated_at: null
+    updated_at: null,
   })
 
   const upCommentTZ = (comment: Comment): void => {
@@ -27,12 +27,18 @@ export function useComment () {
   }
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {
-    const comment: Comment = create({ from})
+    const comment: Comment = create({ from })
     upCommentTZ(comment)
     return comment
   }
 
-  const setComment = ({ from, to }: { from?: Comment | CommentResource | undefined, to?: Comment}): void => {
+  const setComment = ({
+    from,
+    to,
+  }: {
+    from?: Comment | CommentResource | undefined
+    to?: Comment
+  }): void => {
     if (from) {
       copy({ from, to: comment.value })
     } else if (to) {
@@ -42,9 +48,13 @@ export function useComment () {
     }
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<CommentErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { backendErrorInfo, setAlert } = useAlert({
+    flash,
+    caller: { clearLoginUser, setExternalErrors },
+  })
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
@@ -63,15 +73,18 @@ export function useComment () {
 
     const postData = {
       comment: {
-        body: comment.value.body
-      }
+        body: comment.value.body,
+      },
     }
 
-    const { error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<
+      CommentResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -92,15 +105,18 @@ export function useComment () {
 
     const postData = {
       comment: {
-        body: comment.value.body
-      }
+        body: comment.value.body,
+      },
     }
 
-    const { data, error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<
+      CommentResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'put',
       url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
       body: postData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -120,10 +136,13 @@ export function useComment () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
-    const { error, pending } = await useMutationApi<CommentResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<
+      CommentResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'delete',
       url: `/frames/${comment.frame_id}/comments/${comment.id}`,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -146,7 +165,7 @@ export function useComment () {
     processing,
     isSuccess,
     set404Alert,
-    flash
+    flash,
   }
 }
 

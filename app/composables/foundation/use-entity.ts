@@ -5,7 +5,7 @@ export function useEntity<M extends object, R extends object>() {
     return model as M
   }
 
-  const copy = ({ from, to }: { from: R | M, to: M}): void => {
+  const copy = ({ from, to }: { from: R | M; to: M }): void => {
     Object.assign(to, from)
   }
 

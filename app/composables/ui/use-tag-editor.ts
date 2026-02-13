@@ -9,7 +9,7 @@ type TagEditorOptions = {
   tagSearch?: TagSearchType
 }
 
-export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
+export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp() as any
@@ -25,8 +25,8 @@ export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
           enabled: 0,
           maxItems: 30,
           closeOnSelect: false,
-          highlightFirst: true
-        }
+          highlightFirst: true,
+        },
       })
 
       initTags()
@@ -48,7 +48,7 @@ export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
 
   const onInput = async (ev: CustomEvent): Promise<void> => {
     const value = ev.detail.value as string
-    if(tagEditor) tagEditor.whitelist = []
+    if (tagEditor) tagEditor.whitelist = []
 
     controller?.abort()
     controller = new AbortController()
@@ -58,13 +58,13 @@ export function useTagEditor ({ el, tagList, tagSearch }: TagEditorOptions) {
   }
 
   const setAutocomplete = (value: string): void => {
-    if(tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+    if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
     tagEditor?.loading(false).dropdown.show(value)
   }
 
   const saveTagList = (): void => {
     if (tagList.value && tagEditor) {
-      tagList.value = tagEditor.value.map(v => v.value)
+      tagList.value = tagEditor.value.map((v) => v.value)
     }
   }
 

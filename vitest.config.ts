@@ -6,7 +6,7 @@ export default defineVitestConfig({
     environment: 'nuxt',
     dir: 'app/tests',
     env: {
-      BASE_URL: 'http://localhost:3000/api/v1'
-    }
-  }
+      BASE_URL: 'http://localhost:3000/api/v1',
+    },
+  },
 })

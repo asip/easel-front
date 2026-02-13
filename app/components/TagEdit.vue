@@ -1,15 +1,20 @@
 <script lang="ts" setup>
-
 const model = defineModel<string[]>()
 
 const { searchTag, tags } = useTagSearch()
 
 const tagEditor = useTemplateRef('tagEditorRef')
-const { initTagEditor, closeTagEditor } = useTagEditor({ el: tagEditor, tagList: model , tagSearch: { tags, searchTag } })
+const { initTagEditor, closeTagEditor } = useTagEditor({
+  el: tagEditor,
+  tagList: model,
+  tagSearch: { tags, searchTag },
+})
 
 onMounted(() => {
   // console.log(frame)
-  if (import.meta.client && model.value){ initTagEditor() }
+  if (import.meta.client && model.value) {
+    initTagEditor()
+  }
 })
 
 onUnmounted(() => {
@@ -18,10 +23,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <input
-    ref="tagEditorRef"
-    type="text"
-    value=""
-    class="input h-auto"
-  >
+  <input ref="tagEditorRef" type="text" value="" class="input h-auto" />
 </template>

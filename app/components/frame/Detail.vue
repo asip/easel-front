@@ -26,8 +26,7 @@ const sanitizedComment = computed<string>(() => {
 const onPageBack = async (): Promise<void> => {
   if (!refItems.from) {
     await navigateTo({ path: '/', query: queryMap.value })
-  }
-  else {
+  } else {
     if (referers.value[route.path] == '/') {
       await navigateTo({ path: '/', query: queryMap.value })
     } else {
@@ -47,10 +46,7 @@ const onDeleteClick = (): void => {
       <span @click="onPageBack">
         <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
       </span>
-      <NuxtLink
-        v-if="loggedIn && frame?.user_id == loginUser.id"
-        :to="`/frames/${frame?.id}/edit`"
-      >
+      <NuxtLink v-if="loggedIn && frame?.user_id == loginUser.id" :to="`/frames/${frame?.id}/edit`">
         <i class="bi bi-pencil-square text-accent hover:text-primary" />
       </NuxtLink>
       <!-- Button trigger modal -->
@@ -76,11 +72,16 @@ const onDeleteClick = (): void => {
     <DisplayImage v-model="frame" :original="true" :photoswipe="true" />
   </div>
   <div class="flex justify-center flex-wrap mb-1">
-    <div v-if="loggedIn && frame?.user_id == loginUser.id" class="badge badge-outline badge-accent truncate rounded-full">{{ $t(`enums.private.${frame?.private}`) }}</div>
+    <div
+      v-if="loggedIn && frame?.user_id == loginUser.id"
+      class="badge badge-outline badge-accent truncate rounded-full"
+    >
+      {{ $t(`enums.private.${frame?.private}`) }}
+    </div>
     <DisplayTags v-model="frame" />
   </div>
   <div class="flex justify-center">
-    <table class="table table-bordered table-rounded table-fixed ml-2 mr-2 ">
+    <table class="table table-bordered table-rounded table-fixed ml-2 mr-2">
       <tbody>
         <tr>
           <td class="w-[9em]">{{ $t('model.frame.name') }}：</td>

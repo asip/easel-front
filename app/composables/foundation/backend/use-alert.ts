@@ -1,10 +1,10 @@
 import type { FetchError } from 'ofetch'
 import type { NuxtError } from '#app'
 
-import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces';
-import type { ErrorMessages } from '~/types';
+import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces'
+import type { ErrorMessages } from '~/types'
 
-import { useBackendErrorInfo } from './error';
+import { useBackendErrorInfo } from './error'
 
 interface UseAlertOptions {
   flash: Ref<Flash>
@@ -17,14 +17,17 @@ interface UseAlertCallerType {
 }
 
 type AlertOptions = {
-  error: NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource> | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>, off?: boolean
+  error:
+    | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
+    | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
+  off?: boolean
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
   const { $i18n } = useNuxtApp()
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
 
-  const setAlert = function({ error, off = false }: AlertOptions): void {
+  const setAlert = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
     backendErrorInfo.value.status = error.status
     if (off) {
@@ -48,15 +51,14 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
             setBackendErrorInfo(backendError)
           }
           break
-        case 422:
-          {
-            if (caller && 'setExternalErrors' in caller && caller.setExternalErrors && error.data) {
-              const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
-              // globalThis.console.log(errors)
-              caller.setExternalErrors(errors)
-            }
-            break
+        case 422: {
+          if (caller && 'setExternalErrors' in caller && caller.setExternalErrors && error.data) {
+            const { errors } = error.data as ErrorsResource<ErrorMessages<string>>
+            // globalThis.console.log(errors)
+            caller.setExternalErrors(errors)
           }
+          break
+        }
         default:
           flash.value.alert = $i18n.t('action.error.api', { message: error.message })
       }

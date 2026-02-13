@@ -1,8 +1,10 @@
 type useImagePreviewOptions = {
-  target: HTMLInputElement, file: Ref<File | undefined| null>, previewUrl: Ref<string | null | undefined>
+  target: HTMLInputElement
+  file: Ref<File | undefined | null>
+  previewUrl: Ref<string | null | undefined>
 }
 
-export function useImagePreview ({ target, file, previewUrl }: useImagePreviewOptions): void {
+export function useImagePreview({ target, file, previewUrl }: useImagePreviewOptions): void {
   // let blob: Blob | null| undefined
   // (アップロードされたデータを取得して変数file.valueに代入します)
   file.value = target.files?.item(0)
@@ -21,7 +23,13 @@ export function useImagePreview ({ target, file, previewUrl }: useImagePreviewOp
   }
 }
 
-const setImage = ({ file, previewUrl }: { file: Ref<File | undefined| null>, previewUrl: Ref<string | null | undefined> }): void => {
+const setImage = ({
+  file,
+  previewUrl,
+}: {
+  file: Ref<File | undefined | null>
+  previewUrl: Ref<string | null | undefined>
+}): void => {
   const reader = new FileReader()
   // (読み込みが完了したら処理が実行されます)
   reader.onload = function () {

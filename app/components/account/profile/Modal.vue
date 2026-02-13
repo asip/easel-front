@@ -26,39 +26,21 @@ const onDeleteAccountClick = (): void => {
 </script>
 
 <template>
-  <dialog
-    v-if="loggedIn"
-    id="profile_modal"
-    class="modal"
-  >
-    <div
-      class="modal-box rounded-[20px] divide-y divide-gray-200"
-    >
+  <dialog v-if="loggedIn" id="profile_modal" class="modal">
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200">
       <div class="flex justify-start gap-1 pb-1 mb-1">
-        <a
-          href="#"
-          @click.prevent="onCloseClick"
-        >
+        <a href="#" @click.prevent="onCloseClick">
           <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
         </a>
-        <a
-          href="#"
-          @click.prevent="onEditClick"
-        >
+        <a href="#" @click.prevent="onEditClick">
           <i class="bi bi-pencil-square text-accent hover:text-primary" />
         </a>
         <span v-if="loginUser && !loginUser.social_login">
-          <a
-            href="#"
-            @click.prevent="onEditPasswordClick"
-          >
+          <a href="#" @click.prevent="onEditPasswordClick">
             <i class="bi bi-lock text-accent hover:text-primary" />
           </a>
         </span>
-        <a
-          href="#"
-          @click.prevent="onDeleteAccountClick"
-        >
+        <a href="#" @click.prevent="onDeleteAccountClick">
           <i class="bi bi-x-circle text-accent hover:text-primary" />
         </a>
         {{ $t('model.user.model_name') }}

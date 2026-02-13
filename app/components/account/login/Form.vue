@@ -2,18 +2,23 @@
 const { closeModal } = useModal()
 
 const { setFlash } = useSonner()
-const { loginParams, login, isSuccess, flash, externalErrors, clearLoginParams, clearExternalErrors } = inject('account') as UseAccountType
+const {
+  loginParams,
+  login,
+  isSuccess,
+  flash,
+  externalErrors,
+  clearLoginParams,
+  clearExternalErrors,
+} = inject('account') as UseAccountType
 const { signinRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(loginParams, signinRules, { externalErrors })
 
-watch(
-  loginParams.value,
-  () => {
-    clearExternalErrors()
-    r$.$clearExternalErrors()
-  }
-)
+watch(loginParams.value, () => {
+  clearExternalErrors()
+  r$.$clearExternalErrors()
+})
 
 const onLoginClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
@@ -57,11 +62,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="email"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.email"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.email" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -78,11 +80,8 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="current-password"
                 class="input"
-              >
-              <div
-                v-for="error of r$.$errors.password"
-                :key="error"
-              >
+              />
+              <div v-for="error of r$.$errors.password" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -92,11 +91,7 @@ defineExpose({ clearForm })
     </div>
     <div class="flex justify-center">
       <div class="flex w-100 pt-2">
-        <button
-          type="button"
-          class="btn btn-outline btn-primary"
-          @click="onLoginClick"
-        >
+        <button type="button" class="btn btn-outline btn-primary" @click="onLoginClick">
           {{ $t('action.user.login') }}
         </button>
       </div>

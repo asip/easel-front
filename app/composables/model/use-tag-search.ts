@@ -15,7 +15,9 @@ export const useTagSearch = () => {
       cache: false,
     }
 
-    const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
+      getOptions,
+    )
 
     clearFlash()
 

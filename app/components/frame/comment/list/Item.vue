@@ -6,7 +6,18 @@ import type { RefQuery } from '~/types'
 const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { comment, externalErrors, backendErrorInfo, updateComment, deleteComment, flash, isSuccess, set404Alert, processing, setComment } = useComment()
+const {
+  comment,
+  externalErrors,
+  backendErrorInfo,
+  updateComment,
+  deleteComment,
+  flash,
+  isSuccess,
+  set404Alert,
+  processing,
+  setComment,
+} = useComment()
 const { getComments } = useComments()
 
 const { commentRules } = useCommentRules()
@@ -20,7 +31,7 @@ const commentModel = defineModel<Comment>()
 const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const sanitizedCommentBody = computed<string>(() =>
-  p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>')
+  p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>'),
 )
 
 comment.value.frame_id = commentModel.value?.frame_id
@@ -57,7 +68,9 @@ const onUpdateClick = async (): Promise<void> => {
 }
 
 const onDeleteClick = async (): Promise<void> => {
-  if (commentModel.value) { await deleteComment(commentModel.value) }
+  if (commentModel.value) {
+    await deleteComment(commentModel.value)
+  }
   set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {
@@ -97,7 +110,7 @@ const redirectOrReload404 = async (): Promise<void> => {
                     :src="`${commentModel?.user_image_url}`"
                     :alt="commentModel?.user_name"
                     class="rounded"
-                  >
+                  />
                 </div>
               </NuxtLink>
               <NuxtLink
@@ -110,21 +123,14 @@ const redirectOrReload404 = async (): Promise<void> => {
                 {{ commentModel?.created_at }}
               </div>
             </div>
-            <div
-              v-if="loggedIn && commentModel?.user_id == loginUser.id"
-              class="flex gap-1"
-            >
+            <div v-if="loggedIn && commentModel?.user_id == loginUser.id" class="flex gap-1">
               <button v-if="!edit" class="link link-hover" @click="onEditClick">
                 <i class="bi bi-pencil-square text-accent hover:text-primary" />
               </button>
               <button v-else class="link link-hover" @click="onCancelClick">
                 <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
               </button>
-              <button
-                class="link link-hover"
-                :disabled="processing"
-                @click="onDeleteClick"
-              >
+              <button class="link link-hover" :disabled="processing" @click="onDeleteClick">
                 <i class="bi bi-x-circle text-accent hover:text-primary" />
               </button>
             </div>
@@ -144,19 +150,14 @@ const redirectOrReload404 = async (): Promise<void> => {
         <form v-else>
           <div class="flex justify-start">
             <div class="w-full rounded-[5px] editor-border">
-              <Editor
-                v-model="comment.body"
-              />
+              <Editor v-model="comment.body" />
             </div>
           </div>
           <div class="flex justify-between w-full mt-1">
             <div>
-            <div
-              v-for="error of r$.$errors.body"
-              :key="error"
-            >
-              <div class="text-red-500 text-xs">{{ error }}</div>
-            </div>
+              <div v-for="error of r$.$errors.body" :key="error">
+                <div class="text-red-500 text-xs">{{ error }}</div>
+              </div>
             </div>
             <div>
               <button

@@ -27,50 +27,53 @@ export const useAccount = () => {
     password_confirmation: '',
     profile: '',
     time_zone: '',
-    social_login: false
+    social_login: false,
   })
 
   const image: Ref<File | null | undefined> = computed({
-    get () {
+    get() {
       return user.value.image
     },
-    set (value: File | null) {
+    set(value: File | null) {
       user.value.image = value
-    }
+    },
   })
 
   const previewUrl: Ref<string | null | undefined> = computed({
-    get () {
+    get() {
       if (!user.value.image) {
         return `${user.value.image_three_url}`
       } else {
         return user.value.preview_url
       }
     },
-    set (value: string | null) {
+    set(value: string | null) {
       user.value.preview_url = value
-    }
+    },
   })
 
   const initTimeZone = (): void => {
     // console.log(user.value.time_zone)
-    user.value.time_zone = ( user.value.time_zone == null || user.value.time_zone == '' ) ? timeZone.value.client : user.value.time_zone
+    user.value.time_zone =
+      user.value.time_zone == null || user.value.time_zone == ''
+        ? timeZone.value.client
+        : user.value.time_zone
     // console.log(user.value.time_zone)
   }
 
   const clearProfile = (): void => {
     user.value.id = null
     user.value.name = ''
-    user.value.email= ''
+    user.value.email = ''
     user.value.token = null
     user.value.image = null
     user.value.profile = ''
-    user.value.image_thumb_url= ''
+    user.value.image_thumb_url = ''
     user.value.image_one_url = ''
-    user.value.image_three_url= ''
+    user.value.image_three_url = ''
     user.value.preview_url = null
     user.value.password = ''
-    user.value.password_confirmation= ''
+    user.value.password_confirmation = ''
     user.value.social_login = false
   }
 
@@ -89,7 +92,7 @@ export const useAccount = () => {
       password_confirmation: '',
       profile: '',
       time_zone: '',
-      social_login: false
+      social_login: false,
     }
   })
 
@@ -101,7 +104,13 @@ export const useAccount = () => {
     }
   }
 
-  const setLoginUser = ({ from, token }: { from: UserResource, token?: string | undefined }): void => {
+  const setLoginUser = ({
+    from,
+    token,
+  }: {
+    from: UserResource
+    token?: string | undefined
+  }): void => {
     copy({ from, to: loginUser.value })
     if (token) {
       loginUser.value.token = token
@@ -127,13 +136,14 @@ export const useAccount = () => {
     copy({ from: loginUser.value, to: user.value })
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<UserErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<UserErrorProperty>({ flash })
 
   const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser } })
 
   const loginParams = ref<LoginParams>({
     email: '',
-    password: ''
+    password: '',
   })
 
   const clearLoginParams = (): void => {
@@ -161,10 +171,13 @@ export const useAccount = () => {
     formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
-    const { error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: '/users/',
-      body: formData
+      body: formData,
     })
 
     clearFlash()
@@ -182,18 +195,21 @@ export const useAccount = () => {
     // console.log(loginUser.value.token)
 
     if (loginUser.value.token) {
-      const { token, data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
-      url: '/account/profile',
-      token: accessToken.value,
-      fresh: true
-    })
+      const { token, data, error } = await useQueryApi<
+        UserResource,
+        ErrorsResource<ErrorMessages<string>>
+      >({
+        url: '/account/profile',
+        token: accessToken.value,
+        fresh: true,
+      })
 
-    clearFlash()
+      clearFlash()
 
-    if (error) {
-      setAlert({ error })
-    } else if (data) {
-      const userAttrs = data
+      if (error) {
+        setAlert({ error })
+      } else if (data) {
+        const userAttrs = data
         // console.log(userAttrs)
 
         if (userAttrs) {
@@ -208,14 +224,17 @@ export const useAccount = () => {
     const postData = {
       user: {
         email: loginParams.value.email,
-        password: loginParams.value.password
-      }
+        password: loginParams.value.password,
+      },
     }
 
-    const { token, data, error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { token, data, error } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: '/sessions/',
-      body: postData
+      body: postData,
     })
 
     // console.log(token.value)
@@ -239,13 +258,16 @@ export const useAccount = () => {
   const loginWithGoogle = async (response: CredentialResponse): Promise<void> => {
     const postData = {
       provider: 'google',
-      credential: response.credential
+      credential: response.credential,
     }
 
-    const { token, data, error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { token, data, error } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: '/oauth/sessions/',
-      body: postData
+      body: postData,
     })
 
     // console.log(token.value)
@@ -255,7 +277,7 @@ export const useAccount = () => {
     if (error) {
       setAlert({ error })
     } else if (data) {
-      const userAttrs  = data
+      const userAttrs = data
       setLoginUser({ from: userAttrs, token })
       loggedIn.value = true
       // console.log(loginUser.value)
@@ -278,11 +300,14 @@ export const useAccount = () => {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'put',
       url: '/account/profile/',
       body: formData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     // console.log(data)
@@ -312,17 +337,20 @@ export const useAccount = () => {
       user: {
         current_password: user.value.current_password,
         password: user.value.password,
-        password_confirmation: user.value.password_confirmation
-      }
+        password_confirmation: user.value.password_confirmation,
+      },
     }
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'put',
       url: '/account/password/',
       body: formData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     // console.log(data)
@@ -348,14 +376,14 @@ export const useAccount = () => {
     const { error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
       method: 'delete',
       url: '/sessions/logout',
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
 
     if (error) {
       setAlert({ error })
-    } else  {
+    } else {
       clearLoginUser()
     }
   }
@@ -363,10 +391,13 @@ export const useAccount = () => {
   const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
-    const { data, error, pending } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<
+      UserResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'delete',
       url: '/account',
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -408,7 +439,7 @@ export const useAccount = () => {
     deleteAccount,
     processing,
     isSuccess,
-    flash
+    flash,
   }
 }
 

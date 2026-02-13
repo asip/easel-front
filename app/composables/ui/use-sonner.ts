@@ -1,6 +1,6 @@
 import type { Flash } from '~/interfaces'
 
-export function useSonner () {
+export function useSonner() {
   const { $toast } = useNuxtApp()
 
   const setFlash = (flash: Flash): void => {
@@ -11,17 +11,15 @@ export function useSonner () {
         switch (messageType) {
           case 'info':
             // console.log('info')
-            setTimeout(
-              () => {
-                $toast.info(message)
-              }, 1000)
+            setTimeout(() => {
+              $toast.info(message)
+            }, 1000)
             break
           case 'alert':
             // console.log('alert')
-            setTimeout(
-              () => {
-                $toast.error(message)
-              }, 1000)
+            setTimeout(() => {
+              $toast.error(message)
+            }, 1000)
             break
         }
       }
@@ -30,10 +28,9 @@ export function useSonner () {
 
   const setMessages = (messages: string[]): void => {
     for (const message of messages.reverse()) {
-      setTimeout(
-        () => {
-          $toast.error(message)
-        }, 500)
+      setTimeout(() => {
+        $toast.error(message)
+      }, 500)
     }
   }
 

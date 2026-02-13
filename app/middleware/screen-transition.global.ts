@@ -19,7 +19,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   if (to.path === '/account/frames' && loggedIn.value) {
-    if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('profile'))) {
+    if (
+      to.path !== from.path &&
+      !(from.path.startsWith('/frames/') && from.fullPath.includes('profile'))
+    ) {
       referers.value[to.path] = from.fullPath
     }
 
@@ -35,7 +38,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   if (to.path.match(/^\/users\/\d+$/)) {
-    if (to.path !== from.path && !(from.path.startsWith('/frames/') && from.fullPath.includes('user_profile'))) {
+    if (
+      to.path !== from.path &&
+      !(from.path.startsWith('/frames/') && from.fullPath.includes('user_profile'))
+    ) {
       referers.value[to.path] = from.fullPath
     }
 

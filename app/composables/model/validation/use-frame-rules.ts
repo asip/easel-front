@@ -4,28 +4,32 @@ export const useFrameRules = () => {
   const newFrameRules = {
     file: { required, maxFileSize: maxFileSize(5) },
     name: {
-      required, minLength: minLength(1), maxLength: maxLength(30)
+      required,
+      minLength: minLength(1),
+      maxLength: maxLength(30),
     },
     tag_list: {
       maxTagArrayLength: maxTagArrayLength(5),
-      maxTagLength: maxTagLength(10)
+      maxTagLength: maxTagLength(10),
     },
     creator_name: {
-      maxLength: maxLength(40)
-    }
+      maxLength: maxLength(40),
+    },
   }
 
   const editFrameRules = {
     name: {
-      required, minLength: minLength(1), maxLength: maxLength(30)
+      required,
+      minLength: minLength(1),
+      maxLength: maxLength(30),
     },
     tag_list: {
       maxTagArrayLength: maxTagArrayLength(5),
-      maxTagLength: maxTagLength(10)
+      maxTagLength: maxTagLength(10),
     },
     creator_name: {
-      maxLength: maxLength(40)
-    }
+      maxLength: maxLength(40),
+    },
   }
 
   const searchRules = {
@@ -33,7 +37,7 @@ export const useFrameRules = () => {
     frame_name: { maxLength: maxLength(30) },
     tag_name: { maxLength: maxLength(10) },
     user_name: { maxLength: maxLength(40) },
-    creator_name: { maxLength: maxLength(40) }
+    creator_name: { maxLength: maxLength(40) },
   }
 
   return { newFrameRules, editFrameRules, searchRules }

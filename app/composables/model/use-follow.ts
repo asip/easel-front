@@ -1,7 +1,7 @@
 import type { FollowingResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useFollow () {
+export function useFollow() {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearLoginUser } = useAccount()
 
@@ -10,9 +10,12 @@ export function useFollow () {
   const following: Ref<boolean> = ref<boolean>(false)
 
   const isFollowing = async (userId: string): Promise<void> => {
-    const { data, error } = await useQueryApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error } = await useQueryApi<
+      FollowingResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       url: `/account/following/${userId}`,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     // this.#clearFlash()
@@ -29,10 +32,13 @@ export function useFollow () {
   }
 
   const follow = async (userId: number | null): Promise<void> => {
-    const { error } = await useMutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error } = await useMutationApi<
+      FollowingResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: `/users/${userId}/follow_relationships`,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -45,10 +51,13 @@ export function useFollow () {
   }
 
   const unfollow = async (userId: number | null): Promise<void> => {
-    const { error } = await useMutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error } = await useMutationApi<
+      FollowingResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'delete',
       url: `/users/${userId}/follow_relationships`,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -61,6 +70,10 @@ export function useFollow () {
   }
 
   return {
-    following, follow, unfollow, isFollowing, flash
+    following,
+    follow,
+    unfollow,
+    isFollowing,
+    flash,
   }
 }

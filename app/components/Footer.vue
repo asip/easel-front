@@ -1,3 +1,3 @@
 <template>
-  <div class="pb-5"/>
+  <div class="pb-5" />
 </template>

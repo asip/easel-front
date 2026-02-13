@@ -8,28 +8,26 @@ export const useUser = () => {
 
   const { setAlert } = useAlert({ flash })
 
-  const user = ref<User>(
-    {
-      name: '',
-      email: '',
-      token: null,
-      id: null,
-      image: null,
-      image_thumb_url: '',
-      image_one_url: '',
-      image_three_url: '',
-      preview_url: null,
-      password: '',
-      password_confirmation: '',
-      profile: '',
-      time_zone: '',
-      social_login: false
-    }
-  )
+  const user = ref<User>({
+    name: '',
+    email: '',
+    token: null,
+    id: null,
+    image: null,
+    image_thumb_url: '',
+    image_one_url: '',
+    image_three_url: '',
+    preview_url: null,
+    password: '',
+    password_confirmation: '',
+    profile: '',
+    time_zone: '',
+    social_login: false,
+  })
 
   const getUser = async (id: string): Promise<void> => {
     const { data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
-      url: `/users/${id}`
+      url: `/users/${id}`,
     })
 
     clearFlash()

@@ -28,47 +28,47 @@ export function useFrame() {
     preview_url: null,
     private: false,
     created_at: '',
-    updated_at: null
+    updated_at: null,
   })
 
   const file: Ref<File | null | undefined> = computed({
-    get () {
+    get() {
       return frame.value.file
     },
-    set (value: File | null) {
+    set(value: File | null) {
       frame.value.file = value
-    }
+    },
   })
 
   const previewUrl: Ref<string | null | undefined> = computed({
-    get () {
+    get() {
       if (!frame.value.file) {
         return `${frame.value.file_three_url}`
       } else {
         return frame.value.preview_url
       }
     },
-    set (value: string | null) {
+    set(value: string | null) {
       frame.value.preview_url = value
-    }
+    },
   })
 
   const tagList = computed<string[]>({
-    get () {
+    get() {
       return frame.value.tag_list
     },
-    set (value: string[]) {
+    set(value: string[]) {
       frame.value.tag_list = value
-    }
+    },
   })
 
   const shootedAt = computed<string | null>({
-    get () {
+    get() {
       return upDTL(frame.value.shooted_at)
     },
-    set (value: string | null) {
+    set(value: string | null) {
       frame.value.shooted_at = downDTL(value)
-    }
+    },
   })
 
   const frameId = computed<number | undefined>(() => {
@@ -86,9 +86,13 @@ export function useFrame() {
     upFrameTZ(frame.value)
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({ flash })
+  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<FrameErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert } = useAlert({ flash, caller: { clearLoginUser, setExternalErrors } })
+  const { backendErrorInfo, setAlert } = useAlert({
+    flash,
+    caller: { clearLoginUser, setExternalErrors },
+  })
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
@@ -100,11 +104,14 @@ export function useFrame() {
 
   const refresh = async (): Promise<void> => {}
 
-  const getFrame = async (id: string, options?: { cache?: boolean }): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
+  const getFrame = async (
+    id: string,
+    options?: { cache?: boolean },
+  ): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     // console.log(`token: ${loginUser.value.token}`)
     const getOptions: QueryAPIOptions = {
       url: '',
-      cache: options?.cache ?? true
+      cache: options?.cache ?? true,
     }
 
     if (loggedIn.value) {
@@ -114,7 +121,10 @@ export function useFrame() {
       getOptions.url = `/frames/${id}`
     }
 
-    const { data, error, refresh } = await useQueryApi<FrameResource, ErrorsResource<ErrorMessages<string>>>(getOptions)
+    const { data, error, refresh } = await useQueryApi<
+      FrameResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(getOptions)
 
     clearFlash()
 
@@ -124,7 +134,7 @@ export function useFrame() {
       throw createError({
         status: error.status,
         statusText: error.message,
-        message: flash.value.alert
+        message: flash.value.alert,
       })
     } else if (data) {
       const frameAttrs = data
@@ -153,11 +163,14 @@ export function useFrame() {
 
     // console.log(loginUser.value.token)
 
-    const { data, error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { data, error, pending } = await useMutationApi<
+      FrameResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'post',
       url: '/frames/',
       body: formData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -185,17 +198,20 @@ export function useFrame() {
         comment: frame.value.comment,
         creator_name: frame.value.creator_name,
         shooted_at: downTZ(frame.value.shooted_at),
-        private: frame.value.private
-      }
+        private: frame.value.private,
+      },
     }
 
     // console.log(loginUser.value.token)
 
-    const { error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<
+      FrameResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'put',
       url: `/frames/${frame.value.id}`,
       body: postData,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -212,10 +228,13 @@ export function useFrame() {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending } = await useMutationApi<FrameResource, ErrorsResource<ErrorMessages<string>>>({
+    const { error, pending } = await useMutationApi<
+      FrameResource,
+      ErrorsResource<ErrorMessages<string>>
+    >({
       method: 'delete',
       url: `/frames/${frame.value.id}`,
-      token: accessToken.value
+      token: accessToken.value,
     })
 
     clearFlash()
@@ -246,7 +265,7 @@ export function useFrame() {
     processing,
     isSuccess,
     set404Alert,
-    flash
+    flash,
   }
 }
 

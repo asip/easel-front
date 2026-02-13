@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const { frame, deleteFrame, backendErrorInfo, set404Alert, isSuccess, flash, processing } = inject('framer') as UseFrameType
+const { frame, deleteFrame, backendErrorInfo, set404Alert, isSuccess, flash, processing } = inject(
+  'framer',
+) as UseFrameType
 
 const onDeleteClick = async (): Promise<void> => {
   await deleteFrame()

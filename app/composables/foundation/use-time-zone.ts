@@ -15,16 +15,14 @@ export const useTimeZone = () => {
   const { locale } = useLocale()
   const { toISO8601, formatHTML } = useDatetimeLocal()
 
-  const timeZone = computed<TimeZone>(
-    () => ({
-      client: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      server: runtimeConfig.public.timeZone
-    })
-  )
+  const timeZone = computed<TimeZone>(() => ({
+    client: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    server: runtimeConfig.public.timeZone,
+  }))
 
-  const tzOptions = computed<TZOptions[]>(() => Intl.supportedValuesOf('timeZone').map(
-    e => ({ text: e , value: e })
-  ))
+  const tzOptions = computed<TZOptions[]>(() =>
+    Intl.supportedValuesOf('timeZone').map((e) => ({ text: e, value: e })),
+  )
 
   const tzServerDate = (datetime: string): Date => {
     return tzDate(toISO8601(datetime), timeZone.value.server)
@@ -35,30 +33,42 @@ export const useTimeZone = () => {
   }
 
   const upTZ = (datetime: string | null): string => {
-    return (timeZone.value.client === timeZone.value.server) ? (datetime ?? '') : (datetime ? format({
-      date: tzServerDate(datetime),
-      format: 'YYYY/MM/DD HH:mm',
-      locale: locale.value,
-      tz: timeZone.value.client
-    }) : '')
+    return timeZone.value.client === timeZone.value.server
+      ? (datetime ?? '')
+      : datetime
+        ? format({
+            date: tzServerDate(datetime),
+            format: 'YYYY/MM/DD HH:mm',
+            locale: locale.value,
+            tz: timeZone.value.client,
+          })
+        : ''
   }
 
   const downTZ = (datetime: string | null): string => {
-    return (timeZone.value.client === timeZone.value.server) ? (datetime ?? '') : (datetime ? format({
-      date: tzClientDate(datetime),
-      format: 'YYYY/MM/DD HH:mm',
-      locale: locale.value,
-      tz: timeZone.value.server
-    }) : '')
+    return timeZone.value.client === timeZone.value.server
+      ? (datetime ?? '')
+      : datetime
+        ? format({
+            date: tzClientDate(datetime),
+            format: 'YYYY/MM/DD HH:mm',
+            locale: locale.value,
+            tz: timeZone.value.server,
+          })
+        : ''
   }
 
   const formatHtmlTZ = (datetime: string | null): string => {
-    return (timeZone.value.client === timeZone.value.server) ?  formatHTML(datetime) : (datetime ? format({
-      date: tzServerDate(datetime),
-      format: 'YYYY/MM/DD (ddd) HH:mm',
-      locale: locale.value,
-      tz: timeZone.value.client
-    }) : '')
+    return timeZone.value.client === timeZone.value.server
+      ? formatHTML(datetime)
+      : datetime
+        ? format({
+            date: tzServerDate(datetime),
+            format: 'YYYY/MM/DD (ddd) HH:mm',
+            locale: locale.value,
+            tz: timeZone.value.client,
+          })
+        : ''
   }
 
   return { timeZone, tzOptions, upTZ, downTZ, formatHtmlTZ }

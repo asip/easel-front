@@ -6,14 +6,21 @@ import { useApiConstants } from './use-api-constants'
 
 type MutationAPIOptions = {
   method: 'post' | 'put' | 'delete'
-  url:string
+  url: string
   body?: Record<string, any> | FormData
   token?: string | null
   onRequestError?: ({ error }: { error: Error }) => void
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
 }
 
-export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions) => {
+export const useMutationApi = async <T = unknown, E = any>({
+  method,
+  url,
+  body = {},
+  token = null,
+  onRequestError,
+  onResponseError,
+}: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { backendApiURL } = useApiConstants()
@@ -30,7 +37,7 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
   }
 
   const data = ref<T>()
-  const error = ref<FetchError<E>>();
+  const error = ref<FetchError<E>>()
 
   if (method == 'post' || method == 'put') {
     const options: NitroFetchOptions<NitroFetchRequest, 'post' | 'put'> = {
@@ -39,8 +46,9 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
       body,
       headers,
       onResponse({ response }: { response: FetchResponse<T> }) {
-        if (method == 'post' && !tokenRef.value || method == 'put') tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      }
+        if ((method == 'post' && !tokenRef.value) || method == 'put')
+          tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
+      },
     }
 
     if (onRequestError) {
@@ -53,14 +61,14 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
 
     try {
       data.value = await $api<T>(url, options)
-    } catch(err: any) {
+    } catch (err: any) {
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
     const options: NitroFetchOptions<NitroFetchRequest, 'delete'> = {
       baseURL: backendApiURL.value,
       method: 'delete',
-      headers
+      headers,
     }
 
     if (onRequestError) {
@@ -73,7 +81,7 @@ export const useMutationApi = async <T=unknown, E=any>({ method, url, body = {},
 
     try {
       data.value = await $api<T>(url, options)
-    } catch(err: any) {
+    } catch (err: any) {
       error.value = err as FetchError<E>
     }
   }

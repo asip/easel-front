@@ -1,3 +1,3 @@
-import type { PaginationQuery } from "./pagination-query";
+import type { PaginationQuery } from './pagination-query'
 
 export type AccountFrameQuery = PaginationQuery

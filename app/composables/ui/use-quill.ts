@@ -1,15 +1,14 @@
-
-export function useQuill () {
+export function useQuill() {
   const p2br = (content: string): string => {
-    content = content.replace(/<\/p><p>/ig, '<br>');
-    content = content.replace(/<p>/ig, '');
-    content = content.replace(/<\/p>/ig, '');
-    content = content.replace(/<strong><span class="ql-cursor">.*?<\/span><\/strong>/ig,'')
+    content = content.replace(/<\/p><p>/gi, '<br>')
+    content = content.replace(/<p>/gi, '')
+    content = content.replace(/<\/p>/gi, '')
+    content = content.replace(/<strong><span class="ql-cursor">.*?<\/span><\/strong>/gi, '')
     return content
   }
 
   const pbr2empty = (content: string | undefined | null): string => {
-    if (!content || content == '<p><br></p>' || content == '<p></p>') content = '';
+    if (!content || content == '<p><br></p>' || content == '<p></p>') content = ''
     return content
   }
 
