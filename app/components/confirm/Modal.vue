@@ -5,8 +5,8 @@ const { id, disabled } = defineProps<{
 }>()
 
 defineSlots<{
-  message?: () => any
-  label?: () => any
+  message?: () => string
+  label?: () => string
 }>()
 
 const emit = defineEmits<{ click: [] }>()

@@ -77,7 +77,7 @@ const redirect404 = async (): Promise<void> => {
                 type="text"
                 placeholder=""
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
@@ -105,7 +105,7 @@ const redirect404 = async (): Promise<void> => {
                 type="text"
                 placeholder=""
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.creator_name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
@@ -121,7 +121,7 @@ const redirect404 = async (): Promise<void> => {
                 v-model="shootedAt"
                 type="datetime-local"
                 class="input"
-              />
+              >
             </td>
           </tr>
           <tr>
@@ -137,7 +137,7 @@ const redirect404 = async (): Promise<void> => {
               <label for="frame_private">{{ $t('model.frame.private') }}：</label>
             </td>
             <td>
-              <input id="frame_private" v-model="frame.private" type="checkbox" class="checkbox" />
+              <input id="frame_private" v-model="frame.private" type="checkbox" class="checkbox" >
             </td>
           </tr>
         </tbody>

@@ -23,5 +23,5 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <input ref="tagEditorRef" type="text" value="" class="input h-auto" />
+  <input ref="tagEditorRef" type="text" value="" class="input h-auto" >
 </template>

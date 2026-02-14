@@ -36,7 +36,7 @@ const onLinkClick = () => {
     </div>
     <figure class="flex justify-center">
       <NuxtLink :to="`${frame?.file_url}`" class="w-full ps">
-        <img :src="frame?.file_six_url" :alt="frame?.name" class="w-full h-auto" />
+        <img :src="frame?.file_six_url" :alt="frame?.name" class="w-full h-auto" >
       </NuxtLink>
     </figure>
     <div class="flex justify-center">

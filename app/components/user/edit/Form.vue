@@ -62,7 +62,7 @@ defineExpose({ clearForm })
                 multiple="false"
                 class="file-input"
                 @change="onSelectFile"
-              />
+              >
               <div v-for="error of r$.$errors.image" :key="error.toString()">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
@@ -85,7 +85,7 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="username"
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.name" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
@@ -107,7 +107,7 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="email"
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.email" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>

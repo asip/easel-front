@@ -110,7 +110,7 @@ const redirectOrReload404 = async (): Promise<void> => {
                     :src="`${commentModel?.user_image_url}`"
                     :alt="commentModel?.user_name"
                     class="rounded"
-                  />
+                  >
                 </div>
               </NuxtLink>
               <NuxtLink

@@ -75,7 +75,7 @@ const onClearClick = async (): Promise<void> => {
                       type="text"
                       placeholder=""
                       class="input w-80"
-                    />
+                    >
                   </div>
                   <div v-for="error of r$.$errors.word" :key="error" class="flex">
                     <div class="text-red-500 text-xs">{{ error }}</div>
@@ -93,7 +93,7 @@ const onClearClick = async (): Promise<void> => {
                     type="text"
                     placeholder=""
                     class="input w-50"
-                  />
+                  >
                   <div v-for="error of r$.$errors.frame_name" :key="error" class="flex">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
@@ -110,7 +110,7 @@ const onClearClick = async (): Promise<void> => {
                     type="text"
                     placeholder=""
                     class="input w-50"
-                  />
+                  >
                   <div v-for="error of r$.$errors.tag_name" :key="error" class="flex">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
@@ -127,7 +127,7 @@ const onClearClick = async (): Promise<void> => {
                     type="text"
                     placeholder=""
                     class="input w-50"
-                  />
+                  >
                   <div v-for="error of r$.$errors.user_name" :key="error" class="flex">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
@@ -144,7 +144,7 @@ const onClearClick = async (): Promise<void> => {
                     type="text"
                     placeholder=""
                     class="input w-50"
-                  />
+                  >
                   <div v-for="error of r$.$errors.creator_name" :key="error" class="flex">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
@@ -164,7 +164,7 @@ const onClearClick = async (): Promise<void> => {
                       v-model="frameQuery.items.date"
                       type="date"
                       class="input w-50"
-                    />
+                    >
                   </div>
                 </td>
               </tr>
@@ -177,13 +177,13 @@ const onClearClick = async (): Promise<void> => {
             :value="$t('component.tag_search.search')"
             class="btn btn-outline btn-primary"
             @click="onSearchClick"
-          />
+          >
           <input
             type="button"
             :value="$t('component.tag_search.clear')"
             class="btn btn-outline btn-warning"
             @click="onClearClick"
-          />
+          >
         </div>
       </form>
     </div>

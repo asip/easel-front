@@ -62,7 +62,7 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="email"
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.email" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
@@ -80,7 +80,7 @@ defineExpose({ clearForm })
                 placeholder=""
                 autocomplete="current-password"
                 class="input"
-              />
+              >
               <div v-for="error of r$.$errors.password" :key="error">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>

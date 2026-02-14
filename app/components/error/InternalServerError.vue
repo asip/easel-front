@@ -14,7 +14,7 @@
     </header>
     <article>
       <p>
-        <strong>We're sorry, but something went wrong.</strong><br />
+        <strong>We're sorry, but something went wrong.</strong><br >
         If you're the application owner check the logs for more information.
       </p>
     </article>

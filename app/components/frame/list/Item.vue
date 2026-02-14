@@ -42,7 +42,7 @@ const onFlipClick = (): void => {
             :src="`${frame?.file_six_url}`"
             :alt="frame?.name"
             class="w-full h-auto"
-          />
+          >
         </NuxtLink>
       </figure>
     </div>

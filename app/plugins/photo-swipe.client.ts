@@ -1,5 +1,5 @@
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
-// @ts-expect-error
+// @ts-expect-error : @types doesn't exist
 import PhotoSwipeFullscreen from 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js'
 
 export default defineNuxtPlugin((nuxtApp) => {

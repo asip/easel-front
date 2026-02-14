@@ -72,7 +72,7 @@ const redirect404 = async (): Promise<void> => {
                 :alt="loginUser.name"
                 class="rounded w-5 h-5"
                 decoding="async"
-              />
+              >
             </div>
             <div class="badge badge-outline badge-accent rounded-full">
               {{ loginUser.name }}

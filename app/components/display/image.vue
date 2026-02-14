@@ -19,13 +19,23 @@ const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox({
 })
 
 const linkURL = computed<string | undefined>(() => {
-  if (model.value && 'file_url' in model.value) return `${model?.value.file_url}`
-  if (model.value && 'image_url' in model.value) return `${model?.value.image_url}`
+  if (model.value && 'file_url' in model.value) {
+    return `${model?.value.file_url}`
+  } else if (model.value && 'image_url' in model.value) {
+    return `${model?.value.image_url}`
+  } else {
+    return undefined
+  }
 })
 
 const imgURL = computed<string | undefined>(() => {
-  if (model.value && 'file_three_url' in model.value) return `${model?.value.file_three_url}`
-  if (model.value && 'image_one_url' in model.value) return `${model?.value.image_one_url}`
+  if (model.value && 'file_three_url' in model.value) {
+    return `${model?.value.file_three_url}`
+  } else if (model.value && 'image_one_url' in model.value) {
+    return `${model?.value.image_one_url}`
+  } else {
+    return undefined
+  }
 })
 
 onMounted(async () => {
@@ -46,14 +56,14 @@ onUnmounted(() => {
 <template>
   <div v-if="original" id="gallery">
     <NuxtLink v-if="photoswipe" class="mx-auto" :to="linkURL">
-      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
-      <img v-else :src="imgURL" alt="" class="mx-auto" />
+      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
+      <img v-else :src="imgURL" alt="" class="mx-auto" >
     </NuxtLink>
     <NuxtLink v-else id="image" class="mx-auto" :to="linkURL">
-      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
-      <img v-else :src="imgURL" alt="" class="mx-auto" />
+      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
+      <img v-else :src="imgURL" alt="" class="mx-auto" >
     </NuxtLink>
   </div>
-  <img v-else-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" />
-  <img v-else :src="imgURL" alt="" class="mx-auto" />
+  <img v-else-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
+  <img v-else :src="imgURL" alt="" class="mx-auto" >
 </template>

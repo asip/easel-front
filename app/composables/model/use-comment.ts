@@ -1,12 +1,11 @@
-import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
+import type { Comment, CommentResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
 export function useComment() {
   const { $i18n } = useNuxtApp()
 
-  const { copy, create } = useEntity<Comment, CommentResource>()
+  const { copy } = useEntity<Comment, CommentResource>()
 
-  const { formatHtmlTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearLoginUser } = useAccount()
 
@@ -20,17 +19,6 @@ export function useComment() {
     created_at: '',
     updated_at: null,
   })
-
-  const upCommentTZ = (comment: Comment): void => {
-    comment.created_at = formatHtmlTZ(comment.created_at)
-    comment.updated_at = formatHtmlTZ(comment.updated_at)
-  }
-
-  const makeComment = ({ from }: { from: CommentResource }): Comment => {
-    const comment: Comment = create({ from })
-    upCommentTZ(comment)
-    return comment
-  }
 
   const setComment = ({
     from,

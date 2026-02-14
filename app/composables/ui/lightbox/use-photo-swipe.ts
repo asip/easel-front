@@ -16,7 +16,7 @@ export function usePhotoSwipe({ selector, anchor = 'a' }: psOptions) {
         pswpModule: () => import('photoswipe'),
       })
 
-      const fullscreenPlugin = new $psFullscreen(lightbox)
+      const fullscreenPlugin = new $psFullscreen(lightbox) // eslint-disable-line
       lightbox.init()
     }
   }
