@@ -1,38 +1,25 @@
 <script setup lang="ts">
-import sanitizeHtml from 'sanitize-html'
 import type { Comment } from '~/interfaces'
 import type { RefQuery } from '~/types'
 
-const { p2br } = useQuill()
 const { setFlash } = useSonner()
 const { loggedIn, loginUser } = useAccount()
-const {
-  comment,
-  externalErrors,
-  backendErrorInfo,
-  updateComment,
-  deleteComment,
-  flash,
-  isSuccess,
-  set404Alert,
-  processing,
-  setComment,
-} = useComment()
+
+const commenter = useComment()
+const { comment, deleteComment, flash, isSuccess, set404Alert, processing, setComment } = commenter
+
 const { getComments } = useComments()
-
-const { commentRules } = useCommentRules()
-
-const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
 const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
+const form = useTemplateRef('form')
+
 const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
-const sanitizedCommentBody = computed<string>(() =>
-  p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>'),
-)
+provide('commenter', commenter)
+provide('edit', edit)
 
 comment.value.frame_id = commentModel.value?.frame_id
 
@@ -46,27 +33,6 @@ const onCancelClick = (): void => {
   setComment({ from: commentModel.value })
 }
 
-const onUpdateClick = async (): Promise<void> => {
-  r$.$touch()
-  r$.$clearExternalErrors()
-  r$.$reset()
-  const { valid } = await r$.$validate()
-
-  if (valid) {
-    await updateComment()
-    set404Alert()
-    setFlash(flash.value)
-    if (isSuccess()) {
-      r$.$touch()
-      r$.$reset()
-      setComment({ to: commentModel.value })
-      edit.value = false
-    } else {
-      redirectOrReload404()
-    }
-  }
-}
-
 const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) {
     await deleteComment(commentModel.value)
@@ -76,20 +42,7 @@ const onDeleteClick = async (): Promise<void> => {
   if (isSuccess()) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
-    redirectOrReload404()
-  }
-}
-
-const redirectOrReload404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 404) {
-    if (backendErrorInfo.value.source == 'Frame') {
-      await navigateTo(`/frames/${comment.value.frame_id}`)
-      globalThis.setTimeout(() => {
-        reloadNuxtApp()
-      }, 2000)
-    } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
-      await getComments(comment.value.frame_id, { cache: false })
-    }
+    form.value?.redirectOrReload404()
   }
 }
 </script>
@@ -137,39 +90,10 @@ const redirectOrReload404 = async (): Promise<void> => {
           </div>
         </div>
         <div v-if="!edit" class="flex justify-start items-center">
-          <table class="table table-bordered table-rounded table-fixed">
-            <tbody>
-              <tr>
-                <td class="wrap-break-word">
-                  <span v-html="sanitizedCommentBody" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <FrameCommentListDetail v-model="commentModel" />
         </div>
         <form v-else>
-          <div class="flex justify-start">
-            <div class="w-full rounded-[5px] editor-border">
-              <Editor v-model="comment.body" />
-            </div>
-          </div>
-          <div class="flex justify-between w-full mt-1">
-            <div>
-              <div v-for="error of r$.$errors.body" :key="error">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="btn btn-outline btn-primary"
-                :disabled="processing"
-                @click="onUpdateClick"
-              >
-                {{ $t('action.model.update') }}
-              </button>
-            </div>
-          </div>
+          <FrameCommentEditForm ref="form" v-model="commentModel" />
         </form>
       </div>
     </div>
