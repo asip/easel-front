@@ -31,7 +31,7 @@ export const useQueryApi = async <T = unknown, E = any>({
 }: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
-  const { backendApiURL } = useApiConstants()
+  const { baseURL } = useApiConstants()
 
   const tokenRef = ref<string>()
 
@@ -43,7 +43,7 @@ export const useQueryApi = async <T = unknown, E = any>({
   }
 
   const options: NitroFetchOptions<NitroFetchRequest, 'get'> = {
-    baseURL: backendApiURL.value,
+    baseURL: baseURL.value,
     method: 'get',
     query,
     headers,

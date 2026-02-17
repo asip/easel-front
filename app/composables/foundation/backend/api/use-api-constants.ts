@@ -11,7 +11,7 @@ export const useApiConstants = () => {
 
   const backendApiPath = runtimeConfig.public.backendApiPath
 
-  const backendApiURL = computed<string>(() => `${backendOriginURL.value}${backendApiPath}`)
+  const baseURL = computed<string>(() => `${backendOriginURL.value}${backendApiPath}`)
 
-  return { backendApiURL }
+  return { baseURL }
 }

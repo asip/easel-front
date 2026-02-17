@@ -23,7 +23,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 }: MutationAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
-  const { backendApiURL } = useApiConstants()
+  const { baseURL } = useApiConstants()
 
   const headers: Record<string, string> = commonHeaders.value
 
@@ -41,7 +41,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 
   if (method == 'post' || method == 'put') {
     const options: NitroFetchOptions<NitroFetchRequest, 'post' | 'put'> = {
-      baseURL: backendApiURL.value,
+      baseURL: baseURL.value,
       method,
       body,
       headers,
@@ -66,7 +66,7 @@ export const useMutationApi = async <T = unknown, E = any>({
     }
   } else if (method == 'delete') {
     const options: NitroFetchOptions<NitroFetchRequest, 'delete'> = {
-      baseURL: backendApiURL.value,
+      baseURL: baseURL.value,
       method: 'delete',
       headers,
     }
