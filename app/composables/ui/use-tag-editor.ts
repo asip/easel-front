@@ -1,5 +1,5 @@
 interface TagSearchType {
-  searchTag: (name: string, { abort }: { abort: AbortController }) => Promise<void>
+  searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
   tags: Ref<string[]>
 }
 
@@ -53,7 +53,7 @@ export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
     controller?.abort()
     controller = new AbortController()
 
-    await tagSearch?.searchTag(value, { abort: controller })
+    await tagSearch?.searchTag(value, { signal: controller.signal })
     setAutocomplete(value)
   }
 

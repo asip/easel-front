@@ -12,7 +12,7 @@ export type QueryAPIOptions = {
   url: string
   query?: SearchParams
   token?: string | null
-  abort?: AbortController
+  signal?: AbortSignal
   onRequestError?: ({ error }: { error: Error }) => void
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
   fresh?: boolean
@@ -25,7 +25,7 @@ export const useQueryApi = async <T = unknown, E = any>({
   token = null,
   fresh = false,
   cache = true,
-  abort,
+  signal,
   onRequestError,
   onResponseError,
 }: QueryAPIOptions) => {
@@ -52,8 +52,8 @@ export const useQueryApi = async <T = unknown, E = any>({
     },
   }
 
-  if (abort) {
-    options.signal = abort.signal
+  if (signal) {
+    options.signal = signal
   }
 
   if (onRequestError) {
