@@ -12,6 +12,7 @@ type TagEditorOptions = {
 export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $tagify } = useNuxtApp() as any
 
   let controller: AbortController

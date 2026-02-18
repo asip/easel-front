@@ -5,6 +5,7 @@ import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
 
 interface SearchParams {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 
@@ -14,11 +15,13 @@ export type QueryAPIOptions = {
   token?: string | null
   signal?: AbortSignal
   onRequestError?: ({ error }: { error: Error }) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
   fresh?: boolean
   cache?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useQueryApi = async <T = unknown, E = any>({
   url,
   query = {},
@@ -88,7 +91,7 @@ export const useQueryApi = async <T = unknown, E = any>({
 
     try {
       data.value = await $api<T>(url, options)
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       error.value = err as FetchError<E>
     }
 

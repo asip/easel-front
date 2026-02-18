@@ -6,9 +6,7 @@ export default withNuxt(
   },
   {
     files: ['**/*.ts'],
-    rules: {
-      '@typescript-eslint/no-explicit-any': 0,
-    },
+    rules: {},
   },
   {
     files: ['**/*.vue'],

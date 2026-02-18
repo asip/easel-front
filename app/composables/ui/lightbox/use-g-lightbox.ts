@@ -3,8 +3,10 @@ type glOptions = {
 }
 
 export function useGLightbox({ selector }: glOptions) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let lightbox: any
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $gLightbox } = useNuxtApp() as any
 
   const initGLightbox = (): void => {

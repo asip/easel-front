@@ -7,12 +7,15 @@ import { useApiConstants } from './use-api-constants'
 type MutationAPIOptions = {
   method: 'post' | 'put' | 'delete'
   url: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: Record<string, any> | FormData
   token?: string | null
   onRequestError?: ({ error }: { error: Error }) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useMutationApi = async <T = unknown, E = any>({
   method,
   url,
@@ -61,7 +64,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 
     try {
       data.value = await $api<T>(url, options)
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
@@ -81,7 +84,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 
     try {
       data.value = await $api<T>(url, options)
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       error.value = err as FetchError<E>
     }
   }
