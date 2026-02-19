@@ -56,7 +56,7 @@
     "oxfmt": "^0.32.0",
     "playwright-core": "^1.58.2",
     "typescript": "5.9.3",
-    "vite": "^8.0.0-beta.14",
+    "vite": "^8.0.0-beta.15",
     "vitest": "^4.0.18"
   },
   "pnpm": {
@@ -64,7 +64,7 @@
       "citty": "0.2.1",
       "esbuild": "0.27.3",
       "magicast": "0.5.2",
-      "vite": "^8.0.0-beta.14",
+      "vite": "^8.0.0-beta.15",
       "vitest": "4.0.18",
       "vue": "^3.6.0-beta.6"
     },
