@@ -23,13 +23,9 @@ export const useDatetimeLocal = () => {
     return datetime ? fromISO8601(datetime) : ''
   }
 
-  const formatHTML = (datetime: string | null): string => {
+  const formatHTML = (datetime: string | null, fmt: string): string => {
     return datetime
-      ? format(
-          parse(datetime, 'YYYY/MM/DD HH:mm', locale.value),
-          'YYYY/MM/DD (ddd) HH:mm',
-          locale.value,
-        )
+      ? format(parse(datetime, 'YYYY/MM/DD HH:mm', locale.value), fmt, locale.value)
       : ''
   }
 

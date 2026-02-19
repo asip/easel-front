@@ -8,8 +8,8 @@ export function useComments() {
   const { flash, clearFlash } = useFlash()
 
   const upCommentTZ = (comment: Comment): void => {
-    comment.created_at = formatHtmlTZ(comment.created_at)
-    comment.updated_at = formatHtmlTZ(comment.updated_at)
+    comment.created_at = formatHtmlTZ(comment.created_at, 'YYYY/MM/DD (ddd) HH:mm')
+    comment.updated_at = formatHtmlTZ(comment.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
   }
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {

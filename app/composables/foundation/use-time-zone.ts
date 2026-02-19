@@ -58,13 +58,13 @@ export const useTimeZone = () => {
         : ''
   }
 
-  const formatHtmlTZ = (datetime: string | null): string => {
+  const formatHtmlTZ = (datetime: string | null, fmt: string): string => {
     return timeZone.value.client === timeZone.value.server
-      ? formatHTML(datetime)
+      ? formatHTML(datetime, fmt)
       : datetime
         ? format({
             date: tzServerDate(datetime),
-            format: 'YYYY/MM/DD (ddd) HH:mm',
+            format: fmt,
             locale: locale.value,
             tz: timeZone.value.client,
           })

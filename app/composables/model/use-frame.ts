@@ -77,8 +77,8 @@ export function useFrame() {
 
   const upFrameTZ = (frame: Frame): void => {
     frame.shooted_at = upTZ(frame.shooted_at)
-    frame.created_at = formatHtmlTZ(frame.created_at)
-    frame.updated_at = formatHtmlTZ(frame.updated_at)
+    frame.created_at = formatHtmlTZ(frame.created_at, 'YYYY/MM/DD (ddd) HH:mm')
+    frame.updated_at = formatHtmlTZ(frame.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
   }
 
   const setFrame = ({ from }: { from: FrameResource }): void => {

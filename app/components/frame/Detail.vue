@@ -93,7 +93,7 @@ const onDeleteClick = (): void => {
         </tr>
         <tr>
           <td>{{ $t('model.frame.shooted_at') }}：</td>
-          <td>{{ formatHTML(frame?.shooted_at ?? '') }}</td>
+          <td>{{ formatHTML(frame?.shooted_at ?? '', 'YYYY/MM/DD (ddd) HH:mm') }}</td>
         </tr>
         <tr>
           <td>{{ $t('model.frame.comment') }}：</td>
