@@ -8,9 +8,11 @@ export const useLocale = () => {
     // console.log(browserLocale)
     // console.log(locales.value)
 
+    type AvailableLocales = (typeof $i18n.availableLocales)[number]
+
     locale.value = (
       ($i18n.availableLocales as string[]).includes(browserLocale ?? '') ? browserLocale : 'en'
-    ) as 'en' | 'ja'
+    ) as AvailableLocales
   }
 
   return { locale, autoDetect }
