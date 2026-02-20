@@ -64,7 +64,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 
     try {
       data.value = await $api<T>(url, options)
-    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (err: unknown) {
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
@@ -84,7 +84,7 @@ export const useMutationApi = async <T = unknown, E = any>({
 
     try {
       data.value = await $api<T>(url, options)
-    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+    } catch (err: unknown) {
       error.value = err as FetchError<E>
     }
   }
