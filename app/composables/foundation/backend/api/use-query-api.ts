@@ -10,7 +10,6 @@ interface SearchParams {
 }
 
 export type QueryAPIOptions = {
-  url: string
   query?: SearchParams
   token?: string | null
   signal?: AbortSignal
@@ -22,16 +21,7 @@ export type QueryAPIOptions = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useQueryApi = async <T = unknown, E = any>({
-  url,
-  query = {},
-  token = null,
-  fresh = false,
-  cache = true,
-  signal,
-  onRequestError,
-  onResponseError,
-}: QueryAPIOptions) => {
+export const useQueryApi = async <T = unknown, E = any>(url: string, options?: QueryAPIOptions) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
@@ -40,36 +30,39 @@ export const useQueryApi = async <T = unknown, E = any>({
 
   const headers: Record<string, string> = commonHeaders.value
 
-  if (token) {
-    headers.Authorization = `Bearer ${token}`
-    tokenRef.value = token
+  const fresh: boolean = options?.fresh || false
+  const cache: boolean = options?.cache || true
+
+  if (options?.token) {
+    headers.Authorization = `Bearer ${options.token}`
+    tokenRef.value = options.token
   }
 
-  const options: NitroFetchOptions<NitroFetchRequest, 'get'> = {
+  const getOptions: NitroFetchOptions<NitroFetchRequest, 'get'> = {
     baseURL: baseURL.value,
     method: 'get',
-    query,
+    query: options?.query || {},
     headers,
     onResponse({ response }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     },
   }
 
-  if (signal) {
-    options.signal = signal
+  if (options?.signal) {
+    getOptions.signal = options.signal
   }
 
-  if (onRequestError) {
-    options.onRequestError = onRequestError
+  if (options?.onRequestError) {
+    getOptions.onRequestError = options.onRequestError
   }
 
-  if (onResponseError) {
-    options.onResponseError = onResponseError
+  if (options?.onResponseError) {
+    getOptions.onResponseError = options.onResponseError
   }
 
   if (cache) {
     const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
-      $api(url, options),
+      $api(url, getOptions),
     )
 
     if (fresh) {
@@ -90,7 +83,7 @@ export const useQueryApi = async <T = unknown, E = any>({
     const error = ref<FetchError<E>>()
 
     try {
-      data.value = await $api<T>(url, options)
+      data.value = await $api<T>(url, getOptions)
     } catch (err: unknown) {
       error.value = err as FetchError<E>
     }

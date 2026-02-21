@@ -13,8 +13,7 @@ export function useFollow() {
     const { data, error } = await useQueryApi<
       FollowingResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
-      url: `/account/following/${userId}`,
+    >(`/account/following/${userId}`, {
       token: accessToken.value,
     })
 
@@ -35,9 +34,8 @@ export function useFollow() {
     const { error } = await useMutationApi<
       FollowingResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/users/${userId}/follow_relationships`, {
       method: 'post',
-      url: `/users/${userId}/follow_relationships`,
       token: accessToken.value,
     })
 
@@ -54,9 +52,8 @@ export function useFollow() {
     const { error } = await useMutationApi<
       FollowingResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/users/${userId}/follow_relationships`, {
       method: 'delete',
-      url: `/users/${userId}/follow_relationships`,
       token: accessToken.value,
     })
 

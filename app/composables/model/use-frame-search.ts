@@ -83,23 +83,24 @@ export const useFrameSearch = () => {
     })
 
   const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
+    let url = ''
+
     const getOptions: QueryAPIOptions = {
-      url: '',
       query: queryMap.value,
       cache: options?.cache ?? true,
     }
 
     if (loggedIn.value) {
-      getOptions.url = '/frames/authenticated'
+      url = '/frames/authenticated'
       getOptions.token = accessToken.value
     } else {
-      getOptions.url = '/frames'
+      url = '/frames'
     }
 
     const { data, error } = await useQueryApi<
       FramesResource,
       ErrorsResource<ErrorMessages<string>>
-    >(getOptions)
+    >(url, getOptions)
 
     clearFlash()
 

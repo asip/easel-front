@@ -9,13 +9,13 @@ export const useTagSearch = () => {
 
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
-      url: '/tags/search',
       query: { q: name },
       signal,
       cache: false,
     }
 
     const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
+      '/tags/search',
       getOptions,
     )
 

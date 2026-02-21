@@ -26,9 +26,9 @@ export const useUser = () => {
   })
 
   const getUser = async (id: string): Promise<void> => {
-    const { data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
-      url: `/users/${id}`,
-    })
+    const { data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${id}`,
+    )
 
     clearFlash()
 

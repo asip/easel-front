@@ -108,23 +108,24 @@ export function useFrame() {
     id: string,
     options?: { cache?: boolean },
   ): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
+    let url = ''
+
     // console.log(`token: ${loginUser.value.token}`)
     const getOptions: QueryAPIOptions = {
-      url: '',
       cache: options?.cache ?? true,
     }
 
     if (loggedIn.value) {
-      getOptions.url = `/frames/${id}/authenticated`
+      url = `/frames/${id}/authenticated`
       getOptions.token = accessToken.value
     } else {
-      getOptions.url = `/frames/${id}`
+      url = `/frames/${id}`
     }
 
     const { data, error, refresh } = await useQueryApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
-    >(getOptions)
+    >(url, getOptions)
 
     clearFlash()
 
@@ -166,9 +167,8 @@ export function useFrame() {
     const { data, error, pending } = await useMutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/frames/', {
       method: 'post',
-      url: '/frames/',
       body: formData,
       token: accessToken.value,
     })
@@ -207,9 +207,8 @@ export function useFrame() {
     const { error, pending } = await useMutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/frames/${frame.value.id}`, {
       method: 'put',
-      url: `/frames/${frame.value.id}`,
       body: postData,
       token: accessToken.value,
     })
@@ -231,9 +230,8 @@ export function useFrame() {
     const { error, pending } = await useMutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/frames/${frame.value.id}`, {
       method: 'delete',
-      url: `/frames/${frame.value.id}`,
       token: accessToken.value,
     })
 

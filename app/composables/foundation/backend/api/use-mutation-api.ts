@@ -6,7 +6,6 @@ import { useApiConstants } from './use-api-constants'
 
 type MutationAPIOptions = {
   method: 'post' | 'put' | 'delete'
-  url: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: Record<string, any> | FormData
   token?: string | null
@@ -16,14 +15,10 @@ type MutationAPIOptions = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useMutationApi = async <T = unknown, E = any>({
-  method,
-  url,
-  body = {},
-  token = null,
-  onRequestError,
-  onResponseError,
-}: MutationAPIOptions) => {
+export const useMutationApi = async <T = unknown, E = any>(
+  url: string,
+  { method, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions,
+) => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()

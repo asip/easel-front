@@ -174,9 +174,8 @@ export const useAccount = () => {
     const { error, pending } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/users/', {
       method: 'post',
-      url: '/users/',
       body: formData,
     })
 
@@ -198,8 +197,7 @@ export const useAccount = () => {
       const { token, data, error } = await useQueryApi<
         UserResource,
         ErrorsResource<ErrorMessages<string>>
-      >({
-        url: '/account/profile',
+      >('/account/profile', {
         token: accessToken.value,
         fresh: true,
       })
@@ -231,9 +229,8 @@ export const useAccount = () => {
     const { token, data, error } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/sessions/', {
       method: 'post',
-      url: '/sessions/',
       body: postData,
     })
 
@@ -264,9 +261,8 @@ export const useAccount = () => {
     const { token, data, error } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/oauth/sessions/', {
       method: 'post',
-      url: '/oauth/sessions/',
       body: postData,
     })
 
@@ -303,9 +299,8 @@ export const useAccount = () => {
     const { data, error, pending } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/account/profile/', {
       method: 'put',
-      url: '/account/profile/',
       body: formData,
       token: accessToken.value,
     })
@@ -346,9 +341,8 @@ export const useAccount = () => {
     const { data, error, pending } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/account/password/', {
       method: 'put',
-      url: '/account/password/',
       body: formData,
       token: accessToken.value,
     })
@@ -373,11 +367,13 @@ export const useAccount = () => {
   }
 
   const logout = async (): Promise<void> => {
-    const { error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>({
-      method: 'delete',
-      url: '/sessions/logout',
-      token: accessToken.value,
-    })
+    const { error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
+      '/sessions/logout',
+      {
+        method: 'delete',
+        token: accessToken.value,
+      },
+    )
 
     clearFlash()
 
@@ -394,9 +390,8 @@ export const useAccount = () => {
     const { data, error, pending } = await useMutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >('/account', {
       method: 'delete',
-      url: '/account',
       token: accessToken.value,
     })
 

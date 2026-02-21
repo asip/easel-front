@@ -32,8 +32,7 @@ export function useComments() {
     const { data, error } = await useQueryApi<
       CommentsResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
-      url: `/frames/${frameId}/comments`,
+    >(`/frames/${frameId}/comments`, {
       cache: options?.cache ?? true,
     })
 

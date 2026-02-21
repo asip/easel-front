@@ -47,7 +47,6 @@ export function useAccountFrames() {
 
   const getFrames = async (options?: { cache?: boolean }): Promise<void> => {
     const getOptions: QueryAPIOptions = {
-      url: '/account/frames',
       query: {
         page: currentPage.value,
       },
@@ -58,7 +57,7 @@ export function useAccountFrames() {
     const { data, error } = await useQueryApi<
       FramesResource,
       ErrorsResource<ErrorMessages<string>>
-    >(getOptions)
+    >('/account/frames', getOptions)
 
     clearFlash()
 

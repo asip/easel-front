@@ -68,9 +68,8 @@ export function useComment() {
     const { error, pending } = await useMutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/frames/${comment.value.frame_id}/comments`, {
       method: 'post',
-      url: `/frames/${comment.value.frame_id}/comments`,
       body: postData,
       token: accessToken.value,
     })
@@ -100,9 +99,8 @@ export function useComment() {
     const { data, error, pending } = await useMutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
       method: 'put',
-      url: `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
       body: postData,
       token: accessToken.value,
     })
@@ -127,9 +125,8 @@ export function useComment() {
     const { error, pending } = await useMutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
-    >({
+    >(`/frames/${comment.frame_id}/comments/${comment.id}`, {
       method: 'delete',
-      url: `/frames/${comment.frame_id}/comments/${comment.id}`,
       token: accessToken.value,
     })
 

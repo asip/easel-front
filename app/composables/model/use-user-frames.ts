@@ -60,7 +60,6 @@ export function useUserFrames() {
     options?: { cache?: boolean },
   ): Promise<void> => {
     const getOptions: QueryAPIOptions = {
-      url: `/users/${userId}/frames`,
       query: {
         page: currentPage.value,
       },
@@ -70,7 +69,7 @@ export function useUserFrames() {
     const { data, error } = await useQueryApi<
       FramesResource,
       ErrorsResource<ErrorMessages<string>>
-    >(getOptions)
+    >(`/users/${userId}/frames`, getOptions)
 
     clearFlash()
 
