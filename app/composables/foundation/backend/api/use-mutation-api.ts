@@ -18,7 +18,12 @@ type MutationAPIOptions = {
 export const useMutationApi = async <T = unknown, E = any>(
   url: string,
   { method, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions,
-) => {
+): Promise<{
+  token: string | undefined
+  data: T | undefined
+  error: FetchError<E> | undefined
+  pending: boolean
+}> => {
   const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
