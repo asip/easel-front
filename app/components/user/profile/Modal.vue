@@ -6,7 +6,7 @@ const user = defineModel<User>()
 
 <template>
   <dialog id="user_profile_modal" class="modal">
-    <div class="modal-box">
+    <div class="modal-box divide-y divide-gray-200">
       <UserProfile v-model="user" />
     </div>
     <form method="dialog" class="modal-backdrop">

@@ -17,7 +17,8 @@ const sanitizedProfile = computed<string>(() => {
 </script>
 
 <template>
-  <div class="flex gap-1">
+  <div class="flex">{{ user?.name }}</div>
+  <div class="flex gap-1 pt-1">
     <DisplayImage v-model="user" :small="true" />
     <table class="table table-bordered table-rounded flex-auto">
       <tbody>
