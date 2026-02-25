@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const {
   comment,
   externalErrors,
@@ -68,14 +68,14 @@ const redirect404 = async (): Promise<void> => {
           <div class="flex justify-start items-center gap-1">
             <div class="avatar w-5 h-5">
               <img
-                :src="`${loginUser.image_thumb_url}`"
-                :alt="loginUser.name"
+                :src="`${account.image_thumb_url}`"
+                :alt="account.name"
                 class="rounded w-5 h-5"
                 decoding="async"
               >
             </div>
             <div class="badge badge-outline badge-accent rounded-full">
-              {{ loginUser.name }}
+              {{ account.name }}
             </div>
           </div>
         </div>

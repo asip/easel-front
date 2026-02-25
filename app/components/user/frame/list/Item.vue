@@ -8,7 +8,7 @@ const { from = undefined } = defineProps<{
   from?: string
 }>()
 
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const { currentPage, frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
 const queryMapWithRef = computed<RefQuery>(() => {
@@ -29,7 +29,7 @@ const onLinkClick = () => {
 
 <template>
   <div class="card-body">
-    <div v-if="loggedIn && frame?.user_id == loginUser.id" class="flex justify-start">
+    <div v-if="loggedIn && frame?.user_id == account.id" class="flex justify-start">
       <div class="badge badge-xs badge-outline badge-accent rounded-full">
         {{ $t(`enums.private.${frame?.private}`) }}
       </div>

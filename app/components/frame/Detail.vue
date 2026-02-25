@@ -7,7 +7,7 @@ import type { RefQuery } from '~/types'
 const { p2br } = useQuill()
 const { referers } = useReferer()
 const { queryMap } = useFrameSearch()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const { openModal } = useModal()
 const { formatHTML } = useDatetimeLocal()
 
@@ -46,12 +46,12 @@ const onDeleteClick = (): void => {
       <span @click="onPageBack">
         <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
       </span>
-      <NuxtLink v-if="loggedIn && frame?.user_id == loginUser.id" :to="`/frames/${frame?.id}/edit`">
+      <NuxtLink v-if="loggedIn && frame?.user_id == account.id" :to="`/frames/${frame?.id}/edit`">
         <i class="bi bi-pencil-square text-accent hover:text-primary" />
       </NuxtLink>
       <!-- Button trigger modal -->
       <button
-        v-if="loggedIn && frame?.user_id == loginUser.id"
+        v-if="loggedIn && frame?.user_id == account.id"
         type="button"
         class="btn-icon-local"
         @click="onDeleteClick"
@@ -73,7 +73,7 @@ const onDeleteClick = (): void => {
   </div>
   <div class="flex justify-center flex-wrap mb-1">
     <div
-      v-if="loggedIn && frame?.user_id == loginUser.id"
+      v-if="loggedIn && frame?.user_id == account.id"
       class="badge badge-outline badge-accent truncate rounded-full"
     >
       {{ $t(`enums.private.${frame?.private}`) }}

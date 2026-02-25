@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, setUser, initTimeZone } = inject('account') as UseAccountType
+const { loggedIn, account, setUser, initTimeZone } = inject('accounter') as UseAccountType
 
 const onCloseClick = (): void => {
   closeModal('#profile_modal')
@@ -35,7 +35,7 @@ const onDeleteAccountClick = (): void => {
         <a href="#" @click.prevent="onEditClick">
           <i class="bi bi-pencil-square text-accent hover:text-primary" />
         </a>
-        <span v-if="loginUser && !loginUser.social_login">
+        <span v-if="account && !account.social_login">
           <a href="#" @click.prevent="onEditPasswordClick">
             <i class="bi bi-lock text-accent hover:text-primary" />
           </a>

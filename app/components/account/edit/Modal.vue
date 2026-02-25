@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn } = inject('account') as UseAccountType
+const { loggedIn } = inject('accounter') as UseAccountType
 
 const form = useTemplateRef('form')
 

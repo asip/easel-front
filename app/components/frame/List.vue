@@ -3,7 +3,7 @@ const { $i18n } = useNuxtApp()
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
-// const { loginUser } = useAccount()
+// const { account } = useAccount()
 const { frameQuery, queryMap, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } =
   useFrameSearch()
 

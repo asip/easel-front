@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser } = inject('account') as UseAccountType
+const { loggedIn, account } = inject('accounter') as UseAccountType
 
 const form = useTemplateRef('form')
 
@@ -13,7 +13,7 @@ const onBackClick = (): void => {
 
 <template>
   <dialog
-    v-if="loggedIn && loginUser && !loginUser.social_login"
+    v-if="loggedIn && account && !account.social_login"
     id="edit_password_modal"
     class="modal"
   >

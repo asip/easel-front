@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, loginUser, user, updatePassword, externalErrors, processing, isSuccess, flash } =
-  inject('account') as UseAccountType
+const { loggedIn, account, user, updatePassword, externalErrors, processing, isSuccess, flash } =
+  inject('accounter') as UseAccountType
 const { passwordRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, passwordRules, { externalErrors })
@@ -36,7 +36,7 @@ defineExpose({ clearForm })
     <div class="flex justify-center">
       <table class="table table-bordered table-rounded">
         <tbody>
-          <tr v-if="!loginUser.social_login">
+          <tr v-if="!account.social_login">
             <td class="w-[12em]">
               <label for="user_current_password">{{ $t('model.user.current_password') }}：</label>
             </td>

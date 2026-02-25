@@ -9,7 +9,7 @@ export function useFrame() {
 
   const { upTZ, downTZ, formatHtmlTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
-  const { loggedIn, accessToken, clearLoginUser } = useAccount()
+  const { loggedIn, accessToken, clearAccount } = useAccount()
 
   const frame: Ref<Frame> = ref<Frame>({
     id: 0,
@@ -91,7 +91,7 @@ export function useFrame() {
 
   const { backendErrorInfo, setAlert } = useAlert({
     flash,
-    caller: { clearLoginUser, setExternalErrors },
+    caller: { clearAccount, setExternalErrors },
   })
 
   const set404Alert = (): void => {
@@ -110,7 +110,7 @@ export function useFrame() {
   ): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
     let url = ''
 
-    // console.log(`token: ${loginUser.value.token}`)
+    // console.log(`token: ${account.value.token}`)
     const getOptions: QueryAPIOptions = {
       cache: options?.cache ?? true,
     }
@@ -162,7 +162,7 @@ export function useFrame() {
     if (frame.value.shooted_at) formData.append('frame[shooted_at]', downTZ(frame.value.shooted_at))
     if (frame.value.private) formData.append('frame[private]', frame.value.private.toString())
 
-    // console.log(loginUser.value.token)
+    // console.log(account.value.token)
 
     const { data, error, pending } = await useMutationApi<
       FrameResource,
@@ -202,7 +202,7 @@ export function useFrame() {
       },
     }
 
-    // console.log(loginUser.value.token)
+    // console.log(account.value.token)
 
     const { error, pending } = await useMutationApi<
       FrameResource,

@@ -7,7 +7,7 @@ export function useComment() {
   const { copy } = useEntity<Comment, CommentResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { accessToken, clearLoginUser } = useAccount()
+  const { accessToken, clearAccount } = useAccount()
 
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
@@ -41,7 +41,7 @@ export function useComment() {
 
   const { backendErrorInfo, setAlert } = useAlert({
     flash,
-    caller: { clearLoginUser, setExternalErrors },
+    caller: { clearAccount, setExternalErrors },
   })
 
   const set404Alert = (): void => {

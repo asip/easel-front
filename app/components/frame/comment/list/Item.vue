@@ -3,7 +3,7 @@ import type { Comment } from '~/interfaces'
 import type { RefQuery } from '~/types'
 
 const { setFlash } = useSonner()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 
 const commenter = useComment()
 const { comment, deleteComment, flash, isSuccess, set404Alert, processing, setComment } = commenter
@@ -76,7 +76,7 @@ const onDeleteClick = async (): Promise<void> => {
                 {{ commentModel?.created_at }}
               </div>
             </div>
-            <div v-if="loggedIn && commentModel?.user_id == loginUser.id" class="flex gap-1">
+            <div v-if="loggedIn && commentModel?.user_id == account.id" class="flex gap-1">
               <button v-if="!edit" class="link link-hover" @click="onEditClick">
                 <i class="bi bi-pencil-square text-accent hover:text-primary" />
               </button>

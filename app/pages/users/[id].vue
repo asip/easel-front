@@ -6,7 +6,7 @@ const { setFlash } = useSonner()
 const { openModal } = useModal()
 const { referers } = useReferer()
 const { user, getUser } = useUser()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const { queryMap } = useFrameSearch()
 const { flash, following, follow, unfollow, isFollowing } = useFollow()
 
@@ -60,7 +60,7 @@ const onUnfollowClick = async (): Promise<void> => {
             </div>
             <div class="link" @click="onNameClick">{{ user.name }}</div>
           </div>
-          <div v-if="loggedIn && user.id != loginUser.id">
+          <div v-if="loggedIn && user.id != account.id">
             <button
               v-if="following"
               class="btn btn-xs btn-outline btn-primary"

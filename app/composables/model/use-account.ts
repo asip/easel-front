@@ -77,7 +77,7 @@ export const useAccount = () => {
     user.value.social_login = false
   }
 
-  const loginUser = useState<User>('loginUser', () => {
+  const account = useState<User>('account', () => {
     return {
       name: '',
       email: '',
@@ -99,47 +99,47 @@ export const useAccount = () => {
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
   const setTokenToCookie = (): void => {
-    if (loginUser.value.token !== accessToken.value) {
-      accessToken.value = loginUser.value.token
+    if (account.value.token !== accessToken.value) {
+      accessToken.value = account.value.token
     }
   }
 
-  const setLoginUser = ({
+  const setAccount = ({
     from,
     token,
   }: {
     from: UserResource
     token?: string | undefined
   }): void => {
-    copy({ from, to: loginUser.value })
+    copy({ from, to: account.value })
     if (token) {
-      loginUser.value.token = token
+      account.value.token = token
     }
   }
 
-  const clearLoginUser = (): void => {
+  const clearAccount = (): void => {
     loggedIn.value = false
-    loginUser.value.id = null
-    loginUser.value.name = ''
-    loginUser.value.email = ''
-    loginUser.value.token = null
-    loginUser.value.time_zone = ''
-    loginUser.value.image_thumb_url = null
-    loginUser.value.image_one_url = null
-    loginUser.value.image_three_url = null
-    loginUser.value.social_login = false
+    account.value.id = null
+    account.value.name = ''
+    account.value.email = ''
+    account.value.token = null
+    account.value.time_zone = ''
+    account.value.image_thumb_url = null
+    account.value.image_one_url = null
+    account.value.image_three_url = null
+    account.value.social_login = false
 
     accessToken.value = null
   }
 
   const setUser = (): void => {
-    copy({ from: loginUser.value, to: user.value })
+    copy({ from: account.value, to: user.value })
   }
 
   const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<UserErrorProperty>({ flash })
 
-  const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearLoginUser } })
+  const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearAccount } })
 
   const loginParams = ref<LoginParams>({
     email: '',
@@ -190,10 +190,10 @@ export const useAccount = () => {
   }
 
   const authenticate = async (): Promise<void> => {
-    loginUser.value.token = accessToken.value
-    // console.log(loginUser.value.token)
+    account.value.token = accessToken.value
+    // console.log(account.value.token)
 
-    if (loginUser.value.token) {
+    if (account.value.token) {
       const { token, data, error } = await useQueryApi<
         UserResource,
         ErrorsResource<ErrorMessages<string>>
@@ -211,7 +211,7 @@ export const useAccount = () => {
         // console.log(userAttrs)
 
         if (userAttrs) {
-          setLoginUser({ from: userAttrs, token })
+          setAccount({ from: userAttrs, token })
           loggedIn.value = true
         }
       }
@@ -244,10 +244,10 @@ export const useAccount = () => {
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
-        setLoginUser({ from: userAttrs, token })
+        setAccount({ from: userAttrs, token })
         loggedIn.value = true
-        // console.log(loginUser.value)
-        accessToken.value = loginUser.value.token
+        // console.log(account.value)
+        accessToken.value = account.value.token
       }
     }
   }
@@ -274,11 +274,11 @@ export const useAccount = () => {
       setAlert({ error })
     } else if (data) {
       const userAttrs = data
-      setLoginUser({ from: userAttrs, token })
+      setAccount({ from: userAttrs, token })
       loggedIn.value = true
-      // console.log(loginUser.value)
+      // console.log(account.value)
 
-      accessToken.value = loginUser.value.token
+      accessToken.value = account.value.token
     }
   }
 
@@ -316,7 +316,7 @@ export const useAccount = () => {
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
-        setLoginUser({ from: userAttrs })
+        setAccount({ from: userAttrs })
         setTokenToCookie()
       }
     }
@@ -358,7 +358,7 @@ export const useAccount = () => {
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
-        setLoginUser({ from: userAttrs })
+        setAccount({ from: userAttrs })
         setTokenToCookie()
       }
     }
@@ -380,7 +380,7 @@ export const useAccount = () => {
     if (error) {
       setAlert({ error })
     } else {
-      clearLoginUser()
+      clearAccount()
     }
   }
 
@@ -402,7 +402,7 @@ export const useAccount = () => {
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
-        clearLoginUser()
+        clearAccount()
       }
     }
 
@@ -410,9 +410,9 @@ export const useAccount = () => {
   }
 
   return {
-    loginUser,
+    account,
     accessToken,
-    clearLoginUser,
+    clearAccount,
     user,
     image,
     previewUrl,

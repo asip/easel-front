@@ -3,17 +3,17 @@ import sanitizeHtml from 'sanitize-html'
 
 const { p2br } = useQuill()
 
-const { loginUser } = inject('account') as UseAccountType
+const { account } = inject('accounter') as UseAccountType
 
 const sanitizedProfile = computed<string>(() => {
-  return p2br(sanitizeHtml(loginUser.value.profile)).replace(/\n/g, '<br>')
+  return p2br(sanitizeHtml(account.value.profile)).replace(/\n/g, '<br>')
 })
 </script>
 
 <template>
   <div class="flex justify-center border border-white">
     <div class="flex justify-center mb-1">
-      <DisplayImage v-model="loginUser" :small="true" />
+      <DisplayImage v-model="account" :small="true" />
     </div>
   </div>
   <div class="flex justify-center">
@@ -21,11 +21,11 @@ const sanitizedProfile = computed<string>(() => {
       <tbody>
         <tr>
           <td class="w-[10em]">{{ $t('model.user.name') }}：</td>
-          <td>{{ loginUser.name }}</td>
+          <td>{{ account.name }}</td>
         </tr>
         <tr>
           <td>{{ $t('model.user.email') }}：</td>
-          <td>{{ loginUser.email }}</td>
+          <td>{{ account.email }}</td>
         </tr>
         <tr>
           <td>{{ $t('model.user.profile') }}：</td>
@@ -35,7 +35,7 @@ const sanitizedProfile = computed<string>(() => {
         </tr>
         <tr>
           <td>{{ $t('model.user.time_zone') }}：</td>
-          <td>{{ loginUser.time_zone }}</td>
+          <td>{{ account.time_zone }}</td>
         </tr>
       </tbody>
     </table>

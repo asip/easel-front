@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const account = useAccount()
-const { loginUser, loggedIn, logout } = account
+const accounter = useAccount()
+const { account, loggedIn, logout } = accounter
 const { frameQuery, queryMap, currentPage, clearSearchCriteria } = useFrameSearch()
 const { openModal } = useModal()
 
 const dropdown = useTemplateRef('dropdown')
 const { closeDropdown } = useDropdown({ el: dropdown })
 
-provide('account', account)
+provide('accounter', accounter)
 
 const onLoginClick = (): void => {
   openModal('#login_modal')
@@ -56,10 +56,10 @@ const onTopPageClick = async (): Promise<void> => {
         <div class="navbar-center">
           <details v-if="loggedIn" ref="dropdown" class="dropdown">
             <summary>
-              <span class="tooltip tooltip-bottom" :data-tip="loginUser.name">
+              <span class="tooltip tooltip-bottom" :data-tip="account.name">
                 <img
-                  :src="`${loginUser?.image_thumb_url}`"
-                  :alt="loginUser.name"
+                  :src="`${account?.image_thumb_url}`"
+                  :alt="account.name"
                   class="rounded w-10 h-10 inline"
                 >
               </span>
@@ -109,5 +109,5 @@ const onTopPageClick = async (): Promise<void> => {
   <AccountSignupModal v-if="!loggedIn" />
   <AccountProfileModal v-if="loggedIn" />
   <AccountEditModal v-if="loggedIn" />
-  <AccountPasswordEditModal v-if="loggedIn && loginUser && !loginUser.social_login" />
+  <AccountPasswordEditModal v-if="loggedIn && account && !account.social_login" />
 </template>

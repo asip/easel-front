@@ -3,9 +3,9 @@ import type { ErrorMessages } from '~/types'
 
 export function useFollow() {
   const { flash, clearFlash } = useFlash()
-  const { accessToken, clearLoginUser } = useAccount()
+  const { accessToken, clearAccount } = useAccount()
 
-  const { setAlert } = useAlert({ flash, caller: { clearLoginUser } })
+  const { setAlert } = useAlert({ flash, caller: { clearAccount } })
 
   const following: Ref<boolean> = ref<boolean>(false)
 

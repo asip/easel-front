@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, isSuccess, flash, processing } = inject(
   'framer',
 ) as UseFrameType
@@ -26,7 +26,7 @@ const redirect404 = async (): Promise<void> => {
 
 <template>
   <ConfirmModal
-    v-if="loggedIn && frame?.user_id == loginUser.id"
+    v-if="loggedIn && frame?.user_id == account.id"
     id="delete_frame_modal"
     :disabled="processing"
     @click="onDeleteClick"

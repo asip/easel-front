@@ -11,7 +11,7 @@ const frame = defineModel<Frame>()
 const image = useTemplateRef('image')
 const imageInfo = ref<ImageInfo>({ width: 0, height: 0 })
 
-const { loggedIn, loginUser } = useAccount()
+const { loggedIn, account } = useAccount()
 const { currentPage } = useFrameSearch()
 
 const front = ref<boolean>(true)
@@ -29,7 +29,7 @@ const onFlipClick = (): void => {
 
 <template>
   <div class="card-body">
-    <div v-if="loggedIn && frame?.user_id == loginUser.id" class="flex justify-start">
+    <div v-if="loggedIn && frame?.user_id == account.id" class="flex justify-start">
       <div class="badge badge-xs badge-outline badge-accent rounded-full">
         {{ $t(`enums.private.${frame?.private}`) }}
       </div>
