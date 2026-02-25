@@ -13,7 +13,7 @@ interface UseAlertOptions {
 
 interface UseAlertCallerType {
   setExternalErrors?: (from: ErrorMessages<string>) => void
-  clearLoginUser?: () => void
+  clearAccount?: () => void
 }
 
 type AlertOptions = {
@@ -34,7 +34,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.status) {
         case 401:
           // flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
+          if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         // default:
         //  flash.value.alert = $i18n.t('action.error.api', { message: error.message })
@@ -43,7 +43,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
       switch (error.status) {
         case 401:
           flash.value.alert = $i18n.t('action.error.login')
-          if (caller && 'clearLoginUser' in caller && caller.clearLoginUser) caller.clearLoginUser()
+          if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         case 404:
           {
