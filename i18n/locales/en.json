@@ -85,7 +85,9 @@
           "message": "Are you sure you want to delete account?"
         }
       }
-    },
+    }
+  },
+  "backend": {
     "error": {
       "api": "An error has occurred.({message})",
       "login": "Please login.",

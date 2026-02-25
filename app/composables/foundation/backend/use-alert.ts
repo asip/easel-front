@@ -33,16 +33,16 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     if (off) {
       switch (error.status) {
         case 401:
-          // flash.value.alert = $i18n.t('action.error.login')
+          // flash.value.alert = $i18n.t('backend.error.login')
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         // default:
-        //  flash.value.alert = $i18n.t('action.error.api', { message: error.message })
+        //  flash.value.alert = $i18n.t('backend.error.api', { message: error.message })
       }
     } else {
       switch (error.status) {
         case 401:
-          flash.value.alert = $i18n.t('action.error.login')
+          flash.value.alert = $i18n.t('backend.error.login')
           if (caller && 'clearAccount' in caller && caller.clearAccount) caller.clearAccount()
           break
         case 404:
@@ -60,7 +60,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
           break
         }
         default:
-          flash.value.alert = $i18n.t('action.error.api', { message: error.message })
+          flash.value.alert = $i18n.t('backend.error.api', { message: error.message })
       }
     }
   }
