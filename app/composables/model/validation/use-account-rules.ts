@@ -5,7 +5,7 @@ export const useAccountRules = (user?: User) => {
   const { $i18n } = useNuxtApp()
 
   const signupRules = () => ({
-    image: { maxFileSize: maxFileSize(5) },
+    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
       minLength: minLength(3),
@@ -31,7 +31,7 @@ export const useAccountRules = (user?: User) => {
   }
 
   const userRules = () => ({
-    image: { maxFileSize: maxFileSize(5) },
+    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
       minLength: minLength(3),
@@ -44,7 +44,7 @@ export const useAccountRules = (user?: User) => {
   })
 
   const profileRules = {
-    image: { maxFileSize: maxFileSize(5) },
+    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
       minLength: minLength(3),

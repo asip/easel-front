@@ -17,7 +17,7 @@ export const { useRegle: useI18nRegle } = defineRegleConfig({
         $i18n.t('rules.sameAs', { otherName }),
       ),
       maxFileSize: withMessage(maxFileSize, ({ $params: [maxSize] }) =>
-        $i18n.t('rules.maxFileSize', { max: maxSize }),
+        $i18n.t('rules.maxFileSize', { max: maxSize / (1000 * 1000) }),
       ),
       maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [size] }) =>
         $i18n.t('rules.maxTagArrayLength', { size: size }),
