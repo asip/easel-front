@@ -27,7 +27,9 @@ onMounted(() => {
 
 const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
-  useImagePreview({ target, file: image, previewUrl: previewUrl })
+  // (アップロードされたデータを取得して変数file.valueに代入します)
+  image.value = target.files?.item(0) ?? null
+  useImagePreview({ file: image, previewUrl })
 }
 
 const onSignupClick = async (): Promise<void> => {
