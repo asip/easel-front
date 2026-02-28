@@ -30,12 +30,12 @@ export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
         },
       })
 
-      initTags()
+      setTags()
       setEventCallbacks()
     }
   }
 
-  const initTags = (): void => {
+  const setTags = (): void => {
     tagEditor?.removeAllTags()
     if (tagList.value) tagEditor?.addTags(tagList.value)
   }
