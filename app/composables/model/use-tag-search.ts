@@ -23,13 +23,11 @@ export const useTagSearch = () => {
 
     if (error) {
       setAlert({ error })
+      tags.value = []
     } else if (data) {
       const { tags: tagList } = data
-      // console.log(frameList)
-
-      if (tagList) {
-        tags.value = tagList
-      }
+      // console.log(frameList
+      tags.value = tagList
     }
   }
 
