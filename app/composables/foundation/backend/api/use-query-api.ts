@@ -30,8 +30,8 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
 
   const headers: Record<string, string> = commonHeaders.value
 
-  const fresh: boolean = options?.fresh || false
-  const cache: boolean = options?.cache || true
+  const fresh: boolean = options?.fresh ?? false
+  const cache: boolean = options?.cache ?? true
 
   if (options?.token) {
     headers.Authorization = `Bearer ${options.token}`
@@ -41,7 +41,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
   const getOptions: NitroFetchOptions<NitroFetchRequest, 'get'> = {
     baseURL: baseURL.value,
     method: 'get',
-    query: options?.query || {},
+    query: options?.query ?? {},
     headers,
     onResponse({ response }: { response: FetchResponse<T> }) {
       if (!tokenRef.value) tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
