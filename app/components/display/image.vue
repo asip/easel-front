@@ -13,10 +13,19 @@ const {
   small?: boolean
 }>()
 
-const { initPSLightbox, initGLightbox, closeLightbox } = useLightbox({
-  ps: { selector: '#gallery' },
-  gl: { selector: '#image' },
-})
+let options = {}
+
+if (photoswipe) {
+  options = {
+    ps: { selector: '#gallery' },
+  }
+} else {
+  options = {
+    gl: { selector: '#image' },
+  }
+}
+
+const { initLightbox, closeLightbox } = useLightbox(options)
 
 const linkURL = computed<string | undefined>(() => {
   if (model.value && 'file_url' in model.value) {
@@ -40,11 +49,7 @@ const imgURL = computed<string | undefined>(() => {
 
 onMounted(async () => {
   if (import.meta.client && original) {
-    if (photoswipe) {
-      await initPSLightbox()
-    } else {
-      initGLightbox()
-    }
+    await initLightbox()
   }
 })
 
