@@ -33,11 +33,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       timeZone: 'Asia/Tokyo',
-      backendOriginURL: 'http://localhost:3000',
+      backendApiOrigin: 'http://localhost:3000',
       backendApiPath: '/api/v1',
       googleClientId: '',
     },
-    backendOriginURL: 'http://localhost:3000',
+    backendApiOrigin: 'http://localhost:3000',
   },
 
   vite: {

@@ -1,17 +1,17 @@
 export const useApiConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
-  const backendOriginURL = computed<string | undefined>(() => {
+  const baseOrigin = computed<string | undefined>(() => {
     if (import.meta.client) {
-      return runtimeConfig.public.backendOriginURL
+      return runtimeConfig.public.backendApiOrigin
     } else if (import.meta.server) {
-      return runtimeConfig.backendOriginURL
+      return runtimeConfig.backendApiOrigin
     }
   })
 
-  const backendApiPath = runtimeConfig.public.backendApiPath
+  const basePath = runtimeConfig.public.backendApiPath
 
-  const baseURL = computed<string>(() => `${backendOriginURL.value}${backendApiPath}`)
+  const baseURL = computed<string>(() => `${baseOrigin.value}${basePath}`)
 
   return { baseURL }
 }
