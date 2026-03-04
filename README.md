@@ -32,7 +32,7 @@ cp .env.local.example .env
 
 ## Development Server
 
-Start the development server on http://localhost:3030
+Start the development server on <http://localhost:3030>
 
 ```bash
 pnpm dev
