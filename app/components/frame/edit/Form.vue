@@ -32,16 +32,16 @@ const onEditClick = async (): Promise<void> => {
     setFlash(flash.value)
     if (isSuccess()) {
       await refresh()
-      await redirectToPrevURL()
+      await redirectToPrevPage()
     } else if (!loggedIn.value) {
-      await redirectToPrevURL()
+      await redirectToPrevPage()
     } else {
       await redirect404()
     }
   }
 }
 
-const redirectToPrevURL = async () => {
+const redirectToPrevPage = async () => {
   const path = `/frames/${frame?.value.id}/edit`
   const framePath = `/frames/${frame?.value.id}`
   if (referers.value[path]) {

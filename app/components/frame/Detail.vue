@@ -27,11 +27,15 @@ const onPageBack = async (): Promise<void> => {
   if (!refItems.from) {
     await navigateTo({ path: '/', query: queryMap.value })
   } else {
-    if (referers.value[route.path] == '/') {
-      await navigateTo({ path: '/', query: queryMap.value })
-    } else {
-      await navigateTo(referers.value[route.path])
-    }
+    await redirectToPrevPage()
+  }
+}
+
+const redirectToPrevPage = async (): Promise<void> => {
+  if (referers.value[route.path] == '/') {
+    await navigateTo({ path: '/', query: queryMap.value })
+  } else {
+    await navigateTo(referers.value[route.path])
   }
 }
 
