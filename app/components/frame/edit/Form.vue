@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const { setFlash } = useSonner()
-const { referers } = useReferer()
+const { redirectToPrevUrl } = useReferer()
 const { loggedIn } = useAccount()
 const {
   frame,
@@ -44,11 +44,7 @@ const onEditClick = async (): Promise<void> => {
 }
 
 const redirectToPrevPage = async (): Promise<void> => {
-  if (referers.value[route.path]) {
-    await navigateTo(referers.value[route.path])
-  } else {
-    await navigateTo(`/frames/${frame?.value.id}`)
-  }
+  await redirectToPrevUrl({ current: route.path, fallback: `/frames/${frame?.value.id}` })
 }
 
 const redirect404 = async (): Promise<void> => {

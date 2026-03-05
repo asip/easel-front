@@ -5,7 +5,7 @@ import type { Frame, RefItems } from '~/interfaces'
 import type { RefQuery } from '~/types'
 
 const { p2br } = useQuill()
-const { referers } = useReferer()
+const { redirectToPrevUrl } = useReferer()
 const { queryMap } = useFrameSearch()
 const { loggedIn, account } = useAccount()
 const { openModal } = useModal()
@@ -32,15 +32,7 @@ const onPageBack = async (): Promise<void> => {
 }
 
 const redirectToPrevPage = async (): Promise<void> => {
-  if (referers.value[route.path]) {
-    if (referers.value[route.path] == '/') {
-      await navigateTo({ path: '/', query: queryMap.value })
-    } else {
-      await navigateTo(referers.value[route.path])
-    }
-  } else {
-    await navigateTo('/')
-  }
+  await redirectToPrevUrl({ current: route.path, fallback: '/' })
 }
 
 const onDeleteClick = (): void => {

@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const { setFlash } = useSonner()
-const { referers } = useReferer()
+const { redirectToPrevUrl } = useReferer()
 const { loggedIn } = useAccount()
 const {
   frame,
@@ -46,11 +46,7 @@ const onCreateClick = async (): Promise<void> => {
 }
 
 const redirectToPrevPage = async (): Promise<void> => {
-  if (referers.value[route.path]) {
-    await navigateTo(referers.value[route.path])
-  } else {
-    await navigateTo('/')
-  }
+  await redirectToPrevUrl({ current: route.path, fallback: '/' })
 }
 </script>
 
