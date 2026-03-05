@@ -30,24 +30,24 @@ const onEditClick = async (): Promise<void> => {
     await updateFrame()
     set404Alert()
     setFlash(flash.value)
-    const path = `/frames/${frame?.value.id}/edit`
-    const framePath = `/frames/${frame?.value.id}`
     if (isSuccess()) {
       await refresh()
-      if (referers.value[path]) {
-        await navigateTo(referers.value[path])
-      } else {
-        await navigateTo(framePath)
-      }
+      await redirectToPrevURL()
     } else if (!loggedIn.value) {
-      if (referers.value[path]) {
-        await navigateTo(referers.value[path])
-      } else {
-        await navigateTo(framePath)
-      }
+      await redirectToPrevURL()
     } else {
       await redirect404()
     }
+  }
+}
+
+const redirectToPrevURL = async () => {
+  const path = `/frames/${frame?.value.id}/edit`
+  const framePath = `/frames/${frame?.value.id}`
+  if (referers.value[path]) {
+    await navigateTo(referers.value[path])
+  } else {
+    await navigateTo(framePath)
   }
 }
 
