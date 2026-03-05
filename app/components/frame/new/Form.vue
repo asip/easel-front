@@ -40,8 +40,16 @@ const onCreateClick = async (): Promise<void> => {
     if (isSuccess()) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {
-      await navigateTo(referers.value[route.path])
+      await redirectToPrevPage()
     }
+  }
+}
+
+const redirectToPrevPage = async (): Promise<void> => {
+  if (referers.value[route.path]) {
+    await navigateTo(referers.value[route.path])
+  } else {
+    await navigateTo('/')
   }
 }
 </script>

@@ -41,7 +41,7 @@ const onEditClick = async (): Promise<void> => {
   }
 }
 
-const redirectToPrevPage = async () => {
+const redirectToPrevPage = async (): Promise<void> => {
   const path = `/frames/${frame?.value.id}/edit`
   const framePath = `/frames/${frame?.value.id}`
   if (referers.value[path]) {
