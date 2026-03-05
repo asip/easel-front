@@ -1,11 +1,12 @@
+import type PhotoSwipeLightbox from 'photoswipe/lightbox'
+
 type psOptions = { selector: string | undefined; anchor?: string }
 
 export function usePhotoSwipe({ selector, anchor = 'a' }: psOptions) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let lightbox: any
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $psLightbox, $psFullscreen } = useNuxtApp() as any
+
+  let lightbox: PhotoSwipeLightbox
 
   const initPhotoSwipe = async (): Promise<void> => {
     if (selector) {
