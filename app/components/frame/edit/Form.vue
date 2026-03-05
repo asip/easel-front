@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute()
+
 const { setFlash } = useSonner()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
@@ -42,12 +44,10 @@ const onEditClick = async (): Promise<void> => {
 }
 
 const redirectToPrevPage = async (): Promise<void> => {
-  const path = `/frames/${frame?.value.id}/edit`
-  const framePath = `/frames/${frame?.value.id}`
-  if (referers.value[path]) {
-    await navigateTo(referers.value[path])
+  if (referers.value[route.path]) {
+    await navigateTo(referers.value[route.path])
   } else {
-    await navigateTo(framePath)
+    await navigateTo(`/frames/${frame?.value.id}`)
   }
 }
 
