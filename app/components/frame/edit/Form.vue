@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const { setFlash } = useSonner()
-const { redirectToPrevUrl } = useReferer()
+const { redirectToPrevPage } = useReferer()
 const { loggedIn } = useAccount()
 const {
   frame,
@@ -34,17 +34,13 @@ const onEditClick = async (): Promise<void> => {
     setFlash(flash.value)
     if (isSuccess()) {
       await refresh()
-      await redirectToPrevPage()
+      await redirectToPrevPage({ current: route.path, fallback: `/frames/${frame?.value.id}` })
     } else if (!loggedIn.value) {
-      await redirectToPrevPage()
+      await redirectToPrevPage({ current: route.path, fallback: `/frames/${frame?.value.id}` })
     } else {
       await redirect404()
     }
   }
-}
-
-const redirectToPrevPage = async (): Promise<void> => {
-  await redirectToPrevUrl({ current: route.path, fallback: `/frames/${frame?.value.id}` })
 }
 
 const redirect404 = async (): Promise<void> => {

@@ -5,7 +5,7 @@ export function useReferer() {
     return {}
   })
 
-  const redirectToPrevUrl = async ({
+  const redirectToPrevPage = async ({
     current,
     fallback,
   }: {
@@ -23,5 +23,5 @@ export function useReferer() {
     }
   }
 
-  return { referers, redirectToPrevUrl }
+  return { referers, redirectToPrevPage }
 }
