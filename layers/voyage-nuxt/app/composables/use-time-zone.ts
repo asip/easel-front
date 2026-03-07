@@ -1,4 +1,11 @@
+import { useRuntimeConfig } from 'nuxt/app'
+
+import { computed } from 'vue'
+
 import { format, tzDate } from '@formkit/tempo'
+
+import { useLocale } from './use-locale'
+import { useDatetimeLocal } from './use-datetime-local'
 
 interface TimeZone {
   client: string
@@ -16,8 +23,8 @@ export const useTimeZone = () => {
   const { toISO8601, formatHTML } = useDatetimeLocal()
 
   const timeZone = computed<TimeZone>(() => ({
-    client: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    server: runtimeConfig.public.timeZone,
+    client: Intl.DateTimeFormat().resolvedOptions().timeZone as string,
+    server: runtimeConfig.public.timeZone as string,
   }))
 
   const tzOptions = computed<TZOptions[]>(() =>

@@ -1,7 +1,8 @@
+import { useNuxtApp } from 'nuxt/app'
 import { useBrowserLocale } from '#i18n'
 
 export const useLocale = () => {
-  const { $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp() as any
   const { locale, availableLocales, fallbackLocale } = $i18n
   const autoDetect = (): void => {
     const browserLocale: string | null = useBrowserLocale()

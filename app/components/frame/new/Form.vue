@@ -2,7 +2,7 @@
 const route = useRoute()
 
 const { setFlash } = useSonner()
-const { redirectToPrevPage } = useReferer()
+const { redirectTo } = usePrevPage()
 const { loggedIn } = useAccount()
 const {
   frame,
@@ -40,7 +40,7 @@ const onCreateClick = async (): Promise<void> => {
     if (isSuccess()) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {
-      await redirectToPrevPage({ current: route.path, fallback: '/' })
+      await redirectTo({ current: route.path, fallback: '/' })
     }
   }
 }

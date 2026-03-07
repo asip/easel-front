@@ -1,5 +1,7 @@
 import { parse, format } from '@formkit/tempo'
 
+import { useLocale } from './use-locale'
+
 export const useDatetimeLocal = () => {
   const { locale } = useLocale()
 

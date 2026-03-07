@@ -1,8 +1,12 @@
-import type { FetchError } from 'ofetch'
-import type { NuxtError } from '#app'
+import { useNuxtApp } from 'nuxt/app'
 
-import type { ErrorsResource, BackendErrorResource, Flash } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { FetchError } from 'ofetch'
+import type { NuxtError } from 'nuxt/app'
+
+import type { Ref } from 'vue'
+
+import type { ErrorsResource, BackendErrorResource, Flash } from '../../interfaces'
+import type { ErrorMessages } from '../../types'
 
 import { useBackendErrorInfo } from './error'
 
@@ -24,7 +28,7 @@ type AlertOptions = {
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
-  const { $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp() as any
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
 
   const setAlert = function ({ error, off = false }: AlertOptions): void {

@@ -1,3 +1,8 @@
+import { computed, type Ref } from 'vue'
+
+import { useLocale } from '../../use-locale'
+import { useTimeZone } from '../../use-time-zone'
+
 export const useHttpHeaders = () => {
   const { locale } = useLocale()
   const { timeZone } = useTimeZone()

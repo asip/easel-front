@@ -1,6 +1,3 @@
-export type { BackendErrorInfo, Flash } from './foundation'
-export type { ErrorsResource, BackendErrorResource, MessagesResource } from './foundation'
-
 export type { Comment, Frame, User } from './entity'
 
 export type {

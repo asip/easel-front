@@ -1,4 +1,8 @@
-import type { FetchError, FetchResponse } from 'ofetch'
+import { useNuxtApp } from 'nuxt/app'
+
+import { ref } from 'vue'
+
+import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 
 import { useHttpHeaders } from './use-http-headers'
@@ -43,7 +47,7 @@ export const useMutationApi = async <T = unknown, E = any>(
   const error = ref<FetchError<E>>()
 
   if (method == 'post' || method == 'put') {
-    const options: NitroFetchOptions<NitroFetchRequest, 'post' | 'put'> = {
+    const options: FetchOptions<"json", any> = {
       baseURL: baseURL.value,
       method,
       body,
@@ -63,12 +67,12 @@ export const useMutationApi = async <T = unknown, E = any>(
     }
 
     try {
-      data.value = await $api<T>(url, options)
+      data.value = await ($api as $Fetch)<T>(url, options)
     } catch (err: unknown) {
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
-    const options: NitroFetchOptions<NitroFetchRequest, 'delete'> = {
+    const options: FetchOptions<"json", any> = {
       baseURL: baseURL.value,
       method: 'delete',
       headers,
@@ -83,7 +87,7 @@ export const useMutationApi = async <T = unknown, E = any>(
     }
 
     try {
-      data.value = await $api<T>(url, options)
+      data.value = await ($api as $Fetch)<T>(url, options)
     } catch (err: unknown) {
       error.value = err as FetchError<E>
     }

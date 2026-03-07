@@ -1,11 +1,8 @@
-export function useReferer() {
+export function usePrevPage() {
+  const { referers } = useReferer()
   const { queryMap } = useFrameSearch()
 
-  const referers = useState<Record<string, string>>('referers', () => {
-    return {}
-  })
-
-  const redirectToPrevPage = async ({
+  const redirectTo = async ({
     current,
     fallback,
   }: {
@@ -23,5 +20,5 @@ export function useReferer() {
     }
   }
 
-  return { referers, redirectToPrevPage }
+  return { redirectTo }
 }

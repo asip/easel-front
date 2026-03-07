@@ -1,3 +1,5 @@
+import { useState } from 'nuxt/app'
+
 export function useMoreScroll({
   key = null,
   page,
