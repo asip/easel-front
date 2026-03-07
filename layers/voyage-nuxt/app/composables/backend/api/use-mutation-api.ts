@@ -3,7 +3,6 @@ import { useNuxtApp } from 'nuxt/app'
 import { ref } from 'vue'
 
 import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
-import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
@@ -47,7 +46,8 @@ export const useMutationApi = async <T = unknown, E = any>(
   const error = ref<FetchError<E>>()
 
   if (method == 'post' || method == 'put') {
-    const options: FetchOptions<"json", any> = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const options: FetchOptions<'json', any> = {
       baseURL: baseURL.value,
       method,
       body,
@@ -72,7 +72,8 @@ export const useMutationApi = async <T = unknown, E = any>(
       error.value = err as FetchError<E>
     }
   } else if (method == 'delete') {
-    const options: FetchOptions<"json", any> = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const options: FetchOptions<'json', any> = {
       baseURL: baseURL.value,
       method: 'delete',
       headers,

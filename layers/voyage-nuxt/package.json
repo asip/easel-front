@@ -1,7 +1,7 @@
 {
   "name": "@voyage/nuxt",
-  "type": "module",
   "version": "0.1.0",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev .playground",

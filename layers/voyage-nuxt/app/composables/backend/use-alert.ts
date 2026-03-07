@@ -28,6 +28,7 @@ type AlertOptions = {
 }
 
 export function useAlert({ flash, caller }: UseAlertOptions) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
   const { backendErrorInfo, clearBackendErrorInfo, setBackendErrorInfo } = useBackendErrorInfo()
 

@@ -38,7 +38,7 @@ Then add the dependency to their `extends` in `nuxt.config`:
 
 ```ts
 defineNuxtConfig({
-  extends: 'your-layer'
+  extends: 'your-layer',
 })
 ```
 

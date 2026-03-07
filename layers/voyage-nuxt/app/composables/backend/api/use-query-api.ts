@@ -1,7 +1,6 @@
 import { useAsyncData, useNuxtApp } from 'nuxt/app'
 
-import type { $Fetch } from 'ofetch'
-import type { FetchError, FetchOptions, FetchResponse } from 'ofetch'
+import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
 import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 
 import { ref } from 'vue'
@@ -27,6 +26,7 @@ export type QueryAPIOptions = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useQueryApi = async <T = unknown, E = any>(url: string, options?: QueryAPIOptions) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $api } = useNuxtApp() as any
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
@@ -43,6 +43,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
     tokenRef.value = options.token
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getOptions: any = {
     baseURL: baseURL.value,
     method: 'get',
@@ -88,7 +89,8 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
     const error = ref<FetchError<E>>()
 
     try {
-      data.value = await ($api as $Fetch)<T>(url, getOptions as FetchOptions<"json", any>)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data.value = await ($api as $Fetch)<T>(url, getOptions as FetchOptions<'json', any>)
     } catch (err: unknown) {
       error.value = err as FetchError<E>
     }
