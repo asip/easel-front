@@ -1,6 +1,6 @@
 export type { ErrorsResource } from '../../layers/voyage-nuxt/app/interfaces'
 
-export type { Comment, Frame, User } from './entity'
+export type { Comment, Frame, User } from './model'
 
 export type {
   PaginationQuery,
