@@ -1,7 +1,6 @@
 import { useAsyncData, useNuxtApp } from 'nuxt/app'
 
 import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
-import type { NitroFetchOptions, NitroFetchRequest } from 'nitropack'
 
 import { ref } from 'vue'
 
@@ -44,7 +43,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getOptions: any = {
+  const getOptions: FetchOptions<'json', any> = {
     baseURL: baseURL.value,
     method: 'get',
     query: options?.query ?? {},
@@ -68,7 +67,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
 
   if (cache) {
     const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
-      $api(url, getOptions as NitroFetchOptions<NitroFetchRequest, 'get'>),
+      $api(url, getOptions),
     )
 
     if (fresh) {
@@ -89,8 +88,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
     const error = ref<FetchError<E>>()
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      data.value = await ($api as $Fetch)<T>(url, getOptions as FetchOptions<'json', any>)
+      data.value = await ($api as $Fetch)<T>(url, getOptions)
     } catch (err: unknown) {
       error.value = err as FetchError<E>
     }
