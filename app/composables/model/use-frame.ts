@@ -86,12 +86,13 @@ export function useFrame() {
     upFrameTZ(frame.value)
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
-    useExternalErrors<FrameErrorProperty>({ flash })
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({
+    flash,
+  })
 
   const { backendErrorInfo, setAlert } = useAlert({
     flash,
-    caller: { clearAccount, setExternalErrors },
+    caller: { externalErrors, clearAccount },
   })
 
   const set404Alert = (): void => {

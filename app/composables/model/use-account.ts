@@ -136,10 +136,11 @@ export const useAccount = () => {
     copy({ from: account.value, to: user.value })
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
-    useExternalErrors<UserErrorProperty>({ flash })
+  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<UserErrorProperty>({
+    flash,
+  })
 
-  const { setAlert } = useAlert({ flash, caller: { setExternalErrors, clearAccount } })
+  const { setAlert } = useAlert({ flash, caller: { externalErrors, clearAccount } })
 
   const loginParams = ref<LoginParams>({
     email: '',

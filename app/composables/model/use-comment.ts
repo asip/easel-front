@@ -36,12 +36,12 @@ export function useComment() {
     }
   }
 
-  const { externalErrors, setExternalErrors, clearExternalErrors, isSuccess } =
+  const { externalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<CommentErrorProperty>({ flash })
 
   const { backendErrorInfo, setAlert } = useAlert({
     flash,
-    caller: { clearAccount, setExternalErrors },
+    caller: { externalErrors, clearAccount },
   })
 
   const set404Alert = (): void => {
