@@ -13,7 +13,7 @@ export function useAccountFrames() {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setAlert } = useAlert({ flash, caller: { clearAccount } })
+  const { setError } = useAlert({ flash, caller: { clearAccount } })
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
@@ -62,7 +62,7 @@ export function useAccountFrames() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
 
       throw createError({
         status: error.status,

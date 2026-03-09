@@ -12,7 +12,7 @@ export function useUserFrames() {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
     if (userId) {
@@ -74,7 +74,7 @@ export function useUserFrames() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
 
       throw createError({
         status: error.status,

@@ -32,7 +32,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
   const { $i18n } = useNuxtApp() as any
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
-  const setAlert = function ({ error, off = false }: AlertOptions): void {
+  const setError = function ({ error, off = false }: AlertOptions): void {
     clearBackendErrorInfo()
     backendErrorInfo.value.status = error.status
     if (off) {
@@ -70,7 +70,7 @@ export function useAlert({ flash, caller }: UseAlertOptions) {
     }
   }
 
-  return { backendErrorInfo, setAlert }
+  return { backendErrorInfo, setError }
 }
 
 export type UseAlertType = ReturnType<typeof useAlert>

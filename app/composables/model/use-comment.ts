@@ -39,7 +39,7 @@ export function useComment() {
   const { externalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setAlert } = useAlert({
+  const { backendErrorInfo, setError } = useAlert({
     flash,
     caller: { externalErrors, clearAccount },
   })
@@ -80,7 +80,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
     /* else if (data) {
       const commentAttrs = data
@@ -111,7 +111,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const commentAttrs = data
 
@@ -135,7 +135,7 @@ export function useComment() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     processing.value = pending

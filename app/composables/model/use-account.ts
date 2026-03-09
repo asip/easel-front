@@ -146,7 +146,7 @@ export const useAccount = () => {
     flash,
   })
 
-  const { setAlert } = useAlert({ flash, caller: { externalErrors, clearAccount } })
+  const { setError } = useAlert({ flash, caller: { externalErrors, clearAccount } })
 
   const loginParams = ref<LoginParams>({
     email: '',
@@ -190,7 +190,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     processing.value = pending
@@ -212,7 +212,7 @@ export const useAccount = () => {
       clearFlash()
 
       if (error) {
-        setAlert({ error })
+        setError({ error })
       } else if (data) {
         const userAttrs = data
         // console.log(userAttrs)
@@ -247,7 +247,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -278,7 +278,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       setAccount({ from: userAttrs, token })
@@ -319,7 +319,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -361,7 +361,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -385,7 +385,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else {
       clearAccount()
     }
@@ -405,7 +405,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {

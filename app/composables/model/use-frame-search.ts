@@ -7,7 +7,7 @@ export const useFrameSearch = () => {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const { loggedIn, accessToken } = useAccount()
 
@@ -105,7 +105,7 @@ export const useFrameSearch = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const { frames: frameRsList, meta } = data
       // console.log(frameList)

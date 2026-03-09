@@ -90,7 +90,7 @@ export function useFrame() {
     flash,
   })
 
-  const { backendErrorInfo, setAlert } = useAlert({
+  const { backendErrorInfo, setError } = useAlert({
     flash,
     caller: { externalErrors, clearAccount },
   })
@@ -131,7 +131,7 @@ export function useFrame() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
 
       throw createError({
         status: error.status,
@@ -178,7 +178,7 @@ export function useFrame() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const frameAttrs = data
       if (frameAttrs) {
@@ -218,7 +218,7 @@ export function useFrame() {
     clearExternalErrors()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     processing.value = pending
@@ -239,7 +239,7 @@ export function useFrame() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     // const frameAttrs = data.value

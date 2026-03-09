@@ -6,7 +6,7 @@ export const useUser = () => {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const user = ref<User>({
     name: '',
@@ -33,7 +33,7 @@ export const useUser = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const userAttrs = data
       // console.log(userAttrs)

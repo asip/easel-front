@@ -5,7 +5,7 @@ export function useFollow() {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setAlert } = useAlert({ flash, caller: { clearAccount } })
+  const { setError } = useAlert({ flash, caller: { clearAccount } })
 
   const following: Ref<boolean> = ref<boolean>(false)
 
@@ -20,7 +20,7 @@ export function useFollow() {
     // this.#clearFlash()
 
     if (error) {
-      setAlert({ error, off: true })
+      setError({ error, off: true })
     } else if (data) {
       const { following: followingValue } = data
 
@@ -42,7 +42,7 @@ export function useFollow() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     following.value = true
@@ -60,7 +60,7 @@ export function useFollow() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     }
 
     following.value = false

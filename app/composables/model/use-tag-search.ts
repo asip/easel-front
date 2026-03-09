@@ -3,7 +3,7 @@ import type { ErrorMessages } from '~/types'
 
 export const useTagSearch = () => {
   const { flash, clearFlash } = useFlash()
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const tags = ref<string[]>([])
 
@@ -22,7 +22,7 @@ export const useTagSearch = () => {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
       tags.value = []
     } else if (data) {
       const { tags: tagList } = data

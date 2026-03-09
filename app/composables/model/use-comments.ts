@@ -22,7 +22,7 @@ export function useComments() {
     return []
   })
 
-  const { setAlert } = useAlert({ flash })
+  const { setError } = useAlert({ flash })
 
   const getComments = async (
     frameId: number | null | undefined,
@@ -39,7 +39,7 @@ export function useComments() {
     clearFlash()
 
     if (error) {
-      setAlert({ error })
+      setError({ error })
     } else if (data) {
       const { comments: commentList } = data
       // console.log(commentList)
