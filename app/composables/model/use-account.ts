@@ -107,13 +107,19 @@ export const useAccount = () => {
   const setAccount = ({
     from,
     token,
+    to,
   }: {
-    from: UserResource
+    from?: UserResource
     token?: string | undefined
+    to?: User
   }): void => {
-    copy({ from, to: account.value })
-    if (token) {
-      account.value.token = token
+    if (from) {
+      copy({ from, to: account.value })
+      if (token) {
+        account.value.token = token
+      }
+    } else if (to) {
+      copy({ from: account.value, to })
     }
   }
 
@@ -133,7 +139,7 @@ export const useAccount = () => {
   }
 
   const setUser = (): void => {
-    copy({ from: account.value, to: user.value })
+    setAccount({ to: user.value })
   }
 
   const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<UserErrorProperty>({
