@@ -1,6 +1,7 @@
 import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, UserErrorProperty } from '~/types'
+import { useCookieStore } from '../use-cookie-store'
 
 interface LoginParams {
   email: string
@@ -96,7 +97,7 @@ export const useAccount = () => {
     }
   })
 
-  const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
+  const { accessToken } = useCookieStore()
 
   const setTokenToCookie = (): void => {
     if (account.value.token !== accessToken.value) {
