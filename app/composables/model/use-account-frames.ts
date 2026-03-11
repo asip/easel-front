@@ -62,7 +62,7 @@ export function useAccountFrames() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
 
       throw createError({
         status: error.status,

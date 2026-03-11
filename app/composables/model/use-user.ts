@@ -33,7 +33,7 @@ export const useUser = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       // console.log(userAttrs)

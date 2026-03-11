@@ -80,7 +80,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
     /* else if (data) {
       const commentAttrs = data
@@ -111,7 +111,7 @@ export function useComment() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const commentAttrs = data
 
@@ -135,7 +135,7 @@ export function useComment() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     processing.value = pending

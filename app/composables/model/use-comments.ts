@@ -39,7 +39,7 @@ export function useComments() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const { comments: commentList } = data
       // console.log(commentList)

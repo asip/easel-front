@@ -20,7 +20,7 @@ export function useFollow() {
     // this.#clearFlash()
 
     if (error) {
-      setError({ error, off: true })
+      setError(error, { off: true })
     } else if (data) {
       const { following: followingValue } = data
 
@@ -42,7 +42,7 @@ export function useFollow() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     following.value = true
@@ -60,7 +60,7 @@ export function useFollow() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     following.value = false

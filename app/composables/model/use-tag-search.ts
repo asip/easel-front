@@ -22,7 +22,7 @@ export const useTagSearch = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
       tags.value = []
     } else if (data) {
       const { tags: tagList } = data

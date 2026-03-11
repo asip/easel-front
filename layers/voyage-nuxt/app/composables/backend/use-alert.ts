@@ -20,19 +20,19 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-type AlertOptions = {
-  error:
-    | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
-    | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
-  off?: boolean
-}
-
 export function useAlert({ flash, caller }: UseAlertOptions) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
 
-  const setError = function ({ error, off = false }: AlertOptions): void {
+  const setError = function (
+    error:
+      | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
+      | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    options?: { off?: boolean },
+  ): void {
+    const off = options?.off ?? false
+
     clearBackendErrorInfo()
     backendErrorInfo.value.status = error.status
     if (off) {

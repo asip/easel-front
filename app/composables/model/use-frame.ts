@@ -131,7 +131,7 @@ export function useFrame() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
 
       throw createError({
         status: error.status,
@@ -178,7 +178,7 @@ export function useFrame() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const frameAttrs = data
       if (frameAttrs) {
@@ -218,7 +218,7 @@ export function useFrame() {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     processing.value = pending
@@ -239,7 +239,7 @@ export function useFrame() {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     // const frameAttrs = data.value

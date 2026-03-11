@@ -191,7 +191,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     }
 
     processing.value = pending
@@ -213,7 +213,7 @@ export const useAccount = () => {
       clearFlash()
 
       if (error) {
-        setError({ error })
+        setError(error)
       } else if (data) {
         const userAttrs = data
         // console.log(userAttrs)
@@ -248,7 +248,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -279,7 +279,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       setAccount({ from: userAttrs, token })
@@ -320,7 +320,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -362,7 +362,7 @@ export const useAccount = () => {
     clearExternalErrors()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -386,7 +386,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else {
       clearAccount()
     }
@@ -406,7 +406,7 @@ export const useAccount = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {

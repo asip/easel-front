@@ -105,7 +105,7 @@ export const useFrameSearch = () => {
     clearFlash()
 
     if (error) {
-      setError({ error })
+      setError(error)
     } else if (data) {
       const { frames: frameRsList, meta } = data
       // console.log(frameList)
