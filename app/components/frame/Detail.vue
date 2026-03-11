@@ -12,8 +12,10 @@ const { openModal } = useModal()
 const { formatHTML } = useDatetimeLocal()
 
 const route = useRoute()
-const ref = route.query.ref
-const refItems: RefItems = ref ? JSON.parse(ref.toString()) : {}
+
+const { refItems } = useCookieStore()
+
+const refMap = computed<RefItems>(() => refItems.value ?? {})
 
 const frame = defineModel<Frame>()
 
@@ -24,11 +26,16 @@ const sanitizedComment = computed<string>(() => {
 })
 
 const onPageBack = async (): Promise<void> => {
-  if (!refItems.from) {
+  if (!refMap.value.from) {
     await navigateTo({ path: '/', query: queryMap.value })
   } else {
     await redirectTo({ current: route.path, fallback: '/' })
   }
+}
+
+const onNameClick = async (): Promise<void> => {
+  refItems.value = queryMapWithRef.value.ref
+  await navigateTo({ path: `/users/${frame.value?.user_id}` })
 }
 
 const onDeleteClick = (): void => {
@@ -56,10 +63,7 @@ const onDeleteClick = (): void => {
       </button>
     </div>
     <div>
-      <NuxtLink
-        :to="{ path: `/users/${frame?.user_id}`, query: queryMapWithRef }"
-        class="link link-hover"
-      >
+      <NuxtLink class="link link-hover" @click="onNameClick">
         {{ frame?.user_name }}
       </NuxtLink>
     </div>

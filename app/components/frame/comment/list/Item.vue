@@ -10,6 +10,8 @@ const { comment, deleteComment, flash, isSuccess, set404Alert, processing, setCo
 
 const { getComments } = useComments()
 
+const { refItems } = useCookieStore()
+
 const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
@@ -22,6 +24,11 @@ provide('commenter', commenter)
 provide('edit', edit)
 
 comment.value.frame_id = commentModel.value?.frame_id
+
+const onUserClick = async (): Promise<void> => {
+  refItems.value = queryMapWithRef.value.ref
+  await navigateTo({ path: `/users/${commentModel.value?.user_id}` })
+}
 
 const onEditClick = (): void => {
   edit.value = true
@@ -54,10 +61,7 @@ const onDeleteClick = async (): Promise<void> => {
         <div class="leading-8.75">
           <div class="flex justify-between">
             <div class="flex items-center gap-1">
-              <NuxtLink
-                :to="{ path: `/users/${commentModel?.user_id}`, query: queryMapWithRef }"
-                class="avatar"
-              >
+              <NuxtLink class="avatar" @click="onUserClick">
                 <div class="w-5 h-5">
                   <img
                     :src="`${commentModel?.user_image_url}`"
@@ -67,8 +71,8 @@ const onDeleteClick = async (): Promise<void> => {
                 </div>
               </NuxtLink>
               <NuxtLink
-                :to="{ path: `/users/${commentModel?.user_id}`, query: queryMapWithRef }"
                 class="badge badge-outline badge-accent hover:badge-primary rounded-full"
+                @click="onUserClick"
               >
                 {{ commentModel?.user_name }}
               </NuxtLink>

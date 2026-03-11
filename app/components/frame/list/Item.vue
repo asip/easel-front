@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
+// import type { RefQuery } from '~/types'
 
 interface ImageInfo {
   width: number | undefined
@@ -14,10 +15,17 @@ const imageInfo = ref<ImageInfo>({ width: 0, height: 0 })
 const { loggedIn, account } = useAccount()
 const { currentPage } = useFrameSearch()
 
+const { refItems } = useCookieStore()
+
+// const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: '' }) }))
+
 const front = ref<boolean>(true)
 
-const onLinkClick = () => {
+const onLinkClick = async (): Promise<void> => {
   if (frame.value?.page) currentPage.value = frame.value?.page
+  // refItems.value = queryMapWithRef.value.ref
+  refItems.value = '{}'
+  await navigateTo(`/frames/${frame.value?.id}`)
 }
 
 const onFlipClick = (): void => {
@@ -75,7 +83,7 @@ const onFlipClick = (): void => {
       <button v-else type="button" @click="onFlipClick">
         <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
       </button>
-      <NuxtLink :to="`/frames/${frame?.id}`" class="flex link link-hover" @click="onLinkClick">
+      <NuxtLink class="flex link link-hover" @click="onLinkClick">
         {{ frame?.name }}
       </NuxtLink>
     </div>

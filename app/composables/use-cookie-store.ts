@@ -1,5 +1,7 @@
 export const useCookieStore = () => {
   const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
 
-  return { accessToken }
+  const refItems = useCookie('ref', { maxAge: 60 * 60 * 24, sameSite: 'lax' })
+
+  return { accessToken, refItems }
 }

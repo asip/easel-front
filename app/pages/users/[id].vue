@@ -10,6 +10,8 @@ const { loggedIn, account } = useAccount()
 const { queryMap } = useFrameSearch()
 const { flash, following, follow, unfollow, isFollowing } = useFollow()
 
+const { refItems } = useCookieStore()
+
 const userId = id?.toString()
 
 await getUser(`${userId}`)
@@ -24,6 +26,7 @@ const onPageBack = async (): Promise<void> => {
   if (referers.value[route.path] == '/') {
     await navigateTo({ path: '/', query: queryMap.value })
   } else {
+    refItems.value = '{}'
     await navigateTo(referers.value[route.path])
   }
 }

@@ -11,6 +11,8 @@ const { from = undefined } = defineProps<{
 const { loggedIn, account } = useAccount()
 const { currentPage, frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
+const { refItems } = useCookieStore()
+
 const queryMapWithRef = computed<RefQuery>(() => {
   if (from == 'profile' || from == 'user_profile') {
     return { ref: JSON.stringify({ from }) }
@@ -18,6 +20,12 @@ const queryMapWithRef = computed<RefQuery>(() => {
     return {}
   }
 })
+
+const onFrameClick = async (): Promise<void> => {
+  onLinkClick()
+  refItems.value = queryMapWithRef.value.ref
+  await navigateTo({ path: `/frames/${frame.value?.id}` })
+}
 
 const onLinkClick = () => {
   if (frame.value?.page) {
@@ -42,9 +50,8 @@ const onLinkClick = () => {
     <div class="flex justify-center">
       <NuxtLink
         v-if="from == 'profile' || from == 'user_profile'"
-        :to="{ path: `/frames/${frame?.id}`, query: queryMapWithRef }"
         class="link link-hover"
-        @click="onLinkClick"
+        @click="onFrameClick"
       >
         {{ frame?.name }}
       </NuxtLink>

@@ -1,3 +1,3 @@
 export interface RefItems {
-  from: string | null
+  from?: string | null
 }
