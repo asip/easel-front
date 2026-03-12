@@ -9,8 +9,10 @@ export function useExternalErrors<ErrorProperty extends string>({ flash }: { fla
       return errors.value as ErrorMessages<string>
     },
     set(value: ErrorMessages<ErrorProperty>) {
-      for (const key in value) {
-        ;(errors.value as ErrorMessages<ErrorProperty>)[key] = value[key] ?? []
+      if (errors.value) {
+        for (const key in value) {
+          ;(errors.value as ErrorMessages<ErrorProperty>)[key] = value[key] ?? []
+        }
       }
     },
   })
