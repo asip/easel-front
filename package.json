@@ -18,9 +18,9 @@
   "dependencies": {
     "@formkit/tempo": "1.0.0",
     "@nuxtjs/i18n": "10.2.3",
-    "@regle/core": "^1.20.1",
-    "@regle/nuxt": "^1.20.1",
-    "@regle/rules": "^1.20.1",
+    "@regle/core": "^1.20.3",
+    "@regle/nuxt": "^1.20.3",
+    "@regle/rules": "^1.20.3",
     "@tailwindcss/vite": "4.2.1",
     "@vuepic/vue-datepicker": "12.1.0",
     "@yaireo/tagify": "^4.36.0",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^4.6.23",
     "@markuplint/vue-spec": "^4.5.23",
-    "@nuxt/devtools": "3.2.2",
+    "@nuxt/devtools": "3.2.3",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/test-utils": "^4.0.0",
     "@testing-library/vue": "8.1.0",
@@ -48,24 +48,23 @@
     "@types/sanitize-html": "^2.16.1",
     "@types/yaireo__tagify": "^4.27.0",
     "@vue/test-utils": "^2.4.6",
-    "baseline-browser-mapping": "^2.10.0",
+    "baseline-browser-mapping": "^2.10.7",
     "eslint": "^9.39.4",
     "happy-dom": "^20.8.3",
     "markuplint": "^4.14.1",
     "nuxt": "^4.3.1",
-    "oxfmt": "^0.36.0",
+    "oxfmt": "^0.40.0",
     "playwright-core": "^1.58.2",
     "typescript": "5.9.3",
-    "vite": "^8.0.0-beta.16",
-    "vitest": "^4.0.18"
+    "vite": "^8.0.0",
+    "vitest": "^4.1.0"
   },
   "pnpm": {
     "overrides": {
       "citty": "0.2.1",
-      "esbuild": "0.27.3",
       "magicast": "0.5.2",
-      "vite": "^8.0.0-beta.16",
-      "vitest": "4.0.18",
+      "vite": "^8.0.0",
+      "vitest": "^4.1.0",
       "vue": "^3.6.0-beta.7"
     },
     "onlyBuiltDependencies": [
