@@ -5,7 +5,12 @@ import type { NuxtError } from 'nuxt/app'
 
 import type { Ref } from 'vue'
 
-import type { ErrorsResource, BackendErrorResource, Flash } from '../../interfaces'
+import type {
+  ErrorsResource,
+  BackendErrorInfo,
+  BackendErrorResource,
+  Flash,
+} from '../../interfaces'
 import type { ErrorMessages } from '../../types'
 
 import { useBackendErrorInfo } from './error'
@@ -20,7 +25,17 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-export function useAlert({ flash, caller }: UseAlertOptions) {
+export function useAlert({ flash, caller }: UseAlertOptions): {
+  backendErrorInfo: globalThis.WritableComputedRef<BackendErrorInfo, BackendErrorResource>
+  setError: (
+    error:
+      | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
+      | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+    options?: {
+      off?: boolean
+    },
+  ) => void
+} {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
   const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
