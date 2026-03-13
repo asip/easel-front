@@ -1,17 +1,17 @@
 import type { Flash } from '../../../interfaces'
 import type { ErrorMessages } from '../../../types'
 
-export function useExternalErrors<ErrorProperty extends string>({ flash }: { flash: Ref<Flash> }) {
-  const errors = ref<ErrorMessages<ErrorProperty>>({})
+export function useExternalErrors<P extends string>({ flash }: { flash: Ref<Flash> }) {
+  const errors = ref<ErrorMessages<P>>({})
 
-  const externalErrors = computed<ErrorMessages<ErrorProperty>>({
+  const externalErrors = computed<ErrorMessages<P>>({
     get() {
       return errors.value as ErrorMessages<string>
     },
-    set(value: ErrorMessages<ErrorProperty>) {
+    set(value: ErrorMessages<P>) {
       if (errors.value) {
         for (const key in value) {
-          ;(errors.value as ErrorMessages<ErrorProperty>)[key] = value[key] ?? []
+          ;(errors.value as ErrorMessages<P>)[key] = value[key] ?? []
         }
       }
     },
