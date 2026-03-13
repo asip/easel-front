@@ -1,13 +1,10 @@
-import { useNuxtApp } from 'nuxt/app'
-
-import { ref } from 'vue'
-
-import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
+import type { FetchOptions, FetchError, FetchResponse } from 'ofetch'
 
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
+import { useOFetch } from './use-ofetch'
 
-type MutationAPIOptions = {
+interface MutationAPIOptions {
   method: 'post' | 'put' | 'delete'
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: Record<string, any> | FormData
@@ -17,7 +14,7 @@ type MutationAPIOptions = {
   onResponseError?: ({ response }: { response: FetchResponse<any> }) => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 export const useMutationApi = async <T = unknown, E = any>(
   url: string,
   { method, body = {}, token = null, onRequestError, onResponseError }: MutationAPIOptions,
@@ -27,13 +24,10 @@ export const useMutationApi = async <T = unknown, E = any>(
   error: FetchError<E> | undefined
   pending: boolean
 }> => {
-  const { $api } = useNuxtApp()
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
 
   const headers: Record<string, string> = commonHeaders.value
-
-  const pending = ref<boolean>(true)
 
   const tokenRef = ref<string>()
 
@@ -42,59 +36,29 @@ export const useMutationApi = async <T = unknown, E = any>(
     tokenRef.value = token
   }
 
-  const data = ref<T>()
-  const error = ref<FetchError<E>>()
+  const options: FetchOptions<'json'> = {
+    baseURL: baseURL.value,
+    headers,
+    method,
+  }
+
+  if (onRequestError) {
+    options.onRequestError = onRequestError
+  }
+
+  if (onResponseError) {
+    options.onResponseError = onResponseError
+  }
 
   if (method == 'post' || method == 'put') {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const options: FetchOptions<'json', any> = {
-      baseURL: baseURL.value,
-      method,
-      body,
-      headers,
-      onResponse({ response }: { response: FetchResponse<T> }) {
-        if ((method == 'post' && !tokenRef.value) || method == 'put')
-          tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
-      },
-    }
-
-    if (onRequestError) {
-      options.onRequestError = onRequestError
-    }
-
-    if (onResponseError) {
-      options.onResponseError = onResponseError
-    }
-
-    try {
-      data.value = await ($api as $Fetch)<T>(url, options)
-    } catch (err: unknown) {
-      error.value = err as FetchError<E>
-    }
-  } else if (method == 'delete') {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const options: FetchOptions<'json', any> = {
-      baseURL: baseURL.value,
-      method: 'delete',
-      headers,
-    }
-
-    if (onRequestError) {
-      options.onRequestError = onRequestError
-    }
-
-    if (onResponseError) {
-      options.onResponseError = onResponseError
-    }
-
-    try {
-      data.value = await ($api as $Fetch)<T>(url, options)
-    } catch (err: unknown) {
-      error.value = err as FetchError<E>
+    options.body = body
+    options.onResponse = ({ response }: { response: FetchResponse<T> }) => {
+      if ((method == 'post' && !tokenRef.value) || method == 'put')
+        tokenRef.value = response.headers.get('Authorization')?.split(' ')[1]
     }
   }
 
-  pending.value = false
+  const { data, error, pending } = await useOFetch<T, E>(url, options)
 
-  return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
+  return { token: tokenRef.value, data, error, pending }
 }

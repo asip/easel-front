@@ -1,11 +1,12 @@
 import { useAsyncData, useNuxtApp } from 'nuxt/app'
 
-import type { $Fetch, FetchError, FetchOptions, FetchResponse } from 'ofetch'
+import type { FetchOptions, FetchResponse } from 'ofetch'
 
 import { ref } from 'vue'
 
 import { useHttpHeaders } from './use-http-headers'
 import { useApiConstants } from './use-api-constants'
+import { useOFetch } from './use-ofetch'
 
 interface SearchParams {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,19 +83,8 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
       pending: pending.value,
     }
   } else {
-    const pending = ref<boolean>(true)
+    const { data, error, pending } = await useOFetch<T, E>(url, getOptions)
 
-    const data = ref<T>()
-    const error = ref<FetchError<E>>()
-
-    try {
-      data.value = await ($api as $Fetch)<T>(url, getOptions)
-    } catch (err: unknown) {
-      error.value = err as FetchError<E>
-    }
-
-    pending.value = false
-
-    return { token: tokenRef.value, data: data.value, error: error.value, pending: pending.value }
+    return { token: tokenRef.value, data, error, pending }
   }
 }
