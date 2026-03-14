@@ -1,6 +1,11 @@
 {
   "name": "@voyage/nuxt",
   "version": "0.1.0",
+  "files": [
+    "app",
+    "nuxt.config.ts",
+    "app.config.ts"
+  ],
   "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
