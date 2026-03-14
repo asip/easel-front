@@ -9,7 +9,8 @@
     "build": "nuxt build .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "fmt": "oxfmt"
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",
