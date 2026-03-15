@@ -11,7 +11,7 @@ export function useImagePreview({ file, previewUrl }: useImagePreviewOptions): v
       // (読み込んだファイルの内容を取得して変数imageに代入します)
       const image: string | ArrayBuffer | null = reader.result
       // console.log(image?.toString())
-      previewUrl.value = image?.toString() ?? null
+      previewUrl.value = image ? (image as string) : null
     }
     // (DataURIScheme文字列を取得します)
     // if (blob) reader.readAsDataURL(blob)
