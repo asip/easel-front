@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
 
 import tailwindcss from '@tailwindcss/vite'
 
@@ -6,9 +7,6 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n', '@nuxt/test-utils', '@nuxt/eslint', '@regle/nuxt', 'vue-sonner/nuxt'],
   plugins: [],
   extends: ['@voyage/nuxt'],
-  alias: {
-    '@voyage/nuxt': './layers/voyage-nuxt',
-  },
 
   i18n: {
     locales: [

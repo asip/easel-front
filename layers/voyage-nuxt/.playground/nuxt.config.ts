@@ -2,5 +2,5 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   extends: ['..'],
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxtjs/i18n', '@nuxt/eslint'],
 })
