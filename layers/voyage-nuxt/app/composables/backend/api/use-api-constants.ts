@@ -13,7 +13,7 @@ export const useApiConstants = () => {
     }
   })
 
-  const basePath = runtimeConfig.public.backendApiPath
+  const basePath = runtimeConfig.public.backendApiPath as string
 
   const baseURL = computed<string>(() => `${baseOrigin.value}${basePath}`)
 

@@ -1,7 +1,7 @@
 export const useConstants = () => {
   const runtimeConfig = useRuntimeConfig()
 
-  const googleClientID: string = runtimeConfig.public.googleClientId
+  const googleClientID = runtimeConfig.public.googleClientId as string
 
   return { googleClientID }
 }

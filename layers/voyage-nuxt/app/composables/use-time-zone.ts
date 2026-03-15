@@ -22,7 +22,7 @@ export const useTimeZone = () => {
   const { locale } = useLocale()
   const { toISO8601, formatHTML } = useDatetimeLocal()
 
-  const serverTimeZone = runtimeConfig.public.timeZone
+  const serverTimeZone = runtimeConfig.public.timeZone as string
 
   const timeZone = computed<TimeZone>(() => ({
     client: Intl.DateTimeFormat().resolvedOptions().timeZone,
