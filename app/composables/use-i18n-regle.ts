@@ -3,7 +3,8 @@ import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@reg
 
 export const { useRegle: useI18nRegle } = defineRegleConfig({
   rules: () => {
-    const { $i18n } = useNuxtApp()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { $i18n } = useNuxtApp() as any
     return {
       required: withMessage(required, () => $i18n.t('rules.required')),
       minLength: withMessage(minLength, ({ $params: [min] }) =>

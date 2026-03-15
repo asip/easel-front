@@ -1,7 +1,8 @@
 import type { Flash } from '~/interfaces'
 
 export function useSonner() {
-  const { $toast } = useNuxtApp()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { $toast } = useNuxtApp() as any
 
   const setFlash = (flash: Flash): void => {
     // console.log(flash.alert)

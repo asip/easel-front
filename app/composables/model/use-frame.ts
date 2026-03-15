@@ -2,7 +2,8 @@ import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, FrameErrorProperty } from '~/types'
 
 export function useFrame() {
-  const { $i18n } = useNuxtApp()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { $i18n } = useNuxtApp() as any
 
   const { upDTL, downDTL } = useDatetimeLocal()
   const { copy } = useEntity<Frame, FrameResource>()

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { $i18n } = useNuxtApp()
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { $i18n } = useNuxtApp() as any
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })

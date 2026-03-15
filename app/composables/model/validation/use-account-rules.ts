@@ -2,7 +2,8 @@ import type { User } from '~/interfaces'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = (user?: User) => {
-  const { $i18n } = useNuxtApp()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { $i18n } = useNuxtApp() as any
 
   const signupRules = () => ({
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
