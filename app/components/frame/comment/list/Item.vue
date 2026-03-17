@@ -25,8 +25,6 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const form = useTemplateRef('form')
-
 const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 provide('commenter', commenter)
@@ -106,7 +104,7 @@ const onDeleteClick = async (): Promise<void> => {
           <FrameCommentListDetail v-model="commentModel" />
         </div>
         <form v-else>
-          <FrameCommentEditForm ref="form" v-model="commentModel" />
+          <FrameCommentEditForm v-model="commentModel" />
         </form>
       </div>
     </div>
