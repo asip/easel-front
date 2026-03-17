@@ -15,7 +15,7 @@ const {
   processing,
   setComment,
 } = commenter
-const { getComments } = useComments()
+const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { commentRules } = useCommentRules()
 
@@ -41,25 +41,10 @@ const onUpdateClick = async (): Promise<void> => {
       setComment({ to: commentModel.value })
       edit.value = false
     } else {
-      redirectOrReload404()
+      redirectOrReload404(backendErrorInfo)
     }
   }
 }
-
-const redirectOrReload404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 404) {
-    if (backendErrorInfo.value.source == 'Frame') {
-      await navigateTo(`/frames/${comment.value.frame_id}`)
-      globalThis.setTimeout(() => {
-        reloadNuxtApp()
-      }, 2000)
-    } else if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Comment') {
-      await getComments(comment.value.frame_id, { cache: false })
-    }
-  }
-}
-
-defineExpose({ redirectOrReload404 })
 </script>
 
 <template>

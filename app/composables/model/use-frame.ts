@@ -97,7 +97,7 @@ export function useFrame() {
   })
 
   const set404Alert = (): void => {
-    if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
+    if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
       flash.value.alert = $i18n.t('backend.error.not_found', { source: $i18n.t('misc.page') })
     }
   }

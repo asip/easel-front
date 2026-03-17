@@ -25,12 +25,15 @@ interface UseAlertCallerType {
   clearAccount?: () => void
 }
 
-export function useAlert({ flash, caller }: UseAlertOptions): {
-  backendErrorInfo: globalThis.WritableComputedRef<BackendErrorInfo, BackendErrorResource>
+export function useAlert<BER extends object = BackendErrorResource>({
+  flash,
+  caller,
+}: UseAlertOptions): {
+  backendErrorInfo: Ref<BackendErrorInfo<BER>, BER>
   setError: (
     error:
-      | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
-      | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+      | NuxtError<ErrorsResource<ErrorMessages<string>> | BER>
+      | FetchError<ErrorsResource<ErrorMessages<string>> | BER>,
     options?: {
       off?: boolean
     },
@@ -38,12 +41,12 @@ export function useAlert({ flash, caller }: UseAlertOptions): {
 } {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
-  const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo()
+  const { backendErrorInfo, clearBackendErrorInfo } = useBackendErrorInfo<BER>()
 
   const setError = function (
     error:
-      | NuxtError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>
-      | FetchError<ErrorsResource<ErrorMessages<string>> | BackendErrorResource>,
+      | NuxtError<ErrorsResource<ErrorMessages<string>> | BER>
+      | FetchError<ErrorsResource<ErrorMessages<string>> | BER>,
     options?: { off?: boolean },
   ): void {
     const off = options?.off ?? false
@@ -67,8 +70,8 @@ export function useAlert({ flash, caller }: UseAlertOptions): {
           break
         case 404:
           {
-            const backendError = error.data as BackendErrorResource
-            backendErrorInfo.value = backendError
+            const backendError = error.data as BER
+            backendErrorInfo.value.error = backendError
           }
           break
         case 422: {

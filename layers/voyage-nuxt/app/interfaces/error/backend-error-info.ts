@@ -1,5 +1,4 @@
-import type { BackendErrorResource } from '../resource'
-
-export interface BackendErrorInfo extends Partial<BackendErrorResource> {
+export interface BackendErrorInfo<BER> {
+  error?: BER
   status?: number
 }

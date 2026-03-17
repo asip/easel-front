@@ -46,10 +46,12 @@ export function useComment() {
   })
 
   const set404Alert = (): void => {
+    console.log(backendErrorInfo.value.status)
+    console.log(backendErrorInfo.value.error?.source)
     if (backendErrorInfo.value.status == 404) {
-      if (backendErrorInfo.value.source == 'Frame') {
+      if (backendErrorInfo.value.error?.source == 'Frame') {
         flash.value.alert = $i18n.t('backend.error.not_found', { source: $i18n.t('misc.page') })
-      } else if (backendErrorInfo.value.source == 'Comment') {
+      } else if (backendErrorInfo.value.error?.source == 'Comment') {
         flash.value.alert = $i18n.t('backend.error.not_found', {
           source: $i18n.t('models.comment'),
         })

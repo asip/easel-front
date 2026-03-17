@@ -1,16 +1,10 @@
-import type { BackendErrorInfo, BackendErrorResource } from '../../../interfaces'
+import type { BackendErrorInfo } from '../../../interfaces'
 
-export function useBackendErrorInfo() {
-  const info = ref<BackendErrorInfo>({})
-  const { copy } = useEntity<BackendErrorInfo, BackendErrorResource>()
+export function useBackendErrorInfo<R extends object>() {
+  const info = ref<BackendErrorInfo<R>>({})
 
-  const backendErrorInfo = computed<BackendErrorInfo, BackendErrorResource>({
-    get() {
-      return info.value
-    },
-    set(value: BackendErrorResource) {
-      copy({ from: value, to: info.value })
-    },
+  const backendErrorInfo = computed<BackendErrorInfo<R>>(() => {
+    return info.value as BackendErrorInfo<R>
   })
 
   const clearBackendErrorInfo = (): void => {

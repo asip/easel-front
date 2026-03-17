@@ -24,4 +24,6 @@ export {
   useTagSearch,
 } from './model'
 
+export { useCommentTransition } from './transition'
+
 export type { UseAccountType, UseCommentType, UseFrameType } from './model'

@@ -18,7 +18,7 @@ const onDeleteClick = async (): Promise<void> => {
 }
 
 const redirect404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.source == 'Frame') {
+  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
     await navigateTo('/')
   }
 }

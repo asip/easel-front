@@ -6,9 +6,18 @@ const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
 
 const commenter = useComment()
-const { comment, deleteComment, flash, isSuccess, set404Alert, processing, setComment } = commenter
-
+const {
+  comment,
+  deleteComment,
+  flash,
+  isSuccess,
+  backendErrorInfo,
+  set404Alert,
+  processing,
+  setComment,
+} = commenter
 const { getComments } = useComments()
+const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { refItems } = useCookieStore()
 
@@ -49,7 +58,7 @@ const onDeleteClick = async (): Promise<void> => {
   if (isSuccess()) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
-    form.value?.redirectOrReload404()
+    redirectOrReload404(backendErrorInfo)
   }
 }
 </script>
