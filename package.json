@@ -33,7 +33,7 @@
     "quill": "^2.0.3",
     "sanitize-html": "^2.17.1",
     "tailwindcss": "4.2.1",
-    "vue": "^3.6.0-beta.7",
+    "vue": "^3.6.0-beta.8",
     "vue-quilly": "^1.1.6",
     "vue-sonner": "2.0.9",
     "vue3-google-signin": "2.1.1"
@@ -66,7 +66,7 @@
       "magicast": "0.5.2",
       "vite": "^8.0.0",
       "vitest": "^4.1.0",
-      "vue": "^3.6.0-beta.7"
+      "vue": "^3.6.0-beta.8"
     },
     "onlyBuiltDependencies": [
       "@parcel/watcher",
