@@ -14,6 +14,7 @@ interface SearchParams {
 }
 
 export type QueryAPIOptions = {
+  key?: MaybeRefOrGetter<string>
   query?: SearchParams
   token?: string | null
   signal?: AbortSignal
@@ -30,6 +31,8 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
   const { $api } = useNuxtApp() as any
   const { commonHeaders } = useHttpHeaders()
   const { baseURL } = useApiConstants()
+
+  const key = options?.key ?? url
 
   const tokenRef = ref<string>()
 
@@ -67,7 +70,7 @@ export const useQueryApi = async <T = unknown, E = any>(url: string, options?: Q
   }
 
   if (cache) {
-    const { data, error, refresh, pending } = await useAsyncData<T, E>(url, () =>
+    const { data, error, refresh, pending } = await useAsyncData<T, E>(key, () =>
       $api(url, getOptions),
     )
 
