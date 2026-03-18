@@ -46,8 +46,6 @@ export function useComment() {
   })
 
   const set404Alert = (): void => {
-    console.log(backendErrorInfo.value.status)
-    console.log(backendErrorInfo.value.error?.source)
     if (backendErrorInfo.value.status == 404) {
       if (backendErrorInfo.value.error?.source == 'Frame') {
         flash.value.alert = $i18n.t('backend.error.not_found', { source: $i18n.t('misc.page') })
