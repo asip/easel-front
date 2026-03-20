@@ -3,6 +3,7 @@ export type { ErrorsResource, Flash } from '@voyage/nuxt/app/interfaces'
 export type { Comment, Frame, User } from './model'
 
 export type {
+  FrameCriteria,
   PaginationQuery,
   FrameQuery,
   AccountFrameQuery,

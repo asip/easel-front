@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Comment } from '~/interfaces'
-import type { RefQuery } from '~/types'
+import type { RefQueryItems } from '~/types'
 
 const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
@@ -25,7 +25,7 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 provide('commenter', commenter)
 provide('edit', edit)

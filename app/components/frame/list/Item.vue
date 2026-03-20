@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Frame } from '~/interfaces'
-// import type { RefQuery } from '~/types'
+// import type { RefQueryItems } from '~/types'
 
 interface ImageInfo {
   width: number | undefined
@@ -17,7 +17,7 @@ const { currentPage } = useFrameSearch()
 
 const { refItems } = useCookieStore()
 
-// const queryMapWithRef = computed<RefQuery>(() => ({ ref: JSON.stringify({ from: '' }) }))
+// const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: '' }) }))
 
 const front = ref<boolean>(true)
 

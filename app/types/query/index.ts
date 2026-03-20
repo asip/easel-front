@@ -1,1 +1,1 @@
-export type { RefQuery } from './ref-query'
+export type { RefQueryItems } from './ref-query-items'

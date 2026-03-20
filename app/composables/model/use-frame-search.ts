@@ -1,7 +1,14 @@
-import type { Frame, FrameQuery, FrameResource, FramesResource, ErrorsResource } from '~/interfaces'
+import type {
+  Frame,
+  FrameCriteria,
+  FrameQuery,
+  FrameResource,
+  FramesResource,
+  ErrorsResource,
+} from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-type SearchQuery = Partial<Record<'q' | 'page', string>>
+type QueryItems = Partial<Record<'q' | 'page', string>>
 
 export const useFrameSearch = () => {
   const { create } = useEntity<Frame, FrameResource>()
@@ -28,10 +35,10 @@ export const useFrameSearch = () => {
     }
   })
 
-  const qItems = computed<FrameQuery['items']>(() => {
+  const qItems = computed<FrameCriteria>(() => {
     const { items } = frameQuery.value
 
-    const qItems: FrameQuery['items'] = {}
+    const qItems: FrameCriteria = {}
 
     if (items.word) qItems.word = items.word
     if (items.frame_name) qItems.frame_name = items.frame_name
@@ -43,7 +50,7 @@ export const useFrameSearch = () => {
     return qItems
   })
 
-  const queryMap = computed<SearchQuery>(() => {
+  const queryMap = computed<QueryItems>(() => {
     const items = qItems.value
     const page = currentPage.value
     const query: { q?: string; page?: string } = {}

@@ -1,1 +1,0 @@
-export type RefQuery = Partial<Record<'ref', string>>
