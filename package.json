@@ -41,7 +41,7 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^4.6.23",
     "@markuplint/vue-spec": "^4.5.23",
-    "@nuxt/devtools": "3.2.3",
+    "@nuxt/devtools": "3.2.4",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/test-utils": "^4.0.0",
     "@testing-library/vue": "8.1.0",
@@ -51,7 +51,7 @@
     "@vue/test-utils": "^2.4.6",
     "baseline-browser-mapping": "^2.10.9",
     "eslint": "^9.39.4",
-    "happy-dom": "^20.8.3",
+    "happy-dom": "^20.8.4",
     "markuplint": "^4.14.1",
     "nuxt": "^4.4.2",
     "oxfmt": "^0.41.0",
