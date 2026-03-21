@@ -3,7 +3,7 @@ export type {
   BackendErrorResource,
   ErrorsResource,
   Flash,
-} from '@voyage/nuxt/interfaces'
+} from '@vesperjs/nuxt/interfaces'
 
 export type { Comment, Frame, User } from './model'
 
