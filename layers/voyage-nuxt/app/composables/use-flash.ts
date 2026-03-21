@@ -1,4 +1,4 @@
-import type { Flash } from '../interfaces'
+import type { Flash } from '../../interfaces'
 
 import { ref } from 'vue'
 

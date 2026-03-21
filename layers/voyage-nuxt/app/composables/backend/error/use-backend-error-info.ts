@@ -1,4 +1,4 @@
-import type { BackendErrorInfo } from '../../../interfaces'
+import type { BackendErrorInfo } from '../../../../interfaces'
 
 export function useBackendErrorInfo<R extends object>() {
   const info = ref<BackendErrorInfo<R>>({})
