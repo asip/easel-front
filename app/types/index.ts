@@ -1,4 +1,4 @@
-export type { ErrorMessages } from '@voyage/nuxt/app/types'
+export type { ErrorMessages } from '@voyage/nuxt/types'
 
 export type { RefQueryItems } from './query'
 

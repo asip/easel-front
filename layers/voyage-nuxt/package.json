@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "files": [
     "app",
+    "interfaces",
+    "types",
     "nuxt.config.ts",
     "app.config.ts"
   ],

@@ -1,5 +1,4 @@
-import type { BackendErrorInfo, BackendErrorResource } from '@voyage/nuxt/app/interfaces'
-import type { Comment } from '~/interfaces'
+import type { Comment, BackendErrorInfo, BackendErrorResource } from '~/interfaces'
 
 export const useCommentTransition = (comment: Ref<Comment>) => {
   const { getComments } = useComments()

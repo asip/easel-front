@@ -1,4 +1,9 @@
-export type { ErrorsResource, Flash } from '@voyage/nuxt/app/interfaces'
+export type {
+  BackendErrorInfo,
+  BackendErrorResource,
+  ErrorsResource,
+  Flash,
+} from '@voyage/nuxt/interfaces'
 
 export type { Comment, Frame, User } from './model'
 
