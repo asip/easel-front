@@ -4,9 +4,7 @@
   "compilerOptions": {
     "paths": {
       "~": ["./app"],
-      "~/*": ["./app/*"],
-      "@voyage/nuxt": ["./layers/voyage-nuxt"],
-      "@voyage/nuxt/*": ["./layers/voyage-nuxt/*"]
+      "~/*": ["./app/*"]
     }
   }
 }
