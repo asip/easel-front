@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "@formkit/tempo": "1.0.0",
-    "@nuxtjs/i18n": "10.2.3",
-    "@regle/core": "^1.20.4",
-    "@regle/nuxt": "^1.20.4",
-    "@regle/rules": "^1.20.4",
+    "@nuxtjs/i18n": "10.2.4",
+    "@regle/core": "^1.21.0",
+    "@regle/nuxt": "^1.21.0",
+    "@regle/rules": "^1.21.0",
     "@tailwindcss/vite": "4.2.2",
     "@vesperjs/nuxt": "0.1.5",
     "@vuepic/vue-datepicker": "12.1.0",
@@ -49,23 +49,23 @@
     "@types/sanitize-html": "^2.16.1",
     "@types/yaireo__tagify": "^4.27.0",
     "@vue/test-utils": "^2.4.6",
-    "baseline-browser-mapping": "^2.10.9",
+    "baseline-browser-mapping": "^2.10.10",
     "eslint": "^9.39.4",
-    "happy-dom": "^20.8.4",
+    "happy-dom": "^20.8.7",
     "markuplint": "^4.14.1",
     "nuxt": "^4.4.2",
-    "oxfmt": "^0.41.0",
+    "oxfmt": "^0.42.0",
     "playwright-core": "^1.58.2",
     "typescript": "5.9.3",
-    "vite": "^8.0.0",
-    "vitest": "^4.1.0"
+    "vite": "^8.0.2",
+    "vitest": "^4.1.1"
   },
   "pnpm": {
     "overrides": {
       "citty": "0.2.1",
       "magicast": "0.5.2",
-      "vite": "^8.0.0",
-      "vitest": "^4.1.0",
+      "vite": "^8.0.2",
+      "vitest": "^4.1.1",
       "vue": "^3.6.0-beta.8"
     },
     "onlyBuiltDependencies": [
