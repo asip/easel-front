@@ -1,7 +1,7 @@
 import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, FrameErrorProperty } from '~/types'
 
-export function useFrame() {
+export const useFrame = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
 

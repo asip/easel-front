@@ -10,7 +10,7 @@ import type { ErrorMessages } from '~/types'
 
 type QueryItems = Partial<Record<'q' | 'page', string>>
 
-export const useFrameSearch = () => {
+export const useFrameSearch = function () {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()

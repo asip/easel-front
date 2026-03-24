@@ -2,7 +2,7 @@ import { usePhotoSwipe } from './lightbox'
 
 type galleryOptions = { selector: string; anchor?: string }
 
-export function useImageGallery({ selector, anchor }: galleryOptions) {
+export const useImageGallery = function ({ selector, anchor }: galleryOptions) {
   const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe({ selector, anchor })
 
   const initGallery = (): void => {

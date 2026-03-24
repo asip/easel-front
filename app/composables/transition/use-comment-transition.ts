@@ -1,6 +1,6 @@
 import type { Comment, BackendErrorInfo, BackendErrorResource } from '~/interfaces'
 
-export const useCommentTransition = (comment: Ref<Comment>) => {
+export const useCommentTransition = function (comment: Ref<Comment>) {
   const { getComments } = useComments()
 
   const redirectOrReload404 = async (

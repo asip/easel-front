@@ -9,7 +9,7 @@ type TagEditorOptions = {
   tagSearch?: TagSearchType
 }
 
-export function useTagEditor({ el, tagList, tagSearch }: TagEditorOptions) {
+export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

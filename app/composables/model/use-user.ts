@@ -1,7 +1,7 @@
 import type { User, UserResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export const useUser = () => {
+export const useUser = function () {
   const { copy } = useEntity<User, UserResource>()
 
   const { flash, clearFlash } = useFlash()

@@ -1,7 +1,7 @@
 import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useComments() {
+export const useComments = function () {
   const { create } = useEntity<Comment, CommentResource>()
 
   const { formatHtmlTZ } = useTimeZone()

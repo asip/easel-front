@@ -1,4 +1,4 @@
-export function useModal() {
+export const useModal = function () {
   const openModal = (selector: string): void => {
     const modalEl: HTMLDialogElement | null = document.querySelector(selector)
     if (modalEl) modalEl.showModal()

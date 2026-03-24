@@ -1,7 +1,7 @@
 import type { User } from '~/interfaces'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
-export const useAccountRules = (user?: User) => {
+export const useAccountRules = function (user?: User) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
 

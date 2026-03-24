@@ -7,7 +7,7 @@ import type {
 } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useAccountFrames() {
+export const useAccountFrames = function () {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()

@@ -3,7 +3,7 @@ type useImagePreviewOptions = {
   previewUrl: Ref<string | null | undefined>
 }
 
-export function useImagePreview({ file, previewUrl }: useImagePreviewOptions): void {
+export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOptions): void {
   const setPreview = (): void => {
     const reader = new FileReader()
     // (読み込みが完了したら処理が実行されます)

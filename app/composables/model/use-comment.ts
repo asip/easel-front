@@ -1,7 +1,7 @@
 import type { Comment, CommentResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages, CommentErrorProperty } from '~/types'
 
-export function useComment() {
+export const useComment = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
 

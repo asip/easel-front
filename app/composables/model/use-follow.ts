@@ -1,7 +1,7 @@
 import type { FollowingResource, ErrorsResource } from '~/interfaces'
 import type { ErrorMessages } from '~/types'
 
-export function useFollow() {
+export const useFollow = function () {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 

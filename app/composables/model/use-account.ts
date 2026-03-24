@@ -8,7 +8,7 @@ interface LoginParams {
   password: string
 }
 
-export const useAccount = () => {
+export const useAccount = function () {
   const { copy } = useEntity<User, UserResource>()
 
   const { timeZone } = useTimeZone()

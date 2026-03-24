@@ -1,4 +1,4 @@
-export function useQuill() {
+export const useQuill = function () {
   const p2br = (content: string): string => {
     content = content.replace(/<\/p><p>/gi, '<br>')
     content = content.replace(/<p>/gi, '')

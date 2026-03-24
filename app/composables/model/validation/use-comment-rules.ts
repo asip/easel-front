@@ -1,6 +1,6 @@
 import { required } from '@regle/rules'
 
-export const useCommentRules = () => {
+export const useCommentRules = function () {
   const commentRules = {
     body: { required },
   }

@@ -1,6 +1,6 @@
 import type { Flash } from '~/interfaces'
 
-export function useSonner() {
+export const useSonner = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $toast } = useNuxtApp() as any
 

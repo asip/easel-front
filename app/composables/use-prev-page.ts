@@ -1,4 +1,4 @@
-export function usePrevPage() {
+export const usePrevPage = function () {
   const { referers } = useReferer()
   const { queryMap } = useFrameSearch()
 
