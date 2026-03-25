@@ -34,8 +34,8 @@ importers:
         specifier: 4.2.2
         version: 4.2.2(vite@8.0.2(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.6.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.8.2))
       '@vesperjs/nuxt':
-        specifier: 0.1.6
-        version: 0.1.6
+        specifier: 0.1.7
+        version: 0.1.7
       '@vuepic/vue-datepicker':
         specifier: 12.1.0
         version: 12.1.0(vue@3.6.0-beta.8(typescript@5.9.3))
@@ -2776,8 +2776,8 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.1.6':
-    resolution: {integrity: sha512-LApBTlTuy6ZXn2vnr1zvH/oNsBTHVU7ap4S9lHMoVKjhBtCpujZ0U3MkG8LmOpnTkJy2fojnYr6tmKaGSMvlXw==}
+  '@vesperjs/nuxt@0.1.7':
+    resolution: {integrity: sha512-MkFbPvJEQ9A+FZfGklenfxAZeNM6t5LRRfLrx9kV5O3Yl3iWIv/zWKovRpLvvwbDewA4ThRoEwERipvgguAuwg==}
 
   '@vitejs/plugin-vue-jsx@5.1.4':
     resolution: {integrity: sha512-70LmoVk9riR7qc4W2CpjsbNMWTPnuZb9dpFKX1emru0yP57nsc9k8nhLA6U93ngQapv5VDIUq2JatNfLbBIkrA==}
@@ -9115,7 +9115,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.1.6': {}
+  '@vesperjs/nuxt@0.1.7': {}
 
   '@vitejs/plugin-vue-jsx@5.1.4(vite@8.0.2(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.6.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.8.2))(vue@3.6.0-beta.8(typescript@5.9.3))':
     dependencies:
