@@ -22,7 +22,7 @@
     "@regle/nuxt": "^1.21.1",
     "@regle/rules": "^1.21.1",
     "@tailwindcss/vite": "^4.2.2",
-    "@vesperjs/nuxt": "0.1.8",
+    "@vesperjs/nuxt": "0.1.9",
     "@vuepic/vue-datepicker": "^12.1.0",
     "@yaireo/tagify": "^4.36.0",
     "bootstrap-icons": "^1.13.1",
