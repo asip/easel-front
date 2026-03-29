@@ -13,7 +13,8 @@ const {
 } = useComment()
 const { getComments } = useComments()
 
-const frameId = inject('frameId') as number
+const { frameId } = defineProps<{ frameId: number | undefined }>()
+
 const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
