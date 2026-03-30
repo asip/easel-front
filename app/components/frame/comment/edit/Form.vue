@@ -6,6 +6,7 @@ const { setFlash } = useSonner()
 const commenter = inject('commenter') as UseCommentType
 const {
   comment,
+  edit,
   externalErrors,
   backendErrorInfo,
   updateComment,
@@ -20,8 +21,6 @@ const { redirectOrReload404 } = useCommentTransition(comment)
 const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
-
-const edit = inject('edit') as Ref<boolean>
 
 const commentModel = defineModel<Comment>()
 

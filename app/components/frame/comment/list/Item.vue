@@ -8,6 +8,7 @@ const { loggedIn, account } = useAccount()
 const commenter = useComment()
 const {
   comment,
+  edit,
   deleteComment,
   flash,
   isSuccess,
@@ -21,14 +22,11 @@ const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { refItems } = useCookieStore()
 
-const edit = ref<boolean>(false)
-
 const commentModel = defineModel<Comment>()
 
 const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 provide('commenter', commenter)
-provide('edit', edit)
 
 comment.value.frame_id = commentModel.value?.frame_id
 

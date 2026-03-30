@@ -59,6 +59,8 @@ export const useComment = function () {
 
   const processing = ref<boolean>(false)
 
+  const edit = ref<boolean>(false)
+
   const createComment = async (): Promise<void> => {
     processing.value = true
 
@@ -144,6 +146,7 @@ export const useComment = function () {
 
   return {
     comment,
+    edit,
     setComment,
     externalErrors,
     backendErrorInfo,
