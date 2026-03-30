@@ -12,7 +12,7 @@ const {
   processing,
   isSuccess,
   flash,
-} = inject('accounter') as UseAccountType
+} = inject('accountUse') as UseAccountType
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })

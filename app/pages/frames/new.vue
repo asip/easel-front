@@ -2,11 +2,11 @@
 const route = useRoute()
 
 const { referers } = useReferer()
-const framer = useFrame()
+const frameUse = useFrame()
 
 const from = referers.value[route.path]
 
-provide('framer', framer)
+provide('frameUse', frameUse)
 </script>
 
 <template>

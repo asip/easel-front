@@ -3,7 +3,7 @@ import type { Comment } from '~/interfaces'
 
 const { setFlash } = useSonner()
 
-const commenter = inject('commenter') as UseCommentType
+const commentUse = inject('commentUse') as UseCommentType
 const {
   comment,
   edit,
@@ -15,7 +15,7 @@ const {
   set404Alert,
   processing,
   setComment,
-} = commenter
+} = commentUse
 const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { commentRules } = useCommentRules()

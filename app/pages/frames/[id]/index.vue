@@ -4,10 +4,10 @@ const { id } = route.params
 const frameId = id?.toString()
 
 const { loggedIn } = useAccount()
-const framer = useFrame()
-const { frame, getFrame } = framer
+const frameUse = useFrame()
+const { frame, getFrame } = frameUse
 
-provide('framer', framer)
+provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
 </script>

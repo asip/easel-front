@@ -3,16 +3,16 @@ const route = useRoute()
 const { id } = route.params
 const frameId = id?.toString()
 
-const framer = useFrame()
-const { frame, getFrame } = framer
+const frameUse = useFrame()
+const { frame, getFrame } = frameUse
 
 const { refresh } = await getFrame(`${frameId}`)
 
-framer.refresh = async (): Promise<void> => {
+frameUse.refresh = async (): Promise<void> => {
   if (refresh) await refresh()
 }
 
-provide('framer', framer)
+provide('frameUse', frameUse)
 </script>
 
 <template>

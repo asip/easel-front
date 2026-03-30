@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const accounter = useAccount()
-const { account, loggedIn, logout } = accounter
+const accountUse = useAccount()
+const { account, loggedIn, logout } = accountUse
 const { frameQuery, queryMap, currentPage, clearSearchCriteria } = useFrameSearch()
 const { openModal } = useModal()
 
 const dropdown = useTemplateRef('dropdown')
 const { closeDropdown } = useDropdown({ el: dropdown })
 
-provide('accounter', accounter)
+provide('accountUse', accountUse)
 
 const onLoginClick = (): void => {
   openModal('#login_modal')

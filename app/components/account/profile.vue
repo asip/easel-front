@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html'
 
 const { p2br } = useQuill()
 
-const { account } = inject('accounter') as UseAccountType
+const { account } = inject('accountUse') as UseAccountType
 
 const sanitizedProfile = computed<string>(() => {
   return p2br(sanitizeHtml(account.value.profile)).replace(/\n/g, '<br>')

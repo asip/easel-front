@@ -10,7 +10,7 @@ const {
   externalErrors,
   clearLoginParams,
   clearExternalErrors,
-} = inject('accounter') as UseAccountType
+} = inject('accountUse') as UseAccountType
 const { signinRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(loginParams, signinRules, { externalErrors })

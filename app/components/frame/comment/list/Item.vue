@@ -5,7 +5,7 @@ import type { RefQueryItems } from '~/types'
 const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
 
-const commenter = useComment()
+const commentUse = useComment()
 const {
   comment,
   edit,
@@ -16,7 +16,7 @@ const {
   set404Alert,
   processing,
   setComment,
-} = commenter
+} = commentUse
 const { getComments } = useComments()
 const { redirectOrReload404 } = useCommentTransition(comment)
 
@@ -26,7 +26,7 @@ const commentModel = defineModel<Comment>()
 
 const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
-provide('commenter', commenter)
+provide('commentUse', commentUse)
 
 comment.value.frame_id = commentModel.value?.frame_id
 

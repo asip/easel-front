@@ -16,7 +16,7 @@ const {
   processing,
   isSuccess,
   flash,
-} = inject('framer') as UseFrameType
+} = inject('frameUse') as UseFrameType
 const { newFrameRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })

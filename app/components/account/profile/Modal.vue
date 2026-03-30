@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { loggedIn, account, setUser, initTimeZone } = inject('accounter') as UseAccountType
+const { loggedIn, account, setUser, initTimeZone } = inject('accountUse') as UseAccountType
 
 const onCloseClick = (): void => {
   closeModal('#profile_modal')
