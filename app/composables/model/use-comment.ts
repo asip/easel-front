@@ -1,5 +1,10 @@
-import type { Comment, CommentResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages, CommentErrorProperty } from '~/types'
+import type {
+  Comment,
+  CommentResource,
+  CommentErrorProperty,
+  ErrorsResource,
+  ErrorMessages,
+} from '~/types'
 
 export const useComment = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User } from '~/interfaces'
+import type { User } from '~/types'
 
 const user = defineModel<User>()
 </script>

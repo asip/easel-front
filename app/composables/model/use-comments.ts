@@ -1,5 +1,10 @@
-import type { Comment, CommentResource, CommentsResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type {
+  Comment,
+  CommentResource,
+  CommentsResource,
+  ErrorsResource,
+  ErrorMessages,
+} from '~/types'
 
 export const useComments = function () {
   const { create } = useEntity<Comment, CommentResource>()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 
-import type { Comment } from '~/interfaces'
+import type { Comment } from '~/types'
 
 const { p2br } = useQuill()
 

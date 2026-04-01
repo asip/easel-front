@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Frame } from '~/interfaces'
+import type { Frame } from '~/types'
 // import type { RefQueryItems } from '~/types'
 
 interface ImageInfo {

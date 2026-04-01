@@ -1,4 +1,4 @@
-import type { Comment, BackendErrorInfo, BackendErrorResource } from '~/interfaces'
+import type { Comment, BackendErrorInfo, BackendErrorResource } from '~/types'
 
 export const useCommentTransition = function (comment: Ref<Comment>) {
   const { getComments } = useComments()

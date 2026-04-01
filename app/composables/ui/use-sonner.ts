@@ -1,4 +1,4 @@
-import type { Flash } from '~/interfaces'
+import type { Flash } from '~/types'
 
 export const useSonner = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,4 +1,4 @@
-import type { User } from '~/interfaces'
+import type { User } from '~/types'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = function (user?: User) {

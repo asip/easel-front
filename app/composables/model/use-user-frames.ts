@@ -4,8 +4,8 @@ import type {
   FramesResource,
   UserFrameQuery,
   ErrorsResource,
-} from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+  ErrorMessages,
+} from '~/types'
 
 export const useUserFrames = function () {
   const { create } = useEntity<Frame, FrameResource>()

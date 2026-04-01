@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 
-import type { Frame, RefItems } from '~/interfaces'
-import type { RefQueryItems } from '~/types'
+import type { Frame, RefItems, RefQueryItems } from '~/types'
 
 const { p2br } = useQuill()
 const { redirectTo } = usePrevPage()

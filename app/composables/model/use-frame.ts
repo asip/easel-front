@@ -1,5 +1,10 @@
-import type { Frame, FrameResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages, FrameErrorProperty } from '~/types'
+import type {
+  Frame,
+  FrameResource,
+  FrameErrorProperty,
+  ErrorsResource,
+  ErrorMessages,
+} from '~/types'
 
 export const useFrame = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

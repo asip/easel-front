@@ -1,4 +1,4 @@
-import type { UserResource } from '..'
+import type { UserResource } from '../resource'
 
 export interface User extends UserResource {
   image: File | null | undefined

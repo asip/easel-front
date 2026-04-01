@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { Comment } from '~/interfaces'
-import type { RefQueryItems } from '~/types'
+import type { Comment, RefQueryItems } from '~/types'
 
 const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()

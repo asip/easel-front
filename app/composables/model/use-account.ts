@@ -1,6 +1,5 @@
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { User, UserResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages, UserErrorProperty } from '~/types'
+import type { User, UserResource, UserErrorProperty, ErrorsResource, ErrorMessages } from '~/types'
 import { useCookieStore } from '../use-cookie-store'
 
 interface LoginParams {

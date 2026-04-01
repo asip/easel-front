@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 
-import type { User } from '~/interfaces'
+import type { User } from '~/types'
 
 const user = defineModel<User>()
 

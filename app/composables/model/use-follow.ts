@@ -1,5 +1,4 @@
-import type { FollowingResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { FollowingResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useFollow = function () {
   const { flash, clearFlash } = useFlash()

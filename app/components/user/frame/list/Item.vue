@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { Frame } from '~/interfaces'
-import type { RefQueryItems } from '~/types'
+import type { Frame, RefQueryItems } from '~/types'
 
 const frame = defineModel<Frame>()
 

@@ -5,8 +5,8 @@ import type {
   FrameResource,
   FramesResource,
   ErrorsResource,
-} from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+  ErrorMessages,
+} from '~/types'
 
 type QueryItems = Partial<Record<'q' | 'page', string>>
 

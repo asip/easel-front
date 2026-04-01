@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Comment } from '~/interfaces'
+import type { Comment } from '~/types'
 
 const { setFlash } = useSonner()
 

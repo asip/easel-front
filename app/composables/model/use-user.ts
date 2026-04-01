@@ -1,5 +1,4 @@
-import type { User, UserResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { User, UserResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useUser = function () {
   const { copy } = useEntity<User, UserResource>()

@@ -1,5 +1,4 @@
-import type { TagsResource, ErrorsResource } from '~/interfaces'
-import type { ErrorMessages } from '~/types'
+import type { TagsResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
