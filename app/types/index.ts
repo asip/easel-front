@@ -3,8 +3,8 @@ export type {
   BackendErrorResource,
   ErrorsResource,
   Flash,
-} from '@vesperjs/nuxt/interfaces'
-export type { ErrorMessages } from '@vesperjs/nuxt/types'
+  ErrorMessages
+} from '@vesperjs/nuxt/types'
 
 export type { CommentErrorProperty, FrameErrorProperty, UserErrorProperty } from './model/error'
 
