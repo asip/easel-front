@@ -6,7 +6,6 @@ const { setFlash } = useSonner()
 const commentUse = inject('commentUse') as UseCommentType
 const {
   comment,
-  edit,
   externalErrors,
   backendErrorInfo,
   updateComment,
@@ -22,7 +21,8 @@ const { commentRules } = useCommentRules()
 
 const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
 
-const commentModel = defineModel<Comment>()
+const commentModel = defineModel<Comment>('comment')
+const edit = defineModel<boolean>('edit')
 
 const onUpdateClick = async (): Promise<void> => {
   r$.$touch()

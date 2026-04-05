@@ -7,7 +7,6 @@ const { loggedIn, account } = useAccount()
 const commentUse = useComment()
 const {
   comment,
-  edit,
   deleteComment,
   flash,
   isSuccess,
@@ -20,6 +19,8 @@ const { getComments } = useComments()
 const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { refItems } = useCookieStore()
+
+const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
@@ -101,7 +102,7 @@ const onDeleteClick = async (): Promise<void> => {
           <FrameCommentListDetail v-model="commentModel" />
         </div>
         <form v-else>
-          <FrameCommentEditForm v-model="commentModel" />
+          <FrameCommentEditForm v-model:comment="commentModel" v-model:edit="edit" />
         </form>
       </div>
     </div>
