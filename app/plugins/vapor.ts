@@ -1,5 +1,5 @@
-import { vaporInteropPlugin } from 'vue'
+// import { vaporInteropPlugin } from 'vue'
 
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(vaporInteropPlugin)
+export default defineNuxtPlugin((/* nuxtApp */) => {
+  // nuxtApp.vueApp.use(vaporInteropPlugin)
 })
