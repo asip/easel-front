@@ -59,8 +59,8 @@
     "oxfmt": "^0.44.0",
     "playwright-core": "^1.59.1",
     "typescript": "^6.0.2",
-    "vite": "^8.0.5",
-    "vitest": "^4.1.2"
+    "vite": "^8.0.7",
+    "vitest": "^4.1.3"
   },
   "pnpm": {
     "overrides": {
@@ -69,8 +69,8 @@
       "eslint": "^10.2.0",
       "magicast": "^0.5.2",
       "typescript": "^6.0.2",
-      "vite": "^8.0.5",
-      "vitest": "^4.1.2",
+      "vite": "^8.0.7",
+      "vitest": "^4.1.3",
       "vue": "^3.6.0-beta.9"
     },
     "onlyBuiltDependencies": [
