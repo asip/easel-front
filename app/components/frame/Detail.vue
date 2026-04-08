@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 
-import type { Frame, RefItems, RefQueryItems } from '~/types'
+import type { Frame, RefQueryItems } from '~/types'
 
 const { p2br } = useQuill()
 const { redirectTo } = usePrevPage()
@@ -12,9 +12,7 @@ const { formatHTML } = useDatetimeLocal()
 
 const route = useRoute()
 
-const { refItems } = useCookieStore()
-
-const refMap = computed<RefItems>(() => refItems.value ?? {})
+const { refItems, refMap } = useCookieStore()
 
 const frame = defineModel<Frame>()
 
