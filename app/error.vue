@@ -10,7 +10,7 @@ const error = useError()
       <ErrorBadRequest v-if="error?.status == 400" />
       <ErrorForbidden v-if="error?.status == 403" />
       <ErrorNotFound v-if="error?.status == 404" />
-      <ErrorUnprocessableEntity v-if="error?.status == 422" />
+      <ErrorUnprocessableContent v-if="error?.status == 422" />
       <ErrorInternalServerError v-if="error?.status == 500" />
     </div>
     <Footer />
