@@ -22,13 +22,17 @@ const onPageBack = async (): Promise<void> => {
   }
 }
 
-const onNameClick = async (): Promise<void> => {
+const onUserNameClick = async (): Promise<void> => {
   refItems.value = queryMapWithRef.value.ref
   await navigateTo({ path: `/users/${frame.value?.user_id}` })
 }
 
 const onDeleteClick = (): void => {
   openModal('#delete_frame_modal')
+}
+
+const onNameClick = (): void => {
+  openModal('#frame_profile_modal')
 }
 </script>
 
@@ -52,10 +56,18 @@ const onDeleteClick = (): void => {
       </button>
     </div>
     <div>
-      <NuxtLink class="link link-hover" @click="onNameClick">
+      <NuxtLink class="link link-hover" @click="onUserNameClick">
         {{ frame?.user_name }}
       </NuxtLink>
     </div>
+  </div>
+  <div class="flex justify-center">
+    <NuxtLink
+      class="badge badge-outline badge-accent rounded-full hover:text-primary link"
+      @click="onNameClick"
+    >
+      {{ frame?.name }}
+    </NuxtLink>
   </div>
   <div class="flex justify-center mb-1">
     <DisplayImage v-model="frame" :original="true" :photoswipe="true" />
@@ -69,5 +81,5 @@ const onDeleteClick = (): void => {
     </div>
     <DisplayTags v-model="frame" />
   </div>
-  <FrameProfile v-model="frame" />
+  <FrameProfileModal v-model="frame" />
 </template>
