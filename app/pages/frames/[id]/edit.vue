@@ -26,9 +26,6 @@ provide('frameUse', frameUse)
               <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
             </NuxtLink>
           </div>
-          <div class="flex justify-center mb-1">
-            <DisplayImage v-model="frame" :original="true" />
-          </div>
           <!-- unless @frame.confirming == 'true' -->
           <FrameEditForm />
           <!-- else -->
