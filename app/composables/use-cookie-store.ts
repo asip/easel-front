@@ -9,7 +9,7 @@ export const useCookieStore = function () {
       token.value = token.value
       return token.value
     },
-    set(value: string) {
+    set(value: string | null | undefined) {
       token.value = value
     },
   })
