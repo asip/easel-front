@@ -44,11 +44,11 @@ importers:
         specifier: ^4.2.2
         version: 4.2.2(vite@8.0.8(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.6.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.8.2))
       '@vesperjs/nuxt':
-        specifier: 0.2.2
-        version: 0.2.2(vue@3.6.0-beta.9(typescript@6.0.2))
+        specifier: 0.3.0
+        version: 0.3.0(vue@3.6.0-beta.9(typescript@6.0.2))
       '@vesperjs/shared':
-        specifier: 0.2.2
-        version: 0.2.2(@vue/reactivity@3.6.0-beta.9)
+        specifier: 0.3.0
+        version: 0.3.0(@vue/reactivity@3.6.0-beta.9)
       '@vue/compiler-core':
         specifier: ^3.6.0-beta.9
         version: 3.6.0-beta.9
@@ -147,8 +147,8 @@ importers:
         specifier: ^2.4.6
         version: 2.4.6
       baseline-browser-mapping:
-        specifier: ^2.10.17
-        version: 2.10.17
+        specifier: ^2.10.18
+        version: 2.10.18
       eslint:
         specifier: ^10.2.0
         version: 10.2.0(jiti@2.6.1)
@@ -2833,13 +2833,13 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.2.2':
-    resolution: {integrity: sha512-e36NBcg1jVHmqUZxRBL+lPRkatETQA+wjlHftwOMVkRf+LCZ8b1Jwg7Gs98NOn4TRHsMe49qcRH1ZD6XTv2+Bg==}
+  '@vesperjs/nuxt@0.3.0':
+    resolution: {integrity: sha512-RK7mTP9gf9qOb5Jw73cYIXtg4Ks8iOSoCF1E98KgAwTVQxNb02rbmnKnquYccrMJfimtqV3S2DVCHbPAEwsdnA==}
     peerDependencies:
       vue: ^3.6.0-beta.9
 
-  '@vesperjs/shared@0.2.2':
-    resolution: {integrity: sha512-ul1RNjvaohnSVYPBoOewG2pVks1hNs7kwpCp6R7xpjNHJVJBq7/p1fUMgLBQRZq3cBtpu8WBu3TZGsDLMX6rTw==}
+  '@vesperjs/shared@0.3.0':
+    resolution: {integrity: sha512-z/NIqlXMwxHO79/9WMlnPS4IfidEfDD75oWTw7urxlYWQpzgonnOXr8LjR9+RepQ4/LL3lIkMmcfuU9mD9iHZQ==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-beta.9
 
@@ -3158,8 +3158,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  baseline-browser-mapping@2.10.17:
-    resolution: {integrity: sha512-HdrkN8eVG2CXxeifv/VdJ4A4RSra1DTW8dc/hdxzhGHN8QePs6gKaWM9pHPcpCoxYZJuOZ8drHmbdpLHjCYjLA==}
+  baseline-browser-mapping@2.10.18:
+    resolution: {integrity: sha512-VSnGQAOLtP5mib/DPyg2/t+Tlv65NTBz83BJBJvmLVHHuKJVaDOBvJJykiT5TR++em5nfAySPccDZDa4oSrn8A==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -9223,11 +9223,11 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.2.2(vue@3.6.0-beta.9(typescript@6.0.2))':
+  '@vesperjs/nuxt@0.3.0(vue@3.6.0-beta.9(typescript@6.0.2))':
     dependencies:
       vue: 3.6.0-beta.9(typescript@6.0.2)
 
-  '@vesperjs/shared@0.2.2(@vue/reactivity@3.6.0-beta.9)':
+  '@vesperjs/shared@0.3.0(@vue/reactivity@3.6.0-beta.9)':
     dependencies:
       '@vue/reactivity': 3.6.0-beta.9
 
@@ -9629,7 +9629,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.10.17: {}
+  baseline-browser-mapping@2.10.18: {}
 
   bcp-47@2.1.0:
     dependencies:
@@ -9663,7 +9663,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.10.17
+      baseline-browser-mapping: 2.10.18
       caniuse-lite: 1.0.30001762
       electron-to-chromium: 1.5.267
       node-releases: 2.0.27
