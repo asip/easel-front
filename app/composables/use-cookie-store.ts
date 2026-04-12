@@ -1,7 +1,18 @@
 import type { RefItems } from '~/types'
 
 export const useCookieStore = function () {
-  const accessToken = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax' })
+  const token = useCookie('access_token', { maxAge: 60 * 60, sameSite: 'lax', refresh: true })
+
+  const accessToken = computed({
+    get() {
+      // eslint-disable-next-line no-self-assign
+      token.value = token.value
+      return token.value
+    },
+    set(value: string) {
+      token.value = value
+    },
+  })
 
   const refItems = useCookie('ref', { maxAge: 60 * 60 * 24, sameSite: 'lax' })
 
