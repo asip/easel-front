@@ -27,7 +27,7 @@ const onDeleteAccountClick = (): void => {
 
 <template>
   <dialog v-if="loggedIn" id="profile_modal" class="modal">
-    <div class="modal-box rounded-[20px] divide-y divide-gray-200">
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass text-white">
       <div class="flex justify-start gap-1 pb-1 mb-1">
         <a href="#" @click.prevent="onCloseClick">
           <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />

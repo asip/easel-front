@@ -11,7 +11,7 @@ const sanitizedProfile = computed<string>(() => {
 </script>
 
 <template>
-  <div class="flex justify-center border border-white">
+  <div class="flex justify-center border-0">
     <div class="flex justify-center mb-1">
       <DisplayImage v-model="account" :small="true" />
     </div>
