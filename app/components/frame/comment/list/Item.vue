@@ -92,7 +92,7 @@ const onDeleteClick = async (): Promise<void> => {
               <button v-else class="link link-hover" @click="onCancelClick">
                 <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
               </button>
-              <button class="link link-hover" :disabled="processing" @click="onDeleteClick">
+              <button v-if="!edit" class="link link-hover" :disabled="processing" @click="onDeleteClick">
                 <i class="bi bi-x-circle text-accent hover:text-primary" />
               </button>
             </div>
