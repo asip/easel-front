@@ -70,7 +70,7 @@ const redirect404 = async (): Promise<void> => {
                 placeholder=""
                 class="input"
               >
-              <div v-for="error of r$.$errors.name" :key="error">
+              <div v-for="error of r$.$errors.name" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -81,7 +81,7 @@ const redirect404 = async (): Promise<void> => {
             </td>
             <td>
               <TagEdit v-model="tagList" />
-              <div v-for="error of r$.tag_list.$self.$errors" :key="error">
+              <div v-for="error of r$.tag_list.$self.$errors" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -98,7 +98,7 @@ const redirect404 = async (): Promise<void> => {
                 placeholder=""
                 class="input"
               >
-              <div v-for="error of r$.$errors.creator_name" :key="error">
+              <div v-for="error of r$.$errors.creator_name" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>

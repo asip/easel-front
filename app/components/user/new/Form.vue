@@ -73,7 +73,7 @@ defineExpose({ clearForm })
                 class="file-input"
                 @change="onSelectFile"
               >
-              <div v-for="error of r$.$errors.image" :key="error.toString()">
+              <div v-for="error of r$.$errors.image" :key="error.toString()" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -96,7 +96,7 @@ defineExpose({ clearForm })
                 autocomplete="username"
                 class="input"
               >
-              <div v-for="error of r$.$errors.name" :key="error">
+              <div v-for="error of r$.$errors.name" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -114,7 +114,7 @@ defineExpose({ clearForm })
                 autocomplete="email"
                 class="input"
               >
-              <div v-for="error of r$.$errors.email" :key="error">
+              <div v-for="error of r$.$errors.email" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -125,7 +125,7 @@ defineExpose({ clearForm })
               <div class="rounded-[5px] editor-border">
                 <Editor ref="editor" v-model="user.profile" />
               </div>
-              <div v-for="error of r$.$errors.profile" :key="error">
+              <div v-for="error of r$.$errors.profile" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -157,7 +157,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password" :key="error">
+              <div v-for="error of r$.$errors.password" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -177,7 +177,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password_confirmation" :key="error">
+              <div v-for="error of r$.$errors.password_confirmation" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>

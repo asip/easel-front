@@ -65,7 +65,7 @@ defineExpose({ clearForm })
                 class="file-input"
                 @change="onSelectFile"
               >
-              <div v-for="error of r$.$errors.image" :key="error.toString()">
+              <div v-for="error of r$.$errors.image" :key="error.toString()" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -88,7 +88,7 @@ defineExpose({ clearForm })
                 autocomplete="username"
                 class="input"
               >
-              <div v-for="error of r$.$errors.name" :key="error">
+              <div v-for="error of r$.$errors.name" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -110,7 +110,7 @@ defineExpose({ clearForm })
                 autocomplete="email"
                 class="input"
               >
-              <div v-for="error of r$.$errors.email" :key="error">
+              <div v-for="error of r$.$errors.email" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -125,7 +125,7 @@ defineExpose({ clearForm })
               <div class="rounded-[5px] editor-border">
                 <Editor v-model="user.profile" />
               </div>
-              <div v-for="error of r$.$errors.profile" :key="error">
+              <div v-for="error of r$.$errors.profile" :key="error" class="mt-0.5">
                 <div class="text-red-500 text-xs">{{ error }}</div>
               </div>
             </td>
@@ -141,7 +141,7 @@ defineExpose({ clearForm })
                     {{ option.text }}
                   </option>
                 </select>
-                <div v-for="error of r$.$errors.time_zone" :key="error">
+                <div v-for="error of r$.$errors.time_zone" :key="error" class="mt-0.5">
                   <div class="text-red-500 text-xs">{{ error }}</div>
                 </div>
               </ClientOnly>

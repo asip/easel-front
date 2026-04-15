@@ -54,7 +54,7 @@ const onUpdateClick = async (): Promise<void> => {
   </div>
   <div class="flex justify-between w-full mt-1">
     <div>
-      <div v-for="error of r$.$errors.body" :key="error">
+      <div v-for="error of r$.$errors.body" :key="error" class="mt-0.5">
         <div class="text-red-500 text-xs">{{ error }}</div>
       </div>
     </div>

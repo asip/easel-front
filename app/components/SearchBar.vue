@@ -77,7 +77,7 @@ const onClearClick = async (): Promise<void> => {
                       class="input w-80"
                     >
                   </div>
-                  <div v-for="error of r$.$errors.word" :key="error" class="flex">
+                  <div v-for="error of r$.$errors.word" :key="error" class="flex mt-0.5">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
@@ -94,7 +94,7 @@ const onClearClick = async (): Promise<void> => {
                     placeholder=""
                     class="input w-50"
                   >
-                  <div v-for="error of r$.$errors.frame_name" :key="error" class="flex">
+                  <div v-for="error of r$.$errors.frame_name" :key="error" class="flex mt-0.5">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
@@ -111,7 +111,7 @@ const onClearClick = async (): Promise<void> => {
                     placeholder=""
                     class="input w-50"
                   >
-                  <div v-for="error of r$.$errors.tag_name" :key="error" class="flex">
+                  <div v-for="error of r$.$errors.tag_name" :key="error" class="flex mt-0.5">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
@@ -128,7 +128,7 @@ const onClearClick = async (): Promise<void> => {
                     placeholder=""
                     class="input w-50"
                   >
-                  <div v-for="error of r$.$errors.user_name" :key="error" class="flex">
+                  <div v-for="error of r$.$errors.user_name" :key="error" class="flex mt-0.5">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
@@ -145,7 +145,7 @@ const onClearClick = async (): Promise<void> => {
                     placeholder=""
                     class="input w-50"
                   >
-                  <div v-for="error of r$.$errors.creator_name" :key="error" class="flex">
+                  <div v-for="error of r$.$errors.creator_name" :key="error" class="flex mt-0.5">
                     <div class="text-red-500 text-xs">{{ error }}</div>
                   </div>
                 </td>
