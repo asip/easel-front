@@ -1,5 +1,10 @@
 /* vue-datepicker */
 .dp__theme_light {
-  --dp-background-color: rgba(255, 255, 255, 0.08); /* メインの背景 */
-  --dp-hover-color: rgba(255, 255, 255, 0.08); /* ホバー背景 */
+  --dp-background-color: rgba(255, 255, 255, 0.08); /* main background (メインの背景) */
+  --dp-hover-color: rgba(255, 255, 255, 0.08); /* hover background　(ホバー背景) */
+}
+
+:root {
+  /* total calendar width (カレンダー全体の幅) */
+  --dp-menu-min-width: 200px; /* default(デフォルト): 260px */
 }

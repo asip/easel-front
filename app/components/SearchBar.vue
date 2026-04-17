@@ -48,7 +48,7 @@ const onClearClick = async (): Promise<void> => {
 <template>
   <div class="card bg-base-100 min-h-full w-100 p-4 glass">
     <div class="card-block">
-      <div class="flex justify-center mb-2 mx-auto">
+      <div class="flex justify-center mb-2 mx-auto w-70">
         <client-only>
           <vue-date-picker
             v-model="dateWord"
