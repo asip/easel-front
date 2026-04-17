@@ -30,10 +30,6 @@ const onUserNameClick = async (): Promise<void> => {
 const onDeleteClick = (): void => {
   openModal('#delete_frame_modal')
 }
-
-const onNameClick = (): void => {
-  openModal('#frame_profile_modal')
-}
 </script>
 
 <template>
@@ -60,14 +56,6 @@ const onNameClick = (): void => {
         {{ frame?.user_name }}
       </NuxtLink>
     </div>
-  </div>
-  <div class="flex justify-center">
-    <NuxtLink
-      class="badge badge-outline badge-accent rounded-full hover:text-primary link"
-      @click="onNameClick"
-    >
-      {{ frame?.name }}
-    </NuxtLink>
   </div>
   <div class="flex justify-center mb-1">
     <DisplayImage v-model="frame" :original="true" :photoswipe="true" />

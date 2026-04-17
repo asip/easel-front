@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { openModal } = useModal()
+
 const route = useRoute()
 const { id } = route.params
 const frameId = id?.toString()
@@ -10,13 +12,25 @@ const { frame, getFrame } = frameUse
 provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
+
+const onNameClick = (): void => {
+  openModal('#frame_profile_modal')
+}
 </script>
 
 <template>
   <div>
-    <br >
     <div class="flex justify-center">
-      <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 w-full sm:w-3/4">
+      <div
+        class="card bg-base-100 shadow rounded-[20px] pt-1 pb-1 pl-4 pr-4 mt-2 mb-2 w-full sm:w-3/4"
+      >
+        <NuxtLink class="flex justify-center hover:text-primary link" @click="onNameClick">
+          {{ frame?.name }}
+        </NuxtLink>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mb-2 w-full sm:w-3/4">
         <div class="card-body">
           <FrameDetail v-model="frame" />
         </div>
