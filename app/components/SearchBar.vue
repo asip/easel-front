@@ -46,7 +46,7 @@ const onClearClick = async (): Promise<void> => {
 </script>
 
 <template>
-  <div class="card bg-base-100 min-h-full w-100 p-4">
+  <div class="card bg-base-100 min-h-full w-100 p-4 glass">
     <div class="card-block">
       <div class="flex justify-center mb-2 mx-auto">
         <client-only>

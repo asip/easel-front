@@ -1,6 +1,7 @@
 @import 'glightbox/dist/css/glightbox.css';
 @import 'photoswipe/dist/photoswipe.css';
 @import '@yaireo/tagify/dist/tagify.css';
+@import '@vuepic/vue-datepicker/dist/main.css';
 
 /*
 @import "v-calendar/dist/style.css";

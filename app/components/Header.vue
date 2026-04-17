@@ -41,13 +41,19 @@ const onTopPageClick = async (): Promise<void> => {
 
 <template>
   <ClientOnly>
-    <Toaster position="top-right" expand :visible-toasts="9" :duration="2000" />
+    <Toaster
+      position="top-right"
+      expand
+      :visible-toasts="9"
+      :duration="2000"
+      :toast-options="{ style: { background: 'rgba(255, 255, 255, 0.08)' } }"
+    />
   </ClientOnly>
-  <div class="sticky top-0 drawer drawer-end z-1000">
+  <div class="sticky top-0 drawer drawer-end z-1000 justify-center">
     <input id="search-sidebar" type="checkbox" class="drawer-toggle" >
-    <div class="drawer-content flex flex-col">
-      <div class="navbar bg-base-100 shadow">
-        <div class="navbar-start">
+    <div class="drawer-content flex flex-col w-100">
+      <div class="navbar bg-base-100 shadow rounded-full glass-02">
+        <div class="navbar-start pl-5">
           <a href="#" @click.prevent="onTopPageClick"> <i class="bi bi-palette" /> Easel </a>
         </div>
         <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +70,9 @@ const onTopPageClick = async (): Promise<void> => {
                 >
               </span>
             </summary>
-            <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-999">
+            <ul
+              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-999 glass-08"
+            >
               <li>
                 <a href="#" class="flex gap-1" @click.prevent="onProfileClick">
                   <i class="bi bi-person-fill" />{{ $t('model.user.model_name') }}
@@ -91,7 +99,7 @@ const onTopPageClick = async (): Promise<void> => {
             <i class="bi bi-box-arrow-in-right" />{{ $t('action.user.login') }}
           </a>
         </div>
-        <div class="navbar-end flex gap-2">
+        <div class="navbar-end flex gap-2 pr-5">
           <label for="search-sidebar" aria-label="open sidebar" class="btn btn-ghost">
             <i class="bi bi-search" />
           </label>
@@ -100,7 +108,7 @@ const onTopPageClick = async (): Promise<void> => {
     </div>
     <div class="drawer-side">
       <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay" />
-      <div class="mt-17.5">
+      <div class="mt-2">
         <SearchBar />
       </div>
     </div>

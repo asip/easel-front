@@ -1,0 +1,5 @@
+/* vue-datepicker */
+.dp__theme_light {
+  --dp-background-color: rgba(255, 255, 255, 0.08); /* メインの背景 */
+  --dp-hover-color: rgba(255, 255, 255, 0.08); /* ホバー背景 */
+}

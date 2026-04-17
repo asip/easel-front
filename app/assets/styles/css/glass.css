@@ -1,6 +1,20 @@
 .glass {
-  background: rgba(255, 255, 255, 0.08); /* 半透明の白 */
-  backdrop-filter: blur(24px) saturate(180%); /* 背景をぼかす */
-  border: 1px solid rgba(255, 255, 255, 0.18); /* 薄いボーダー */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); /* 光沢ライン */
+  background: rgba(255, 255, 255, 0.08); /* translucent white (半透明の白) */
+  backdrop-filter: blur(24px) saturate(180%); /* blur the background (背景をぼかす) */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* thin border (薄いボーダー) */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); /* glossy line (光沢ライン) */
+}
+
+.glass-02 {
+  background: rgba(255, 255, 255, 0.2); /* translucent white (半透明の白) */
+  backdrop-filter: blur(24px) saturate(180%); /* blur the background (背景をぼかす) */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* thin border (薄いボーダー) */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); /* glossy line (光沢ライン) */
+}
+
+.glass-08 {
+  background: rgba(255, 255, 255, 0.8); /* translucent white (半透明の白) */
+  backdrop-filter: blur(24px) saturate(180%); /* blur the background (背景をぼかす) */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* thin border (薄いボーダー) */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); /* glossy line (光沢ライン) */
 }
