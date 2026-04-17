@@ -23,7 +23,6 @@ if (page) {
 
 <template>
   <div>
-    <br >
     <FrameList />
   </div>
 </template>

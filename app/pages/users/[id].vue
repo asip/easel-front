@@ -48,9 +48,8 @@ const onUnfollowClick = async (): Promise<void> => {
 
 <template>
   <div>
-    <br >
     <div class="flex justify-center">
-      <div class="card bg-base-100 shadow rounded-[20px] pt-1 pb-1 pl-4 pr-4 mb-2 w-full sm:w-9/10">
+      <div class="card bg-base-100 shadow rounded-[20px] pt-1 pb-1 pl-4 pr-4 mt-2 w-full sm:w-9/10">
         <div class="flex justify-between">
           <div @click="onPageBack">
             <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
