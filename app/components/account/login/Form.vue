@@ -47,7 +47,7 @@ defineExpose({ clearForm })
 
 <template>
   <form>
-    <div class="flex justify-center border border-white">
+    <div class="flex justify-center border-0">
       <table class="table table-bordered table-rounded">
         <tbody>
           <tr>
