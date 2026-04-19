@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { googleClientID } = useConstants()
 const { loggedIn } = useAccount()
-const { closeModal, openModal } = useModal()
+const { openModal, closeModal, checkOutside } = useModal()
 
 const form = useTemplateRef('form')
 
@@ -11,22 +11,22 @@ const onSignupClick = (): void => {
   openModal('#signup_modal')
 }
 
-const onCloseClick = (): void => {
-  form.value?.clearForm()
-  closeModal('#login_modal')
+const onOutsideClick = (e: PointerEvent): void => {
+  const { isOutside, modalEl } = checkOutside(e, '#login_modal')
+  if (isOutside) {
+    form.value?.clearForm()
+    modalEl?.close()
+  }
 }
 </script>
 
 <template>
-  <dialog id="login_modal" class="modal">
+  <dialog id="login_modal" class="modal" @click="onOutsideClick">
     <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass">
-      <div class="flex justify-between mb-1">
+      <div class="flex justify-start mb-1">
         <div>
           {{ $t('action.user.login') }}
         </div>
-        <a href="#" @click.prevent="onCloseClick">
-          <i class="bi bi-x-circle text-accent hover:text-primary" />
-        </a>
       </div>
       <div>
         <div class="flex justify-center border-0 gap-1 mb-1">

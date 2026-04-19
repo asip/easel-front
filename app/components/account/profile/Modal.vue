@@ -1,10 +1,6 @@
 <script setup lang="ts">
-const { openModal, closeModal } = useModal()
+const { openModal, closeModal, checkOutside } = useModal()
 const { loggedIn, account, setUser, initTimeZone } = inject('accountUse') as UseAccountType
-
-const onCloseClick = (): void => {
-  closeModal('#profile_modal')
-}
 
 const onEditClick = (): void => {
   closeModal('#profile_modal')
@@ -23,15 +19,19 @@ const onDeleteAccountClick = (): void => {
   openModal('#delete_account_modal')
   closeModal('#profile_modal')
 }
+
+const onOutsideClick = (e: PointerEvent): void => {
+  const { isOutside, modalEl } = checkOutside(e, '#profile_modal')
+  if (isOutside) {
+    modalEl?.close()
+  }
+}
 </script>
 
 <template>
-  <dialog v-if="loggedIn" id="profile_modal" class="modal">
+  <dialog v-if="loggedIn" id="profile_modal" class="modal" @click="onOutsideClick">
     <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass text-white">
       <div class="flex justify-start gap-1 pb-1 mb-1">
-        <a href="#" @click.prevent="onCloseClick">
-          <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
-        </a>
         <a href="#" @click.prevent="onEditClick">
           <i class="bi bi-pencil-square text-accent hover:text-primary" />
         </a>
