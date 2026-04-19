@@ -26,6 +26,7 @@ const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
 
 const onSelectFile = (evt: Event): void => {
   const target = evt.target as HTMLInputElement
+  // Retrieve the uploaded data and assign it to the file.value variable.
   // (アップロードされたデータを取得して変数file.valueに代入します)
   file.value = target.files?.item(0) ?? null
   useImagePreview({ file, previewUrl })
