@@ -9,19 +9,23 @@ defineSlots<{
   label?: () => string
 }>()
 
-const emit = defineEmits<{ click: [] }>()
+const emit = defineEmits<{ click: []; clickClose: [] }>()
 
 const onClick = (): void => {
   emit('click')
+}
+
+const onCloseClick = (): void => {
+  emit('clickClose')
 }
 </script>
 
 <template>
   <dialog :id="id" class="modal">
     <div class="modal-box">
-      <form method="dialog">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-      </form>
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" @click="onCloseClick">
+        ✕
+      </button>
       <p class="py-4">
         <slot name="message" />
       </p>
@@ -29,11 +33,9 @@ const onClick = (): void => {
         <button class="btn btn-outline btn-secondary" :disabled="disabled" @click="onClick">
           <slot name="label" />
         </button>
-        <form method="dialog">
-          <button class="btn btn-outline btn-primary">
-            {{ $t('action.modal.close') }}
-          </button>
-        </form>
+        <button class="btn btn-outline btn-primary" @click="onCloseClick">
+          {{ $t('action.modal.close') }}
+        </button>
       </div>
     </div>
   </dialog>

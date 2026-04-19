@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { closeModal } = useModal()
 const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, isSuccess, flash, processing } = inject(
@@ -22,6 +23,10 @@ const redirect404 = async (): Promise<void> => {
     await navigateTo('/')
   }
 }
+
+const onCloseClick = (): void => {
+  closeModal('#delete_frame_modal')
+}
 </script>
 
 <template>
@@ -30,6 +35,7 @@ const redirect404 = async (): Promise<void> => {
     id="delete_frame_modal"
     :disabled="processing"
     @click="onDeleteClick"
+    @click-close="onCloseClick"
   >
     <template #message>
       {{ $t('action.modal.delete.message') }}
