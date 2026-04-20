@@ -32,7 +32,7 @@
     "@vue/runtime-dom": "^3.6.0-beta.10",
     "@vue/shared": "^3.6.0-beta.10",
     "@vuepic/vue-datepicker": "^12.1.0",
-    "@yaireo/tagify": "^4.37.0",
+    "@yaireo/tagify": "^4.37.1",
     "bootstrap-icons": "^1.13.1",
     "daisyui": "^5.5.19",
     "glightbox": "^3.3.1",
@@ -58,7 +58,7 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.58.2",
     "@vue/test-utils": "^2.4.6",
-    "baseline-browser-mapping": "^2.10.19",
+    "baseline-browser-mapping": "^2.10.20",
     "eslint": "^10.2.1",
     "happy-dom": "^20.9.0",
     "markuplint": "^4.14.1",
@@ -66,7 +66,7 @@
     "oxfmt": "^0.45.0",
     "playwright-core": "^1.59.1",
     "typescript": "^6.0.3",
-    "vite": "^8.0.8",
+    "vite": "^8.0.9",
     "vitest": "^4.1.4"
   },
   "pnpm": {
@@ -83,7 +83,7 @@
       "eslint": "^10.2.1",
       "magicast": "^0.5.2",
       "typescript": "^6.0.3",
-      "vite": "^8.0.8",
+      "vite": "^8.0.9",
       "vitest": "^4.1.4",
       "vue": "^3.6.0-beta.10"
     },
