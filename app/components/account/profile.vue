@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import sanitizeHtml from 'sanitize-html'
 
-const { p2br } = useQuill()
+const { p2br } = useTiptap()
 
 const { account } = inject('accountUse') as UseAccountType
 

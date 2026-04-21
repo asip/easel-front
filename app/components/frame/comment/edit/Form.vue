@@ -48,7 +48,7 @@ const onUpdateClick = async (): Promise<void> => {
 
 <template>
   <div class="flex justify-start">
-    <div class="w-full rounded-[5px] editor-border">
+    <div class="w-full rounded-[10px] editor-border">
       <Editor v-model="comment.body" />
     </div>
   </div>

@@ -5,7 +5,7 @@ import type { User } from '~/types'
 
 const user = defineModel<User>()
 
-const { p2br } = useQuill()
+const { p2br } = useTiptap()
 
 const sanitizedProfile = computed<string>(() => {
   if (user.value) {

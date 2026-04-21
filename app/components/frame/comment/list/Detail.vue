@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import type { Comment } from '~/types'
 
-const { p2br } = useQuill()
+const { p2br } = useTiptap()
 
 const commentModel = defineModel<Comment>()
 

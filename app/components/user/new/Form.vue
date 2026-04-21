@@ -123,7 +123,7 @@ defineExpose({ clearForm })
           <tr>
             <td>{{ $t('model.user.profile') }}：</td>
             <td class="wrap-break-word">
-              <div class="rounded-[5px] editor-border">
+              <div class="rounded-[10px] editor-border">
                 <Editor ref="editor" v-model="user.profile" />
               </div>
               <div v-for="error of r$.$errors.profile" :key="error" class="mt-0.5">

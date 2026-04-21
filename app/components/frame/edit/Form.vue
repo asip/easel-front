@@ -119,7 +119,7 @@ const redirect404 = async (): Promise<void> => {
           <tr>
             <td>{{ $t('model.frame.comment') }}：</td>
             <td class="wrap-break-word">
-              <div class="rounded-[5px] editor-border">
+              <div class="rounded-[10px] editor-border">
                 <Editor v-model="frame.comment" />
               </div>
             </td>

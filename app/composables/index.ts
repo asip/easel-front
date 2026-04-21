@@ -4,7 +4,7 @@ export {
   useImagePreview,
   useLightbox,
   useModal,
-  useQuill,
+  useTiptap,
   useTagEditor,
   useSonner,
 } from './ui'

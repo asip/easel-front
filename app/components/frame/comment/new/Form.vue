@@ -82,7 +82,7 @@ const redirect404 = async (): Promise<void> => {
         </div>
         <form>
           <div class="flex justify-center wrap-break-word">
-            <div class="w-full rounded-[5px] editor-border">
+            <div class="w-full rounded-[10px] editor-border">
               <Editor ref="editor" v-model="comment.body" />
             </div>
           </div>
