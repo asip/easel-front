@@ -245,7 +245,7 @@ const blockBtns = [
   display: flex;
   align-items: center;
   gap: 2px;
-  background: var(--color-background-primary, #fff);
+  background: rgba(255, 255, 255, 0.2);
   border: 0.5px solid rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   padding: 5px 6px;
