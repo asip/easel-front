@@ -4,7 +4,7 @@ import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { BubbleMenu } from '@tiptap/vue-3/menus'
 import StarterKit from '@tiptap/starter-kit'
 import Link from '@tiptap/extension-link'
-// Optional: import Underline from '@tiptap/extension-underline'
+import Underline from '@tiptap/extension-underline'
 
 const model = defineModel<string>()
 
@@ -57,7 +57,7 @@ const applyLink = function () {
 const editor = useEditor({
   extensions: [
     StarterKit,
-    // Underline,  // uncomment + install @tiptap/extension-underline
+    Underline,
     Link.configure({
       openOnClick: false,
       HTMLAttributes: { rel: 'noopener noreferrer' },
@@ -130,8 +130,12 @@ const inlineBtns = [
     label: '<s>S</s>',
     action: () => editor.value?.chain().focus().toggleStrike().run(),
   },
-  // { cmd: 'underline', title: 'Underline', label: '<u>U</u>',
-  //   action: () => editor.value.chain().focus().toggleUnderline().run() },
+  {
+    cmd: 'underline',
+    title: 'Underline',
+    label: '<u>U</u>',
+    action: () => editor.value?.chain().focus().toggleUnderline().run(),
+  },
 ]
 
 const blockBtns = [
