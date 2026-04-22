@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { googleClientID } = useConstants()
+const { googleClientID, loginByPassword } = useConstants()
 const { loggedIn } = useAccount()
 const { openModal, closeModal, checkOutside } = useModal()
 
@@ -31,11 +31,11 @@ const onOutsideClick = (e: PointerEvent): void => {
       <div>
         <div class="flex justify-center border-0 gap-1 mb-1">
           <AccountLoginGoogle v-if="googleClientID && !loggedIn" />
-          <button class="btn btn-outline btn-primary" @click="onSignupClick">
+          <button v-if="loginByPassword" class="btn btn-outline btn-primary" @click="onSignupClick">
             <i class="bi bi-person-plus-fill" />{{ $t('action.user.new') }}
           </button>
         </div>
-        <div class="flex justify-center border-0">
+        <div v-if="loginByPassword" class="flex justify-center border-0">
           <AccountLoginForm ref="form" />
         </div>
       </div>

@@ -3,5 +3,7 @@ export const useConstants = function () {
 
   const googleClientID = runtimeConfig.public.googleClientId as string
 
-  return { googleClientID }
+  const loginByPassword = runtimeConfig.public.loginByPassword as boolean
+
+  return { googleClientID, loginByPassword }
 }

@@ -33,6 +33,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      loginByPassword: false,
       timeZone: 'Asia/Tokyo',
       backendApiOrigin: 'http://localhost:3000',
       backendApiPath: '/api/v1',
