@@ -18,9 +18,9 @@
   "dependencies": {
     "@formkit/tempo": "^1.0.0",
     "@nuxtjs/i18n": "^10.2.4",
-    "@regle/core": "^1.23.0",
-    "@regle/nuxt": "^1.23.0",
-    "@regle/rules": "^1.23.0",
+    "@regle/core": "^1.23.2",
+    "@regle/nuxt": "^1.23.2",
+    "@regle/rules": "^1.23.2",
     "@tailwindcss/vite": "4.2.2",
     "@tiptap/extension-link": "^3.22.4",
     "@tiptap/extension-underline": "^3.22.4",
@@ -50,8 +50,8 @@
     "vue3-google-signin": "^2.1.1"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^4.6.23",
-    "@markuplint/vue-spec": "^4.5.23",
+    "@markuplint/vue-parser": "^4.18.0",
+    "@markuplint/vue-spec": "^4.18.0",
     "@nuxt/devtools": "^3.2.4",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/test-utils": "^4.0.2",
@@ -61,16 +61,16 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.59.0",
     "@vue/test-utils": "^2.4.6",
-    "baseline-browser-mapping": "^2.10.20",
+    "baseline-browser-mapping": "^2.10.21",
     "eslint": "^10.2.1",
     "happy-dom": "^20.9.0",
-    "markuplint": "^4.14.1",
+    "markuplint": "^4.18.0",
     "nuxt": "^4.4.2",
     "oxfmt": "^0.46.0",
     "playwright-core": "^1.59.1",
     "typescript": "^6.0.3",
     "vite": "^8.0.9",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.5"
   },
   "pnpm": {
     "overrides": {
@@ -87,7 +87,7 @@
       "magicast": "^0.5.2",
       "typescript": "^6.0.3",
       "vite": "^8.0.9",
-      "vitest": "^4.1.4",
+      "vitest": "^4.1.5",
       "vue": "^3.6.0-beta.10"
     },
     "onlyBuiltDependencies": [
