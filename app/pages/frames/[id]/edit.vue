@@ -19,12 +19,12 @@ provide('frameUse', frameUse)
   <div>
     <div class="flex justify-center">
       <div class="card bg-base-100 shadow rounded-[20px] ml-2 mr-2 mt-2 mb-2 w-full sm:w-3/4">
-        <div class="card-body">
-          <div class="flex justify-start">
-            <NuxtLink :to="`/frames/${frame.id}`">
-              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
-            </NuxtLink>
-          </div>
+        <div class="flex justify-start pl-4 pr-4 pt-2">
+          <NuxtLink :to="`/frames/${frame.id}`">
+            <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+          </NuxtLink>
+        </div>
+        <div class="flex justify-center pl-4 pr-4 pb-4">
           <!-- unless @frame.confirming == 'true' -->
           <FrameEditForm />
           <!-- else -->
