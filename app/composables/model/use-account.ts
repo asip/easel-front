@@ -146,7 +146,7 @@ export const useAccount = function () {
     flash,
   })
 
-  const { setError } = useAlert({ flash, caller: { externalErrors, clearAccount } })
+  const { setError } = useApiError({ flash, caller: { externalErrors, clearAccount } })
 
   const loginParams = ref<LoginParams>({
     email: '',

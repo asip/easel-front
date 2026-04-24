@@ -5,7 +5,7 @@ export const useUser = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const user = ref<User>({
     name: '',

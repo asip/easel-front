@@ -45,7 +45,7 @@ export const useComment = function () {
   const { externalErrors, clearExternalErrors, isSuccess } =
     useExternalErrors<CommentErrorProperty>({ flash })
 
-  const { backendErrorInfo, setError } = useAlert({
+  const { backendErrorInfo, setError } = useApiError({
     flash,
     caller: { externalErrors, clearAccount },
   })

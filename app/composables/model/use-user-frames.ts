@@ -12,7 +12,7 @@ export const useUserFrames = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
     if (userId) {

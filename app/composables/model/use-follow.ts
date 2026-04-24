@@ -4,7 +4,7 @@ export const useFollow = function () {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setError } = useAlert({ flash, caller: { clearAccount } })
+  const { setError } = useApiError({ flash, caller: { clearAccount } })
 
   const following: Ref<boolean> = ref<boolean>(false)
 

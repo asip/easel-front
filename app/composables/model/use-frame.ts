@@ -96,7 +96,7 @@ export const useFrame = function () {
     flash,
   })
 
-  const { backendErrorInfo, setError } = useAlert({
+  const { backendErrorInfo, setError } = useApiError({
     flash,
     caller: { externalErrors, clearAccount },
   })

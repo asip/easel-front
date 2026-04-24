@@ -27,7 +27,7 @@ export const useComments = function () {
     return []
   })
 
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const getComments = async (
     frameId: number | null | undefined,

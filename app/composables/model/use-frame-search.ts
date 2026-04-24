@@ -14,7 +14,7 @@ export const useFrameSearch = function () {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const { loggedIn, accessToken } = useAccount()
 

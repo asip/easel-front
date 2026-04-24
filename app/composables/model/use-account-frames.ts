@@ -13,7 +13,7 @@ export const useAccountFrames = function () {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setError } = useAlert({ flash, caller: { clearAccount } })
+  const { setError } = useApiError({ flash, caller: { clearAccount } })
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })

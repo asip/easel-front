@@ -2,7 +2,7 @@ import type { TagsResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useTagSearch = function () {
   const { flash, clearFlash } = useFlash()
-  const { setError } = useAlert({ flash })
+  const { setError } = useApiError({ flash })
 
   const tags = ref<string[]>([])
 
