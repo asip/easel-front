@@ -1,9 +1,11 @@
-<script lang="ts" setup>
-interface TagSearchType {
+<script lang="ts">
+export interface TagSearchType {
   searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
   tags: Ref<string[] | undefined>
 }
+</script>
 
+<script lang="ts" setup>
 const model = defineModel<string[]>()
 
 const { tagSearch } = defineProps<{

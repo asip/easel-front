@@ -1,7 +1,4 @@
-interface TagSearchType {
-  searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
-  tags: Ref<string[]>
-}
+import type { TagSearchType } from '~/components/TagEditor.vue'
 
 type TagEditorOptions = {
   el: Ref<HTMLInputElement | HTMLTextAreaElement | null>
