@@ -9,7 +9,8 @@ export interface TagSearchType {
 const model = defineModel<string[]>()
 
 const { tagSearch } = defineProps<{
-  tagSearch: TagSearchType
+  // eslint-disable-next-line vue/require-default-prop
+  tagSearch?: TagSearchType | undefined
 }>()
 
 const tagEditor = useTemplateRef('tagEditorRef')
