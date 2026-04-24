@@ -49,9 +49,9 @@ const onTopPageClick = async (): Promise<void> => {
       :toast-options="{ style: { background: 'rgba(255, 255, 255, 0.08)' } }"
     />
   </ClientOnly>
-  <div class="sticky top-0 drawer drawer-end z-1000 justify-center">
+  <div class="sticky top-0 drawer drawer-end z-1000 justify-center pointer-events-none">
     <input id="search-sidebar" type="checkbox" class="drawer-toggle" >
-    <div class="drawer-content flex flex-col w-100">
+    <div class="drawer-content flex flex-col w-100 pointer-events-auto">
       <div class="navbar bg-base-100 shadow rounded-full glass-02">
         <div class="navbar-start pl-5">
           <a href="#" @click.prevent="onTopPageClick"> <i class="bi bi-palette" /> Easel </a>
