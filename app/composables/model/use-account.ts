@@ -110,7 +110,7 @@ export const useAccount = function () {
     to,
   }: {
     from?: UserResource
-    token?: string | undefined
+    token?: string | null | undefined
     to?: User
   }): void => {
     if (from) {
