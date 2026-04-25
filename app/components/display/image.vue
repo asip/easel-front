@@ -59,16 +59,21 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="original" id="gallery">
-    <NuxtLink v-if="photoswipe" class="mx-auto" :to="linkURL">
-      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
-      <img v-else :src="imgURL" alt="" class="mx-auto" >
-    </NuxtLink>
-    <NuxtLink v-else id="image" class="mx-auto" :to="linkURL">
+  <div v-if="original && photoswipe" id="gallery">
+    <NuxtLink class="mx-auto" :to="linkURL">
       <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
       <img v-else :src="imgURL" alt="" class="mx-auto" >
     </NuxtLink>
   </div>
-  <img v-else-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
+  <NuxtLink v-else-if="original && !photoswipe" id="image" class="mx-auto" :to="linkURL">
+    <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25 object-contain" >
+    <img v-else :src="imgURL" alt="" class="mx-auto" >
+  </NuxtLink>
+  <img
+    v-else-if="!original && small"
+    :src="imgURL"
+    alt=""
+    class="mx-auto w-25 h-25 object-contain"
+  >
   <img v-else :src="imgURL" alt="" class="mx-auto" >
 </template>
