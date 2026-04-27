@@ -2,7 +2,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const { autodetect } = useLocale()
   const { loggedIn, account, authenticate } = useAccount()
   const { referers } = useReferer()
-  const { redirectTo } = usePrevPage()
 
   autodetect()
   await authenticate()
@@ -77,7 +76,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     await getFrame(`${frameId}`)
 
     if (!loggedIn.value || frame.value.user_id != account.value.id) {
-      redirectTo({ current: to.path, fallback: `/frames/${frameId}` })
+      return navigateTo(`/frames/${frameId}`)
     }
   }
 
