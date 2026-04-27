@@ -56,7 +56,7 @@ const error = useError()
 }
 
 #error-id {
-  fill: #f0eff0;
+  fill: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
