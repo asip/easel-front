@@ -49,9 +49,7 @@ defineExpose({ clearForm })
                 autocomplete="current-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.current_password" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.current_password" />
             </td>
           </tr>
           <tr v-if="!user.social_login">
@@ -67,9 +65,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.password" />
             </td>
           </tr>
           <tr v-if="!user.social_login">
@@ -87,9 +83,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password_confirmation" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.password_confirmation" />
             </td>
           </tr>
         </tbody>

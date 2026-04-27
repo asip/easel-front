@@ -74,9 +74,7 @@ defineExpose({ clearForm })
                 class="file-input"
                 @change="onSelectFile"
               >
-              <div v-for="error of r$.$errors.image" :key="error.toString()" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.image" />
             </td>
           </tr>
           <tr v-if="user.image || previewUrl">
@@ -97,9 +95,7 @@ defineExpose({ clearForm })
                 autocomplete="username"
                 class="input"
               >
-              <div v-for="error of r$.$errors.name" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.name" />
             </td>
           </tr>
           <tr>
@@ -115,9 +111,7 @@ defineExpose({ clearForm })
                 autocomplete="email"
                 class="input"
               >
-              <div v-for="error of r$.$errors.email" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.email" />
             </td>
           </tr>
           <tr>
@@ -126,9 +120,7 @@ defineExpose({ clearForm })
               <div class="rounded-[10px] editor-border">
                 <Editor ref="editor" v-model="user.profile" />
               </div>
-              <div v-for="error of r$.$errors.profile" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.profile" />
             </td>
           </tr>
           <tr>
@@ -158,9 +150,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.password" />
             </td>
           </tr>
           <tr>
@@ -178,9 +168,7 @@ defineExpose({ clearForm })
                 autocomplete="new-password"
                 class="input"
               >
-              <div v-for="error of r$.$errors.password_confirmation" :key="error" class="mt-0.5">
-                <div class="text-red-500 text-xs">{{ error }}</div>
-              </div>
+              <DisplayMessages :messages="r$.$errors.password_confirmation" />
             </td>
           </tr>
         </tbody>
