@@ -8,6 +8,8 @@ import Underline from '@tiptap/extension-underline'
 
 const model = defineModel<string>()
 
+const { bubble = true } = defineProps<{ bubble?: boolean }>()
+
 // ── SVG icons ─────────────────────────────────────────────────────────────────
 const icons = {
   quote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>`,
@@ -164,7 +166,7 @@ const blockBtns = [
   <div class="editor-wrapper">
     <!-- Bubble menu -->
     <BubbleMenu
-      v-if="editor"
+      v-if="editor && bubble"
       :editor="editor"
       :tippy-options="{ duration: 100, placement: 'top' }"
       class="bubble"
@@ -182,7 +184,6 @@ const blockBtns = [
           v-html="btn.label"
         />
         <div class="sep" />
-
         <!-- Block formats -->
         <button
           v-for="btn in blockBtns"
@@ -229,6 +230,67 @@ const blockBtns = [
       </div>
     </BubbleMenu>
 
+    <div v-if="!bubble" class="fixed-menu">
+      <!-- Inline formats -->
+      <button
+        v-for="btn in inlineBtns"
+        :key="btn.cmd"
+        type="button"
+        class="bbn"
+        :class="{ active: editor?.isActive(btn.cmd) }"
+        :title="btn.title"
+        @click="btn.action()"
+        v-html="btn.label"
+      />
+      <div class="sep" />
+
+      <!-- Block formats -->
+      <button
+        v-for="btn in blockBtns"
+        :key="btn.title"
+        type="button"
+        class="bbn"
+        :class="{ active: editor?.isActive(btn.active.name, btn.active.attrs) }"
+        :title="btn.title"
+        @click="btn.action()"
+        v-html="btn.label"
+      />
+      <div class="sep" />
+
+      <template v-if="!linkMode">
+        <!-- Link -->
+        <button
+          type="button"
+          class="bbn"
+          :class="{ active: editor?.isActive('link') }"
+          title="Link"
+          @click="openLink"
+          v-html="icons.link"
+        />
+
+        <!-- Clear -->
+        <button
+          type="button"
+          class="bbn"
+          title="Clear formatting"
+          @click="editor?.chain().focus().clearNodes().unsetAllMarks().run()"
+          v-html="icons.clear"
+        />
+      </template>
+
+      <!-- Link input -->
+      <div v-else class="link-row">
+        <input
+          ref="linkInputEl"
+          v-model="linkUrl"
+          type="url"
+          placeholder="https://…"
+          @keydown="onLinkKeydown"
+        >
+        <button type="button" @click="applyLink">Add</button>
+      </div>
+    </div>
+
     <!-- Editor -->
     <EditorContent :editor="editor" class="editor" />
   </div>
@@ -238,6 +300,19 @@ const blockBtns = [
 .editor-wrapper {
   width: 100%;
   height: 100%;
+}
+
+/* ── Fixed Menu ── */
+.fixed-menu {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  /* background: rgba(255, 255, 255, 0.0); */ /* transparent (透明) */
+  /* border: 0px solid rgba(0, 0, 0, 0.3); */
+  /* border-radius: 0px; */
+  padding: 5px 6px;
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); */
+  user-select: none;
 }
 
 /* ── Bubble ── */
