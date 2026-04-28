@@ -61,7 +61,7 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.59.1",
     "@vue/test-utils": "^2.4.9",
-    "baseline-browser-mapping": "^2.10.23",
+    "baseline-browser-mapping": "^2.10.24",
     "eslint": "^10.2.1",
     "happy-dom": "^20.9.0",
     "markuplint": "^4.18.1",
