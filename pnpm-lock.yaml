@@ -61,11 +61,11 @@ importers:
         specifier: ^3.22.5
         version: 3.22.5(@floating-ui/dom@1.7.4)(@tiptap/core@3.22.5(@tiptap/pm@3.22.5))(@tiptap/pm@3.22.5)(vue@3.6.0-beta.10(typescript@6.0.3))
       '@vesperjs/nuxt':
-        specifier: 0.3.3
-        version: 0.3.3(vue@3.6.0-beta.10(typescript@6.0.3))
+        specifier: 0.4.0
+        version: 0.4.0(vue@3.6.0-beta.10(typescript@6.0.3))
       '@vesperjs/shared':
-        specifier: 0.3.3
-        version: 0.3.3(@vue/reactivity@3.6.0-beta.10)
+        specifier: 0.4.0
+        version: 0.4.0(@vue/reactivity@3.6.0-beta.10)
       '@vue/compiler-core':
         specifier: ^3.6.0-beta.10
         version: 3.6.0-beta.10
@@ -2998,13 +2998,13 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.3.3':
-    resolution: {integrity: sha512-Yr/nXjQClFsCM7k/fg5LyGwChvYrIn07LMwnlJZcabrD6PnQjgB+RYfg1uEooAxp7YKKK7weMt4XoNoVabnG4g==}
+  '@vesperjs/nuxt@0.4.0':
+    resolution: {integrity: sha512-9QIXwr1Qce4J1kiebKTkQ4hDjEpe0ceq6jN21E3ypD/1UJ+nBMVuMuCjCcqc0gCWA/ujDbAzOUzoPUMQPGE5dw==}
     peerDependencies:
       vue: ^3.6.0-beta.10
 
-  '@vesperjs/shared@0.3.3':
-    resolution: {integrity: sha512-s7J8kukAKA8Ym7RNtjvozEZ6hTl66tsVvT0MyMQ+Hkl4J9ra1qh0/Sc0kDM9KjPfje2wM/WnirRixLPyMG3aKA==}
+  '@vesperjs/shared@0.4.0':
+    resolution: {integrity: sha512-Hh9LaN/9WUIVAJl3oM5banhkFvUUKm6le258HQ/eNQgPlP/okPNEInUdxrWDOUH2O6241NCwrnrgNabT5Ij7rA==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-beta.10
 
@@ -9571,12 +9571,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.3.3(vue@3.6.0-beta.10(typescript@6.0.3))':
+  '@vesperjs/nuxt@0.4.0(vue@3.6.0-beta.10(typescript@6.0.3))':
     dependencies:
       vue: 3.6.0-beta.10(typescript@6.0.3)
 
-  '@vesperjs/shared@0.3.3(@vue/reactivity@3.6.0-beta.10)':
+  '@vesperjs/shared@0.4.0(@vue/reactivity@3.6.0-beta.10)':
     dependencies:
+      '@formkit/tempo': 1.0.0
       '@vue/reactivity': 3.6.0-beta.10
 
   '@vitejs/plugin-vue-jsx@5.1.4(vite@8.0.10(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.6.1)(sass-embedded@1.89.2)(sass@1.89.2)(terser@5.37.0)(yaml@2.8.2))(vue@3.6.0-beta.10(typescript@6.0.3))':
