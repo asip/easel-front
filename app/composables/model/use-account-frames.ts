@@ -41,7 +41,7 @@ export const useAccountFrames = function () {
   const { currentPage, pagePrev, pageNext, init, decrement, increment, minPage, maxPage } =
     useMoreScroll({
       key: 'profile',
-      page: frameQuery.value.page ?? 1,
+      page: frameQuery.value.page,
       pages: frameQuery.value.pages,
     })
 

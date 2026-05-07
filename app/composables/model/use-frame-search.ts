@@ -85,7 +85,7 @@ export const useFrameSearch = function () {
 
   const { currentPage, pagePrev, pageNext, init, increment, decrement, minPage, maxPage } =
     useMoreScroll({
-      page: frameQuery.value.page ?? 1,
+      page: frameQuery.value.page,
       pages: frameQuery.value.pages,
     })
 
