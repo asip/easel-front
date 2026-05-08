@@ -22,11 +22,11 @@
     "@regle/nuxt": "^1.24.3",
     "@regle/rules": "^1.24.3",
     "@tailwindcss/vite": "4.2.2",
-    "@tiptap/extension-link": "^3.22.5",
-    "@tiptap/extension-underline": "^3.22.5",
-    "@tiptap/pm": "^3.22.5",
-    "@tiptap/starter-kit": "^3.22.5",
-    "@tiptap/vue-3": "^3.22.5",
+    "@tiptap/extension-link": "^3.23.1",
+    "@tiptap/extension-underline": "^3.23.1",
+    "@tiptap/pm": "^3.23.1",
+    "@tiptap/starter-kit": "^3.23.1",
+    "@tiptap/vue-3": "^3.23.1",
     "@vesperjs/nuxt": "0.7.0",
     "@vesperjs/shared": "0.7.0",
     "@vue/compiler-core": "^3.6.0-beta.11",
@@ -61,7 +61,7 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.59.2",
     "@vue/test-utils": "^2.4.10",
-    "baseline-browser-mapping": "^2.10.27",
+    "baseline-browser-mapping": "^2.10.28",
     "eslint": "^10.3.0",
     "happy-dom": "^20.9.0",
     "markuplint": "^4.18.1",
@@ -72,25 +72,7 @@
     "vite": "^8.0.11",
     "vitest": "^4.1.5"
   },
-  "pnpm": {
-    "overrides": {
-      "@vue/compiler-core": "^3.6.0-beta.11",
-      "@vue/compiler-dom": "^3.6.0-beta.11",
-      "@vue/compiler-sfc": "^3.6.0-beta.11",
-      "@vue/reactivity": "^3.6.0-beta.11",
-      "@vue/runtime-core": "^3.6.0-beta.11",
-      "@vue/runtime-dom": "^3.6.0-beta.11",
-      "@vue/shared": "^3.6.0-beta.11",
-      "@typescript-eslint/typescript-estree": "^8.59.2",
-      "citty": "^0.2.2",
-      "eslint": "^10.3.0",
-      "magicast": "^0.5.2",
-      "nypm": "^0.6.6",
-      "std-env": "^4.1.0",
-      "typescript": "^6.0.3",
-      "vite": "^8.0.11",
-      "vitest": "^4.1.5",
-      "vue": "^3.6.0-beta.11"
-    }
+  "peerDependencies": {
+    "typescript-eslint": "^8.59.2"
   }
 }
