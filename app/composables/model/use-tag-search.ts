@@ -7,7 +7,7 @@ export const useTagSearch = function () {
   const tags = ref<string[]>([])
 
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
-    const getOptions: QueryAPIOptions = {
+    const options: QueryAPIOptions = {
       query: { q: name },
       signal,
       cache: false,
@@ -15,7 +15,7 @@ export const useTagSearch = function () {
 
     const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
       '/tags/search',
-      getOptions,
+      options,
     )
 
     clearFlash()
