@@ -27,15 +27,8 @@
     "@tiptap/pm": "^3.23.1",
     "@tiptap/starter-kit": "^3.23.1",
     "@tiptap/vue-3": "^3.23.1",
-    "@vesperjs/nuxt": "0.7.0",
-    "@vesperjs/shared": "0.7.0",
-    "@vue/compiler-core": "^3.6.0-beta.11",
-    "@vue/compiler-dom": "^3.6.0-beta.11",
-    "@vue/compiler-sfc": "^3.6.0-beta.11",
-    "@vue/reactivity": "^3.6.0-beta.11",
-    "@vue/runtime-core": "^3.6.0-beta.11",
-    "@vue/runtime-dom": "^3.6.0-beta.11",
-    "@vue/shared": "^3.6.0-beta.11",
+    "@vesperjs/nuxt": "0.7.1",
+    "@vesperjs/shared": "0.7.1",
     "@vuepic/vue-datepicker": "^12.1.0",
     "@yaireo/tagify": "^4.37.1",
     "bootstrap-icons": "^1.13.1",
@@ -45,7 +38,6 @@
     "photoswipe-fullscreen": "git+https://codeberg.org/askaaron/photoswipe-fullscreen",
     "sanitize-html": "^2.17.3",
     "tailwindcss": "4.3.0",
-    "vue": "^3.6.0-beta.11",
     "vue-sonner": "^2.0.9",
     "vue3-google-signin": "^2.1.1"
   },
@@ -73,6 +65,9 @@
     "vitest": "^4.1.5"
   },
   "peerDependencies": {
-    "typescript-eslint": "^8.59.2"
+    "@vue/reactivity": "^3.6.0-beta.11",
+    "@vue/server-renderer": "^3.6.0-beta.11",
+    "typescript-eslint": "^8.59.2",
+    "vue": "^3.6.0-beta.11"
   }
 }
