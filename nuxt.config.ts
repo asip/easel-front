@@ -43,6 +43,26 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      include: [
+        'glightbox', // CJS
+        '@vuepic/vue-datepicker',
+        '@yaireo/tagify',
+        'photoswipe/lightbox',
+        'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js',
+        'vue3-google-signin',
+        '@formkit/tempo',
+        'sanitize-html', // CJS
+        '@regle/core',
+        '@regle/rules',
+        '@tiptap/vue-3',
+        '@tiptap/vue-3/menus',
+        '@tiptap/starter-kit',
+        '@tiptap/extension-link',
+        '@tiptap/extension-underline',
+        'photoswipe',
+      ],
+    },
     plugins: [tailwindcss()],
   },
 

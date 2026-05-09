@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { VueDatePicker } from '@vuepic/vue-datepicker'
+
 import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
