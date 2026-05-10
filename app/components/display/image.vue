@@ -13,21 +13,9 @@ const {
   small?: boolean
 }>()
 
-let options = {}
-
-if (photoswipe) {
-  options = {
-    ps: { selector: '#gallery' },
-  }
-} else {
-  options = {
-    gl: { selector: '#image' },
-  }
-}
-
-const { initLightbox, closeLightbox } = useLightbox(options)
-
 const linkURL = computed<string | undefined>(() => {
+  if (!original) return undefined
+
   if (model.value && 'file_url' in model.value) {
     return `${model?.value.file_url}`
   } else if (model.value && 'image_url' in model.value) {
@@ -46,34 +34,9 @@ const imgURL = computed<string | undefined>(() => {
     return undefined
   }
 })
-
-onMounted(async () => {
-  if (import.meta.client && original) {
-    await initLightbox()
-  }
-})
-
-onUnmounted(() => {
-  if (import.meta.client) closeLightbox()
-})
 </script>
 
 <template>
-  <div v-if="original && photoswipe" id="gallery">
-    <NuxtLink class="mx-auto" :to="linkURL">
-      <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25" >
-      <img v-else :src="imgURL" alt="" class="mx-auto" >
-    </NuxtLink>
-  </div>
-  <NuxtLink v-else-if="original && !photoswipe" id="image" class="mx-auto" :to="linkURL">
-    <img v-if="small" :src="imgURL" alt="" class="mx-auto w-25 h-25 object-contain" >
-    <img v-else :src="imgURL" alt="" class="mx-auto" >
-  </NuxtLink>
-  <img
-    v-else-if="!original && small"
-    :src="imgURL"
-    alt=""
-    class="mx-auto w-25 h-25 object-contain"
-  >
-  <img v-else :src="imgURL" alt="" class="mx-auto" >
+  <PhotoSwipe v-if="photoswipe" :img-url="imgURL" :link-url="linkURL" :small />
+  <Lightbox v-else :img-url="imgURL" :link-url="linkURL" :small />
 </template>
