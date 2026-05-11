@@ -7,7 +7,7 @@ const { openModal } = useModal()
 const { referers } = useReferer()
 const { user, getUser } = useUser()
 const { loggedIn, account } = useAccount()
-const { queryMap } = useFrameSearch()
+const { current, queryMap } = useFrameSearch()
 const { flash, following, follow, unfollow, isFollowing } = useFollow()
 
 const { refItems } = useCookieStore()
@@ -24,6 +24,7 @@ provide('user', user)
 
 const onPageBack = async (): Promise<void> => {
   if (referers.value[route.path] == '/') {
+    await current({ cache: false })
     await navigateTo({ path: '/', query: queryMap.value })
   } else {
     refItems.value = '{}'

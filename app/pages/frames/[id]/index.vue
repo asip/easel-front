@@ -12,7 +12,7 @@ const frameUse = useFrame()
 const { frame, getFrame } = frameUse
 
 const { redirectTo } = usePrevPage()
-const { queryMap } = useFrameSearch()
+const { current, queryMap } = useFrameSearch()
 
 const { refItems, refMap } = useCookieStore()
 
@@ -24,6 +24,7 @@ const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ f
 
 const onPageBack = async (): Promise<void> => {
   if (!refMap.value.from) {
+    await current({ cache: false })
     await navigateTo({ path: '/', query: queryMap.value })
   } else {
     await redirectTo({ current: route.path, fallback: '/' })
