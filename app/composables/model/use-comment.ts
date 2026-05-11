@@ -10,6 +10,7 @@ export const useComment = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { $i18n } = useNuxtApp() as any
 
+  const { empty2p, p2empty } = useTiptap()
   const { copy } = useEntity<Comment, CommentResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -24,6 +25,15 @@ export const useComment = function () {
     user_image_url: '',
     created_at: '',
     updated_at: null,
+  })
+
+  const body = computed<string>({
+    get() {
+      return empty2p(comment.value.body)
+    },
+    set(value: string | undefined) {
+      comment.value.body = p2empty(value)
+    },
   })
 
   const setComment = ({
@@ -149,6 +159,7 @@ export const useComment = function () {
 
   return {
     comment,
+    body,
     setComment,
     externalErrors,
     backendErrorInfo,

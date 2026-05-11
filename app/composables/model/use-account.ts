@@ -8,6 +8,7 @@ interface LoginParams {
 }
 
 export const useAccount = function () {
+  const { empty2p, p2empty } = useTiptap()
   const { copy } = useEntity<User, UserResource>()
 
   const { timeZone } = useTimeZone()
@@ -49,6 +50,15 @@ export const useAccount = function () {
     },
     set(value: string | null) {
       user.value.preview_url = value
+    },
+  })
+
+  const profile = computed<string>({
+    get() {
+      return empty2p(user.value.profile)
+    },
+    set(value: string | undefined) {
+      user.value.profile = p2empty(value)
     },
   })
 
@@ -423,6 +433,7 @@ export const useAccount = function () {
     user,
     image,
     previewUrl,
+    profile,
     initTimeZone,
     clearProfile,
     setUser,

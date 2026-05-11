@@ -6,6 +6,7 @@ const { setFlash } = useSonner()
 const commentUse = inject('commentUse') as UseCommentType
 const {
   comment,
+  body,
   externalErrors,
   backendErrorInfo,
   updateComment,
@@ -49,7 +50,7 @@ const onUpdateClick = async (): Promise<void> => {
 <template>
   <div class="flex justify-start">
     <div class="w-full rounded-[10px] editor-border">
-      <Editor v-model="comment.body" />
+      <Editor v-model="body" />
     </div>
   </div>
   <div class="flex justify-between w-full mt-1">

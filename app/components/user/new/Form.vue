@@ -6,6 +6,7 @@ const {
   user,
   image,
   previewUrl,
+  profile,
   initTimeZone,
   signup,
   externalErrors,
@@ -118,7 +119,7 @@ defineExpose({ clearForm })
             <td>{{ $t('model.user.profile') }}：</td>
             <td class="wrap-break-word">
               <div class="rounded-[10px] editor-border">
-                <Editor ref="editor" v-model="user.profile" />
+                <Editor ref="editor" v-model="profile" />
               </div>
               <DisplayMessages :messages="r$.$errors.profile" />
             </td>

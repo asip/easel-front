@@ -3,6 +3,7 @@ const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
 const {
   comment,
+  body,
   externalErrors,
   backendErrorInfo,
   processing,
@@ -83,7 +84,7 @@ const redirect404 = async (): Promise<void> => {
         <form>
           <div class="flex justify-center wrap-break-word">
             <div class="w-full rounded-[10px] editor-border">
-              <Editor ref="editor" v-model="comment.body" />
+              <Editor ref="editor" v-model="body" />
             </div>
           </div>
           <div class="flex justify-between w-full mt-1">
