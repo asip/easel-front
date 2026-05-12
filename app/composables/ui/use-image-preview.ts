@@ -23,7 +23,7 @@ export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOp
     if (file.value) reader.readAsDataURL(file.value)
   }
 
-  const previewImage = () => {
+  const previewImage = (): void => {
     if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
       setPreview()
     } else {
