@@ -42,7 +42,7 @@
     "vue3-google-signin": "^2.1.1"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^4.18.0",
+    "@markuplint/vue-parser": "^4.18.3",
     "@markuplint/vue-spec": "^4.18.0",
     "@nuxt/devtools": "^3.2.4",
     "@nuxt/eslint": "^1.15.2",
@@ -53,16 +53,16 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.59.2",
     "@vue/test-utils": "^2.4.10",
-    "baseline-browser-mapping": "^2.10.28",
+    "baseline-browser-mapping": "^2.10.29",
     "eslint": "^10.3.0",
     "happy-dom": "^20.9.0",
-    "markuplint": "^4.18.1",
+    "markuplint": "^4.18.3",
     "nuxt": "^4.4.4",
-    "oxfmt": "^0.48.0",
+    "oxfmt": "^0.49.0",
     "playwright-core": "^1.59.1",
     "typescript": "^6.0.3",
-    "vite": "^8.0.11",
-    "vitest": "^4.1.5"
+    "vite": "^8.0.12",
+    "vitest": "^4.1.6"
   },
   "peerDependencies": {
     "@vue/reactivity": "^3.6.0-beta.11",
