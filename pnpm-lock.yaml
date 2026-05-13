@@ -59,11 +59,11 @@ importers:
         specifier: ^8.59.2
         version: 8.59.2(typescript@6.0.3)
       '@vesperjs/nuxt':
-        specifier: 0.7.1
-        version: 0.7.1(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))
+        specifier: 0.7.2
+        version: 0.7.2(@typescript-eslint/typescript-estree@8.59.2(typescript@6.0.3))(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))
       '@vesperjs/shared':
-        specifier: 0.7.1
-        version: 0.7.1(@vue/reactivity@3.6.0-beta.11)
+        specifier: 0.7.2
+        version: 0.7.2(@vue/reactivity@3.6.0-beta.11)
       '@vue/reactivity':
         specifier: ^3.6.0-beta.11
         version: 3.6.0-beta.11
@@ -3042,14 +3042,15 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.7.1':
-    resolution: {integrity: sha512-wwr4D7tbSFslay52d7epyoo1w9I+bTjRSqQVM39pneiJxomH9plKE14A8Z3bC6WbHCB+7+o93Sd5qfrf4C1mJw==}
+  '@vesperjs/nuxt@0.7.2':
+    resolution: {integrity: sha512-lo0Fll8ZKLaM1JHvVe/J+j2VfJV7lchy1+IWd4xkvmDhzLoPrxvV2WY3mR8PpzFU5JYRdRFRvMTx1vFSjL1GoA==}
     peerDependencies:
-      typescript-eslint: ^8.59.2
+      '@typescript-eslint/typescript-estree': ^8.59.2
+      typescript-eslint: ^8.59.3
       vue: ^3.6.0-beta.11
 
-  '@vesperjs/shared@0.7.1':
-    resolution: {integrity: sha512-bDJ2hKTCKwkk2PsdUon5V9VXZQjbA7KG9mzQyOnGzSe78zeaHUC0LmfcJxqwYgL4HxVjJl77AaaUKuVnEX8Pag==}
+  '@vesperjs/shared@0.7.2':
+    resolution: {integrity: sha512-O5hwIeV8BCatrKY3pWwi7eaTXwsSgatjtNotMW/hCCO0L8XaYuOp7/3oBASCX5wi9mXXiRPlIcrOH/vz51spZw==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-beta.11
 
@@ -9209,12 +9210,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.7.1(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))':
+  '@vesperjs/nuxt@0.7.2(@typescript-eslint/typescript-estree@8.59.2(typescript@6.0.3))(typescript-eslint@8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3))(vue@3.6.0-beta.11(typescript@6.0.3))':
     dependencies:
+      '@typescript-eslint/typescript-estree': 8.59.2(typescript@6.0.3)
       typescript-eslint: 8.59.3(eslint@10.3.0(jiti@2.6.1))(typescript@6.0.3)
       vue: 3.6.0-beta.11(typescript@6.0.3)
 
-  '@vesperjs/shared@0.7.1(@vue/reactivity@3.6.0-beta.11)':
+  '@vesperjs/shared@0.7.2(@vue/reactivity@3.6.0-beta.11)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.11
