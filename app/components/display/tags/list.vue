@@ -21,6 +21,6 @@ const onClick = async (tag: string): Promise<void> => {
 
 <template>
   <div v-for="(tag, idx) in model?.tag_list" :key="idx">
-    <DisplayTagsListItemLink :tag="tag" :list="list" :on-click="onClick" />
+    <DisplayTagsListItemLink :tag="tag" :list="list" @click="onClick" />
   </div>
 </template>

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-const {
-  tag,
-  list = false,
-  onClick,
-} = defineProps<{
+const { tag, list = false } = defineProps<{
   tag: string
   list?: boolean
-  onClick: (tag: string) => void
 }>()
+
+const emit = defineEmits<{ click: [string] }>()
+
+const onClick = (tag: string): void => {
+  emit('click', tag)
+}
 </script>
 
 <template>
