@@ -21,8 +21,6 @@ const onClick = async (tag: string): Promise<void> => {
 
 <template>
   <div v-for="(tag, idx) in model?.tag_list" :key="idx">
-    <a href="#" @click.prevent="onClick(tag)">
-      <DisplayTagsListItem :tag="tag" :list="list" />
-    </a>
+    <DisplayTagsListItemLink :tag="tag" :list="list" :on-click="onClick" />
   </div>
 </template>
