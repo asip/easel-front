@@ -1,42 +1,18 @@
 <script setup lang="ts">
 import type { Frame } from '~/types'
 
+const model = defineModel<Frame>()
+
 const { list = false } = defineProps<{
   list?: boolean
 }>()
-
-const model = defineModel<Frame>()
-
-const { frameQuery, queryMap, current, currentPage, clearSearchCriteria } = useFrameSearch()
-
-const onClick = async (tag: string): Promise<void> => {
-  clearSearchCriteria()
-  frameQuery.value.items.tag_name = tag
-  frameQuery.value.page = 1
-  currentPage.value = 1
-  await current({ cache: false })
-  await navigateTo({ path: '/', query: queryMap.value })
-}
 </script>
 
 <template>
   <div v-if="list" class="flex justify-center flex-wrap gap-1">
-    <div v-for="(tag, idx) in model?.tag_list" :key="idx">
-      <a href="#" @click.prevent="onClick(tag)"
-        ><span
-          class="badge badge-sm badge-outline badge-accent hover:badge-primary truncate rounded-full"
-          >{{ tag }}</span
-        ></a
-      >
-    </div>
+    <DisplayTagsList v-model="model" :list="list" />
   </div>
   <div v-else class="flex flex-wrap gap-1">
-    <div v-for="(tag, idx) in model?.tag_list" :key="idx">
-      <a href="#" @click.prevent="onClick(tag)"
-        ><div class="badge badge-outline badge-accent hover:badge-primary truncate rounded-full">
-          {{ tag }}
-        </div></a
-      >
-    </div>
+    <DisplayTagsList v-model="model" :list="list" />
   </div>
 </template>
