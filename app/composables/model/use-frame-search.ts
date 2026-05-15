@@ -35,6 +35,23 @@ export const useFrameSearch = function () {
     }
   })
 
+  const initFrameQuery = (q: string | undefined, page: string | undefined) => {
+    if (q) {
+      const items = q ? JSON.parse(q.toString()) : {}
+      frameQuery.value.items.word = items.word
+      frameQuery.value.items.frame_name = items.frame_name
+      frameQuery.value.items.tag_name = items.tag_name
+      frameQuery.value.items.user_name = items.user_name
+      frameQuery.value.items.creator_name = items.creator_nam
+      frameQuery.value.items.date = items.date
+    }
+    if (page) {
+      frameQuery.value.page = Number.parseInt(page.toString())
+    } else {
+      frameQuery.value.page = currentPage.value
+    }
+  }
+
   const qItems = computed<FrameCriteria>(() => {
     const { items } = frameQuery.value
 
@@ -157,6 +174,7 @@ export const useFrameSearch = function () {
 
   return {
     frameQuery,
+    initFrameQuery,
     searchFrame,
     current,
     prev,
