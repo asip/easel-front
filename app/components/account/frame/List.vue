@@ -32,16 +32,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ClientOnly>
-    <div v-if="pagePrev" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onPrevClick"
-        >{{ $t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a
-      >
-    </div>
-  </ClientOnly>
+  <FrameListPrev
+    v-if="pagePrev"
+    :min-page="minPage"
+    :pages="frameQuery.pages"
+    @click="onPrevClick"
+  />
 
   <div class="flex justify-center">
-    <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10 lb">
+    <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10 lb mt-2">
       <div
         v-for="(frame, i) in frames"
         :key="frame.id"
@@ -52,11 +51,10 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <ClientOnly>
-    <div v-if="pageNext" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white" @click="onNextClick"
-        >{{ $t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a
-      >
-    </div>
-  </ClientOnly>
+  <FrameListNext
+    v-if="pageNext"
+    :max-page="maxPage"
+    :pages="frameQuery.pages"
+    @click="onNextClick"
+  />
 </template>
