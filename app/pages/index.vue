@@ -4,7 +4,7 @@ const q = route.query.q
 const page = route.query.page
 const items = q ? JSON.parse(q.toString()) : {}
 
-const { frameQuery } = useFrameSearch()
+const { frameQuery, currentPage } = useFrameSearch()
 
 if (q) {
   frameQuery.value.items.word = items.word
@@ -17,7 +17,7 @@ if (q) {
 if (page) {
   frameQuery.value.page = Number.parseInt(page.toString())
 } else {
-  frameQuery.value.page = 1
+  frameQuery.value.page = currentPage.value
 }
 </script>
 
