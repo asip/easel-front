@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { $i18n } = useNuxtApp() as any
 const router = useRouter()
 
 const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
@@ -34,13 +32,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ClientOnly>
-    <div v-if="pagePrev" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mt-2" @click="onPrevClick"
-        >{{ $i18n.t('action.search.more') }} {{ minPage }}/{{ frameQuery.pages }}</a
-      >
-    </div>
-  </ClientOnly>
+  <FrameListPrev
+    v-if="pagePrev"
+    :min-page="minPage"
+    :pages="frameQuery.pages"
+    @click="onPrevClick"
+  />
 
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-4 items-start w-full sm:w-9/10 lb mt-2">
@@ -54,11 +51,10 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <ClientOnly>
-    <div v-if="pageNext" class="flex justify-center">
-      <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onNextClick"
-        >{{ $i18n.t('action.search.more') }} {{ maxPage }}/{{ frameQuery.pages }}</a
-      >
-    </div>
-  </ClientOnly>
+  <FrameListNext
+    v-if="pageNext"
+    :max-page="maxPage"
+    :pages="frameQuery.pages"
+    @click="onNextClick"
+  />
 </template>
