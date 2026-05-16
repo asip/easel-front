@@ -1,8 +1,10 @@
 import { useGLightbox, usePhotoSwipe } from './lightbox'
 
-type lightboxOptions = { ps?: { selector: string }; gl?: { selector: string } }
+type LbOptions = { selector: string }
 
-export const useLightbox = function ({ ps, gl }: lightboxOptions) {
+type LightboxOptions = { ps?: LbOptions; gl?: LbOptions }
+
+export const useLightbox = function ({ ps, gl }: LightboxOptions) {
   const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe({ selector: ps?.selector })
   const { initGLightbox, closeGLightbox } = useGLightbox({ selector: gl?.selector })
 
