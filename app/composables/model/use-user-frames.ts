@@ -106,10 +106,10 @@ export const useUserFrames = function () {
     options?: { cache?: boolean },
   ): Promise<void> => {
     clearFrames()
-    init()
     // console.log(`current page: ${currentPage.value}`)
     await getFrames(userId, { cache: options?.cache ?? true })
     frames.value = frames.value.concat(frameList.value)
+    init()
   }
 
   const more = async (userId: string | undefined): Promise<void> => {
@@ -135,7 +135,6 @@ export const useUserFrames = function () {
     current,
     prev,
     next,
-    currentPage,
     pagePrev,
     pageNext,
     frames,
