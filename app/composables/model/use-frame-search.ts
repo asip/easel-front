@@ -150,10 +150,11 @@ export const useFrameSearch = function () {
 
   const current = async (options?: { cache?: boolean }): Promise<void> => {
     clearFrames()
-    init()
     // console.log(`current page: ${currentPage.value}`)
     await searchFrame({ cache: options?.cache ?? true })
     frames.value = frames.value.concat(frameList.value)
+    init()
+    currentPage.value = frameQuery.value.page
   }
 
   const more = async (): Promise<void> => {
@@ -179,7 +180,6 @@ export const useFrameSearch = function () {
     current,
     prev,
     next,
-    currentPage,
     pagePrev,
     pageNext,
     frames,
