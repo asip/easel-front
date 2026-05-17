@@ -13,7 +13,7 @@ const image = useTemplateRef('image')
 const imageInfo = ref<ImageInfo>({ width: 0, height: 0 })
 
 const { loggedIn, account } = useAccount()
-const { frameQuery, currentPage } = useFrameSearch()
+const { frameQuery } = useFrameSearch()
 
 const { refItems } = useCookieStore()
 
@@ -22,10 +22,7 @@ const { refItems } = useCookieStore()
 const front = ref<boolean>(true)
 
 const onLinkClick = async (): Promise<void> => {
-  if (frame.value?.page) {
-    currentPage.value = frame.value?.page
-    frameQuery.value.page = frame.value?.page
-  }
+  if (frame.value?.page) frameQuery.value.page = frame.value?.page
   // refItems.value = queryMapWithRef.value.ref
   refItems.value = '{}'
   await navigateTo(`/frames/${frame.value?.id}`)
