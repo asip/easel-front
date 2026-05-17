@@ -8,7 +8,7 @@ const { from = undefined } = defineProps<{
 }>()
 
 const { loggedIn, account } = useAccount()
-const { currentPage, frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
+const { frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
 const { refItems } = useCookieStore()
 
@@ -27,10 +27,7 @@ const onFrameClick = async (): Promise<void> => {
 }
 
 const onLinkClick = () => {
-  if (frame.value?.page) {
-    currentPage.value = frame.value?.page
-    frameQuery.value.page = frame.value?.page
-  }
+  if (frame.value?.page) frameQuery.value.page = frame.value?.page
 }
 </script>
 
