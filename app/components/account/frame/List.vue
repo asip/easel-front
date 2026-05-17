@@ -2,7 +2,7 @@
 const { from = undefined } = defineProps<{
   from?: string
 }>()
-const { frameQuery, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } =
+const { frameQuery, frames, current, prev, next, prevPage, nextPage, minPage, maxPage } =
   useAccountFrames()
 
 // console.log('getFrames: start')
@@ -19,7 +19,7 @@ const onNextClick = async (): Promise<void> => {
 
 <template>
   <FrameListPrev
-    v-if="pagePrev"
+    v-if="prevPage"
     :min-page="minPage"
     :pages="frameQuery.pages"
     @click="onPrevClick"
@@ -28,7 +28,7 @@ const onNextClick = async (): Promise<void> => {
   <UserFrameListCurrent v-model="frames" :from="from" />
 
   <FrameListNext
-    v-if="pageNext"
+    v-if="nextPage"
     :max-page="maxPage"
     :pages="frameQuery.pages"
     @click="onNextClick"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
 
-const { frameQuery, queryMap, frames, current, prev, next, pagePrev, pageNext, minPage, maxPage } =
+const { frameQuery, queryMap, frames, current, prev, next, prevPage, nextPage, minPage, maxPage } =
   useFrameSearch()
 
 // console.log('searchFrame: start')
@@ -19,7 +19,7 @@ const onNextClick = async (): Promise<void> => {
 
 <template>
   <FrameListPrev
-    v-if="pagePrev"
+    v-if="prevPage"
     :min-page="minPage"
     :pages="frameQuery.pages"
     @click="onPrevClick"
@@ -28,7 +28,7 @@ const onNextClick = async (): Promise<void> => {
   <FrameListCurrent v-model="frames" />
 
   <FrameListNext
-    v-if="pageNext"
+    v-if="nextPage"
     :max-page="maxPage"
     :pages="frameQuery.pages"
     @click="onNextClick"

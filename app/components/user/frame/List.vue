@@ -10,8 +10,8 @@ const {
   current,
   prev,
   next,
-  pagePrev,
-  pageNext,
+  prevPage,
+  nextPage,
   minPage,
   maxPage,
   initFrameQuery,
@@ -35,7 +35,7 @@ const onNextClick = async (): Promise<void> => {
 
 <template>
   <FrameListPrev
-    v-if="pagePrev"
+    v-if="prevPage"
     :min-page="minPage"
     :pages="frameQuery.pages"
     @click="onPrevClick"
@@ -44,7 +44,7 @@ const onNextClick = async (): Promise<void> => {
   <UserFrameListCurrent v-model="frames" :from="from" />
 
   <FrameListNext
-    v-if="pageNext"
+    v-if="nextPage"
     :max-page="maxPage"
     :pages="frameQuery.pages"
     @click="onNextClick"
