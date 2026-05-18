@@ -52,7 +52,7 @@
     "@types/sanitize-html": "^2.16.1",
     "@types/yaireo__tagify": "^4.27.0",
     "@vue/test-utils": "^2.4.10",
-    "baseline-browser-mapping": "^2.10.30",
+    "baseline-browser-mapping": "^2.10.31",
     "eslint": "^10.4.0",
     "happy-dom": "^20.9.0",
     "markuplint": "^4.18.3",
