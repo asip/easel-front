@@ -25,8 +25,8 @@ onUnmounted(() => {
 <template>
   <NuxtLink v-if="linkUrl" id="image" class="mx-auto" :to="linkUrl">
     <img v-if="small" :src="imgUrl" alt="" class="mx-auto w-25 h-25 object-contain" >
-    <img v-else :src="imgUrl" alt="" class="mx-auto" >
+    <img v-else :src="imgUrl" alt="" class="mx-auto max-w-80 max-h-80" >
   </NuxtLink>
   <img v-else-if="small" :src="imgUrl" alt="" class="mx-auto w-25 h-25 object-contain" >
-  <img v-else :src="imgUrl" alt="" class="mx-auto" >
+  <img v-else :src="imgUrl" alt="" class="mx-auto max-w-80 max-h-80" >
 </template>
