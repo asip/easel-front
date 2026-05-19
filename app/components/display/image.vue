@@ -38,5 +38,5 @@ const imgURL = computed<string | undefined>(() => {
 
 <template>
   <PhotoSwipe v-if="photoswipe" :img-url="imgURL" :link-url="linkURL" :small />
-  <Lightbox v-else :img-url="imgURL" :link-url="linkURL" :small />
+  <GLightbox v-else :img-url="imgURL" :link-url="linkURL" :small />
 </template>
