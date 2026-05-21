@@ -41,7 +41,7 @@
   "component": {
     "tag_search": {
       "placeholder": "タグ or 名前 or YYYY/MM/DD",
-      "placeholder_date": "撮影/登録/更新日",
+      "placeholder_date": "YYYY/MM/DD",
       "tag_name": "タグ名",
       "user_name": "ユーザー名",
       "date": "日付",
