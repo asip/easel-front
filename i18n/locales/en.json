@@ -40,7 +40,7 @@
   },
   "component": {
     "tag_search": {
-      "placeholder": "Tag or Name or Date",
+      "placeholder": "Tag or Name or YYYY/MM/DD",
       "placeholder_date": "Shooted/Created/Updated date",
       "tag_name": "Tag Name",
       "user_name": "User Name",
