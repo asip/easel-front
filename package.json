@@ -18,10 +18,10 @@
   "dependencies": {
     "@formkit/tempo": "^1.1.0",
     "@nuxtjs/i18n": "^10.3.0",
-    "@regle/core": "^1.25.2",
-    "@regle/nuxt": "^1.25.2",
-    "@regle/rules": "^1.25.2",
-    "@tailwindcss/vite": "4.3.0",
+    "@regle/core": "^1.26.1",
+    "@regle/nuxt": "^1.26.1",
+    "@regle/rules": "^1.26.1",
+    "@tailwindcss/vite": "^4.3.0",
     "@tiptap/extension-link": "^3.23.6",
     "@tiptap/extension-underline": "^3.23.6",
     "@tiptap/pm": "^3.23.6",
@@ -37,7 +37,7 @@
     "photoswipe": "^5.4.4",
     "photoswipe-fullscreen": "git+https://codeberg.org/askaaron/photoswipe-fullscreen",
     "sanitize-html": "^2.17.4",
-    "tailwindcss": "4.3.0",
+    "tailwindcss": "^4.3.0",
     "vue-sonner": "^2.0.9",
     "vue3-google-signin": "^2.1.1"
   },

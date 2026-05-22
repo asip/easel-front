@@ -29,16 +29,16 @@ importers:
         specifier: ^10.3.0
         version: 10.3.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vue/compiler-dom@3.6.0-beta.12)(db0@0.3.4)(eslint@10.4.0(jiti@2.7.0))(ioredis@5.10.1)(magicast@0.5.2)(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(rollup@4.60.2)(typescript@6.0.3)(vite@8.0.13(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.37.0)(yaml@2.8.2))(vue@3.6.0-beta.12(typescript@6.0.3))
       '@regle/core':
-        specifier: ^1.25.2
-        version: 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+        specifier: ^1.26.1
+        version: 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
       '@regle/nuxt':
-        specifier: ^1.25.2
-        version: 1.25.2(magicast@0.5.2)(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))
+        specifier: ^1.26.1
+        version: 1.26.1(magicast@0.5.2)(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))
       '@regle/rules':
-        specifier: ^1.25.2
-        version: 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+        specifier: ^1.26.1
+        version: 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
       '@tailwindcss/vite':
-        specifier: 4.3.0
+        specifier: ^4.3.0
         version: 4.3.0(vite@8.0.13(@types/node@24.12.0)(esbuild@0.27.3)(jiti@2.7.0)(terser@5.37.0)(yaml@2.8.2))
       '@tiptap/extension-link':
         specifier: ^3.23.6
@@ -95,7 +95,7 @@ importers:
         specifier: ^2.17.4
         version: 2.17.4
       tailwindcss:
-        specifier: 4.3.0
+        specifier: ^4.3.0
         version: 4.3.0
       typescript-eslint:
         specifier: ^8.59.3
@@ -1220,10 +1220,6 @@ packages:
     resolution: {integrity: sha512-Bd6m6mrDrqpBEbX+g0rc66/ALd1sxlgdx5nfK9MAYO0yKLTOSK7McSYz1KcOYn3LQFCXOWfvXwaqih/b+REI1g==}
     engines: {node: '>=18.12.0'}
 
-  '@nuxt/kit@4.4.2':
-    resolution: {integrity: sha512-5+IPRNX2CjkBhuWUwz0hBuLqiaJPRoKzQ+SvcdrQDbAyE+VDeFt74VpSFr5/R0ujrK4b+XnSHUJWdS72w6hsog==}
-    engines: {node: '>=18.12.0'}
-
   '@nuxt/kit@4.4.5':
     resolution: {integrity: sha512-J0BpoOomzd3iVZozYlZJ7AwAVliXRgeChZnAkQLfg8d0h/Q+aMK9kkHuhwFULASaRn5idiD4BIhOUz7/uoLbSw==}
     engines: {node: '>=18.12.0'}
@@ -1248,8 +1244,8 @@ packages:
       '@rollup/plugin-babel':
         optional: true
 
-  '@nuxt/schema@4.4.2':
-    resolution: {integrity: sha512-/q6C7Qhiricgi+PKR7ovBnJlKTL0memCbA1CzRT+itCW/oeYzUfeMdQ35mGntlBoyRPNrMXbzuSUhfDbSCU57w==}
+  '@nuxt/schema@4.4.5':
+    resolution: {integrity: sha512-kPacVsBInUgM3JiFiHUGd5fr8Ohe+79PGrBwjipfGzA61UMPfj7CmPuKrvmL1i4oLS1I3/flHvU5VFVyQ/wyxQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
 
   '@nuxt/schema@4.4.6':
@@ -2202,8 +2198,8 @@ packages:
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
 
-  '@regle/core@1.25.2':
-    resolution: {integrity: sha512-K8IAA0DvMgVzWhduvJQsrq2RGWB7AcEuiwkcC5IUHd08UejBRbpebYTlHsRDTxe9cI2khlzQ3QUYW14huyq28g==}
+  '@regle/core@1.26.1':
+    resolution: {integrity: sha512-hGOjAjb9IhjaVB1ET9zxaonWooj3sQr6hjTH+CT+Jg4YKoIyX13mBAvX2dlI01nCX3w9l6hr9YnSTVxL8cDkKA==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: ^3.6.0-beta.12
@@ -2211,15 +2207,15 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.25.2':
-    resolution: {integrity: sha512-cGnyatDhvmqyHe1wPg4X4fX0osThYWIPXvVsuBJdPQs1G9c7yqpnh3icmGQHn4HGMOKTqxSpS8p72v087yWcIA==}
+  '@regle/nuxt@1.26.1':
+    resolution: {integrity: sha512-VDrHfN82FL6fPFxO8fzMptID5YujIS1BYdg8DSkPVWW3VrD1AkU4ReoQnm1plvy0aLRj0uzcBYxZS6kYOzBBMw==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@regle/rules@1.25.2':
-    resolution: {integrity: sha512-YfbNAw5D0Ow1vr4zAXY4o++dwUrEI4AK1Lj9C6chQjMTETdn5G1wqvvNnEoq8rnxuT/JvsfcicxnP36hmmoXRw==}
+  '@regle/rules@1.26.1':
+    resolution: {integrity: sha512-ajIE+omS+R/L0PZy5kgvH4vjk88qs02tPzf+g0cjhwaUkEEID3PKWjyzOWjsAQULm0OrGKUvoaVO9woL+ZIaVA==}
 
-  '@regle/schemas@1.25.2':
-    resolution: {integrity: sha512-3NjgbY3M8UgGA9vLfBz2KoIRNonR0AYwKrhlrZYKqxTRBN3aXBauOWs++dIo2IurE6eGHkn9SURML69lq6ZcEw==}
+  '@regle/schemas@1.26.1':
+    resolution: {integrity: sha512-cYYPoEsMxpKKfeMUy3X+eWcLjrz1OFQTRgwwOMwp0cdCYYw/hSwI4lhc6FXoBO+/D7pgtnG6jgSX/KFBtkqnjg==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -3177,9 +3173,6 @@ packages:
 
   '@vue/devtools-api@7.7.9':
     resolution: {integrity: sha512-kIE8wvwlcZ6TJTbNeU2HQNtaxLx3a84aotTITUuL/4bzfPxzajGBOoqjMhwZJ8L9qFYDU/lAYMEEm11dnZOD6g==}
-
-  '@vue/devtools-api@8.0.7':
-    resolution: {integrity: sha512-tc1TXAxclsn55JblLkFVcIRG7MeSJC4fWsPjfM7qu/IcmPUYnQ5Q8vzWwBpyDY24ZjmZTUCCwjRSNbx58IhlAA==}
 
   '@vue/devtools-api@8.1.2':
     resolution: {integrity: sha512-vA0O112YqyDuNA1s7Yb2gCgToQ/OxOWiFDO5ThLCcDy0ldHnSd1dUTaSYhOldbqoNgumE4dxtGAoAaSUKUD1Zg==}
@@ -7827,31 +7820,6 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/kit@4.4.2(magicast@0.5.2)':
-    dependencies:
-      c12: 3.3.4(magicast@0.5.2)
-      consola: 3.4.2
-      defu: 6.1.7
-      destr: 2.0.5
-      errx: 0.1.0
-      exsolve: 1.0.8
-      ignore: 7.0.5
-      jiti: 2.6.1
-      klona: 2.0.6
-      mlly: 1.8.2
-      ohash: 2.0.11
-      pathe: 2.0.3
-      pkg-types: 2.3.1
-      rc9: 3.0.1
-      scule: 1.3.0
-      semver: 7.7.4
-      tinyglobby: 0.2.16
-      ufo: 1.6.4
-      unctx: 2.5.0
-      untyped: 2.0.0
-    transitivePeerDependencies:
-      - magicast
-
   '@nuxt/kit@4.4.5(magicast@0.5.2)':
     dependencies:
       c12: 3.3.4(magicast@0.5.2)
@@ -7968,7 +7936,7 @@ snapshots:
       - uploadthing
       - xml2js
 
-  '@nuxt/schema@4.4.2':
+  '@nuxt/schema@4.4.5':
     dependencies:
       '@vue/shared': 3.6.0-beta.12
       defu: 6.1.7
@@ -8629,7 +8597,7 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
-  '@regle/core@1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
+  '@regle/core@1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
@@ -8638,14 +8606,14 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))
 
-  '@regle/nuxt@1.25.2(magicast@0.5.2)(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))':
+  '@regle/nuxt@1.26.1(magicast@0.5.2)(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))':
     dependencies:
-      '@nuxt/kit': 4.4.2(magicast@0.5.2)
-      '@nuxt/schema': 4.4.2
-      '@regle/core': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
-      '@regle/rules': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@nuxt/kit': 4.4.5(magicast@0.5.2)
+      '@nuxt/schema': 4.4.5
+      '@regle/core': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@regle/rules': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
     optionalDependencies:
-      '@regle/schemas': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@regle/schemas': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
       pinia: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3))
     transitivePeerDependencies:
       - arktype
@@ -8655,18 +8623,18 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
+  '@regle/rules@1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@regle/core': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
       type-fest: 5.6.0
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
+  '@regle/schemas@1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
-      '@regle/rules': 1.25.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@regle/core': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
+      '@regle/rules': 1.26.1(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.12(typescript@6.0.3)))(vue@3.6.0-beta.12(typescript@6.0.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.6.0
     transitivePeerDependencies:
@@ -8897,7 +8865,7 @@ snapshots:
     dependencies:
       '@jridgewell/remapping': 2.3.5
       enhanced-resolve: 5.21.1
-      jiti: 2.6.1
+      jiti: 2.7.0
       lightningcss: 1.32.0
       magic-string: 0.30.21
       source-map-js: 1.2.1
@@ -9543,10 +9511,6 @@ snapshots:
   '@vue/devtools-api@7.7.9':
     dependencies:
       '@vue/devtools-kit': 7.7.9
-
-  '@vue/devtools-api@8.0.7':
-    dependencies:
-      '@vue/devtools-kit': 8.1.0
 
   '@vue/devtools-api@8.1.2':
     dependencies:
@@ -13268,7 +13232,7 @@ snapshots:
     dependencies:
       '@babel/generator': 7.29.1
       '@vue-macros/common': 3.1.1(vue@3.6.0-beta.12(typescript@6.0.3))
-      '@vue/devtools-api': 8.0.7
+      '@vue/devtools-api': 8.1.2
       ast-walker-scope: 0.8.3
       chokidar: 5.0.0
       json5: 2.2.3
