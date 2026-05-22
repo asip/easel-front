@@ -14,5 +14,5 @@ overrides:
   '@vue/shared': ^3.6.0-beta.12
   eslint: ^10.4.0
   vite: ^8.0.13
-  vitest: ^4.1.6
+  vitest: ^4.1.7
   vue: ^3.6.0-beta.12

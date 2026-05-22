@@ -61,7 +61,7 @@
     "playwright-core": "^1.60.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.13",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.7"
   },
   "peerDependencies": {
     "@typescript-eslint/typescript-estree": "^8.59.3",
