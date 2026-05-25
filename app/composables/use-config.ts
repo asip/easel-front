@@ -1,4 +1,4 @@
-export const useSettings = function () {
+export const useConfig = function () {
   const runtimeConfig = useRuntimeConfig()
 
   const googleClientID = runtimeConfig.public.googleClientId as string

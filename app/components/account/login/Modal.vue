@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { googleClientID, loginByPassword } = useSettings()
+const { googleClientID, loginByPassword } = useConfig()
 const { loggedIn } = useAccount()
 const { openModal, closeModal, checkOutside } = useModal()
 
