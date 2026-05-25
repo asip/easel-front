@@ -20,12 +20,13 @@ export const useModal = function () {
   const checkOutside = (
     e: PointerEvent,
     selector: string,
+    boxSelector: string = '.modal-box',
   ): {
     modalEl: HTMLDialogElement | null
     isOutside: boolean
   } => {
     const modalEl: HTMLDialogElement | null = getModal(selector)
-    const modalBoxEl: HTMLDivElement | null | undefined = modalEl?.querySelector('.modal-box')
+    const modalBoxEl: HTMLDivElement | null | undefined = modalEl?.querySelector(boxSelector)
     const rect = modalBoxEl?.getBoundingClientRect()
     const isOutside = rect
       ? e.clientX < rect.left ||
