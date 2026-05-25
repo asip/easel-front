@@ -32,9 +32,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       frameQuery.value.page = 1
     }
 
-    if (import.meta.client) {
-      await current({ cache: false })
-    }
+    if (import.meta.client) await current({ cache: false })
   }
 
   if (to.path.match(/^\/users\/\d+$/)) {
@@ -54,9 +52,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       frameQuery.value.page = 1
     }
 
-    if (import.meta.client) {
-      await current(userId, { cache: false })
-    }
+    if (import.meta.client) await current(userId, { cache: false })
   }
 
   if (to.path.match(/^\/frames\/\d+$/)) {
@@ -83,8 +79,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (to.path === '/') {
     const { current } = useFrameSearch()
 
-    if (import.meta.client) {
-      await current({ cache: false })
-    }
+    if (import.meta.client) await current({ cache: false })
   }
 })
