@@ -21,14 +21,12 @@ const { initTagEditor, closeTagEditor } = useTagEditor({
 })
 
 onMounted(() => {
-  // console.log(frame)
-  if (import.meta.client && model.value) {
-    initTagEditor()
-  }
+  // console.log(model.value)
+  if (model.value) initTagEditor()
 })
 
 onUnmounted(() => {
-  if (import.meta.client) closeTagEditor()
+  closeTagEditor()
 })
 </script>
 

@@ -12,11 +12,11 @@ const options = {
 const { initLightbox, closeLightbox } = useLightbox(options)
 
 onMounted(async () => {
-  if (import.meta.client) await initLightbox()
+  await initLightbox()
 })
 
 onUnmounted(() => {
-  if (import.meta.client) closeLightbox()
+  closeLightbox()
 })
 </script>
 

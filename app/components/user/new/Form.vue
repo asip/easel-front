@@ -23,7 +23,7 @@ const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
 const file = useTemplateRef('file')
 
 onMounted(() => {
-  if (import.meta.client) initTimeZone()
+  initTimeZone()
 })
 
 const onSelectFile = (evt: Event): void => {

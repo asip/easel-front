@@ -8,15 +8,15 @@ const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor:
 const frames = computed(() => model.value ?? [])
 
 onMounted(() => {
-  if (import.meta.client) initGallery()
+  initGallery()
 })
 
 onUpdated(() => {
-  if (import.meta.client) initGallery()
+  initGallery()
 })
 
 onUnmounted(() => {
-  if (import.meta.client) closeGallery()
+  closeGallery()
 })
 </script>
 
