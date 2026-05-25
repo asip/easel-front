@@ -72,6 +72,7 @@ const onTopPageClick = async (): Promise<void> => {
             </summary>
             <ul
               class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 z-999 glass-08"
+              @mouseleave="closeDropdown"
             >
               <li>
                 <a href="#" class="flex gap-1" @click.prevent="onProfileClick">
