@@ -1,4 +1,4 @@
-export const useModal = function () {
+export const useModal = function (boxSelector: string = '.modal-box') {
   const modals: Partial<Record<string, HTMLDialogElement>> = {}
 
   const getModal = (selector: string): HTMLDialogElement | null => {
@@ -17,25 +17,18 @@ export const useModal = function () {
     modalEl?.close()
   }
 
-  const checkOutside = (
-    e: PointerEvent,
-    selector: string,
-    boxSelector: string = '.modal-box',
-  ): {
-    modalEl: HTMLDialogElement | null
-    isOutside: boolean
-  } => {
+  const isOutside = (ev: PointerEvent, selector: string): boolean => {
     const modalEl: HTMLDialogElement | null = getModal(selector)
     const modalBoxEl: HTMLDivElement | null | undefined = modalEl?.querySelector(boxSelector)
     const rect = modalBoxEl?.getBoundingClientRect()
     const isOutside = rect
-      ? e.clientX < rect.left ||
-        e.clientX > rect.right ||
-        e.clientY < rect.top ||
-        e.clientY > rect.bottom
+      ? ev.clientX < rect.left ||
+        ev.clientX > rect.right ||
+        ev.clientY < rect.top ||
+        ev.clientY > rect.bottom
       : true
-    return { modalEl, isOutside }
+    return isOutside
   }
 
-  return { openModal, closeModal, checkOutside }
+  return { openModal, closeModal, isOutside }
 }

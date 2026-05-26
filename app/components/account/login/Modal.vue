@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { googleClientID, loginByPassword } = useConfig()
 const { loggedIn } = useAccount()
-const { openModal, closeModal, checkOutside } = useModal()
+const { openModal, closeModal, isOutside } = useModal()
 
 const form = useTemplateRef('form')
 
@@ -11,11 +11,10 @@ const onSignupClick = (): void => {
   openModal('#signup_modal')
 }
 
-const onOutsideClick = (e: PointerEvent): void => {
-  const { isOutside, modalEl } = checkOutside(e, '#login_modal')
-  if (isOutside) {
+const onOutsideClick = (ev: PointerEvent): void => {
+  if (isOutside(ev, '#login_modal')) {
     form.value?.clearForm()
-    modalEl?.close()
+    closeModal('#login_modal')
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { openModal, closeModal, checkOutside } = useModal()
+const { openModal, closeModal, isOutside } = useModal()
 const { loggedIn, account, setUser, initTimeZone } = inject('accountUse') as UseAccountType
 
 const onEditClick = (): void => {
@@ -20,11 +20,8 @@ const onDeleteAccountClick = (): void => {
   closeModal('#profile_modal')
 }
 
-const onOutsideClick = (e: PointerEvent): void => {
-  const { isOutside, modalEl } = checkOutside(e, '#profile_modal')
-  if (isOutside) {
-    modalEl?.close()
-  }
+const onOutsideClick = (ev: PointerEvent): void => {
+  if (isOutside(ev, '#profile_modal')) closeModal('#profile_modal')
 }
 </script>
 
