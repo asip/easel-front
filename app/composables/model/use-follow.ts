@@ -40,9 +40,7 @@ export const useFollow = function () {
 
     clearFlash()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     following.value = true
   }
@@ -58,9 +56,7 @@ export const useFollow = function () {
 
     clearFlash()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     following.value = false
   }

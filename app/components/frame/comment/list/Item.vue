@@ -46,9 +46,7 @@ const onCancelClick = (): void => {
 }
 
 const onDeleteClick = async (): Promise<void> => {
-  if (commentModel.value) {
-    await deleteComment(commentModel.value)
-  }
+  if (commentModel.value) await deleteComment(commentModel.value)
   set404Alert()
   setFlash(flash.value)
   if (isSuccess()) {

@@ -148,9 +148,7 @@ export const useFrame = function () {
       const frameAttrs = data
       // console.log(frameAttrs)
 
-      if (frameAttrs) {
-        setFrame({ from: frameAttrs })
-      }
+      if (frameAttrs) setFrame({ from: frameAttrs })
     }
 
     return { refresh }
@@ -223,9 +221,7 @@ export const useFrame = function () {
     clearFlash()
     clearExternalErrors()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     processing.value = pending
   }
@@ -244,9 +240,7 @@ export const useFrame = function () {
 
     clearFlash()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     // const frameAttrs = data.value
 

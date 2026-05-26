@@ -72,12 +72,9 @@ export const useFrameSearch = function () {
     const page = currentPage.value
     const query: { q?: string; page?: string } = {}
 
-    if (Object.keys(items).length) {
-      query.q = JSON.stringify(items)
-    }
-    if (page !== undefined && page != null && page !== 1) {
-      query.page = page.toString()
-    }
+    if (Object.keys(items).length) query.q = JSON.stringify(items)
+    if (page !== undefined && page != null && page !== 1) query.page = page.toString()
+
     return query
   })
 

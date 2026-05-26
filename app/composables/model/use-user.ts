@@ -37,9 +37,7 @@ export const useUser = function () {
       const userAttrs = data
       // console.log(userAttrs)
 
-      if (userAttrs) {
-        setUser({ from: userAttrs })
-      }
+      if (userAttrs) setUser({ from: userAttrs })
     }
   }
 

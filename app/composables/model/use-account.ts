@@ -109,9 +109,7 @@ export const useAccount = function () {
   const { accessToken } = useCookieStore()
 
   const setTokenToCookie = (): void => {
-    if (account.value.token !== accessToken.value) {
-      accessToken.value = account.value.token
-    }
+    if (account.value.token !== accessToken.value) accessToken.value = account.value.token
   }
 
   const setAccount = ({
@@ -125,9 +123,7 @@ export const useAccount = function () {
   }): void => {
     if (from) {
       copy({ from, to: account.value })
-      if (token) {
-        account.value.token = token
-      }
+      if (token) account.value.token = token
     } else if (to) {
       copy({ from: account.value, to })
     }
@@ -199,9 +195,7 @@ export const useAccount = function () {
     clearFlash()
     clearExternalErrors()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     processing.value = pending
   }

@@ -150,9 +150,7 @@ export const useComment = function () {
 
     clearFlash()
 
-    if (error) {
-      setError(error)
-    }
+    if (error) setError(error)
 
     processing.value = pending
   }

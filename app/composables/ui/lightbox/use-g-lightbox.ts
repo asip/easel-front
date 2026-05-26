@@ -15,10 +15,7 @@ export const useGLightbox = function ({ selector }: GlOptions) {
   }
 
   const closeGLightbox = (): void => {
-    if (lightbox) {
-      lightbox.close()
-      lightbox = null
-    }
+    if (lightbox) lightbox.close()
   }
 
   return { initGLightbox, closeGLightbox }
