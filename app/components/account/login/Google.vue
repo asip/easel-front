@@ -13,20 +13,18 @@ const handleLoginSuccess = async (response: CredentialResponse): Promise<void> =
   await loginWithGoogle(response)
 }
 
-/*
-const handleOneTapLoginSuccess = async (response: CredentialResponse): Promise<void> => {
-  // call your backend API here
-  // the token can be accessed as: response.credential
-  await loginWithGoogle(response)
-}
-*/
-
 // handle an error event
 const handleLoginError = (): void => {
   // console.error("Login failed");
 }
 
 /*
+const handleOneTapLoginSuccess = async (response: CredentialResponse): Promise<void> => {
+  // call your backend API here
+  // the token can be accessed as: response.credential
+  await loginWithGoogle(response)
+}
+
 useOneTap({
   onSuccess: handleOneTapLoginSuccess,
   onError: handleLoginError
