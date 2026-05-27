@@ -4,7 +4,7 @@ export const useFollow = function () {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setError } = useApiError({ flash, caller: { clearAccount } })
+  const { backendErrorInfo, off } = useApiError(flash, { caller: { clearAccount } })
 
   const following: Ref<boolean> = ref<boolean>(false)
 
@@ -19,7 +19,8 @@ export const useFollow = function () {
     // this.#clearFlash()
 
     if (error) {
-      setError(error, { off: true })
+      off.value = true
+      backendErrorInfo.value = error
     } else if (data) {
       const { following: followingValue } = data
 
@@ -40,7 +41,7 @@ export const useFollow = function () {
 
     clearFlash()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     following.value = true
   }
@@ -56,7 +57,7 @@ export const useFollow = function () {
 
     clearFlash()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     following.value = false
   }

@@ -53,10 +53,9 @@ export const useComment = function () {
   }
 
   const { externalErrors, clearExternalErrors, isSuccess } =
-    useExternalErrors<CommentErrorProperty>({ flash })
+    useExternalErrors<CommentErrorProperty>(flash)
 
-  const { backendErrorInfo, setError } = useApiError({
-    flash,
+  const { backendErrorInfo } = useApiError(flash, {
     caller: { externalErrors, clearAccount },
   })
 
@@ -96,7 +95,7 @@ export const useComment = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     }
     /* else if (data) {
       const commentAttrs = data
@@ -127,7 +126,7 @@ export const useComment = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const commentAttrs = data
 
@@ -150,7 +149,7 @@ export const useComment = function () {
 
     clearFlash()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     processing.value = pending
   }

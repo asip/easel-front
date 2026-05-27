@@ -13,7 +13,7 @@ export const useAccountFrames = function () {
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
-  const { setError } = useApiError({ flash, caller: { clearAccount } })
+  const { backendErrorInfo } = useApiError(flash, { caller: { clearAccount } })
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
@@ -69,7 +69,7 @@ export const useAccountFrames = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
 
       throw createError({
         status: error.status,

@@ -92,12 +92,10 @@ export const useFrame = function () {
     upFrameTZ(frame.value)
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<FrameErrorProperty>({
-    flash,
-  })
+  const { externalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<FrameErrorProperty>(flash)
 
-  const { backendErrorInfo, setError } = useApiError({
-    flash,
+  const { backendErrorInfo } = useApiError(flash, {
     caller: { externalErrors, clearAccount },
   })
 
@@ -137,7 +135,7 @@ export const useFrame = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
 
       throw createError({
         status: error.status,
@@ -182,7 +180,7 @@ export const useFrame = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const frameAttrs = data
       if (frameAttrs) {
@@ -221,7 +219,7 @@ export const useFrame = function () {
     clearFlash()
     clearExternalErrors()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     processing.value = pending
   }
@@ -240,7 +238,7 @@ export const useFrame = function () {
 
     clearFlash()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     // const frameAttrs = data.value
 

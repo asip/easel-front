@@ -14,7 +14,7 @@ export const useFrameSearch = function () {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const { loggedIn, accessToken } = useAccount()
 
@@ -132,7 +132,7 @@ export const useFrameSearch = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const { frames: frameRsList, meta } = data
       // console.log(frameList)

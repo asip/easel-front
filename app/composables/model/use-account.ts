@@ -148,11 +148,10 @@ export const useAccount = function () {
     setAccount({ to: user.value })
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } = useExternalErrors<UserErrorProperty>({
-    flash,
-  })
+  const { externalErrors, clearExternalErrors, isSuccess } =
+    useExternalErrors<UserErrorProperty>(flash)
 
-  const { setError } = useApiError({ flash, caller: { externalErrors, clearAccount } })
+  const { backendErrorInfo } = useApiError(flash, { caller: { externalErrors, clearAccount } })
 
   const loginParams = ref<LoginParams>({
     email: '',
@@ -195,7 +194,7 @@ export const useAccount = function () {
     clearFlash()
     clearExternalErrors()
 
-    if (error) setError(error)
+    if (error) backendErrorInfo.value = error
 
     processing.value = pending
   }
@@ -216,7 +215,7 @@ export const useAccount = function () {
       clearFlash()
 
       if (error) {
-        setError(error)
+        backendErrorInfo.value = error
       } else if (data) {
         const userAttrs = data
         // console.log(userAttrs)
@@ -251,7 +250,7 @@ export const useAccount = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -282,7 +281,7 @@ export const useAccount = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       setAccount({ from: userAttrs, token })
@@ -323,7 +322,7 @@ export const useAccount = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -365,7 +364,7 @@ export const useAccount = function () {
     clearExternalErrors()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
@@ -389,7 +388,7 @@ export const useAccount = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else {
       clearAccount()
     }
@@ -409,7 +408,7 @@ export const useAccount = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {

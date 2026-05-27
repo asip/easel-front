@@ -27,7 +27,7 @@ export const useComments = function () {
     return []
   })
 
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const getComments = async (
     frameId: number | null | undefined,
@@ -44,7 +44,7 @@ export const useComments = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const { comments: commentList } = data
       // console.log(commentList)

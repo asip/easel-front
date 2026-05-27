@@ -5,7 +5,7 @@ export const useUser = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const user = ref<User>({
     name: '',
@@ -32,7 +32,7 @@ export const useUser = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
       // console.log(userAttrs)

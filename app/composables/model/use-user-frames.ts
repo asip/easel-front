@@ -12,7 +12,7 @@ export const useUserFrames = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { setError } = useApiError({ flash })
+  const { backendErrorInfo } = useApiError(flash)
 
   const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
     if (userId) {
@@ -81,7 +81,7 @@ export const useUserFrames = function () {
     clearFlash()
 
     if (error) {
-      setError(error)
+      backendErrorInfo.value = error
 
       throw createError({
         status: error.status,
