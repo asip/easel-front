@@ -95,7 +95,7 @@ const updateContent = (content: string | undefined): void => {
 
 const clearContents = (): void => {
   // editor.value?.commands.setContent('')
-  model.value = '<p><br></p>'
+  model.value = '<p></p>'
 }
 
 const getHtml = (): string | undefined => {
