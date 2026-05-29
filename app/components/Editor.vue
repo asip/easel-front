@@ -78,7 +78,7 @@ watch(model, (value: string | undefined) => {
   const isSame = editor.value?.getHTML() === value
 
   // JSON
-  // const isSame = JSON.stringify(this.editor.getJSON()) === JSON.stringify(value)
+  // const isSame = editor.value?.getJSON() === value
 
   if (isSame) return
 
