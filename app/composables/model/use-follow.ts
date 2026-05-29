@@ -16,7 +16,7 @@ export const useFollow = function () {
       token: accessToken.value,
     })
 
-    // this.#clearFlash()
+    // clearFlash()
 
     if (error) {
       off.value = true
