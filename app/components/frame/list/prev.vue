@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+const { $i18n } = useNuxtApp()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { $i18n } = useNuxtApp() as any
+const { t } = $i18n as any
 
 const { minPage, pages } = defineProps<{ minPage: number; pages: number }>()
 
@@ -15,7 +16,7 @@ const onClick = (): void => {
   <ClientOnly>
     <div class="flex justify-center">
       <a class="btn btn-outline btn-primary rounded-full bg-white mt-2" @click="onClick"
-        >{{ $i18n.t('action.search.more') }} {{ minPage }}/{{ pages }}</a
+        >{{ t('action.search.more') }} {{ minPage }}/{{ pages }}</a
       >
     </div>
   </ClientOnly>

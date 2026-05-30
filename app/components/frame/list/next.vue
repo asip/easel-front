@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+const { $i18n } = useNuxtApp()
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { $i18n } = useNuxtApp() as any
+const { t } = $i18n as any
 
 const { maxPage, pages } = defineProps<{ maxPage: number; pages: number }>()
 
@@ -15,7 +16,7 @@ const onClick = (): void => {
   <ClientOnly>
     <div class="flex justify-center">
       <a class="btn btn-outline btn-primary rounded-full bg-white mb-2" @click="onClick"
-        >{{ $i18n.t('action.search.more') }} {{ maxPage }}/{{ pages }}</a
+        >{{ t('action.search.more') }} {{ maxPage }}/{{ pages }}</a
       >
     </div>
   </ClientOnly>
