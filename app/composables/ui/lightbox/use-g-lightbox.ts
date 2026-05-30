@@ -5,13 +5,14 @@ type GlOptions = {
 }
 
 export const useGLightbox = function ({ selector }: GlOptions) {
+  const { $gLightbox } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { $gLightbox } = useNuxtApp() as any
+  const gLightbox = $gLightbox as any
 
   let lightbox: ReturnType<typeof GLightbox> | null
 
   const initGLightbox = (): void => {
-    lightbox = $gLightbox({ selector })
+    lightbox = gLightbox({ selector })
   }
 
   const closeGLightbox = (): void => {

@@ -3,28 +3,26 @@ import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@reg
 
 export const { useRegle: useI18nRegle } = defineRegleConfig({
   rules: () => {
+    const { $i18n } = useNuxtApp()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { $i18n } = useNuxtApp() as any
+    const { t } = $i18n as any
+
     return {
-      required: withMessage(required, () => $i18n.t('rules.required')),
-      minLength: withMessage(minLength, ({ $params: [min] }) =>
-        $i18n.t('rules.minLength', { min }),
-      ),
-      maxLength: withMessage(maxLength, ({ $params: [max] }) =>
-        $i18n.t('rules.maxLength', { max }),
-      ),
-      email: withMessage(email, () => $i18n.t('rules.email')),
+      required: withMessage(required, () => t('rules.required')),
+      minLength: withMessage(minLength, ({ $params: [min] }) => t('rules.minLength', { min })),
+      maxLength: withMessage(maxLength, ({ $params: [max] }) => t('rules.maxLength', { max })),
+      email: withMessage(email, () => t('rules.email')),
       sameAs: withMessage(sameAs, ({ $params: [_, otherName = 'other'] }) =>
-        $i18n.t('rules.sameAs', { otherName }),
+        t('rules.sameAs', { otherName }),
       ),
       maxFileSize: withMessage(maxFileSize, ({ $params: [maxSize] }) =>
-        $i18n.t('rules.maxFileSize', { max: maxSize / (1000 * 1000) }),
+        t('rules.maxFileSize', { max: maxSize / (1000 * 1000) }),
       ),
       maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [size] }) =>
-        $i18n.t('rules.maxTagArrayLength', { size: size }),
+        t('rules.maxTagArrayLength', { size: size }),
       ),
       maxTagLength: withMessage(maxTagLength, ({ $params: [size] }) =>
-        $i18n.t('rules.maxTagLength', { size }),
+        t('rules.maxTagLength', { size }),
       ),
     }
   },

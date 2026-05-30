@@ -7,8 +7,9 @@ import type {
 } from '~/types'
 
 export const useFrame = function () {
+  const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { $i18n } = useNuxtApp() as any
+  const { t } = $i18n as any
 
   const { upDTL, downDTL } = useDatetimeLocal()
   const { copy } = useEntity<Frame, FrameResource>()
@@ -101,7 +102,7 @@ export const useFrame = function () {
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
-      flash.value.alert = $i18n.t('backend.error.not_found', { source: $i18n.t('misc.page') })
+      flash.value.alert = t('backend.error.not_found', { source: t('misc.page') })
     }
   }
 

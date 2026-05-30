@@ -2,8 +2,9 @@ import type { User } from '~/types'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
 export const useAccountRules = function (user?: User) {
+  const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { $i18n } = useNuxtApp() as any
+  const { t } = $i18n as any
 
   const signupRules = () => ({
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
@@ -21,7 +22,7 @@ export const useAccountRules = function (user?: User) {
     },
     password_confirmation: {
       required,
-      sameAs: sameAs(user?.password, $i18n.t('model.user.password')),
+      sameAs: sameAs(user?.password, t('model.user.password')),
     },
     time_zone: { required },
   })
@@ -41,7 +42,7 @@ export const useAccountRules = function (user?: User) {
     email: { required, email },
     profile: { maxLength: maxLength(160) },
     password: { minLength: minLength(6), maxLength: maxLength(128) },
-    password_confirmation: { sameAs: sameAs(user?.password, $i18n.t('model.user.password')) },
+    password_confirmation: { sameAs: sameAs(user?.password, t('model.user.password')) },
   })
 
   const profileRules = {
@@ -59,7 +60,7 @@ export const useAccountRules = function (user?: User) {
   const passwordRules = () => ({
     current_password: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(128) },
-    password_confirmation: { sameAs: sameAs(user?.password, $i18n.t('model.user.password')) },
+    password_confirmation: { sameAs: sameAs(user?.password, t('model.user.password')) },
   })
 
   return { signupRules, signinRules, userRules, profileRules, passwordRules }

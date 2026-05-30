@@ -7,8 +7,9 @@ import type {
 } from '~/types'
 
 export const useComment = function () {
+  const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { $i18n } = useNuxtApp() as any
+  const { t } = $i18n as any
 
   const { empty2p, p2empty } = useTiptap()
   const { copy } = useEntity<Comment, CommentResource>()
@@ -62,10 +63,10 @@ export const useComment = function () {
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
       if (backendErrorInfo.value.error?.source == 'Frame') {
-        flash.value.alert = $i18n.t('backend.error.not_found', { source: $i18n.t('misc.page') })
+        flash.value.alert = t('backend.error.not_found', { source: t('misc.page') })
       } else if (backendErrorInfo.value.error?.source == 'Comment') {
-        flash.value.alert = $i18n.t('backend.error.not_found', {
-          source: $i18n.t('models.comment'),
+        flash.value.alert = t('backend.error.not_found', {
+          source: t('models.comment'),
         })
       }
     }

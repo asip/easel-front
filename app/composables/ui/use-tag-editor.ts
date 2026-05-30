@@ -9,14 +9,15 @@ type TagEditorOptions = {
 export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
+  const { $tagify } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { $tagify } = useNuxtApp() as any
+  const tagify = $tagify as any
 
   let controller: AbortController
 
   const initTagEditor = (): void => {
     if (el.value) {
-      tagEditor = new $tagify(el.value, {
+      tagEditor = new tagify(el.value, {
         maxTags: 5,
         dropdown: {
           classname: 'color-blue',
