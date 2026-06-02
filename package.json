@@ -57,17 +57,17 @@
     "happy-dom": "^20.9.0",
     "markuplint": "^4.18.3",
     "nuxt": "^4.4.6",
-    "oxfmt": "^0.52.0",
+    "oxfmt": "^0.53.0",
     "playwright-core": "^1.60.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.14",
-    "vitest": "^4.1.7"
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "peerDependencies": {
-    "@typescript-eslint/typescript-estree": "^8.60.0",
+    "@typescript-eslint/typescript-estree": "^8.60.1",
     "@vue/reactivity": "^3.6.0-beta.13",
     "@vue/server-renderer": "^3.6.0-beta.13",
-    "typescript-eslint": "^8.60.0",
+    "typescript-eslint": "^8.60.1",
     "vue": "^3.6.0-beta.13"
   }
 }
