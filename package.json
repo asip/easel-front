@@ -29,7 +29,7 @@
     "@tiptap/vue-3": "^3.24.0",
     "@vesperjs/nuxt": "0.9.3",
     "@vesperjs/shared": "0.9.3",
-    "@vuepic/vue-datepicker": "^13.0.0",
+    "@vuepic/vue-datepicker": "^14.0.0",
     "@yaireo/tagify": "^4.37.1",
     "bootstrap-icons": "^1.13.1",
     "daisyui": "^5.5.20",
