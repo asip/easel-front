@@ -4,7 +4,6 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - '@vuepic/vue-datepicker@14.0.0'
   - '@tiptap/core@3.25.0'
   - '@tiptap/extension-blockquote@3.25.0'
   - '@tiptap/extension-bold@3.25.0'
@@ -33,6 +32,9 @@ minimumReleaseAgeExclude:
   - '@tiptap/pm@3.25.0'
   - '@tiptap/starter-kit@3.25.0'
   - '@tiptap/vue-3@3.25.0'
+  - '@vesperjs/nuxt@0.9.4'
+  - '@vesperjs/shared@0.9.4'
+  - happy-dom@20.10.1
 overrides:
   '@typescript-eslint/typescript-estree': ^8.60.1
   '@vue/compiler-core': ^3.6.0-beta.13

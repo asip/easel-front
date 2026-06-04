@@ -5,6 +5,7 @@ import type {
   FramesResource,
   ErrorsResource,
   ErrorMessages,
+  QueryApiOptions
 } from '~/types'
 
 export const useAccountFrames = function () {
@@ -53,7 +54,7 @@ export const useAccountFrames = function () {
   })
 
   const getFrames = async (options?: { cache?: boolean }): Promise<void> => {
-    const queryOptions: QueryAPIOptions = {
+    const queryOptions: QueryApiOptions = {
       query: {
         page: currentPage.value,
       },
