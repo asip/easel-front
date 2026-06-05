@@ -22,11 +22,11 @@
     "@regle/nuxt": "^1.26.1",
     "@regle/rules": "^1.26.1",
     "@tailwindcss/vite": "^4.3.0",
-    "@tiptap/extension-link": "^3.25.0",
-    "@tiptap/extension-underline": "^3.25.0",
-    "@tiptap/pm": "^3.25.0",
-    "@tiptap/starter-kit": "^3.25.0",
-    "@tiptap/vue-3": "^3.25.0",
+    "@tiptap/extension-link": "^3.26.0",
+    "@tiptap/extension-underline": "^3.26.0",
+    "@tiptap/pm": "^3.26.0",
+    "@tiptap/starter-kit": "^3.26.0",
+    "@tiptap/vue-3": "^3.26.0",
     "@vesperjs/nuxt": "0.9.5",
     "@vesperjs/shared": "0.9.5",
     "@vuepic/vue-datepicker": "^14.0.0",
@@ -65,9 +65,9 @@
   },
   "peerDependencies": {
     "@typescript-eslint/typescript-estree": "^8.60.1",
-    "@vue/reactivity": "^3.6.0-beta.13",
-    "@vue/server-renderer": "^3.6.0-beta.13",
+    "@vue/reactivity": "^3.6.0-beta.14",
+    "@vue/server-renderer": "^3.6.0-beta.14",
     "typescript-eslint": "^8.60.1",
-    "vue": "^3.6.0-beta.13"
+    "vue": "^3.6.0-beta.14"
   }
 }
