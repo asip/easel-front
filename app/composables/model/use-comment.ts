@@ -7,6 +7,8 @@ import type {
 } from '~/types'
 
 export const useComment = function () {
+  const { mutationApi } = useApi()
+
   const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { t } = $i18n as any
@@ -83,7 +85,7 @@ export const useComment = function () {
       },
     }
 
-    const { error, pending } = await useMutationApi<
+    const { error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.value.frame_id}/comments`, {
@@ -114,7 +116,7 @@ export const useComment = function () {
       },
     }
 
-    const { data, error, pending } = await useMutationApi<
+    const { data, error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
@@ -140,7 +142,7 @@ export const useComment = function () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
-    const { error, pending } = await useMutationApi<
+    const { error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.frame_id}/comments/${comment.id}`, {

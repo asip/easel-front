@@ -1,6 +1,8 @@
 import type { FollowingResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useFollow = function () {
+  const { queryApi, mutationApi } = useApi()
+
   const { flash, clearFlash } = useFlash()
   const { accessToken, clearAccount } = useAccount()
 
@@ -9,7 +11,7 @@ export const useFollow = function () {
   const following: Ref<boolean> = ref<boolean>(false)
 
   const isFollowing = async (userId: string): Promise<void> => {
-    const { data, error } = await useQueryApi<
+    const { data, error } = await queryApi<
       FollowingResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/account/following/${userId}`, {
@@ -31,13 +33,13 @@ export const useFollow = function () {
   }
 
   const follow = async (userId: number | null): Promise<void> => {
-    const { error } = await useMutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'post',
-      token: accessToken.value,
-    })
+    const { error } = await mutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'post',
+        token: accessToken.value,
+      },
+    )
 
     clearFlash()
 
@@ -47,13 +49,13 @@ export const useFollow = function () {
   }
 
   const unfollow = async (userId: number | null): Promise<void> => {
-    const { error } = await useMutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'delete',
-      token: accessToken.value,
-    })
+    const { error } = await mutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'delete',
+        token: accessToken.value,
+      },
+    )
 
     clearFlash()
 

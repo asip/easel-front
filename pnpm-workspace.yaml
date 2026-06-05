@@ -4,8 +4,6 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - '@vesperjs/nuxt@0.9.5'
-  - '@vesperjs/shared@0.9.5'
   - '@vue/test-utils@2.4.11'
   - '@tiptap/core@3.26.0'
   - '@tiptap/extension-blockquote@3.26.0'
@@ -47,6 +45,8 @@ minimumReleaseAgeExclude:
   - '@vue/server-renderer@3.6.0-beta.14'
   - '@vue/shared@3.6.0-beta.14'
   - vue@3.6.0-beta.14
+  - '@vesperjs/nuxt@0.9.6'
+  - '@vesperjs/shared@0.9.6'
 overrides:
   '@typescript-eslint/typescript-estree': ^8.60.1
   '@vue/compiler-core': ^3.6.0-beta.14

@@ -4,7 +4,7 @@ export type {
   ErrorsResource,
   Flash,
   ErrorMessages,
-  QueryApiOptions
+  QueryApiOptions,
 } from '@vesperjs/nuxt/types'
 
 export type { CommentErrorProperty, FrameErrorProperty, UserErrorProperty } from './model/error'

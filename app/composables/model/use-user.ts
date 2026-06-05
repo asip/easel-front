@@ -1,6 +1,7 @@
 import type { User, UserResource, ErrorsResource, ErrorMessages } from '~/types'
 
 export const useUser = function () {
+  const { queryApi } = useApi()
   const { copy } = useEntity<User, UserResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -25,7 +26,7 @@ export const useUser = function () {
   })
 
   const getUser = async (id: string): Promise<void> => {
-    const { data, error } = await useQueryApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
+    const { data, error } = await queryApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
       `/users/${id}`,
     )
 

@@ -7,6 +7,8 @@ import type {
 } from '~/types'
 
 export const useComments = function () {
+  const { queryApi } = useApi()
+
   const { create } = useEntity<Comment, CommentResource>()
 
   const { formatHtmlTZ } = useTimeZone()
@@ -34,12 +36,12 @@ export const useComments = function () {
     options?: { cache?: boolean },
   ): Promise<void> => {
     // console.log(comment.frame_id);
-    const { data, error } = await useQueryApi<
-      CommentsResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${frameId}/comments`, {
-      cache: options?.cache ?? true,
-    })
+    const { data, error } = await queryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>(
+      `/frames/${frameId}/comments`,
+      {
+        cache: options?.cache ?? true,
+      },
+    )
 
     clearFlash()
 

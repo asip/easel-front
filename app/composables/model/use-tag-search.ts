@@ -1,19 +1,21 @@
-import type { TagsResource, ErrorsResource, ErrorMessages } from '~/types'
+import type { TagsResource, ErrorsResource, ErrorMessages, QueryApiOptions } from '~/types'
 
 export const useTagSearch = function () {
+  const { queryApi } = useApi()
+
   const { flash, clearFlash } = useFlash()
   const { backendErrorInfo } = useApiError(flash)
 
   const tags = ref<string[]>([])
 
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
-    const options: QueryAPIOptions = {
+    const options: QueryApiOptions = {
       query: { q: name },
       signal,
       cache: false,
     }
 
-    const { data, error } = await useQueryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
+    const { data, error } = await queryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
       '/tags/search',
       options,
     )

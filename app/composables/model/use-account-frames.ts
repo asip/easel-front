@@ -5,10 +5,12 @@ import type {
   FramesResource,
   ErrorsResource,
   ErrorMessages,
-  QueryApiOptions
+  QueryApiOptions,
 } from '~/types'
 
 export const useAccountFrames = function () {
+  const { queryApi } = useApi()
+
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -62,10 +64,10 @@ export const useAccountFrames = function () {
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await useQueryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account/frames', queryOptions)
+    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
+      '/account/frames',
+      queryOptions,
+    )
 
     clearFlash()
 

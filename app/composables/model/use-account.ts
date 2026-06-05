@@ -8,6 +8,8 @@ interface LoginParams {
 }
 
 export const useAccount = function () {
+  const { queryApi, mutationApi } = useApi()
+
   const { empty2p, p2empty } = useTiptap()
   const { copy } = useEntity<User, UserResource>()
 
@@ -183,7 +185,7 @@ export const useAccount = function () {
     formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
-    const { error, pending } = await useMutationApi<
+    const { error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/users/', {
@@ -204,7 +206,7 @@ export const useAccount = function () {
     // console.log(account.value.token)
 
     if (account.value.token) {
-      const { token, data, error } = await useQueryApi<
+      const { token, data, error } = await queryApi<
         UserResource,
         ErrorsResource<ErrorMessages<string>>
       >('/account/profile', {
@@ -236,7 +238,7 @@ export const useAccount = function () {
       },
     }
 
-    const { token, data, error } = await useMutationApi<
+    const { token, data, error } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/sessions/', {
@@ -268,7 +270,7 @@ export const useAccount = function () {
       credential: response.credential,
     }
 
-    const { token, data, error } = await useMutationApi<
+    const { token, data, error } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/oauth/sessions/', {
@@ -306,7 +308,7 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await useMutationApi<
+    const { data, error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account/profile/', {
@@ -348,7 +350,7 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await useMutationApi<
+    const { data, error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account/password/', {
@@ -377,7 +379,7 @@ export const useAccount = function () {
   }
 
   const logout = async (): Promise<void> => {
-    const { error } = await useMutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
+    const { error } = await mutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
       '/sessions/logout',
       {
         method: 'delete',
@@ -397,7 +399,7 @@ export const useAccount = function () {
   const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
-    const { data, error, pending } = await useMutationApi<
+    const { data, error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account', {

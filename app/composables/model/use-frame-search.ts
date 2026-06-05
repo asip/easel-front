@@ -6,11 +6,14 @@ import type {
   FramesResource,
   ErrorsResource,
   ErrorMessages,
+  QueryApiOptions,
 } from '~/types'
 
 type QueryItems = Partial<Record<'q' | 'page', string>>
 
 export const useFrameSearch = function () {
+  const { queryApi } = useApi()
+
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -112,7 +115,7 @@ export const useFrameSearch = function () {
   const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
     let url = ''
 
-    const queryOptions: QueryAPIOptions = {
+    const queryOptions: QueryApiOptions = {
       query: queryMap.value,
       cache: options?.cache ?? true,
     }
@@ -124,10 +127,10 @@ export const useFrameSearch = function () {
       url = '/frames'
     }
 
-    const { data, error } = await useQueryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(url, queryOptions)
+    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
+      url,
+      queryOptions,
+    )
 
     clearFlash()
 

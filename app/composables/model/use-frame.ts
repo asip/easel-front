@@ -4,9 +4,12 @@ import type {
   FrameErrorProperty,
   ErrorsResource,
   ErrorMessages,
+  QueryApiOptions,
 } from '~/types'
 
 export const useFrame = function () {
+  const { queryApi, mutationApi } = useApi()
+
   const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { t } = $i18n as any
@@ -117,7 +120,7 @@ export const useFrame = function () {
     let url = ''
 
     // console.log(`token: ${account.value.token}`)
-    const queryOptions: QueryAPIOptions = {
+    const queryOptions: QueryApiOptions = {
       cache: options?.cache ?? true,
     }
 
@@ -128,7 +131,7 @@ export const useFrame = function () {
       url = `/frames/${id}`
     }
 
-    const { data, error, refresh } = await useQueryApi<
+    const { data, error, refresh } = await queryApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(url, queryOptions)
@@ -168,7 +171,7 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { data, error, pending } = await useMutationApi<
+    const { data, error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >('/frames/', {
@@ -208,7 +211,7 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { error, pending } = await useMutationApi<
+    const { error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frame.value.id}`, {
@@ -229,7 +232,7 @@ export const useFrame = function () {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending } = await useMutationApi<
+    const { error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frame.value.id}`, {

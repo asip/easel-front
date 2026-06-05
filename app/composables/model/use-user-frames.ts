@@ -5,9 +5,11 @@ import type {
   UserFrameQuery,
   ErrorsResource,
   ErrorMessages,
+  QueryApiOptions,
 } from '~/types'
 
 export const useUserFrames = function () {
+  const { queryApi } = useApi()
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
@@ -66,17 +68,17 @@ export const useUserFrames = function () {
     userId: string | undefined,
     options?: { cache?: boolean },
   ): Promise<void> => {
-    const queryOptions: QueryAPIOptions = {
+    const queryOptions: QueryApiOptions = {
       query: {
         page: currentPage.value,
       },
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await useQueryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/frames`, queryOptions)
+    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${userId}/frames`,
+      queryOptions,
+    )
 
     clearFlash()
 
