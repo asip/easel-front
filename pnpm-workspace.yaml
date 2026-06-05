@@ -4,37 +4,9 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - '@tiptap/core@3.25.0'
-  - '@tiptap/extension-blockquote@3.25.0'
-  - '@tiptap/extension-bold@3.25.0'
-  - '@tiptap/extension-bubble-menu@3.25.0'
-  - '@tiptap/extension-bullet-list@3.25.0'
-  - '@tiptap/extension-code-block@3.25.0'
-  - '@tiptap/extension-code@3.25.0'
-  - '@tiptap/extension-document@3.25.0'
-  - '@tiptap/extension-dropcursor@3.25.0'
-  - '@tiptap/extension-floating-menu@3.25.0'
-  - '@tiptap/extension-gapcursor@3.25.0'
-  - '@tiptap/extension-hard-break@3.25.0'
-  - '@tiptap/extension-heading@3.25.0'
-  - '@tiptap/extension-horizontal-rule@3.25.0'
-  - '@tiptap/extension-italic@3.25.0'
-  - '@tiptap/extension-link@3.25.0'
-  - '@tiptap/extension-list-item@3.25.0'
-  - '@tiptap/extension-list-keymap@3.25.0'
-  - '@tiptap/extension-list@3.25.0'
-  - '@tiptap/extension-ordered-list@3.25.0'
-  - '@tiptap/extension-paragraph@3.25.0'
-  - '@tiptap/extension-strike@3.25.0'
-  - '@tiptap/extension-text@3.25.0'
-  - '@tiptap/extension-underline@3.25.0'
-  - '@tiptap/extensions@3.25.0'
-  - '@tiptap/pm@3.25.0'
-  - '@tiptap/starter-kit@3.25.0'
-  - '@tiptap/vue-3@3.25.0'
-  - happy-dom@20.10.1
   - '@vesperjs/nuxt@0.9.5'
   - '@vesperjs/shared@0.9.5'
+  - '@vue/test-utils@2.4.11'
 overrides:
   '@typescript-eslint/typescript-estree': ^8.60.1
   '@vue/compiler-core': ^3.6.0-beta.13
