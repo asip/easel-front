@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { usePopover } from '~/composables/ui/use-popover'
 import type { RefQueryItems } from '~/types'
 
 const { openModal } = useModal()
+const { openPopover, available } = usePopover()
 
 const route = useRoute()
 const { id } = route.params
@@ -41,7 +43,11 @@ const onUserNameClick = async (): Promise<void> => {
 }
 
 const onDeleteClick = (): void => {
-  openModal('#delete_frame_modal')
+  if (available.value) {
+    openPopover('#delete_frame_popover')
+  } else {
+    openModal('#delete_frame_modal')
+  }
 }
 </script>
 
@@ -65,7 +71,7 @@ const onDeleteClick = (): void => {
               <button
                 v-if="loggedIn && frame?.user_id == account.id"
                 type="button"
-                class="btn-icon-local"
+                class="btn-icon-local anchor-right-center"
                 @click="onDeleteClick"
               >
                 <i class="bi bi-x-circle text-accent hover:text-primary" />
@@ -97,7 +103,10 @@ const onDeleteClick = (): void => {
         </div>
       </div>
     </div>
-    <FrameDeleteModal v-if="loggedIn" />
+    <ClientOnly>
+      <FrameDeletePopover v-if="available" />
+      <FrameDeleteModal v-if="!available" />
+    </ClientOnly>
     <FrameComments v-model="frame" />
   </div>
 </template>

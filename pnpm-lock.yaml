@@ -79,6 +79,9 @@ importers:
       bootstrap-icons:
         specifier: ^1.13.1
         version: 1.13.1
+      bowser:
+        specifier: 2.14.1
+        version: 2.14.1
       daisyui:
         specifier: ^5.5.23
         version: 5.5.23
@@ -3390,6 +3393,9 @@ packages:
 
   bootstrap-icons@1.13.1:
     resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
+
+  bowser@2.14.1:
+    resolution: {integrity: sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==}
 
   brace-expansion@2.0.1:
     resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
@@ -9672,6 +9678,8 @@ snapshots:
   boolbase@1.0.0: {}
 
   bootstrap-icons@1.13.1: {}
+
+  bowser@2.14.1: {}
 
   brace-expansion@2.0.1:
     dependencies:

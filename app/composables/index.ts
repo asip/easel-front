@@ -4,6 +4,7 @@ export {
   useImagePreview,
   useLightbox,
   useModal,
+  usePopover,
   useTiptap,
   useTagEditor,
   useSonner,

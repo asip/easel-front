@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal, isOutside } = useModal()
+const { openPopover, available } = usePopover()
 const { loggedIn, account, setUser, initTimeZone } = inject('accountUse') as UseAccountType
 
 const onEditClick = (): void => {
@@ -16,8 +17,12 @@ const onEditPasswordClick = (): void => {
 }
 
 const onDeleteAccountClick = (): void => {
-  openModal('#delete_account_modal')
-  closeModal('#profile_modal')
+  if (available.value) {
+    openPopover('#delete_account_popover')
+  } else {
+    openModal('#delete_account_modal')
+    closeModal('#profile_modal')
+  }
 }
 
 const onOutsideClick = (ev: PointerEvent): void => {
@@ -37,13 +42,18 @@ const onOutsideClick = (ev: PointerEvent): void => {
             <i class="bi bi-lock text-accent hover:text-primary" />
           </a>
         </span>
-        <a href="#" @click.prevent="onDeleteAccountClick">
+        <button class="anchor-d-right-center" @click="onDeleteAccountClick">
           <i class="bi bi-x-circle text-accent hover:text-primary" />
-        </a>
+        </button>
         {{ $t('model.user.model_name') }}
       </div>
       <AccountProfile />
+      <ClientOnly>
+        <AccountDeletePopover v-if="available" />
+      </ClientOnly>
     </div>
   </dialog>
-  <AccountDeleteModal />
+  <ClientOnly>
+    <AccountDeleteModal v-if="!available" />
+  </ClientOnly>
 </template>
