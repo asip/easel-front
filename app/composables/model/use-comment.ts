@@ -17,7 +17,7 @@ export const useComment = function () {
   const { copy } = useEntity<Comment, CommentResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { accessToken, clearAccount } = useAccount()
+  const { accountToken, clearAccount } = useAccount()
 
   const comment: Ref<Comment> = ref<Comment>({
     id: 0,
@@ -91,7 +91,7 @@ export const useComment = function () {
     >(`/frames/${comment.value.frame_id}/comments`, {
       method: 'post',
       body: postData,
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
@@ -99,6 +99,8 @@ export const useComment = function () {
 
     if (error) {
       backendErrorInfo.value = error
+    } else {
+      // accountToken.value = token
     }
     /* else if (data) {
       const commentAttrs = data
@@ -122,7 +124,7 @@ export const useComment = function () {
     >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
       method: 'put',
       body: postData,
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
@@ -134,6 +136,7 @@ export const useComment = function () {
       const commentAttrs = data
 
       setComment({ from: commentAttrs })
+      // accountToken.value = token
     }
 
     processing.value = pending
@@ -147,12 +150,16 @@ export const useComment = function () {
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.frame_id}/comments/${comment.id}`, {
       method: 'delete',
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
 
-    if (error) backendErrorInfo.value = error
+    if (error) {
+      backendErrorInfo.value = error
+    } else {
+      // accountToken.value = token
+    }
 
     processing.value = pending
   }

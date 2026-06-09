@@ -114,18 +114,19 @@ export const useAccount = function () {
     if (account.value.token !== accessToken.value) accessToken.value = account.value.token
   }
 
-  const setAccount = ({
-    from,
-    token,
-    to,
-  }: {
-    from?: UserResource
-    token?: string | null | undefined
-    to?: User
-  }): void => {
+  const accountToken = computed({
+    get() {
+      return accessToken.value
+    },
+    set(value: string | null | undefined) {
+      if (value) account.value.token = value
+      setTokenToCookie()
+    },
+  })
+
+  const setAccount = ({ from, to }: { from?: UserResource; to?: User }): void => {
     if (from) {
       copy({ from, to: account.value })
-      if (token) account.value.token = token
     } else if (to) {
       copy({ from: account.value, to })
     }
@@ -223,7 +224,8 @@ export const useAccount = function () {
         // console.log(userAttrs)
 
         if (userAttrs) {
-          setAccount({ from: userAttrs, token })
+          setAccount({ from: userAttrs })
+          accountToken.value = token
           loggedIn.value = true
         }
       }
@@ -256,10 +258,10 @@ export const useAccount = function () {
     } else if (data) {
       const userAttrs = data
       if (userAttrs) {
-        setAccount({ from: userAttrs, token })
+        setAccount({ from: userAttrs })
+        accountToken.value = token
         loggedIn.value = true
         // console.log(account.value)
-        accessToken.value = account.value.token
       }
     }
   }
@@ -286,11 +288,10 @@ export const useAccount = function () {
       backendErrorInfo.value = error
     } else if (data) {
       const userAttrs = data
-      setAccount({ from: userAttrs, token })
+      setAccount({ from: userAttrs })
+      accessToken.value = token
       loggedIn.value = true
       // console.log(account.value)
-
-      accessToken.value = account.value.token
     }
   }
 
@@ -329,7 +330,7 @@ export const useAccount = function () {
       const userAttrs = data
       if (userAttrs) {
         setAccount({ from: userAttrs })
-        setTokenToCookie()
+        // accessToken.value = token
       }
     }
 
@@ -371,7 +372,7 @@ export const useAccount = function () {
       const userAttrs = data
       if (userAttrs) {
         setAccount({ from: userAttrs })
-        setTokenToCookie()
+        // accessToken.value = token
       }
     }
 
@@ -423,7 +424,7 @@ export const useAccount = function () {
 
   return {
     account,
-    accessToken,
+    accountToken,
     clearAccount,
     user,
     image,

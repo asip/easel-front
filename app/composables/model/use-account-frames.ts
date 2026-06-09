@@ -14,7 +14,7 @@ export const useAccountFrames = function () {
   const { create } = useEntity<Frame, FrameResource>()
 
   const { flash, clearFlash } = useFlash()
-  const { accessToken, clearAccount } = useAccount()
+  const { accountToken, clearAccount } = useAccount()
 
   const { backendErrorInfo } = useApiError(flash, { caller: { clearAccount } })
 
@@ -60,14 +60,14 @@ export const useAccountFrames = function () {
       query: {
         page: currentPage.value,
       },
-      token: accessToken.value,
+      token: accountToken.value,
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
-      '/account/frames',
-      queryOptions,
-    )
+    const { data, error } = await queryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >('/account/frames', queryOptions)
 
     clearFlash()
 
@@ -96,6 +96,7 @@ export const useAccountFrames = function () {
         frameQuery.value.pages = meta.pagination.pages
         frameQuery.value.total = meta.pagination.count
       }
+      // accountToken.value = token
     }
   }
 

@@ -19,7 +19,7 @@ export const useFrameSearch = function () {
   const { flash, clearFlash } = useFlash()
   const { backendErrorInfo } = useApiError(flash)
 
-  const { loggedIn, accessToken } = useAccount()
+  const { loggedIn, accountToken } = useAccount()
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
@@ -122,7 +122,7 @@ export const useFrameSearch = function () {
 
     if (loggedIn.value) {
       url = '/frames/authenticated'
-      queryOptions.token = accessToken.value
+      queryOptions.token = accountToken.value
     } else {
       url = '/frames'
     }

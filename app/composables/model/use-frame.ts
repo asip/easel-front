@@ -19,7 +19,7 @@ export const useFrame = function () {
 
   const { upTZ, downTZ, formatHtmlTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
-  const { loggedIn, accessToken, clearAccount } = useAccount()
+  const { loggedIn, accountToken, clearAccount } = useAccount()
 
   const frame: Ref<Frame> = ref<Frame>({
     id: 0,
@@ -126,7 +126,7 @@ export const useFrame = function () {
 
     if (loggedIn.value) {
       url = `/frames/${id}/authenticated`
-      queryOptions.token = accessToken.value
+      queryOptions.token = accountToken.value
     } else {
       url = `/frames/${id}`
     }
@@ -151,6 +151,7 @@ export const useFrame = function () {
       // console.log(frameAttrs)
 
       if (frameAttrs) setFrame({ from: frameAttrs })
+      // accountToken.value = token
     }
 
     return { refresh }
@@ -177,7 +178,7 @@ export const useFrame = function () {
     >('/frames/', {
       method: 'post',
       body: formData,
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
@@ -187,9 +188,8 @@ export const useFrame = function () {
       backendErrorInfo.value = error
     } else if (data) {
       const frameAttrs = data
-      if (frameAttrs) {
-        frame.value.id = frameAttrs.id
-      }
+      if (frameAttrs) frame.value.id = frameAttrs.id
+      // accountToken.value = token
     }
 
     processing.value = pending
@@ -217,13 +217,17 @@ export const useFrame = function () {
     >(`/frames/${frame.value.id}`, {
       method: 'put',
       body: postData,
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
     clearExternalErrors()
 
-    if (error) backendErrorInfo.value = error
+    if (error) {
+      backendErrorInfo.value = error
+    } else {
+      // accountToken.value = token
+    }
 
     processing.value = pending
   }
@@ -237,12 +241,16 @@ export const useFrame = function () {
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frame.value.id}`, {
       method: 'delete',
-      token: accessToken.value,
+      token: accountToken.value,
     })
 
     clearFlash()
 
-    if (error) backendErrorInfo.value = error
+    if (error) {
+      backendErrorInfo.value = error
+    } else {
+      // accountToken.value = token
+    }
 
     // const frameAttrs = data.value
 
