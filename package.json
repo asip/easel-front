@@ -57,7 +57,7 @@
     "eslint": "^10.4.1",
     "happy-dom": "^20.10.2",
     "markuplint": "^4.18.3",
-    "nuxt": "^4.4.6",
+    "nuxt": "^4.4.8",
     "oxfmt": "^0.54.0",
     "playwright-core": "^1.60.0",
     "typescript": "^6.0.3",
