@@ -32,13 +32,13 @@ export const useFollow = function () {
   }
 
   const follow = async (userId: number | null): Promise<void> => {
-    const { error } = await mutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'post',
-      token: accountToken.value,
-    })
+    const { error } = await mutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'post',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 
@@ -52,13 +52,13 @@ export const useFollow = function () {
   }
 
   const unfollow = async (userId: number | null): Promise<void> => {
-    const { error } = await mutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'delete',
-      token: accountToken.value,
-    })
+    const { error } = await mutationApi<FollowingResource, ErrorsResource<ErrorMessages<string>>>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'delete',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 

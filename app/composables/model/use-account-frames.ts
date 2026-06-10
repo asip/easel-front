@@ -64,10 +64,10 @@ export const useAccountFrames = function () {
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await queryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account/frames', queryOptions)
+    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
+      '/account/frames',
+      queryOptions,
+    )
 
     clearFlash()
 
