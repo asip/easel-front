@@ -5,8 +5,6 @@ export const useCookieStore = function () {
 
   const accessToken = computed({
     get() {
-      // eslint-disable-next-line no-self-assign
-      token.value = token.value
       return token.value
     },
     set(value: string | null | undefined) {

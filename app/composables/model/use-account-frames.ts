@@ -64,10 +64,10 @@ export const useAccountFrames = function () {
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
-      '/account/frames',
-      queryOptions,
-    )
+    const { token, data, error } = await queryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >('/account/frames', queryOptions)
 
     clearFlash()
 
@@ -96,7 +96,7 @@ export const useAccountFrames = function () {
         frameQuery.value.pages = meta.pagination.pages
         frameQuery.value.total = meta.pagination.count
       }
-      // accountToken.value = token
+      accountToken.value = token
     }
   }
 

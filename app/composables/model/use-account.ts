@@ -119,8 +119,10 @@ export const useAccount = function () {
       return accessToken.value
     },
     set(value: string | null | undefined) {
-      if (value) account.value.token = value
-      setTokenToCookie()
+      if (value) {
+        account.value.token = value
+        setTokenToCookie()
+      }
     },
   })
 
@@ -309,7 +311,7 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await mutationApi<
+    const { token, data, error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account/profile/', {
@@ -330,7 +332,7 @@ export const useAccount = function () {
       const userAttrs = data
       if (userAttrs) {
         setAccount({ from: userAttrs })
-        // accessToken.value = token
+        accessToken.value = token
       }
     }
 
@@ -351,7 +353,7 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { data, error, pending } = await mutationApi<
+    const { token, data, error, pending } = await mutationApi<
       UserResource,
       ErrorsResource<ErrorMessages<string>>
     >('/account/password/', {
@@ -372,7 +374,7 @@ export const useAccount = function () {
       const userAttrs = data
       if (userAttrs) {
         setAccount({ from: userAttrs })
-        // accessToken.value = token
+        accessToken.value = token
       }
     }
 

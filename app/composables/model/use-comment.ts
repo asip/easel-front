@@ -85,7 +85,7 @@ export const useComment = function () {
       },
     }
 
-    const { error, pending } = await mutationApi<
+    const { token, error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.value.frame_id}/comments`, {
@@ -100,7 +100,7 @@ export const useComment = function () {
     if (error) {
       backendErrorInfo.value = error
     } else {
-      // accountToken.value = token
+      accountToken.value = token
     }
     /* else if (data) {
       const commentAttrs = data
@@ -118,7 +118,7 @@ export const useComment = function () {
       },
     }
 
-    const { data, error, pending } = await mutationApi<
+    const { token, data, error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
@@ -136,7 +136,7 @@ export const useComment = function () {
       const commentAttrs = data
 
       setComment({ from: commentAttrs })
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     processing.value = pending
@@ -145,7 +145,7 @@ export const useComment = function () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
-    const { error, pending } = await mutationApi<
+    const { token, error, pending } = await mutationApi<
       CommentResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${comment.frame_id}/comments/${comment.id}`, {
@@ -158,7 +158,7 @@ export const useComment = function () {
     if (error) {
       backendErrorInfo.value = error
     } else {
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     processing.value = pending

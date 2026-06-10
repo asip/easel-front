@@ -127,10 +127,10 @@ export const useFrameSearch = function () {
       url = '/frames'
     }
 
-    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
-      url,
-      queryOptions,
-    )
+    const { token, data, error } = await queryApi<
+      FramesResource,
+      ErrorsResource<ErrorMessages<string>>
+    >(url, queryOptions)
 
     clearFlash()
 
@@ -151,6 +151,7 @@ export const useFrameSearch = function () {
         frameQuery.value.pages = meta.pagination.pages
         frameQuery.value.total = meta.pagination.count
       }
+      accountToken.value = token
     }
   }
 

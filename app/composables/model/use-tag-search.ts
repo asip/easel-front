@@ -18,7 +18,7 @@ export const useTagSearch = function () {
       cache: false,
     }
 
-    const { data, error } = await queryApi<
+    const { token, data, error } = await queryApi<
       TagsResource,
       ErrorsResource<ErrorMessages<string>>
     >('/tags/search', options)
@@ -32,7 +32,7 @@ export const useTagSearch = function () {
       const { tags: tagList } = data
       // console.log(frameList
       tags.value = tagList
-      // accountToken.value = token
+      accountToken.value = token
     }
   }
 

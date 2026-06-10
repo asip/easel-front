@@ -131,7 +131,7 @@ export const useFrame = function () {
       url = `/frames/${id}`
     }
 
-    const { data, error, refresh } = await queryApi<
+    const { token, data, error, refresh } = await queryApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(url, queryOptions)
@@ -151,7 +151,7 @@ export const useFrame = function () {
       // console.log(frameAttrs)
 
       if (frameAttrs) setFrame({ from: frameAttrs })
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     return { refresh }
@@ -172,7 +172,7 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { data, error, pending } = await mutationApi<
+    const { token, data, error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >('/frames/', {
@@ -189,7 +189,7 @@ export const useFrame = function () {
     } else if (data) {
       const frameAttrs = data
       if (frameAttrs) frame.value.id = frameAttrs.id
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     processing.value = pending
@@ -211,7 +211,7 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { error, pending } = await mutationApi<
+    const { token, error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frame.value.id}`, {
@@ -226,7 +226,7 @@ export const useFrame = function () {
     if (error) {
       backendErrorInfo.value = error
     } else {
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     processing.value = pending
@@ -236,7 +236,7 @@ export const useFrame = function () {
     processing.value = true
     // console.log(frame.id)
 
-    const { error, pending } = await mutationApi<
+    const { token, error, pending } = await mutationApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
     >(`/frames/${frame.value.id}`, {
@@ -249,7 +249,7 @@ export const useFrame = function () {
     if (error) {
       backendErrorInfo.value = error
     } else {
-      // accountToken.value = token
+      accountToken.value = token
     }
 
     // const frameAttrs = data.value
