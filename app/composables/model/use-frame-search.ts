@@ -113,7 +113,7 @@ export const useFrameSearch = function () {
   } = useMoreScroll()
 
   const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
-    let url = ''
+    const url = ref('')
 
     const queryOptions: QueryApiOptions = {
       query: queryMap.value,
@@ -121,16 +121,16 @@ export const useFrameSearch = function () {
     }
 
     if (loggedIn.value) {
-      url = '/frames/authenticated'
+      url.value = '/frames/authenticated'
       queryOptions.token = accountToken.value
     } else {
-      url = '/frames'
+      url.value = '/frames'
     }
 
     const { token, data, error } = await queryApi<
       FramesResource,
       ErrorsResource<ErrorMessages<string>>
-    >(url, queryOptions)
+    >(url.value, queryOptions)
 
     clearFlash()
 

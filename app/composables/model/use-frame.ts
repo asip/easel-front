@@ -117,7 +117,7 @@ export const useFrame = function () {
     id: string,
     options?: { cache?: boolean },
   ): Promise<{ refresh: (() => Promise<void>) | undefined }> => {
-    let url = ''
+    const url = ref('')
 
     // console.log(`token: ${account.value.token}`)
     const queryOptions: QueryApiOptions = {
@@ -125,16 +125,16 @@ export const useFrame = function () {
     }
 
     if (loggedIn.value) {
-      url = `/frames/${id}/authenticated`
+      url.value = `/frames/${id}/authenticated`
       queryOptions.token = accountToken.value
     } else {
-      url = `/frames/${id}`
+      url.value = `/frames/${id}`
     }
 
     const { token, data, error, refresh } = await queryApi<
       FrameResource,
       ErrorsResource<ErrorMessages<string>>
-    >(url, queryOptions)
+    >(url.value, queryOptions)
 
     clearFlash()
 
