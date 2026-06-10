@@ -4,10 +4,10 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - baseline-browser-mapping@2.10.35
   - '@nuxt/eslint-config@1.16.0'
   - '@nuxt/eslint-plugin@1.16.0'
   - '@nuxt/eslint@1.16.0'
+  - sanitize-html@2.17.5
 overrides:
   '@typescript-eslint/typescript-estree': ^8.61.0
   '@vue/compiler-core': ^3.6.0-beta.14
