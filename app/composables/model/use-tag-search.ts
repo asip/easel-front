@@ -8,17 +8,20 @@ export const useTagSearch = function () {
 
   const tags = ref<string[]>([])
 
+  const { accountToken } = useAccount()
+
   const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
     const options: QueryApiOptions = {
       query: { q: name },
+      token: accountToken.value,
       signal,
       cache: false,
     }
 
-    const { data, error } = await queryApi<TagsResource, ErrorsResource<ErrorMessages<string>>>(
-      '/tags/search',
-      options,
-    )
+    const { data, error } = await queryApi<
+      TagsResource,
+      ErrorsResource<ErrorMessages<string>>
+    >('/tags/search', options)
 
     clearFlash()
 
@@ -29,6 +32,7 @@ export const useTagSearch = function () {
       const { tags: tagList } = data
       // console.log(frameList
       tags.value = tagList
+      // accountToken.value = token
     }
   }
 
