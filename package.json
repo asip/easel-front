@@ -18,15 +18,15 @@
   "dependencies": {
     "@formkit/tempo": "^1.1.0",
     "@nuxtjs/i18n": "^10.4.0",
-    "@regle/core": "^1.26.1",
-    "@regle/nuxt": "^1.26.1",
-    "@regle/rules": "^1.26.1",
+    "@regle/core": "^1.27.2",
+    "@regle/nuxt": "^1.27.2",
+    "@regle/rules": "^1.27.2",
     "@tailwindcss/vite": "^4.3.0",
-    "@tiptap/extension-link": "^3.26.0",
-    "@tiptap/extension-underline": "^3.26.0",
-    "@tiptap/pm": "^3.26.0",
-    "@tiptap/starter-kit": "^3.26.0",
-    "@tiptap/vue-3": "^3.26.0",
+    "@tiptap/extension-link": "^3.26.1",
+    "@tiptap/extension-underline": "^3.26.1",
+    "@tiptap/pm": "^3.26.1",
+    "@tiptap/starter-kit": "^3.26.1",
+    "@tiptap/vue-3": "^3.26.1",
     "@vesperjs/nuxt": "0.9.10",
     "@vesperjs/shared": "0.9.10",
     "@vuepic/vue-datepicker": "^14.0.0",
@@ -53,7 +53,7 @@
     "@types/sanitize-html": "^2.16.1",
     "@types/yaireo__tagify": "^4.27.0",
     "@vue/test-utils": "^2.4.11",
-    "baseline-browser-mapping": "^2.10.35",
+    "baseline-browser-mapping": "^2.10.36",
     "eslint": "^10.4.1",
     "happy-dom": "^20.10.2",
     "markuplint": "^4.18.3",
@@ -66,9 +66,9 @@
   },
   "peerDependencies": {
     "@typescript-eslint/typescript-estree": "^8.61.0",
-    "@vue/reactivity": "^3.6.0-beta.14",
-    "@vue/server-renderer": "^3.6.0-beta.14",
+    "@vue/reactivity": "^3.6.0-beta.15",
+    "@vue/server-renderer": "^3.6.0-beta.15",
     "typescript-eslint": "^8.61.0",
-    "vue": "^3.6.0-beta.14"
+    "vue": "^3.6.0-beta.15"
   }
 }
