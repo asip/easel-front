@@ -94,7 +94,7 @@ const onCreateClick = async (): Promise<void> => {
             </td>
           </tr>
           <tr>
-            <td>
+            <td class="wrap-break-word">
               <label for="frame_creator_name">{{ $t('model.frame.creator_name') }}：</label>
             </td>
             <td>

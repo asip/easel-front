@@ -64,7 +64,7 @@ const onClearClick = async (): Promise<void> => {
       </div>
       <form>
         <div class="flex justify-center">
-          <table class="table table-bordered table-rounded">
+          <table class="table table-bordered table-rounded table-fixed">
             <tbody>
               <tr>
                 <td colspan="2">
@@ -82,6 +82,12 @@ const onClearClick = async (): Promise<void> => {
                   <DisplayMessages :messages="r$.$errors.word" />
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex justify-center">
+          <table class="table table-bordered table-rounded table-fixed">
+            <tbody>
               <tr>
                 <td class="w-[9em]">
                   <label for="search_frame_name">{{ $t('model.frame.name') }}：</label>
@@ -128,7 +134,7 @@ const onClearClick = async (): Promise<void> => {
                 </td>
               </tr>
               <tr>
-                <td>
+                <td class="wrap-break-word">
                   <label for="search_creator_name">{{ $t('model.frame.creator_name') }}：</label>
                 </td>
                 <td>

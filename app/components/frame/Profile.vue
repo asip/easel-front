@@ -22,7 +22,7 @@ const sanitizedComment = computed<string>(() => {
           <td>{{ frame?.name }}</td>
         </tr>
         <tr>
-          <td>{{ $t('model.frame.creator_name') }}：</td>
+          <td class="wrap-break-word">{{ $t('model.frame.creator_name') }}：</td>
           <td>{{ frame?.creator_name }}</td>
         </tr>
         <tr>
