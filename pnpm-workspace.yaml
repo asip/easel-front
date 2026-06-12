@@ -48,6 +48,7 @@ minimumReleaseAgeExclude:
   - '@regle/nuxt@1.27.2'
   - '@regle/rules@1.27.2'
   - '@regle/schemas@1.27.2'
+  - baseline-browser-mapping@2.10.36
 overrides:
   '@typescript-eslint/typescript-estree': ^8.61.0
   '@vue/compiler-core': ^3.6.0-beta.15
