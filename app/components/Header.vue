@@ -54,7 +54,7 @@ const onTopPageClick = async (): Promise<void> => {
     <div class="drawer-content flex flex-col w-100 pointer-events-auto">
       <div class="navbar bg-base-100 shadow rounded-full glass-02">
         <div class="navbar-start pl-5">
-          <a href="#" @click.prevent="onTopPageClick"> <i class="bi bi-palette" /> Easel </a>
+          <a href="#" @click.prevent="onTopPageClick"> <i class="icon-palette" /> Easel </a>
         </div>
         <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -76,33 +76,33 @@ const onTopPageClick = async (): Promise<void> => {
             >
               <li>
                 <a href="#" class="flex gap-1" @click.prevent="onProfileClick">
-                  <i class="bi bi-person-fill" />{{ $t('model.user.model_name') }}
+                  <i class="icon-circle-user-round" />{{ $t('model.user.model_name') }}
                 </a>
               </li>
               <li>
                 <NuxtLink to="/account/frames" class="flex gap-1" @click="closeDropdown">
-                  <i class="bi bi-list" />{{ $t('action.user.frame_list') }}
+                  <i class="icon-list" />{{ $t('action.user.frame_list') }}
                 </NuxtLink>
               </li>
               <li>
                 <NuxtLink to="/frames/new" class="flex gap-1" @click="closeDropdown">
-                  <i class="bi bi-box-arrow-up" />{{ $t('action.frame.upload') }}
+                  <i class="icon-image-up" />{{ $t('action.frame.upload') }}
                 </NuxtLink>
               </li>
               <li>
                 <button type="button" class="flex gap-1" @click="onLogoutClick">
-                  <i class="bi bi-box-arrow-right" />{{ $t('action.user.logout') }}
+                  <i class="icon-log-out" />{{ $t('action.user.logout') }}
                 </button>
               </li>
             </ul>
           </details>
           <a v-else href="#" class="flex gap-1" @click.prevent="onLoginClick">
-            <i class="bi bi-box-arrow-in-right" />{{ $t('action.user.login') }}
+            <i class="icon-log-in" />{{ $t('action.user.login') }}
           </a>
         </div>
         <div class="navbar-end flex gap-2 pr-5">
           <label for="search-sidebar" aria-label="open sidebar" class="btn btn-ghost">
-            <i class="bi bi-search" />
+            <i class="icon-search" />
           </label>
         </div>
       </div>

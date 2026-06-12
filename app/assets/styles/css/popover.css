@@ -7,6 +7,15 @@
   position-area: inline-end;
 }
 
+.anchor-d-left-center {
+  anchor-name: --anchor-d-left-center;
+}
+
+.popover-d-left-center {
+  position-anchor: --anchor-d-left-center;
+  position-area: inline-start;
+}
+
 .anchor-d-right-center {
   anchor-name: --anchor-d-right-center;
 }

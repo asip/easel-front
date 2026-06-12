@@ -16,7 +16,7 @@ provide('frameUse', frameUse)
         <div class="card-body divide-y divide-gray-200">
           <div class="flex justify-start gap-1">
             <NuxtLink :to="from">
-              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+              <i class="icon-circle-chevron-left text-accent hover:text-primary" />
             </NuxtLink>
             {{ $t('action.frame.upload') }}
           </div>

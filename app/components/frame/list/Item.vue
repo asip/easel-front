@@ -78,10 +78,10 @@ const onFlipClick = (): void => {
     </ClientOnly>
     <div class="flex justify-center gap-1">
       <button v-if="front" type="button" @click="onFlipClick">
-        <i class="bi bi-arrow-right-circle text-accent hover:text-primary" />
+        <i class="icon-circle-chevron-right text-accent hover:text-primary" />
       </button>
       <button v-else type="button" @click="onFlipClick">
-        <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+        <i class="icon-circle-chevron-left text-accent hover:text-primary" />
       </button>
       <NuxtLink class="flex link link-hover" @click="onLinkClick">
         {{ frame?.name }}

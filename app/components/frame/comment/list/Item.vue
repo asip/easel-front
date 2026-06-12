@@ -85,10 +85,10 @@ const onDeleteClick = async (): Promise<void> => {
             </div>
             <div v-if="loggedIn && commentModel?.user_id == account.id" class="flex gap-1">
               <button v-if="!edit" class="link link-hover" @click="onEditClick">
-                <i class="bi bi-pencil-square text-accent hover:text-primary" />
+                <i class="icon-pencil text-accent hover:text-primary" />
               </button>
               <button v-else class="link link-hover" @click="onCancelClick">
-                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+                <i class="icon-pencil-off text-accent hover:text-primary" />
               </button>
               <button
                 v-if="!edit"
@@ -96,7 +96,7 @@ const onDeleteClick = async (): Promise<void> => {
                 :disabled="processing"
                 @click="onDeleteClick"
               >
-                <i class="bi bi-x-circle text-accent hover:text-primary" />
+                <i class="icon-circle-x text-accent hover:text-primary" />
               </button>
             </div>
           </div>

@@ -22,7 +22,7 @@ provide('frameUse', frameUse)
         <div class="card-body">
           <div class="flex justify-start">
             <NuxtLink :to="`/frames/${frame.id}`">
-              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+              <i class="icon-circle-chevron-left text-accent hover:text-primary" />
             </NuxtLink>
           </div>
           <!-- unless @frame.confirming == 'true' -->

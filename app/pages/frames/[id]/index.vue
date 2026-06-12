@@ -59,13 +59,13 @@ const onDeleteClick = (): void => {
           <div class="flex justify-between items-center pl-4 pr-4 pt-1 pb-1">
             <div class="flex gap-1 curspr-poineter z-0">
               <span @click="onPageBack">
-                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+                <i class="icon-circle-chevron-left text-accent hover:text-primary" />
               </span>
               <NuxtLink
                 v-if="loggedIn && frame?.user_id == account.id"
                 :to="`/frames/${frame?.id}/edit`"
               >
-                <i class="bi bi-pencil-square text-accent hover:text-primary" />
+                <i class="icon-pencil text-accent hover:text-primary" />
               </NuxtLink>
               <!-- Button trigger modal -->
               <button
@@ -74,7 +74,7 @@ const onDeleteClick = (): void => {
                 class="btn-icon-local anchor-right-center"
                 @click="onDeleteClick"
               >
-                <i class="bi bi-x-circle text-accent hover:text-primary" />
+                <i class="icon-circle-x text-accent hover:text-primary" />
               </button>
             </div>
             <div class="curspr-poineter z-0">

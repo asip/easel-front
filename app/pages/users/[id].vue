@@ -55,7 +55,7 @@ const onUnfollowClick = async (): Promise<void> => {
           <div class="flex justify-between items-center pl-4 pr-4 pt-1 pb-1">
             <div class="cursor-pointer z-0">
               <div @click="onPageBack">
-                <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+                <i class="icon-circle-chevron-left text-accent hover:text-primary" />
               </div>
             </div>
             <div class="cursor-pointer z-0">

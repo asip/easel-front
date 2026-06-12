@@ -31,7 +31,7 @@ const onOutsideClick = (ev: PointerEvent): void => {
         <div class="flex justify-center border-0 gap-1 mb-1">
           <AccountLoginGoogle v-if="googleClientID && !loggedIn" />
           <button v-if="loginByPassword" class="btn btn-outline btn-primary" @click="onSignupClick">
-            <i class="bi bi-person-plus-fill" />{{ $t('action.user.new') }}
+            <i class="icon-user-round-plus" />{{ $t('action.user.new') }}
           </button>
         </div>
         <div v-if="loginByPassword" class="flex justify-center border-0">

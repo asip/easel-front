@@ -16,7 +16,7 @@ const onDeleteClick = async (): Promise<void> => {
   <ConfirmPopover
     v-if="loggedIn"
     id="delete_account_popover"
-    popover-class="popover-d-right-center rounded-[10px] ml-1"
+    popover-class="popover-d-left-center rounded-[10px] mr-1"
     :disabled="processing"
     @click="onDeleteClick"
   >

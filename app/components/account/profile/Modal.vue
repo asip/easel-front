@@ -33,25 +33,27 @@ const onOutsideClick = (ev: PointerEvent): void => {
 <template>
   <dialog v-if="loggedIn" id="profile_modal" class="modal" @click="onOutsideClick">
     <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass text-white">
-      <div class="flex justify-start gap-1 pb-1 mb-1">
-        <a href="#" @click.prevent="onEditClick">
-          <i class="bi bi-pencil-square text-accent hover:text-primary" />
-        </a>
-        <span v-if="account && !account.social_login">
-          <a href="#" @click.prevent="onEditPasswordClick">
-            <i class="bi bi-lock text-accent hover:text-primary" />
+      <div class="flex justify-between gap-1 mb-1">
+        <div>{{ $t('model.user.model_name') }}</div>
+        <div>
+          <a href="#" @click.prevent="onEditClick">
+            <i class="icon-pencil text-accent hover:text-primary" />
           </a>
-        </span>
-        <button class="anchor-d-right-center" @click="onDeleteAccountClick">
-          <i class="bi bi-x-circle text-accent hover:text-primary" />
-        </button>
-        {{ $t('model.user.model_name') }}
+          <span v-if="account && !account.social_login">
+            <a href="#" @click.prevent="onEditPasswordClick">
+              <i class="icon-key-round text-accent hover:text-primary" />
+            </a>
+          </span>
+          <button class="anchor-d-left-center" @click="onDeleteAccountClick">
+            <i class="icon-circle-x text-accent hover:text-primary" />
+          </button>
+        </div>
       </div>
       <AccountProfile />
-      <ClientOnly>
-        <AccountDeletePopover v-if="available" />
-      </ClientOnly>
     </div>
+    <ClientOnly>
+      <AccountDeletePopover v-if="available" />
+    </ClientOnly>
   </dialog>
   <ClientOnly>
     <AccountDeleteModal v-if="!available" />

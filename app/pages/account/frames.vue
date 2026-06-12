@@ -23,7 +23,7 @@ const onPageBack = async (): Promise<void> => {
         <div class="flex justify-between">
           <div>
             <NuxtLink class="ml-2" @click="onPageBack">
-              <i class="bi bi-arrow-left-circle text-accent hover:text-primary" />
+              <i class="icon-circle-chevron-left text-accent hover:text-primary" />
             </NuxtLink>
           </div>
           <div>

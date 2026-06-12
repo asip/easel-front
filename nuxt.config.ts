@@ -66,11 +66,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  css: [
-    '@/assets/styles/tailwind.css',
-    '@/assets/styles/app.css',
-    'bootstrap-icons/font/bootstrap-icons.css',
-  ],
+  css: ['@/assets/styles/tailwind.css', '@/assets/styles/app.css'],
 
   /* build: {
     transpile: ['vue-sonner']

@@ -76,9 +76,6 @@ importers:
       '@yaireo/tagify':
         specifier: ^4.37.1
         version: 4.37.1(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      bootstrap-icons:
-        specifier: ^1.13.1
-        version: 1.13.1
       bowser:
         specifier: 2.14.1
         version: 2.14.1
@@ -88,6 +85,9 @@ importers:
       glightbox:
         specifier: ^3.3.1
         version: 3.3.1
+      lucide-static:
+        specifier: ^1.17.0
+        version: 1.17.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -3379,9 +3379,6 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  bootstrap-icons@1.13.1:
-    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
-
   bowser@2.14.1:
     resolution: {integrity: sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==}
 
@@ -4822,6 +4819,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-static@1.17.0:
+    resolution: {integrity: sha512-VORJmPqi4DZ5lf4/n2qqcIz1nTKGFReS83DJINcK5nXY7z+4P3G6CW/7SXpzlGllEI0vHKFH24eSM+aMFaK5zw==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -9673,8 +9673,6 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bootstrap-icons@1.13.1: {}
-
   bowser@2.14.1: {}
 
   brace-expansion@2.0.1:
@@ -11160,6 +11158,8 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-static@1.17.0: {}
 
   lz-string@1.5.0: {}
 
