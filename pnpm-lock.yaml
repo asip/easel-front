@@ -59,11 +59,11 @@ importers:
         specifier: ^8.61.0
         version: 8.61.0(typescript@6.0.3)
       '@vesperjs/nuxt':
-        specifier: 0.9.10
-        version: 0.9.10(@typescript-eslint/typescript-estree@8.61.0(typescript@6.0.3))(typescript-eslint@8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.15(typescript@6.0.3))
+        specifier: 0.9.11
+        version: 0.9.11(@typescript-eslint/typescript-estree@8.61.0(typescript@6.0.3))(typescript-eslint@8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.15(typescript@6.0.3))
       '@vesperjs/shared':
-        specifier: 0.9.10
-        version: 0.9.10(@vue/reactivity@3.6.0-beta.15)
+        specifier: 0.9.11
+        version: 0.9.11(@vue/reactivity@3.6.0-beta.15)
       '@vue/reactivity':
         specifier: ^3.6.0-beta.15
         version: 3.6.0-beta.15
@@ -3049,16 +3049,16 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.9.10':
-    resolution: {integrity: sha512-sUU9id27adEyl6tLcQgRb+XhChecgkTmTE8EtVdcHSpNQDXypBgCIh0tH+ivcf91upy/gvQwlO9hz8MiZ+07Dw==}
+  '@vesperjs/nuxt@0.9.11':
+    resolution: {integrity: sha512-E/z0TRvHacNByZetSHdbPnHrzer66QDV1Uz5KVTIJRET0G83wPfYED+Qj63ojI4YRFEKtx4Zp3XbWF7UxUHjxA==}
     peerDependencies:
       '@typescript-eslint/typescript-estree': ^8.61.0
-      typescript-eslint: ^8.60.1
+      typescript-eslint: ^8.61.0
       vite: ^8.0.16
       vue: ^3.6.0-beta.15
 
-  '@vesperjs/shared@0.9.10':
-    resolution: {integrity: sha512-AOLtcX8FxPKJjtB0pLEjSo7zsclioclMy32okfxFa+tUUrGo0FVv26VFg9tbfNxu4W8vu3/W080aBpxN/M+Bag==}
+  '@vesperjs/shared@0.9.11':
+    resolution: {integrity: sha512-Emv5WI/QA6yUVSAZZuiXJSqzdJDPHmWcFaSnxvbFyuG+1FwOsqDVj41wgLZC+s1MgsSM4VAZszR3hNokyVHzjA==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-beta.15
 
@@ -3358,11 +3358,6 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
-
-  baseline-browser-mapping@2.10.35:
-    resolution: {integrity: sha512-honAfLBde0HAFLdNyBEfuuENkF6zR+ozxqxa/2zJKHBe1qzLqyTSeRKpdPEHAP03rlDGyQOPnCSxnVpVqQo9Mg==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
 
   baseline-browser-mapping@2.10.36:
     resolution: {integrity: sha512-lVq/Df7LXlO79MVaaUHztSwWiG9oXoWHlgvNS51v8Dpd4+G4/VIy6qYePTw31nAVls33nUtnfezYeLkYAak9dg==}
@@ -9284,14 +9279,14 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.9.10(@typescript-eslint/typescript-estree@8.61.0(typescript@6.0.3))(typescript-eslint@8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.15(typescript@6.0.3))':
+  '@vesperjs/nuxt@0.9.11(@typescript-eslint/typescript-estree@8.61.0(typescript@6.0.3))(typescript-eslint@8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.15(typescript@6.0.3))':
     dependencies:
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@6.0.3)
       typescript-eslint: 8.61.0(eslint@10.4.1(jiti@2.7.0))(typescript@6.0.3)
       vite: 8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0)
       vue: 3.6.0-beta.15(typescript@6.0.3)
 
-  '@vesperjs/shared@0.9.10(@vue/reactivity@3.6.0-beta.15)':
+  '@vesperjs/shared@0.9.11(@vue/reactivity@3.6.0-beta.15)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.15
@@ -9660,8 +9655,6 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.10.35: {}
-
   baseline-browser-mapping@2.10.36: {}
 
   bcp-47@2.1.0:
@@ -9698,7 +9691,7 @@ snapshots:
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.35
+      baseline-browser-mapping: 2.10.36
       caniuse-lite: 1.0.30001791
       electron-to-chromium: 1.5.345
       node-releases: 2.0.38
