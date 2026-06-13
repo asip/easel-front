@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { loggedIn, account } = useAccount()
-const { frame, deleteFrame, backendErrorInfo, set404Alert, isSuccess, flash, processing } = inject(
+const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, processing } = inject(
   'frameUse',
 ) as UseFrameType
 
@@ -10,7 +10,7 @@ const onDeleteClick = async (): Promise<void> => {
   set404Alert()
   setFlash(flash.value)
 
-  if (isSuccess()) {
+  if (success) {
     await navigateTo('/')
   } else {
     await redirect404()

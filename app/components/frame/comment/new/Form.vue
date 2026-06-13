@@ -7,7 +7,7 @@ const {
   externalErrors,
   backendErrorInfo,
   processing,
-  isSuccess,
+  success,
   set404Alert,
   flash,
   createComment,
@@ -40,7 +40,7 @@ const onCreateClick = async (): Promise<void> => {
     await createComment()
     set404Alert()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       comment.value.body = ''
       editor.value?.focus()
       r$.$touch()

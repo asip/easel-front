@@ -11,7 +11,7 @@ const {
   backendErrorInfo,
   updateComment,
   flash,
-  isSuccess,
+  success,
   set404Alert,
   processing,
   setComment,
@@ -35,7 +35,7 @@ const onUpdateClick = async (): Promise<void> => {
     await updateComment()
     set404Alert()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       r$.$touch()
       r$.$reset()
       setComment({ to: commentModel.value })

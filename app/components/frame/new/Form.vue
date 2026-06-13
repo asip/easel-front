@@ -14,7 +14,7 @@ const {
   createFrame,
   externalErrors,
   processing,
-  isSuccess,
+  success,
   flash,
 } = inject('frameUse') as UseFrameType
 const { newFrameRules } = useFrameRules()
@@ -38,7 +38,7 @@ const onCreateClick = async (): Promise<void> => {
   if (valid) {
     await createFrame()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {
       await redirectTo({ current: route.path, fallback: '/' })

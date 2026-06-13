@@ -5,7 +5,7 @@ const { setFlash } = useSonner()
 const {
   loginParams,
   login,
-  isSuccess,
+  success,
   flash,
   externalErrors,
   clearLoginParams,
@@ -26,7 +26,7 @@ const onLoginClick = async (): Promise<void> => {
   if (valid) {
     await login()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       clearLoginParams()
       r$.$reset()
       closeModal('#login_modal')

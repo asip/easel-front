@@ -96,7 +96,7 @@ export const useFrame = function () {
     upFrameTZ(frame.value)
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } =
+  const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<FrameErrorProperty>(flash)
 
   const { backendErrorInfo } = useApiError(flash, {
@@ -272,7 +272,7 @@ export const useFrame = function () {
     createFrame,
     deleteFrame,
     processing,
-    isSuccess,
+    success,
     set404Alert,
     flash,
   }

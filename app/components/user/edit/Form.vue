@@ -11,7 +11,7 @@ const {
   updateProfile,
   externalErrors,
   processing,
-  isSuccess,
+  success,
   flash,
 } = inject('accountUse') as UseAccountType
 const { profileRules } = useAccountRules()
@@ -34,7 +34,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updateProfile()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       closeModal('#edit_profile_modal')
       openModal('#profile_modal')
     } else if (!loggedIn.value) {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { setFlash } = useSonner()
 const { openModal, closeModal } = useModal()
-const { loggedIn, account, user, updatePassword, externalErrors, processing, isSuccess, flash } =
+const { loggedIn, account, user, updatePassword, externalErrors, processing, success, flash } =
   inject('accountUse') as UseAccountType
 const { passwordRules } = useAccountRules(user.value)
 
@@ -13,7 +13,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updatePassword()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       user.value.current_password = ''
       closeModal('#edit_password_modal')
       openModal('#profile_modal')

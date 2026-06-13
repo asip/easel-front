@@ -9,7 +9,7 @@ const {
   comment,
   deleteComment,
   flash,
-  isSuccess,
+  success,
   backendErrorInfo,
   set404Alert,
   processing,
@@ -49,7 +49,7 @@ const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) await deleteComment(commentModel.value)
   set404Alert()
   setFlash(flash.value)
-  if (isSuccess()) {
+  if (success) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
     redirectOrReload404(backendErrorInfo)

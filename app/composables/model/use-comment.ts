@@ -55,7 +55,7 @@ export const useComment = function () {
     }
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } =
+  const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<CommentErrorProperty>(flash)
 
   const { backendErrorInfo } = useApiError(flash, {
@@ -174,7 +174,7 @@ export const useComment = function () {
     updateComment,
     deleteComment,
     processing,
-    isSuccess,
+    success,
     set404Alert,
     flash,
   }

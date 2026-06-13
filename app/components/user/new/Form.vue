@@ -11,7 +11,7 @@ const {
   signup,
   externalErrors,
   processing,
-  isSuccess,
+  success,
   clearProfile,
   clearExternalErrors,
   flash,
@@ -40,7 +40,7 @@ const onSignupClick = async (): Promise<void> => {
   if (valid) {
     await signup()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       clearProfile()
       closeModal('#signup_modal')
       openModal('#login_modal')

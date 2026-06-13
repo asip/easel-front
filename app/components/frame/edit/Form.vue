@@ -14,7 +14,7 @@ const {
   set404Alert,
   refresh,
   processing,
-  isSuccess,
+  success,
   flash,
 } = inject('frameUse') as UseFrameType
 const { editFrameRules } = useFrameRules()
@@ -32,7 +32,7 @@ const onEditClick = async (): Promise<void> => {
     await updateFrame()
     set404Alert()
     setFlash(flash.value)
-    if (isSuccess()) {
+    if (success) {
       await refresh()
       await redirectTo({ current: route.path, fallback: `/frames/${frame?.value.id}` })
     } else if (!loggedIn.value) {

@@ -153,7 +153,7 @@ export const useAccount = function () {
     setAccount({ to: user.value })
   }
 
-  const { externalErrors, clearExternalErrors, isSuccess } =
+  const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<UserErrorProperty>(flash)
 
   const { backendErrorInfo } = useApiError(flash, { caller: { externalErrors, clearAccount } })
@@ -449,7 +449,7 @@ export const useAccount = function () {
     logout,
     deleteAccount,
     processing,
-    isSuccess,
+    success,
     flash,
   }
 }
