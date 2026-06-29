@@ -11,12 +11,12 @@ export const useComments = function () {
 
   const { create } = useEntity<Comment, CommentResource>()
 
-  const { formatHtmlTZ } = useTimeZone()
+  const { formatTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
 
   const upCommentTZ = (comment: Comment): void => {
-    comment.created_at = formatHtmlTZ(comment.created_at, 'YYYY/MM/DD (ddd) HH:mm')
-    comment.updated_at = formatHtmlTZ(comment.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
+    comment.created_at = formatTZ(comment.created_at, 'YYYY/MM/DD (ddd) HH:mm')
+    comment.updated_at = formatTZ(comment.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
   }
 
   const makeComment = ({ from }: { from: CommentResource }): Comment => {

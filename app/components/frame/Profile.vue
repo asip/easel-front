@@ -4,7 +4,7 @@ import sanitizeHtml from 'sanitize-html'
 import type { Frame } from '~/types'
 
 const { p2br } = useTiptap()
-const { formatHTML } = useDatetimeLocal()
+const { formatHTML } = useDatetime()
 
 const frame = defineModel<Frame>()
 

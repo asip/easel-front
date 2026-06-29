@@ -14,10 +14,10 @@ export const useFrame = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { t } = $i18n as any
 
-  const { upDTL, downDTL } = useDatetimeLocal()
+  const { upDTL, downDTL } = useDatetime()
   const { copy } = useEntity<Frame, FrameResource>()
 
-  const { upTZ, downTZ, formatHtmlTZ } = useTimeZone()
+  const { upTZ, downTZ, formatTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
   const { loggedIn, accountToken, clearAccount } = useAccount()
 
@@ -87,8 +87,8 @@ export const useFrame = function () {
 
   const upFrameTZ = (frame: Frame): void => {
     frame.shooted_at = upTZ(frame.shooted_at)
-    frame.created_at = formatHtmlTZ(frame.created_at, 'YYYY/MM/DD (ddd) HH:mm')
-    frame.updated_at = formatHtmlTZ(frame.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
+    frame.created_at = formatTZ(frame.created_at, 'YYYY/MM/DD (ddd) HH:mm')
+    frame.updated_at = formatTZ(frame.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
   }
 
   const setFrame = ({ from }: { from: FrameResource }): void => {
