@@ -29,14 +29,14 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0(@vue/compiler-dom@3.6.0-beta.17)(db0@0.3.4)(eslint@10.6.0(jiti@2.7.0))(ioredis@5.10.1)(magicast@0.5.2)(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(rollup@4.60.2)(typescript@6.0.3)(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@regle/core':
-        specifier: ^1.28.2
-        version: 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: ^1.28.3
+        version: 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@regle/nuxt':
-        specifier: ^1.28.2
-        version: 1.28.2(magicast@0.5.2)(typescript@6.0.3)(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: ^1.28.3
+        version: 1.28.3(magicast@0.5.2)(typescript@6.0.3)(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@regle/rules':
-        specifier: ^1.28.2
-        version: 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: ^1.28.3
+        version: 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@tiptap/extension-link':
         specifier: ^3.27.1
         version: 3.27.1(@tiptap/core@3.27.1(@tiptap/pm@3.27.1))(@tiptap/pm@3.27.1)
@@ -80,8 +80,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.22.0
-        version: 1.22.0
+        specifier: ^1.23.0
+        version: 1.23.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -138,11 +138,11 @@ importers:
         specifier: ^2.4.11
         version: 2.4.11(@vue/compiler-dom@3.6.0-beta.17)(@vue/server-renderer@3.6.0-beta.17(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       baseline-browser-mapping:
-        specifier: ^2.10.40
-        version: 2.10.40
+        specifier: ^2.10.41
+        version: 2.10.41
       daisyui:
-        specifier: ^5.6.6
-        version: 5.6.6
+        specifier: ^5.6.10
+        version: 5.6.10
       eslint:
         specifier: ^10.6.0
         version: 10.6.0(jiti@2.7.0)
@@ -2173,8 +2173,8 @@ packages:
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
 
-  '@regle/core@1.28.2':
-    resolution: {integrity: sha512-1BecVMrOpNXUj2CWrAD+Xs1XbucVc6d73k5MKhdbKD2sYVaM5U10lXCNU7xxHZAoZpt6MzrZxW1c7PErhiubkQ==}
+  '@regle/core@1.28.3':
+    resolution: {integrity: sha512-IMonbgBt+pkh08YmtPM21V1roMa7yipQ67/dh2Yz12QHK2z02aXZxIwmOINrFADONyv3ZH7FRo6GLvClUmVweQ==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: ^3.6.0-beta.17
@@ -2182,15 +2182,15 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.28.2':
-    resolution: {integrity: sha512-YCFKwp+UoKrA3LF6WgrjP/froEm7cNpOyJFyt+0aJK40wKS71Hk+0cP+/DkcU7oFd6LJYw3WOYKPwf8OPfdDsA==}
+  '@regle/nuxt@1.28.3':
+    resolution: {integrity: sha512-e9ypznVmn3ChDvwFGs+L5V1Aq7xs1R9H81+vBMlOeX5COKWEOWMfXoGU50gnmUdT4VPLtnopWLC5XPEWqVJZYw==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@regle/rules@1.28.2':
-    resolution: {integrity: sha512-ak8uZPooEtKex/WoU5UiDHGFpV6iWKStYXuXiz9HU3Mv6cijp5PTNugGzGLV7/S1n7OVdn/aizI1xD0eQrX1CA==}
+  '@regle/rules@1.28.3':
+    resolution: {integrity: sha512-v4bimpCcNTN8Df3PT0/RL6DtfetcdhJZLdJufxa/ZyXIBPehhuG81hfRBY+le/TLDitCmWaR1kQ6gJvD3cmOdQ==}
 
-  '@regle/schemas@1.28.2':
-    resolution: {integrity: sha512-ws+NYLhkwx3NHsk/QB+M82WBSChYnSr+7xYSGQUQLdtCenYX4oDsi5CH31WPanKwl/Qbs8ZRdn3+FjVr12bRgA==}
+  '@regle/schemas@1.28.3':
+    resolution: {integrity: sha512-aGeFOaDqIDtmJHUGqpBYw5AgIH8VrA+yeyalSTbYatudVPQV86XktmkI3HqpT7qJe05bkVqC0H/p1OYfCUs+/w==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -3458,8 +3458,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  baseline-browser-mapping@2.10.40:
-    resolution: {integrity: sha512-BSSLZ9/Cjjv7Gtj5B68ZzXcXUg8iOf3fme+FCuh8rC/Go+Kmh8cox7M3A8dolou16s64QjLPOSdngh7GxXvkSw==}
+  baseline-browser-mapping@2.10.41:
+    resolution: {integrity: sha512-WwS7MHhqGHHlaVsqRZnhvCEMS0owDX+SxRlve7JkuH7My1Ara3ZriTmCQupPfYjxMZ8I/tgxtJYr2t7taHaH4A==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -3739,8 +3739,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.6.6:
-    resolution: {integrity: sha512-UFiuIZYucF7ylrnY3PT1SqwaEbVB10mqTZRyeRchZk0bud+HihYLLhXdxGDVmR/ftrM9G9YVr9FFPRVVIZJ5hA==}
+  daisyui@5.6.10:
+    resolution: {integrity: sha512-vk2E+iIETWGd/jUAC0Bu6OLU4HJSSj7Q2vvsZGiJN/+vt1RK3/UEiLYC9GTldQdD3yQkjNzWb8AYYpmTenQzJg==}
 
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
@@ -4919,8 +4919,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-static@1.22.0:
-    resolution: {integrity: sha512-xJ1V0cJLZtgnyoD7Cqvj8B48se3JI/YcC2XyNQ9sVoK7eb74JdYL9rHuWJiPGYo6dcj8K/Yrx74XrjJAA3t/Dw==}
+  lucide-static@1.23.0:
+    resolution: {integrity: sha512-V4tqLEHfvsptGaAZMD8sFJKeGsz2nTAU0+ctxTX3afao/5bs+mhrvvGDmvQmyI7YhQwpIFodZmnkPTMYyGzH4Q==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -8608,7 +8608,7 @@ snapshots:
 
   '@poppinss/exception@1.2.2': {}
 
-  '@regle/core@1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/core@1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
@@ -8617,14 +8617,14 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3))
 
-  '@regle/nuxt@1.28.2(magicast@0.5.2)(typescript@6.0.3)(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/nuxt@1.28.3(magicast@0.5.2)(typescript@6.0.3)(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.2)
       '@nuxt/schema': 4.4.8
-      '@regle/core': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
-      '@regle/rules': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/core': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/rules': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
     optionalDependencies:
-      '@regle/schemas': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/schemas': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))
       pinia: 3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3))
     transitivePeerDependencies:
       - arktype
@@ -8634,18 +8634,18 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/rules@1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/core': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       type-fest: 5.7.0
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@regle/schemas@1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(valibot@1.4.1(typescript@6.0.3))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
-      '@regle/rules': 1.28.2(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/core': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
+      '@regle/rules': 1.28.3(pinia@3.0.4(typescript@6.0.3)(vue@3.6.0-beta.17(typescript@6.0.3)))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.7.0
     optionalDependencies:
@@ -9801,7 +9801,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.10.40: {}
+  baseline-browser-mapping@2.10.41: {}
 
   bcp-47@2.1.0:
     dependencies:
@@ -9835,7 +9835,7 @@ snapshots:
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.40
+      baseline-browser-mapping: 2.10.41
       caniuse-lite: 1.0.30001791
       electron-to-chromium: 1.5.345
       node-releases: 2.0.38
@@ -10096,7 +10096,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.6.6: {}
+  daisyui@5.6.10: {}
 
   date-fns@4.4.0: {}
 
@@ -11305,7 +11305,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-static@1.22.0: {}
+  lucide-static@1.23.0: {}
 
   lz-string@1.5.0: {}
 
