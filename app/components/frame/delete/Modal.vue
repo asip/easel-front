@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, processing } = inject(
   'frameUse',
@@ -9,7 +9,7 @@ const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, proce
 const onDeleteClick = async (): Promise<void> => {
   await deleteFrame()
   set404Alert()
-  setFlash(flash.value)
+  sonner.value = flash.value
 
   if (success) {
     await navigateTo('/')

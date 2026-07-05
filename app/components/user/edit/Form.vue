@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
 const {
@@ -33,7 +33,7 @@ const onUpdateClick = async (): Promise<void> => {
 
   if (valid) {
     await updateProfile()
-    setFlash(flash.value)
+    sonner.value = flash.value
     if (success) {
       closeModal('#edit_profile_modal')
       openModal('#profile_modal')

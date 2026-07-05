@@ -2,7 +2,7 @@
 const route = useRoute()
 const { id } = route.params
 
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { openModal } = useModal()
 const { referers } = useReferer()
 const { user, getUser } = useUser()
@@ -38,12 +38,12 @@ const onNameClick = (): void => {
 
 const onFollowClick = async (): Promise<void> => {
   await follow(user.value.id)
-  setFlash(flash.value)
+  sonner.value = flash.value
 }
 
 const onUnfollowClick = async (): Promise<void> => {
   await unfollow(user.value.id)
-  setFlash(flash.value)
+  sonner.value = flash.value
 }
 </script>
 

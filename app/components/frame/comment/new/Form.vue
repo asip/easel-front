@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { loggedIn, account } = useAccount()
 const {
   comment,
@@ -39,7 +39,7 @@ const onCreateClick = async (): Promise<void> => {
   if (valid) {
     await createComment()
     set404Alert()
-    setFlash(flash.value)
+    sonner.value = flash.value
     if (success) {
       comment.value.body = ''
       editor.value?.focus()

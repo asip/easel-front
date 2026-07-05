@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
 
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const {
   loginParams,
   login,
@@ -25,7 +25,7 @@ const onLoginClick = async (): Promise<void> => {
 
   if (valid) {
     await login()
-    setFlash(flash.value)
+    sonner.value = flash.value
     if (success) {
       clearLoginParams()
       r$.$reset()

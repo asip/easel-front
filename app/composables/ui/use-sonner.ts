@@ -5,13 +5,28 @@ export const useSonner = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toast = $toast as any
 
+  const sonner = computed<undefined, Flash | string[]>({
+    get() {
+      return undefined
+    },
+    set(value: Flash | string[]) {
+      if (Object.keys(value).length === 0) return
+
+      if ('notice' in value || 'alert' in value) {
+        setFlash(value)
+      } else {
+        setMessages(value as string[])
+      }
+    },
+  })
+
   const setFlash = (flash: Flash): void => {
     // console.log(flash.alert)
     // console.log(flash.info)
     for (const [messageType, message] of Object.entries(flash)) {
       if (message !== '') {
         switch (messageType) {
-          case 'info':
+          case 'notice':
             // console.log('info')
             setTimeout(() => {
               toast.info(message)
@@ -36,5 +51,5 @@ export const useSonner = function () {
     }
   }
 
-  return { setFlash, setMessages }
+  return { sonner }
 }

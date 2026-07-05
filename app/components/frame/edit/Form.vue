@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { redirectTo } = usePrevPage()
 const { loggedIn } = useAccount()
 const {
@@ -31,7 +31,7 @@ const onEditClick = async (): Promise<void> => {
   if (valid) {
     await updateFrame()
     set404Alert()
-    setFlash(flash.value)
+    sonner.value = flash.value
     if (success) {
       await refresh()
       await redirectTo({ current: route.path, fallback: `/frames/${frame?.value.id}` })

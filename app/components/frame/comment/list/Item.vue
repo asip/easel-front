@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Comment, RefQueryItems } from '~/types'
 
-const { setFlash } = useSonner()
+const { sonner } = useSonner()
 const { loggedIn, account } = useAccount()
 
 const commentUse = useComment()
@@ -48,7 +48,7 @@ const onCancelClick = (): void => {
 const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) await deleteComment(commentModel.value)
   set404Alert()
-  setFlash(flash.value)
+  sonner.value = flash.value
   if (success) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
