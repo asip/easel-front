@@ -1,18 +1,18 @@
 <script setup lang="ts">
 const { openModal, closeModal, isOutside } = useModal()
 const { openPopover, available } = usePopover()
-const { loggedIn, account, setUser, initTimeZone } = inject('accountUse') as UseAccountType
+const { loggedIn, account, user, setAccount, initTimeZone } = inject('accountUse') as UseAccountType
 
 const onEditClick = (): void => {
   closeModal('#profile_modal')
-  setUser()
+  setAccount({ to: user.value })
   initTimeZone()
   openModal('#edit_profile_modal')
 }
 
 const onEditPasswordClick = (): void => {
   closeModal('#profile_modal')
-  setUser()
+  setAccount({ to: user.value })
   openModal('#edit_password_modal')
 }
 

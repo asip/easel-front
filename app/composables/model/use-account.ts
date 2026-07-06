@@ -149,10 +149,6 @@ export const useAccount = function () {
     accessToken.value = null
   }
 
-  const setUser = (): void => {
-    setAccount({ to: user.value })
-  }
-
   const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<UserErrorProperty>(flash)
 
@@ -427,6 +423,7 @@ export const useAccount = function () {
   return {
     account,
     accountToken,
+    setAccount,
     clearAccount,
     user,
     image,
@@ -434,7 +431,6 @@ export const useAccount = function () {
     profile,
     initTimeZone,
     clearProfile,
-    setUser,
     loggedIn,
     loginParams,
     clearLoginParams,
