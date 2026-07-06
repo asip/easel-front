@@ -4,7 +4,20 @@ type useImagePreviewOptions = {
 }
 
 export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOptions): void {
-  const setPreview = (): void => {
+  const preview = computed<string | null | undefined, File | null | undefined>({
+    get() {
+      return previewUrl.value
+    },
+    set(value: File | null | undefined) {
+      if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+        setPreview(value)
+      } else {
+        previewUrl.value = null
+      }
+    },
+  })
+
+  const setPreview = (value: File | null | undefined): void => {
     // Create a FileReader object.
     // (FileReaderオブジェクトを作成します)
     const reader = new FileReader()
@@ -20,16 +33,8 @@ export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOp
     // Retrieves the Data URI scheme string.
     // (DataURI Scheme文字列を取得します)
     // if (blob) reader.readAsDataURL(blob)
-    if (file.value) reader.readAsDataURL(file.value)
+    if (value) reader.readAsDataURL(value)
   }
 
-  const previewImage = (): void => {
-    if (file.value?.type?.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-      setPreview()
-    } else {
-      previewUrl.value = null
-    }
-  }
-
-  previewImage()
+  preview.value = file.value
 }
