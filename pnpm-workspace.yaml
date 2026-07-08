@@ -3,6 +3,8 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+minimumReleaseAgeExclude:
+  - daisyui@5.6.16
 overrides:
   '@typescript-eslint/typescript-estree': ^8.63.0
   '@vue/compiler-core': ^3.6.0-beta.17
