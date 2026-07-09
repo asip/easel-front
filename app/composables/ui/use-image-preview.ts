@@ -1,9 +1,10 @@
-type useImagePreviewOptions = {
-  file: Ref<File | null | undefined>
+type ImagePreviewOptions = {
   previewUrl: Ref<string | null | undefined>
 }
 
-export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOptions): void {
+export const useImagePreview = function ({ previewUrl }: ImagePreviewOptions): {
+  preview: globalThis.WritableComputedRef<string | null | undefined, File | null | undefined>
+} {
   const preview = computed<string | null | undefined, File | null | undefined>({
     get() {
       return previewUrl.value
@@ -36,5 +37,5 @@ export const useImagePreview = function ({ file, previewUrl }: useImagePreviewOp
     if (value) reader.readAsDataURL(value)
   }
 
-  preview.value = file.value
+  return { preview }
 }

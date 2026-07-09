@@ -14,6 +14,8 @@ const {
   success,
   flash,
 } = inject('accountUse') as UseAccountType
+const { preview } = useImagePreview({ previewUrl })
+
 const { profileRules } = useAccountRules()
 
 const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
@@ -25,7 +27,7 @@ const onSelectFile = (evt: Event): void => {
   // Retrieve the uploaded data and assign it to the file.value variable.
   // (アップロードされたデータを取得して変数file.valueに代入します)
   image.value = target.files?.item(0) ?? null
-  useImagePreview({ file: image, previewUrl })
+  preview.value = image.value
 }
 
 const onUpdateClick = async (): Promise<void> => {

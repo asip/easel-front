@@ -17,6 +17,8 @@ const {
   success,
   flash,
 } = inject('frameUse') as UseFrameType
+const { preview } = useImagePreview({ previewUrl })
+
 const { newFrameRules } = useFrameRules()
 
 const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
@@ -29,7 +31,7 @@ const onSelectFile = (evt: Event): void => {
   // Retrieve the uploaded data and assign it to the file.value variable.
   // (アップロードされたデータを取得して変数file.valueに代入します)
   file.value = target.files?.item(0) ?? null
-  useImagePreview({ file, previewUrl })
+  preview.value = file.value
 }
 
 const onCreateClick = async (): Promise<void> => {

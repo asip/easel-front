@@ -16,6 +16,8 @@ const {
   clearExternalErrors,
   flash,
 } = useAccount()
+const { preview } = useImagePreview({ previewUrl })
+
 const { signupRules } = useAccountRules(user.value)
 
 const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
@@ -31,7 +33,7 @@ const onSelectFile = (evt: Event): void => {
   // Retrieve the uploaded data and assign it to the file.value variable.
   // (アップロードされたデータを取得して変数file.valueに代入します)
   image.value = target.files?.item(0) ?? null
-  useImagePreview({ file: image, previewUrl })
+  preview.value = image.value
 }
 
 const onSignupClick = async (): Promise<void> => {
