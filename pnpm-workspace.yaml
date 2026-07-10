@@ -5,6 +5,8 @@ allowBuilds:
   vue-demi: false
 minimumReleaseAgeExclude:
   - lucide-static@1.24.0
+  - '@nuxtjs/i18n@10.4.1'
+  - sanitize-html@2.17.6
 overrides:
   '@typescript-eslint/typescript-estree': ^8.63.0
   '@vue/compiler-core': ^3.6.0-beta.17
