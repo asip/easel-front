@@ -2,8 +2,8 @@ import type {
   Frame,
   FrameResource,
   FrameErrorProperty,
-  ErrorsResource,
-  ErrorMessages,
+  BackendErrorResource,
+  BackendErrorsResource,
   QueryApiOptions,
 } from '~/types'
 
@@ -104,7 +104,10 @@ export const useFrame = function () {
   })
 
   const set404Alert = (): void => {
-    if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
+    if (
+      backendErrorInfo.value.status == 404 &&
+      (backendErrorInfo.value.error as BackendErrorResource).source == 'Frame'
+    ) {
       flash.value.alert = t('backend.error.not_found', { source: t('misc.page') })
     }
   }
@@ -131,10 +134,10 @@ export const useFrame = function () {
       url.value = `/frames/${id}`
     }
 
-    const { token, data, error, refresh } = await queryApi<
-      FrameResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(url.value, queryOptions)
+    const { token, data, error, refresh } = await queryApi<FrameResource, BackendErrorsResource>(
+      url.value,
+      queryOptions,
+    )
 
     clearFlash()
 
@@ -172,14 +175,14 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { token, data, error, pending } = await mutationApi<
-      FrameResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/frames/', {
-      method: 'post',
-      body: formData,
-      token: accountToken.value,
-    })
+    const { token, data, error, pending } = await mutationApi<FrameResource, BackendErrorsResource>(
+      '/frames/',
+      {
+        method: 'post',
+        body: formData,
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
     clearExternalErrors()
@@ -211,14 +214,14 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { token, error, pending } = await mutationApi<
-      FrameResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${frame.value.id}`, {
-      method: 'put',
-      body: postData,
-      token: accountToken.value,
-    })
+    const { token, error, pending } = await mutationApi<FrameResource, BackendErrorsResource>(
+      `/frames/${frame.value.id}`,
+      {
+        method: 'put',
+        body: postData,
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
     clearExternalErrors()
@@ -236,13 +239,13 @@ export const useFrame = function () {
     processing.value = true
     // console.log(frame.id)
 
-    const { token, error, pending } = await mutationApi<
-      FrameResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${frame.value.id}`, {
-      method: 'delete',
-      token: accountToken.value,
-    })
+    const { token, error, pending } = await mutationApi<FrameResource, BackendErrorsResource>(
+      `/frames/${frame.value.id}`,
+      {
+        method: 'delete',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 

@@ -2,8 +2,8 @@ import type {
   Comment,
   CommentResource,
   CommentErrorProperty,
-  ErrorsResource,
-  ErrorMessages,
+  BackendErrorResource,
+  BackendErrorsResource,
 } from '~/types'
 
 export const useComment = function () {
@@ -64,9 +64,9 @@ export const useComment = function () {
 
   const set404Alert = (): void => {
     if (backendErrorInfo.value.status == 404) {
-      if (backendErrorInfo.value.error?.source == 'Frame') {
+      if ((backendErrorInfo.value.error as BackendErrorResource).source == 'Frame') {
         flash.value.alert = t('backend.error.not_found', { source: t('misc.page') })
-      } else if (backendErrorInfo.value.error?.source == 'Comment') {
+      } else if ((backendErrorInfo.value.error as BackendErrorResource).source == 'Comment') {
         flash.value.alert = t('backend.error.not_found', {
           source: t('models.comment'),
         })
@@ -85,14 +85,14 @@ export const useComment = function () {
       },
     }
 
-    const { token, error, pending } = await mutationApi<
-      CommentResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${comment.value.frame_id}/comments`, {
-      method: 'post',
-      body: postData,
-      token: accountToken.value,
-    })
+    const { token, error, pending } = await mutationApi<CommentResource, BackendErrorsResource>(
+      `/frames/${comment.value.frame_id}/comments`,
+      {
+        method: 'post',
+        body: postData,
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
     clearExternalErrors()
@@ -120,7 +120,7 @@ export const useComment = function () {
 
     const { token, data, error, pending } = await mutationApi<
       CommentResource,
-      ErrorsResource<ErrorMessages<string>>
+      BackendErrorsResource
     >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
       method: 'put',
       body: postData,
@@ -145,13 +145,13 @@ export const useComment = function () {
   const deleteComment = async (comment: Comment): Promise<void> => {
     processing.value = true
 
-    const { token, error, pending } = await mutationApi<
-      CommentResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/frames/${comment.frame_id}/comments/${comment.id}`, {
-      method: 'delete',
-      token: accountToken.value,
-    })
+    const { token, error, pending } = await mutationApi<CommentResource, BackendErrorsResource>(
+      `/frames/${comment.frame_id}/comments/${comment.id}`,
+      {
+        method: 'delete',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BackendErrorResource } from '~/types'
+
 const { sonner } = useSonner()
 const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, processing } = inject(
@@ -18,7 +20,10 @@ const onDeleteClick = async (): Promise<void> => {
 }
 
 const redirect404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
+  if (
+    backendErrorInfo.value.status == 404 &&
+    (backendErrorInfo.value.error as BackendErrorResource).source == 'Frame'
+  ) {
     await navigateTo('/')
   }
 }

@@ -1,20 +1,25 @@
-import type { Comment, BackendErrorInfo, BackendErrorResource } from '~/types'
+import type {
+  Comment,
+  BackendErrorInfo,
+  BackendErrorResource,
+  BackendErrorsResource,
+} from '~/types'
 
 export const useCommentTransition = function (comment: Ref<Comment>) {
   const { getComments } = useComments()
 
   const redirectOrReload404 = async (
-    backendErrorInfo: Ref<BackendErrorInfo<BackendErrorResource>>,
+    backendErrorInfo: Ref<BackendErrorInfo<BackendErrorsResource>>,
   ): Promise<void> => {
     if (backendErrorInfo.value.status == 404) {
-      if (backendErrorInfo.value.error?.source == 'Frame') {
+      if ((backendErrorInfo.value.error as BackendErrorResource).source == 'Frame') {
         await navigateTo(`/frames/${comment.value.frame_id}`)
         globalThis.setTimeout(() => {
           reloadNuxtApp()
         }, 2000)
       } else if (
         backendErrorInfo.value.status == 404 &&
-        backendErrorInfo.value.error?.source == 'Comment'
+        (backendErrorInfo.value.error as BackendErrorResource).source == 'Comment'
       ) {
         await getComments(comment.value.frame_id, { cache: false })
       }

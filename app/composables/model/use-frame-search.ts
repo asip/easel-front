@@ -4,8 +4,7 @@ import type {
   FrameQuery,
   FrameResource,
   FramesResource,
-  ErrorsResource,
-  ErrorMessages,
+  BackendErrorsResource,
   QueryApiOptions,
 } from '~/types'
 
@@ -127,10 +126,10 @@ export const useFrameSearch = function () {
       url.value = '/frames'
     }
 
-    const { token, data, error } = await queryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(url.value, queryOptions)
+    const { token, data, error } = await queryApi<FramesResource, BackendErrorsResource>(
+      url.value,
+      queryOptions,
+    )
 
     clearFlash()
 

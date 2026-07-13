@@ -1,9 +1,10 @@
 export type {
   BackendErrorInfo,
   BackendErrorResource,
+  BackendErrorsResource,
   ErrorsResource,
-  Flash,
   ErrorMessages,
+  Flash,
   QueryApiOptions,
 } from '@vesperjs/nuxt/types'
 

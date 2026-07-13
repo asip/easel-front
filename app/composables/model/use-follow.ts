@@ -1,4 +1,4 @@
-import type { FollowingResource, ErrorsResource, ErrorMessages } from '~/types'
+import type { FollowingResource, BackendErrorsResource } from '~/types'
 
 export const useFollow = function () {
   const { queryApi, mutationApi } = useApi()
@@ -11,12 +11,12 @@ export const useFollow = function () {
   const following: Ref<boolean> = ref<boolean>(false)
 
   const isFollowing = async (userId: string): Promise<void> => {
-    const { token, data, error } = await queryApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/account/following/${userId}`, {
-      token: accountToken.value,
-    })
+    const { token, data, error } = await queryApi<FollowingResource, BackendErrorsResource>(
+      `/account/following/${userId}`,
+      {
+        token: accountToken.value,
+      },
+    )
 
     // clearFlash()
 
@@ -32,13 +32,13 @@ export const useFollow = function () {
   }
 
   const follow = async (userId: number | null): Promise<void> => {
-    const { token, error } = await mutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'post',
-      token: accountToken.value,
-    })
+    const { token, error } = await mutationApi<FollowingResource, BackendErrorsResource>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'post',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 
@@ -52,13 +52,13 @@ export const useFollow = function () {
   }
 
   const unfollow = async (userId: number | null): Promise<void> => {
-    const { token, error } = await mutationApi<
-      FollowingResource,
-      ErrorsResource<ErrorMessages<string>>
-    >(`/users/${userId}/follower_relationships`, {
-      method: 'delete',
-      token: accountToken.value,
-    })
+    const { token, error } = await mutationApi<FollowingResource, BackendErrorsResource>(
+      `/users/${userId}/follower_relationships`,
+      {
+        method: 'delete',
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
 

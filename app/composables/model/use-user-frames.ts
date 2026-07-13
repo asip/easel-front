@@ -3,8 +3,7 @@ import type {
   FrameResource,
   FramesResource,
   UserFrameQuery,
-  ErrorsResource,
-  ErrorMessages,
+  BackendErrorsResource,
   QueryApiOptions,
 } from '~/types'
 
@@ -75,7 +74,7 @@ export const useUserFrames = function () {
       cache: options?.cache ?? true,
     }
 
-    const { data, error } = await queryApi<FramesResource, ErrorsResource<ErrorMessages<string>>>(
+    const { data, error } = await queryApi<FramesResource, BackendErrorsResource>(
       `/users/${userId}/frames`,
       queryOptions,
     )

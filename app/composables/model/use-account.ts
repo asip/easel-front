@@ -1,5 +1,5 @@
 import type { CredentialResponse } from 'vue3-google-signin'
-import type { User, UserResource, UserErrorProperty, ErrorsResource, ErrorMessages } from '~/types'
+import type { User, UserResource, UserErrorProperty, BackendErrorsResource } from '~/types'
 import { useCookieStore } from '../use-cookie-store'
 
 interface LoginParams {
@@ -184,10 +184,7 @@ export const useAccount = function () {
     formData.append('user[profile]', user.value.profile)
     formData.append('user[time_zone]', user.value.time_zone)
 
-    const { error, pending } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/users/', {
+    const { error, pending } = await mutationApi<UserResource, BackendErrorsResource>('/users/', {
       method: 'post',
       body: formData,
     })
@@ -205,13 +202,13 @@ export const useAccount = function () {
     // console.log(account.value.token)
 
     if (account.value.token) {
-      const { token, data, error } = await queryApi<
-        UserResource,
-        ErrorsResource<ErrorMessages<string>>
-      >('/account/profile', {
-        token: accessToken.value,
-        fresh: true,
-      })
+      const { token, data, error } = await queryApi<UserResource, BackendErrorsResource>(
+        '/account/profile',
+        {
+          token: accessToken.value,
+          fresh: true,
+        },
+      )
 
       clearFlash()
 
@@ -238,13 +235,13 @@ export const useAccount = function () {
       },
     }
 
-    const { token, data, error } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/sessions/', {
-      method: 'post',
-      body: postData,
-    })
+    const { token, data, error } = await mutationApi<UserResource, BackendErrorsResource>(
+      '/sessions/',
+      {
+        method: 'post',
+        body: postData,
+      },
+    )
 
     // console.log(token.value)
 
@@ -270,13 +267,13 @@ export const useAccount = function () {
       credential: response.credential,
     }
 
-    const { token, data, error } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/oauth/sessions/', {
-      method: 'post',
-      body: postData,
-    })
+    const { token, data, error } = await mutationApi<UserResource, BackendErrorsResource>(
+      '/oauth/sessions/',
+      {
+        method: 'post',
+        body: postData,
+      },
+    )
 
     // console.log(token.value)
 
@@ -307,14 +304,14 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { token, data, error, pending } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account/profile/', {
-      method: 'put',
-      body: formData,
-      token: accessToken.value,
-    })
+    const { token, data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
+      '/account/profile/',
+      {
+        method: 'put',
+        body: formData,
+        token: accessToken.value,
+      },
+    )
 
     // console.log(data)
     // console.log(errors)
@@ -349,14 +346,14 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { token, data, error, pending } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account/password/', {
-      method: 'put',
-      body: formData,
-      token: accessToken.value,
-    })
+    const { token, data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
+      '/account/password/',
+      {
+        method: 'put',
+        body: formData,
+        token: accessToken.value,
+      },
+    )
 
     // console.log(data)
     // console.log(errors)
@@ -378,13 +375,10 @@ export const useAccount = function () {
   }
 
   const logout = async (): Promise<void> => {
-    const { error } = await mutationApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
-      '/sessions/logout',
-      {
-        method: 'delete',
-        token: accessToken.value,
-      },
-    )
+    const { error } = await mutationApi<UserResource, BackendErrorsResource>('/sessions/logout', {
+      method: 'delete',
+      token: accessToken.value,
+    })
 
     clearFlash()
 
@@ -398,13 +392,13 @@ export const useAccount = function () {
   const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
-    const { data, error, pending } = await mutationApi<
-      UserResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account', {
-      method: 'delete',
-      token: accessToken.value,
-    })
+    const { data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
+      '/account',
+      {
+        method: 'delete',
+        token: accessToken.value,
+      },
+    )
 
     clearFlash()
 

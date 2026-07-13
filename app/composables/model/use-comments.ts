@@ -1,10 +1,4 @@
-import type {
-  Comment,
-  CommentResource,
-  CommentsResource,
-  ErrorsResource,
-  ErrorMessages,
-} from '~/types'
+import type { Comment, CommentResource, CommentsResource, BackendErrorsResource } from '~/types'
 
 export const useComments = function () {
   const { queryApi } = useApi()
@@ -36,7 +30,7 @@ export const useComments = function () {
     options?: { cache?: boolean },
   ): Promise<void> => {
     // console.log(comment.frame_id);
-    const { data, error } = await queryApi<CommentsResource, ErrorsResource<ErrorMessages<string>>>(
+    const { data, error } = await queryApi<CommentsResource, BackendErrorsResource>(
       `/frames/${frameId}/comments`,
       {
         cache: options?.cache ?? true,

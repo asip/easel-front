@@ -1,4 +1,4 @@
-import type { TagsResource, ErrorsResource, ErrorMessages, QueryApiOptions } from '~/types'
+import type { TagsResource, BackendErrorsResource, QueryApiOptions } from '~/types'
 
 export const useTagSearch = function () {
   const { queryApi } = useApi()
@@ -18,10 +18,10 @@ export const useTagSearch = function () {
       cache: false,
     }
 
-    const { token, data, error } = await queryApi<
-      TagsResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/tags/search', options)
+    const { token, data, error } = await queryApi<TagsResource, BackendErrorsResource>(
+      '/tags/search',
+      options,
+    )
 
     clearFlash()
 

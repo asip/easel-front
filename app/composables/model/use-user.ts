@@ -1,4 +1,4 @@
-import type { User, UserResource, ErrorsResource, ErrorMessages } from '~/types'
+import type { User, UserResource, BackendErrorsResource } from '~/types'
 
 export const useUser = function () {
   const { queryApi } = useApi()
@@ -26,9 +26,7 @@ export const useUser = function () {
   })
 
   const getUser = async (id: string): Promise<void> => {
-    const { data, error } = await queryApi<UserResource, ErrorsResource<ErrorMessages<string>>>(
-      `/users/${id}`,
-    )
+    const { data, error } = await queryApi<UserResource, BackendErrorsResource>(`/users/${id}`)
 
     clearFlash()
 

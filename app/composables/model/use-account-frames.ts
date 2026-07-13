@@ -3,8 +3,7 @@ import type {
   Frame,
   FrameResource,
   FramesResource,
-  ErrorsResource,
-  ErrorMessages,
+  BackendErrorsResource,
   QueryApiOptions,
 } from '~/types'
 
@@ -64,10 +63,10 @@ export const useAccountFrames = function () {
       cache: options?.cache ?? true,
     }
 
-    const { token, data, error } = await queryApi<
-      FramesResource,
-      ErrorsResource<ErrorMessages<string>>
-    >('/account/frames', queryOptions)
+    const { token, data, error } = await queryApi<FramesResource, BackendErrorsResource>(
+      '/account/frames',
+      queryOptions,
+    )
 
     clearFlash()
 

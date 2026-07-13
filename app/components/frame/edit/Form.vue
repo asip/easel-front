@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BackendErrorResource } from '~/types'
+
 const route = useRoute()
 
 const { sonner } = useSonner()
@@ -44,7 +46,10 @@ const onEditClick = async (): Promise<void> => {
 }
 
 const redirect404 = async (): Promise<void> => {
-  if (backendErrorInfo.value.status == 404 && backendErrorInfo.value.error?.source == 'Frame') {
+  if (
+    backendErrorInfo.value.status == 404 &&
+    (backendErrorInfo.value.error as BackendErrorResource).source == 'Frame'
+  ) {
     await navigateTo(`/frames/${frame?.value.id}`)
     globalThis.setTimeout(() => {
       reloadNuxtApp()

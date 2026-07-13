@@ -56,11 +56,11 @@ importers:
         specifier: ^8.63.0
         version: 8.63.0(typescript@6.0.3)
       '@vesperjs/nuxt':
-        specifier: 0.9.13
-        version: 0.9.13(@typescript-eslint/typescript-estree@8.63.0(typescript@6.0.3))(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.17(typescript@6.0.3))
+        specifier: 0.9.14
+        version: 0.9.14(@typescript-eslint/typescript-estree@8.63.0(typescript@6.0.3))(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.17(typescript@6.0.3))
       '@vesperjs/shared':
-        specifier: 0.9.13
-        version: 0.9.13(@vue/reactivity@3.6.0-beta.17)
+        specifier: 0.9.14
+        version: 0.9.14(@vue/reactivity@3.6.0-beta.17)
       '@vue/reactivity':
         specifier: ^3.6.0-beta.17
         version: 3.6.0-beta.17
@@ -87,7 +87,7 @@ importers:
         version: 5.4.4
       photoswipe-fullscreen:
         specifier: git+https://codeberg.org/askaaron/photoswipe-fullscreen
-        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45
+        version: git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6
       sanitize-html:
         specifier: ^2.17.6
         version: 2.17.6
@@ -3148,16 +3148,16 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.9.13':
-    resolution: {integrity: sha512-nTaspEK63HBcmn/1Va0+tpdgy77APNyEVzP26KkrrZKq5ds9QTpL5quQsz65XVffEzbI4gEU6b4EPfBgEJKeTg==}
+  '@vesperjs/nuxt@0.9.14':
+    resolution: {integrity: sha512-U/IqTf04j4gNJaVDydcLxXUOYqQhA5m5P3gNy7PDqFafNj9tmQP6EXL/Xtnn2AZC3nfzSb7AtGdmPm1+NPcrmA==}
     peerDependencies:
       '@typescript-eslint/typescript-estree': ^8.63.0
-      typescript-eslint: ^8.62.0
+      typescript-eslint: ^8.63.0
       vite: 8.0.16
       vue: ^3.6.0-beta.17
 
-  '@vesperjs/shared@0.9.13':
-    resolution: {integrity: sha512-t5o5I68ssXZ7m+1X8HmaZ6JMikKkAIdCR5Z94oCeaV5m82nlT3NQt8aWRP84fgvq+/zA9/WmqcAAcNEda9e3JQ==}
+  '@vesperjs/shared@0.9.14':
+    resolution: {integrity: sha512-8MJpCJc4UrQ6GFNNdEYN4fQ6Esgqp5rtIiwqhAhdZoFooBMMKPIcVxpcAwxJ72OpXDmy81Dy5HALd0Vey/I5tQ==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-beta.17
 
@@ -5374,8 +5374,8 @@ packages:
   perfect-debounce@2.1.0:
     resolution: {integrity: sha512-LjgdTytVFXeUgtHZr9WYViYSM/g8MkcTPYDlPa3cDqMirHjKiSZPYd6DoL7pK8AJQr+uWkQvCjHNdiMqsrJs+g==}
 
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45:
-    resolution: {commit: a5b91778544c14db83220bbfcccf1d699cee9c45, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6:
+    resolution: {commit: 1054c3d6219fe491212dbf6334cd175efbedfda6, repo: https://codeberg.org/askaaron/photoswipe-fullscreen, type: git}
     version: 1.0.5
 
   photoswipe@5.4.4:
@@ -9446,14 +9446,14 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.9.13(@typescript-eslint/typescript-estree@8.63.0(typescript@6.0.3))(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.17(typescript@6.0.3))':
+  '@vesperjs/nuxt@0.9.14(@typescript-eslint/typescript-estree@8.63.0(typescript@6.0.3))(typescript-eslint@8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3))(vite@8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0))(vue@3.6.0-beta.17(typescript@6.0.3))':
     dependencies:
       '@typescript-eslint/typescript-estree': 8.63.0(typescript@6.0.3)
       typescript-eslint: 8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@6.0.3)
       vite: 8.0.16(@types/node@24.12.0)(esbuild@0.28.0)(jiti@2.7.0)(terser@5.37.0)(yaml@2.9.0)
       vue: 3.6.0-beta.17(typescript@6.0.3)
 
-  '@vesperjs/shared@0.9.13(@vue/reactivity@3.6.0-beta.17)':
+  '@vesperjs/shared@0.9.14(@vue/reactivity@3.6.0-beta.17)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-beta.17
@@ -12105,7 +12105,7 @@ snapshots:
 
   perfect-debounce@2.1.0: {}
 
-  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#a5b91778544c14db83220bbfcccf1d699cee9c45: {}
+  photoswipe-fullscreen@git+https://codeberg.org/askaaron/photoswipe-fullscreen#1054c3d6219fe491212dbf6334cd175efbedfda6: {}
 
   photoswipe@5.4.4: {}
 
