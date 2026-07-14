@@ -57,7 +57,7 @@
     "happy-dom": "^20.10.6",
     "markuplint": "^4.18.3",
     "nuxt": "^4.4.8",
-    "oxfmt": "^0.58.0",
+    "oxfmt": "^0.59.0",
     "playwright-core": "^1.61.1",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3",
