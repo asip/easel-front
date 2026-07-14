@@ -17,8 +17,6 @@ overrides:
   vitest: ^4.1.10
   vue: ^3.6.0-beta.17
 minimumReleaseAgeExclude:
-  - '@vesperjs/nuxt@0.9.14'
-  - '@vesperjs/shared@0.9.14'
   - '@tiptap/core@3.27.4'
   - '@tiptap/extension-blockquote@3.27.4'
   - '@tiptap/extension-bold@3.27.4'
@@ -58,5 +56,4 @@ minimumReleaseAgeExclude:
   - '@typescript-eslint/utils@8.64.0'
   - '@typescript-eslint/visitor-keys@8.64.0'
   - typescript-eslint@8.64.0
-fetchRetryMaxtimeout: 12000000
-fetchTimeout: 12000000
+
