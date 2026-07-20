@@ -3,11 +3,11 @@ import type PhotoSwipeLightbox from 'photoswipe/lightbox'
 type PsOptions = { selector: string | undefined; anchor?: string }
 
 export const usePhotoSwipe = function ({ selector, anchor = 'a' }: PsOptions) {
-  const { $psLightbox, $psFullscreen } = useNuxtApp()
+  const { $psLightbox, /* $psFullscreen */ } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const psLightbox = $psLightbox as any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const psFullscreen = $psFullscreen as any
+  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // const psFullscreen = $psFullscreen as any
 
   let lightbox: PhotoSwipeLightbox
 
@@ -22,7 +22,7 @@ export const usePhotoSwipe = function ({ selector, anchor = 'a' }: PsOptions) {
         pswpModule: () => import('photoswipe'),
       })
 
-      const fullscreenPlugin = new psFullscreen(lightbox) // eslint-disable-line
+      // const fullscreenPlugin = new psFullscreen(lightbox) // eslint-disable-line
       lightbox.init()
     }
   }
