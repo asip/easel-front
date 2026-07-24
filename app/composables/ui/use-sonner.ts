@@ -5,12 +5,16 @@ export const useSonner = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toast = $toast as any
 
-  const sonner = computed<undefined, Flash | string[]>({
+  const messages = ref<Flash | string[]>()
+
+  const sonner = computed<Flash | string[] | undefined, Flash | string[]>({
     get() {
-      return undefined
+      return messages.value
     },
     set(value: Flash | string[]) {
-      if (Object.keys(value).length === 0) return
+      messages.value = value
+
+      if (('length' in value && value.length == 0) || Object.keys(value).length === 0) return
 
       if ('notice' in value || 'alert' in value) {
         setFlash(value)
