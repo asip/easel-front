@@ -3,7 +3,7 @@ import type PhotoSwipeLightbox from 'photoswipe/lightbox'
 type PsOptions = { selector: string | undefined; anchor?: string }
 
 export const usePhotoSwipe = function ({ selector, anchor = 'a' }: PsOptions) {
-  const { $psLightbox, /* $psFullscreen */ } = useNuxtApp()
+  const { $psLightbox /* , $psFullscreen */ } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const psLightbox = $psLightbox as any
   // // eslint-disable-next-line @typescript-eslint/no-explicit-any
