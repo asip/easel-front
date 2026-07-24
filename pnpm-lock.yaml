@@ -26,28 +26,28 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       '@regle/core':
-        specifier: ^1.28.3
-        version: 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+        specifier: ^1.28.4
+        version: 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@regle/nuxt':
-        specifier: ^1.28.3
-        version: 1.28.3(@vue/devtools-api@8.1.5)(magicast@0.5.3)(typescript@6.0.3)(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))
+        specifier: ^1.28.4
+        version: 1.28.4(@vue/devtools-api@8.1.5)(magicast@0.5.3)(typescript@6.0.3)(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@regle/rules':
-        specifier: ^1.28.3
-        version: 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+        specifier: ^1.28.4
+        version: 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@tiptap/extension-link':
-        specifier: ^3.27.4
+        specifier: ^3.28.0
         version: 3.28.0(@tiptap/core@3.28.0(@tiptap/pm@3.28.0))(@tiptap/pm@3.28.0)
       '@tiptap/extension-underline':
-        specifier: ^3.27.4
+        specifier: ^3.28.0
         version: 3.28.0(@tiptap/core@3.28.0(@tiptap/pm@3.28.0))
       '@tiptap/pm':
-        specifier: ^3.27.4
+        specifier: ^3.28.0
         version: 3.28.0
       '@tiptap/starter-kit':
-        specifier: ^3.27.4
+        specifier: ^3.28.0
         version: 3.28.0
       '@tiptap/vue-3':
-        specifier: ^3.27.4
+        specifier: ^3.28.0
         version: 3.28.0(@floating-ui/dom@1.8.0)(@tiptap/core@3.28.0(@tiptap/pm@3.28.0))(@tiptap/pm@3.28.0)(vue@3.6.0-rc.2(typescript@6.0.3))
       '@vesperjs/nuxt':
         specifier: 0.9.16
@@ -74,8 +74,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.25.0
-        version: 1.25.0
+        specifier: ^1.26.0
+        version: 1.26.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -111,7 +111,7 @@ importers:
         specifier: ^10.5.0
         version: 10.5.0(@vue/compiler-dom@3.6.0-rc.2)(db0@0.3.4)(esbuild@0.28.1)(eslint@10.7.0(jiti@2.7.0))(ioredis@5.11.1)(magicast@0.5.3)(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(rolldown@1.2.0)(rollup@4.62.2)(typescript@6.0.3)(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@tailwindcss/vite':
-        specifier: ^4.3.2
+        specifier: ^4.3.3
         version: 4.3.3(vite@8.1.5(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(yaml@2.9.0))
       '@testing-library/vue':
         specifier: ^8.1.0
@@ -132,11 +132,11 @@ importers:
         specifier: ^2.4.11
         version: 2.4.11(@vue/compiler-dom@3.6.0-rc.2)(@vue/server-renderer@3.6.0-rc.2)(vue@3.6.0-rc.2(typescript@6.0.3))
       baseline-browser-mapping:
-        specifier: ^2.10.43
-        version: 2.10.43
+        specifier: ^2.11.1
+        version: 2.11.1
       daisyui:
-        specifier: ^5.6.18
-        version: 5.6.18
+        specifier: ^5.7.0
+        version: 5.7.0
       eslint:
         specifier: ^10.7.0
         version: 10.7.0(jiti@2.7.0)
@@ -156,7 +156,7 @@ importers:
         specifier: ^1.61.1
         version: 1.61.1
       tailwindcss:
-        specifier: ^4.3.2
+        specifier: ^4.3.3
         version: 4.3.3
       typescript:
         specifier: ^6.0.3
@@ -1920,8 +1920,8 @@ packages:
   '@poppinss/exception@1.2.3':
     resolution: {integrity: sha512-dCED+QRChTVatE9ibtoaxc+WkdzOSjYTKi/+uacHWIsfodVfpsueo3+DKpgU5Px8qXjgmXkSvhXvSCz3fnP9lw==}
 
-  '@regle/core@1.28.3':
-    resolution: {integrity: sha512-IMonbgBt+pkh08YmtPM21V1roMa7yipQ67/dh2Yz12QHK2z02aXZxIwmOINrFADONyv3ZH7FRo6GLvClUmVweQ==}
+  '@regle/core@1.28.4':
+    resolution: {integrity: sha512-eGOM+uGvvpVguxqONYACjjmKyORlLN80YaEfm8vEVOJfqi55eAfzwemdTeqMet3u0BKT4FUeV+tTMuXh8IVefg==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: ^3.6.0-rc.2
@@ -1929,15 +1929,15 @@ packages:
       pinia:
         optional: true
 
-  '@regle/nuxt@1.28.3':
-    resolution: {integrity: sha512-e9ypznVmn3ChDvwFGs+L5V1Aq7xs1R9H81+vBMlOeX5COKWEOWMfXoGU50gnmUdT4VPLtnopWLC5XPEWqVJZYw==}
+  '@regle/nuxt@1.28.4':
+    resolution: {integrity: sha512-lEGq5CBEc2GlKggtXfS8H+WcjcHk7+z6JiIp7z9eNdhPleQ7yXUC91FNXGmCy1Wh8tOTvIEWzbek+l/UDAGZdA==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@regle/rules@1.28.3':
-    resolution: {integrity: sha512-v4bimpCcNTN8Df3PT0/RL6DtfetcdhJZLdJufxa/ZyXIBPehhuG81hfRBY+le/TLDitCmWaR1kQ6gJvD3cmOdQ==}
+  '@regle/rules@1.28.4':
+    resolution: {integrity: sha512-o69Y9U3qCjG29VSEjVlXBkbeqjPPkWH1vBUvoJlYwS1DZXuLvLbw/Kku5wkx1ugukCiiTGAlYd9quiM3wPb/+A==}
 
-  '@regle/schemas@1.28.3':
-    resolution: {integrity: sha512-aGeFOaDqIDtmJHUGqpBYw5AgIH8VrA+yeyalSTbYatudVPQV86XktmkI3HqpT7qJe05bkVqC0H/p1OYfCUs+/w==}
+  '@regle/schemas@1.28.4':
+    resolution: {integrity: sha512-ysqW/2rh2lDbHMnPKLiWzaz0H6gjJIof4JKahwZ1CqwGSDjXucU+cXEJ1SKK5cnaB2w7FtnI1hpAgQy8AvZ69A==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -3300,8 +3300,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  baseline-browser-mapping@2.10.43:
-    resolution: {integrity: sha512-AjYpR78kDWAY3Efj+cDTFH9t9SCoL7OoTp1BOb0mQV7S+6CiLwnWM3FyxhJtdPufDFKzmCSFoUncKjWgJEZTCQ==}
+  baseline-browser-mapping@2.11.1:
+    resolution: {integrity: sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -3589,8 +3589,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.6.18:
-    resolution: {integrity: sha512-6y9rboRQl8fosnusy/5pg11yp+H0LtK3YdtfS4Vf2QVnaYOKasNdYm6hDxeiT6bwZPdl4WRPzVIlIApdo2ssBg==}
+  daisyui@5.7.0:
+    resolution: {integrity: sha512-2/kYbxaKtv349lPrTyxMKC9SHsyA7fBULMSabJljDE82D079cjqz+UyAzsogWgy4sTs5NDvD000acfcFqbO1XA==}
 
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
@@ -4797,8 +4797,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-static@1.25.0:
-    resolution: {integrity: sha512-uJTdyP8vxKELd+Kqk45ahUvOA1rv3Ehy6ZUP7JlBt8UJwmzHgFFts0OZNU3C6/4MDKsssgR9Jrut7GnuqGgYmg==}
+  lucide-static@1.26.0:
+    resolution: {integrity: sha512-6yCpa2ONICjlE19BuneIi75ASd9cCZhqJlzhAlQBi+99m2aZd2cNzxFVbDgPu7JLBZR2uDYO/EpLYtnhGw5Niw==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -8616,7 +8616,7 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@regle/core@1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))':
+  '@regle/core@1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
@@ -8625,14 +8625,14 @@ snapshots:
     optionalDependencies:
       pinia: 4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3))
 
-  '@regle/nuxt@1.28.3(@vue/devtools-api@8.1.5)(magicast@0.5.3)(typescript@6.0.3)(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))':
+  '@regle/nuxt@1.28.4(@vue/devtools-api@8.1.5)(magicast@0.5.3)(typescript@6.0.3)(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))':
     dependencies:
       '@nuxt/kit': 4.4.8(magicast@0.5.3)
       '@nuxt/schema': 4.4.8
-      '@regle/core': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
-      '@regle/rules': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/core': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/rules': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
     optionalDependencies:
-      '@regle/schemas': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/schemas': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))
       pinia: 4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3))
     transitivePeerDependencies:
       - '@vue/devtools-api'
@@ -8643,18 +8643,18 @@ snapshots:
       - vue
       - zod
 
-  '@regle/rules@1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))':
+  '@regle/rules@1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/core': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
       type-fest: 5.7.0
     transitivePeerDependencies:
       - pinia
       - vue
 
-  '@regle/schemas@1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))':
+  '@regle/schemas@1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(valibot@1.4.2(typescript@6.0.3))(vue@3.6.0-rc.2(typescript@6.0.3))':
     dependencies:
-      '@regle/core': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
-      '@regle/rules': 1.28.3(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/core': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
+      '@regle/rules': 1.28.4(pinia@4.0.2(@vue/devtools-api@8.1.5)(typescript@6.0.3)(vue@3.6.0-rc.2(typescript@6.0.3)))(vue@3.6.0-rc.2(typescript@6.0.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.7.0
     optionalDependencies:
@@ -9927,7 +9927,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  baseline-browser-mapping@2.10.43: {}
+  baseline-browser-mapping@2.11.1: {}
 
   bcp-47@2.1.0:
     dependencies:
@@ -9961,7 +9961,7 @@ snapshots:
 
   browserslist@4.28.6:
     dependencies:
-      baseline-browser-mapping: 2.10.43
+      baseline-browser-mapping: 2.11.1
       caniuse-lite: 1.0.30001806
       electron-to-chromium: 1.5.393
       node-releases: 2.0.51
@@ -10225,7 +10225,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.6.18: {}
+  daisyui@5.7.0: {}
 
   date-fns@4.4.0: {}
 
@@ -11502,7 +11502,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-static@1.25.0: {}
+  lucide-static@1.26.0: {}
 
   lz-string@1.5.0: {}
 

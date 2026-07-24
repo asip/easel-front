@@ -19,3 +19,4 @@ overrides:
 minimumReleaseAgeExclude:
   - '@vesperjs/nuxt@0.9.16'
   - '@vesperjs/shared@0.9.16'
+  - lucide-static@1.26.0
