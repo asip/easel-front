@@ -12,11 +12,9 @@ overrides:
   '@vue/runtime-core': ^3.6.0-rc.2
   '@vue/runtime-dom': ^3.6.0-rc.2
   '@vue/shared': ^3.6.0-rc.2
-  eslint: ^10.7.0
+  eslint: ^10.8.0
   typescript-eslint: ^8.65.0
   vitest: ^4.1.10
   vue: ^3.6.0-rc.2
 minimumReleaseAgeExclude:
-  - '@vesperjs/nuxt@0.9.16'
-  - '@vesperjs/shared@0.9.16'
-  - lucide-static@1.26.0
+  - baseline-browser-mapping@2.11.3
