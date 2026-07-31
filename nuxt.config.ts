@@ -49,7 +49,7 @@ export default defineNuxtConfig({
         '@vuepic/vue-datepicker',
         '@yaireo/tagify',
         'photoswipe/lightbox',
-        'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js',
+        /* 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js', */
         'vue3-google-signin',
         '@formkit/tempo',
         'sanitize-html', // CJS
