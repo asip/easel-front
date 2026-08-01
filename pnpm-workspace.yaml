@@ -4,7 +4,7 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - baseline-browser-mapping@2.11.9
+  - baseline-browser-mapping@2.11.10
 overrides:
   '@typescript-eslint/typescript-estree': ^8.65.0
   '@vue/compiler-core': ^3.6.0-rc.2
