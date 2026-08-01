@@ -1,4 +1,4 @@
-import GoogleSignInPlugin from 'vue3-google-signin'
+import vue3GoogleLogin from 'vue3-google-login'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
@@ -8,6 +8,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       clientId: config.public.googleClientId,
     }
 
-    nuxtApp.vueApp.use(GoogleSignInPlugin, options)
+    nuxtApp.vueApp.use(vue3GoogleLogin, options)
   }
 })

@@ -1,4 +1,4 @@
-import type { CredentialResponse } from 'vue3-google-signin'
+import type { CallbackTypes } from 'vue3-google-login'
 import type { User, UserResource, UserErrorProperty, BackendErrorsResource } from '~/types'
 import { useCookieStore } from '../use-cookie-store'
 
@@ -261,7 +261,9 @@ export const useAccount = function () {
     }
   }
 
-  const loginWithGoogle = async (response: CredentialResponse): Promise<void> => {
+  const loginWithGoogle = async (
+    response: CallbackTypes.CredentialPopupResponse,
+  ): Promise<void> => {
     const postData = {
       provider: 'google',
       credential: response.credential,
