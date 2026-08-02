@@ -5,6 +5,7 @@ allowBuilds:
   vue-demi: false
 minimumReleaseAgeExclude:
   - baseline-browser-mapping@2.11.10
+  - daisyui@5.7.11
 overrides:
   '@typescript-eslint/typescript-estree': ^8.65.0
   '@vue/compiler-core': ^3.6.0-rc.2
