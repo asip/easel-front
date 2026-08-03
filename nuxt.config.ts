@@ -50,7 +50,7 @@ export default defineNuxtConfig({
         '@yaireo/tagify',
         'photoswipe/lightbox',
         /* 'photoswipe-fullscreen/photoswipe-fullscreen.esm.min.js', */
-        'vue3-google-signin',
+        'vue3-google-login',
         '@formkit/tempo',
         'sanitize-html', // CJS
         '@regle/core',
