@@ -4,7 +4,7 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 overrides:
-  '@typescript-eslint/typescript-estree': ^8.65.0
+  '@typescript-eslint/typescript-estree': ^8.66.0
   '@vue/compiler-core': ^3.6.0-rc.2
   '@vue/compiler-dom': ^3.6.0-rc.2
   '@vue/compiler-sfc': ^3.6.0-rc.2
@@ -13,6 +13,6 @@ overrides:
   '@vue/runtime-dom': ^3.6.0-rc.2
   '@vue/shared': ^3.6.0-rc.2
   eslint: ^10.8.0
-  typescript-eslint: ^8.65.0
+  typescript-eslint: ^8.66.0
   vitest: ^4.1.10
   vue: ^3.6.0-rc.2
