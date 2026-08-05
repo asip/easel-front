@@ -26,17 +26,17 @@ export const useUser = function () {
   })
 
   const getUser = async (id: string): Promise<void> => {
-    const { data, error } = await queryApi<UserResource, BackendErrorsResource>(`/users/${id}`)
+    const { data: userAttrs, error } = await queryApi<UserResource, BackendErrorsResource>(
+      `/users/${id}`,
+    )
 
     clearFlash()
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
+    } else if (userAttrs) {
       // console.log(userAttrs)
-
-      if (userAttrs) setUser({ from: userAttrs })
+      setUser({ from: userAttrs })
     }
   }
 

@@ -134,10 +134,12 @@ export const useFrame = function () {
       url.value = `/frames/${id}`
     }
 
-    const { token, data, error, refresh } = await queryApi<FrameResource, BackendErrorsResource>(
-      url.value,
-      queryOptions,
-    )
+    const {
+      token,
+      data: frameAttrs,
+      error,
+      refresh,
+    } = await queryApi<FrameResource, BackendErrorsResource>(url.value, queryOptions)
 
     clearFlash()
 
@@ -149,11 +151,9 @@ export const useFrame = function () {
         statusText: error.message,
         message: flash.value.alert,
       })
-    } else if (data) {
-      const frameAttrs = data
+    } else if (frameAttrs) {
       // console.log(frameAttrs)
-
-      if (frameAttrs) setFrame({ from: frameAttrs })
+      setFrame({ from: frameAttrs })
       accountToken.value = token
     }
 
@@ -175,23 +175,24 @@ export const useFrame = function () {
 
     // console.log(account.value.token)
 
-    const { token, data, error, pending } = await mutationApi<FrameResource, BackendErrorsResource>(
-      '/frames/',
-      {
-        method: 'post',
-        body: formData,
-        token: accountToken.value,
-      },
-    )
+    const {
+      token,
+      data: frameAttrs,
+      error,
+      pending,
+    } = await mutationApi<FrameResource, BackendErrorsResource>('/frames/', {
+      method: 'post',
+      body: formData,
+      token: accountToken.value,
+    })
 
     clearFlash()
     clearExternalErrors()
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const frameAttrs = data
-      if (frameAttrs) frame.value.id = frameAttrs.id
+    } else if (frameAttrs) {
+      frame.value.id = frameAttrs.id
       accountToken.value = token
     }
 
@@ -254,8 +255,6 @@ export const useFrame = function () {
     } else {
       accountToken.value = token
     }
-
-    // const frameAttrs = data.value
 
     processing.value = pending
   }

@@ -102,8 +102,7 @@ export const useComment = function () {
     } else {
       accountToken.value = token
     }
-    /* else if (data) {
-      const commentAttrs = data
+    /* else if (commentAttrs) {
     } */
 
     processing.value = pending
@@ -118,23 +117,26 @@ export const useComment = function () {
       },
     }
 
-    const { token, data, error, pending } = await mutationApi<
-      CommentResource,
-      BackendErrorsResource
-    >(`/frames/${comment.value.frame_id}/comments/${comment.value.id}`, {
-      method: 'put',
-      body: postData,
-      token: accountToken.value,
-    })
+    const {
+      token,
+      data: commentAttrs,
+      error,
+      pending,
+    } = await mutationApi<CommentResource, BackendErrorsResource>(
+      `/frames/${comment.value.frame_id}/comments/${comment.value.id}`,
+      {
+        method: 'put',
+        body: postData,
+        token: accountToken.value,
+      },
+    )
 
     clearFlash()
     clearExternalErrors()
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const commentAttrs = data
-
+    } else if (commentAttrs) {
       setComment({ from: commentAttrs })
       accountToken.value = token
     }

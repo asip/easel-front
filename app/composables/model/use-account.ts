@@ -202,27 +202,24 @@ export const useAccount = function () {
     // console.log(account.value.token)
 
     if (account.value.token) {
-      const { token, data, error } = await queryApi<UserResource, BackendErrorsResource>(
-        '/account/profile',
-        {
-          token: accessToken.value,
-          fresh: true,
-        },
-      )
+      const {
+        token,
+        data: userAttrs,
+        error,
+      } = await queryApi<UserResource, BackendErrorsResource>('/account/profile', {
+        token: accessToken.value,
+        fresh: true,
+      })
 
       clearFlash()
 
       if (error) {
         backendErrorInfo.value = error
-      } else if (data) {
-        const userAttrs = data
+      } else if (userAttrs) {
         // console.log(userAttrs)
-
-        if (userAttrs) {
-          setAccount({ from: userAttrs })
-          accountToken.value = token
-          loggedIn.value = true
-        }
+        setAccount({ from: userAttrs })
+        accountToken.value = token
+        loggedIn.value = true
       }
     }
   }
@@ -235,13 +232,14 @@ export const useAccount = function () {
       },
     }
 
-    const { token, data, error } = await mutationApi<UserResource, BackendErrorsResource>(
-      '/sessions/',
-      {
-        method: 'post',
-        body: postData,
-      },
-    )
+    const {
+      token,
+      data: userAttrs,
+      error,
+    } = await mutationApi<UserResource, BackendErrorsResource>('/sessions/', {
+      method: 'post',
+      body: postData,
+    })
 
     // console.log(token.value)
 
@@ -250,14 +248,11 @@ export const useAccount = function () {
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        setAccount({ from: userAttrs })
-        accountToken.value = token
-        loggedIn.value = true
-        // console.log(account.value)
-      }
+    } else if (userAttrs) {
+      setAccount({ from: userAttrs })
+      accountToken.value = token
+      loggedIn.value = true
+      // console.log(account.value)
     }
   }
 
@@ -269,13 +264,14 @@ export const useAccount = function () {
       credential: response.credential,
     }
 
-    const { token, data, error } = await mutationApi<UserResource, BackendErrorsResource>(
-      '/oauth/sessions/',
-      {
-        method: 'post',
-        body: postData,
-      },
-    )
+    const {
+      token,
+      data: userAttrs,
+      error,
+    } = await mutationApi<UserResource, BackendErrorsResource>('/oauth/sessions/', {
+      method: 'post',
+      body: postData,
+    })
 
     // console.log(token.value)
 
@@ -283,8 +279,7 @@ export const useAccount = function () {
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
+    } else if (userAttrs) {
       setAccount({ from: userAttrs })
       accessToken.value = token
       loggedIn.value = true
@@ -306,14 +301,16 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { token, data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
-      '/account/profile/',
-      {
-        method: 'put',
-        body: formData,
-        token: accessToken.value,
-      },
-    )
+    const {
+      token,
+      data: userAttrs,
+      error,
+      pending,
+    } = await mutationApi<UserResource, BackendErrorsResource>('/account/profile/', {
+      method: 'put',
+      body: formData,
+      token: accessToken.value,
+    })
 
     // console.log(data)
     // console.log(errors)
@@ -323,12 +320,9 @@ export const useAccount = function () {
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        setAccount({ from: userAttrs })
-        accessToken.value = token
-      }
+    } else if (userAttrs) {
+      setAccount({ from: userAttrs })
+      accessToken.value = token
     }
 
     processing.value = pending
@@ -348,14 +342,16 @@ export const useAccount = function () {
 
     // console.log(user.value.token)
 
-    const { token, data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
-      '/account/password/',
-      {
-        method: 'put',
-        body: formData,
-        token: accessToken.value,
-      },
-    )
+    const {
+      token,
+      data: userAttrs,
+      error,
+      pending,
+    } = await mutationApi<UserResource, BackendErrorsResource>('/account/password/', {
+      method: 'put',
+      body: formData,
+      token: accessToken.value,
+    })
 
     // console.log(data)
     // console.log(errors)
@@ -365,12 +361,9 @@ export const useAccount = function () {
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        setAccount({ from: userAttrs })
-        accessToken.value = token
-      }
+    } else if (userAttrs) {
+      setAccount({ from: userAttrs })
+      accessToken.value = token
     }
 
     processing.value = pending
@@ -394,23 +387,21 @@ export const useAccount = function () {
   const deleteAccount = async (): Promise<void> => {
     processing.value = true
 
-    const { data, error, pending } = await mutationApi<UserResource, BackendErrorsResource>(
-      '/account',
-      {
-        method: 'delete',
-        token: accessToken.value,
-      },
-    )
+    const {
+      data: userAttrs,
+      error,
+      pending,
+    } = await mutationApi<UserResource, BackendErrorsResource>('/account', {
+      method: 'delete',
+      token: accessToken.value,
+    })
 
     clearFlash()
 
     if (error) {
       backendErrorInfo.value = error
-    } else if (data) {
-      const userAttrs = data
-      if (userAttrs) {
-        clearAccount()
-      }
+    } else if (userAttrs) {
+      clearAccount()
     }
 
     processing.value = pending
