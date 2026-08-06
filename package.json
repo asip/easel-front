@@ -40,7 +40,6 @@
   "devDependencies": {
     "@markuplint/vue-parser": "^4.18.3",
     "@markuplint/vue-spec": "^4.18.0",
-    "@nuxt/devtools": "^3.4.1",
     "@nuxt/eslint": "^1.16.0",
     "@nuxt/test-utils": "^4.1.0",
     "@nuxtjs/i18n": "^10.6.0",
@@ -56,7 +55,7 @@
     "eslint": "^10.8.0",
     "happy-dom": "^20.11.1",
     "markuplint": "^4.18.3",
-    "nuxt": "^4.5.1",
+    "nuxt": "^4.5.2",
     "oxfmt": "^0.62.0",
     "playwright-core": "^1.62.1",
     "tailwindcss": "^4.3.3",
