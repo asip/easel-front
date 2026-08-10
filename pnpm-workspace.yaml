@@ -3,6 +3,8 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+minimumReleaseAgeExclude:
+  - lucide-static@1.31.0
 overrides:
   '@typescript-eslint/typescript-estree': ^8.66.0
   '@vue/compiler-core': ^3.6.0-rc.2
