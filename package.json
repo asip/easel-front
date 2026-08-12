@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "@formkit/tempo": "^1.1.0",
-    "@regle/core": "^1.28.5",
-    "@regle/nuxt": "^1.28.5",
-    "@regle/rules": "^1.28.5",
-    "@tiptap/extension-link": "^3.29.2",
-    "@tiptap/extension-underline": "^3.29.2",
-    "@tiptap/pm": "^3.29.2",
-    "@tiptap/starter-kit": "^3.29.2",
-    "@tiptap/vue-3": "^3.29.2",
+    "@regle/core": "^1.29.0",
+    "@regle/nuxt": "^1.29.0",
+    "@regle/rules": "^1.29.0",
+    "@tiptap/extension-link": "^3.30.0",
+    "@tiptap/extension-underline": "^3.30.0",
+    "@tiptap/pm": "^3.30.0",
+    "@tiptap/starter-kit": "^3.30.0",
+    "@tiptap/vue-3": "^3.30.0",
     "@vesperjs/nuxt": "0.9.16",
     "@vesperjs/shared": "0.9.16",
     "@vuepic/vue-datepicker": "^14.0.0",
@@ -48,7 +48,7 @@
     "@types/google.accounts": "^0.0.18",
     "@types/sanitize-html": "^2.16.1",
     "@types/yaireo__tagify": "^4.27.0",
-    "@typescript-eslint/typescript-estree": "^8.66.0",
+    "@typescript-eslint/typescript-estree": "^8.67.0",
     "@vue/test-utils": "^2.4.11",
     "baseline-browser-mapping": "^2.11.13",
     "daisyui": "^5.7.16",
@@ -56,16 +56,16 @@
     "happy-dom": "^20.11.2",
     "markuplint": "^4.18.3",
     "nuxt": "^4.5.2",
-    "oxfmt": "^0.62.0",
+    "oxfmt": "^0.63.0",
     "playwright-core": "^1.62.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.66.0",
+    "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.10"
   },
   "peerDependencies": {
-    "@vue/reactivity": "^3.6.0-rc.2",
-    "@vue/server-renderer": "^3.6.0-rc.2",
-    "vue": "^3.6.0-rc.2"
+    "@vue/reactivity": "^3.6.0-rc.3",
+    "@vue/server-renderer": "^3.6.0-rc.3",
+    "vue": "^3.6.0-rc.3"
   }
 }

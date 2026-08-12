@@ -4,17 +4,44 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 minimumReleaseAgeExclude:
-  - lucide-static@1.31.0
+  - '@tiptap/core@3.30.0'
+  - '@tiptap/extension-blockquote@3.30.0'
+  - '@tiptap/extension-bold@3.30.0'
+  - '@tiptap/extension-bubble-menu@3.30.0'
+  - '@tiptap/extension-bullet-list@3.30.0'
+  - '@tiptap/extension-code-block@3.30.0'
+  - '@tiptap/extension-code@3.30.0'
+  - '@tiptap/extension-document@3.30.0'
+  - '@tiptap/extension-dropcursor@3.30.0'
+  - '@tiptap/extension-floating-menu@3.30.0'
+  - '@tiptap/extension-gapcursor@3.30.0'
+  - '@tiptap/extension-hard-break@3.30.0'
+  - '@tiptap/extension-heading@3.30.0'
+  - '@tiptap/extension-horizontal-rule@3.30.0'
+  - '@tiptap/extension-italic@3.30.0'
+  - '@tiptap/extension-link@3.30.0'
+  - '@tiptap/extension-list-item@3.30.0'
+  - '@tiptap/extension-list-keymap@3.30.0'
+  - '@tiptap/extension-list@3.30.0'
+  - '@tiptap/extension-ordered-list@3.30.0'
+  - '@tiptap/extension-paragraph@3.30.0'
+  - '@tiptap/extension-strike@3.30.0'
+  - '@tiptap/extension-text@3.30.0'
+  - '@tiptap/extension-underline@3.30.0'
+  - '@tiptap/extensions@3.30.0'
+  - '@tiptap/pm@3.30.0'
+  - '@tiptap/starter-kit@3.30.0'
+  - '@tiptap/vue-3@3.30.0'
 overrides:
-  '@typescript-eslint/typescript-estree': ^8.66.0
-  '@vue/compiler-core': ^3.6.0-rc.2
-  '@vue/compiler-dom': ^3.6.0-rc.2
-  '@vue/compiler-sfc': ^3.6.0-rc.2
-  '@vue/reactivity': ^3.6.0-rc.2
-  '@vue/runtime-core': ^3.6.0-rc.2
-  '@vue/runtime-dom': ^3.6.0-rc.2
-  '@vue/shared': ^3.6.0-rc.2
+  '@typescript-eslint/typescript-estree': ^8.67.0
+  '@vue/compiler-core': ^3.6.0-rc.3
+  '@vue/compiler-dom': ^3.6.0-rc.3
+  '@vue/compiler-sfc': ^3.6.0-rc.3
+  '@vue/reactivity': ^3.6.0-rc.3
+  '@vue/runtime-core': ^3.6.0-rc.3
+  '@vue/runtime-dom': ^3.6.0-rc.3
+  '@vue/shared': ^3.6.0-rc.3
   eslint: ^10.8.0
-  typescript-eslint: ^8.66.0
+  typescript-eslint: ^8.67.0
   vitest: ^4.1.10
-  vue: ^3.6.0-rc.2
+  vue: ^3.6.0-rc.3
