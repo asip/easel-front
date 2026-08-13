@@ -7,4 +7,4 @@ export type {
 } from './list'
 
 export type { RefItems } from './ref-items'
-export type { RefQueryItems } from './ref-query-items'
+export type { QueryItems } from './query-items'

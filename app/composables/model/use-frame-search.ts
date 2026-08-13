@@ -6,9 +6,8 @@ import type {
   FramesResource,
   BackendErrorsResource,
   QueryApiOptions,
+  QueryItems
 } from '~/types'
-
-type QueryItems = Partial<Record<'q' | 'page', string>>
 
 export const useFrameSearch = function () {
   const { queryApi } = useApi()

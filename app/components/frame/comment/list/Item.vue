@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Comment, RefQueryItems } from '~/types'
+import type { Comment, QueryItems } from '~/types'
 
 const { sonner } = useSonner()
 const { loggedIn, account } = useAccount()
@@ -24,7 +24,7 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const queryMapWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 provide('commentUse', commentUse)
 

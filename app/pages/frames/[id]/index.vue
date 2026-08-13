@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePopover } from '~/composables/ui/use-popover'
-import type { RefQueryItems } from '~/types'
+import type { QueryItems } from '~/types'
 
 const { openModal } = useModal()
 const { openPopover, available } = usePopover()
@@ -22,7 +22,7 @@ provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
 
-const queryMapWithRef = computed<RefQueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const queryMapWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const onPageBack = async (): Promise<void> => {
   if (!refMap.value.from) {

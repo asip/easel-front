@@ -31,4 +31,4 @@ export type {
   TagsResource,
 } from './resource'
 
-export type { RefQueryItems } from './query'
+export type { QueryItems } from './query'

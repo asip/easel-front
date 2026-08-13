@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Frame, RefQueryItems } from '~/types'
+import type { Frame, QueryItems } from '~/types'
 
 const frame = defineModel<Frame>()
 
@@ -12,7 +12,7 @@ const { frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
 const { refItems } = useCookieStore()
 
-const queryMapWithRef = computed<RefQueryItems>(() => {
+const queryMapWithRef = computed<QueryItems>(() => {
   if (from == 'profile' || from == 'user_profile') {
     return { ref: JSON.stringify({ from }) }
   } else {
