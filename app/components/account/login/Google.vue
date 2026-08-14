@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { GoogleLogin } from 'vue3-google-login'
-import type { CallbackTypes } from 'vue3-google-login'
+import { GoogleSignInButton } from 'vue3-google-signin'
+import type { CredentialResponse } from 'vue3-google-signin'
 
 const { closeModal } = useModal()
 const { loginWithGoogle } = useAccount()
 
 // handle success event
-const onSuccess = async (response: CallbackTypes.CredentialPopupResponse): Promise<void> => {
+const onSuccess = async (response: CredentialResponse): Promise<void> => {
   // call your backend API here
   // the token can be accessed as: response.credential
   closeModal('#login_modal')
@@ -17,10 +17,23 @@ const onSuccess = async (response: CallbackTypes.CredentialPopupResponse): Promi
 const onError = (): void => {
   // console.error("Login failed");
 }
+
+/*
+const onOneTapSuccess = async (response: CredentialResponse): Promise<void> => {
+  // call your backend API here
+  // the token can be accessed as: response.credential
+  await loginWithGoogle(response)
+}
+
+useOneTap({
+  onSuccess: onOneTapSuccess,
+  onError: onError
+})
+*/
 </script>
 
 <template>
   <ClientOnly>
-    <GoogleLogin :callback="onSuccess" :error="onError" />
+    <GoogleSignInButton @success="onSuccess" @error="onError" />
   </ClientOnly>
 </template>

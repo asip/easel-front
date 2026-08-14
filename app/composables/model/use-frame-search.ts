@@ -6,7 +6,7 @@ import type {
   FramesResource,
   BackendErrorsResource,
   QueryApiOptions,
-  QueryItems
+  QueryItems,
 } from '~/types'
 
 export const useFrameSearch = function () {
