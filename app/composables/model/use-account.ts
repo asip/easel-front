@@ -2,7 +2,7 @@ import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, UserErrorProperty, BackendErrorsResource } from '~/types'
 import { useCookieStore } from '../use-cookie-store'
 
-interface LoginParams {
+interface LoginForm {
   email: string
   password: string
 }
@@ -154,14 +154,14 @@ export const useAccount = function () {
 
   const { backendErrorInfo } = useApiError(flash, { caller: { externalErrors, clearAccount } })
 
-  const loginParams = ref<LoginParams>({
+  const loginForm = ref<LoginForm>({
     email: '',
     password: '',
   })
 
-  const clearLoginParams = (): void => {
-    loginParams.value.email = ''
-    loginParams.value.password = ''
+  const clearLoginForm = (): void => {
+    loginForm.value.email = ''
+    loginForm.value.password = ''
   }
 
   const loggedIn = useState<boolean>('loggedIn', () => {
@@ -227,8 +227,8 @@ export const useAccount = function () {
   const login = async (): Promise<void> => {
     const postData = {
       user: {
-        email: loginParams.value.email,
-        password: loginParams.value.password,
+        email: loginForm.value.email,
+        password: loginForm.value.password,
       },
     }
 
@@ -417,8 +417,8 @@ export const useAccount = function () {
     initTimeZone,
     clearProfile,
     loggedIn,
-    loginParams,
-    clearLoginParams,
+    loginForm,
+    clearLoginForm,
     externalErrors,
     clearExternalErrors,
     signup,

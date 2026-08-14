@@ -2,20 +2,13 @@
 const { closeModal } = useModal()
 
 const { sonner } = useSonner()
-const {
-  loginParams,
-  login,
-  success,
-  flash,
-  externalErrors,
-  clearLoginParams,
-  clearExternalErrors,
-} = inject('accountUse') as UseAccountType
+const { loginForm, login, success, flash, externalErrors, clearLoginForm, clearExternalErrors } =
+  inject('accountUse') as UseAccountType
 const { signinRules } = useAccountRules()
 
-const { r$ } = useI18nRegle(loginParams, signinRules, { externalErrors })
+const { r$ } = useI18nRegle(loginForm, signinRules, { externalErrors })
 
-watch(loginParams.value, () => {
+watch(loginForm.value, () => {
   clearExternalErrors()
   r$.$clearExternalErrors()
 })
@@ -27,7 +20,7 @@ const onLoginClick = async (): Promise<void> => {
     await login()
     sonner.value = flash.value
     if (success) {
-      clearLoginParams()
+      clearLoginForm()
       r$.$reset()
       closeModal('#login_modal')
       reloadNuxtApp()
@@ -36,7 +29,7 @@ const onLoginClick = async (): Promise<void> => {
 }
 
 const clearForm = (): void => {
-  clearLoginParams()
+  clearLoginForm()
   clearExternalErrors()
   r$.$clearExternalErrors()
   r$.$reset()
@@ -57,7 +50,7 @@ defineExpose({ clearForm })
             <td>
               <input
                 id="login_email"
-                v-model="loginParams.email"
+                v-model="loginForm.email"
                 type="email"
                 placeholder=""
                 autocomplete="email"
@@ -73,7 +66,7 @@ defineExpose({ clearForm })
             <td>
               <input
                 id="login_password"
-                v-model="loginParams.password"
+                v-model="loginForm.password"
                 type="password"
                 placeholder=""
                 autocomplete="current-password"
