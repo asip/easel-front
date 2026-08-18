@@ -14,7 +14,7 @@ export const useCookieStore = function () {
 
   const refItems = useCookie('ref', { maxAge: 60 * 60 * 24, sameSite: 'lax' })
 
-  const refMap = computed<RefItems>({
+  const refItemsMap = computed<RefItems>({
     get() {
       return refItems.value ? (JSON.parse(refItems.value) as RefItems) : {}
     },
@@ -23,5 +23,5 @@ export const useCookieStore = function () {
     },
   })
 
-  return { accessToken, refItems, refMap }
+  return { accessToken, refItems, refItemsMap }
 }
