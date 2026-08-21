@@ -9,7 +9,7 @@ const { refItems } = useCookieStore()
 const from = referers.value[route.path]
 
 const onPageBack = async (): Promise<void> => {
-  refItems.value = '{}'
+  refItems.value = "{}"
   await navigateTo(from)
 }
 </script>
