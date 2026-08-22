@@ -108,7 +108,7 @@ export const useFrameSearch = function () {
     decrement,
     minPage,
     maxPage,
-  } = useMoreScroll()
+  } = useMorePage()
 
   const searchFrame = async (options?: { cache?: boolean }): Promise<void> => {
     const url = ref('')

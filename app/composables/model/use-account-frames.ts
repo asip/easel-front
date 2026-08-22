@@ -50,7 +50,7 @@ export const useAccountFrames = function () {
     increment,
     minPage,
     maxPage,
-  } = useMoreScroll({
+  } = useMorePage({
     key: 'profile',
   })
 

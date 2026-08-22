@@ -59,7 +59,7 @@ export const useUserFrames = function () {
     decrement,
     minPage,
     maxPage,
-  } = useMoreScroll({
+  } = useMorePage({
     key: 'userProfile',
   })
 
