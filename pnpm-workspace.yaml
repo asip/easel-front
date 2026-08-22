@@ -5,14 +5,14 @@ allowBuilds:
   vue-demi: false
 overrides:
   '@typescript-eslint/typescript-estree': ^8.67.0
-  '@vue/compiler-core': ^3.6.0-rc.4
-  '@vue/compiler-dom': ^3.6.0-rc.4
-  '@vue/compiler-sfc': ^3.6.0-rc.4
-  '@vue/reactivity': ^3.6.0-rc.4
-  '@vue/runtime-core': ^3.6.0-rc.4
-  '@vue/runtime-dom': ^3.6.0-rc.4
-  '@vue/shared': ^3.6.0-rc.4
-  eslint: ^10.8.0
+  '@vue/compiler-core': ^3.6.0-rc.5
+  '@vue/compiler-dom': ^3.6.0-rc.5
+  '@vue/compiler-sfc': ^3.6.0-rc.5
+  '@vue/reactivity': ^3.6.0-rc.5
+  '@vue/runtime-core': ^3.6.0-rc.5
+  '@vue/runtime-dom': ^3.6.0-rc.5
+  '@vue/shared': ^3.6.0-rc.5
+  eslint: ^10.8.1
   typescript-eslint: ^8.67.0
-  vitest: ^4.1.10
-  vue: ^3.6.0-rc.4
+  vitest: ^4.1.11
+  vue: ^3.6.0-rc.5
