@@ -7,7 +7,7 @@ const { p2br } = useTiptap()
 
 const commentModel = defineModel<Comment>()
 
-const sanitizedCommentBody = computed<string>(() =>
+const commentBody = computed<string>(() =>
   p2br(sanitizeHtml(commentModel.value?.body ?? '')).replace(/\n/g, '<br>'),
 )
 </script>
@@ -17,7 +17,7 @@ const sanitizedCommentBody = computed<string>(() =>
     <tbody>
       <tr>
         <td class="wrap-break-word">
-          <span v-html="sanitizedCommentBody" />
+          <span v-html="commentBody" />
         </td>
       </tr>
     </tbody>

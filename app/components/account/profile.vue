@@ -5,7 +5,7 @@ const { p2br } = useTiptap()
 
 const { account } = inject('accountUse') as UseAccountType
 
-const sanitizedProfile = computed<string>(() => {
+const profile = computed<string>(() => {
   return p2br(sanitizeHtml(account.value.profile)).replace(/\n/g, '<br>')
 })
 </script>
@@ -30,7 +30,7 @@ const sanitizedProfile = computed<string>(() => {
         <tr>
           <td>{{ $t('model.user.profile') }}：</td>
           <td class="wrap-break-word">
-            <span v-html="sanitizedProfile" />
+            <span v-html="profile" />
           </td>
         </tr>
         <tr>

@@ -8,7 +8,7 @@ const { formatHTML } = useDatetime()
 
 const frame = defineModel<Frame>()
 
-const sanitizedComment = computed<string>(() => {
+const comment = computed<string>(() => {
   return p2br(sanitizeHtml(frame.value?.comment ?? '')).replace(/\n/g, '<br>')
 })
 </script>
@@ -32,7 +32,7 @@ const sanitizedComment = computed<string>(() => {
         <tr>
           <td>{{ $t('model.frame.comment') }}：</td>
           <td class="wrap-break-word">
-            <span v-html="sanitizedComment" />
+            <span v-html="comment" />
           </td>
         </tr>
       </tbody>

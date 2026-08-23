@@ -7,7 +7,7 @@ const user = defineModel<User>()
 
 const { p2br } = useTiptap()
 
-const sanitizedProfile = computed<string>(() => {
+const profile = computed<string>(() => {
   if (user.value) {
     return p2br(sanitizeHtml(user.value?.profile)).replace(/\n/g, '<br>')
   } else {
@@ -24,7 +24,7 @@ const sanitizedProfile = computed<string>(() => {
       <tbody>
         <tr>
           <td class="flex wrap-break-word items-baseline">
-            <span v-html="sanitizedProfile" />
+            <span v-html="profile" />
           </td>
         </tr>
       </tbody>
