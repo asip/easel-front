@@ -50,11 +50,11 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
 
       tags.value = tagList.value
 
-      setEventCallbacks()
+      eventCallbacks()
     }
   }
 
-  const setEventCallbacks = (): void => {
+  const eventCallbacks = (): void => {
     tagEditor?.on('input', (ev) => onInput(ev))
 
     tagEditor?.on('add', () => {
