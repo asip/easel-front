@@ -2,10 +2,11 @@ import type {
   Frame,
   FrameResource,
   FramesResource,
-  UserFrameQuery,
   BackendErrorsResource,
   QueryApiOptions,
 } from '~/types'
+
+import { useUserFrameQuery } from './query'
 
 export const useUserFrames = function () {
   const { queryApi } = useApi()
@@ -13,26 +14,9 @@ export const useUserFrames = function () {
 
   const { flash, clearFlash } = useFlash()
 
+  const { frameQuery, initFrameQuery } = useUserFrameQuery()
+
   const { backendErrorInfo } = useApiError(flash)
-
-  const frameQuery = useState<UserFrameQuery>('user.frameQuery', () => {
-    return {
-      user_id: null,
-      page: 1,
-      pages: 1,
-      total: 1,
-    }
-  })
-
-  const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
-    if (userId) {
-      if (frameQuery.value.user_id !== userId) {
-        frameQuery.value.page = 1
-        frameQuery.value.pages = 1
-      }
-      frameQuery.value.user_id = userId
-    }
-  }
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
