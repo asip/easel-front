@@ -19,14 +19,6 @@ export const useFrameSearch = function () {
 
   const { loggedIn, accountToken } = useAccount()
 
-  const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
-    const frame: Frame = create({ from })
-    frame.file = null
-    frame.preview_url = null
-    frame.page = page
-    return frame
-  }
-
   const frameQuery = useState<FrameQuery>('search.frameQuery', () => {
     return {
       items: {},
@@ -51,6 +43,16 @@ export const useFrameSearch = function () {
     } else {
       frameQuery.value.page = currentPage.value
     }
+  }
+
+  const clearFrameQuery = (): void => {
+    const { items } = frameQuery.value
+    if (items.word) frameQuery.value.items.word = null
+    if (items.frame_name) frameQuery.value.items.frame_name = null
+    if (items.tag_name) frameQuery.value.items.tag_name = null
+    if (items.user_name) frameQuery.value.items.user_name = null
+    if (items.creator_name) frameQuery.value.items.creator_name = null
+    if (items.date) frameQuery.value.items.date = null
   }
 
   const qItems = computed<FrameCriteria>(() => {
@@ -79,14 +81,12 @@ export const useFrameSearch = function () {
     return query
   })
 
-  const clearSearchCriteria = (): void => {
-    const { items } = frameQuery.value
-    if (items.word) frameQuery.value.items.word = null
-    if (items.frame_name) frameQuery.value.items.frame_name = null
-    if (items.tag_name) frameQuery.value.items.tag_name = null
-    if (items.user_name) frameQuery.value.items.user_name = null
-    if (items.creator_name) frameQuery.value.items.creator_name = null
-    if (items.date) frameQuery.value.items.date = null
+  const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
+    const frame: Frame = create({ from })
+    frame.file = null
+    frame.preview_url = null
+    frame.page = page
+    return frame
   }
 
   const frameList = ref<Frame[]>([])
@@ -181,6 +181,7 @@ export const useFrameSearch = function () {
   return {
     frameQuery,
     initFrameQuery,
+    clearFrameQuery,
     searchFrame,
     current,
     prev,
@@ -190,7 +191,6 @@ export const useFrameSearch = function () {
     frames,
     queryMap,
     qItems,
-    clearSearchCriteria,
     minPage,
     maxPage,
   }

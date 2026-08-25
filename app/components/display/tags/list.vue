@@ -7,10 +7,10 @@ const { list = false } = defineProps<{
   list?: boolean
 }>()
 
-const { frameQuery, queryMap, current, clearSearchCriteria } = useFrameSearch()
+const { frameQuery, queryMap, current, clearFrameQuery } = useFrameSearch()
 
 const onClick = async (tag: string): Promise<void> => {
-  clearSearchCriteria()
+  clearFrameQuery()
   frameQuery.value.items.tag_name = tag
   frameQuery.value.page = 1
   await current({ cache: false })
