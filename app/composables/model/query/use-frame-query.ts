@@ -55,7 +55,7 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
   const queryMap = computed<QueryItems>(() => {
     const items = qItems.value
     const page = currentPage.value
-    const query: { q?: string; page?: string } = {}
+    const query: QueryItems = {}
 
     if (Object.keys(items).length) query.q = JSON.stringify(items)
     if (page !== undefined && page != null && page !== 1) query.page = page.toString()
