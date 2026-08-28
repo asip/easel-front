@@ -4,9 +4,10 @@ type TagEditorOptions = {
   el: Ref<HTMLInputElement | HTMLTextAreaElement | null>
   tagList: Ref<string[] | undefined>
   tagSearch?: TagSearchType
+  settings?: Tagify.TagifySettings
 }
 
-export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptions) {
+export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp()
@@ -14,6 +15,17 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
   const tagify = $tagify as any
 
   let controller: AbortController
+
+  const options = settings ?? {
+    maxTags: 5,
+    dropdown: {
+      classname: 'color-blue',
+      enabled: 0,
+      maxItems: 30,
+      closeOnSelect: false,
+      highlightFirst: true,
+    },
+  }
 
   const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
     get() {
@@ -37,16 +49,7 @@ export const useTagEditor = function ({ el, tagList, tagSearch }: TagEditorOptio
 
   const initTagEditor = (): void => {
     if (el.value) {
-      tagEditor = new tagify(el.value, {
-        maxTags: 5,
-        dropdown: {
-          classname: 'color-blue',
-          enabled: 0,
-          maxItems: 30,
-          closeOnSelect: false,
-          highlightFirst: true,
-        },
-      })
+      tagEditor = new tagify(el.value, options)
 
       tags.value = tagList.value
 
