@@ -2,12 +2,12 @@ import type { TagSearchType } from '~/components/TagEditor.vue'
 
 type TagEditorOptions = {
   el: Ref<HTMLInputElement | HTMLTextAreaElement | null>
+  settings: Tagify.TagifySettings
   tagList: Ref<string[] | undefined>
   tagSearch?: TagSearchType
-  settings?: Tagify.TagifySettings
 }
 
-export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagEditorOptions) {
+export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp()
@@ -15,17 +15,6 @@ export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagE
   const tagify = $tagify as any
 
   let controller: AbortController
-
-  const options = settings ?? {
-    maxTags: 5,
-    dropdown: {
-      classname: 'color-blue',
-      enabled: 0,
-      maxItems: 30,
-      closeOnSelect: false,
-      highlightFirst: true,
-    },
-  }
 
   const tags = computed<Tagify.TagData[] | undefined, string[] | undefined>({
     get() {
@@ -49,7 +38,7 @@ export const useTagEditor = function ({ el, tagList, tagSearch, settings }: TagE
 
   const initTagEditor = (): void => {
     if (el.value) {
-      tagEditor = new tagify(el.value, options)
+      tagEditor = new tagify(el.value, settings)
 
       tags.value = tagList.value
 

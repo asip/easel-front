@@ -1,4 +1,6 @@
 <script lang="ts">
+import type Tagify from '@yaireo/tagify'
+
 export interface TagSearchType {
   searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
   tags: Ref<string[] | undefined>
@@ -8,7 +10,8 @@ export interface TagSearchType {
 <script lang="ts" setup>
 const model = defineModel<string[]>()
 
-const { tagSearch } = defineProps<{
+const { settings, tagSearch } = defineProps<{
+  settings: Tagify.TagifySettings
   // eslint-disable-next-line vue/require-default-prop
   tagSearch?: TagSearchType | undefined
 }>()
@@ -16,6 +19,7 @@ const { tagSearch } = defineProps<{
 const tagEditor = useTemplateRef('tagEditorRef')
 const { initTagEditor, closeTagEditor } = useTagEditor({
   el: tagEditor,
+  settings,
   tagList: model,
   tagSearch,
 })
