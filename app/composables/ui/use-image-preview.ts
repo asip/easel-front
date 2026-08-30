@@ -3,7 +3,7 @@ type ImagePreviewOptions = {
 }
 
 export const useImagePreview = function ({ previewUrl }: ImagePreviewOptions): {
-  preview: globalThis.WritableComputedRef<string | null | undefined, File | null | undefined>
+  preview: WritableComputedRef<string | null | undefined, File | null | undefined>
 } {
   const preview = computed<string | null | undefined, File | null | undefined>({
     get() {
