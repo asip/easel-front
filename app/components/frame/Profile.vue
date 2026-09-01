@@ -4,7 +4,7 @@ import sanitizeHtml from 'sanitize-html'
 import type { Frame } from '~/types'
 
 const { p2br } = useTiptap()
-const { formatHTML } = useDatetime()
+const { formatDT } = useDatetime()
 
 const frame = defineModel<Frame>()
 
@@ -27,7 +27,7 @@ const comment = computed<string>(() => {
         </tr>
         <tr>
           <td>{{ $t('model.frame.shooted_at') }}：</td>
-          <td>{{ formatHTML(frame?.shooted_at ?? '', 'YYYY/MM/DD (ddd) HH:mm') }}</td>
+          <td>{{ formatDT(frame?.shooted_at ?? '', 'YYYY/MM/DD (ddd) HH:mm') }}</td>
         </tr>
         <tr>
           <td>{{ $t('model.frame.comment') }}：</td>
