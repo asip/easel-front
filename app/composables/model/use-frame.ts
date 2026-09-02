@@ -17,7 +17,7 @@ export const useFrame = function () {
   const { upDTL, downDTL } = useDatetime()
   const { copy } = useEntity<Frame, FrameResource>()
 
-  const { upTZ, downTZ, formatTZ } = useTimeZone()
+  const { upTZ, downTZ, formatTZ: formatWithTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
   const { loggedIn, accountToken, clearAccount } = useAccount()
 
@@ -87,8 +87,8 @@ export const useFrame = function () {
 
   const upFrameTZ = (frame: Frame): void => {
     frame.shooted_at = upTZ(frame.shooted_at)
-    frame.created_at = formatTZ(frame.created_at, 'YYYY/MM/DD (ddd) HH:mm')
-    frame.updated_at = formatTZ(frame.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
+    frame.created_at = formatWithTZ(frame.created_at, 'YYYY/MM/DD (ddd) HH:mm')
+    frame.updated_at = formatWithTZ(frame.updated_at, 'YYYY/MM/DD (ddd) HH:mm')
   }
 
   const setFrame = ({ from }: { from: FrameResource }): void => {
