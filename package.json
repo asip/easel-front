@@ -50,10 +50,10 @@
     "@types/yaireo__tagify": "^4.27.0",
     "@typescript-eslint/typescript-estree": "^8.69.0",
     "@vue/test-utils": "^2.5.0",
-    "baseline-browser-mapping": "^2.11.20",
-    "daisyui": "^5.7.27",
+    "baseline-browser-mapping": "^2.11.21",
+    "daisyui": "^5.7.28",
     "eslint": "^10.9.1",
-    "happy-dom": "^20.13.2",
+    "happy-dom": "^20.14.0",
     "markuplint": "^4.18.3",
     "nuxt": "^4.5.2",
     "oxfmt": "^0.66.0",
@@ -61,7 +61,7 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.69.0",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "peerDependencies": {
     "@vue/reactivity": "^3.6.0-rc.6",
