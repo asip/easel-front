@@ -3,9 +3,9 @@ const { sonner } = useSonner()
 const { openModal, closeModal } = useModal()
 const { loggedIn, account, user, updatePassword, externalErrors, processing, success, flash } =
   inject('accountUse') as UseAccountType
-const { passwordRules } = useAccountRules(user.value)
+const { passwordSchema } = useAccountSchemas(user.value)
 
-const { r$ } = useI18nRegle(user, passwordRules, { externalErrors })
+const { r$ } = useI18nRegle(user, passwordSchema, { externalErrors })
 
 const onUpdateClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()

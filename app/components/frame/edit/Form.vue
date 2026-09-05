@@ -19,9 +19,9 @@ const {
   success,
   flash,
 } = inject('frameUse') as UseFrameType
-const { editFrameRules } = useFrameRules()
+const { editFrameSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frame, editFrameRules, { externalErrors })
+const { r$ } = useI18nRegle(frame, editFrameSchema, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tag_list)

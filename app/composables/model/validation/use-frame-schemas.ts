@@ -1,7 +1,7 @@
 import { required, minLength, maxLength, maxFileSize } from '@regle/rules'
 
-export const useFrameRules = () => {
-  const newFrameRules = {
+export const useFrameSchemas = () => {
+  const newFrameSchema = {
     file: { required, maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
@@ -17,7 +17,7 @@ export const useFrameRules = () => {
     },
   }
 
-  const editFrameRules = {
+  const editFrameSchema = {
     name: {
       required,
       minLength: minLength(1),
@@ -32,7 +32,7 @@ export const useFrameRules = () => {
     },
   }
 
-  const searchRules = {
+  const searchSchema = {
     word: { maxLength: maxLength(40) },
     frame_name: { maxLength: maxLength(30) },
     tag_name: { maxLength: maxLength(10) },
@@ -40,5 +40,5 @@ export const useFrameRules = () => {
     creator_name: { maxLength: maxLength(40) },
   }
 
-  return { newFrameRules, editFrameRules, searchRules }
+  return { newFrameSchema, editFrameSchema, searchSchema }
 }

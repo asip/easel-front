@@ -10,7 +10,7 @@ export {
   useSonner,
 } from './ui'
 
-export { useCommentRules, useFrameRules, useAccountRules } from './model/validation'
+export { useCommentSchemas, useFrameSchemas, useAccountSchemas } from './model/validation'
 
 export {
   useAccount,

@@ -1,3 +1,3 @@
-export { useCommentRules } from './use-comment-rules'
-export { useFrameRules } from './use-frame-rules'
-export { useAccountRules } from './use-account-rules'
+export { useCommentSchemas } from './use-comment-schemas'
+export { useFrameSchemas } from './use-frame-schemas'
+export { useAccountSchemas } from './use-account-schemas'

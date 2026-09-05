@@ -18,9 +18,9 @@ const {
 } = useAccount()
 const { preview } = useImagePreview({ previewUrl })
 
-const { signupRules } = useAccountRules(user.value)
+const { signupSchema } = useAccountSchemas(user.value)
 
-const { r$ } = useI18nRegle(user, signupRules, { externalErrors })
+const { r$ } = useI18nRegle(user, signupSchema, { externalErrors })
 
 const file = useTemplateRef('file')
 

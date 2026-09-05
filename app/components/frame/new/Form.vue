@@ -19,9 +19,9 @@ const {
 } = inject('frameUse') as UseFrameType
 const { preview } = useImagePreview({ previewUrl })
 
-const { newFrameRules } = useFrameRules()
+const { newFrameSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frame, newFrameRules, { externalErrors })
+const { r$ } = useI18nRegle(frame, newFrameSchema, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tag_list)

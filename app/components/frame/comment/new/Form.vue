@@ -18,9 +18,9 @@ const { getComments } = useComments()
 
 const { frameId } = defineProps<{ frameId: number | undefined }>()
 
-const { commentRules } = useCommentRules()
+const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentRules, { externalErrors })
+const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
 
 const editor = useTemplateRef('editor')
 

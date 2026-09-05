@@ -1,12 +1,12 @@
 import type { User } from '~/types'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
-export const useAccountRules = function (user?: User) {
+export const useAccountSchemas = function (user?: User) {
   const { $i18n } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { t } = $i18n as any
 
-  const signupRules = () => ({
+  const signupSchema = () => ({
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
@@ -27,12 +27,12 @@ export const useAccountRules = function (user?: User) {
     time_zone: { required },
   })
 
-  const signinRules = {
+  const signinSchema = {
     email: { required, email },
     password: { required, minLength: minLength(6), maxLength: maxLength(128) },
   }
 
-  const userRules = () => ({
+  const userSchema = () => ({
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
@@ -45,7 +45,7 @@ export const useAccountRules = function (user?: User) {
     password_confirmation: { sameAs: sameAs(user?.password, t('model.user.password')) },
   })
 
-  const profileRules = {
+  const profileSchema = {
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
     name: {
       required,
@@ -57,11 +57,11 @@ export const useAccountRules = function (user?: User) {
     time_zone: { required },
   }
 
-  const passwordRules = () => ({
+  const passwordSchema = () => ({
     current_password: { required },
     password: { required, minLength: minLength(6), maxLength: maxLength(128) },
     password_confirmation: { sameAs: sameAs(user?.password, t('model.user.password')) },
   })
 
-  return { signupRules, signinRules, userRules, profileRules, passwordRules }
+  return { signupSchema, signinSchema, userSchema, profileSchema, passwordSchema }
 }

@@ -16,9 +16,9 @@ const {
 } = inject('accountUse') as UseAccountType
 const { preview } = useImagePreview({ previewUrl })
 
-const { profileRules } = useAccountRules()
+const { profileSchema } = useAccountSchemas()
 
-const { r$ } = useI18nRegle(user, profileRules, { externalErrors })
+const { r$ } = useI18nRegle(user, profileSchema, { externalErrors })
 
 const file = useTemplateRef('file')
 

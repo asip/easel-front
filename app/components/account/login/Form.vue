@@ -4,9 +4,9 @@ const { closeModal } = useModal()
 const { sonner } = useSonner()
 const { loginForm, login, success, flash, externalErrors, clearLoginForm, clearExternalErrors } =
   inject('accountUse') as UseAccountType
-const { signinRules } = useAccountRules()
+const { signinSchema } = useAccountSchemas()
 
-const { r$ } = useI18nRegle(loginForm, signinRules, { externalErrors })
+const { r$ } = useI18nRegle(loginForm, signinSchema, { externalErrors })
 
 watch(loginForm.value, () => {
   clearExternalErrors()

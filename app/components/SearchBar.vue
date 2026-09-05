@@ -5,9 +5,9 @@ import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
 const { frameQuery, queryMap, qItems, current, clearFrameQuery } = useFrameSearch()
-const { searchRules } = useFrameRules()
+const { searchSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frameQuery.value.items, searchRules)
+const { r$ } = useI18nRegle(frameQuery.value.items, searchSchema)
 
 const dateWord = computed<Date | null>({
   get() {
