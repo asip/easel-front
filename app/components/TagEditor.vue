@@ -17,7 +17,7 @@ const { settings, tagSearch } = defineProps<{
 }>()
 
 const tagEditor = useTemplateRef('tagEditorRef')
-const { initTagEditor, closeTagEditor } = useTagEditor({
+const { tags, initTagEditor, closeTagEditor } = useTagEditor({
   el: tagEditor,
   settings,
   tagList: model,
@@ -26,7 +26,8 @@ const { initTagEditor, closeTagEditor } = useTagEditor({
 
 onMounted(() => {
   // console.log(model.value)
-  if (model.value) initTagEditor()
+  initTagEditor()
+  tags.value = model.value
 })
 
 onUnmounted(() => {

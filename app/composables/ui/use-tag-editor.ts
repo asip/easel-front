@@ -39,8 +39,6 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
     if (el.value) {
       tagEditor = new tagify(el.value, settings)
 
-      tags.value = tagList.value
-
       eventCallbacks()
     }
   }
@@ -74,5 +72,5 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
     }
   }
 
-  return { initTagEditor, closeTagEditor }
+  return { tags, initTagEditor, closeTagEditor }
 }
