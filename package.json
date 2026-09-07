@@ -41,7 +41,7 @@
     "@markuplint/vue-parser": "^4.18.3",
     "@markuplint/vue-spec": "^4.18.0",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/test-utils": "^4.2.0",
+    "@nuxt/test-utils": "^4.3.2",
     "@nuxtjs/i18n": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/vue": "^8.1.0",
@@ -60,8 +60,7 @@
     "playwright-core": "^1.63.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.69.0",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.69.0"
   },
   "peerDependencies": {
     "@vue/reactivity": "^3.6.0-rc.7",
