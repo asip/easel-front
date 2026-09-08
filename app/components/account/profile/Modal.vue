@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { openModal, closeModal, isOutside } = useModal()
-const { openPopover, available } = usePopover()
+const { openPopover, supported } = usePopover()
 const { loggedIn, account, user, setAccount, initTimeZone } = inject('accountUse') as UseAccountType
 
 const onEditClick = (): void => {
@@ -17,7 +17,7 @@ const onEditPasswordClick = (): void => {
 }
 
 const onDeleteAccountClick = (): void => {
-  if (available.value) {
+  if (supported) {
     openPopover('#delete_account_popover')
   } else {
     openModal('#delete_account_modal')
@@ -52,10 +52,10 @@ const onOutsideClick = (ev: PointerEvent): void => {
       <AccountProfile />
     </div>
     <ClientOnly>
-      <AccountDeletePopover v-if="available" />
+      <AccountDeletePopover v-if="supported" />
     </ClientOnly>
   </dialog>
   <ClientOnly>
-    <AccountDeleteModal v-if="!available" />
+    <AccountDeleteModal v-if="!supported" />
   </ClientOnly>
 </template>

@@ -17,7 +17,7 @@ export const usePopover = function () {
     popoverEl?.hidePopover()
   }
 
-  const available = computed(() => {
+  const supported = computed(() => {
     const { browser } = useUserAgent()
     const browserName = browser?.name
     const browserVersion = parseFloat(browser?.version ?? '0')
@@ -28,5 +28,5 @@ export const usePopover = function () {
     )
   })
 
-  return { openPopover, closePopover, available }
+  return { openPopover, closePopover, supported: supported.value }
 }

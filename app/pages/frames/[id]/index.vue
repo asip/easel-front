@@ -3,7 +3,7 @@ import { usePopover } from '~/composables/ui/use-popover'
 import type { QueryItems } from '~/types'
 
 const { openModal } = useModal()
-const { openPopover, available } = usePopover()
+const { openPopover, supported } = usePopover()
 
 const route = useRoute()
 const { id } = route.params
@@ -43,7 +43,7 @@ const onUserNameClick = async (): Promise<void> => {
 }
 
 const onDeleteClick = (): void => {
-  if (available.value) {
+  if (supported) {
     openPopover('#delete_frame_popover')
   } else {
     openModal('#delete_frame_modal')
@@ -104,8 +104,8 @@ const onDeleteClick = (): void => {
       </div>
     </div>
     <ClientOnly>
-      <FrameDeletePopover v-if="available" />
-      <FrameDeleteModal v-if="!available" />
+      <FrameDeletePopover v-if="supported" />
+      <FrameDeleteModal v-if="!supported" />
     </ClientOnly>
     <FrameComments v-model="frame" />
   </div>
