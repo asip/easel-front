@@ -19,8 +19,8 @@ export const usePopover = function () {
 
   const available = computed(() => {
     const { browser } = useUserAgent()
-    const browserName = browser.name
-    const browserVersion = parseFloat(browser.version ?? '0')
+    const browserName = browser?.name
+    const browserVersion = parseFloat(browser?.version ?? '0')
     return (
       (browserName == 'Safari' && browserVersion >= 26.2) ||
       ((browserName == 'Chrome' || browserName == 'Edge') && browserVersion >= 135) ||
