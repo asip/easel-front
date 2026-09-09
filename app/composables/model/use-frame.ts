@@ -17,7 +17,7 @@ export const useFrame = function () {
   const { upDTL, downDTL } = useDatetime()
   const { copy } = useEntity<Frame, FrameResource>()
 
-  const { upTZ, downTZ, formatTZ: formatWithTZ } = useTimeZone()
+  const { upTZ, downTZ, formatWithTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
   const { loggedIn, accountToken, clearAccount } = useAccount()
 

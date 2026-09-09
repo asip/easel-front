@@ -25,8 +25,8 @@
     "@tiptap/pm": "^3.31.3",
     "@tiptap/starter-kit": "^3.31.3",
     "@tiptap/vue-3": "^3.31.3",
-    "@vesperjs/nuxt": "0.9.16",
-    "@vesperjs/shared": "0.9.16",
+    "@vesperjs/nuxt": "0.10.0",
+    "@vesperjs/shared": "0.10.0",
     "@vuepic/vue-datepicker": "^14.0.0",
     "@yaireo/tagify": "^4.38.0",
     "bowser": "2.14.1",
@@ -58,7 +58,8 @@
     "oxfmt": "^0.67.0",
     "playwright-core": "^1.63.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
   },
   "peerDependencies": {
     "@vue/reactivity": "^3.6.0-rc.7",

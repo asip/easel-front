@@ -5,7 +5,7 @@ export const useComments = function () {
 
   const { create } = useEntity<Comment, CommentResource>()
 
-  const { formatTZ: formatWithTZ } = useTimeZone()
+  const { formatWithTZ } = useTimeZone()
   const { flash, clearFlash } = useFlash()
 
   const upCommentTZ = (comment: Comment): void => {
