@@ -70,8 +70,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.42.0
-        version: 1.42.0
+        specifier: ^1.43.0
+        version: 1.43.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -125,8 +125,8 @@ importers:
         specifier: ^2.11.21
         version: 2.11.21
       daisyui:
-        specifier: ^5.7.28
-        version: 5.7.28
+        specifier: ^5.7.32
+        version: 5.7.32
       eslint:
         specifier: ^10.10.0
         version: 10.10.0(jiti@2.7.0)(supports-color@10.2.2)
@@ -3261,8 +3261,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.7.28:
-    resolution: {integrity: sha512-BxQap2QOj7NQy5nEsjTHRmybmUZP3t+O5G6vfdidZuptBsh/QyKN9wbdrGDZk198fMI3UyYnA/rCWlggZIhGnw==}
+  daisyui@5.7.32:
+    resolution: {integrity: sha512-8JQFneb+okHxzPimTGvRKX+5XF03GyAwGw7BaV6+6XpzW0klGuzc4rdfUpLQxIYPKEziwwlrsYfcxoltF2Rowg==}
 
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
@@ -4558,8 +4558,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-static@1.42.0:
-    resolution: {integrity: sha512-S4jgNBM6Tm8TusfIvj2A9KQotIxT8Hsnby3csAVh1LeD3vHgI0li14oCiQmYj+0Jjo/2l7cVzaqgPdwmce338Q==}
+  lucide-static@1.43.0:
+    resolution: {integrity: sha512-w7vdVFqh4vv7RxWHN4sSeylA0s3GHV5vpyGqZI0q22MINKJyhMNWSMd90RyTUYWBRNYqdZVZzrMmijVxU3Cl9A==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -9813,7 +9813,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.7.28: {}
+  daisyui@5.7.32: {}
 
   date-fns@4.4.0: {}
 
@@ -11147,7 +11147,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-static@1.42.0: {}
+  lucide-static@1.43.0: {}
 
   lz-string@1.5.0: {}
 
