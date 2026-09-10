@@ -52,7 +52,7 @@
     "baseline-browser-mapping": "^2.11.21",
     "daisyui": "^5.7.32",
     "eslint": "^10.10.0",
-    "happy-dom": "^20.14.0",
+    "happy-dom": "^20.14.3",
     "markuplint": "^4.18.3",
     "nuxt": "^4.5.2",
     "oxfmt": "^0.67.0",
