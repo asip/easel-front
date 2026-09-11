@@ -1,6 +1,8 @@
 import { defineRegleConfig } from '@regle/core'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
+import { maxTagArrayLength, maxTagLength } from '~/utils/validation/rules'
+
 export const { useRegle: useI18nRegle } = defineRegleConfig({
   rules: () => {
     const { $i18n } = useNuxtApp()

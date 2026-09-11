@@ -1,5 +1,7 @@
 import { required, minLength, maxLength, maxFileSize } from '@regle/rules'
 
+import { maxTagArrayLength, maxTagLength } from '~/utils/validation/rules'
+
 export const useFrameSchemas = () => {
   const newFrameSchema = {
     file: { required, maxFileSize: maxFileSize(5 * 1000 * 1000) },
