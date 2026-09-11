@@ -1,37 +1,36 @@
 <script lang="ts">
 import type Tagify from '@yaireo/tagify'
 
-export interface TagSearchType {
-  searchTag: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+export interface AutocompleteTagsType {
   tags: Ref<string[] | undefined>
+  filterBy: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 </script>
 
 <script lang="ts" setup>
 const model = defineModel<string[]>()
 
-const { settings, tagSearch } = defineProps<{
+const { settings, autocompleteTags } = defineProps<{
   settings: Tagify.TagifySettings
   // eslint-disable-next-line vue/require-default-prop
-  tagSearch?: TagSearchType | undefined
+  autocompleteTags?: AutocompleteTagsType | undefined
 }>()
 
 const tagEditor = useTemplateRef('tagEditorRef')
-const { tags, initTagEditor, closeTagEditor } = useTagEditor({
-  el: tagEditor,
+const { tags, initTagify, closeTagify } = useTagify(tagEditor, {
   settings,
   tagList: model,
-  tagSearch,
+  autocompleteTags,
 })
 
 onMounted(() => {
   // console.log(model.value)
-  initTagEditor()
+  initTagify()
   tags.value = model.value
 })
 
 onUnmounted(() => {
-  closeTagEditor()
+  closeTagify()
 })
 </script>
 

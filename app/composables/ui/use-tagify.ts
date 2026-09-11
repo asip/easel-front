@@ -1,13 +1,15 @@
-import type { TagSearchType } from '~/components/TagEditor.vue'
+import type { AutocompleteTagsType } from '~/components/TagEditor.vue'
 
-type TagEditorOptions = {
-  el: Ref<HTMLInputElement | HTMLTextAreaElement | null>
+type TagifyOptions = {
   settings: Tagify.TagifySettings
   tagList: Ref<string[] | undefined>
-  tagSearch?: TagSearchType
+  autocompleteTags?: AutocompleteTagsType
 }
 
-export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagEditorOptions) {
+export const useTagify = function (
+  el: Ref<HTMLInputElement | HTMLTextAreaElement | null>,
+  { settings, tagList, autocompleteTags }: TagifyOptions,
+) {
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp()
@@ -30,12 +32,12 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
       return tagEditor?.whitelist ?? []
     },
     set(value: string) {
-      if (tagEditor) tagEditor.whitelist = tagSearch?.tags.value ?? []
+      if (tagEditor) tagEditor.whitelist = autocompleteTags?.tags.value ?? []
       tagEditor?.loading(false).dropdown.show(value)
     },
   })
 
-  const initTagEditor = (): void => {
+  const initTagify = (): void => {
     if (el.value) {
       tagEditor = new tagify(el.value, settings)
 
@@ -61,16 +63,16 @@ export const useTagEditor = function ({ el, settings, tagList, tagSearch }: TagE
     controller?.abort()
     controller = new AbortController()
 
-    await tagSearch?.searchTag(value, { signal: controller.signal })
+    await autocompleteTags?.filterBy(value, { signal: controller.signal })
     autocomplete.value = value
   }
 
-  const closeTagEditor = (): void => {
+  const closeTagify = (): void => {
     if (tagEditor) {
       tagEditor.destroy()
       tagEditor = null
     }
   }
 
-  return { tags, initTagEditor, closeTagEditor }
+  return { tags, initTagify, closeTagify }
 }

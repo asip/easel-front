@@ -6,7 +6,7 @@ export {
   useModal,
   usePopover,
   useTiptap,
-  useTagEditor,
+  useTagify,
   useSonner,
 } from './ui'
 

@@ -10,7 +10,7 @@ export const useTagSearch = function () {
 
   const { accountToken } = useAccount()
 
-  const searchTag = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
+  const filterBy = async (name: string, { signal }: { signal: AbortSignal }): Promise<void> => {
     const options: QueryApiOptions = {
       query: { q: name },
       token: accountToken.value,
@@ -36,5 +36,5 @@ export const useTagSearch = function () {
     }
   }
 
-  return { searchTag, tags }
+  return { tags, filterBy }
 }
