@@ -101,14 +101,14 @@ const onTopPageClick = async (): Promise<void> => {
           </a>
         </div>
         <div class="navbar-end flex gap-2 pr-5">
-          <label for="search-sidebar" aria-label="open sidebar" class="btn btn-ghost">
+          <label for="search-sidebar" class="btn btn-ghost">
             <i class="icon-search" />
           </label>
         </div>
       </div>
     </div>
     <div class="drawer-side">
-      <label for="search-sidebar" aria-label="close sidebar" class="drawer-overlay" />
+      <label for="search-sidebar" class="drawer-overlay" />
       <div class="mt-2">
         <SearchBar />
       </div>

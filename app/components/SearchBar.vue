@@ -66,6 +66,10 @@ const onClearClick = async (): Promise<void> => {
         <div class="flex justify-center">
           <table class="table table-bordered table-rounded table-fixed">
             <tbody>
+              <tr class="hidden">
+                <td/>
+                <td/>
+              </tr>
               <tr>
                 <td colspan="2">
                   <div
@@ -170,18 +174,12 @@ const onClearClick = async (): Promise<void> => {
           </table>
         </div>
         <div class="flex justify-center gap-2 mt-2">
-          <input
-            type="button"
-            :value="$t('component.tag_search.search')"
-            class="btn btn-outline btn-primary"
-            @click="onSearchClick"
-          >
-          <input
-            type="button"
-            :value="$t('component.tag_search.clear')"
-            class="btn btn-outline btn-warning"
-            @click="onClearClick"
-          >
+          <button type="button" class="btn btn-outline btn-primary" @click="onSearchClick">
+            {{ $t('component.tag_search.search') }}
+          </button>
+          <button type="button" class="btn btn-outline btn-warning" @click="onClearClick">
+            {{ $t('component.tag_search.clear') }}
+          </button>
         </div>
       </form>
     </div>
