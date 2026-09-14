@@ -35,7 +35,7 @@ const onUpdateClick = async (): Promise<void> => {
     await updateComment()
     set404Alert()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       r$.$touch()
       r$.$reset()
       setComment({ to: commentModel.value })

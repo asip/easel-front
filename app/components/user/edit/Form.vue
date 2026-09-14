@@ -36,7 +36,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updateProfile()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       closeModal('#edit_profile_modal')
       openModal('#profile_modal')
     } else if (!loggedIn.value) {

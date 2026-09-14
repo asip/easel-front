@@ -42,7 +42,7 @@ const onSignupClick = async (): Promise<void> => {
   if (valid) {
     await signup()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       clearProfile()
       closeModal('#signup_modal')
       openModal('#login_modal')

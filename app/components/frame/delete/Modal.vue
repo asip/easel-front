@@ -13,7 +13,7 @@ const onDeleteClick = async (): Promise<void> => {
   set404Alert()
   sonner.value = flash.value
 
-  if (success) {
+  if (success.value) {
     await navigateTo('/')
   } else {
     await redirect404()

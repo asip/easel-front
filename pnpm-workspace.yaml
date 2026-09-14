@@ -6,6 +6,8 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - daisyui@5.7.37
   - lucide-static@1.45.0
+  - '@vesperjs/nuxt@0.11.0'
+  - '@vesperjs/shared@0.11.0'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.8
   '@vue/compiler-dom': ^3.6.0-rc.8

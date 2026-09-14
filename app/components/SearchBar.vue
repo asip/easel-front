@@ -67,8 +67,8 @@ const onClearClick = async (): Promise<void> => {
           <table class="table table-bordered table-rounded table-fixed">
             <tbody>
               <tr class="hidden">
-                <td/>
-                <td/>
+                <td />
+                <td />
               </tr>
               <tr>
                 <td colspan="2">

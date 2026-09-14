@@ -49,7 +49,7 @@ const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) await deleteComment(commentModel.value)
   set404Alert()
   sonner.value = flash.value
-  if (success) {
+  if (success.value) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {
     redirectOrReload404(backendErrorInfo)

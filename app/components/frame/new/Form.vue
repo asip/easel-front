@@ -40,7 +40,7 @@ const onCreateClick = async (): Promise<void> => {
   if (valid) {
     await createFrame()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {
       await redirectTo({ current: route.path, fallback: '/' })

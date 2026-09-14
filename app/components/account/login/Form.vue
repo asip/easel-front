@@ -19,7 +19,7 @@ const onLoginClick = async (): Promise<void> => {
   if (valid) {
     await login()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       clearLoginForm()
       r$.$reset()
       closeModal('#login_modal')

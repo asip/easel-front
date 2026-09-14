@@ -13,7 +13,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updatePassword()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       user.value.current_password = ''
       closeModal('#edit_password_modal')
       openModal('#profile_modal')

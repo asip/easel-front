@@ -42,7 +42,7 @@ const onCreateClick = async (): Promise<void> => {
     await createComment()
     set404Alert()
     sonner.value = flash.value
-    if (success) {
+    if (success.value) {
       comment.value.body = ''
       editor.value?.focus()
       r$.$touch()
