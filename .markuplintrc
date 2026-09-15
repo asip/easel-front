@@ -13,7 +13,8 @@
     "require-accessible-name": false,
     "no-hardcoded-id": false,
     "a11y/no-merge-cells": false,
-    "performance/img-aspect-ratio": false
+    "performance/img-aspect-ratio": false,
+    "security/no-event-handler-attr": false
   },
   "nodeRules": [
     {
