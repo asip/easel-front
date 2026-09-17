@@ -14,7 +14,7 @@ const frameUse = useFrame()
 const { frame, getFrame } = frameUse
 
 const { redirectTo } = usePrevPage()
-const { current, queryMap } = useFrameSearch()
+const { current, query } = useFrameSearch()
 
 const { refItems } = useCookieStore()
 
@@ -22,12 +22,12 @@ provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
 
-const queryMapWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const queryWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const onPageBack = async (): Promise<void> => {
   if (!refItems.value.from) {
     await current({ cache: false })
-    await navigateTo({ path: '/', query: queryMap.value })
+    await navigateTo({ path: '/', query: query.value })
   } else {
     await redirectTo({ current: route.path, fallback: '/' })
   }
@@ -38,7 +38,7 @@ const onNameClick = (): void => {
 }
 
 const onUserNameClick = async (): Promise<void> => {
-  refItems.value = queryMapWithRef.value.ref
+  refItems.value = queryWithRef.value.ref
   await navigateTo({ path: `/users/${frame.value?.user_id}` })
 }
 

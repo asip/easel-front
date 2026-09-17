@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const router = useRouter()
 
-const { frameQuery, queryMap, frames, current, prev, next, prevPage, nextPage, minPage, maxPage } =
+const { frameQuery, query, frames, current, prev, next, prevPage, nextPage, minPage, maxPage } =
   useFrameSearch()
 
 // console.log('searchFrame: start')
 await current()
-router.push({ path: '/', query: queryMap.value })
+router.push({ path: '/', query: query.value })
 
 const onPrevClick = async (): Promise<void> => {
   await prev()

@@ -1,12 +1,12 @@
 export const usePrevPage = function () {
   const { referers } = useReferer()
-  const { current: init, queryMap } = useFrameSearch()
+  const { current: init, query } = useFrameSearch()
 
   const redirectTo = async ({ current, fallback }: { current: string; fallback: string }) => {
     if (referers.value[current]) {
       if (referers.value[current] == '/') {
         await init({ cache: false })
-        await navigateTo({ path: '/', query: queryMap.value })
+        await navigateTo({ path: '/', query: query.value })
       } else {
         await navigateTo(referers.value[current])
       }

@@ -52,7 +52,7 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
     return qItems
   })
 
-  const queryMap = computed<QueryItems>(() => {
+  const query = computed<QueryItems>(() => {
     const items = qItems.value
     const page = currentPage.value
     const query: QueryItems = {}
@@ -63,5 +63,5 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
     return query
   })
 
-  return { frameQuery, initFrameQuery, clearFrameQuery, qItems, queryMap }
+  return { frameQuery, initFrameQuery, clearFrameQuery, qItems, query }
 }

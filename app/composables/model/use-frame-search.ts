@@ -30,8 +30,7 @@ export const useFrameSearch = function () {
     maxPage,
   } = useMorePage()
 
-  const { frameQuery, initFrameQuery, clearFrameQuery, qItems, queryMap } =
-    useFrameQuery(currentPage)
+  const { frameQuery, initFrameQuery, clearFrameQuery, qItems, query } = useFrameQuery(currentPage)
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
@@ -54,7 +53,7 @@ export const useFrameSearch = function () {
     const url = ref('')
 
     const queryOptions: QueryApiOptions = {
-      query: queryMap.value,
+      query: query.value,
       cache: options?.cache ?? true,
     }
 
@@ -129,7 +128,7 @@ export const useFrameSearch = function () {
     prevPage,
     nextPage,
     frames,
-    queryMap,
+    query,
     qItems,
     minPage,
     maxPage,

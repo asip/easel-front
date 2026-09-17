@@ -7,14 +7,14 @@ const { list = false } = defineProps<{
   list?: boolean
 }>()
 
-const { frameQuery, queryMap, current, clearFrameQuery } = useFrameSearch()
+const { frameQuery, query, current, clearFrameQuery } = useFrameSearch()
 
 const onClick = async (tag: string): Promise<void> => {
   clearFrameQuery()
   frameQuery.value.items.tag_name = tag
   frameQuery.value.page = 1
   await current({ cache: false })
-  await navigateTo({ path: '/', query: queryMap.value })
+  await navigateTo({ path: '/', query: query.value })
 }
 </script>
 

@@ -3,7 +3,7 @@ const route = useRoute()
 
 const accountUse = useAccount()
 const { account, loggedIn, logout } = accountUse
-const { frameQuery, queryMap, current, clearFrameQuery } = useFrameSearch()
+const { frameQuery, query, current, clearFrameQuery } = useFrameSearch()
 const { openModal } = useModal()
 
 const dropdown = useTemplateRef('dropdown')
@@ -34,7 +34,7 @@ const onTopPageClick = async (): Promise<void> => {
   clearFrameQuery()
   frameQuery.value.page = 1
   await current({ cache: false })
-  await navigateTo({ path: '/', query: queryMap.value })
+  await navigateTo({ path: '/', query: query.value })
   // reloadNuxtApp()
 }
 </script>

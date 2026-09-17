@@ -4,7 +4,7 @@ import { VueDatePicker } from '@vuepic/vue-datepicker'
 import { format, parse } from '@formkit/tempo'
 
 const { locale } = useLocale()
-const { frameQuery, queryMap, qItems, current, clearFrameQuery } = useFrameSearch()
+const { frameQuery, query, qItems, current, clearFrameQuery } = useFrameSearch()
 const { searchSchema } = useFrameSchemas()
 
 const { r$ } = useI18nRegle(frameQuery.value.items, searchSchema)
@@ -31,7 +31,7 @@ const onSearchClick = async (): Promise<void> => {
     r$.$reset()
     frameQuery.value.page = 1
     await current({ cache: false })
-    await navigateTo({ path: '/', query: queryMap.value })
+    await navigateTo({ path: '/', query: query.value })
   }
 }
 
@@ -42,7 +42,7 @@ const onClearClick = async (): Promise<void> => {
     clearFrameQuery()
     frameQuery.value.page = 1
     await current({ cache: false })
-    await navigateTo({ path: '/', query: queryMap.value })
+    await navigateTo({ path: '/', query: query.value })
   }
 }
 </script>

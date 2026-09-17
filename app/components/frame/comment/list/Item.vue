@@ -24,14 +24,14 @@ const edit = ref<boolean>(false)
 
 const commentModel = defineModel<Comment>()
 
-const queryMapWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const queryWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 provide('commentUse', commentUse)
 
 comment.value.frame_id = commentModel.value?.frame_id
 
 const onUserClick = async (): Promise<void> => {
-  refItems.value = queryMapWithRef.value.ref
+  refItems.value = queryWithRef.value.ref
   await navigateTo({ path: `/users/${commentModel.value?.user_id}` })
 }
 

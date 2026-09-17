@@ -12,7 +12,7 @@ const { frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
 const { refItems } = useCookieStore()
 
-const queryMapWithRef = computed<QueryItems>(() => {
+const queryWithRef = computed<QueryItems>(() => {
   if (from == 'profile' || from == 'user_profile') {
     return { ref: JSON.stringify({ from }) }
   } else {
@@ -22,7 +22,7 @@ const queryMapWithRef = computed<QueryItems>(() => {
 
 const onFrameClick = async (): Promise<void> => {
   onLinkClick()
-  refItems.value = queryMapWithRef.value.ref
+  refItems.value = queryWithRef.value.ref
   await navigateTo({ path: `/frames/${frame.value?.id}` })
 }
 
