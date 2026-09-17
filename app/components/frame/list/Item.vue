@@ -17,13 +17,13 @@ const { frameQuery } = useFrameSearch()
 
 const { refItems } = useCookieStore()
 
-// const queryWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: '' }) }))
+// const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: '' }) }))
 
 const front = ref<boolean>(true)
 
 const onLinkClick = async (): Promise<void> => {
   if (frame.value?.page) frameQuery.value.page = frame.value?.page
-  // refItems.value = queryWithRef.value.ref
+  // refItems.value = refQuery.value.ref
   refItems.value = '{}'
   await navigateTo(`/frames/${frame.value?.id}`)
 }

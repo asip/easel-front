@@ -22,7 +22,7 @@ provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
 
-const queryWithRef = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
+const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const onPageBack = async (): Promise<void> => {
   if (!refItems.value.from) {
@@ -38,7 +38,7 @@ const onNameClick = (): void => {
 }
 
 const onUserNameClick = async (): Promise<void> => {
-  refItems.value = queryWithRef.value.ref
+  refItems.value = refQuery.value.ref
   await navigateTo({ path: `/users/${frame.value?.user_id}` })
 }
 
