@@ -27,4 +27,6 @@ export {
 
 export { useCommentTransition } from './transition'
 
+export { useTokenCookie, useRefCookie } from './cookie'
+
 export type { UseAccountType, UseCommentType, UseFrameType } from './model'
