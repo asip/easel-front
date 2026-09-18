@@ -16,7 +16,7 @@ const {
   clearExternalErrors,
   flash,
 } = useAccount()
-const { preview } = useImagePreview({ previewUrl })
+const { preview } = useImagePreview(previewUrl)
 
 const { signupSchema } = useAccountSchemas(user.value)
 

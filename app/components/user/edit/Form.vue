@@ -14,7 +14,7 @@ const {
   success,
   flash,
 } = inject('accountUse') as UseAccountType
-const { preview } = useImagePreview({ previewUrl })
+const { preview } = useImagePreview(previewUrl)
 
 const { profileSchema } = useAccountSchemas()
 

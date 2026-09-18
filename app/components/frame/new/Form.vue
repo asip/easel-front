@@ -17,7 +17,7 @@ const {
   success,
   flash,
 } = inject('frameUse') as UseFrameType
-const { preview } = useImagePreview({ previewUrl })
+const { preview } = useImagePreview(previewUrl)
 
 const { newFrameSchema } = useFrameSchemas()
 
