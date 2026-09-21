@@ -94,14 +94,16 @@
       "not_found": "This {source} has been deleted."
     }
   },
-  "rules": {
-    "required": "Required.",
-    "email": "is invalid format.",
-    "minLength": "More than {min} characters.",
-    "maxLength": "are limited to {max} characters.",
-    "sameAs": "must be equal to the {otherName} value",
-    "maxTagArrayLength": "are limited to {size}.",
-    "maxTagLength": "are limited to {size} characters.",
-    "maxFileSize": "are limited to {max} MB."
+  "regle": {
+    "rules": {
+      "required": "Required.",
+      "email": "is invalid format.",
+      "minLength": "More than {min} characters.",
+      "maxLength": "are limited to {max} characters.",
+      "sameAs": "must be equal to the {otherName} value",
+      "maxTagArrayLength": "are limited to {size}.",
+      "maxTagLength": "are limited to {size} characters.",
+      "maxFileSize": "are limited to {max} MB."
+    }
   }
 }

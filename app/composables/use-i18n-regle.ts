@@ -10,21 +10,25 @@ export const { useRegle: useI18nRegle } = defineRegleConfig({
     const { t } = $i18n as any
 
     return {
-      required: withMessage(required, () => t('rules.required')),
-      minLength: withMessage(minLength, ({ $params: [min] }) => t('rules.minLength', { min })),
-      maxLength: withMessage(maxLength, ({ $params: [max] }) => t('rules.maxLength', { max })),
-      email: withMessage(email, () => t('rules.email')),
+      required: withMessage(required, () => t('regle.rules.required')),
+      minLength: withMessage(minLength, ({ $params: [min] }) =>
+        t('regle.rules.minLength', { min }),
+      ),
+      maxLength: withMessage(maxLength, ({ $params: [max] }) =>
+        t('regle.rules.maxLength', { max }),
+      ),
+      email: withMessage(email, () => t('regle.rules.email')),
       sameAs: withMessage(sameAs, ({ $params: [_, otherName = 'other'] }) =>
-        t('rules.sameAs', { otherName }),
+        t('regle.rules.sameAs', { otherName }),
       ),
       maxFileSize: withMessage(maxFileSize, ({ $params: [maxSize] }) =>
-        t('rules.maxFileSize', { max: maxSize / (1000 * 1000) }),
+        t('regle.rules.maxFileSize', { max: maxSize / (1000 * 1000) }),
       ),
       maxTagArrayLength: withMessage(maxTagArrayLength, ({ $params: [size] }) =>
-        t('rules.maxTagArrayLength', { size: size }),
+        t('regle.rules.maxTagArrayLength', { size: size }),
       ),
       maxTagLength: withMessage(maxTagLength, ({ $params: [size] }) =>
-        t('rules.maxTagLength', { size }),
+        t('regle.rules.maxTagLength', { size }),
       ),
     }
   },

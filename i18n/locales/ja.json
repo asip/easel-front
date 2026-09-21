@@ -94,14 +94,16 @@
       "not_found": "この{source}は削除されています。"
     }
   },
-  "rules": {
-    "required": "必須です。",
-    "email": "正しいメールアドレスの形式で入力してください。",
-    "minLength": "{min}文字以上です。",
-    "maxLength": "{max}文字までです。",
-    "sameAs": "{otherName}と一致しません。",
-    "maxTagArrayLength": "{size}つまでです。",
-    "maxTagLength": "{size}文字までです。",
-    "maxFileSize": "{max}MBまでです。"
+  "regle": {
+    "rules": {
+      "required": "必須です。",
+      "email": "正しいメールアドレスの形式で入力してください。",
+      "minLength": "{min}文字以上です。",
+      "maxLength": "{max}文字までです。",
+      "sameAs": "{otherName}と一致しません。",
+      "maxTagArrayLength": "{size}つまでです。",
+      "maxTagLength": "{size}文字までです。",
+      "maxFileSize": "{max}MBまでです。"
+    }
   }
 }
