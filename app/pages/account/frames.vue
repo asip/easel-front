@@ -4,7 +4,7 @@ const route = useRoute()
 const { referers } = useReferer()
 const { loggedIn } = useAccount()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 const from = referers.value[route.path]
 

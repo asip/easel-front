@@ -10,7 +10,7 @@ const { loggedIn, account } = useAccount()
 const { current, query } = useFrameSearch()
 const { flash, following, follow, unfollow, isFollowing } = useFollow()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 const userId = id?.toString()
 

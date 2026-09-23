@@ -15,7 +15,7 @@ const imageInfo = ref<ImageInfo>({ width: 0, height: 0 })
 const { loggedIn, account } = useAccount()
 const { frameQuery } = useFrameSearch()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 // const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: '' }) }))
 

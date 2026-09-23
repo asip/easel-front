@@ -18,7 +18,7 @@ const {
 const { getComments } = useComments()
 const { redirectOrReload404 } = useCommentTransition(comment)
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 const edit = ref<boolean>(false)
 

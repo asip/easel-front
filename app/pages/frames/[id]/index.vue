@@ -16,7 +16,7 @@ const { frame, getFrame } = frameUse
 const { redirectTo } = usePrevPage()
 const { current, query } = useFrameSearch()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 provide('frameUse', frameUse)
 

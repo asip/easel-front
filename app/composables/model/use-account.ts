@@ -1,6 +1,5 @@
 import type { CredentialResponse } from 'vue3-google-signin'
 import type { User, UserResource, UserErrorProperty, BackendErrorsResource } from '~/types'
-import { useCookieStore } from '../use-cookie-store'
 
 interface LoginForm {
   email: string
@@ -108,7 +107,7 @@ export const useAccount = function () {
     }
   })
 
-  const { accessToken } = useCookieStore()
+  const { accessToken } = useTokenCookie()
 
   const setTokenToCookie = (): void => {
     if (account.value.token !== accessToken.value) accessToken.value = account.value.token

@@ -10,7 +10,7 @@ const { from = undefined } = defineProps<{
 const { loggedIn, account } = useAccount()
 const { frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
-const { refItems } = useCookieStore()
+const { refItems } = useRefCookie()
 
 const refQuery = computed<QueryItems>(() => {
   if (from == 'profile' || from == 'user_profile') {
