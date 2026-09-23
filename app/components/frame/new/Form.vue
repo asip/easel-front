@@ -21,7 +21,7 @@ const { preview } = useImagePreview(previewUrl)
 
 const { newFrameSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frame, newFrameSchema, { externalErrors })
+const { r$ } = useRegleI18n(frame, newFrameSchema, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tag_list)

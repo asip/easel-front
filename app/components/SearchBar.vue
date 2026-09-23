@@ -7,7 +7,7 @@ const { locale } = useLocale()
 const { frameQuery, query, qItems, current, clearFrameQuery } = useFrameSearch()
 const { searchSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frameQuery.value.items, searchSchema)
+const { r$ } = useRegleI18n(frameQuery.value.items, searchSchema)
 
 const dateWord = computed<Date | null>({
   get() {

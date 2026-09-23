@@ -6,7 +6,7 @@ const { loginForm, login, success, flash, externalErrors, clearLoginForm, clearE
   inject('accountUse') as UseAccountType
 const { signinSchema } = useAccountSchemas()
 
-const { r$ } = useI18nRegle(loginForm, signinSchema, { externalErrors })
+const { r$ } = useRegleI18n(loginForm, signinSchema, { externalErrors })
 
 watch(loginForm.value, () => {
   clearExternalErrors()

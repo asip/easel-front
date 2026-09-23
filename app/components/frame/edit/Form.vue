@@ -21,7 +21,7 @@ const {
 } = inject('frameUse') as UseFrameType
 const { editFrameSchema } = useFrameSchemas()
 
-const { r$ } = useI18nRegle(frame, editFrameSchema, { externalErrors })
+const { r$ } = useRegleI18n(frame, editFrameSchema, { externalErrors })
 
 // console.log(frame)
 // console.log(frame.tag_list)

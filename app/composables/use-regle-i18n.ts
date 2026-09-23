@@ -3,7 +3,7 @@ import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@reg
 
 import { maxTagArrayLength, maxTagLength } from '~/lib/validation/rules'
 
-export const { useRegle: useI18nRegle } = defineRegleConfig({
+export const { useRegle: useRegleI18n } = defineRegleConfig({
   rules: () => {
     const { $i18n } = useNuxtApp()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

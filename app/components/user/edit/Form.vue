@@ -18,7 +18,7 @@ const { preview } = useImagePreview(previewUrl)
 
 const { profileSchema } = useAccountSchemas()
 
-const { r$ } = useI18nRegle(user, profileSchema, { externalErrors })
+const { r$ } = useRegleI18n(user, profileSchema, { externalErrors })
 
 const file = useTemplateRef('file')
 

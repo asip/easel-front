@@ -20,7 +20,7 @@ const { frameId } = defineProps<{ frameId: number | undefined }>()
 
 const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
+const { r$ } = useRegleI18n(comment, commentSchema, { externalErrors })
 
 const editor = useTemplateRef('editor')
 

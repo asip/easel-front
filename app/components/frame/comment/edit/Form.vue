@@ -20,7 +20,7 @@ const { redirectOrReload404 } = useCommentTransition(comment)
 
 const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useI18nRegle(comment, commentSchema, { externalErrors })
+const { r$ } = useRegleI18n(comment, commentSchema, { externalErrors })
 
 const commentModel = defineModel<Comment>('comment')
 const edit = defineModel<boolean>('edit')

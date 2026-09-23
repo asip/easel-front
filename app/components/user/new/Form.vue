@@ -20,7 +20,7 @@ const { preview } = useImagePreview(previewUrl)
 
 const { signupSchema } = useAccountSchemas(user.value)
 
-const { r$ } = useI18nRegle(user, signupSchema, { externalErrors })
+const { r$ } = useRegleI18n(user, signupSchema, { externalErrors })
 
 const file = useTemplateRef('file')
 

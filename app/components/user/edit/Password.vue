@@ -5,7 +5,7 @@ const { loggedIn, account, user, updatePassword, externalErrors, processing, suc
   inject('accountUse') as UseAccountType
 const { passwordSchema } = useAccountSchemas(user.value)
 
-const { r$ } = useI18nRegle(user, passwordSchema, { externalErrors })
+const { r$ } = useRegleI18n(user, passwordSchema, { externalErrors })
 
 const onUpdateClick = async (): Promise<void> => {
   const { valid } = await r$.$validate()
