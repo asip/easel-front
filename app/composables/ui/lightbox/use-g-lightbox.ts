@@ -1,10 +1,6 @@
 import type GLightbox from 'glightbox'
 
-type GlOptions = {
-  selector: string | undefined
-}
-
-export const useGLightbox = function ({ selector }: GlOptions) {
+export const useGLightbox = function (selector: string | undefined) {
   const { $gLightbox } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const gLightbox = $gLightbox as any

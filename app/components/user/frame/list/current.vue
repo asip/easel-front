@@ -6,7 +6,7 @@ const model = defineModel<Frame[]>()
 // eslint-disable-next-line vue/require-default-prop
 const { from } = defineProps<{ from?: string }>()
 
-const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
+const { initGallery, closeGallery } = useImageGallery('.lb', { anchor: 'a.ps' })
 
 const frames = computed(() => model.value ?? [])
 

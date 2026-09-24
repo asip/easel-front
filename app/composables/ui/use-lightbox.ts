@@ -4,8 +4,8 @@ type LbOptions = { selector: string }
 type LightboxOptions = { ps?: LbOptions; gl?: LbOptions }
 
 export const useLightbox = function ({ ps, gl }: LightboxOptions) {
-  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe({ selector: ps?.selector })
-  const { initGLightbox, closeGLightbox } = useGLightbox({ selector: gl?.selector })
+  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe(ps?.selector)
+  const { initGLightbox, closeGLightbox } = useGLightbox(gl?.selector)
 
   const initLightbox = async (): Promise<void> => {
     if (ps?.selector) await initPhotoSwipe()

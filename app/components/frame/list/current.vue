@@ -3,7 +3,7 @@ import type { Frame } from '~/types'
 
 const model = defineModel<Frame[]>()
 
-const { initGallery, closeGallery } = useImageGallery({ selector: '.lb', anchor: 'a.ps' })
+const { initGallery, closeGallery } = useImageGallery('.lb', { anchor: 'a.ps' })
 
 const frames = computed(() => model.value ?? [])
 

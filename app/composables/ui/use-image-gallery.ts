@@ -1,9 +1,12 @@
 import { usePhotoSwipe } from './lightbox'
 
-type GalleryOptions = { selector: string; anchor?: string; zoomLevel?: 'fit' | 'fill' | number }
+type GalleryOptions = { anchor?: string; zoomLevel?: 'fit' | 'fill' | number }
 
-export const useImageGallery = function ({ selector, anchor, zoomLevel = 'fit' }: GalleryOptions) {
-  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe({ selector, anchor, zoomLevel })
+export const useImageGallery = function (selector: string, options?: GalleryOptions) {
+  const anchor = options?.anchor
+  const zoomLevel = options?.zoomLevel ?? 'fit'
+
+  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe(selector, { anchor, zoomLevel })
 
   const initGallery = (): void => {
     initPhotoSwipe()
