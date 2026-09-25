@@ -106,10 +106,6 @@ export const useAccount = function () {
 
   const { accessToken } = useTokenCookie()
 
-  const setTokenToCookie = (): void => {
-    if (account.value.token !== accessToken.value) accessToken.value = account.value.token
-  }
-
   const accountToken = computed({
     get() {
       return accessToken.value
@@ -117,7 +113,7 @@ export const useAccount = function () {
     set(value: string | null | undefined) {
       if (value) {
         account.value.token = value
-        setTokenToCookie()
+        if (account.value.token !== accessToken.value) accessToken.value = account.value.token
       }
     },
   })
