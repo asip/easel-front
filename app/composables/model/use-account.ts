@@ -65,10 +65,7 @@ export const useAccount = function () {
 
   const initTimeZone = (): void => {
     // console.log(user.value.time_zone)
-    user.value.time_zone =
-      user.value.time_zone == null || user.value.time_zone == ''
-        ? timeZone.value.client
-        : user.value.time_zone
+    user.value.time_zone = user.value.time_zone ? timeZone.value.client : user.value.time_zone
     // console.log(user.value.time_zone)
   }
 
@@ -147,7 +144,7 @@ export const useAccount = function () {
     accessToken.value = null
   }
 
-  const loggedIn = computed<boolean>( () => {
+  const loggedIn = computed<boolean>(() => {
     return !!account.value.id
   })
 
