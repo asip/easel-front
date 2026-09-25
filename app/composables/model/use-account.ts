@@ -134,7 +134,6 @@ export const useAccount = function () {
   }
 
   const clearAccount = (): void => {
-    loggedIn.value = false
     account.value.id = null
     account.value.name = ''
     account.value.email = ''
@@ -147,6 +146,10 @@ export const useAccount = function () {
 
     accessToken.value = null
   }
+
+  const loggedIn = computed<boolean>( () => {
+    return !!account.value.id
+  })
 
   const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<UserErrorProperty>(flash)
@@ -162,10 +165,6 @@ export const useAccount = function () {
     loginForm.value.email = ''
     loginForm.value.password = ''
   }
-
-  const loggedIn = useState<boolean>('loggedIn', () => {
-    return false
-  })
 
   const processing = ref<boolean>(false)
 
@@ -218,7 +217,6 @@ export const useAccount = function () {
         // console.log(userAttrs)
         setAccount({ from: userAttrs })
         accountToken.value = token
-        loggedIn.value = true
       }
     }
   }
@@ -250,7 +248,6 @@ export const useAccount = function () {
     } else if (userAttrs) {
       setAccount({ from: userAttrs })
       accountToken.value = token
-      loggedIn.value = true
       // console.log(account.value)
     }
   }
@@ -279,7 +276,6 @@ export const useAccount = function () {
     } else if (userAttrs) {
       setAccount({ from: userAttrs })
       accessToken.value = token
-      loggedIn.value = true
       // console.log(account.value)
     }
   }
