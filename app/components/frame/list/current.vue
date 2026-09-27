@@ -3,20 +3,20 @@ import type { Frame } from '~/types'
 
 const model = defineModel<Frame[]>()
 
-const { initGallery, closeGallery } = useImageGallery('.lb', { anchor: 'a.ps' })
+const { init, close } = useImageGallery('.lb', { anchor: 'a.ps' })
 
 const frames = computed(() => model.value ?? [])
 
 onMounted(() => {
-  initGallery()
+  init()
 })
 
 onUpdated(() => {
-  initGallery()
+  init()
 })
 
 onUnmounted(() => {
-  closeGallery()
+  close()
 })
 </script>
 

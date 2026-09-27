@@ -17,7 +17,7 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
 
   let lightbox: PhotoSwipeLightbox
 
-  const initPhotoSwipe = async (): Promise<void> => {
+  const init = async (): Promise<void> => {
     if (selector) {
       await assignSize()
 
@@ -55,9 +55,9 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
     return img
   }
 
-  const closePhotoSwipe = (): void => {
+  const close = (): void => {
     if (lightbox) lightbox.destroy()
   }
 
-  return { initPhotoSwipe, closePhotoSwipe }
+  return { init, close }
 }

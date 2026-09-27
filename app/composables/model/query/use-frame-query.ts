@@ -10,7 +10,7 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
     }
   })
 
-  const initFrameQuery = (q: string | undefined, page: string | undefined) => {
+  const init = (q: string | undefined, page: string | undefined) => {
     if (q) {
       const items = q ? JSON.parse(q.toString()) : {}
       frameQuery.value.items.word = items.word
@@ -27,7 +27,7 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
     }
   }
 
-  const clearFrameQuery = (): void => {
+  const clear = (): void => {
     const { items } = frameQuery.value
     if (items.word) frameQuery.value.items.word = null
     if (items.frame_name) frameQuery.value.items.frame_name = null
@@ -63,5 +63,5 @@ export const useFrameQuery = function (currentPage: ComputedRef<number>) {
     return query
   })
 
-  return { frameQuery, initFrameQuery, clearFrameQuery, qItems, query }
+  return { frameQuery, init, clear, qItems, query }
 }

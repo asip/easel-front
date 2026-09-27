@@ -6,15 +6,18 @@ export const useImageGallery = function (selector: string, options?: GalleryOpti
   const anchor = options?.anchor
   const zoomLevel = options?.zoomLevel ?? 'fit'
 
-  const { initPhotoSwipe, closePhotoSwipe } = usePhotoSwipe(selector, { anchor, zoomLevel })
+  const { init: initPhotoSwipe, close: closePhotoSwipe } = usePhotoSwipe(selector, {
+    anchor,
+    zoomLevel,
+  })
 
-  const initGallery = (): void => {
+  const init = (): void => {
     initPhotoSwipe()
   }
 
-  const closeGallery = (): void => {
+  const close = (): void => {
     closePhotoSwipe()
   }
 
-  return { initGallery, closeGallery }
+  return { init, close }
 }

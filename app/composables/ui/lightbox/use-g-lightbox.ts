@@ -7,13 +7,13 @@ export const useGLightbox = function (selector: string | undefined) {
 
   let lightbox: ReturnType<typeof GLightbox> | null
 
-  const initGLightbox = (): void => {
+  const init = (): void => {
     lightbox = gLightbox({ selector })
   }
 
-  const closeGLightbox = (): void => {
+  const close = (): void => {
     if (lightbox) lightbox.close()
   }
 
-  return { initGLightbox, closeGLightbox }
+  return { init, close }
 }

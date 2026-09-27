@@ -10,7 +10,7 @@ export const useUserFrameQuery = function () {
     }
   })
 
-  const initFrameQuery = ({ userId }: { userId: string | undefined }): void => {
+  const init = ({ userId }: { userId: string | undefined }): void => {
     if (userId) {
       if (frameQuery.value.user_id !== userId) {
         frameQuery.value.page = 1
@@ -20,5 +20,5 @@ export const useUserFrameQuery = function () {
     }
   }
 
-  return { frameQuery, initFrameQuery }
+  return { frameQuery, init }
 }

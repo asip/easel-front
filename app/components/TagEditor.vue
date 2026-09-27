@@ -17,7 +17,7 @@ const { settings, autocompleteTags } = defineProps<{
 }>()
 
 const tagEditor = useTemplateRef('tagEditorRef')
-const { tags, initTagify, closeTagify } = useTagify(tagEditor, {
+const { tags, init, close } = useTagify(tagEditor, {
   settings,
   tagList: model,
   autocompleteTags,
@@ -25,12 +25,12 @@ const { tags, initTagify, closeTagify } = useTagify(tagEditor, {
 
 onMounted(() => {
   // console.log(model.value)
-  initTagify()
+  init()
   tags.value = model.value
 })
 
 onUnmounted(() => {
-  closeTagify()
+  close()
 })
 </script>
 

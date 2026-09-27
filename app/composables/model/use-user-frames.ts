@@ -14,7 +14,7 @@ export const useUserFrames = function () {
 
   const { flash, clearFlash } = useFlash()
 
-  const { frameQuery, initFrameQuery } = useUserFrameQuery()
+  const { frameQuery, init: initFrameQuery } = useUserFrameQuery()
 
   const { backendErrorInfo } = useApiError(flash)
 

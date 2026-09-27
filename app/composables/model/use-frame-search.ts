@@ -30,7 +30,13 @@ export const useFrameSearch = function () {
     maxPage,
   } = useMorePage()
 
-  const { frameQuery, initFrameQuery, clearFrameQuery, qItems, query } = useFrameQuery(currentPage)
+  const {
+    frameQuery,
+    init: initFrameQuery,
+    clear: clearFrameQuery,
+    qItems,
+    query,
+  } = useFrameQuery(currentPage)
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })

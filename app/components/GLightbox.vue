@@ -9,14 +9,14 @@ const options = {
   gl: { selector: '#image' },
 }
 
-const { initLightbox, closeLightbox } = useLightbox(options)
+const { init, close } = useLightbox(options)
 
 onMounted(async () => {
-  await initLightbox()
+  await init()
 })
 
 onUnmounted(() => {
-  closeLightbox()
+  close()
 })
 </script>
 

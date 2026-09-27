@@ -6,20 +6,20 @@ const model = defineModel<Frame[]>()
 // eslint-disable-next-line vue/require-default-prop
 const { from } = defineProps<{ from?: string }>()
 
-const { initGallery, closeGallery } = useImageGallery('.lb', { anchor: 'a.ps' })
+const { init, close } = useImageGallery('.lb', { anchor: 'a.ps' })
 
 const frames = computed(() => model.value ?? [])
 
 onMounted(() => {
-  initGallery()
+  init()
 })
 
 onUpdated(() => {
-  initGallery()
+  init()
 })
 
 onUnmounted(() => {
-  closeGallery()
+  close()
 })
 </script>
 

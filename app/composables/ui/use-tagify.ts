@@ -37,7 +37,7 @@ export const useTagify = function (
     },
   })
 
-  const initTagify = (): void => {
+  const init = (): void => {
     if (el.value) {
       tagEditor = new tagify(el.value, settings)
 
@@ -67,12 +67,12 @@ export const useTagify = function (
     autocomplete.value = value
   }
 
-  const closeTagify = (): void => {
+  const close = (): void => {
     if (tagEditor) {
       tagEditor.destroy()
       tagEditor = null
     }
   }
 
-  return { tags, initTagify, closeTagify }
+  return { tags, init, close }
 }
