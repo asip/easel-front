@@ -1,6 +1,8 @@
 import type { Flash } from '~/types'
 
-export const useSonner = function () {
+export const useSonner = function (options?: { delay: number }) {
+  const delay = options?.delay ?? 1000
+
   const { $toast } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toast = $toast as any
@@ -34,13 +36,13 @@ export const useSonner = function () {
             // console.log('info')
             setTimeout(() => {
               toast.info(message)
-            }, 1000)
+            }, delay)
             break
           case 'alert':
             // console.log('alert')
             setTimeout(() => {
               toast.error(message)
-            }, 1000)
+            }, delay)
             break
         }
       }
@@ -51,7 +53,7 @@ export const useSonner = function () {
     for (const message of messages.reverse()) {
       setTimeout(() => {
         toast.error(message)
-      }, 500)
+      }, delay / 2)
     }
   }
 
