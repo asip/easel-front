@@ -91,7 +91,7 @@ const onCreateClick = async (): Promise<void> => {
               <label for="tag_list">{{ $t('model.frame.tag_list') }}：</label>
             </td>
             <td>
-              <TagEdit v-model="tagList" />
+              <TagEditor v-model="tagList" />
               <DisplayMessages :messages="r$.tag_list.$self.$errors" />
             </td>
           </tr>

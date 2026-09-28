@@ -1,4 +1,4 @@
-import type { AutocompleteTagsType } from '~/components/TagEditor.vue'
+import type { AutocompleteTagsType } from '~/components/Tagify.vue'
 
 type TagifyOptions = {
   settings: Tagify.TagifySettings
