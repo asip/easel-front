@@ -8,6 +8,7 @@ export {
   useTiptap,
   useTagify,
   useSonner,
+  type TagifyOptions,
 } from './ui'
 
 export { useCommentSchemas, useFrameSchemas, useAccountSchemas } from './model/validation'

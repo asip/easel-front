@@ -13,8 +13,10 @@ const settings = {
 }
 
 const tagSearch = useTagSearch()
+
+const options = { ...settings, autocompleteTags: tagSearch }
 </script>
 
 <template>
-  <Tagify v-model="model" :settings="settings" :tag-search="tagSearch" />
+  <Tagify v-model="model" :options="options" />
 </template>

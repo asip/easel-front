@@ -1,15 +1,17 @@
 import type { AutocompleteTagsType } from '~/components/Tagify.vue'
 
-type TagifyOptions = {
-  settings: Tagify.TagifySettings
-  tagList: Ref<string[] | undefined>
+export type TagifyOptions = Tagify.TagifySettings & {
   autocompleteTags?: AutocompleteTagsType
 }
 
 export const useTagify = function (
   el: Ref<HTMLInputElement | HTMLTextAreaElement | null>,
-  { settings, tagList, autocompleteTags }: TagifyOptions,
+  tagList: Ref<string[] | undefined>,
+  options: TagifyOptions,
 ) {
+  const autocompleteTags = options.autocompleteTags
+  if (options.autocompleteTags) delete options.autocompleteTags
+
   let tagEditor: Tagify | null = null
 
   const { $tagify } = useNuxtApp()
@@ -39,7 +41,7 @@ export const useTagify = function (
 
   const init = (): void => {
     if (el.value) {
-      tagEditor = new tagify(el.value, settings)
+      tagEditor = new tagify(el.value, options)
 
       eventCallbacks()
     }

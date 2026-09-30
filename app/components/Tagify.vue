@@ -1,5 +1,5 @@
 <script lang="ts">
-import type Tagify from '@yaireo/tagify'
+import type { TagifyOptions } from '~/composables'
 
 export interface AutocompleteTagsType {
   tags: Ref<string[] | undefined>
@@ -10,18 +10,12 @@ export interface AutocompleteTagsType {
 <script lang="ts" setup>
 const model = defineModel<string[]>()
 
-const { settings, autocompleteTags } = defineProps<{
-  settings: Tagify.TagifySettings
-  // eslint-disable-next-line vue/require-default-prop
-  autocompleteTags?: AutocompleteTagsType | undefined
+const { options } = defineProps<{
+  options: TagifyOptions
 }>()
 
 const tagify = useTemplateRef('tagifyRef')
-const { tags, init, close } = useTagify(tagify, {
-  settings,
-  tagList: model,
-  autocompleteTags,
-})
+const { tags, init, close } = useTagify(tagify, model, options)
 
 onMounted(() => {
   // console.log(model.value)
