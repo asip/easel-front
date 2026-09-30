@@ -1,8 +1,8 @@
+import type { PreparedPhotoSwipeOptions } from 'photoswipe'
 import type PhotoSwipeLightbox from 'photoswipe/lightbox'
 
-type PsOptions = {
+export type PsOptions = Partial<PreparedPhotoSwipeOptions> & {
   anchor?: string
-  zoomLevel?: 'fit' | 'fill' | number
 }
 
 export const usePhotoSwipe = function (selector: string | undefined, options?: PsOptions) {
@@ -13,7 +13,8 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
   // const psFullscreen = $psFullscreen as any
 
   const anchor = options?.anchor ?? 'a'
-  const zoomLevel = options?.zoomLevel ?? 'fit'
+  if (options?.anchor) delete options.anchor
+  const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
 
   let lightbox: PhotoSwipeLightbox
 
@@ -22,9 +23,10 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
       await assignSize()
 
       lightbox = new psLightbox({
+        ...options,
         gallery: selector,
         children: anchor,
-        initialZoomLevel: zoomLevel,
+        initialZoomLevel,
         pswpModule: () => import('photoswipe'),
       })
 

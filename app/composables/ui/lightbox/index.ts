@@ -1,2 +1,2 @@
 export { useGLightbox } from './use-g-lightbox'
-export { usePhotoSwipe } from './use-photo-swipe'
+export { usePhotoSwipe, type PsOptions } from './use-photo-swipe'

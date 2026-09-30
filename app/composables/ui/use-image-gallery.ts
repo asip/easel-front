@@ -1,14 +1,12 @@
-import { usePhotoSwipe } from './lightbox'
+import { usePhotoSwipe, type PsOptions } from './lightbox'
 
-type GalleryOptions = { anchor?: string; zoomLevel?: 'fit' | 'fill' | number }
-
-export const useImageGallery = function (selector: string, options?: GalleryOptions) {
+export const useImageGallery = function (selector: string, options?: PsOptions) {
   const anchor = options?.anchor
-  const zoomLevel = options?.zoomLevel ?? 'fit'
+  const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
 
   const { init: initPhotoSwipe, close: closePhotoSwipe } = usePhotoSwipe(selector, {
     anchor,
-    zoomLevel,
+    initialZoomLevel,
   })
 
   const init = (): void => {
