@@ -70,8 +70,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.50.0
-        version: 1.50.0
+        specifier: ^1.51.0
+        version: 1.51.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -4648,8 +4648,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-static@1.50.0:
-    resolution: {integrity: sha512-Pge6F5Au0bEBvjaeBIjfU5PsmA43FHdM3s5g3rYqSNWvBO3o7WwDSNQSavwX76z/OoSCjwSVbQpGA9lqKud/WA==}
+  lucide-static@1.51.0:
+    resolution: {integrity: sha512-ts58ApMc5w5SHHUJBtGO+mgf9lo79FApQ1LttKQoJiMrWNZt8zxWA7R6owK6DoGA3XLjJXc/7rDJh1feonl79g==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -11326,7 +11326,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-static@1.50.0: {}
+  lucide-static@1.51.0: {}
 
   lz-string@1.5.0: {}
 
