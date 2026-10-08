@@ -1,5 +1,5 @@
 export const useReferer = () => {
-  const { record: referers } = useRecordStore('referers')
+  const referers = useRecordStore('referers')
 
   return { referers }
 }
