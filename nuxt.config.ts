@@ -8,6 +8,10 @@ export default defineNuxtConfig({
   plugins: [],
   extends: ['@vesperjs/nuxt'],
 
+  vue: {
+    vapor: true,
+  },
+
   i18n: {
     locales: [
       {
