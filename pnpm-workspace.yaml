@@ -3,9 +3,6 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
-minimumReleaseAgeExclude:
-  - '@vesperjs/nuxt@0.13.0'
-  - '@vesperjs/shared@0.13.0'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.10
   '@vue/compiler-dom': ^3.6.0-rc.10
