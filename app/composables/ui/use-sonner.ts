@@ -9,21 +9,23 @@ export const useSonner = function (options?: { delay: number }) {
 
   const messages = ref<Flash | string[]>()
 
-  const sonner = computed<Flash | string[] | undefined, Flash | string[]>({
-    get() {
-      return messages.value
-    },
-    set(value: Flash | string[]) {
-      messages.value = value
+  const sonner = customRef<Flash | string[] | undefined, Flash | string[]>(() => {
+    return {
+      get() {
+        return messages.value
+      },
+      set(value: Flash | string[]) {
+        messages.value = value
 
-      if (('length' in value && value.length == 0) || Object.keys(value).length === 0) return
+        if (('length' in value && value.length == 0) || Object.keys(value).length === 0) return
 
-      if ('notice' in value || 'alert' in value) {
-        setFlash(value)
-      } else {
-        setMessages(value as string[])
-      }
-    },
+        if ('notice' in value || 'alert' in value) {
+          setFlash(value)
+        } else {
+          setMessages(value as string[])
+        }
+      },
+    }
   })
 
   const setFlash = (flash: Flash): void => {
