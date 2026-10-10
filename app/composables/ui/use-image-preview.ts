@@ -1,17 +1,19 @@
 export const useImagePreview = function (url: Ref<string | null | undefined>): {
-  preview: WritableComputedRef<string | null | undefined, File | null | undefined>
+  preview: Ref<string | null | undefined, File | null | undefined>
 } {
-  const preview = computed<string | null | undefined, File | null | undefined>({
-    get() {
-      return url.value
-    },
-    set(value: File | null | undefined) {
-      if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
-        setPreview(value)
-      } else {
-        url.value = null
-      }
-    },
+  const preview = customRef<string | null | undefined, File | null | undefined>(() => {
+    return {
+      get() {
+        return url.value
+      },
+      set(value: File | null | undefined) {
+        if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+          setPreview(value)
+        } else {
+          url.value = null
+        }
+      },
+    }
   })
 
   const setPreview = (value: File | null | undefined): void => {
