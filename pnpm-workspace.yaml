@@ -4,11 +4,11 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 overrides:
-  '@vue/compiler-core': ^3.6.0-rc.10
-  '@vue/compiler-dom': ^3.6.0-rc.10
-  '@vue/compiler-sfc': ^3.6.0-rc.10
-  '@vue/reactivity': ^3.6.0-rc.10
-  '@vue/runtime-core': ^3.6.0-rc.10
-  '@vue/runtime-dom': ^3.6.0-rc.10
-  '@vue/shared': ^3.6.0-rc.10
-  vue: ^3.6.0-rc.10
+  '@vue/compiler-core': ^3.6.0-rc.11
+  '@vue/compiler-dom': ^3.6.0-rc.11
+  '@vue/compiler-sfc': ^3.6.0-rc.11
+  '@vue/reactivity': ^3.6.0-rc.11
+  '@vue/runtime-core': ^3.6.0-rc.11
+  '@vue/runtime-dom': ^3.6.0-rc.11
+  '@vue/shared': ^3.6.0-rc.11
+  vue: ^3.6.0-rc.11
