@@ -6,7 +6,7 @@ export const useFollow = function () {
   const { flash, clearFlash } = useFlash()
   const { accountToken, clearAccount } = useAccount()
 
-  const { backendErrorInfo, off } = useApiError(flash, { caller: { clearAccount } })
+  const { backendErrorInfo, off } = useApiError(flash, { clearAccount })
 
   const following: Ref<boolean> = ref<boolean>(false)
 

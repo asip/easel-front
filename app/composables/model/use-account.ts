@@ -147,7 +147,7 @@ export const useAccount = function () {
   const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<UserErrorProperty>(flash)
 
-  const { backendErrorInfo } = useApiError(flash, { caller: { externalErrors, clearAccount } })
+  const { backendErrorInfo } = useApiError(flash, { externalErrors, clearAccount })
 
   const loginForm = ref<LoginForm>({
     email: '',

@@ -18,7 +18,7 @@ export const useAccountFrames = function () {
 
   const { frameQuery } = useAccountFrameQuery()
 
-  const { backendErrorInfo } = useApiError(flash, { caller: { clearAccount } })
+  const { backendErrorInfo } = useApiError(flash, { clearAccount })
 
   const makeFrame = ({ from, page }: { from: FrameResource; page: number }): Frame => {
     const frame: Frame = create({ from })
@@ -45,9 +45,7 @@ export const useAccountFrames = function () {
     increment,
     minPage,
     maxPage,
-  } = useMorePage({
-    key: 'profile',
-  })
+  } = useMorePage('profile')
 
   const getFrames = async (options?: { cache?: boolean }): Promise<void> => {
     const queryOptions: QueryApiOptions = {

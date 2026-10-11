@@ -99,9 +99,7 @@ export const useFrame = function () {
   const { externalErrors, clearExternalErrors, success } =
     useExternalErrors<FrameErrorProperty>(flash)
 
-  const { backendErrorInfo } = useApiError(flash, {
-    caller: { externalErrors, clearAccount },
-  })
+  const { backendErrorInfo } = useApiError(flash, { externalErrors, clearAccount })
 
   const set404Alert = (): void => {
     if (

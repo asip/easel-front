@@ -43,9 +43,7 @@ export const useUserFrames = function () {
     decrement,
     minPage,
     maxPage,
-  } = useMorePage({
-    key: 'userProfile',
-  })
+  } = useMorePage('userProfile')
 
   const getFrames = async (
     userId: string | undefined,
