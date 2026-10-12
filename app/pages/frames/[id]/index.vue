@@ -25,7 +25,7 @@ await getFrame(`${frameId}`)
 const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
 
 const onPageBack = async (): Promise<void> => {
-  if (!refItems.value.from) {
+  if (!refItems.value?.from) {
     await current({ cache: false })
     await navigateTo({ path: '/', query: query.value })
   } else {
