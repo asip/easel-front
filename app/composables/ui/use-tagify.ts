@@ -20,10 +20,10 @@ export const useTagify = function (
 
   let controller: AbortController
 
-  const tags = customRef<Tagify.TagData[] | undefined, string[] | undefined>(() => {
+  const tags = customRef<string[] | undefined>(() => {
     return {
       get() {
-        return tagify?.value
+        return tagify?.value.map((v) => v.value)
       },
       set(value: string[] | undefined) {
         tagify?.loadOriginalValues(value ?? [])
@@ -55,10 +55,10 @@ export const useTagify = function (
     tagify?.on('input', (ev) => onInput(ev))
 
     tagify?.on('add', () => {
-      tagList.value = tags.value?.map((v) => v.value)
+      tagList.value = tags.value
     })
     tagify?.on('remove', () => {
-      tagList.value = tags.value?.map((v) => v.value)
+      tagList.value = tags.value
     })
   }
 
