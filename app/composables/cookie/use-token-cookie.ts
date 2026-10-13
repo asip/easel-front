@@ -1,5 +1,5 @@
 export const useTokenCookie = function () {
-  const accessToken = useCookieValue('access_token', {
+  const accessToken = useCookie('access_token', {
     maxAge: 60 * 60,
     sameSite: 'lax',
     refresh: true,
