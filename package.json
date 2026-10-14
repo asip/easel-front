@@ -38,8 +38,8 @@
     "vue3-google-signin": "^2.1.1"
   },
   "devDependencies": {
-    "@markuplint/vue-parser": "^5.1.1",
-    "@markuplint/vue-spec": "^5.1.1",
+    "@markuplint/vue-parser": "^5.2.0",
+    "@markuplint/vue-spec": "^5.2.0",
     "@nuxt/eslint": "^1.17.0",
     "@nuxt/test-utils": "^4.3.3",
     "@nuxtjs/i18n": "^10.6.0",
@@ -52,8 +52,8 @@
     "baseline-browser-mapping": "^2.11.28",
     "daisyui": "^5.7.50",
     "eslint": "^10.12.0",
-    "happy-dom": "^20.14.6",
-    "markuplint": "^5.1.1",
+    "happy-dom": "^21.0.1",
+    "markuplint": "^5.2.0",
     "nuxt": "^4.6.1",
     "oxfmt": "^0.73.0",
     "playwright-core": "^1.64.0",
