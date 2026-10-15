@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Frame, QueryItems } from '~/types'
+import type { Frame, RefItems } from '~/types'
 
 const frame = defineModel<Frame>()
 
@@ -12,9 +12,9 @@ const { frameQuery } = from == 'profile' ? useAccountFrames() : useUserFrames()
 
 const { refItems } = useRefCookie()
 
-const refQuery = computed<QueryItems>(() => {
+const itemsRef = computed<RefItems>(() => {
   if (from == 'profile' || from == 'user_profile') {
-    return { ref: JSON.stringify({ from }) }
+    return { from }
   } else {
     return {}
   }
@@ -22,7 +22,7 @@ const refQuery = computed<QueryItems>(() => {
 
 const onFrameClick = async (): Promise<void> => {
   onLinkClick()
-  refItems.value = refQuery.value.ref
+  refItems.value = itemsRef.value
   await navigateTo({ path: `/frames/${frame.value?.id}` })
 }
 

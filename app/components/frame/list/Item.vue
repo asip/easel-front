@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Frame } from '~/types'
-// import type { QueryItems } from '~/types'
 
 interface ImageInfo {
   width: number | undefined
@@ -17,14 +16,11 @@ const { frameQuery } = useFrameSearch()
 
 const { refItems } = useRefCookie()
 
-// const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: '' }) }))
-
 const front = ref<boolean>(true)
 
 const onLinkClick = async (): Promise<void> => {
   if (frame.value?.page) frameQuery.value.page = frame.value?.page
-  // refItems.value = refQuery.value.ref
-  refItems.value = '{}'
+  refItems.value = {}
   await navigateTo(`/frames/${frame.value?.id}`)
 }
 

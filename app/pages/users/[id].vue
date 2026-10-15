@@ -27,7 +27,7 @@ const onPageBack = async (): Promise<void> => {
     await current({ cache: false })
     await navigateTo({ path: '/', query: query.value })
   } else {
-    refItems.value = '{}'
+    refItems.value = {}
     await navigateTo(referers.value[route.path])
   }
 }

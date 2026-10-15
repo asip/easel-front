@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { usePopover } from '~/composables/ui/use-popover'
-import type { QueryItems } from '~/types'
 
 const { openModal } = useModal()
 const { openPopover, supported } = usePopover()
@@ -22,8 +21,6 @@ provide('frameUse', frameUse)
 
 await getFrame(`${frameId}`)
 
-const refQuery = computed<QueryItems>(() => ({ ref: JSON.stringify({ from: 'frame' }) }))
-
 const onPageBack = async (): Promise<void> => {
   if (!refItems.value?.from) {
     await current({ cache: false })
@@ -38,7 +35,7 @@ const onNameClick = (): void => {
 }
 
 const onUserNameClick = async (): Promise<void> => {
-  refItems.value = refQuery.value.ref
+  refItems.value = { from: 'frame' }
   await navigateTo({ path: `/users/${frame.value?.user_id}` })
 }
 
