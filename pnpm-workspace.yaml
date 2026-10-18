@@ -12,3 +12,6 @@ overrides:
   '@vue/runtime-dom': ^3.6.0-rc.12
   '@vue/shared': ^3.6.0-rc.12
   vue: ^3.6.0-rc.12
+minimumReleaseAgeExclude:
+  - '@vesperjs/nuxt@0.15.1'
+  - '@vesperjs/shared@0.15.1'
