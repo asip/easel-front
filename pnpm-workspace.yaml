@@ -3,15 +3,14 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
-overrides:
-  '@vue/compiler-core': ^3.6.0-rc.12
-  '@vue/compiler-dom': ^3.6.0-rc.12
-  '@vue/compiler-sfc': ^3.6.0-rc.12
-  '@vue/reactivity': ^3.6.0-rc.12
-  '@vue/runtime-core': ^3.6.0-rc.12
-  '@vue/runtime-dom': ^3.6.0-rc.12
-  '@vue/shared': ^3.6.0-rc.12
-  vue: ^3.6.0-rc.12
 minimumReleaseAgeExclude:
-  - '@vesperjs/nuxt@0.15.1'
-  - '@vesperjs/shared@0.15.1'
+  - lucide-static@1.66.0
+overrides:
+  '@vue/compiler-core': ^3.6.0-rc.14
+  '@vue/compiler-dom': ^3.6.0-rc.14
+  '@vue/compiler-sfc': ^3.6.0-rc.14
+  '@vue/reactivity': ^3.6.0-rc.14
+  '@vue/runtime-core': ^3.6.0-rc.14
+  '@vue/runtime-dom': ^3.6.0-rc.14
+  '@vue/shared': ^3.6.0-rc.14
+  vue: ^3.6.0-rc.14
