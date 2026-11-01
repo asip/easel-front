@@ -46,11 +46,11 @@ importers:
         specifier: ^3.32.2
         version: 3.32.2(@floating-ui/dom@1.8.0)(@tiptap/core@3.32.2(@tiptap/pm@3.32.2))(@tiptap/pm@3.32.2)(vue@3.6.0-rc.14(typescript@6.0.3))
       '@vesperjs/nuxt':
-        specifier: 0.15.1
-        version: 0.15.1(vue@3.6.0-rc.14(typescript@6.0.3))
+        specifier: 0.16.0
+        version: 0.16.0(vue@3.6.0-rc.14(typescript@6.0.3))
       '@vesperjs/shared':
-        specifier: 0.15.1
-        version: 0.15.1(@vue/reactivity@3.6.0-rc.14)
+        specifier: 0.16.0
+        version: 0.16.0(@vue/reactivity@3.6.0-rc.14)
       '@vue/reactivity':
         specifier: ^3.6.0-rc.14
         version: 3.6.0-rc.14
@@ -2778,13 +2778,13 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vesperjs/nuxt@0.15.1':
-    resolution: {integrity: sha512-jpanQ39w/zq5TOiolLvMPnnsQ6DTVirF4yVZEjwrxXOFDX8swx7f6OZ05UgFa8xNwB2swkdWYxlRb5Dew9tv2A==}
+  '@vesperjs/nuxt@0.16.0':
+    resolution: {integrity: sha512-YsaWb/wWdG61gTfK8rJA5oyoPfJ5Xt+tNpT34Tq4x6G+3yQmjfOmuj23h8F/N+A/ElHfZOl2ORDiwLhBSMq9/w==}
     peerDependencies:
       vue: ^3.6.0-rc.14
 
-  '@vesperjs/shared@0.15.1':
-    resolution: {integrity: sha512-HYEO4GhLb9czjq12fTucfqcAAPs5m6+5lPJz19k0Oh0Wy6hvnp5ghA/v3Ecg9q6dreFnSnx9SDPIh0nbodHpAA==}
+  '@vesperjs/shared@0.16.0':
+    resolution: {integrity: sha512-chOUCgaNV1oduL39hT/K1LnFjz7Q698sYMg7qe1SkJluUDAbPPv1jPvQwiaakcg2qmHkaJC9mc4bOpmd0Q6sRA==}
     peerDependencies:
       '@vue/reactivity': ^3.6.0-rc.14
 
@@ -9477,11 +9477,11 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vesperjs/nuxt@0.15.1(vue@3.6.0-rc.14(typescript@6.0.3))':
+  '@vesperjs/nuxt@0.16.0(vue@3.6.0-rc.14(typescript@6.0.3))':
     dependencies:
       vue: 3.6.0-rc.14(typescript@6.0.3)
 
-  '@vesperjs/shared@0.15.1(@vue/reactivity@3.6.0-rc.14)':
+  '@vesperjs/shared@0.16.0(@vue/reactivity@3.6.0-rc.14)':
     dependencies:
       '@formkit/tempo': 1.1.0
       '@vue/reactivity': 3.6.0-rc.14
