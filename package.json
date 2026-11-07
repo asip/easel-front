@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@formkit/tempo": "^1.1.0",
+    "@nuxt/cli": "4.0.3",
     "@regle/core": "^1.29.5",
     "@regle/nuxt": "^1.29.5",
     "@regle/rules": "^1.29.5",
@@ -54,7 +55,7 @@
     "eslint": "^10.14.0",
     "happy-dom": "^21.0.4",
     "markuplint": "^5.4.0",
-    "nuxt": "^4.6.3",
+    "nuxt": "^4.6.4",
     "oxfmt": "^0.77.0",
     "playwright-core": "^1.65.0",
     "tailwindcss": "^4.3.5",
