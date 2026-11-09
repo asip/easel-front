@@ -16,7 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@formkit/tempo": "^1.1.0",
+    "@formkit/tempo": "^1.1.1",
     "@nuxt/cli": "4.0.3",
     "@regle/core": "^1.29.5",
     "@regle/nuxt": "^1.29.5",
@@ -42,7 +42,7 @@
     "@markuplint/vue-parser": "^5.4.0",
     "@markuplint/vue-spec": "^5.4.0",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/test-utils": "^4.3.4",
+    "@nuxt/test-utils": "^4.4.0",
     "@nuxtjs/i18n": "^10.6.0",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/vue": "^8.1.0",
