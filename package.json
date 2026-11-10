@@ -56,11 +56,11 @@
     "happy-dom": "^21.0.4",
     "markuplint": "^5.4.0",
     "nuxt": "^4.6.4",
-    "oxfmt": "^0.77.0",
+    "oxfmt": "^0.78.0",
     "playwright-core": "^1.65.0",
     "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3",
-    "vite": "8.3.6",
+    "vite": "8.3.7",
     "vitest": "^5.1.0"
   },
   "peerDependencies": {
