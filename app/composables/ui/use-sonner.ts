@@ -7,9 +7,29 @@ export const useSonner = function (options?: { delay: number }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toast = $toast as any
 
+  interface SonnerOptions {
+    value: string
+    type: string
+    delay: number
+  }
+
+  const sonnerOptions = ref<SonnerOptions>()
+
+  const sonner = customRef<SonnerOptions | undefined, SonnerOptions>(() => {
+    return {
+      get() {
+        return sonnerOptions.value
+      },
+      set(value: SonnerOptions) {
+        sonnerOptions.value = value
+        setMessage(value)
+      },
+    }
+  })
+
   const messages = ref<Flash | string[]>()
 
-  const sonner = customRef<Flash | string[] | undefined, Flash | string[]>(() => {
+  const sonners = customRef<Flash | string[] | undefined, Flash | string[]>(() => {
     return {
       get() {
         return messages.value
@@ -22,42 +42,44 @@ export const useSonner = function (options?: { delay: number }) {
         if ('notice' in value || 'alert' in value) {
           setFlash(value)
         } else {
-          setMessages(value as string[])
+          setMessages(value as string[], delay / 2)
         }
       },
     }
   })
 
-  const setFlash = (flash: Flash): void => {
-    // console.log(flash.alert)
-    // console.log(flash.info)
-    for (const [messageType, message] of Object.entries(flash)) {
-      if (message !== '') {
-        switch (messageType) {
-          case 'notice':
-            // console.log('info')
-            setTimeout(() => {
-              toast.info(message)
-            }, delay)
-            break
-          case 'alert':
-            // console.log('alert')
-            setTimeout(() => {
-              toast.error(message)
-            }, delay)
-            break
-        }
+  const setMessage = ({ value, type, delay }: SonnerOptions): void => {
+    if (value) {
+      switch (type) {
+        case 'notice':
+          // console.log('info')
+          setTimeout(() => {
+            toast.info(value)
+          }, delay)
+          break
+        case 'alert':
+          // console.log('alert')
+          setTimeout(() => {
+            toast.error(value)
+          }, delay)
+          break
       }
     }
   }
 
-  const setMessages = (messages: string[]): void => {
-    for (const message of messages.reverse()) {
-      setTimeout(() => {
-        toast.error(message)
-      }, delay / 2)
+  const setFlash = (flash: Flash): void => {
+    // console.log(flash.alert)
+    // console.log(flash.info)
+    for (const [messageType, message] of Object.entries(flash)) {
+      sonner.value = { value: message, type: messageType, delay }
     }
   }
 
-  return { sonner }
+  const setMessages = (messages: string[], delay: number): void => {
+    for (const message of messages.reverse()) {
+      sonner.value = { value: message, type: 'alert', delay }
+    }
+  }
+
+  return { sonners }
 }

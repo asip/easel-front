@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const { openModal, closeModal } = useModal()
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { loggedIn, deleteAccount, flash, processing } = useAccount()
 
 const onDeleteClick = async (): Promise<void> => {
   await deleteAccount()
-  sonner.value = flash.value
+  sonners.value = flash.value
   closeModal('#delete_account_modal')
 }
 

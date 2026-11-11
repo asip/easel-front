@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { redirectTo } = usePrevPage()
 const { loggedIn } = useAccount()
 const {
@@ -39,7 +39,7 @@ const onCreateClick = async (): Promise<void> => {
 
   if (valid) {
     await createFrame()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       await navigateTo(`/frames/${frameId.value}`)
     } else if (!loggedIn.value) {

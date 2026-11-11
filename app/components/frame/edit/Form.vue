@@ -3,7 +3,7 @@ import type { BackendErrorResource } from '~/types'
 
 const route = useRoute()
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { redirectTo } = usePrevPage()
 const { loggedIn } = useAccount()
 const {
@@ -33,7 +33,7 @@ const onEditClick = async (): Promise<void> => {
   if (valid) {
     await updateFrame()
     set404Alert()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       await refresh()
       await redirectTo({ current: route.path, fallback: `/frames/${frame?.value.id}` })

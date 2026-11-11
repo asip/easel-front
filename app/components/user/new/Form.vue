@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
 const {
@@ -41,7 +41,7 @@ const onSignupClick = async (): Promise<void> => {
 
   if (valid) {
     await signup()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       clearProfile()
       closeModal('#signup_modal')

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Comment } from '~/types'
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 
 const commentUse = inject('commentUse') as UseCommentType
 const {
@@ -34,7 +34,7 @@ const onUpdateClick = async (): Promise<void> => {
   if (valid) {
     await updateComment()
     set404Alert()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       r$.$touch()
       r$.$reset()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BackendErrorResource } from '~/types'
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, processing } = inject(
   'frameUse',
@@ -10,7 +10,7 @@ const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, proce
 const onDeleteClick = async (): Promise<void> => {
   await deleteFrame()
   set404Alert()
-  sonner.value = flash.value
+  sonners.value = flash.value
 
   if (success.value) {
     await navigateTo('/')

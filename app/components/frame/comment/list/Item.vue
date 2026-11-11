@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Comment } from '~/types'
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { loggedIn, account } = useAccount()
 
 const commentUse = useComment()
@@ -46,7 +46,7 @@ const onCancelClick = (): void => {
 const onDeleteClick = async (): Promise<void> => {
   if (commentModel.value) await deleteComment(commentModel.value)
   set404Alert()
-  sonner.value = flash.value
+  sonners.value = flash.value
   if (success.value) {
     await getComments(commentModel.value?.frame_id, { cache: false })
   } else {

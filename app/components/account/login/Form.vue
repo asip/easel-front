@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { loginForm, login, success, flash, externalErrors, clearLoginForm, clearExternalErrors } =
   inject('accountUse') as UseAccountType
 const { signinSchema } = useAccountSchemas()
@@ -18,7 +18,7 @@ const onLoginClick = async (): Promise<void> => {
 
   if (valid) {
     await login()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       clearLoginForm()
       r$.$reset()

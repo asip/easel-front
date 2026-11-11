@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BackendErrorResource } from '~/types'
 
-const { sonner } = useSonner()
+const { sonners } = useSonner()
 const { loggedIn, account } = useAccount()
 const {
   comment,
@@ -41,7 +41,7 @@ const onCreateClick = async (): Promise<void> => {
   if (valid) {
     await createComment()
     set404Alert()
-    sonner.value = flash.value
+    sonners.value = flash.value
     if (success.value) {
       comment.value.body = ''
       editor.value?.focus()
