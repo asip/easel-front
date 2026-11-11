@@ -3,7 +3,7 @@ import type { TagifyOptions } from '~/composables'
 
 export interface AutocompleteTagsType {
   tags: Ref<string[] | undefined>
-  filterBy: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+  filterBy?: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
 }
 </script>
 
