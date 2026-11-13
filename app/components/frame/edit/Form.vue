@@ -3,7 +3,7 @@ import type { BackendErrorResource } from '~/types'
 
 const route = useRoute()
 
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { redirectTo } = usePrevPage()
 const { loggedIn } = useAccount()
 const {

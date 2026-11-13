@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Comment } from '~/types'
 
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 
 const commentUse = inject('commentUse') as UseCommentType
 const {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { openModal, closeModal } = useModal()
 const { tzOptions } = useTimeZone()
 const {

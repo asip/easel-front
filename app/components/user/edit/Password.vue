@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { openModal, closeModal } = useModal()
 const { loggedIn, account, user, updatePassword, externalErrors, processing, success, flash } =
   inject('accountUse') as UseAccountType

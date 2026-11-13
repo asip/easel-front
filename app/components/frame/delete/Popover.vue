@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BackendErrorResource } from '~/types'
 
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { loggedIn, account } = useAccount()
 const { frame, deleteFrame, backendErrorInfo, set404Alert, success, flash, processing } = inject(
   'frameUse',

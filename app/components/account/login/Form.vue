@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
 
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { loginForm, login, success, flash, externalErrors, clearLoginForm, clearExternalErrors } =
   inject('accountUse') as UseAccountType
 const { signinSchema } = useAccountSchemas()

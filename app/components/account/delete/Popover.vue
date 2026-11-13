@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { closeModal } = useModal()
 const { closePopover } = usePopover()
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { loggedIn, deleteAccount, flash, processing } = useAccount()
 
 const onDeleteClick = async (): Promise<void> => {

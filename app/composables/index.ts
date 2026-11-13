@@ -7,7 +7,7 @@ export {
   usePopover,
   useTiptapUtil,
   useTagify,
-  useSonner,
+  useFlashSonner,
   type TagifyOptions,
   type AutocompleteTagsType,
 } from './ui'
