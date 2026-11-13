@@ -7,7 +7,7 @@ const { frameQuery, query, current, clearFrameQuery } = useFrameSearch()
 const { openModal } = useModal()
 
 const dropdown = useTemplateRef('dropdown')
-const { closeDropdown } = useDropdown({ el: dropdown })
+const { closeDropdown } = useDropdown(dropdown)
 
 provide('accountUse', accountUse)
 
