@@ -1,4 +1,7 @@
-export const useImagePreview = function (url: Ref<string | null | undefined>): {
+export const useImagePreview = function (
+  url: Ref<string | null | undefined>,
+  ext: string | RegExp = /^image\/(jpeg|jpg|png|gif|webp|avif)$/,
+): {
   preview: Ref<string | null | undefined, File | null | undefined>
 } {
   const preview = customRef<string | null | undefined, File | null | undefined>(() => {
@@ -7,7 +10,7 @@ export const useImagePreview = function (url: Ref<string | null | undefined>): {
         return url.value
       },
       set(value: File | null | undefined) {
-        if (value?.type.match(/^image\/(jpeg|jpg|png|gif|webp|avif)$/)) {
+        if (value?.type.match(ext)) {
           setPreview(value)
         } else {
           url.value = null
