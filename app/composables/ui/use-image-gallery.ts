@@ -4,17 +4,17 @@ export const useImageGallery = function (selector: string, options?: PsOptions) 
   const anchor = options?.anchor
   const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
 
-  const { init: initPhotoSwipe, close: closePhotoSwipe } = usePhotoSwipe(selector, {
+  const { init: initPS, close: closePS } = usePhotoSwipe(selector, {
     anchor,
     initialZoomLevel,
   })
 
   const init = (): void => {
-    initPhotoSwipe()
+    initPS()
   }
 
   const close = (): void => {
-    closePhotoSwipe()
+    closePS()
   }
 
   return { init, close }
