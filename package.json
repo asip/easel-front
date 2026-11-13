@@ -64,8 +64,8 @@
     "vitest": "^5.1.0"
   },
   "peerDependencies": {
-    "@vue/reactivity": "^3.6.0-rc.14",
-    "@vue/server-renderer": "^3.6.0-rc.14",
-    "vue": "^3.6.0-rc.14"
+    "@vue/reactivity": "^3.6.0-rc.15",
+    "@vue/server-renderer": "^3.6.0-rc.15",
+    "vue": "^3.6.0-rc.15"
   }
 }
