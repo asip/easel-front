@@ -1,4 +1,7 @@
-import type { AutocompleteTagsType } from '~/components/Tagify.vue'
+export interface AutocompleteTagsType {
+  tags: Ref<string[] | undefined>
+  filterBy?: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
+}
 
 export type TagifyOptions = Tagify.TagifySettings & {
   autocompleteTags?: AutocompleteTagsType

@@ -9,6 +9,7 @@ export {
   useTagify,
   useSonner,
   type TagifyOptions,
+  type AutocompleteTagsType,
 } from './ui'
 
 export { useCommentSchemas, useFrameSchemas, useAccountSchemas } from './model/validation'
