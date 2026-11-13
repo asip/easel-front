@@ -9,7 +9,7 @@ interface LoginForm {
 export const useAccount = function () {
   const { queryApi, mutationApi } = useApi()
 
-  const { empty2p, p2empty } = useTiptap()
+  const { empty2p, p2empty } = useTiptapUtil()
   const { copy } = useEntity<User, UserResource>()
 
   const { timeZone } = useTimeZone()

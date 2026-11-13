@@ -13,7 +13,7 @@ export const useComment = function () {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { t } = $i18n as any
 
-  const { empty2p, p2empty } = useTiptap()
+  const { empty2p, p2empty } = useTiptapUtil()
   const { copy } = useEntity<Comment, CommentResource>()
 
   const { flash, clearFlash } = useFlash()

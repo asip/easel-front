@@ -1,4 +1,4 @@
-export const useTiptap = function () {
+export const useTiptapUtil = function () {
   const p2br = (content: string): string => {
     content = content.replace(/<\/p><p>/gi, '<br>')
     content = content.replace(/<p>/gi, '')

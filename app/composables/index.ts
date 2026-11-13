@@ -5,7 +5,7 @@ export {
   useLightbox,
   useModal,
   usePopover,
-  useTiptap,
+  useTiptapUtil,
   useTagify,
   useSonner,
   type TagifyOptions,
