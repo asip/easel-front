@@ -1,4 +1,5 @@
-import { useGLightbox, usePhotoSwipe } from './lightbox'
+import { useGLightbox } from './g-lightbox'
+import { usePhotoSwipe } from './photoswipe'
 
 type LbOptions = { selector: string }
 type LightboxOptions = { ps?: LbOptions; gl?: LbOptions }

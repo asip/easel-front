@@ -1,4 +1,4 @@
-import { usePhotoSwipe, type PsOptions } from './lightbox'
+import { usePhotoSwipe, type PsOptions } from './photoswipe'
 
 export const useImageGallery = function (selector: string, options?: PsOptions) {
   const anchor = options?.anchor

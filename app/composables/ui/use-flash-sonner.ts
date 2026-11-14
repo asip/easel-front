@@ -1,4 +1,4 @@
-import { useSonner } from './use-sonner'
+import { useSonner } from './sonner'
 
 import type { Flash } from '~/types'
 

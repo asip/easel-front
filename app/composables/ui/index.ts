@@ -1,3 +1,5 @@
+export { useTagify, type TagifyOptions, type AutocompleteTagsType } from './tagify'
+
 export { useDropdown } from './use-dropdown'
 export { useImageGallery } from './use-image-gallery'
 export { useImagePreview } from './use-image-preview'
@@ -5,5 +7,5 @@ export { useLightbox } from './use-lightbox'
 export { useModal } from './use-modal'
 export { usePopover } from './use-popover'
 export { useTiptapUtil } from './use-tiptap-util'
-export { useTagify, type TagifyOptions, type AutocompleteTagsType } from './use-tagify'
+
 export { useFlashSonner } from './use-flash-sonner'
