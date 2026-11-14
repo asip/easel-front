@@ -47,11 +47,11 @@ export const useTagify = function (
   })
 
   const init = (): void => {
-    if (el.value) {
-      tagify = new tagifyClass(el.value, options)
+    if (!el.value) return
 
-      eventCallbacks()
-    }
+    tagify = new tagifyClass(el.value, options)
+
+    eventCallbacks()
   }
 
   const eventCallbacks = (): void => {
@@ -79,10 +79,10 @@ export const useTagify = function (
   }
 
   const close = (): void => {
-    if (tagify) {
-      tagify.destroy()
-      tagify = null
-    }
+    if (!tagify) return
+
+    tagify.destroy()
+    tagify = null
   }
 
   return { tags, init, close }

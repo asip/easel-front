@@ -19,20 +19,20 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
   let lightbox: PhotoSwipeLightbox
 
   const init = async (): Promise<void> => {
-    if (selector) {
-      await assignSize()
+    if (!selector) return
 
-      lightbox = new psLightbox({
-        ...options,
-        gallery: selector,
-        children: anchor,
-        initialZoomLevel,
-        pswpModule: () => import('photoswipe'),
-      })
+    await assignSize()
 
-      // const fullscreenPlugin = new psFullscreen(lightbox) // eslint-disable-line
-      lightbox.init()
-    }
+    lightbox = new psLightbox({
+      ...options,
+      gallery: selector,
+      children: anchor,
+      initialZoomLevel,
+      pswpModule: () => import('photoswipe'),
+    })
+
+    // const fullscreenPlugin = new psFullscreen(lightbox) // eslint-disable-line
+    lightbox.init()
   }
 
   const assignSize = async (): Promise<void> => {
