@@ -3,6 +3,8 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+minimumReleaseAgeExclude:
+  - '@vue/test-utils@2.6.0'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.15
   '@vue/compiler-dom': ^3.6.0-rc.15
