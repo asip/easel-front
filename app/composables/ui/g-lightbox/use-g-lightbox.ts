@@ -1,9 +1,8 @@
 import type GLightbox from 'glightbox'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let glightbox: any
+let glightbox: typeof GLightbox
 
-if (import.meta.client) glightbox = await import('glightbox')
+if (import.meta.client) glightbox = (await import('glightbox')).default
 
 // Type definitions for Glightbox 3.2.1
 // eslint-disable-next-line @typescript-eslint/no-namespace
