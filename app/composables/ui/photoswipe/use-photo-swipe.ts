@@ -6,11 +6,9 @@ export type PsOptions = Partial<PreparedPhotoSwipeOptions> & {
 }
 
 export const usePhotoSwipe = function (selector: string | undefined, options?: PsOptions) {
-  const { $psLightbox /* , $psFullscreen */ } = useNuxtApp()
+  const { $psLightbox } = useNuxtApp()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const psLightbox = $psLightbox as any
-  // // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const psFullscreen = $psFullscreen as any
 
   const anchor = options?.anchor ?? 'a'
   if (options?.anchor) delete options.anchor
@@ -31,8 +29,15 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
       pswpModule: () => import('photoswipe'),
     })
 
-    // const fullscreenPlugin = new psFullscreen(lightbox) // eslint-disable-line
+    extensions(lightbox)
+
     lightbox.init()
+  }
+
+  let extensions: (lightbox: PhotoSwipeLightbox) => void = () => undefined
+
+  const extend = (func: (lightbox: PhotoSwipeLightbox) => void): void => {
+    extensions = func
   }
 
   const assignSize = async (): Promise<void> => {
@@ -61,5 +66,5 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
     if (lightbox) lightbox.destroy()
   }
 
-  return { init, close }
+  return { init, extend, close }
 }
