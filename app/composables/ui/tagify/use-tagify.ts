@@ -1,3 +1,5 @@
+import Tagify from '@yaireo/tagify'
+
 export interface AutocompleteTagsType {
   list: Ref<string[] | undefined>
   filterBy?: (name: string, { signal }: { signal: AbortSignal }) => Promise<void>
@@ -20,11 +22,6 @@ export const useTagify = function (
     : []
 
   let tagify: Tagify | null = null
-
-  const { $tagify } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tagifyClass = $tagify as any
-
   let controller: AbortController
 
   const tags = customRef<string[] | undefined>(() => {
@@ -53,7 +50,7 @@ export const useTagify = function (
   const init = (): void => {
     if (!el.value) return
 
-    tagify = new tagifyClass(el.value, options)
+    tagify = new Tagify(el.value, options)
 
     eventCallbacks()
   }

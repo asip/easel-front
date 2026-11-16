@@ -1,15 +1,11 @@
 import type { PreparedPhotoSwipeOptions } from 'photoswipe'
-import type PhotoSwipeLightbox from 'photoswipe/lightbox'
+import PhotoSwipeLightbox from 'photoswipe/lightbox'
 
 export type PsOptions = Partial<PreparedPhotoSwipeOptions> & {
   anchor?: string
 }
 
 export const usePhotoSwipe = function (selector: string | undefined, options?: PsOptions) {
-  const { $psLightbox } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const psLightbox = $psLightbox as any
-
   const anchor = options?.anchor ?? 'a'
   if (options?.anchor) delete options.anchor
   const initialZoomLevel = options?.initialZoomLevel ?? 'fit'
@@ -21,7 +17,7 @@ export const usePhotoSwipe = function (selector: string | undefined, options?: P
 
     await assignSize()
 
-    lightbox = new psLightbox({
+    lightbox = new PhotoSwipeLightbox({
       ...options,
       gallery: selector,
       children: anchor,
