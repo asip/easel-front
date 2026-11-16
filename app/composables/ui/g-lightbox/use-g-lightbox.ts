@@ -1,5 +1,10 @@
 import type GLightbox from 'glightbox'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let glightbox: any
+
+if (import.meta.client) glightbox = await import('glightbox')
+
 // Type definitions for Glightbox 3.2.1
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Glightbox {
@@ -276,14 +281,10 @@ declare namespace Glightbox {
 }
 
 export const useGLightbox = function (selector: string | undefined, options?: Glightbox.Options) {
-  const { $gLightbox } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const gLightbox = $gLightbox as any
-
   let lightbox: ReturnType<typeof GLightbox> | null
 
   const init = (): void => {
-    lightbox = gLightbox({ ...options, selector })
+    lightbox = glightbox({ ...options, selector })
   }
 
   const close = (): void => {
