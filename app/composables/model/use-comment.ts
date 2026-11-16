@@ -1,3 +1,5 @@
+import type { Composer } from 'vue-i18n'
+
 import type {
   Comment,
   CommentResource,
@@ -10,8 +12,7 @@ export const useComment = function () {
   const { mutationApi } = useApi()
 
   const { $i18n } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { t } = $i18n as any
+  const { t } = $i18n as Composer
 
   const { empty2p, p2empty } = useTiptapUtil()
   const { copy } = useEntity<Comment, CommentResource>()

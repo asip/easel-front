@@ -1,8 +1,9 @@
+import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
 
 export const minLength = () => {
   const { $i18n } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { t } = $i18n as any
+  const { t } = $i18n as Composer
+
   return r.withMessage(r.minLength, ({ $params: [min] }) => t('regle.rules.minLength', { min }))
 }

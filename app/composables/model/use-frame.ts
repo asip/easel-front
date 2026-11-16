@@ -1,3 +1,5 @@
+import type { Composer } from 'vue-i18n'
+
 import type {
   Frame,
   FrameResource,
@@ -11,8 +13,7 @@ export const useFrame = function () {
   const { queryApi, mutationApi } = useApi()
 
   const { $i18n } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { t } = $i18n as any
+  const { t } = $i18n as Composer
 
   const { upDTL, downDTL } = useDatetime()
   const { copy } = useEntity<Frame, FrameResource>()

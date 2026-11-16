@@ -1,10 +1,11 @@
+import type { Composer } from 'vue-i18n'
+
 import type { User } from '~/types'
 import { required, minLength, maxLength, maxFileSize, email, sameAs } from '@regle/rules'
 
 export const useAccountSchemas = function (user?: User) {
   const { $i18n } = useNuxtApp()
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { t } = $i18n as any
+  const { t } = $i18n as Composer
 
   const signupSchema = () => ({
     image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },

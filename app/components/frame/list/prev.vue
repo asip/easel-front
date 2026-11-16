@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import type { Composer } from 'vue-i18n'
+
 const { $i18n } = useNuxtApp()
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { t } = $i18n as any
+const { t } = $i18n as Composer
 
 const { minPage, pages } = defineProps<{ minPage: number; pages: number }>()
 
