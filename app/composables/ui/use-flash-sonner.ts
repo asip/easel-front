@@ -1,4 +1,4 @@
-import { useSonner } from './sonner'
+import { useSonner } from './vue-sonner'
 
 import type { Flash } from '~/types'
 

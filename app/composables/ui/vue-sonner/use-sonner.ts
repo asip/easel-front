@@ -18,12 +18,12 @@ export const useSonner = function () {
       },
       set(value: SonnerOptions) {
         sonnerOptions.value = value
-        setMessage(value)
+        setOptions(value)
       },
     }
   })
 
-  const setMessage = ({ value, type, delay }: SonnerOptions): void => {
+  const setOptions = ({ value, type, delay }: SonnerOptions): void => {
     if (value) {
       switch (type) {
         case 'notice':
