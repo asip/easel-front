@@ -21,7 +21,7 @@ const onOutsideClick = (ev: PointerEvent): void => {
 
 <template>
   <dialog id="login_modal" class="modal" @click="onOutsideClick">
-    <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass">
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass-008">
       <div class="flex justify-start mb-1">
         <div>
           {{ $t('action.user.login') }}

@@ -32,7 +32,7 @@ const onOutsideClick = (ev: PointerEvent): void => {
 
 <template>
   <dialog v-if="loggedIn" id="profile_modal" class="modal" @click="onOutsideClick">
-    <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass text-white">
+    <div class="modal-box rounded-[20px] divide-y divide-gray-200 glass-008 text-white">
       <div class="flex justify-between gap-1 mb-1">
         <div>{{ $t('model.user.model_name') }}</div>
         <div>

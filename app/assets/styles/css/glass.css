@@ -1,4 +1,4 @@
-.glass {
+.glass-008 {
   background: rgba(255, 255, 255, 0.08); /* translucent white (半透明の白) */
   backdrop-filter: blur(24px) saturate(180%); /* blur the background (背景をぼかす) */
   border: 1px solid rgba(255, 255, 255, 0.18); /* thin border (薄いボーダー) */

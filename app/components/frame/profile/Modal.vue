@@ -6,7 +6,7 @@ const frame = defineModel<Frame>()
 
 <template>
   <dialog id="frame_profile_modal" class="modal">
-    <div class="modal-box glass">
+    <div class="modal-box glass-008">
       <FrameProfile v-model="frame" />
     </div>
     <form method="dialog" class="modal-backdrop">
