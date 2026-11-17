@@ -1,9 +1,8 @@
 import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
 
-export const maxFileSize = () => {
-  const { $i18n } = useNuxtApp()
-  const { t } = $i18n as Composer
+export const maxFileSize = (i18n: Composer) => {
+  const { t } = i18n
 
   return r.withMessage(r.maxFileSize, ({ $params: [maxSize] }) =>
     t('regle.rules.maxFileSize', { max: maxSize / (1000 * 1000) }),

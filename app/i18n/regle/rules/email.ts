@@ -1,9 +1,8 @@
 import type { Composer } from 'vue-i18n'
 import * as r from '@regle/rules'
 
-export const email = () => {
-  const { $i18n } = useNuxtApp()
-  const { t } = $i18n as Composer
+export const email = (i18n: Composer) => {
+  const { t } = i18n
 
   return r.withMessage(r.email, () => t('regle.rules.email'))
 }
