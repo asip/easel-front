@@ -2,7 +2,7 @@
 const route = useRoute()
 const { id } = route.params
 
-const { sonners } = useSonner()
+const { sonners } = useFlashSonner()
 const { openModal } = useModal()
 const { referers } = useReferer()
 const { user, getUser } = useUser()
