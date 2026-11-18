@@ -97,7 +97,7 @@
   "regle": {
     "rules": {
       "required": "Required.",
-      "email": "is invalid format.",
+      "email": "A invalid email address.",
       "minLength": "More than {min} characters.",
       "maxLength": "are limited to {max} characters.",
       "sameAs": "must be equal to the {otherName} value",
