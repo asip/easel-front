@@ -91,19 +91,19 @@
     "error": {
       "api": "不具合が発生しました。({message})",
       "login": "ログインしてください",
-      "not_found": "この{source}は削除されています。"
+      "not_found": "この{source}は削除されています"
     }
   },
   "regle": {
     "rules": {
-      "required": "必須です。",
-      "email": "不正なメールアドレスです。",
-      "minLength": "{min}文字以上です。",
-      "maxLength": "{max}文字までです。",
-      "sameAs": "{otherName}と一致しません。",
-      "maxTagArrayLength": "{size}つまでです。",
-      "maxTagLength": "{size}文字までです。",
-      "maxFileSize": "{max}MBまでです。"
+      "required": "必須です",
+      "email": "不正なメールアドレスです",
+      "minLength": "{min}文字以上です",
+      "maxLength": "{max}文字までです",
+      "sameAs": "{otherName}と一致しません",
+      "maxTagArrayLength": "{size}つまでです",
+      "maxTagLength": "{size}文字までです",
+      "maxFileSize": "{max}MBまでです"
     }
   }
 }

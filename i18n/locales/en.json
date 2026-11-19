@@ -91,19 +91,19 @@
     "error": {
       "api": "An error has occurred.({message})",
       "login": "Please login.",
-      "not_found": "This {source} has been deleted."
+      "not_found": "This {source} has been deleted"
     }
   },
   "regle": {
     "rules": {
-      "required": "Required.",
-      "email": "A invalid email address.",
-      "minLength": "More than {min} characters.",
-      "maxLength": "are limited to {max} characters.",
+      "required": "Required",
+      "email": "is not a valid email address",
+      "minLength": "More than {min} characters",
+      "maxLength": "are limited to {max} characters",
       "sameAs": "must be equal to the {otherName} value",
-      "maxTagArrayLength": "are limited to {size}.",
-      "maxTagLength": "are limited to {size} characters.",
-      "maxFileSize": "are limited to {max} MB."
+      "maxTagArrayLength": "are limited to {size}",
+      "maxTagLength": "are limited to {size} characters",
+      "maxFileSize": "are limited to {max} MB"
     }
   }
 }
