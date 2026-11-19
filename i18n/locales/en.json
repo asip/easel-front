@@ -96,14 +96,14 @@
   },
   "regle": {
     "rules": {
-      "required": "Required",
+      "required": "is required",
       "email": "is not a valid email address",
-      "minLength": "More than {min} characters",
-      "maxLength": "are limited to {max} characters",
+      "minLength": "must be at least {min} characters long",
+      "maxLength": "must be at most {max} characters long",
       "sameAs": "must be equal to the {otherName} value",
-      "maxTagArrayLength": "are limited to {size}",
-      "maxTagLength": "are limited to {size} characters",
-      "maxFileSize": "are limited to {max}"
+      "maxTagArrayLength": "must be at most {size}",
+      "maxTagLength": "must be at most {size} characters long",
+      "maxFileSize": "cannot exceed {max}"
     }
   }
 }
