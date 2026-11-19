@@ -5,16 +5,16 @@
  */
 export function formatFileSize(size: number | undefined): string {
   if (size === undefined) {
-    return '0 bytes';
+    return '0 bytes'
   }
   if (size < 1024) {
-    return `${size.toString()} bytes`;
+    return `${size.toString()} bytes`
   }
   if (size < 1024 * 1024) {
-    return `${(size / 1024).toFixed(2)} kb`;
+    return `${(size / 1024).toFixed(2)} kb`
   }
   if (size < 1024 * 1024 * 1024) {
-    return `${(size / 1024 / 1024).toFixed(2)} mb`;
+    return `${(size / 1024 / 1024).toFixed(2)} mb`
   }
-  return `${(size / 1024 / 1024 / 1024).toFixed(2)} gb`;
+  return `${(size / 1024 / 1024 / 1024).toFixed(2)} gb`
 }
