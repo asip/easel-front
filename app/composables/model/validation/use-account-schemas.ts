@@ -8,7 +8,7 @@ export const useAccountSchemas = function (user?: User) {
   const { t } = $i18n as Composer
 
   const signupSchema = () => ({
-    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
+    image: { maxFileSize: maxFileSize(5 * 1024 * 1024) },
     name: {
       required,
       minLength: minLength(3),
@@ -34,7 +34,7 @@ export const useAccountSchemas = function (user?: User) {
   }
 
   const userSchema = () => ({
-    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
+    image: { maxFileSize: maxFileSize(5 * 1024 * 1024) },
     name: {
       required,
       minLength: minLength(3),
@@ -47,7 +47,7 @@ export const useAccountSchemas = function (user?: User) {
   })
 
   const profileSchema = {
-    image: { maxFileSize: maxFileSize(5 * 1000 * 1000) },
+    image: { maxFileSize: maxFileSize(5 * 1024 * 1024) },
     name: {
       required,
       minLength: minLength(3),

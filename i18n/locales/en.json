@@ -103,7 +103,7 @@
       "sameAs": "must be equal to the {otherName} value",
       "maxTagArrayLength": "are limited to {size}",
       "maxTagLength": "are limited to {size} characters",
-      "maxFileSize": "are limited to {max} MB"
+      "maxFileSize": "are limited to {max}"
     }
   }
 }

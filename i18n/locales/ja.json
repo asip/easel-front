@@ -103,7 +103,7 @@
       "sameAs": "{otherName}と一致しません",
       "maxTagArrayLength": "{size}つまでです",
       "maxTagLength": "{size}文字までです",
-      "maxFileSize": "{max}MBまでです"
+      "maxFileSize": "{max}までです"
     }
   }
 }
