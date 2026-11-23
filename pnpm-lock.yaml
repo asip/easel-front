@@ -19,8 +19,8 @@ importers:
   .:
     dependencies:
       '@formkit/tempo':
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.5.0
+        version: 1.5.0
       '@nuxt/cli':
         specifier: 4.1.0
         version: 4.1.0(@nuxt/schema@4.6.4)(jiti@2.7.0)(oxc-parser@0.141.0)(rolldown@1.2.18)(vite@8.3.8(@types/node@26.1.1)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.0))
@@ -73,8 +73,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       lucide-static:
-        specifier: ^1.77.0
-        version: 1.77.0
+        specifier: ^1.78.0
+        version: 1.78.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -840,8 +840,8 @@ packages:
   '@floating-ui/vue@1.1.11':
     resolution: {integrity: sha512-HzHKCNVxnGS35r9fCHBc3+uCnjw9IWIlCPL683cGgM9Kgj2BiAl8x1mS7vtvP6F9S/e/q4O6MApwSHj8hNLGfw==}
 
-  '@formkit/tempo@1.4.0':
-    resolution: {integrity: sha512-H4+xMPVkvf3DWO4L0NZcspEuAdT+5U080RSCyzRZYtz+3YhCTt0L3bO/jhrymv5fEve0dxAIIVSxejN2S/yOVQ==}
+  '@formkit/tempo@1.5.0':
+    resolution: {integrity: sha512-vgg4jHNs7Lc0H4DXEN/asrHBMbUD7eCUsjpLiB6a9M7yaF5yDJG0MlD9bTX9/oFPlzxU3AMUQ5zpkEJ1oBTUzg==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -4665,8 +4665,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-static@1.77.0:
-    resolution: {integrity: sha512-v+BzpQrjlwDRWPDzzAu5IFhOkI6jVKb91fsjw1ZSS7Tsb2YvRX5olRN0DXGW99LF2wV4fycuTf5aPOMC62ZW0g==}
+  lucide-static@1.78.0:
+    resolution: {integrity: sha512-iEVJ83JKHCP8O1LA5G4x2ybQjIdr86PcyrH0GrU2Y22uHaF+rAIGKNKOiJO/Xd+qMWcpzDUjeQ6IHr7Q399VyA==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -7175,7 +7175,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@formkit/tempo@1.4.0': {}
+  '@formkit/tempo@1.5.0': {}
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -9539,7 +9539,7 @@ snapshots:
 
   '@vesperjs/shared@0.16.0(@vue/reactivity@3.6.0-rc.16)':
     dependencies:
-      '@formkit/tempo': 1.4.0
+      '@formkit/tempo': 1.5.0
       '@vue/reactivity': 3.6.0-rc.16
 
   '@vitejs/plugin-vue-jsx@5.1.6(supports-color@10.2.2)(vite@8.3.8(@types/node@26.1.1)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.0))(vue@3.6.0-rc.16(typescript@6.0.3))':
@@ -11443,7 +11443,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-static@1.77.0: {}
+  lucide-static@1.78.0: {}
 
   lz-string@1.5.0: {}
 
