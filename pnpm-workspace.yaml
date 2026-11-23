@@ -3,6 +3,9 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+minimumReleaseAgeExclude:
+  - '@formkit/tempo@1.4.0'
+  - '@nuxt/cli@4.1.0'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.16
   '@vue/compiler-dom': ^3.6.0-rc.16
