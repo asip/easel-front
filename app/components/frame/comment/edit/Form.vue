@@ -5,7 +5,7 @@ const { sonners } = useFlashSonner()
 
 const commentUse = inject('commentUse') as UseCommentType
 const {
-  comment,
+  comment: commentAlias,
   body,
   externalErrors,
   backendErrorInfo,
@@ -16,11 +16,11 @@ const {
   processing,
   setComment,
 } = commentUse
-const { redirectOrReload404 } = useCommentTransition(comment)
+const { redirectOrReload404 } = useCommentTransition(commentAlias)
 
 const { commentSchema } = useCommentSchemas()
 
-const { r$ } = useRegleI18n(comment, commentSchema, { externalErrors })
+const { r$ } = useRegleI18n(commentAlias, commentSchema, { externalErrors })
 
 const commentModel = defineModel<Comment>('comment')
 const edit = defineModel<boolean>('edit')
