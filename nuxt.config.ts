@@ -4,7 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/i18n', '@nuxt/test-utils', '@nuxt/eslint', '@regle/nuxt', 'vue-sonner/nuxt'],
+  modules: ['@nuxtjs/i18n', '@nuxt/devtools', '@nuxt/test-utils', '@nuxt/eslint', '@regle/nuxt', 'vue-sonner/nuxt'],
   plugins: [],
   extends: ['@vesperjs/nuxt'],
 

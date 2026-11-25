@@ -3,6 +3,10 @@ allowBuilds:
   esbuild: false
   unrs-resolver: false
   vue-demi: false
+minimumReleaseAgeExclude:
+  - '@nuxt/devtools-kit@1.7.1'
+  - '@nuxt/devtools-wizard@1.7.1'
+  - '@nuxt/devtools@1.7.1'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.16
   '@vue/compiler-dom': ^3.6.0-rc.16
