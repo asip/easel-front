@@ -1,8 +1,2 @@
-export { required } from './required'
-export { maxLength } from './maxLength'
-export { minLength } from './minLength'
-export { email } from './email'
-export { sameAs } from './sameAs'
-export { maxFileSize } from './maxFileSize'
 export { maxTagArrayLength } from './maxTagArrayLength'
 export { maxTagLength } from './maxTagLength'

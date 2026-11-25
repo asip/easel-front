@@ -1,16 +1,9 @@
 import { defineRegleConfig } from '@regle/core'
 import type { Composer } from 'vue-i18n'
 
-import {
-  required,
-  maxLength,
-  minLength,
-  email,
-  sameAs,
-  maxFileSize,
-  maxTagArrayLength,
-  maxTagLength,
-} from '~/i18n/regle/rules'
+import { required, maxLength, minLength, email, sameAs, maxFileSize } from '@regle-rules/i18n'
+
+import { maxTagArrayLength, maxTagLength } from '~/i18n/regle/rules'
 
 export const { useRegle: useRegleI18n } = defineRegleConfig({
   rules: () => {
