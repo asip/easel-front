@@ -16,7 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@formkit/tempo": "^1.5.0",
+    "@formkit/tempo": "^1.6.0",
     "@nuxt/devtools": "^1.7.1",
     "@regle/core": "^1.30.0",
     "@regle/nuxt": "^1.30.0",
