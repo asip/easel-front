@@ -44,7 +44,7 @@
     "@nuxt/eslint": "^1.17.0",
     "@nuxt/devtools": "^1.7.1",
     "@nuxt/test-utils": "^4.4.0",
-    "@nuxtjs/i18n": "^10.6.0",
+    "@nuxtjs/i18n": "^10.7.0",
     "@tailwindcss/vite": "^4.3.5",
     "@testing-library/vue": "^8.1.0",
     "@types/google.accounts": "^0.0.18",
