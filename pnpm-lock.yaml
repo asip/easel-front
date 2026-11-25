@@ -25,8 +25,8 @@ importers:
         specifier: ^1.7.1
         version: 1.7.1(rollup@4.68.8)(supports-color@10.2.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.4)(yaml@2.9.1))(vue@3.6.0-rc.16(typescript@6.0.3))
       '@regle-rules/i18n':
-        specifier: 0.1.0
-        version: 0.1.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))
+        specifier: 0.2.0
+        version: 0.2.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))
       '@regle/core':
         specifier: ^1.30.0
         version: 1.30.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))
@@ -1730,8 +1730,8 @@ packages:
   '@poppinss/exception@1.2.3':
     resolution: {integrity: sha512-dCED+QRChTVatE9ibtoaxc+WkdzOSjYTKi/+uacHWIsfodVfpsueo3+DKpgU5Px8qXjgmXkSvhXvSCz3fnP9lw==}
 
-  '@regle-rules/i18n@0.1.0':
-    resolution: {integrity: sha512-XwLN32DWfZxvR5HTCfechZdVq6sNurBh5s3NJspFuAlmVWdNGEBaVkx3kC04G9duEYPUhwn6WKLytvZISqaZnA==}
+  '@regle-rules/i18n@0.2.0':
+    resolution: {integrity: sha512-BoPl/Uc3RmAPiho7D+DMpa83aQ6ieJezYOYymG6mGjmtmyn0+Ip1607yN+s5mpwA3W5nB1HTlV6pDNkjzinhbA==}
 
   '@regle/core@1.30.0':
     resolution: {integrity: sha512-pKJE+5k0x0gsmnAKWJwxUtsPhkLiW2WJSKZJBQYkeT1KkGwwptuRL89D4N9/T9Z72LqPyFxKET6EX/7DzvvRvg==}
@@ -8126,7 +8126,7 @@ snapshots:
 
   '@poppinss/exception@1.2.3': {}
 
-  '@regle-rules/i18n@0.1.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))':
+  '@regle-rules/i18n@0.2.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))':
     dependencies:
       '@regle/core': 1.30.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))
       '@regle/rules': 1.30.0(pinia@4.1.0(@vue/devtools-api@8.2.1)(typescript@6.0.3)(vue@3.6.0-rc.16(typescript@6.0.3)))(vue@3.6.0-rc.16(typescript@6.0.3))

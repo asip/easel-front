@@ -18,7 +18,7 @@
   "dependencies": {
     "@formkit/tempo": "^1.6.0",
     "@nuxt/devtools": "^1.7.1",
-    "@regle-rules/i18n": "0.1.0",
+    "@regle-rules/i18n": "0.2.0",
     "@regle/core": "^1.30.0",
     "@regle/nuxt": "^1.30.0",
     "@regle/rules": "^1.30.0",
