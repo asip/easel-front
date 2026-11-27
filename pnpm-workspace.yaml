@@ -6,11 +6,6 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@regle-rules/i18n@0.2.2'
   - lucide-static@1.81.0
-  - '@intlify/core-base@11.4.24'
-  - '@intlify/devtools-types@11.4.24'
-  - '@intlify/message-compiler@11.4.24'
-  - '@intlify/shared@11.4.24'
-  - vue-i18n@11.4.24
   - baseline-browser-mapping@2.11.40
   - vite@8.4.0
   - daisyui@5.8.3
