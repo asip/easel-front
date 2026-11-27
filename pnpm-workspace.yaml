@@ -5,13 +5,8 @@ allowBuilds:
   vue-demi: false
 minimumReleaseAgeExclude:
   - '@regle-rules/i18n@0.2.2'
-  - lucide-static@1.81.0
   - baseline-browser-mapping@2.11.40
-  - vite@8.4.0
   - daisyui@5.8.3
-  - '@nuxt/devtools-assets@4.2.2'
-  - '@nuxt/devtools-kit@4.2.2'
-  - '@nuxt/devtools@4.2.2'
 overrides:
   '@vue/compiler-core': ^3.6.0-rc.16
   '@vue/compiler-dom': ^3.6.0-rc.16
