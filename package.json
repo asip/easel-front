@@ -42,7 +42,7 @@
     "@markuplint/vue-parser": "^5.6.1",
     "@markuplint/vue-spec": "^5.6.1",
     "@nuxt/eslint": "^1.17.0",
-    "@nuxt/devtools": "^1.7.1",
+    "@nuxt/devtools": "^4.2.2",
     "@nuxt/test-utils": "^4.4.0",
     "@nuxtjs/i18n": "^10.7.0",
     "@tailwindcss/vite": "^4.3.5",
