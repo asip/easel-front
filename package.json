@@ -32,7 +32,7 @@
     "@yaireo/tagify": "^4.39.0",
     "bowser": "2.15.1",
     "glightbox": "^3.3.1",
-    "lucide-static": "^1.81.0",
+    "lucide-static": "^1.82.0",
     "photoswipe": "^5.4.4",
     "sanitize-html": "^2.18.2",
     "vue-sonner": "^2.0.9",
